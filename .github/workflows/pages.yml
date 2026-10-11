@@ -1,7 +1,6 @@
 # main dalına her itmede galeriyi GitHub Pages'e yayınlar:
-#   https://streamemberplatform.github.io/mhud/
-# ÖNCE BİR KEZ: Settings > Pages > Build and deployment > Source = "GitHub Actions"
-# (açılmazsa deploy adımı 404 verir; GITHUB_TOKEN Pages'i kendisi açamaz)
+#   https://streamember.github.io/mhud/
+# Settings > Pages > Source = "GitHub Actions" (ayarlı). Sayfalar kiti jsDelivr'den yükler.
 name: Pages
 
 on:

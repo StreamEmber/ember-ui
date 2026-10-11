@@ -2,6 +2,11 @@
 
 Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@2.0.1`).
 
+## 2.0.2 — 2026-10-12
+- Dağıtım npm yerine doğrudan GitHub: `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/dist/mhud.min.css` (ve `.js`). `dist/` artık sürüm etiketlerinde depoda; npm paketi yayınlanmıyor.
+- Depo `StreamEmber/mhud` adresine taşındı; galeri https://streamember.github.io/mhud/.
+- Sunum sayfaları (`pages/`) kiti jsDelivr'den yükler; tüm katalog varyantları en az bir sunum sayfasında (yeni: Barlar, İsim etiketleri, Bar stilleri). `tools/coverage.mjs` kapsamı denetler.
+
 ## 2.0.1 — 2026-10-09
 (2.0.0 etiketi itildi ama npm yayını tamamlanmadı; bu sürüm onun yerine geçer.)
 

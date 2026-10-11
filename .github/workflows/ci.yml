@@ -1,4 +1,4 @@
-# Her push ve PR'da: bağımlılıkları kur, derle, npm paketinin içeriğini doğrula.
+# Her push ve PR'da: bağımlılıkları kur, derle, AI kılavuzu, sürüm ve sunum kapsamını doğrula.
 name: CI
 
 on:
@@ -27,4 +27,5 @@ jobs:
         run: |
           V="$(node -p "require('./package.json').version")"
           grep -q "version: '$V'" kit/js/mhud.js || { echo "::error::kit/js/mhud.js sürümü $V değil (npm run version)"; exit 1; }
-      - run: npm pack --dry-run
+      - name: Her varyant bir sunum sayfasında mı
+        run: node tools/coverage.mjs

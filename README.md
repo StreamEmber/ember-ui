@@ -1,22 +1,24 @@
 # MHud
 
-[![npm](https://img.shields.io/npm/v/@streamemberplatform/mhud?color=f5b83d&label=npm)](https://www.npmjs.com/package/@streamemberplatform/mhud)
+[![jsDelivr](https://img.shields.io/badge/CDN-jsDelivr%20gh-f5b83d)](https://www.jsdelivr.com/package/gh/StreamEmber/mhud)
 [![license](https://img.shields.io/badge/license-MIT-f5b83d)](LICENSE)
 
 Oyun modları ve canlı yayın overlay'leri için temalı, bağımlılıksız HUD ve arayüz kiti (NUI, OBS tarayıcı kaynağı, HTML5).
 Aynı HTML dört temaya bürünür: `modern`, `tactical` (GTA V dili), `frontier` (RDR2 western HUD), `oldwest` (kâğıt-mürekkep).
 
-**Galeri:** https://streamemberplatform.github.io/mhud/  ·  **Yapay zeka için kılavuz:** [`AI.md`](AI.md)
+**Galeri:** https://streamember.github.io/mhud/  ·  **Yapay zeka için kılavuz:** [`AI.md`](AI.md)
 
 ## Kurulum
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@streamemberplatform/mhud@2.0.1/dist/mhud.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@streamemberplatform/mhud@2.0.1/dist/mhud.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/dist/mhud.min.css">
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/dist/mhud.min.js"></script>
 <body class="mh" data-mh-theme="modern"> … <script>MH.mount(document.body);</script>
 ```
 
-Her zaman tam sürüm yazın (`@latest` güncellemede görünümü habersizce değiştirir). Oyun içi NUI'de CDN yerine `dist/` klasörünü (fontlarla) resource'a kopyalayın. npm: `npm i @streamemberplatform/mhud` → `dist/mhud.css`, `dist/mhud.js` (`window.MH`).
+Her zaman tam sürüm yazın (`@latest` güncellemede görünümü habersizce değiştirir). Oyun içi NUI'de CDN yerine `dist/` klasörünü (fontlarla) resource'a kopyalayın.
+
+Dosyalar doğrudan GitHub deposundan, jsDelivr'in `gh` yolu ile gelir (npm kullanılmaz): `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v<sürüm>/<yol>`. `dist/` her sürüm etiketinde depoya girer; `dist/mhud.css` (açık), `dist/mhud.min.css`, `dist/mhud.js`, `dist/mhud.min.js` (`window.MH`), `dist/fonts/`. Etiketsiz `@main` önbelleğe alınır ve sürüm dışı değişir, üretimde kullanmayın.
 
 ## Kullanım
 
@@ -41,11 +43,11 @@ Bileşenler ailelere ayrılır; her varyantın HTML'i ve güncelleme çağrısı
 | [Araç ve binek](ai/vehicle.md) | 6 | Hız kadranı, kompakt hız, yakıt/motor ölçerleri, gösterge lambaları, halka ölçer ve at (binek) paneli |
 | [Yaşam göstergeleri](ai/vitals.md) | 30 | Can, zırh, stamina, dayanıklılık gibi 0-100 arası değerler |
 
-Bunlara ek olarak `MH.*` ile kullanılan API'ler (bildirim akışı, `MH.Nametags`, `MH.Markers`, `MH.Social`, radyal menü, onay/seçim pencereleri) `AI.md`'de ve ilgili ailede anlatılır. Galerideki **Sunumlar** bölümü bileşenlerin bir arada kullanıldığı hazır ekranları gösterir.
+Bunlara ek olarak `MH.*` ile kullanılan API'ler (bildirim akışı, `MH.Nametags`, `MH.Markers`, `MH.Social`, radyal menü, onay/seçim pencereleri) `AI.md`'de ve ilgili ailede anlatılır. Galerideki **Sunumlar** bölümü (`pages/`) her bileşeni bir arada, gerçek sahne üstünde gösterir; sayfalar da kiti jsDelivr'den yükler.
 
 ### Yapay zeka ile kullanım
 
-Yapay zekaya yalnız `AI.md` adresini verin (`https://cdn.jsdelivr.net/npm/@streamemberplatform/mhud@2.0.1/AI.md`): kurulum, tema kuralları ve varyant dizinini içerir; yapay zeka dizinden varyantı seçer, yalnız o ailenin dosyasını açar, kaynak kodu okumaz.
+Yapay zekaya yalnız `AI.md` adresini verin (`https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/AI.md`): kurulum, tema kuralları ve varyant dizinini içerir; yapay zeka dizinden varyantı seçer, yalnız o ailenin dosyasını açar, kaynak kodu okumaz.
 
 ### Hızlı örnek
 
@@ -63,12 +65,13 @@ Temayı değiştirmek için yalnız `data-mh-theme` değişir (`MH.theme('tactic
 ## Geliştirme
 
 ```bash
-npm install
-npm run site     # build + galeri (_site/) + AI.md / ai/*.md
+npm install      # yalnız geliştirme araçları (esbuild)
+npm run site     # build + galeri (_site/) + AI.md / ai/*.md; sayfalar jsDelivr'den yükler
+npm run dev      # aynısı, ama sayfalar yerel dist/'i kullanır (yayınlanmamış değişiklikleri görmek için)
 npm run serve    # galeri: http://localhost:5173
 npm run icons    # kit/js/mhud-icons.js'i yeniden üret
 ```
 
-**Sürüm yayınlamak:** `CHANGELOG.md`'yi güncelle, `npm version 2.0.1 -m "v%s"`, `git push --follow-tags`.
-`v*` etiketi GitHub Actions'ta derler ve npm'e yayınlar (Trusted Publishing ya da `NPM_TOKEN`). `main`'e her itme galeriyi GitHub Pages'e yayınlar.
+**Sürüm yayınlamak:** `CHANGELOG.md`'yi güncelle, `npm version <x.y.z> -m "v%s"` (sürümü her yere yazar, `dist/`'i derleyip commit'e ekler), `git push --follow-tags`.
+`v*` etiketi jsDelivr adresini (`@v<x.y.z>`) hemen kullanılabilir yapar; GitHub Actions bir GitHub Release açar. `main`'e her itme galeriyi GitHub Pages'e yayınlar (https://streamember.github.io/mhud/).
 Geliştirme kuralları: [`AGENTS.md`](AGENTS.md).

@@ -1,6 +1,7 @@
 {
-  "name": "@streamemberplatform/mhud",
+  "name": "mhud",
   "version": "2.0.1",
+  "private": true,
   "description": "Themed, dependency-free HUD & UI kit for game mods and live-stream overlays (NUI, OBS, HTML5): vitals, location, economy, equipment, vehicle, kill feed, gifts, broadcast crop, 4 themes.",
   "keywords": [
     "hud",
@@ -16,21 +17,19 @@
     "css",
     "ai-friendly"
   ],
-  "homepage": "https://streamemberplatform.github.io/mhud/",
+  "homepage": "https://streamember.github.io/mhud/",
   "bugs": {
-    "url": "https://github.com/StreamEmberPlatform/mhud/issues"
+    "url": "https://github.com/StreamEmber/mhud/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/StreamEmberPlatform/mhud.git"
+    "url": "git+https://github.com/StreamEmber/mhud.git"
   },
   "license": "MIT",
   "author": "Stream Ember Platform",
   "type": "module",
   "main": "./dist/mhud.js",
   "style": "./dist/mhud.css",
-  "unpkg": "./dist/mhud.min.js",
-  "jsdelivr": "./dist/mhud.min.js",
   "exports": {
     ".": {
       "style": "./dist/mhud.css",
@@ -45,23 +44,14 @@
     "./package.json": "./package.json"
   },
   "sideEffects": true,
-  "files": [
-    "dist",
-    "kit",
-    "AI.md",
-    "ai",
-    "LICENSE",
-    "README.md",
-    "CHANGELOG.md"
-  ],
   "scripts": {
     "build": "node tools/build.mjs",
     "icons": "node tools/build-icons.cjs",
     "serve": "npx --yes serve -l 5173 _site",
-    "version": "node tools/set-version.mjs && git add -A",
-    "prepublishOnly": "npm run build",
+    "version": "node tools/set-version.mjs && npm run build && git add -A",
     "catalog": "node tools/build-catalog.mjs",
-    "site": "npm run build && npm run catalog"
+    "site": "npm run build && npm run catalog",
+    "dev": "npm run build && node tools/build-catalog.mjs --local"
   },
   "devDependencies": {
     "@mdi/svg": "7.4.47",

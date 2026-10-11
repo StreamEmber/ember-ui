@@ -9,12 +9,17 @@
     { group: 'Sunumlar', items: [
       { href: 'pages/components.html', label: 'Temel bileşenler', icon: 'layers' }
     ]},
+    { group: 'Ölçerler', items: [
+      { href: 'pages/vitals.html', label: 'Yaşam göstergeleri', icon: 'stats' },
+      { href: 'pages/bars.html', label: 'Barlar', icon: 'gauge' }
+    ]},
     { group: 'Oyun içi HUD', items: [
       { href: 'pages/hud.html', label: 'Oyuncu HUD', icon: 'heart' },
       { href: 'pages/vehicle.html', label: 'Araç & binek', icon: 'steering' },
       { href: 'pages/combat.html', label: 'Çatışma', icon: 'crosshair' },
       { href: 'pages/mode.html', label: 'Oyun modu', icon: 'flag' },
-      { href: 'pages/world.html', label: 'Dünya katmanı', icon: 'pin' }
+      { href: 'pages/world.html', label: 'Dünya katmanı', icon: 'pin' },
+      { href: 'pages/tags.html', label: 'İsim etiketleri', icon: 'tag' }
     ]},
     { group: 'Yayın & oyunlar', items: [
       { href: 'pages/broadcast.html', label: 'Yayın düzeni (kare/dikey)', icon: 'phone' },
@@ -28,7 +33,8 @@
       { href: 'pages/menus.html', label: 'Menüler', icon: 'list' },
       { href: 'pages/social.html', label: 'Ekip & kanallar', icon: 'crew' },
       { href: 'pages/interaction.html', label: 'Etkileşim', icon: 'pointer' },
-      { href: 'pages/screens.html', label: 'Tam ekranlar', icon: 'focus' }
+      { href: 'pages/screens.html', label: 'Tam ekranlar', icon: 'focus' },
+      { href: 'pages/parts.html', label: 'Diğer parçalar', icon: 'box' }
     ]}
   ];
   // build-catalog bu satırı aile listesiyle değiştirir (galeri sitesinde)

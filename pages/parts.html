@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diğer parçalar — MHud</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/dist/mhud.min.css">
+<link rel="stylesheet" href="../demo/demo.css">
+</head>
+<body class="mh">
+<main class="demo-main">
+  <header class="demo-head">
+    <span class="demo-head__kicker">Arayüz</span>
+    <h1>Diğer parçalar</h1>
+    <p>Diğer sunumlarda sahneye girmeyen küçük parçalar, ailesine göre: seçim kutusu ve kaydırma çubukları, kompakt para, yatay ve sütun grafikleri, mermi sayacı, yön çipi, koordinat, kenar işaretçisi, onay penceresi ve sürü uyarısı. Her kartın altında katalog kimliği ve güncelleme çağrısı var.</p>
+  </header>
+  <div class="demo-actions">
+    <span class="demo-actions__label">Dene:</span>
+    <button class="demo-btn" id="shuffle"><i data-i="refresh"></i>Değerleri değiştir</button>
+    <button class="demo-btn" id="auto"><i data-i="play"></i>Canlı</button>
+  </div>
+  <div class="demo-h2"><h2>Temel parçalar</h2><p>2 varyant · <code>ai/base.md</code></p></div>
+  <div class="demo-specs" style="--cols:2">
+    <div class="demo-spec" id="base-field"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-col" style="gap:10px;--w:280px"><label class="mh-field"><span class="mh-kicker">Oyuncu adı</span><input class="mh-input" value="Amiral Router"></label><label class="mh-field"><span class="mh-kicker">Not</span><textarea class="mh-input mh-textarea" rows="2">Merhaba</textarea></label><label class="mh-field"><span class="mh-kicker">Sunucu</span><select class="mh-input mh-select"><option>İstanbul</option><option>Frankfurt</option></select></label></div>
+    </div><div class="demo-spec__meta"><b>Metin alanı <code>base.field</code></b><span>Etiketli giriş: label.mh-field içinde kicker + input.mh-input. Çok satır için textarea.mh-input.mh-textarea, seçim için select.mh-input.mh-select.<br><code>input.value</code></span></div></div>
+    <div class="demo-spec" id="base-scroll"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-flex" style="gap:14px;align-items:flex-start">
+<div class="mh-panel mh-scroll" style="width:150px;height:120px;padding:8px"><p class="mh-sub">Satır 1<br>Satır 2<br>Satır 3<br>Satır 4<br>Satır 5<br>Satır 6<br>Satır 7<br>Satır 8</p></div>
+<div class="mh-panel mh-scroll mh-scroll--rail" style="width:150px;height:120px;padding:8px"><p class="mh-sub">Ray görünür<br>Satır 2<br>Satır 3<br>Satır 4<br>Satır 5<br>Satır 6<br>Satır 7<br>Satır 8</p></div>
+<div class="mh-panel mh-scroll mh-scroll--accent" style="width:150px;height:120px;padding:8px"><p class="mh-sub">Vurgu rengi<br>Satır 2<br>Satır 3<br>Satır 4<br>Satır 5<br>Satır 6<br>Satır 7<br>Satır 8</p></div>
+<div class="mh-panel mh-scroll mh-scroll--x" style="width:150px;padding:8px"><div class="mh-sub" style="white-space:nowrap;width:420px">Yatay kaydırma: uzun bir satır soldan sağa uzanır.</div></div>
+</div>
+    </div><div class="demo-spec__meta"><b>Kaydırma çubuğu <code>base.scroll</code></b><span>.mh altındaki tüm kaydırma çubukları tema renginde ince çizilir; ek sınıf gerekmez. Biçim: mh-scroll--rail (görünür ray), --accent (vurgu rengi), --hidden (gizli), --x (yatay). Yükseklik ver, taşan içerik kaydırılır.<br><code>el.classList.add('mh-scroll')</code></span></div></div>
+  </div>
+  <div class="demo-h2"><h2>Ekonomi ve durum</h2><p>1 varyant · <code>ai/economy.md</code></p></div>
+  <div class="demo-specs" style="--cols:2">
+    <div class="demo-spec" id="economy-coin"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-flex" style="gap:20px">
+  <div class="mh-coin"><i data-i="coin-f"></i><b>12.400</b></div>
+  <div class="mh-coin mh-t-info"><i data-i="bolt"></i><b>240</b></div>
+</div>
+    </div><div class="demo-spec__meta"><b>Kompakt para <code>economy.coin</code></b><span>Tek satır ikon + tutar: puan, jeton, altın. Tonu mh-t-* ile değiştir; satır içi kullanılır.<br><code>MH.money(el.querySelector('b'), 12400)</code></span></div></div>
+  </div>
+  <div class="demo-h2"><h2>Grafik ve ilerleme</h2><p>2 varyant · <code>ai/extras.md</code></p></div>
+  <div class="demo-specs" style="--cols:2">
+    <div class="demo-spec" id="extras-hbars"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-hbars" style="--w:320px">
+<div class="mh-hbar mh-t-danger"><span class="mh-hbar__label">Tüfek</span><span class="mh-hbar__track"><i style="transform:scaleX(1)"></i></span><b>420</b></div>
+<div class="mh-hbar mh-t-info"><span class="mh-hbar__label">Tabanca</span><span class="mh-hbar__track"><i style="transform:scaleX(.55)"></i></span><b>230</b></div>
+<div class="mh-hbar mh-t-warn"><span class="mh-hbar__label">Bıçak</span><span class="mh-hbar__track"><i style="transform:scaleX(.2)"></i></span><b>84</b></div>
+</div>
+    </div><div class="demo-spec__meta"><b>Yatay çubuklar <code>extras.hbars</code></b><span>Karşılaştırma: etiket + çubuk (scaleX 0..1) + değer; tone. Kod: MH.bars(el, [{ label, value, icon, tone }]).<br><code>MH.bars(el, rows)</code></span></div></div>
+    <div class="demo-spec" id="extras-columns"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-columns" style="--h:120px">
+<div class="mh-col-bar"><i style="transform:scaleY(.4)"></i><span>Pzt</span></div>
+<div class="mh-col-bar"><i style="transform:scaleY(.7)"></i><span>Sal</span></div>
+<div class="mh-col-bar mh-t-success"><i style="transform:scaleY(1)"></i><span>Çar</span></div>
+<div class="mh-col-bar"><i style="transform:scaleY(.55)"></i><span>Per</span></div>
+</div>
+    </div><div class="demo-spec__meta"><b>Dikey sütunlar <code>extras.columns</code></b><span>Zaman serisi sütunları: yükseklik --h; her sütun scaleY 0..1 + alt etiket. Kod: MH.columns(el, [{ label, value, tone }]).<br><code>MH.columns(el, rows)</code></span></div></div>
+  </div>
+  <div class="demo-h2"><h2>Ekipman ve ekip</h2><p>1 varyant · <code>ai/gear.md</code></p></div>
+  <div class="demo-specs" style="--cols:2">
+    <div class="demo-spec" id="gear-ammo"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-flex" style="gap:26px">
+  <div class="mh-ammo"><b>24</b><span>/ 180</span></div>
+  <div class="mh-ammo is-low"><b>3</b><span>/ 12</span></div>
+</div>
+    </div><div class="demo-spec__meta"><b>Mermi sayacı <code>gear.ammo</code></b><span>Silah çizimi olmadan yalnız şarjör / yedek. is-low şarjörü kırmızıya çevirir.<br><code>el.querySelector('b').textContent = 24</code></span></div></div>
+  </div>
+  <div class="demo-h2"><h2>Konum ve yön</h2><p>3 varyant · <code>ai/location.md</code></p></div>
+  <div class="demo-specs" style="--cols:2">
+    <div class="demo-spec" id="location-heading"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-heading"><b>KB</b><span>315°</span></div>
+    </div><div class="demo-spec__meta"><b>Yön çipi <code>location.heading</code></b><span>Sadece yön harfi ve derece; en az yer kaplayan yön göstergesi.<br><code>el.querySelector('b').textContent = 'KB'</code></span></div></div>
+    <div class="demo-spec" id="location-coords"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-coords"><span>X<b>-1204.3</b></span><span>Y<b>3180.7</b></span><span>Z<b>41.2</b></span></div>
+    </div><div class="demo-spec__meta"><b>Koordinat <code>location.coords</code></b><span>Geliştirici veya yayıncı için x / y / z satırı; sayılar tabular.<br><code>el.innerHTML = '&lt;span&gt;X&lt;b&gt;…&lt;/b&gt;&lt;/span&gt;…'</code></span></div></div>
+    <div class="demo-spec" id="location-marker-edge"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div class="mh-marker mh-marker--edge mh-t-danger" style="--a:50deg;margin-top:18px"><span class="mh-marker__arrow"></span><span class="mh-marker__pin"><i data-i="crosshair"></i></span><span class="mh-marker__dist">1,4 km</span></div>
+    </div><div class="demo-spec__meta"><b>Kenar işaretçisi <code>location.marker-edge</code></b><span>Ekran dışındaki hedef: pin kenarda, üstteki ok yönü gösterir (--a derece).<br><code>el.style.setProperty('--a', '50deg')</code></span></div></div>
+  </div>
+  <div class="demo-h2"><h2>Menü ve ekranlar</h2><p>1 varyant · <code>ai/menu.md</code></p></div>
+  <div class="demo-specs" style="--cols:2">
+    <div class="demo-spec demo-spec--full" id="menu-modal"><div class="demo-spec__view" style="--h:280px;height:280px;--dim:.35">
+<div class="mh-panel mh-modal mh-t-danger" style="animation:none"> <div class="mh-modal__head"><div class="mh-modal__icon"><i data-i="alert"></i></div><div class="mh-modal__titles"><div class="mh-title">Eşyayı yok et?</div><div class="mh-sub">Bu işlem geri alınamaz.</div></div></div>
+<div class="mh-modal__actions"><button class="mh-btn mh-btn--ghost"><span class="mh-key mh-key--sm">ESC</span>Vazgeç</button><button class="mh-btn mh-btn--tone mh-t-danger"><span class="mh-key mh-key--sm">ENTER</span>Yok et</button></div> </div>
+    </div><div class="demo-spec__meta"><b>Onay penceresi <code>menu.modal</code></b><span>Onay/uyarı kutusu. Tehlike için mh-t-danger. Kod: MH.confirm({ title, text, danger }) Promise<bool> döner; MH.input / MH.choose benzeri.<br><code>MH.confirm({ title:'Sil?', text:'Geri alınamaz', danger:true }).then(ok=&gt;…)</code></span></div></div>
+  </div>
+  <div class="demo-h2"><h2>Hayatta kalma ve mod</h2><p>1 varyant · <code>ai/survival.md</code></p></div>
+  <div class="demo-specs" style="--cols:2">
+    <div class="demo-spec" id="survival-horde"><div class="demo-spec__view" style="--h:200px;--dim:.35">
+<div style="position:relative;height:170px;width:100%"><div class="mh-horde" style="top:0"><div class="mh-horde__drums"><i></i><i></i><i></i></div><b>Sürü geliyor</b><span>Barikatları hazırla</span></div></div>
+    </div><div class="demo-spec__meta"><b>Sürü uyarısı <code>survival.horde</code></b><span>Ekran ortasında büyük başlık + alt satır + davul çubukları (__drums). Konumu absolute; .mh-screen içinde kullan.</span></div></div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/dist/mhud.min.js"></script>
+<script src="../demo/demo.js"></script>
+<script>
+  // Sayfadaki her ölçeri gerçek API çağrılarıyla rastgele değerlere sürer
+  function shuffle() {
+    var r = Math.random;
+    document.querySelectorAll('.mh-bar[data-v]').forEach(function (b) { MH.bar(b, Math.round(r() * 100)); });
+    document.querySelectorAll('.mh-ringval').forEach(function (n) { var v = r(); MH.ring(n, v); var t = n.querySelector('b'); if (t && /^\d+%?$/.test(t.textContent)) t.textContent = Math.round(v * 100) + (t.textContent.indexOf('%') >= 0 ? '%' : ''); });
+    document.querySelectorAll('[data-pips]').forEach(function (n) { var t = n.children.length; MH.pips(n, Math.round(r() * t), t); });
+    document.querySelectorAll('.mh-core').forEach(function (n) { MH.core(n, { value: r() * 100, core: r() * 100 }); });
+    document.querySelectorAll('.mh-tug').forEach(function (n) { var a = Math.round(20 + r() * 60); n.children[0].style.setProperty('--a', a); n.children[1].style.setProperty('--a', 100 - a); });
+    document.querySelectorAll('.mh-wayarrow').forEach(function (n) { n.style.setProperty('--a', Math.round(r() * 360) + 'deg'); });
+    document.querySelectorAll('.mh-compass').forEach(function (n) { MH.compass(n, r() * 360); });
+  }
+  var timer = 0;
+  document.getElementById('shuffle').onclick = shuffle;
+  document.getElementById('auto').onclick = function () { if (timer) { clearInterval(timer); timer = 0; this.classList.remove('is-active'); } else { timer = setInterval(shuffle, 1400); this.classList.add('is-active'); } };
+</script>
+</body>
+</html>

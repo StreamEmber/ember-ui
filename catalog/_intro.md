@@ -10,8 +10,8 @@ can/zırh/stamina → `vitals` · boss, dalga, hedef, XP, kanal, ele geçirme, y
 ## Kurulum
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@streamemberplatform/mhud@{{version}}/dist/mhud.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@streamemberplatform/mhud@{{version}}/dist/mhud.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v{{version}}/dist/mhud.min.css">
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v{{version}}/dist/mhud.min.js"></script>
 <body class="mh" data-mh-theme="modern"> … <script>MH.mount(document.body);</script>
 ```
 

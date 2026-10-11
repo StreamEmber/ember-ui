@@ -1,6 +1,6 @@
 // catalog/*.html -> ai/<aile>.md + AI.md (npm paketine girer) ve _site/ galerisi.
 // Her <section data-id data-title data-use [data-js]> bir varyanttır; HTML parçası hem galeride çizilir hem AI belgesine girer.
-// Kullanım: npm run build && npm run catalog
+// Kullanım: npm run build && npm run catalog   (--local: sayfalar jsDelivr yerine yerel dist/'i kullanır)
 import { readdir, readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -8,6 +8,8 @@ import path from 'node:path';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const { version } = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const THEMES = ['modern', 'tactical', 'frontier', 'oldwest'];
+const CDN = `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v${version}/dist/`;
+const LOCAL = process.argv.includes('--local');
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 // kit'teki sınıflar (doğrulama için)
@@ -46,7 +48,7 @@ await mkdir(path.join(root, 'ai'), { recursive: true });
 const itemMd = it => `## ${it.id} — ${it.title}\n${it.use}\n${it.js ? `JS: \`${it.js}\`\n` : ''}\n\`\`\`${it.run ? 'js' : 'html'}\n${it.html}\n\`\`\`\n`;
 for (const f of families) await writeFile(path.join(root, 'ai', `${f.id}.md`), `# ${f.title}\n${f.desc}\n\n${f.items.map(itemMd).join('\n')}`);
 const intro = (await readFile(path.join(root, 'catalog', '_intro.md'), 'utf8')).replaceAll('{{version}}', version);
-const base = `https://cdn.jsdelivr.net/npm/@streamemberplatform/mhud@${version}/ai/`;
+const base = `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v${version}/ai/`;
 const index = families.map(f => `### ${f.title} → ${base}${f.id}.md\n${f.items.map(i => `- \`${i.id}\` ${i.title}: ${i.use.split('. ')[0].replace(/\.$/, '')}`).join('\n')}\n`).join('\n');
 await writeFile(path.join(root, 'AI.md'), `${intro}\n## Bileşen aileleri\n\n${index}`);
 
@@ -56,11 +58,14 @@ await rm(site, { recursive: true, force: true });
 await mkdir(site, { recursive: true });
 await cp(path.join(root, 'dist'), path.join(site, 'dist'), { recursive: true });
 await writeFile(path.join(site, '.nojekyll'), '');
-// Sunum sayfaları (pages/ + demo/ kabuğu) ham kit dosyalarıyla çalışır
-for (const d of ['kit', 'demo', 'pages']) await cp(path.join(root, d), path.join(site, d), { recursive: true });
+// Sunum sayfaları (pages/ + demo/ kabuğu) kiti jsDelivr'den yükler
+for (const d of ['demo', 'pages']) await cp(path.join(root, d), path.join(site, d), { recursive: true });
 const shows = [];
 for (const f of (await readdir(path.join(root, 'pages'))).filter(f => f.endsWith('.html')).sort()) {
-  const t = (await readFile(path.join(root, 'pages', f), 'utf8')).match(/<title>([^<—]+)/);
+  const src = await readFile(path.join(root, 'pages', f), 'utf8');
+  if (!src.includes(CDN + 'mhud.min.css') || !src.includes(CDN + 'mhud.min.js')) throw new Error(`pages/${f}: kit ${CDN} adresinden yüklenmiyor (node tools/set-version.mjs)`);
+  if (LOCAL) await writeFile(path.join(site, 'pages', f), src.replaceAll(CDN, '../dist/'));
+  const t = src.match(/<title>([^<—]+)/);
   shows.push({ href: 'pages/' + f, label: (t ? t[1] : f).trim() });
 }
 const demoJs = path.join(site, 'demo', 'demo.js');
@@ -70,7 +75,7 @@ const nav = cur => `<nav class="g-nav"><a class="g-brand" href="index.html">MHud
 const page = (title, cur, body) => `<!doctype html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title} — MHud</title>
-<link rel="stylesheet" href="dist/mhud.css">
+<link rel="stylesheet" href="${LOCAL ? 'dist/' : CDN}mhud.min.css">
 <style>
 body{margin:0;background:#12151b;color:#e8eaf0;font:14px/1.5 system-ui,sans-serif}
 .g-nav{position:fixed;left:0;top:0;bottom:0;width:230px;overflow:auto;display:flex;flex-direction:column;gap:1px;padding:14px 10px;background:#0b0d11;z-index:5;box-sizing:border-box}
@@ -93,7 +98,7 @@ main{padding:0 16px 40px;max-width:1200px;margin:auto}h1{margin:16px 0 4px}p.d{c
 .g-fam a{display:block;background:#1a1f28;border-radius:10px;padding:14px 16px;color:inherit;text-decoration:none;margin-bottom:10px}.g-fam b{color:#fff}.g-fam span{color:#9aa3b2}
 </style></head>
 <body class="mh" data-mh-theme="modern">${nav(cur)}${body}<div class="mh-screen" style="position:fixed"></div>
-<script src="dist/mhud.min.js"></script>
+<script src="${LOCAL ? 'dist/' : CDN}mhud.min.js"></script>
 <script>
 MH.mount(document.body);
 var btns=document.querySelectorAll('[data-theme]');
@@ -120,7 +125,7 @@ for (const f of families) {
   const cards = f.items.map(i => `<div class="g-card${i.wide ? ' g-wide' : ''}"><h3>${i.title}<code>${i.id}</code></h3><p>${esc(i.use)}</p><div class="g-stage">${i.run ? '<button class="g-run">Çalıştır</button>' : box(i)}</div><details${i.run ? ' open' : ''}><summary>${i.run ? 'JS' : 'HTML'}${i.js ? ' · ' + esc(i.js) : ''}</summary><pre>${esc(i.html)}</pre></details></div>`).join('');
   await writeFile(path.join(site, `${f.id}.html`), page(f.title, f.id, `${bar}<main><h1>${f.title}</h1><p class="d">${esc(f.desc)}</p><div class="g-grid">${cards}</div></main>`));
 }
-await writeFile(path.join(site, 'index.html'), page('Galeri', '', `<main><h1>MHud ${version}</h1><p class="d">Bileşen aileleri. Yapay zeka için kılavuz: <a href="https://cdn.jsdelivr.net/npm/@streamemberplatform/mhud@${version}/AI.md" style="color:#f5b83d">AI.md</a></p><div class="g-fam">${families.map(f => `<a href="${f.id}.html"><b>${f.title}</b> <span>· ${f.items.length} varyant — ${esc(f.desc)}</span></a>`).join('')}</div></main>`));
+await writeFile(path.join(site, 'index.html'), page('Galeri', '', `<main><h1>MHud ${version}</h1><p class="d">Bileşen aileleri. Yapay zeka için kılavuz: <a href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v${version}/AI.md" style="color:#f5b83d">AI.md</a></p><div class="g-fam">${families.map(f => `<a href="${f.id}.html"><b>${f.title}</b> <span>· ${f.items.length} varyant — ${esc(f.desc)}</span></a>`).join('')}</div></main>`));
 
 const used = new Set(families.flatMap(f => f.items.flatMap(i => [...i.html.matchAll(/class="([^"]*)"/g)].flatMap(c => c[1].split(/\s+/)))));
 const aiChars = (await readFile(path.join(root, 'AI.md'), 'utf8')).length;

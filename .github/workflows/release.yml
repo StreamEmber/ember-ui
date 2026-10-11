@@ -1,9 +1,7 @@
-# v* etiketi itildiğinde: derle, npm'e yayınla.
-#   git tag v2.0.1 && git push origin v2.0.1
-# Yayın kimliği (ikisinden biri):
-#  1) Trusted Publishing (önerilen, token yok): npmjs.com > paket > Settings > Trusted Publisher >
-#     GitHub Actions: StreamEmberPlatform / mhud / release.yml  → NPM_TOKEN secret'ını silebilirsin.
-#  2) NPM_TOKEN secret'ı: "Bypass 2FA" işaretli granular token (npm bunu Ocak 2027'de doğrudan yayından kaldırıyor).
+# v* etiketi itildiğinde: etiketteki dist/ doğru mu denetle, GitHub Release aç.
+# Dağıtım npm değil, doğrudan bu etiketten jsDelivr:
+#   https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v<sürüm>/dist/mhud.min.css
+# Etiket `npm version x.y.z` ile oluşturulur (dist/ commit'e girer), sonra: git push --follow-tags
 name: Release
 
 on:
@@ -12,10 +10,9 @@ on:
 
 permissions:
   contents: write
-  id-token: write
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
@@ -23,11 +20,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
           cache: npm
-
-      - name: npm CLI (Trusted Publishing için >= 11.5.1)
-        run: npm install -g npm@^11.5.1 && npm -v
 
       - run: npm ci
 
@@ -35,22 +28,20 @@ jobs:
         run: |
           TAG="${GITHUB_REF_NAME#v}"
           PKG="$(node -p "require('./package.json').version")"
-          if [ "$TAG" != "$PKG" ]; then echo "Etiket v$TAG ama package.json $PKG"; exit 1; fi
+          if [ "$TAG" != "$PKG" ]; then echo "::error::Etiket v$TAG ama package.json $PKG"; exit 1; fi
 
-      - run: npm run build
-
-      - name: npm kimliği (teşhis)
-        run: npm whoami || echo "Token yok ya da geçersiz; Trusted Publishing (OIDC) denenecek"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: npm publish
-        # NPM_TOKEN boşsa npm OIDC ile (Trusted Publishing) yayınlar
-        run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Etiketteki dist/ güncel mi (jsDelivr bunu sunar)
+        run: |
+          npm run build
+          git add -N dist
+          git diff --exit-code --stat -- dist || { echo "::error::Etiketteki dist/ derlemeyle aynı değil; npm version ile sürüm çıkarın"; exit 1; }
 
       - name: GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
+          body: |
+            ```html
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@${{ github.ref_name }}/dist/mhud.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@${{ github.ref_name }}/dist/mhud.min.js"></script>
+            ```
