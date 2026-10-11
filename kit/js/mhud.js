@@ -15,7 +15,7 @@
 (function (root) {
   'use strict';
 
-  var MH = { version: '2.0.1' };
+  var MH = { version: '2.0.2' };
   var doc = root.document;
 
   /* ======================================================================

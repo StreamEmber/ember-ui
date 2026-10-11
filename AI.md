@@ -1,4 +1,4 @@
-# MHud 2.0.1 — AI kılavuzu
+# MHud 2.0.2 — AI kılavuzu
 
 Oyun HUD'u ve yayın overlay'i için hazır arayüz kiti (saf CSS + küçük JS). **Bu dosyayı oku, kaynak kodu açma.**
 Bir bileşen lazımsa aşağıdaki aileler dizininden varyantı seç, yalnız o ailenin `ai/<aile>.md` dosyasını aç, HTML parçasını olduğu gibi kopyala.
@@ -10,8 +10,8 @@ can/zırh/stamina → `vitals` · boss, dalga, hedef, XP, kanal, ele geçirme, y
 ## Kurulum
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/dist/mhud.min.css">
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/dist/mhud.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/dist/mhud.min.css">
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/dist/mhud.min.js"></script>
 <body class="mh" data-mh-theme="modern"> … <script>MH.mount(document.body);</script>
 ```
 
@@ -48,7 +48,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 
 ## Bileşen aileleri
 
-### Barlar → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/bars.md
+### Barlar → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/bars.md
 - `bars.boss` Boss barı: Ekran üstü büyük bar: ad, aşama rozeti, iz (ghost), aşama çentikleri, ikinci kalkan barı
 - `bars.wave` Dalga paneli: Hayatta kalma modu: dalga numarası, kalan düşman barı, sonraki dalga süresi
 - `bars.goal` Hedef çubuğu: Bağış/beğeni hedefi: ikon, başlık, sayaç, bar ve ödül satırı
@@ -68,7 +68,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `bars.steps` Adım ilerlemesi: Görev adımları ya da şarjör: mh-pips tall; dolu parçalar tonlu
 - `bars.download` Yükleme / indirme: Dosya, harita, güncelleme yüklerken: çapraz çizgili bar + durum + yüzde
 
-### Temel parçalar → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/base.md
+### Temel parçalar → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/base.md
 - `base.panel` Panel: Temel kutu
 - `base.button` Düğme: Varyantlar: --primary (ana), varsayılan, --ghost (hafif), --tone + mh-t-* (renkli)
 - `base.badge` Rozet: Küçük etiket: ton mh-t-*; --pill yuvarlak, --dot nokta, --live nabız
@@ -84,7 +84,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `base.spinner` Yükleniyor: Dönen gösterge
 - `base.scroll` Kaydırma çubuğu: .mh altındaki tüm kaydırma çubukları tema renginde ince çizilir; ek sınıf gerekmez
 
-### Savaş ve dünya → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/combat.md
+### Savaş ve dünya → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/combat.md
 - `combat.crosshair` Nişangâh: Dört biçim: artı (varsayılan), --dot, --circle, --t
 - `combat.hit` Vuruş işareti: İsabette nişangâhta kısa X: kind boş normal, 'head' kafa, 'kill' öldürme
 - `combat.damage-from` Hasar yönü: Ekran kenarında hasarın geldiği yönü gösteren yay: 0 önden, 90 sağdan, 180 arkadan (derece)
@@ -99,7 +99,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `combat.points` Ele geçirme noktaları: A/B/C kontrol noktaları: halka doluluğu (--v), takım rengi, is-contested çatışmalı
 - `combat.dialog` Diyalog: Konuşan avatarı, söz satırı ve numaralı seçenekler
 
-### Ekonomi ve durum → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/economy.md
+### Ekonomi ve durum → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/economy.md
 - `economy.cash` Para ve banka: Sağ üst köşe para göstergesi; artış/azalış farkı kısa süre yüzer
 - `economy.coin` Kompakt para: Tek satır ikon + tutar: puan, jeton, altın
 - `economy.wanted` Aranma yıldızları: GTA tarzı 5 yıldız; dolu olanlara on sınıfı, is-flashing yanıp söner
@@ -113,7 +113,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `economy.chip-stat` İstatistik çipleri: Yayın overlay'inde yan yana duran büyük sayı kartları (seviye, can, öldürme)
 - `economy.standings` Sıralama: Skor tablosu satırları: sıra rozeti (is-1/2/3 madalya), ad, skor
 
-### Grafik ve ilerleme → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/extras.md
+### Grafik ve ilerleme → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/extras.md
 - `extras.donut` Halka grafik: Yüzde halkası: data-mh-ring + --v (0..1), ortada değer ve etiket
 - `extras.spark` Mini çizgi grafik: Boş div'e data-spark=&quot;1,3,2,5&quot; ver (data-w, data-h boyut); MH.mount çizer
 - `extras.hbars` Yatay çubuklar: Karşılaştırma: etiket + çubuk (scaleX 0..1) + değer; tone
@@ -125,7 +125,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `extras.match` Maç geçmişi satırı: Maç özeti: sonuç rozeti (G yeşil / M kırmızı mh-rank), mod + harita + saat, Ö/A, MVP rozeti
 - `extras.giftmap` Hediye haritası: Hediye → etki ızgarası: --cols sütun; öğe: sanat (emoji veya ikon), ad + jeton, etki
 
-### Bildirim ve akış → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/feed.md
+### Bildirim ve akış → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/feed.md
 - `feed.toast` Toast: Köşe bildirimi: ton info|success|warn|danger|accent|legendary, süre ms (0 = kalıcı), en fazla 5 adet
 - `feed.toast-action` Toast + eylem: Düğmeli bildirim (davet, onay)
 - `feed.kill` Ölüm akışı: Sağ üst akış satırı: öldüren, silah, ölen
@@ -139,7 +139,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `feed.subtitle` Altyazı: Alt orta konuşma altyazısı: speaker, text, color; boxed: true kutulu (parlak sahnelerde okunur)
 - `feed.progress` İlerleme çubuğu: İşlem çubuğu (arama, tamir, hack): label, icon, duration ms
 
-### Ekipman ve ekip → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/gear.md
+### Ekipman ve ekip → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/gear.md
 - `gear.weapon` Silah paneli: Sağ alt köşe: silah adı, çizimi, şarjör/yedek, şarjör segmentleri, yan eşyalar
 - `gear.ammo` Mermi sayacı: Silah çizimi olmadan yalnız şarjör / yedek
 - `gear.hotbar` Yuva şeridi: Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı
@@ -150,7 +150,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `gear.ping` Bağlantı kalitesi: 4 çubuklu ping göstergesi: iyi (varsayılan), is-mid orta, is-bad kötü
 - `gear.teamhead` Takım başlığı: Skor tablosu takım başlığı: ad + büyük sayı; ton mh-t-team1..5
 
-### Konum ve yön → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/location.md
+### Konum ve yön → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/location.md
 - `location.compass` Pusula şeridi: Üst orta kayan yön şeridi; hedefler şerit üstünde simge olarak durur
 - `location.street` Sokak ve bölge: Yön harfi + sokak adı + bölge
 - `location.heading` Yön çipi: Sadece yön harfi ve derece; en az yer kaplayan yön göstergesi
@@ -162,7 +162,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `location.wayarrow` Hedef oku: Büyük yönlendirme oku + mesafe (görev, teslimat)
 - `location.zone` Daralan bölge: Alan kapanma sayacı (battle royale, arena)
 
-### Menü ve ekranlar → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/menu.md
+### Menü ve ekranlar → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/menu.md
 - `menu.card` Eşya kartı: Mağaza/envanter kartı: art alanı (rozet + data-weapon veya ikon), ad, alt satır, fiyat
 - `menu.classic` Klasik menü: Dikey liste menü (GTA Online tarzı): banner, sayaç, satırlar (is-active, is-disabled), sağda ok/onay kutusu/değer, altta açıklama kutusu
 - `menu.context` Bağlam menüsü: Küçük açılır menü: başlık, satır (ikon, ad, kısayol tuşu), ayraç, is-active, is-danger
@@ -176,7 +176,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `menu.results` Maç sonucu: Maç bitişi: üstte başlık (Zafer/Yenilgi) ve alt satır; podyum ayrı varyant
 - `menu.loading` Yükleme ekranı: Tam ekran: arka plan (__art), başlık/alt metin/rozetler (__main), altta ipucu ve ilerleme (__foot)
 
-### Basılı nesneler → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/print.md
+### Basılı nesneler → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/print.md
 - `print.poster` Arananlar afişi: mh-paper mh-poster: başlık, kural satırı, fotoğraf alanı (ikon), ad, suç, ödül, alt not
 - `print.telegram` Telgraf: Telgraf kâğıdı: marka + numara, gönderen/alıcı, gövde (span.stop = STOP), has-stamp ile damga alanı
 - `print.headline` Gazete: Gazete sayfası: başlık bandı, tarih satırı, manşet, alt manşet, iki sütun (görsel kesiti .mh-headline__cut + paragraf)
@@ -185,7 +185,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `print.sign` Tabela: Yer tabelası: üst yazı, büyük ad, alt not
 - `print.stamp` Damga: Eğik mühür yazısı; is-in ile vurulma animasyonu
 
-### Yayın ve izleyici → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/stream.md
+### Yayın ve izleyici → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/stream.md
 - `stream.statbar` Durum şeridi: Yatay istatistik çipleri: ikon + büyük sayı + etiket
 - `stream.statcard` İstatistik kartı: Oyuncu özeti: seviye halkası + ad, altında 2×2 hücre (ikon, sayı, etiket)
 - `stream.winloss` Galibiyet / mağlubiyet: Skor (yeşil W, kırmızı L) ve son maç geçmişi: data-history=&quot;WWLWWLW&quot; harfleri noktaya çevrilir
@@ -197,7 +197,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `stream.streamer` Yayıncı kartı: Avatar (is-live çerçeve), ad + doğrulama, meta satırı (izleyici, takipçi)
 - `stream.likes` Beğeni yağmuru: Kalpleri yukarı süzdüren efekt alanı
 
-### Hayatta kalma ve mod → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/survival.md
+### Hayatta kalma ve mod → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/survival.md
 - `survival.horde` Sürü uyarısı: Ekran ortasında büyük başlık + alt satır + davul çubukları (__drums)
 - `survival.infected` Özel düşman bildirimi: Özel düşman uyarısı: ikon, tür adı, ipucu
 - `survival.loadout` Silah yuvaları: Hızlı yuva şeridi: tuş numarası, silah çizimi (data-weapon) veya ikon, alt sayaç
@@ -210,7 +210,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `survival.skillcheck` Beceri kontrolü: Dönen ibre başarı dilimine gelince SPACE
 - `survival.qte` Tuş dizisi (QTE): Sıralı tuşlara bas; Promise true/false
 
-### İsim etiketleri → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/tags.md
+### İsim etiketleri → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/tags.md
 - `tags.default` Standart: Ad, oyuncu numarası, rozet, can ve zırh barı, alt satır
 - `tags.relations` İlişki renkleri: Aynı etiket, renk ilişkiyi söyler: is-friend, is-enemy, nötr (sınıfsız), takım mh-t-team1..5; ayrıca mh-t-gold (VIP), mh-t-info (polis) gibi tonlar
 - `tags.compact` Kompakt: mh-tag--compact: rozet ve alt satır gizli, ad 13px, bar 56px
@@ -243,7 +243,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `tags.downed` Yere düştü: is-down: kırmızı, yanıp sönen ad; bar kalan kanama süresi, alt satır kaldırma ipucu
 - `tags.bubble` Konuşma balonu: bubble: etiketin üstünde kısa sohbet metni (yayıncı/izleyici mesajı); 220px'e kadar kayar
 
-### Araç ve binek → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/vehicle.md
+### Araç ve binek → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/vehicle.md
 - `vehicle.speedo` Hız kadranı: Dairesel kadran: hız yayı, son %15 kırmızı bölge, ince devir yayı, vites, lambalar
 - `vehicle.speed-mini` Kompakt hız: Büyük sayı + vites + devir segmentleri; son üç segment kırmızıya döner
 - `vehicle.gauges` Yakıt ve motor ölçerleri: İkon + ince bar satırları (yakıt, motor, nitro)
@@ -251,7 +251,7 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `vehicle.lamps` Gösterge lambaları: Emniyet kemeri, far, kilit, arıza: on yanık, is-warn kırmızı yanıp söner; ton --tone-rgb ile
 - `vehicle.mount` Binek paneli: At için: ad, bağ seviyesi elmasları, can ve dayanıklılık çekirdekleri
 
-### Yaşam göstergeleri → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.1/ai/vitals.md
+### Yaşam göstergeleri → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/vitals.md
 - `vitals.bar` Bar: Tek değer: can, zırh, ilerleme
 - `vitals.bar-ghost` Hasar izli bar: Değer düşünce beyaz iz yavaşça kapanır
 - `vitals.bar-notch` Çentikli bar: Eşit bölmeli bar; --notch bölme sayısı
