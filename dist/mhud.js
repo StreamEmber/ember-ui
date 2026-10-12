@@ -1,4 +1,4 @@
-/*! MHud v2.0.2 | MIT | https://streamember.github.io/mhud/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
+/*! MHud v2.1.0 | MIT | https://streamember.github.io/mhud/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
 /* kit/js/mhud-icons.js */
 /*!
  * MHud — ikon seti (344 ikon)
@@ -393,7 +393,7 @@
 (function (root) {
   'use strict';
 
-  var MH = { version: '2.0.2' };
+  var MH = { version: '2.1.0' };
   var doc = root.document;
 
   /* ======================================================================

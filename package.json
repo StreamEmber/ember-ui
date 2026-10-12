@@ -1,6 +1,6 @@
 {
   "name": "mhud",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "private": true,
   "description": "Themed, dependency-free HUD & UI kit for game mods and live-stream overlays (NUI, OBS, HTML5): vitals, location, economy, equipment, vehicle, kill feed, gifts, broadcast crop, 4 themes.",
   "keywords": [

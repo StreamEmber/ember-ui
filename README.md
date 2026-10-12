@@ -11,8 +11,8 @@ Aynı HTML dört temaya bürünür: `modern`, `tactical` (GTA V dili), `frontier
 ## Kurulum
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/dist/mhud.min.css">
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/dist/mhud.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.css">
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.js"></script>
 <body class="mh" data-mh-theme="modern"> … <script>MH.mount(document.body);</script>
 ```
 
@@ -49,7 +49,7 @@ Bunlara ek olarak `MH.*` ile kullanılan API'ler (bildirim akışı, `MH.Nametag
 
 ### Yapay zeka ile kullanım
 
-Yapay zekaya yalnız `AI.md` adresini verin (`https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/AI.md`): kurulum, tema kuralları ve varyant dizinini içerir; yapay zeka dizinden varyantı seçer, yalnız o ailenin dosyasını açar, kaynak kodu okumaz.
+Yapay zekaya yalnız `AI.md` adresini verin (`https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/AI.md`): kurulum, tema kuralları ve varyant dizinini içerir; yapay zeka dizinden varyantı seçer, yalnız o ailenin dosyasını açar, kaynak kodu okumaz.
 
 ### Hızlı örnek
 

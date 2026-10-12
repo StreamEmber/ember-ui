@@ -1,6 +1,6 @@
 # Değişiklik günlüğü
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@2.0.2`).
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@2.1.0`).
 
 ## 2.1.0 — 2026-10-12
 - Sunum sitesi yeniden tasarlandı (tek kabuk, `demo/`): solda önce **Sunumlar**, sonra **Bileşenler** (aile başına bir sayfa, varyant sayılarıyla, aranabilir, katlanabilir); sağda **Görünüm** paneli (tema, vurgu, sahne, ızgara sütunu, kodları açık göster, değerleri karıştır, bağlantı kopyala, sıfırla) ve **Bu sayfada** içindekiler; üst çubukta konum + önceki/sonraki.
