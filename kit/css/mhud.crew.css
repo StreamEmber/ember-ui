@@ -1,0 +1,155 @@
+/* ==========================================================================
+   MHud — EKİP (crew / posse / squad)
+   Yapay zekâ ekip üyeleri ya da oyuncu takımı: kart, kompakt satır, alt şerit
+   kutucukları, emir çubuğu, binek durumu, üye ayrıntısı.
+   Portreler karedir (halka içine kare koyulmaz). Ton: .mh-t-team1..5 / .mh-t-*.
+   Durumlar: is-down (yerde), is-dead (ölü), is-attacking, is-selected, is-mounted.
+   ========================================================================== */
+
+/* ---------- Portre: kare alan; içinde ikon, harf ya da <img> ---------- */
+.mh-portrait {
+  --tone-rgb: var(--mh-team-1-rgb);
+  position: relative; flex: none; width: var(--s, 44px); height: var(--s, 44px);
+  display: grid; place-items: center; overflow: hidden;
+  border-radius: var(--mh-r-2);
+  background: linear-gradient(160deg, rgb(var(--tone-rgb) / .28), rgb(var(--tone-rgb) / .08)), var(--mh-track);
+  box-shadow: inset 0 0 0 1px rgb(var(--tone-rgb) / .45);
+  font-family: var(--mh-font-display); font-weight: var(--mh-display-weight, 700); font-size: calc(var(--s, 44px) * .4);
+  color: var(--mh-text); text-transform: uppercase;
+}
+.mh-portrait > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mh-portrait > .mh-i { width: 52%; height: 52%; color: rgb(var(--mh-text-rgb) / .85); }
+.mh-portrait__badge {
+  position: absolute; right: 2px; bottom: 2px; width: 16px; height: 16px; display: grid; place-items: center;
+  border-radius: 3px; background: rgb(var(--tone-rgb)); color: #0b0d10; box-shadow: 0 1px 3px rgb(0 0 0 / .5);
+}
+.mh-portrait__badge .mh-i { width: 11px; height: 11px; color: inherit; }
+.mh-portrait--lg { --s: 96px; }
+.mh-portrait--xl { --s: 100%; aspect-ratio: 1; height: auto; }
+
+/* ---------- Üye kartı (ayrıntılı) ---------- */
+.mh-crewcard {
+  --tone-rgb: var(--mh-team-1-rgb);
+  position: relative; display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start;
+  width: var(--w, 340px); padding: 10px 12px 10px 10px;
+  background: var(--mh-surface); border: 1px solid var(--mh-line-soft); border-left: 3px solid rgb(var(--tone-rgb));
+  border-radius: var(--mh-r-3);
+  -webkit-backdrop-filter: blur(var(--mh-blur)); backdrop-filter: blur(var(--mh-blur));
+}
+.mh-crewcard .mh-portrait { --s: 56px; }
+.mh-crewcard__main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.mh-crewcard__head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.mh-crewcard__head b { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mh-crewcard__head .mh-badge { margin-left: auto; flex: none; }
+.mh-crewcard__hp { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; }
+.mh-crewcard__hp .mh-bar { --h: 5px; }
+.mh-crewcard__hp span { font-family: var(--mh-font-num); font-size: 12px; color: var(--mh-text-2); }
+.mh-crewcard__gear { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--mh-text-2); }
+.mh-crewcard__gear > span { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.mh-crewcard__gear .mh-i { width: 14px; height: 14px; color: var(--mh-text-3); }
+.mh-crewcard__gear .mh-weapon-art { width: 42px; height: 13px; color: var(--mh-text); }
+.mh-crewcard__gear .is-off { opacity: .45; text-decoration: line-through; }
+.mh-crewcard.is-selected { border-color: var(--mh-accent-line); box-shadow: 0 0 0 1px var(--mh-accent-line); border-left-color: var(--mh-accent); }
+.mh-crewcard.is-attacking { --tone-rgb: var(--mh-danger-rgb); }
+.mh-crewcard.is-down { --tone-rgb: var(--mh-danger-rgb); }
+.mh-crewcard.is-down .mh-portrait { animation: mh-crew-pulse 1.1s ease-in-out infinite; }
+.mh-crewcard.is-dead { opacity: .5; }
+.mh-crewcard.is-dead .mh-portrait { filter: grayscale(1); }
+@keyframes mh-crew-pulse { 50% { box-shadow: inset 0 0 0 1px rgb(var(--mh-danger-rgb)), 0 0 12px rgb(var(--mh-danger-rgb) / .6); } }
+
+/* ---------- Kompakt satır (HUD kenar listesi) ---------- */
+.mh-crewlist { display: flex; flex-direction: column; gap: 4px; width: var(--w, 260px); }
+.mh-crewrow {
+  --tone-rgb: var(--mh-team-1-rgb);
+  display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; align-items: center; gap: 3px 9px;
+  padding: 5px 9px 6px 5px; background: var(--mh-surface); border-radius: var(--mh-r-2);
+  -webkit-backdrop-filter: blur(var(--mh-blur)); backdrop-filter: blur(var(--mh-blur));
+}
+.mh-crewrow .mh-portrait { --s: 30px; grid-row: span 2; }
+.mh-crewrow__name { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.mh-crewrow__icons { display: flex; align-items: center; gap: 6px; color: var(--mh-text-3); font-family: var(--mh-font-num); font-size: 11px; }
+.mh-crewrow__icons .mh-i { width: 13px; height: 13px; }
+.mh-crewrow__icons .is-on { color: var(--mh-text); }
+.mh-crewrow .mh-bar { --h: 3px; grid-column: 2 / 4; }
+.mh-crewrow.is-attacking { box-shadow: inset 2px 0 0 var(--mh-danger); }
+.mh-crewrow.is-down .mh-crewrow__name { color: var(--mh-danger); }
+.mh-crewrow.is-down .mh-portrait { animation: mh-crew-pulse 1.1s ease-in-out infinite; }
+.mh-crewrow.is-dead { opacity: .45; }
+.mh-crewrow.is-dead .mh-portrait { filter: grayscale(1); }
+
+/* ---------- Kutucuklar (alt şerit: kare portre + can) ---------- */
+.mh-crewtiles { display: flex; gap: 8px; }
+.mh-crewtile { --tone-rgb: var(--mh-team-1-rgb); display: flex; flex-direction: column; gap: 4px; width: var(--s, 58px); }
+.mh-crewtile .mh-portrait { --s: 100%; aspect-ratio: 1; height: auto; }
+.mh-crewtile .mh-bar { --h: 4px; }
+.mh-crewtile small { font-size: 10.5px; font-weight: 600; color: var(--mh-text-2); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: var(--mh-hud-shadow); }
+.mh-crewtile__state { position: absolute; inset: 0; display: grid; place-items: center; background: rgb(var(--mh-danger-rgb) / .55); }
+.mh-crewtile__state .mh-i { width: 46%; height: 46%; color: #fff; }
+.mh-crewtile.is-dead .mh-portrait { filter: grayscale(1); opacity: .55; }
+.mh-crewtile.is-down .mh-portrait { animation: mh-crew-pulse 1.1s ease-in-out infinite; }
+
+/* ---------- Emir çubuğu ---------- */
+.mh-orders { display: inline-flex; gap: 4px; padding: 4px; background: var(--mh-surface); border-radius: var(--mh-r-3); -webkit-backdrop-filter: blur(var(--mh-blur)); backdrop-filter: blur(var(--mh-blur)); }
+.mh-order {
+  display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 12px 0 6px; border: 1px solid transparent; border-radius: var(--mh-r-2);
+  background: none; color: var(--mh-text-2); font: 600 12.5px var(--mh-font-ui); white-space: nowrap; cursor: pointer;
+}
+.mh-order .mh-i { width: 15px; height: 15px; }
+.mh-order:hover { background: var(--mh-raise); color: var(--mh-text); }
+.mh-order.is-active { background: var(--mh-accent-soft); border-color: var(--mh-accent-line); color: var(--mh-text); }
+.mh-order.is-active .mh-i { color: var(--mh-accent); }
+.mh-order.is-danger.is-active { background: rgb(var(--mh-danger-rgb) / .16); border-color: rgb(var(--mh-danger-rgb) / .5); }
+.mh-order.is-danger.is-active .mh-i { color: var(--mh-danger); }
+
+/* ---------- Binek durumu (at / araç) ---------- */
+.mh-mount {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 10px; width: var(--w, 240px);
+  padding: 8px 10px; background: var(--mh-surface); border-radius: var(--mh-r-2);
+  -webkit-backdrop-filter: blur(var(--mh-blur)); backdrop-filter: blur(var(--mh-blur));
+}
+.mh-mount > .mh-i { grid-row: span 3; width: 30px; height: 30px; color: var(--mh-text); }
+.mh-mount b { font-size: 13px; font-weight: 600; }
+.mh-mount small { font-size: 11px; color: var(--mh-text-3); text-align: right; }
+.mh-mount .mh-bar { --h: 3px; grid-column: 2 / 4; }
+.mh-mount.is-off { opacity: .55; }
+
+/* ---------- Ekipman yuvaları (üye ayrıntısı, teçhizat) ---------- */
+.mh-gearslots { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 8px; }
+.mh-gearslot { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.mh-gearslot__art {
+  position: relative; aspect-ratio: var(--ratio, 1); display: grid; place-items: center; overflow: hidden;
+  border-radius: var(--mh-r-2); background: var(--mh-track); box-shadow: inset 0 0 0 1px var(--mh-line-soft);
+}
+.mh-gearslot__art > .mh-i { width: 40%; height: 40%; color: var(--mh-text); }
+.mh-gearslot__art > .mh-weapon-art { width: 82%; color: var(--mh-text); }
+.mh-gearslot__art > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mh-gearslot__art .mh-slot__key { z-index: 1; }
+.mh-gearslot span { font-family: var(--mh-kicker-font, var(--mh-font-ui)); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--mh-text-3); }
+.mh-gearslot b { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mh-gearslot.is-empty .mh-gearslot__art { background: none; box-shadow: inset 0 0 0 1px var(--mh-line); border: 1px dashed var(--mh-line); }
+.mh-gearslot.is-empty .mh-gearslot__art > * { opacity: .3; }
+.mh-gearslot.is-empty b { color: var(--mh-text-3); font-weight: 500; }
+.mh-gearslot.is-active .mh-gearslot__art { box-shadow: inset 0 0 0 1px var(--mh-accent), var(--mh-accent-glow); }
+
+/* ---------- Silah bakımı ---------- */
+.mh-condition { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 10px; width: var(--w, 260px); }
+.mh-condition > .mh-i { grid-row: span 2; width: 22px; height: 22px; color: var(--mh-text-2); }
+.mh-condition b { font-size: 12.5px; font-weight: 600; }
+.mh-condition small { font-family: var(--mh-font-num); font-size: 12px; color: var(--mh-text-2); }
+.mh-condition .mh-bar { --h: 4px; grid-column: 2 / 4; }
+
+/* ---------- Mermi türleri ---------- */
+.mh-ammotypes { display: flex; flex-direction: column; gap: 3px; width: var(--w, 260px); }
+.mh-ammotype {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; height: 34px; padding: 0 10px;
+  border-radius: var(--mh-r-2); border: 1px solid transparent; color: var(--mh-text-2); font-size: 13px; cursor: pointer;
+}
+.mh-ammotype .mh-i { width: 16px; height: 16px; color: var(--mh-text-3); }
+.mh-ammotype small { font-family: var(--mh-font-num); font-size: 12.5px; }
+.mh-ammotype:hover { background: var(--mh-raise); color: var(--mh-text); }
+.mh-ammotype.is-active { background: var(--mh-accent-soft); border-color: var(--mh-accent-line); color: var(--mh-text); }
+.mh-ammotype.is-active .mh-i { color: var(--mh-accent); }
+.mh-ammotype.is-empty { opacity: .4; }
+
+/* ---------- Halka içinde avatar: yuvarlak olur (kare alanı halka sarmaz) ---------- */
+.mh-ringval > .mh-avatar.mh-avatar, .mh-ringval > img { border-radius: 50%; width: calc(100% - 10px); height: calc(100% - 10px); }

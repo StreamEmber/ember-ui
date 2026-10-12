@@ -1,4 +1,4 @@
-<!-- family: Ekipman ve ekip | Silah ve cephane, yuva şeridi, envanter ızgarası, ekip kartları, ses ve bağlantı göstergeleri. -->
+<!-- family: Ekipman | Silah ve cephane, yuva şeridi, envanter ızgarası, teçhizat ve kıyafet yuvaları, silah bakımı, mermi türleri, karşılaştırma. Ekip üyeleri için "Ekip" ailesine, satın alma için "Mağaza" ailesine bak. -->
 
 <section data-id="weapon" data-title="Silah paneli" data-use="Sağ alt köşe: silah adı, çizimi, şarjör/yedek, şarjör segmentleri, yan eşyalar. is-low şarjör kırmızı, is-reloading soluk." data-js="MH.pips(el.querySelector('.mh-pips'), 24, 30); el.querySelector('.mh-weapon__clip').textContent = 24">
 <div class="mh-weapon">
@@ -40,45 +40,45 @@
 </div>
 </section>
 
-<section data-id="party" data-title="Ekip kartları" data-use="Sol kenar ekip listesi: avatar, ad, mesafe, can/zırh ince barları. is-talking konuşuyor, is-down yerde, is-dead ölü." data-js="MH.bar(el.querySelector('.mh-bar'), 54)">
-<div class="mh-party">
-  <div class="mh-member is-talking">
-    <span class="mh-avatar mh-avatar--sm mh-t-team1">N</span>
-    <div class="mh-member__name"><i data-i="crown-f" style="color:var(--mh-warn)"></i><span>NabeMedia</span></div>
-    <span class="mh-member__dist">24 m</span>
-    <div class="mh-member__bars"><div class="mh-bar mh-t-health" data-v="86"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="40"><i class="mh-bar__fill"></i></div></div>
-  </div>
-  <div class="mh-member is-down">
-    <span class="mh-avatar mh-avatar--sm mh-t-team2">S</span>
-    <div class="mh-member__name"><i data-i="heartbeat"></i><span>Serkan_TV · yerde</span></div>
-    <span class="mh-member__dist">12 m</span>
-    <div class="mh-member__bars"><div class="mh-bar mh-t-danger" data-v="12"><i class="mh-bar__fill"></i></div></div>
-  </div>
+<section data-id="loadout-slots" data-title="Teçhizat yuvaları" data-use="Kare görsel alanlı yuvalar: etiket (Birincil, İkincil…) + ad. --cols sütun, --ratio görsel oranı (silah için 16/9 iyi). is-active seçili, is-empty boş (kesik çerçeve). Görsel alanına ikon, data-weapon ya da img konur." data-js="el.querySelectorAll('.mh-gearslot')[1].classList.add('is-active')">
+<div class="mh-gearslots" style="--cols:4;width:440px">
+  <div class="mh-gearslot is-active"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-weapon="repeater"></i></div><span>Birincil</span><b>Lancaster tüfek</b></div>
+  <div class="mh-gearslot"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-weapon="revolver"></i></div><span>İkincil</span><b>Cattleman</b></div>
+  <div class="mh-gearslot"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-i="knife"></i></div><span>Yakın</span><b>Av bıçağı</b></div>
+  <div class="mh-gearslot is-empty"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-i="dynamite"></i></div><span>Atılabilir</span><b>Boş</b></div>
 </div>
 </section>
 
-<section data-id="squad-rings" data-title="Ekip halkaları" data-use="Yan yana avatarlar, çevresinde can halkası. Çok oyunculu ekipte en az yer tutan gösterim." data-js="MH.ring(el, 0.8)">
-<div class="mh-flex" style="gap:8px">
-  <div class="mh-ringval mh-t-health" data-mh-ring style="--v:.86;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team1">N</span></div>
-  <div class="mh-ringval mh-t-health" data-mh-ring style="--v:.54;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team2">M</span></div>
-  <div class="mh-ringval mh-t-danger" data-mh-ring style="--v:.12;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team3">S</span></div>
+<section data-id="outfit" data-title="Kıyafet ve binek yuvaları" data-use="Kare yuvalar: şapka, ceket, çanta, eyer gibi giyilen/takılan parçalar. Aynı .mh-gearslot; --cols ile 2x2 ya da tek sıra." data-js="—">
+<div class="mh-gearslots" style="--cols:4;width:360px">
+  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="hat"></i></div><span>Şapka</span><b>Kovboy</b></div>
+  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="shield"></i></div><span>Yelek</span><b>Deri yelek</b></div>
+  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="backpack"></i></div><span>Çanta</span><b>Heybe</b></div>
+  <div class="mh-gearslot is-empty"><div class="mh-gearslot__art"><i data-i="horseshoe"></i></div><span>Eyer</span><b>Yok</b></div>
 </div>
 </section>
 
-<section data-id="voice" data-title="Ses" data-use="Ses menzili çubukları (is-talking konuşurken yeşil) ve konuşanlar listesi; is-radio telsiz." data-js="el.classList.toggle('is-talking')">
-<div class="mh-col mh-gap-2" style="align-items:flex-start">
-  <div class="mh-voice-range is-talking"><span class="mh-voice-range__bars"><i class="on"></i><i class="on"></i><i></i></span><span>Normal</span><span class="mh-eq"><i></i><i></i><i></i><i></i></span></div>
-  <div class="mh-voice">
-    <div class="mh-speaker"><i data-i="mic-f"></i>NabeMedia<span class="mh-eq"><i></i><i></i><i></i><i></i></span></div>
-    <div class="mh-speaker is-radio"><i data-i="broadcast"></i>MSK · Telsiz 1</div>
-  </div>
+<section data-id="condition" data-title="Silah bakımı" data-use="Silah durumu (kir/aşınma) barı: ikon, ad, yüzde; düşükse ton mh-t-warn / mh-t-danger. RDR2 tarzı temizlik hatırlatması için." data-js="MH.bar(el.querySelector('.mh-bar'), 42)">
+<div class="mh-col mh-gap-3">
+  <div class="mh-condition"><i data-i="wrench"></i><b>Lancaster tüfek</b><small>%86</small><div class="mh-bar mh-t-success" data-v="86"><i class="mh-bar__fill"></i></div></div>
+  <div class="mh-condition"><i data-i="wrench"></i><b>Cattleman · kirli</b><small>%34</small><div class="mh-bar mh-t-warn" data-v="34"><i class="mh-bar__fill"></i></div></div>
 </div>
 </section>
 
-<section data-id="ping" data-title="Bağlantı kalitesi" data-use="4 çubuklu ping göstergesi: iyi (varsayılan), is-mid orta, is-bad kötü." data-js="el.classList.add('is-bad')">
-<div class="mh-flex" style="gap:18px"><span class="mh-ping"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-mid"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-bad"><i></i><i></i><i></i><i></i></span></div>
+<section data-id="ammo-types" data-title="Mermi türleri" data-use="Mermi türü seçici: satır başına ikon, ad, adet. is-active seçili, is-empty tükenmiş." data-js="el.children[1].classList.add('is-active')">
+<div class="mh-ammotypes">
+  <div class="mh-ammotype is-active"><i data-i="bullets"></i><span>Normal</span><small>142</small></div>
+  <div class="mh-ammotype"><i data-i="bolt"></i><span>Hızlı</span><small>36</small></div>
+  <div class="mh-ammotype"><i data-i="flame"></i><span>Ateşli</span><small>12</small></div>
+  <div class="mh-ammotype is-empty"><i data-i="poison"></i><span>Zehirli</span><small>0</small></div>
+</div>
 </section>
 
-<section data-id="teamhead" data-title="Takım başlığı" data-use="Skor tablosu takım başlığı: ad + büyük sayı; ton mh-t-team1..5." data-js="el.querySelector('strong').textContent = 3">
-<div class="mh-teamhead mh-t-team1" style="width:240px"><b>Mavi takım</b><strong>3</strong></div>
+<section data-id="compare" data-title="Silah karşılaştırma" data-use="Satın almadan önce kuşanılı silahla fark: mh-statline; artış için .mh-bar__gain (--g yeni değer oranı) yeşil gösterilir." data-js="—">
+<div class="mh-statlines" style="width:300px">
+  <div class="mh-statline"><span class="mh-kicker">Hasar</span><div class="mh-bar" data-v="58"><i class="mh-bar__gain" style="--g:.74"></i><i class="mh-bar__fill"></i></div><b>74</b></div>
+  <div class="mh-statline"><span class="mh-kicker">Menzil</span><div class="mh-bar" data-v="62"><i class="mh-bar__gain" style="--g:.81"></i><i class="mh-bar__fill"></i></div><b>81</b></div>
+  <div class="mh-statline"><span class="mh-kicker">Atış hızı</span><div class="mh-bar" data-v="44"><i class="mh-bar__fill"></i></div><b>44</b></div>
+  <div class="mh-statline"><span class="mh-kicker">Doldurma</span><div class="mh-bar" data-v="38"><i class="mh-bar__fill"></i></div><b>38</b></div>
+</div>
 </section>

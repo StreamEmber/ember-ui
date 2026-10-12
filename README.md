@@ -33,9 +33,11 @@ Bileşenler ailelere ayrılır; her varyantın HTML'i ve güncelleme çağrısı
 | [Ekonomi ve durum](ai/economy.md) | 12 | Para, aranma/ödül, saat ve hava, seviye ve XP, etki simgeleri, seri, sıralama |
 | [Grafik ve ilerleme](ai/extras.md) | 10 | Küçük grafikler, ilerleme çizgisi, seri, meydan okuma, etkinlik/maç satırı, başarı, hediye haritası |
 | [Bildirim ve akış](ai/feed.md) | 12 | Ekrana kısa süre düşen JS bileşenleri: toast, ölüm akışı, hediye, duyuru, görev şeridi, seviye atlama, başarım, eşya alma, geri sayım, altyazı, ilerleme |
-| [Ekipman ve ekip](ai/gear.md) | 9 | Silah ve cephane, yuva şeridi, envanter ızgarası, ekip kartları, ses ve bağlantı göstergeleri |
+| [Ekip](ai/crew.md) | 15 | Yapay zekâ ekibi / oyuncu takımı: kare portre, üye kartı, kompakt satır, kutucuklar, durum rozetleri, emir çubuğu, binek durumu, üye ayrıntısı, ekip tablosu, işaretli hedefler, ses ve bağlantı |
+| [Ekipman](ai/gear.md) | 9 | Silah ve cephane, yuva şeridi, envanter ızgarası, teçhizat ve kıyafet yuvaları, silah bakımı, mermi türleri, karşılaştırma |
 | [Konum ve yön](ai/location.md) | 10 | Pusula, minimap çerçevesi, sokak/bölge, yön çipi, koordinat, hedef işaretleri |
-| [Menü ve ekranlar](ai/menu.md) | 13 | Kart, klasik menü, bağlam menüsü, modal, ayar satırı, envanter ızgarası, skor tablosu, podyum, ölüm/yeniden doğma ekranı, yükleme |
+| [Menü ve ekranlar](ai/menu.md) | 14 | Menü kabuğu (3 ve 2 sütun), kart, klasik menü, bağlam menüsü, modal, ayar satırı, envanter ızgarası, skor tablosu, podyum, ölüm/yeniden doğma ekranı, yükleme |
+| [Mağaza ve satın alma](ai/shop.md) | 13 | Sabit oranlı görselli ürün kutucuğu (ikon, silah çizimi ya da img), gruplu ızgara, liste, yatay şerit, mini ızgara, kategoriler, fiyat durumları, adet, satın alma paneli, sepet, tuş listesi |
 | [Basılı nesneler](ai/print.md) | 7 | Kağıt/tabela hissi veren dünya nesneleri (frontier ve oldwest temalarında en iyi görünür): arananlar afişi, telgraf, gazete, defter, bilet, tabela, damga |
 | [Yayın ve izleyici](ai/stream.md) | 11 | Yayıncı ekranı parçaları: durum şeridi, istatistik kartı, seviye halkası, galibiyet/mağlubiyet, izleyici oylaması, olay kuyruğu, liderlik, canlı sayaçlar, komut listesi, yayıncı kartı |
 | [Hayatta kalma ve mod](ai/survival.md) | 11 | Dalga/sürü uyarısı, özel düşman, silah yuvaları, kurtarma sayacı, canlandırma, takım yaşam kartları, alan daralması, gün sayacı, izleyici modu |
@@ -43,7 +45,7 @@ Bileşenler ailelere ayrılır; her varyantın HTML'i ve güncelleme çağrısı
 | [Araç ve binek](ai/vehicle.md) | 6 | Hız kadranı, kompakt hız, yakıt/motor ölçerleri, gösterge lambaları, halka ölçer ve at (binek) paneli |
 | [Yaşam göstergeleri](ai/vitals.md) | 30 | Can, zırh, stamina, dayanıklılık gibi 0-100 arası değerler |
 
-Bunlara ek olarak `MH.*` ile kullanılan API'ler (bildirim akışı, `MH.Nametags`, `MH.Markers`, `MH.Social`, radyal menü, onay/seçim pencereleri) `AI.md`'de ve ilgili ailede anlatılır. Galerideki **Sunumlar** bölümü (`pages/`) her bileşeni bir arada, gerçek sahne üstünde gösterir; sayfalar da kiti jsDelivr'den yükler.
+Bunlara ek olarak `MH.*` ile kullanılan API'ler (bildirim akışı, `MH.Nametags`, `MH.Markers`, `MH.Social`, radyal menü, onay/seçim pencereleri) `AI.md`'de ve ilgili ailede anlatılır. Site (`npm run site` ile üretilen statik HTML) sol menüde önce **Sunumlar**ı (`pages/`: bileşenler bir arada, gerçek sahne üstünde) sonra **Bileşenler**i (`components/<aile>.html`: her varyant ayrı kartta, HTML'i ve AI kimliğiyle) listeler; sağ panel tema, vurgu rengi, sahne ve görünüm seçeneklerini tutar. Sayfalar kiti jsDelivr'den yükler.
 
 ### Yapay zeka ile kullanım
 
@@ -66,9 +68,10 @@ Temayı değiştirmek için yalnız `data-mh-theme` değişir (`MH.theme('tactic
 
 ```bash
 npm install      # yalnız geliştirme araçları (esbuild)
-npm run site     # build + galeri (_site/) + AI.md / ai/*.md; sayfalar jsDelivr'den yükler
+npm run ai       # catalog/ -> AI.md + ai/*.md
+npm run site     # build + ai + statik site (_site/: genel bakış, pages/, components/); kit jsDelivr'den
 npm run dev      # aynısı, ama sayfalar yerel dist/'i kullanır (yayınlanmamış değişiklikleri görmek için)
-npm run serve    # galeri: http://localhost:5173
+npm run serve    # site: http://localhost:5173
 npm run icons    # kit/js/mhud-icons.js'i yeniden üret
 ```
 

@@ -1,5 +1,45 @@
 # Menü ve ekranlar
-Kart, klasik menü, bağlam menüsü, modal, ayar satırı, envanter ızgarası, skor tablosu, podyum, ölüm/yeniden doğma ekranı, yükleme. Düğme, giriş, sekme gibi temel parçalar için "Temel" ailesine bak.
+Menü kabuğu (3 ve 2 sütun), kart, klasik menü, bağlam menüsü, modal, ayar satırı, envanter ızgarası, skor tablosu, podyum, ölüm/yeniden doğma ekranı, yükleme. Düğme, giriş, sekme gibi temel parçalar için "Temel" ailesine bak.
+
+## menu.shell3 — Menü kabuğu · 3 sütun
+Tam sayfa menü: başlık (mh-menu__head), gövde, alt ipuçları. Gövde 3 sütun: gezinme (mh-menu__nav) · içerik (mh-menu__main) · detay (mh-menu__aside). Sütun genişlikleri --nav ve --aside; boyut --w/--h. Detay gerekmiyorsa menu.shell2.
+JS: `MH.mount(root)`
+
+```html
+<div class="mh-panel mh-menu" style="--w:1240px;--h:760px"> <header class="mh-menu__head"><div class="mh-menu__title"><span class="mh-kicker mh-kicker--accent">Oyuncu menüsü</span><span class="mh-title">Etkileşim menüsü</span></div><div class="mh-menu__stats"><div class="mh-stat"><span class="mh-kicker">Nakit</span><b>$12.480</b></div></div></header>
+<div class="mh-menu__body"> <nav class="mh-menu__nav"> <div class="mh-nav__group"><span class="mh-kicker">Oyuncu</span></div>
+<button class="mh-nav__item is-active"><i data-i="backpack"></i>Envanter<small>14</small></button>
+<button class="mh-nav__item"><i data-i="store"></i>Mağaza<span class="mh-count">3</span></button>
+<button class="mh-nav__item"><i data-i="users"></i>Ekip</button>
+<div class="mh-nav__group"><span class="mh-kicker">Sistem</span></div>
+<button class="mh-nav__item"><i data-i="settings"></i>Ayarlar</button> </nav>
+<div class="mh-menu__main"> <div class="mh-menu__toolbar"><div class="mh-input-wrap" style="width:300px"><i data-i="search"></i><input class="mh-input" placeholder="Envanterde ara…"></div></div>
+<div class="mh-list mh-scroll" style="flex:1"> <div class="mh-row is-active"><span class="mh-row__icon"><i data-i="rifle"></i></span><div class="mh-row__main"><span class="mh-row__title">Karabina tüfeği</span><span class="mh-row__sub">Otomatik tüfek · 180 mermi</span></div><div class="mh-row__meta"><span class="mh-num">×1</span></div></div>
+<div class="mh-row"><span class="mh-row__icon"><i data-i="first-aid"></i></span><div class="mh-row__main"><span class="mh-row__title">İlk yardım çantası</span><span class="mh-row__sub">Canı tamamen doldurur</span></div><div class="mh-row__meta"><span class="mh-num">×3</span></div></div> </div> </div>
+<aside class="mh-menu__aside"> <div class="mh-preview"><i data-weapon="carbine"></i></div> <div><div class="mh-title mh-title--lg">Karabina tüfeği</div><div class="mh-sub">Otomatik tüfek · 5,56 mm</div></div>
+<div class="mh-statlines"><div class="mh-statline"><span class="mh-kicker">Hasar</span><div class="mh-bar" data-v="64"><i class="mh-bar__fill"></i></div><b>64</b></div></div>
+<button class="mh-btn mh-btn--primary mh-btn--block" style="margin-top:auto"><span class="mh-key mh-key--sm">E</span>Kullan / kuşan</button> </aside> </div>
+<footer class="mh-menu__foot"><div class="mh-hints"><span class="mh-hint"><span class="mh-key">↑</span><span class="mh-key">↓</span>Seç</span><span class="mh-hint"><span class="mh-key">ENTER</span>Onayla</span><span class="mh-hint"><span class="mh-key">ESC</span>Kapat</span></div></footer> </div>
+```
+
+## menu.shell2 — Menü kabuğu · 2 sütun
+Detay paneli olmayan menü kabuğu: gövdeye mh-menu__body--2 ekle, mh-menu__aside koyma. Ayarlar, görev günlüğü, ekip yönetimi gibi önizleme gerektirmeyen ekranlar için. İçerik genelde mh-menu__toolbar + mh-setting satırları veya mh-list.
+JS: `MH.mount(root)`
+
+```html
+<div class="mh-panel mh-menu" style="--w:1120px;--h:720px"> <header class="mh-menu__head"><div class="mh-menu__title"><span class="mh-kicker mh-kicker--accent">Sistem</span><span class="mh-title">Ayarlar</span></div></header>
+<div class="mh-menu__body mh-menu__body--2"> <nav class="mh-menu__nav"> <div class="mh-nav__group"><span class="mh-kicker">Oyuncu</span></div>
+<button class="mh-nav__item"><i data-i="backpack"></i>Envanter<small>14</small></button>
+<button class="mh-nav__item"><i data-i="store"></i>Mağaza<span class="mh-count">3</span></button>
+<button class="mh-nav__item"><i data-i="users"></i>Ekip</button>
+<div class="mh-nav__group"><span class="mh-kicker">Sistem</span></div>
+<button class="mh-nav__item is-active"><i data-i="settings"></i>Ayarlar</button> </nav>
+<div class="mh-menu__main mh-scroll"> <div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">Görüntü</span></div>
+<div class="mh-setting"><div class="mh-setting__text"><b>Kalite ön ayarı</b><span>Gölge, doku ve efekt kalitesi</span></div><div class="mh-setting__control"><div class="mh-seg" data-mh-seg="q"><button>Orta</button><button class="is-active">Yüksek</button><button>Ultra</button></div></div></div>
+<div class="mh-setting"><div class="mh-setting__text"><b>Görüş alanı</b><span>Birinci şahıs kamera açısı</span></div><div class="mh-setting__control"><input type="range" class="mh-slider" min="60" max="110" value="85" data-out="#fov" data-unit="°"><b id="fov">85°</b></div></div>
+<div class="mh-setting"><div class="mh-setting__text"><b>Hareket bulanıklığı</b><span>Hızlı dönüşlerde iz bırakır</span></div><div class="mh-setting__control"><label class="mh-toggle"><input type="checkbox" checked><span class="mh-toggle__track"></span></label></div></div> </div> </div>
+<footer class="mh-menu__foot"><div class="mh-hints"><span class="mh-hint"><span class="mh-key">↑</span><span class="mh-key">↓</span>Seç</span><span class="mh-hint"><span class="mh-key">ENTER</span>Onayla</span><span class="mh-hint"><span class="mh-key">ESC</span>Kapat</span></div></footer> </div>
+```
 
 ## menu.card — Eşya kartı
 Mağaza/envanter kartı: art alanı (rozet + data-weapon veya ikon), ad, alt satır, fiyat. Nadirlik: is-rare, is-epic, is-legendary; seçili is-active.

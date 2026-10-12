@@ -1,0 +1,201 @@
+# Mağaza ve satın alma
+Ürün kutucuğu (sabit oranlı görsel alanı: ikon, silah çizimi ya da img), gruplu ızgara, liste, yatay şerit, mini ızgara, kategoriler, fiyat durumları, adet, satın alma paneli, sepet, tuş listesi. Menü kabuğuyla birlikte kullanılır (menu.shell3: solda bölümler, ortada ürünler, sağda satın alma paneli).
+
+## shop.item — Ürün kutucuğu
+Görsel alanı (.mh-item__art, oran --ratio, varsayılan 16/10) + ad + alt satır ve fiyat. Görsele ikon, data-weapon ya da img konur. Durumlar: is-active seçili, is-owned sahip (rozet), is-locked kilitli, nadirlik is-rare|is-epic|is-legendary.
+JS: `el.classList.toggle('is-active')`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-shopgrid" style="--cols:3;width:450px">
+  <div class="mh-item is-owned"><div class="mh-item__art"><i data-i="horse"></i></div><div class="mh-item__body"><span class="mh-item__name">Kentucky Saddler</span><div class="mh-item__meta"><span>Siyah</span><span class="mh-badge mh-t-success">Seçili</span></div></div></div>
+  <div class="mh-item is-active"><div class="mh-item__art"><i data-i="horse"></i></div><div class="mh-item__body"><span class="mh-item__name">Morgan</span><div class="mh-item__meta"><span>Doru</span><span class="mh-price mh-price--sm">$55.00</span></div></div></div>
+  <div class="mh-item is-locked"><div class="mh-item__art"><span class="mh-badge"><i data-i="lock"></i>Bölüm 3</span><i data-i="horse"></i></div><div class="mh-item__body"><span class="mh-item__name">Arabian</span><div class="mh-item__meta"><span>Beyaz</span><span class="mh-price mh-price--sm is-locked">$1.250</span></div></div></div>
+</div>
+</div>
+```
+
+## shop.square — Kare görselli kutucuk
+Görsel alanı 1:1: .mh-item--square. Rol, portre, eşya ikonları için. Altında ikonlu bilgi (can) ve fiyat.
+JS: `el.classList.toggle('is-active')`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-shopgrid" style="--cols:3;width:420px">
+  <div class="mh-item mh-item--square"><div class="mh-item__art"><i data-i="fist"></i></div><div class="mh-item__body"><span class="mh-item__name">Yumrukçu</span><div class="mh-item__meta"><span><i data-i="heart-o"></i>500</span><span class="mh-price mh-price--sm">$50.00</span></div></div></div>
+  <div class="mh-item mh-item--square"><div class="mh-item__art"><i data-i="rider"></i></div><div class="mh-item__body"><span class="mh-item__name">Atlı tüfekçi</span><div class="mh-item__meta"><span><i data-i="heart-o"></i>500</span><span class="mh-price mh-price--sm">$150.00</span></div></div></div>
+  <div class="mh-item mh-item--square is-active"><div class="mh-item__art"><i data-i="medic"></i></div><div class="mh-item__body"><span class="mh-item__name">Sağlıkçı</span><div class="mh-item__meta"><span><i data-i="heart-o"></i>500</span><span class="mh-price mh-price--sm">$250.00</span></div></div></div>
+</div>
+</div>
+```
+
+## shop.grouped — Gruplu ızgara
+Izgarayı başlıklarla böl: .mh-shopgroup (kicker + sayı) satırın tamamını kaplar, altına kutucuklar gelir. Silahçı, ahır, terzi gibi kategorili mağazalar için.
+JS: `—`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-shopgrid" style="--cols:4;width:720px">
+  <div class="mh-shopgroup"><span class="mh-kicker">Tabanca</span><small>3</small></div>
+  <div class="mh-item"><div class="mh-item__art"><i data-weapon="revolver"></i></div><div class="mh-item__body"><span class="mh-item__name">Cattleman tabanca</span><div class="mh-item__meta"><span>30 mermi</span><span class="mh-price mh-price--sm">$50.00</span></div></div></div>
+  <div class="mh-item"><div class="mh-item__art"><i data-weapon="revolver"></i></div><div class="mh-item__body"><span class="mh-item__name">Schofield tabanca</span><div class="mh-item__meta"><span>30 mermi</span><span class="mh-price mh-price--sm">$110.00</span></div></div></div>
+  <div class="mh-item is-owned"><div class="mh-item__art"><i data-weapon="pistol"></i></div><div class="mh-item__body"><span class="mh-item__name">Volcanic tabanca</span><div class="mh-item__meta"><span>Sahipsin · mermi</span><span class="mh-price mh-price--sm">$12.00</span></div></div></div>
+  <div class="mh-shopgroup"><span class="mh-kicker">Tüfek</span><small>2</small></div>
+  <div class="mh-item is-rare"><div class="mh-item__art"><i data-weapon="carbine"></i></div><div class="mh-item__body"><span class="mh-item__name">Karabina</span><div class="mh-item__meta"><span>40 mermi</span><span class="mh-price mh-price--sm">$90.00</span></div></div></div>
+  <div class="mh-item is-epic"><div class="mh-item__art"><span class="mh-badge mh-t-danger">−20%</span><i data-weapon="repeater"></i></div><div class="mh-item__body"><span class="mh-item__name">Lancaster tüfek</span><div class="mh-item__meta"><span>40 mermi</span><span class="mh-price mh-price--sm"><s>$160</s>$128.00</span></div></div></div>
+</div>
+</div>
+```
+
+## shop.list — Liste satırı
+Alt alta liste: .mh-item--row (solda kare küçük görsel, ortada ad + ayrıntı, sağda .mh-item__side fiyat + stok). .mh-shoplist içinde. Çok ürünlü ve uzun adlı mağazalar için.
+JS: `el.querySelector('.mh-item').classList.add('is-active')`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-shoplist" style="width:420px">
+  <div class="mh-item mh-item--row is-active"><div class="mh-item__art"><i data-weapon="shotgun"></i></div><div class="mh-item__body"><span class="mh-item__name">Çift namlulu av tüfeği</span><div class="mh-item__meta"><span>Yakın mesafe · 12 fişek</span></div></div><div class="mh-item__side"><span class="mh-price mh-price--sm">$185.00</span><small>Stokta 2</small></div></div>
+  <div class="mh-item mh-item--row"><div class="mh-item__art"><i data-i="bullets"></i></div><div class="mh-item__body"><span class="mh-item__name">Tüfek mermisi ×50</span><div class="mh-item__meta"><span>Normal</span></div></div><div class="mh-item__side"><span class="mh-price mh-price--sm">$6.00</span><small>Stokta ∞</small></div></div>
+  <div class="mh-item mh-item--row is-locked"><div class="mh-item__art"><i data-i="dynamite"></i></div><div class="mh-item__body"><span class="mh-item__name">Dinamit</span><div class="mh-item__meta"><span><i data-i="lock"></i>Saygınlık 4</span></div></div><div class="mh-item__side"><span class="mh-price mh-price--sm is-locked">$24.00</span></div></div>
+</div>
+</div>
+```
+
+## shop.strip — Yatay şerit
+Yan yana kaydırılan kutucuklar: .mh-shopstrip (--w kutucuk genişliği, kaydırma noktaları). Öne çıkanlar, günün fırsatları, son görülenler için.
+JS: `—`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-shopstrip" style="--w:180px;width:680px">
+  <div class="mh-item"><div class="mh-item__art"><span class="mh-badge mh-t-accent">Yeni</span><i data-i="hat"></i></div><div class="mh-item__body"><span class="mh-item__name">Gambler şapka</span><div class="mh-item__meta"><span>Siyah keçe</span><span class="mh-price mh-price--sm">$18.00</span></div></div></div>
+  <div class="mh-item"><div class="mh-item__art"><i data-i="whiskey"></i></div><div class="mh-item__body"><span class="mh-item__name">Viski</span><div class="mh-item__meta"><span>Dayanıklılık +</span><span class="mh-price mh-price--sm">$3.50</span></div></div></div>
+  <div class="mh-item"><div class="mh-item__art"><span class="mh-badge mh-t-danger">−30%</span><i data-i="lantern"></i></div><div class="mh-item__body"><span class="mh-item__name">Gaz lambası</span><div class="mh-item__meta"><span>Kamp</span><span class="mh-price mh-price--sm"><s>$10</s>$7.00</span></div></div></div>
+  <div class="mh-item"><div class="mh-item__art"><i data-i="tent"></i></div><div class="mh-item__body"><span class="mh-item__name">Çadır</span><div class="mh-item__meta"><span>Kamp</span><span class="mh-price mh-price--sm">$45.00</span></div></div></div>
+  <div class="mh-item"><div class="mh-item__art"><i data-i="lasso"></i></div><div class="mh-item__body"><span class="mh-item__name">Kement</span><div class="mh-item__meta"><span>Araç</span><span class="mh-price mh-price--sm">$9.00</span></div></div></div>
+</div>
+</div>
+```
+
+## shop.mini — Mini ızgara
+Çok sayıda küçük eşya: .mh-item--mini (kare görsel, kısa ad, küçük fiyat), --cols 5-8. Erzak, mermi, sarf malzemesi.
+JS: `—`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-shopgrid" style="--cols:5;--gap:6px;width:460px">
+  <div class="mh-item mh-item--mini"><div class="mh-item__art"><i data-i="bread"></i></div><span class="mh-item__name">Ekmek</span><span class="mh-price">$1</span></div>
+  <div class="mh-item mh-item--mini"><div class="mh-item__art"><i data-i="meat"></i></div><span class="mh-item__name">Et</span><span class="mh-price">$3</span></div>
+  <div class="mh-item mh-item--mini is-active"><div class="mh-item__art"><i data-i="apple"></i></div><span class="mh-item__name">Elma</span><span class="mh-price">$0.5</span></div>
+  <div class="mh-item mh-item--mini"><div class="mh-item__art"><i data-i="bottle"></i></div><span class="mh-item__name">Tonik</span><span class="mh-price">$4</span></div>
+  <div class="mh-item mh-item--mini"><div class="mh-item__art"><i data-i="cigar"></i></div><span class="mh-item__name">Puro</span><span class="mh-price">$2</span></div>
+</div>
+</div>
+```
+
+## shop.art — Görsel alanı
+Oran sabit, içerik değişir: ikon, silah çizimi (data-weapon) ya da img (object-fit: cover; --fit:contain ile sığdır). --ratio: 1 (kare), 16/10 (varsayılan), 4/3, 21/9.
+JS: `—`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-flex" style="gap:10px;align-items:flex-start">
+  <div class="mh-item" style="width:110px"><div class="mh-item__art" style="--ratio:1"><i data-i="horse"></i></div><span class="mh-sub">1 : 1 · ikon</span></div>
+  <div class="mh-item" style="width:160px"><div class="mh-item__art"><i data-weapon="sniper"></i></div><span class="mh-sub">16 : 10 · silah</span></div>
+  <div class="mh-item" style="width:200px"><div class="mh-item__art" style="--ratio:21/9"><i data-i="car-sport"></i></div><span class="mh-sub">21 : 9 · araç</span></div>
+</div>
+</div>
+```
+
+## shop.cats — Kategoriler
+Mağaza üstü kategori seçici: ikon + ad + adet; seçili is-active (vurgu dolgulu).
+JS: `el.children[1].classList.add('is-active')`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-shopcats">
+  <button class="mh-shopcat is-active"><i data-i="grid"></i>Tümü<small>42</small></button>
+  <button class="mh-shopcat"><i data-i="revolver"></i>Tabanca<small>6</small></button>
+  <button class="mh-shopcat"><i data-i="rifle"></i>Tüfek<small>9</small></button>
+  <button class="mh-shopcat"><i data-i="bullets"></i>Mermi<small>14</small></button>
+  <button class="mh-shopcat"><i data-i="horse"></i>Binek<small>8</small></button>
+</div>
+</div>
+```
+
+## shop.price — Fiyat durumları
+mh-price (+ --sm küçük, --tag etiketli). Durumlar: indirim (s içinde eski fiyat), is-short yetersiz bakiye (kırmızı), is-locked kilitli, is-free ücretsiz.
+JS: `el.querySelector('.mh-price').classList.add('is-short')`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-flex" style="gap:14px;flex-wrap:wrap">
+  <span class="mh-price">$250.00</span>
+  <span class="mh-price"><s>$160</s>$128.00</span>
+  <span class="mh-price is-short">$1.250</span>
+  <span class="mh-price is-locked">$900</span>
+  <span class="mh-price is-free">Ücretsiz</span>
+  <span class="mh-price mh-price--tag">$55.00</span>
+  <span class="mh-price mh-price--tag is-short">$4.800</span>
+</div>
+</div>
+```
+
+## shop.qty — Adet seçici
+Eksi / sayı / artı. Mermi ve sarf alımında; toplamı ayrıca yaz.
+JS: `el.querySelector('b').textContent = 3`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-qty"><button>−</button><b>2</b><button>+</button></div>
+</div>
+```
+
+## shop.buy — Satın alma paneli
+Menünün sağ sütunu (mh-menu__aside) için: görsel (.mh-buy__art, --ratio), başlık, açıklama, özellik listesi (dl.mh-buy__specs), adet + toplam (.mh-buy__total), satın al düğmesi, not satırı (bakiye/sahiplik).
+JS: `MH.mount(root)`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-buy">
+  <div class="mh-buy__art"><span class="mh-badge mh-t-info">Rol</span><i data-i="medic"></i></div>
+  <div class="mh-buy__title"><span class="mh-kicker mh-kicker--accent">Üye al</span><span class="mh-title mh-title--lg">Sağlıkçı</span></div>
+  <p class="mh-buy__desc">Yaralanan ekip arkadaşının yanına koşar, yarasını sarıp canını doldurur. Kendi atı ve kıyafetiyle katılır.</p>
+  <dl class="mh-buy__specs"><dt>Can</dt><dd>500</dd><dt>Silah</dt><dd>Schofield</dd><dt>Günlük ücret</dt><dd>$12.00</dd></dl>
+  <div class="mh-buy__total"><div class="mh-qty"><button>−</button><b>1</b><button>+</button></div><span class="mh-price">$250.00</span></div>
+  <button class="mh-btn mh-btn--primary mh-btn--block"><i data-i="user-plus"></i>Ekibe al</button>
+  <span class="mh-buy__note"><i data-i="wallet"></i>Kese: $28.365,59 · Ekip 5 / 8</span>
+</div>
+</div>
+```
+
+## shop.cart — Sepet
+Birden çok ürünü tek seferde almak için: satır (küçük kare görsel, ad, adet × fiyat, toplam), alt toplam / kese / kalan, onay düğmesi. Yetersiz bakiyede kalan satırı mh-tone mh-t-danger.
+JS: `MH.mount(root)`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-cart">
+  <div class="mh-cart__line"><div class="mh-item__art"><i data-weapon="repeater"></i></div><div><b>Lancaster tüfek</b><small>1 × $128.00</small></div><span class="mh-price mh-price--sm">$128.00</span></div>
+  <div class="mh-cart__line"><div class="mh-item__art"><i data-i="bullets"></i></div><div><b>Tüfek mermisi ×50</b><small>3 × $6.00</small></div><span class="mh-price mh-price--sm">$18.00</span></div>
+  <div class="mh-cart__sum"><span>Ara toplam</span><b>$146.00</b><span>Kese</span><b>$28.365,59</b><span class="is-total">Kalan</span><b class="is-total">$28.219,59</b></div>
+  <button class="mh-btn mh-btn--primary mh-btn--block"><span class="mh-key mh-key--sm">ENTER</span>Satın al</button>
+</div>
+</div>
+```
+
+## shop.keylist — Tuş listesi
+Tuş + açıklama satırları (.mh-keylist__row); birden çok tuş yan yana, ikinci satır small. Menünün 'Tuşlar' bölümü; --key-w tuş sütunu genişliği.
+JS: `—`
+
+```html
+<div class="mh-panel" style="padding:14px">
+<div class="mh-keylist" style="width:440px">
+  <div class="mh-keylist__row"><span><span class="mh-key">F9</span></span>Menüyü aç / kapat</div>
+  <div class="mh-keylist__row"><span><span class="mh-key">G</span></span><div>Kişiyi işaretle / işareti kaldır<small>Nişan aldığın ya da ekran ortasındaki kişi</small></div></div>
+  <div class="mh-keylist__row"><span><span class="mh-key">Ctrl</span><span class="mh-key">G</span></span>Bütün işaretleri sil</div>
+  <div class="mh-keylist__row"><span><span class="mh-key">H</span></span>Ekip işaretlilere saldırır</div>
+  <div class="mh-keylist__row"><span><span class="mh-key">Shift</span><span class="mh-key">H</span></span>Saldırıyı durdur, ekip yanına döner</div>
+</div>
+</div>
+```

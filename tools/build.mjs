@@ -1,4 +1,4 @@
-// MHud derleme: kit/ kaynaklarından CDN ve npm için tek dosyalar üretir.
+// MHud derleme: kit/ kaynaklarından jsDelivr (gh) için tek dosyalar üretir.
 //   dist/mhud.css        tüm CSS (içe aktarmalar birleştirilmiş, yazı tipleri dist/fonts/)
 //   dist/mhud.min.css    küçültülmüş
 //   dist/mhud.js         ikonlar + çekirdek + sosyal menü (tek <script>)

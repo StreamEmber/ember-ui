@@ -28,37 +28,18 @@
   "license": "MIT",
   "author": "Stream Ember Platform",
   "type": "module",
-  "main": "./dist/mhud.js",
-  "style": "./dist/mhud.css",
-  "exports": {
-    ".": {
-      "style": "./dist/mhud.css",
-      "default": "./dist/mhud.js"
-    },
-    "./css": "./dist/mhud.css",
-    "./css/min": "./dist/mhud.min.css",
-    "./js": "./dist/mhud.js",
-    "./js/min": "./dist/mhud.min.js",
-    "./dist/*": "./dist/*",
-    "./kit/*": "./kit/*",
-    "./package.json": "./package.json"
-  },
-  "sideEffects": true,
   "scripts": {
     "build": "node tools/build.mjs",
     "icons": "node tools/build-icons.cjs",
+    "ai": "node tools/build-ai.mjs",
+    "site": "npm run build && npm run ai && node tools/build-site.mjs",
+    "dev": "npm run build && npm run ai && node tools/build-site.mjs --local",
     "serve": "npx --yes serve -l 5173 _site",
-    "version": "node tools/set-version.mjs && npm run build && git add -A",
-    "catalog": "node tools/build-catalog.mjs",
-    "site": "npm run build && npm run catalog",
-    "dev": "npm run build && node tools/build-catalog.mjs --local"
+    "version": "node tools/set-version.mjs && npm run build && git add -A"
   },
   "devDependencies": {
     "@mdi/svg": "7.4.47",
     "esbuild": "^0.28.2"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "engines": {
     "node": ">=18"

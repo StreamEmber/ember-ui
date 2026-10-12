@@ -99,6 +99,23 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `combat.points` Ele geçirme noktaları: A/B/C kontrol noktaları: halka doluluğu (--v), takım rengi, is-contested çatışmalı
 - `combat.dialog` Diyalog: Konuşan avatarı, söz satırı ve numaralı seçenekler
 
+### Ekip → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/crew.md
+- `crew.portrait` Portre: Kare portre alanı: harf, ikon (rol) ya da img
+- `crew.card` Üye kartı: Ayrıntılı ekip üyesi: kare portre, ad, rol rozeti, can barı + sayı, elindeki silah ve mermi, binek (at/araç; yoksa .is-off), mesafe
+- `crew.row` Kompakt ekip satırı: HUD kenar listesi (.mh-crewlist içinde): küçük kare portre, ad, ikonlar (silah, binek is-on, mesafe), ince can barı
+- `crew.tiles` Ekip kutucukları: Alt şerit: kare portre + altında can barı + kısa ad
+- `crew.states` Durum rozetleri: Üye durumunu tek bakışta: takip, saldırı, bekleme, yaralı, yerde (canlı nokta), atta / araçta, işaretli hedef
+- `crew.orders` Emir çubuğu: Ekibe verilen emir: düğme başına tuş + ikon + ad; geçerli emir is-active, saldırı emri is-danger ile kırmızı vurgulanır
+- `crew.mount` Binek durumu: At ya da araç: ikon, ad, durum (Binmiş/Yaya/Ahırda), can ve dayanıklılık barları
+- `crew.detail` Üye ayrıntısı: Detay paneli (menü sağ sütunu): büyük kare portre (.mh-portrait--xl), ad + rol, can/doğruluk/cesaret satırları (mh-statline), teçhizat yuvaları (mh-gearslots), günlük ücret, eylemler
+- `crew.roster` Ekip tablosu: Menüdeki 'Ekibim' listesi: mh-table satırında kare portre + ad, rol, can (ince bar + sayı), silah, binek, durum rozeti
+- `crew.targets` İşaretli hedefler: Ekibin saldıracağı işaretli kişiler: kompakt satır (mh-crewrow) düşman tonuyla (mh-t-enemy), hedef ikonu, mesafe; başlıkta sayı ve tuş ipuçları
+- `crew.party` Ekip kartları: Sol kenar ekip listesi: avatar, ad, mesafe, can/zırh ince barları
+- `crew.squad-rings` Ekip halkaları: Yan yana avatarlar, çevresinde can halkası
+- `crew.voice` Ses: Ses menzili çubukları (is-talking konuşurken yeşil) ve konuşanlar listesi; is-radio telsiz
+- `crew.ping` Bağlantı kalitesi: 4 çubuklu ping göstergesi: iyi (varsayılan), is-mid orta, is-bad kötü
+- `crew.teamhead` Takım başlığı: Skor tablosu takım başlığı: ad + büyük sayı; ton mh-t-team1..5
+
 ### Ekonomi ve durum → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/economy.md
 - `economy.cash` Para ve banka: Sağ üst köşe para göstergesi; artış/azalış farkı kısa süre yüzer
 - `economy.coin` Kompakt para: Tek satır ikon + tutar: puan, jeton, altın
@@ -139,16 +156,16 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `feed.subtitle` Altyazı: Alt orta konuşma altyazısı: speaker, text, color; boxed: true kutulu (parlak sahnelerde okunur)
 - `feed.progress` İlerleme çubuğu: İşlem çubuğu (arama, tamir, hack): label, icon, duration ms
 
-### Ekipman ve ekip → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/gear.md
+### Ekipman → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/gear.md
 - `gear.weapon` Silah paneli: Sağ alt köşe: silah adı, çizimi, şarjör/yedek, şarjör segmentleri, yan eşyalar
 - `gear.ammo` Mermi sayacı: Silah çizimi olmadan yalnız şarjör / yedek
 - `gear.hotbar` Yuva şeridi: Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı
 - `gear.inventory` Envanter ızgarası: Eşya hücreleri; --cols sütun sayısı
-- `gear.party` Ekip kartları: Sol kenar ekip listesi: avatar, ad, mesafe, can/zırh ince barları
-- `gear.squad-rings` Ekip halkaları: Yan yana avatarlar, çevresinde can halkası
-- `gear.voice` Ses: Ses menzili çubukları (is-talking konuşurken yeşil) ve konuşanlar listesi; is-radio telsiz
-- `gear.ping` Bağlantı kalitesi: 4 çubuklu ping göstergesi: iyi (varsayılan), is-mid orta, is-bad kötü
-- `gear.teamhead` Takım başlığı: Skor tablosu takım başlığı: ad + büyük sayı; ton mh-t-team1..5
+- `gear.loadout-slots` Teçhizat yuvaları: Kare görsel alanlı yuvalar: etiket (Birincil, İkincil…) + ad
+- `gear.outfit` Kıyafet ve binek yuvaları: Kare yuvalar: şapka, ceket, çanta, eyer gibi giyilen/takılan parçalar
+- `gear.condition` Silah bakımı: Silah durumu (kir/aşınma) barı: ikon, ad, yüzde; düşükse ton mh-t-warn / mh-t-danger
+- `gear.ammo-types` Mermi türleri: Mermi türü seçici: satır başına ikon, ad, adet
+- `gear.compare` Silah karşılaştırma: Satın almadan önce kuşanılı silahla fark: mh-statline; artış için .mh-bar__gain (--g yeni değer oranı) yeşil gösterilir
 
 ### Konum ve yön → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/location.md
 - `location.compass` Pusula şeridi: Üst orta kayan yön şeridi; hedefler şerit üstünde simge olarak durur
@@ -163,6 +180,8 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `location.zone` Daralan bölge: Alan kapanma sayacı (battle royale, arena)
 
 ### Menü ve ekranlar → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/menu.md
+- `menu.shell3` Menü kabuğu · 3 sütun: Tam sayfa menü: başlık (mh-menu__head), gövde, alt ipuçları
+- `menu.shell2` Menü kabuğu · 2 sütun: Detay paneli olmayan menü kabuğu: gövdeye mh-menu__body--2 ekle, mh-menu__aside koyma
 - `menu.card` Eşya kartı: Mağaza/envanter kartı: art alanı (rozet + data-weapon veya ikon), ad, alt satır, fiyat
 - `menu.classic` Klasik menü: Dikey liste menü (GTA Online tarzı): banner, sayaç, satırlar (is-active, is-disabled), sağda ok/onay kutusu/değer, altta açıklama kutusu
 - `menu.context` Bağlam menüsü: Küçük açılır menü: başlık, satır (ikon, ad, kısayol tuşu), ayraç, is-active, is-danger
@@ -184,6 +203,21 @@ Menü durumu kendi değiştirmez; oyuncunun eylemi `{ action, data }` olarak `on
 - `print.ticket` Bilet: Kupon/bilet: ana bölüm (üst yazı, büyük ad, alt yazı) ve kopuk uç (adet/numara)
 - `print.sign` Tabela: Yer tabelası: üst yazı, büyük ad, alt not
 - `print.stamp` Damga: Eğik mühür yazısı; is-in ile vurulma animasyonu
+
+### Mağaza ve satın alma → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/shop.md
+- `shop.item` Ürün kutucuğu: Görsel alanı (.mh-item__art, oran --ratio, varsayılan 16/10) + ad + alt satır ve fiyat
+- `shop.square` Kare görselli kutucuk: Görsel alanı 1:1: .mh-item--square
+- `shop.grouped` Gruplu ızgara: Izgarayı başlıklarla böl: .mh-shopgroup (kicker + sayı) satırın tamamını kaplar, altına kutucuklar gelir
+- `shop.list` Liste satırı: Alt alta liste: .mh-item--row (solda kare küçük görsel, ortada ad + ayrıntı, sağda .mh-item__side fiyat + stok)
+- `shop.strip` Yatay şerit: Yan yana kaydırılan kutucuklar: .mh-shopstrip (--w kutucuk genişliği, kaydırma noktaları)
+- `shop.mini` Mini ızgara: Çok sayıda küçük eşya: .mh-item--mini (kare görsel, kısa ad, küçük fiyat), --cols 5-8
+- `shop.art` Görsel alanı: Oran sabit, içerik değişir: ikon, silah çizimi (data-weapon) ya da img (object-fit: cover; --fit:contain ile sığdır)
+- `shop.cats` Kategoriler: Mağaza üstü kategori seçici: ikon + ad + adet; seçili is-active (vurgu dolgulu)
+- `shop.price` Fiyat durumları: mh-price (+ --sm küçük, --tag etiketli)
+- `shop.qty` Adet seçici: Eksi / sayı / artı
+- `shop.buy` Satın alma paneli: Menünün sağ sütunu (mh-menu__aside) için: görsel (.mh-buy__art, --ratio), başlık, açıklama, özellik listesi (dl.mh-buy__specs), adet + toplam (.mh-buy__total), satın al düğmesi, not satırı (bakiye/sahiplik)
+- `shop.cart` Sepet: Birden çok ürünü tek seferde almak için: satır (küçük kare görsel, ad, adet × fiyat, toplam), alt toplam / kese / kalan, onay düğmesi
+- `shop.keylist` Tuş listesi: Tuş + açıklama satırları (.mh-keylist__row); birden çok tuş yan yana, ikinci satır small
 
 ### Yayın ve izleyici → https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/ai/stream.md
 - `stream.statbar` Durum şeridi: Yatay istatistik çipleri: ikon + büyük sayı + etiket

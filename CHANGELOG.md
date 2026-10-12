@@ -2,6 +2,20 @@
 
 Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@2.0.2`).
 
+## 2.1.0 — 2026-10-12
+- Sunum sitesi yeniden tasarlandı (tek kabuk, `demo/`): solda önce **Sunumlar**, sonra **Bileşenler** (aile başına bir sayfa, varyant sayılarıyla, aranabilir, katlanabilir); sağda **Görünüm** paneli (tema, vurgu, sahne, ızgara sütunu, kodları açık göster, değerleri karıştır, bağlantı kopyala, sıfırla) ve **Bu sayfada** içindekiler; üst çubukta konum + önceki/sonraki.
+- Site artık derlemede üretilen statik HTML: `npm run site` (yerelde `npm run dev`) → `_site/`. Menü, üst çubuk, görünüm paneli, içindekiler, genel bakış ve bileşen sayfaları `tools/build-site.mjs` ile yazılır; menü haritası `demo/site.mjs`. `demo/demo.js` yalnız davranış.
+- Site kökü genel bakış sayfası: temalar, sunum sayfaları ve bileşen aileleri bir arada. Bileşen aileleri `components/<aile>.html` altında sunum kabuğuyla (canlı önizleme, HTML parçası, kopyala, AI kimliği).
+- Kaldırıldı: eski katalog galerisi ve kökteki `<aile>.html` adresleri (yerine `components/<aile>.html`), `tools/build-catalog.mjs` (yerine `tools/catalog.mjs` + `build-ai.mjs` + `build-site.mjs`; `npm run catalog` yerine `npm run ai`), `package.json`'daki npm yayın alanları (`exports`, `main`, `style`, `publishConfig`, `sideEffects`).
+- Menü kabuğunun 2 sütunlu (detay panelsiz) düzeni: `menus.html`'de düzen anahtarı ve ayrı ayarlar menüsü; katalogda `menu.shell3` ve `menu.shell2`.
+- Sahne seçici düğmelerinde önizleme görselleri artık görünüyor.
+- Sol menüde Sunumlar / Bileşenler bölümleri yumuşak açılıp kapanır.
+- Yeni aile **Ekip** (`ai/crew.md`, 15 varyant): kare portre (`mh-portrait`), üye kartı (`mh-crewcard`: can, elindeki silah, binek, mesafe, durum), kompakt satır (`mh-crewrow`), kutucuklar (`mh-crewtile`), durum rozetleri, emir çubuğu (`mh-orders`), binek durumu (`mh-mount`), üye ayrıntısı, ekip tablosu, işaretli hedefler. **Kırıcı (AI kimlikleri):** `gear.party`, `gear.squad-rings`, `gear.voice`, `gear.ping`, `gear.teamhead` → `crew.*`.
+- **Ekipman** ailesi ayrıldı ve genişledi: teçhizat/kıyafet yuvaları (`mh-gearslots`), silah bakımı (`mh-condition`), mermi türleri (`mh-ammotypes`), silah karşılaştırma.
+- Yeni aile **Mağaza ve satın alma** (`ai/shop.md`, 13 varyant): ürün kutucuğu `mh-item` (sabit oranlı görsel alanı `--ratio`, `--square`, `--row`, `--mini`), gruplu ızgara (`mh-shopgrid` + `mh-shopgroup`), liste, yatay şerit, kategoriler, fiyat durumları, adet (`mh-qty`), satın alma paneli (`mh-buy`), sepet (`mh-cart`), tuş listesi (`mh-keylist`).
+- Halka içindeki avatar artık yuvarlak (kare alan halkayla sarılmaz).
+- Yeni sunum sayfaları: **Mağaza & satın alma** (Posse tarzı ekip menüsü: Ekibim, Üye al, Ahır, Silahçı, Bakkal, Tuşlar, Ayarlar) ve **Ekip & ekipman**. Menüler sayfasındaki etkileşim menüsüne Silahçı, Görevler, Garaj, Tuşlar bölümleri eklendi.
+
 ## 2.0.2 — 2026-10-12
 - Dağıtım npm yerine doğrudan GitHub: `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.0.2/dist/mhud.min.css` (ve `.js`). `dist/` artık sürüm etiketlerinde depoda; npm paketi yayınlanmıyor.
 - Depo `StreamEmber/mhud` adresine taşındı; galeri https://streamember.github.io/mhud/.

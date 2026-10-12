@@ -68,7 +68,7 @@
    -------------------------------------------------------------------------- */
 [data-mh-theme="oldwest"] :is(.mh-panel, .mh-toast, .mh-gift, .mh-kill, .mh-member, .mh-prompt__row, .mh-wprompt__card,
   .mh-slot, .mh-effect, .mh-versus__mid, .mh-classic__list, .mh-classic__desc, .mh-tag__bubble, .mh-choice, .mh-pickup__icon, .mh-statcard, .mh-chip-stat,
-  .mh-survivor, .mh-loot, .mh-giftmap__item, .mh-loadout__slot, .mh-menu, .mh-modal, .mh-scoreboard) {
+  .mh-survivor, .mh-loot, .mh-giftmap__item, .mh-loadout__slot, .mh-menu, .mh-modal, .mh-scoreboard, .mh-crewcard, .mh-crewrow, .mh-mount, .mh-orders) {
   --mh-text-rgb: 43 29 16;
   --mh-text:   rgb(43 29 16);
   --mh-text-2: rgb(43 29 16 / .78);
@@ -94,7 +94,7 @@
 /* Kâğıt yüzey */
 [data-mh-theme="oldwest"] :is(.mh-panel, .mh-toast, .mh-gift, .mh-kill, .mh-member, .mh-prompt__row, .mh-wprompt__card, .mh-slot,
   .mh-effect, .mh-versus__mid, .mh-classic__list, .mh-classic__desc, .mh-tag__bubble, .mh-pickup__icon, .mh-statcard, .mh-chip-stat,
-  .mh-survivor, .mh-loot, .mh-giftmap__item, .mh-loadout__slot, .mh-choice) {
+  .mh-survivor, .mh-loot, .mh-giftmap__item, .mh-loadout__slot, .mh-choice, .mh-crewcard, .mh-crewrow, .mh-mount, .mh-orders) {
   background: var(--mh-paper);
   background-size: 180px 180px, 100% 100%;
   border: 0;
@@ -228,3 +228,6 @@
 [data-mh-theme="oldwest"] .mh-gift__art .mh-avatar { background: var(--mh-ink); color: #efe2c2; border-color: #e6d7b4; }
 
 [data-mh-theme="oldwest"] { --mh-sb-thumb: rgb(60 38 16 / .55); --mh-sb-track: rgb(60 38 16 / .12); --mh-sb-r: 0; }
+
+/* Ekip: kâğıt kartta ton şeridi gölgeyle çizilir (kâğıt yüzey kenarlığı sıfırlar) */
+[data-mh-theme="oldwest"] .mh-crewcard { box-shadow: inset 3px 0 0 rgb(var(--tone-rgb)); }
