@@ -1,72 +1,72 @@
 <!-- family: Yayın ve izleyici | Yayıncı ekranı parçaları: durum şeridi, istatistik kartı, galibiyet/mağlubiyet, izleyici oylaması, olay kuyruğu, liderlik, canlı sayaçlar, komut listesi, yayıncı kartı. -->
 
-<section data-id="statbar" data-title="Durum şeridi" data-use="Yatay istatistik çipleri: ikon + büyük sayı + etiket (seviye, can, öldürme…). Ton mh-t-*; sayının yanına <small> ile /100 gibi ek; mh-statbar--lg büyütür. Sayıya (b) data-stat=&quot;kills&quot; verirsen MH.stat günceller." data-js="MH.stat(root, 'kills', 12)">
-<div class="mh-statbar"> <div class="mh-chip-stat mh-t-accent"><i data-i="xp"></i><b>24</b><span>Seviye</span></div> <div class="mh-chip-stat mh-t-health"><i data-i="heart"></i><b>82<small>/100</small></b><span>Can</span></div> <div class="mh-chip-stat mh-t-danger"><i data-i="enemy"></i><b>14</b><span>Ekranda</span></div> <div class="mh-chip-stat mh-t-warn"><i data-i="queue"></i><b>37</b><span>Kuyrukta</span></div> <div class="mh-chip-stat"><i data-i="skull"></i><b>3</b><span>Ölüm</span></div> </div>
+<section data-id="statbar" data-title="Durum şeridi" data-use="Yatay istatistik çipleri: ikon + büyük sayı + etiket (seviye, can, öldürme…). Ton eui-t-*; sayının yanına <small> ile /100 gibi ek; eui-statbar--lg büyütür. Sayıya (b) data-stat=&quot;kills&quot; verirsen EUI.stat günceller." data-js="EUI.stat(root, 'kills', 12)">
+<div class="eui-statbar"> <div class="eui-chip-stat eui-t-accent"><i data-i="xp"></i><b>24</b><span>Seviye</span></div> <div class="eui-chip-stat eui-t-health"><i data-i="heart"></i><b>82<small>/100</small></b><span>Can</span></div> <div class="eui-chip-stat eui-t-danger"><i data-i="enemy"></i><b>14</b><span>Ekranda</span></div> <div class="eui-chip-stat eui-t-warn"><i data-i="queue"></i><b>37</b><span>Kuyrukta</span></div> <div class="eui-chip-stat"><i data-i="skull"></i><b>3</b><span>Ölüm</span></div> </div>
 </section>
 
-<section data-id="statcard" data-title="İstatistik kartı" data-use="Oyuncu özeti: seviye halkası + ad, altında 2×2 hücre (ikon, sayı, etiket). Hücreye ton ver." data-js="MH.mount(root)">
-<div class="mh-panel mh-statcard"> <div class="mh-statcard__head"><div class="mh-levelring" data-mh-ring style="--v:.64"><b>24</b><small>SVY</small></div><div class="mh-statcard__name"><b>Amiral Router</b><span class="mh-sub">Hayatta kal · Dalga 8</span></div></div>
-<div class="mh-statcard__grid"> <div class="mh-statcard__cell mh-t-danger"><i data-i="enemy"></i><div><b>14</b><span>Ekranda</span></div></div> <div class="mh-statcard__cell mh-t-warn"><i data-i="queue"></i><div><b>37</b><span>Kuyrukta</span></div></div> <div class="mh-statcard__cell mh-t-success"><i data-i="trophy"></i><div><b>5–2</b><span>G / M</span></div></div> <div class="mh-statcard__cell"><i data-i="skull"></i><div><b>3</b><span>Ölüm</span></div></div> </div> </div>
+<section data-id="statcard" data-title="İstatistik kartı" data-use="Oyuncu özeti: seviye halkası + ad, altında 2×2 hücre (ikon, sayı, etiket). Hücreye ton ver." data-js="EUI.mount(root)">
+<div class="eui-panel eui-statcard"> <div class="eui-statcard__head"><div class="eui-levelring" data-eui-ring style="--v:.64"><b>24</b><small>SVY</small></div><div class="eui-statcard__name"><b>Amiral Router</b><span class="eui-sub">Hayatta kal · Dalga 8</span></div></div>
+<div class="eui-statcard__grid"> <div class="eui-statcard__cell eui-t-danger"><i data-i="enemy"></i><div><b>14</b><span>Ekranda</span></div></div> <div class="eui-statcard__cell eui-t-warn"><i data-i="queue"></i><div><b>37</b><span>Kuyrukta</span></div></div> <div class="eui-statcard__cell eui-t-success"><i data-i="trophy"></i><div><b>5–2</b><span>G / M</span></div></div> <div class="eui-statcard__cell"><i data-i="skull"></i><div><b>3</b><span>Ölüm</span></div></div> </div> </div>
 </section>
 
-<section data-id="winloss" data-title="Galibiyet / mağlubiyet" data-use="Skor (yeşil W, kırmızı L) ve son maç geçmişi: data-history=&quot;WWLWWLW&quot; harfleri noktaya çevrilir." data-js="MH.mount(root)">
-<div class="mh-panel mh-wl"><div class="mh-wl__score"><b class="w">5</b><i>–</i><b class="l">2</b></div><div class="mh-wl__meta"><span class="mh-kicker">Son maçlar</span><div class="mh-history" data-history="WWLWWLW"></div></div></div>
+<section data-id="winloss" data-title="Galibiyet / mağlubiyet" data-use="Skor (yeşil W, kırmızı L) ve son maç geçmişi: data-history=&quot;WWLWWLW&quot; harfleri noktaya çevrilir." data-js="EUI.mount(root)">
+<div class="eui-panel eui-wl"><div class="eui-wl__score"><b class="w">5</b><i>–</i><b class="l">2</b></div><div class="eui-wl__meta"><span class="eui-kicker">Son maçlar</span><div class="eui-history" data-history="WWLWWLW"></div></div></div>
 </section>
 
-<section data-id="vote" data-wide="1" data-title="İzleyici oylaması" data-use="Soru + süre rozeti + seçenekler. Seçenek: mh-opt, __fill'e --v (0..1) yüzde, __cmd sohbet komutu, __label, __pct. is-leading öndeki, is-winner kazanan. Üstte azalan süre çizgisi mh-vote__timer (transform: scaleX)." data-js="opt.style.setProperty('--v', .4)">
-<div class="mh-panel mh-vote" style="--w:420px"> <div class="mh-vote__head"><div><span class="mh-kicker mh-kicker--accent">İzleyici oylaması</span><div class="mh-vote__q">Sonraki olay ne olsun?</div></div><span class="mh-badge mh-t-danger mh-badge--dot mh-badge--live mh-num">0:18</span></div>
-<div class="mh-vote__opts">
-<div class="mh-opt is-leading mh-t-danger"><i class="mh-opt__fill" style="--v:.52"></i><span class="mh-opt__cmd">!1</span><span class="mh-opt__label">Boss geliyor</span><span class="mh-opt__pct">52%</span></div>
-<div class="mh-opt mh-t-info"><i class="mh-opt__fill" style="--v:.30"></i><span class="mh-opt__cmd">!2</span><span class="mh-opt__label">Yağmur başlasın</span><span class="mh-opt__pct">30%</span></div>
-<div class="mh-opt mh-t-success"><i class="mh-opt__fill" style="--v:.18"></i><span class="mh-opt__cmd">!3</span><span class="mh-opt__label">Herkes iyileşsin</span><span class="mh-opt__pct">18%</span></div> </div>
-<div class="mh-vote__foot"><span>Toplam <b>1.284</b> oy</span><span>Sohbete <b>!1</b> – <b>!3</b> yaz</span></div> </div>
+<section data-id="vote" data-wide="1" data-title="İzleyici oylaması" data-use="Soru + süre rozeti + seçenekler. Seçenek: eui-opt, __fill'e --v (0..1) yüzde, __cmd sohbet komutu, __label, __pct. is-leading öndeki, is-winner kazanan. Üstte azalan süre çizgisi eui-vote__timer (transform: scaleX)." data-js="opt.style.setProperty('--v', .4)">
+<div class="eui-panel eui-vote" style="--w:420px"> <div class="eui-vote__head"><div><span class="eui-kicker eui-kicker--accent">İzleyici oylaması</span><div class="eui-vote__q">Sonraki olay ne olsun?</div></div><span class="eui-badge eui-t-danger eui-badge--dot eui-badge--live eui-num">0:18</span></div>
+<div class="eui-vote__opts">
+<div class="eui-opt is-leading eui-t-danger"><i class="eui-opt__fill" style="--v:.52"></i><span class="eui-opt__cmd">!1</span><span class="eui-opt__label">Boss geliyor</span><span class="eui-opt__pct">52%</span></div>
+<div class="eui-opt eui-t-info"><i class="eui-opt__fill" style="--v:.30"></i><span class="eui-opt__cmd">!2</span><span class="eui-opt__label">Yağmur başlasın</span><span class="eui-opt__pct">30%</span></div>
+<div class="eui-opt eui-t-success"><i class="eui-opt__fill" style="--v:.18"></i><span class="eui-opt__cmd">!3</span><span class="eui-opt__label">Herkes iyileşsin</span><span class="eui-opt__pct">18%</span></div> </div>
+<div class="eui-vote__foot"><span>Toplam <b>1.284</b> oy</span><span>Sohbete <b>!1</b> – <b>!3</b> yaz</span></div> </div>
 </section>
 
-<section data-id="queue" data-title="Olay kuyruğu" data-use="Sıradaki olaylar listesi; çalışan satır is-running, ton mh-t-*; sağda süre veya 'sırada'." data-js="—">
-<div class="mh-panel mh-queue" style="--w:340px"> <div class="mh-panel__head"><span class="mh-kicker">Olay kuyruğu</span><span class="mh-count mh-push">3</span></div>
-<div class="mh-queue__item is-running mh-t-danger"><i data-i="skull"></i><span>Boss geliyor · NabeMedia</span><small>0:08</small></div>
-<div class="mh-queue__item mh-t-info"><i data-i="users"></i><span>5 düşman · RAPAFI</span><small>sırada</small></div>
-<div class="mh-queue__item mh-t-success"><i data-i="heart-plus"></i><span>İyileştirme · anonim</span><small>sırada</small></div> </div>
+<section data-id="queue" data-title="Olay kuyruğu" data-use="Sıradaki olaylar listesi; çalışan satır is-running, ton eui-t-*; sağda süre veya 'sırada'." data-js="—">
+<div class="eui-panel eui-queue" style="--w:340px"> <div class="eui-panel__head"><span class="eui-kicker">Olay kuyruğu</span><span class="eui-count eui-push">3</span></div>
+<div class="eui-queue__item is-running eui-t-danger"><i data-i="skull"></i><span>Boss geliyor · NabeMedia</span><small>0:08</small></div>
+<div class="eui-queue__item eui-t-info"><i data-i="users"></i><span>5 düşman · RAPAFI</span><small>sırada</small></div>
+<div class="eui-queue__item eui-t-success"><i data-i="heart-plus"></i><span>İyileştirme · anonim</span><small>sırada</small></div> </div>
 </section>
 
-<section data-id="leader" data-title="Destekçi sıralaması" data-use="En çok destekleyenler: başlık, satırlar (mh-rank is-1/2/3, avatar, ad, değer)." data-js="—">
-<div class="mh-panel mh-leader" style="--w:300px"> <div class="mh-panel__head"><i data-i="crown-f" class="mh-tone mh-t-gold"></i><span class="mh-kicker">En çok destekleyenler</span></div>
-<div class="mh-leader__row"><span class="mh-rank is-1">1</span><span class="mh-avatar mh-avatar--sm mh-avatar--round">NM</span><span class="mh-leader__name">NabeMedia</span><span class="mh-leader__val"><i data-i="coin-f"></i>12.400</span></div>
-<div class="mh-leader__row"><span class="mh-rank is-2">2</span><span class="mh-avatar mh-avatar--sm mh-avatar--round">MS</span><span class="mh-leader__name">MSK</span><span class="mh-leader__val"><i data-i="coin-f"></i>8.150</span></div> </div>
+<section data-id="leader" data-title="Destekçi sıralaması" data-use="En çok destekleyenler: başlık, satırlar (eui-rank is-1/2/3, avatar, ad, değer)." data-js="—">
+<div class="eui-panel eui-leader" style="--w:300px"> <div class="eui-panel__head"><i data-i="crown-f" class="eui-tone eui-t-gold"></i><span class="eui-kicker">En çok destekleyenler</span></div>
+<div class="eui-leader__row"><span class="eui-rank is-1">1</span><span class="eui-avatar eui-avatar--sm eui-avatar--round">NM</span><span class="eui-leader__name">NabeMedia</span><span class="eui-leader__val"><i data-i="coin-f"></i>12.400</span></div>
+<div class="eui-leader__row"><span class="eui-rank is-2">2</span><span class="eui-avatar eui-avatar--sm eui-avatar--round">MS</span><span class="eui-leader__name">MSK</span><span class="eui-leader__val"><i data-i="coin-f"></i>8.150</span></div> </div>
 </section>
 
-<section data-id="livestats" data-wide="1" data-title="Canlı sayaçlar" data-use="Yayın göstergeleri: 'Canlı' rozeti + izleyici/beğeni/jeton hücreleri (ton + ikon + sayı)." data-js="MH.count(el, 4218)">
-<div class="mh-panel mh-livestats"> <div class="mh-livestat"><span class="mh-onair">Canlı</span></div> <div class="mh-livestat mh-t-info"><i data-i="eye"></i><div><b>4.218</b><span class="mh-kicker">İzleyici</span></div></div> <div class="mh-livestat mh-t-danger"><i data-i="heart-f"></i><div><b>182 B</b><span class="mh-kicker">Beğeni</span></div></div> <div class="mh-livestat mh-t-gold"><i data-i="coins"></i><div><b>36.540</b><span class="mh-kicker">Jeton</span></div></div> </div>
+<section data-id="livestats" data-wide="1" data-title="Canlı sayaçlar" data-use="Yayın göstergeleri: 'Canlı' rozeti + izleyici/beğeni/jeton hücreleri (ton + ikon + sayı)." data-js="EUI.count(el, 4218)">
+<div class="eui-panel eui-livestats"> <div class="eui-livestat"><span class="eui-onair">Canlı</span></div> <div class="eui-livestat eui-t-info"><i data-i="eye"></i><div><b>4.218</b><span class="eui-kicker">İzleyici</span></div></div> <div class="eui-livestat eui-t-danger"><i data-i="heart-f"></i><div><b>182 B</b><span class="eui-kicker">Beğeni</span></div></div> <div class="eui-livestat eui-t-gold"><i data-i="coins"></i><div><b>36.540</b><span class="eui-kicker">Jeton</span></div></div> </div>
 </section>
 
-<section data-id="commands" data-title="Komut ve hediye listesi" data-use="İzleyici komutları: kod (code) veya hediye çipi (mh-gift-chip) + açıklama." data-js="—">
-<div class="mh-commands"> <div class="mh-command"><code>!saldırı</code> Düşman dalgası çağır</div> <div class="mh-command"><code>!can</code> Yayıncıyı iyileştir</div> <div class="mh-command"><span class="mh-gift-chip"><span style="font-size:15px">🌹</span>Gül</span> 1 düşman doğar</div> </div>
+<section data-id="commands" data-title="Komut ve hediye listesi" data-use="İzleyici komutları: kod (code) veya hediye çipi (eui-gift-chip) + açıklama." data-js="—">
+<div class="eui-commands"> <div class="eui-command"><code>!saldırı</code> Düşman dalgası çağır</div> <div class="eui-command"><code>!can</code> Yayıncıyı iyileştir</div> <div class="eui-command"><span class="eui-gift-chip"><span style="font-size:15px">🌹</span>Gül</span> 1 düşman doğar</div> </div>
 </section>
 
 <section data-id="streamer" data-title="Yayıncı kartı" data-use="Avatar (is-live çerçeve), ad + doğrulama, meta satırı (izleyici, takipçi)." data-js="—">
-<div class="mh-panel mh-streamer"><span class="mh-avatar mh-avatar--lg mh-avatar--round is-live">S</span><div class="mh-col mh-gap-1"><span class="mh-streamer__name">Serkan_TV <i data-i="circle-check"></i></span><div class="mh-streamer__meta"><span><i data-i="eye"></i>4,2 B</span><span><i data-i="users"></i>128 B takipçi</span></div></div></div>
+<div class="eui-panel eui-streamer"><span class="eui-avatar eui-avatar--lg eui-avatar--round is-live">S</span><div class="eui-col eui-gap-1"><span class="eui-streamer__name">Serkan_TV <i data-i="circle-check"></i></span><div class="eui-streamer__meta"><span><i data-i="eye"></i>4,2 B</span><span><i data-i="users"></i>128 B takipçi</span></div></div></div>
 </section>
 
-<section data-id="likes" data-title="Beğeni yağmuru" data-use="Kalpleri yukarı süzdüren efekt alanı. Kod: bir .mh-likes kutusuna .mh-like (içinde ikon) ekle; kendiliğinden yükselip söner." data-run="1">
+<section data-id="likes" data-title="Beğeni yağmuru" data-use="Kalpleri yukarı süzdüren efekt alanı. Kod: bir .eui-likes kutusuna .eui-like (içinde ikon) ekle; kendiliğinden yükselip söner." data-run="1">
 var box = document.createElement('div');
-box.className = 'mh-likes';
+box.className = 'eui-likes';
 box.style.cssText = 'position:fixed;right:60px;bottom:40px;width:120px;height:240px;z-index:40';
 document.body.appendChild(box);
 for (var i = 0; i < 8; i++) setTimeout(function () {
-  var l = document.createElement('div'); l.className = 'mh-like';
+  var l = document.createElement('div'); l.className = 'eui-like';
   l.style.setProperty('--d', (2 + Math.random()).toFixed(2) + 's');
-  l.innerHTML = '<i class="mh-i" data-i="heart-f"></i>'; box.appendChild(l); MH.mount(l);
+  l.innerHTML = '<i class="eui-i" data-i="heart-f"></i>'; box.appendChild(l); EUI.mount(l);
   setTimeout(function () { l.remove(); }, 3500);
 }, i * 180);
 setTimeout(function () { box.remove(); }, 4500);
 </section>
 
 <section data-id="gift-hero" data-title="Büyük hediye" data-use="Pahalı hediye için ekran ortası kahraman gösterim: büyük sanat, gönderen, hediye adı, jeton rozeti. Kısa süre sonra kaldır." data-js="—">
-<div class="mh-gift-hero"><div class="mh-gift-hero__art"><span>🪐</span></div><div class="mh-gift-hero__from"><b>NabeMedia</b> gönderdi</div><div class="mh-gift-hero__name">Evren</div><span class="mh-badge mh-t-gold mh-badge--pill">44.999 jeton</span></div>
+<div class="eui-gift-hero"><div class="eui-gift-hero__art"><span>🪐</span></div><div class="eui-gift-hero__from"><b>NabeMedia</b> gönderdi</div><div class="eui-gift-hero__name">Evren</div><span class="eui-badge eui-t-gold eui-badge--pill">44.999 jeton</span></div>
 </section>
 
-<section data-id="crop" data-title="Kare / dikey yayın kırpması" data-use="Yayın 9:16 ya da 1:1 kırpılınca HUD orta sütuna toplanır. MH.crop('vertical' | 'square' | 'wide', { platform: 'tiktok' }); MH.cropGuide(null, true, 'tiktok') kırpılan alanı ve platform arayüzünü gösterir. Kırpmada gizlenecek öğeye mh-hide-crop / mh-hide-vertical, yalnız kırpmada görünecek öğeye mh-only-crop / mh-only-vertical; dikeyde aşağı itilecek köşeye mh-v-offset (--mh-v-offset)." data-run="1">
-MH.crop('vertical', { platform: 'tiktok' });
-MH.cropGuide(null, true, 'tiktok');
-setTimeout(function () { MH.cropGuide(null, false); MH.crop('wide'); }, 4000);
+<section data-id="crop" data-title="Kare / dikey yayın kırpması" data-use="Yayın 9:16 ya da 1:1 kırpılınca HUD orta sütuna toplanır. EUI.crop('vertical' | 'square' | 'wide', { platform: 'tiktok' }); EUI.cropGuide(null, true, 'tiktok') kırpılan alanı ve platform arayüzünü gösterir. Kırpmada gizlenecek öğeye eui-hide-crop / eui-hide-vertical, yalnız kırpmada görünecek öğeye eui-only-crop / eui-only-vertical; dikeyde aşağı itilecek köşeye eui-v-offset (--eui-v-offset)." data-run="1">
+EUI.crop('vertical', { platform: 'tiktok' });
+EUI.cropGuide(null, true, 'tiktok');
+setTimeout(function () { EUI.cropGuide(null, false); EUI.crop('wide'); }, 4000);
 </section>

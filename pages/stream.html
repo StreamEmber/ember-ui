@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yayın & hediyeler — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Yayın & hediyeler — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Akışlar</span>
@@ -17,60 +17,60 @@
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
-        <div class="mh-anchor mh-tl" style="gap:14px">
-          <div class="mh-panel mh-livestats">
-            <div class="mh-livestat"><span class="mh-onair">Canlı</span></div>
-            <div class="mh-livestat mh-t-info"><i data-i="eye"></i><div><b id="viewers">4.218</b><span class="mh-kicker">İzleyici</span></div></div>
-            <div class="mh-livestat mh-t-danger"><i data-i="heart-f"></i><div><b id="likes">182 B</b><span class="mh-kicker">Beğeni</span></div></div>
-            <div class="mh-livestat mh-t-gold"><i data-i="coins"></i><div><b id="coins">36.540</b><span class="mh-kicker">Jeton</span></div></div>
+      <div class="eui-screen" id="screen">
+        <div class="eui-anchor eui-tl" style="gap:14px">
+          <div class="eui-panel eui-livestats">
+            <div class="eui-livestat"><span class="eui-onair">Canlı</span></div>
+            <div class="eui-livestat eui-t-info"><i data-i="eye"></i><div><b id="viewers">4.218</b><span class="eui-kicker">İzleyici</span></div></div>
+            <div class="eui-livestat eui-t-danger"><i data-i="heart-f"></i><div><b id="likes">182 B</b><span class="eui-kicker">Beğeni</span></div></div>
+            <div class="eui-livestat eui-t-gold"><i data-i="coins"></i><div><b id="coins">36.540</b><span class="eui-kicker">Jeton</span></div></div>
           </div>
-          <div class="mh-gifts" data-mh="gifts" style="--w:400px"></div>
+          <div class="eui-gifts" data-eui="gifts" style="--w:400px"></div>
         </div>
 
-        <div class="mh-anchor mh-tc">
-          <div class="mh-panel mh-goal" style="--w:480px">
-            <div class="mh-goal__head"><span class="mh-goal__icon"><i data-i="heart-f"></i></span><span class="mh-goal__title">Beğeni hedefi</span><span class="mh-goal__count"><span id="goal-v" style="color:var(--mh-text)">72.400</span><span> / 100.000</span></span></div>
-            <div class="mh-bar" id="goal" data-v="72"><i class="mh-bar__fill"></i></div>
-            <div class="mh-goal__reward"><i data-i="gift"></i>Ödül: tüm oyunculara <b style="color:var(--mh-text)">2× para</b> (5 dk)</div>
-          </div>
-        </div>
-
-        <div class="mh-anchor mh-tr" style="gap:14px">
-          <div class="mh-panel mh-vote" id="vote">
-            <i class="mh-vote__timer" id="vote-timer"></i>
-            <div class="mh-vote__head"><div><span class="mh-kicker mh-kicker--accent">İzleyici oylaması</span><div class="mh-vote__q">Sonraki olay ne olsun?</div></div><span class="mh-badge mh-t-danger mh-badge--dot mh-badge--live mh-num" id="vote-t">0:18</span></div>
-            <div class="mh-vote__opts" id="opts"></div>
-            <div class="mh-vote__foot"><span>Toplam <b id="vote-total">1.284</b> oy</span><span>Sohbete <b>!1</b> – <b>!4</b> yaz</span></div>
-          </div>
-          <div class="mh-panel mh-leader">
-            <div class="mh-panel__head" style="padding:10px 14px"><i data-i="crown-f" style="color:rgb(var(--mh-gold-rgb))"></i><span class="mh-kicker">En çok destekleyenler</span></div>
-            <div class="mh-leader__row"><span class="mh-rank is-1">1</span><span class="mh-avatar mh-avatar--sm mh-avatar--round">NM</span><span class="mh-leader__name">NabeMedia</span><span class="mh-leader__val"><i data-i="coin-f"></i>12.400</span></div>
-            <div class="mh-leader__row"><span class="mh-rank is-2">2</span><span class="mh-avatar mh-avatar--sm mh-avatar--round">MS</span><span class="mh-leader__name">MSK</span><span class="mh-leader__val"><i data-i="coin-f"></i>8.150</span></div>
-            <div class="mh-leader__row"><span class="mh-rank is-3">3</span><span class="mh-avatar mh-avatar--sm mh-avatar--round">RA</span><span class="mh-leader__name">RAPAFI</span><span class="mh-leader__val"><i data-i="coin-f"></i>5.020</span></div>
+        <div class="eui-anchor eui-tc">
+          <div class="eui-panel eui-goal" style="--w:480px">
+            <div class="eui-goal__head"><span class="eui-goal__icon"><i data-i="heart-f"></i></span><span class="eui-goal__title">Beğeni hedefi</span><span class="eui-goal__count"><span id="goal-v" style="color:var(--eui-text)">72.400</span><span> / 100.000</span></span></div>
+            <div class="eui-bar" id="goal" data-v="72"><i class="eui-bar__fill"></i></div>
+            <div class="eui-goal__reward"><i data-i="gift"></i>Ödül: tüm oyunculara <b style="color:var(--eui-text)">2× para</b> (5 dk)</div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-bl">
-          <div class="mh-commands">
-            <div class="mh-command"><code>!saldırı</code> Düşman dalgası çağır</div>
-            <div class="mh-command"><code>!can</code> Yayıncıyı iyileştir</div>
-            <div class="mh-command"><span class="mh-gift-chip"><span style="font-size:15px">🌹</span>Gül</span> 1 düşman doğar</div>
-            <div class="mh-command"><span class="mh-gift-chip"><span style="font-size:15px">🦁</span>Aslan</span> Boss gelir</div>
+        <div class="eui-anchor eui-tr" style="gap:14px">
+          <div class="eui-panel eui-vote" id="vote">
+            <i class="eui-vote__timer" id="vote-timer"></i>
+            <div class="eui-vote__head"><div><span class="eui-kicker eui-kicker--accent">İzleyici oylaması</span><div class="eui-vote__q">Sonraki olay ne olsun?</div></div><span class="eui-badge eui-t-danger eui-badge--dot eui-badge--live eui-num" id="vote-t">0:18</span></div>
+            <div class="eui-vote__opts" id="opts"></div>
+            <div class="eui-vote__foot"><span>Toplam <b id="vote-total">1.284</b> oy</span><span>Sohbete <b>!1</b> – <b>!4</b> yaz</span></div>
+          </div>
+          <div class="eui-panel eui-leader">
+            <div class="eui-panel__head" style="padding:10px 14px"><i data-i="crown-f" style="color:rgb(var(--eui-gold-rgb))"></i><span class="eui-kicker">En çok destekleyenler</span></div>
+            <div class="eui-leader__row"><span class="eui-rank is-1">1</span><span class="eui-avatar eui-avatar--sm eui-avatar--round">NM</span><span class="eui-leader__name">NabeMedia</span><span class="eui-leader__val"><i data-i="coin-f"></i>12.400</span></div>
+            <div class="eui-leader__row"><span class="eui-rank is-2">2</span><span class="eui-avatar eui-avatar--sm eui-avatar--round">MS</span><span class="eui-leader__name">MSK</span><span class="eui-leader__val"><i data-i="coin-f"></i>8.150</span></div>
+            <div class="eui-leader__row"><span class="eui-rank is-3">3</span><span class="eui-avatar eui-avatar--sm eui-avatar--round">RA</span><span class="eui-leader__name">RAPAFI</span><span class="eui-leader__val"><i data-i="coin-f"></i>5.020</span></div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-br" style="gap:12px">
-          <div class="mh-likes" id="likes-fx"></div>
-          <div class="mh-panel mh-queue">
-            <div class="mh-panel__head" style="padding:10px 14px"><span class="mh-kicker">Olay kuyruğu</span><span class="mh-count" style="margin-left:auto">3</span></div>
-            <div class="mh-queue__item is-running mh-t-danger"><i data-i="skull"></i><span>Boss geliyor · NabeMedia</span><small>0:08</small></div>
-            <div class="mh-queue__item mh-t-info"><i data-i="users"></i><span>5 düşman · RAPAFI</span><small>sırada</small></div>
-            <div class="mh-queue__item mh-t-success"><i data-i="heart-plus"></i><span>İyileştirme · anonim</span><small>sırada</small></div>
+        <div class="eui-anchor eui-bl">
+          <div class="eui-commands">
+            <div class="eui-command"><code>!saldırı</code> Düşman dalgası çağır</div>
+            <div class="eui-command"><code>!can</code> Yayıncıyı iyileştir</div>
+            <div class="eui-command"><span class="eui-gift-chip"><span style="font-size:15px">🌹</span>Gül</span> 1 düşman doğar</div>
+            <div class="eui-command"><span class="eui-gift-chip"><span style="font-size:15px">🦁</span>Aslan</span> Boss gelir</div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-mc" id="hero" style="margin-top:-30px"></div>
+        <div class="eui-anchor eui-br" style="gap:12px">
+          <div class="eui-likes" id="likes-fx"></div>
+          <div class="eui-panel eui-queue">
+            <div class="eui-panel__head" style="padding:10px 14px"><span class="eui-kicker">Olay kuyruğu</span><span class="eui-count" style="margin-left:auto">3</span></div>
+            <div class="eui-queue__item is-running eui-t-danger"><i data-i="skull"></i><span>Boss geliyor · NabeMedia</span><small>0:08</small></div>
+            <div class="eui-queue__item eui-t-info"><i data-i="users"></i><span>5 düşman · RAPAFI</span><small>sırada</small></div>
+            <div class="eui-queue__item eui-t-success"><i data-i="heart-plus"></i><span>İyileştirme · anonim</span><small>sırada</small></div>
+          </div>
+        </div>
+
+        <div class="eui-anchor eui-mc" id="hero" style="margin-top:-30px"></div>
       </div>
     </div>
     <div class="demo-actions">
@@ -92,20 +92,20 @@
   <div class="demo-specs">
     <div class="demo-spec demo-spec--2">
       <div class="demo-spec__view" style="--h:380px;--dim:.15">
-        <div class="mh-gifts" style="--w:420px">
-          <div class="mh-gift is-legendary"><div class="mh-gift__art"><span>🦁</span><span class="mh-avatar">NM</span></div><div class="mh-gift__body"><div class="mh-gift__from"><b>NabeMedia</b> gönderdi</div><div class="mh-gift__name">Aslan</div><div class="mh-gift__effect"><i data-i="skull"></i>Boss dalgası çağrıldı</div></div><div class="mh-gift__combo"><b><small>x</small>1</b><span>29.999 jeton</span></div></div>
-          <div class="mh-gift is-epic"><div class="mh-gift__art"><span>🚀</span><span class="mh-avatar">MS</span></div><div class="mh-gift__body"><div class="mh-gift__from"><b>MSK</b> gönderdi</div><div class="mh-gift__name">Roket</div><div class="mh-gift__effect"><i data-i="bomb"></i>Hava saldırısı</div></div><div class="mh-gift__combo"><b><small>x</small>2</b><span>2.000 jeton</span></div></div>
-          <div class="mh-gift is-rare"><div class="mh-gift__art"><span>🍩</span><span class="mh-avatar">RA</span></div><div class="mh-gift__body"><div class="mh-gift__from"><b>RAPAFI</b> gönderdi</div><div class="mh-gift__name">Donut</div><div class="mh-gift__effect"><i data-i="heart-plus"></i>+20 can</div></div><div class="mh-gift__combo"><b><small>x</small>15</b><span>450 jeton</span></div></div>
-          <div class="mh-gift is-common"><div class="mh-gift__art"><span>🌹</span><span class="mh-avatar">A</span></div><div class="mh-gift__body"><div class="mh-gift__from"><b>anonim_42</b> gönderdi</div><div class="mh-gift__name">Gül</div></div><div class="mh-gift__combo"><b><small>x</small>3</b><span>3 jeton</span></div></div>
+        <div class="eui-gifts" style="--w:420px">
+          <div class="eui-gift is-legendary"><div class="eui-gift__art"><span>🦁</span><span class="eui-avatar">NM</span></div><div class="eui-gift__body"><div class="eui-gift__from"><b>NabeMedia</b> gönderdi</div><div class="eui-gift__name">Aslan</div><div class="eui-gift__effect"><i data-i="skull"></i>Boss dalgası çağrıldı</div></div><div class="eui-gift__combo"><b><small>x</small>1</b><span>29.999 jeton</span></div></div>
+          <div class="eui-gift is-epic"><div class="eui-gift__art"><span>🚀</span><span class="eui-avatar">MS</span></div><div class="eui-gift__body"><div class="eui-gift__from"><b>MSK</b> gönderdi</div><div class="eui-gift__name">Roket</div><div class="eui-gift__effect"><i data-i="bomb"></i>Hava saldırısı</div></div><div class="eui-gift__combo"><b><small>x</small>2</b><span>2.000 jeton</span></div></div>
+          <div class="eui-gift is-rare"><div class="eui-gift__art"><span>🍩</span><span class="eui-avatar">RA</span></div><div class="eui-gift__body"><div class="eui-gift__from"><b>RAPAFI</b> gönderdi</div><div class="eui-gift__name">Donut</div><div class="eui-gift__effect"><i data-i="heart-plus"></i>+20 can</div></div><div class="eui-gift__combo"><b><small>x</small>15</b><span>450 jeton</span></div></div>
+          <div class="eui-gift is-common"><div class="eui-gift__art"><span>🌹</span><span class="eui-avatar">A</span></div><div class="eui-gift__body"><div class="eui-gift__from"><b>anonim_42</b> gönderdi</div><div class="eui-gift__name">Gül</div></div><div class="eui-gift__combo"><b><small>x</small>3</b><span>3 jeton</span></div></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Hediye kartı</b><span><code>MH.gift({ from, name, art: '🦁' | 'i:gift' | 'resim.png', count, coins, tier, effect, key })</code> — aynı <code>key</code> canlıyken gelirse yeni kart açılmaz, kombo sayacı zıplar.</span></div>
+      <div class="demo-spec__meta"><b>Hediye kartı</b><span><code>EUI.gift({ from, name, art: '🦁' | 'i:gift' | 'resim.png', count, coins, tier, effect, key })</code> — aynı <code>key</code> canlıyken gelirse yeni kart açılmaz, kombo sayacı zıplar.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:380px;--dim:.3">
-        <div class="mh-gift-hero"><div class="mh-gift-hero__art"><span>🪐</span></div><div class="mh-gift-hero__from"><b>NabeMedia</b> gönderdi</div><div class="mh-gift-hero__name">Evren</div><span class="mh-badge mh-t-gold mh-badge--pill">44.999 jeton</span></div>
+        <div class="eui-gift-hero"><div class="eui-gift-hero__art"><span>🪐</span></div><div class="eui-gift-hero__from"><b>NabeMedia</b> gönderdi</div><div class="eui-gift-hero__name">Evren</div><span class="eui-badge eui-t-gold eui-badge--pill">44.999 jeton</span></div>
       </div>
-      <div class="demo-spec__meta"><b>Büyük hediye anı</b><span><code>.mh-gift-hero</code> — dönen ışınlar ve nabız; efsanevi hediyeler için ekran ortasında.</span></div>
+      <div class="demo-spec__meta"><b>Büyük hediye anı</b><span><code>.eui-gift-hero</code> — dönen ışınlar ve nabız; efsanevi hediyeler için ekran ortasında.</span></div>
     </div>
   </div>
 
@@ -113,38 +113,38 @@
   <div class="demo-specs">
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:300px">
-        <div class="mh-panel mh-vote" style="--w:340px">
-          <div class="mh-vote__head"><div><span class="mh-kicker mh-kicker--accent">Oylama bitti</span><div class="mh-vote__q">Hava durumu?</div></div></div>
-          <div class="mh-vote__opts">
-            <div class="mh-opt is-winner mh-t-success" style="--v:.58"><i class="mh-opt__fill"></i><span class="mh-opt__cmd">!1</span><span class="mh-opt__label">Fırtına</span><span class="mh-opt__pct">58%</span></div>
-            <div class="mh-opt mh-t-info" style="--v:.3"><i class="mh-opt__fill"></i><span class="mh-opt__cmd">!2</span><span class="mh-opt__label">Sis</span><span class="mh-opt__pct">30%</span></div>
-            <div class="mh-opt mh-t-warn" style="--v:.12"><i class="mh-opt__fill"></i><span class="mh-opt__cmd">!3</span><span class="mh-opt__label">Güneşli</span><span class="mh-opt__pct">12%</span></div>
+        <div class="eui-panel eui-vote" style="--w:340px">
+          <div class="eui-vote__head"><div><span class="eui-kicker eui-kicker--accent">Oylama bitti</span><div class="eui-vote__q">Hava durumu?</div></div></div>
+          <div class="eui-vote__opts">
+            <div class="eui-opt is-winner eui-t-success" style="--v:.58"><i class="eui-opt__fill"></i><span class="eui-opt__cmd">!1</span><span class="eui-opt__label">Fırtına</span><span class="eui-opt__pct">58%</span></div>
+            <div class="eui-opt eui-t-info" style="--v:.3"><i class="eui-opt__fill"></i><span class="eui-opt__cmd">!2</span><span class="eui-opt__label">Sis</span><span class="eui-opt__pct">30%</span></div>
+            <div class="eui-opt eui-t-warn" style="--v:.12"><i class="eui-opt__fill"></i><span class="eui-opt__cmd">!3</span><span class="eui-opt__label">Güneşli</span><span class="eui-opt__pct">12%</span></div>
           </div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Oylama sonucu</b><span><code>.mh-opt.is-winner</code>; canlıyken önde olan <code>is-leading</code>.</span></div>
+      <div class="demo-spec__meta"><b>Oylama sonucu</b><span><code>.eui-opt.is-winner</code>; canlıyken önde olan <code>is-leading</code>.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:300px;gap:16px">
-        <div class="mh-panel mh-goal" style="--w:360px">
-          <div class="mh-goal__head"><span class="mh-goal__icon"><i data-i="gift"></i></span><span class="mh-goal__title">Hediye hedefi</span><span class="mh-goal__count">8.200<span> / 10.000</span></span></div>
-          <div class="mh-bar" data-v="82"><i class="mh-bar__fill"></i></div>
-          <div class="mh-goal__marks"><span>0</span><span>2.500</span><span>5.000</span><span>7.500</span><span>10.000</span></div>
+      <div class="demo-spec__view eui-col" style="--h:300px;gap:16px">
+        <div class="eui-panel eui-goal" style="--w:360px">
+          <div class="eui-goal__head"><span class="eui-goal__icon"><i data-i="gift"></i></span><span class="eui-goal__title">Hediye hedefi</span><span class="eui-goal__count">8.200<span> / 10.000</span></span></div>
+          <div class="eui-bar" data-v="82"><i class="eui-bar__fill"></i></div>
+          <div class="eui-goal__marks"><span>0</span><span>2.500</span><span>5.000</span><span>7.500</span><span>10.000</span></div>
         </div>
-        <div class="mh-panel mh-streamer"><span class="mh-avatar mh-avatar--lg mh-avatar--round is-live">S</span><div class="mh-col" style="gap:3px"><span class="mh-streamer__name">Serkan_TV <i data-i="circle-check"></i></span><div class="mh-streamer__meta"><span><i data-i="eye"></i>4,2 B</span><span><i data-i="users"></i>128 B takipçi</span></div></div></div>
+        <div class="eui-panel eui-streamer"><span class="eui-avatar eui-avatar--lg eui-avatar--round is-live">S</span><div class="eui-col" style="gap:3px"><span class="eui-streamer__name">Serkan_TV <i data-i="circle-check"></i></span><div class="eui-streamer__meta"><span><i data-i="eye"></i>4,2 B</span><span><i data-i="users"></i>128 B takipçi</span></div></div></div>
       </div>
-      <div class="demo-spec__meta"><b>Hedef & yayıncı kartı</b><span><code>.mh-goal</code> akan çizgili dolgu; <code>.mh-streamer</code> canlı halkalı avatar.</span></div>
+      <div class="demo-spec__meta"><b>Hedef & yayıncı kartı</b><span><code>.eui-goal</code> akan çizgili dolgu; <code>.eui-streamer</code> canlı halkalı avatar.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:300px">
-        <div class="mh-likes" id="likes-fx2" style="height:260px"></div>
+        <div class="eui-likes" id="likes-fx2" style="height:260px"></div>
       </div>
-      <div class="demo-spec__meta"><b>Beğeni yağmuru</b><span>Yüzen kalpler <code>.mh-like</code> — her birinin <code>--x1</code>, <code>--x2</code>, <code>--s</code>, <code>--d</code> değeri rastgele.</span></div>
+      <div class="demo-spec__meta"><b>Beğeni yağmuru</b><span>Yüzen kalpler <code>.eui-like</code> — her birinin <code>--x1</code>, <code>--x2</code>, <code>--s</code>, <code>--d</code> değeri rastgele.</span></div>
     </div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var GIFTS = {
@@ -155,12 +155,12 @@
   };
   function hero(g) {
     var h = document.getElementById('hero');
-    h.innerHTML = '<div class="mh-gift-hero mh-enter-pop"><div class="mh-gift-hero__art"><span>' + g.art + '</span></div><div class="mh-gift-hero__from"><b>' + g.from + '</b> gönderdi</div><div class="mh-gift-hero__name">' + g.name + '</div><span class="mh-badge mh-t-gold mh-badge--pill">' + MH.fmt(g.coins) + ' jeton</span></div>';
-    clearTimeout(h.__t); h.__t = setTimeout(function () { var c = h.firstChild; if (c) { c.classList.add('mh-leave'); setTimeout(function () { h.innerHTML = ''; }, 300); } }, 3200);
+    h.innerHTML = '<div class="eui-gift-hero eui-enter-pop"><div class="eui-gift-hero__art"><span>' + g.art + '</span></div><div class="eui-gift-hero__from"><b>' + g.from + '</b> gönderdi</div><div class="eui-gift-hero__name">' + g.name + '</div><span class="eui-badge eui-t-gold eui-badge--pill">' + EUI.fmt(g.coins) + ' jeton</span></div>';
+    clearTimeout(h.__t); h.__t = setTimeout(function () { var c = h.firstChild; if (c) { c.classList.add('eui-leave'); setTimeout(function () { h.innerHTML = ''; }, 300); } }, 3200);
   }
   var coins = 36540;
   function send(id) {
-    var g = GIFTS[id]; MH.gift(g); coins += g.coins * (g.count || 1); MH.count('#coins', coins);
+    var g = GIFTS[id]; EUI.gift(g); coins += g.coins * (g.count || 1); EUI.count('#coins', coins);
     if (g.tier === 'legendary') hero(g);
   }
   Demo.on('[data-gift]', function (e) { send(e.currentTarget.getAttribute('data-gift')); });
@@ -171,15 +171,15 @@
     var tot = OPTS.reduce(function (a, o) { return a + o.v; }, 0), max = Math.max.apply(null, OPTS.map(function (o) { return o.v; }));
     document.getElementById('opts').innerHTML = OPTS.map(function (o, i) {
       var p = o.v / tot;
-      return '<div class="mh-opt mh-t-' + o.t + (o.v === max ? ' is-leading' : '') + '" style="--v:' + p.toFixed(3) + '"><i class="mh-opt__fill"></i><span class="mh-opt__cmd">!' + (i + 1) + '</span><span class="mh-opt__label">' + o.l + '</span><span class="mh-opt__pct">' + Math.round(p * 100) + '%</span></div>';
+      return '<div class="eui-opt eui-t-' + o.t + (o.v === max ? ' is-leading' : '') + '" style="--v:' + p.toFixed(3) + '"><i class="eui-opt__fill"></i><span class="eui-opt__cmd">!' + (i + 1) + '</span><span class="eui-opt__label">' + o.l + '</span><span class="eui-opt__pct">' + Math.round(p * 100) + '%</span></div>';
     }).join('');
-    document.getElementById('vote-total').textContent = MH.fmt(tot * 13);
+    document.getElementById('vote-total').textContent = EUI.fmt(tot * 13);
   }
   paintVote();
   var vt = 18, vtEl = document.getElementById('vote-timer');
   setInterval(function () {
     OPTS[Math.floor(Math.random() * 4)].v += Math.round(Demo.rand(1, 4)); paintVote();
-    vt = vt <= 0 ? 18 : vt - 1; document.getElementById('vote-t').textContent = MH.time(vt).replace(/^0/, '');
+    vt = vt <= 0 ? 18 : vt - 1; document.getElementById('vote-t').textContent = EUI.time(vt).replace(/^0/, '');
     vtEl.style.transform = 'scaleX(' + (vt / 18) + ')';
   }, 1000);
 
@@ -188,25 +188,25 @@
     var box = document.querySelector(sel); if (!box) return;
     for (var i = 0; i < n; i++) (function (i) {
       setTimeout(function () {
-        var h = document.createElement('div'); h.className = 'mh-like';
+        var h = document.createElement('div'); h.className = 'eui-like';
         h.style.setProperty('--x1', Demo.rand(-40, 40) + 'px'); h.style.setProperty('--x2', Demo.rand(-50, 50) + 'px');
         h.style.setProperty('--s', Demo.rand(20, 36) + 'px'); h.style.setProperty('--d', Demo.rand(2, 3.2) + 's');
         h.style.setProperty('--tone-rgb', Demo.pick(['254 44 85', '255 120 160', '37 244 238', '255 196 71']));
-        h.innerHTML = MH.icon('heart-f'); box.appendChild(h); setTimeout(function () { h.remove(); }, 3300);
+        h.innerHTML = EUI.icon('heart-f'); box.appendChild(h); setTimeout(function () { h.remove(); }, 3300);
       }, i * 90);
     })(i);
   }
   var likes = 182000, goal = 72400;
   var A = {
-    likes: function () { likeBurst('#likes-fx', 24); likes += 2400; goal = Math.min(100000, goal + 2400); document.getElementById('likes').textContent = MH.compact(likes); MH.count('#goal-v', goal); MH.bar('#goal', goal / 1000); },
-    combo: function () { MH.gift(GIFTS.rose); MH.gift(GIFTS.rose); },
+    likes: function () { likeBurst('#likes-fx', 24); likes += 2400; goal = Math.min(100000, goal + 2400); document.getElementById('likes').textContent = EUI.compact(likes); EUI.count('#goal-v', goal); EUI.bar('#goal', goal / 1000); },
+    combo: function () { EUI.gift(GIFTS.rose); EUI.gift(GIFTS.rose); },
     vote: function () { OPTS.forEach(function (o) { o.v = Math.round(Demo.rand(5, 50)); }); paintVote(); }
   };
   Demo.on('[data-act]', function (e) { A[e.currentTarget.getAttribute('data-act')](); });
   setInterval(function () { likeBurst('#likes-fx2', 3); likeBurst('#likes-fx', 1); }, 900);
   setTimeout(function () { send('donut'); }, 300);
   setTimeout(function () { send('rose'); }, 800);
-  Demo.every(2000, function () { var v = 4218 + Math.round(Demo.rand(-40, 60)); MH.count('#viewers', v, { duration: 400 }); });
+  Demo.every(2000, function () { var v = 4218 + Math.round(Demo.rand(-40, 60)); EUI.count('#viewers', v, { duration: 400 }); });
 </script>
 </body>
 </html>

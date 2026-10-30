@@ -3,64 +3,64 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oyun modu — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Oyun modu — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Oyun içi HUD</span>
     <h1>Oyun modu</h1>
-    <p>Takım skoru, tur sayacı, ele geçirme noktaları, dalga ilerlemesi, kompakt sıralama ve tam skor tablosu. Takım renkleri <code>--mh-team-1-rgb</code> … <code>--mh-team-5-rgb</code> tokenlarından gelir.</p>
+    <p>Takım skoru, tur sayacı, ele geçirme noktaları, dalga ilerlemesi, kompakt sıralama ve tam skor tablosu. Takım renkleri <code>--eui-team-1-rgb</code> … <code>--eui-team-5-rgb</code> tokenlarından gelir.</p>
   </header>
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
-        <div class="mh-anchor mh-tc" style="gap:12px">
-          <div class="mh-versus">
-            <div class="mh-versus__team mh-t-team1">
-              <div class="mh-versus__name"><b>Mavi takım</b><div class="mh-versus__alive" id="alive1"><i></i><i></i><i></i><i></i><i class="off"></i></div></div>
-              <span class="mh-versus__score" id="s1">3</span>
+      <div class="eui-screen" id="screen">
+        <div class="eui-anchor eui-tc" style="gap:12px">
+          <div class="eui-versus">
+            <div class="eui-versus__team eui-t-team1">
+              <div class="eui-versus__name"><b>Mavi takım</b><div class="eui-versus__alive" id="alive1"><i></i><i></i><i></i><i></i><i class="off"></i></div></div>
+              <span class="eui-versus__score" id="s1">3</span>
             </div>
-            <div class="mh-versus__mid">
-              <span class="mh-kicker">Tur 7 · İlk 5</span>
-              <div class="mh-timer" id="rt"><span class="mh-timer__value">01:24</span></div>
+            <div class="eui-versus__mid">
+              <span class="eui-kicker">Tur 7 · İlk 5</span>
+              <div class="eui-timer" id="rt"><span class="eui-timer__value">01:24</span></div>
             </div>
-            <div class="mh-versus__team mh-t-team2 is-right">
-              <div class="mh-versus__name"><b>Kırmızı takım</b><div class="mh-versus__alive" id="alive2"><i></i><i></i><i></i><i class="off"></i><i class="off"></i></div></div>
-              <span class="mh-versus__score" id="s2">2</span>
+            <div class="eui-versus__team eui-t-team2 is-right">
+              <div class="eui-versus__name"><b>Kırmızı takım</b><div class="eui-versus__alive" id="alive2"><i></i><i></i><i></i><i class="off"></i><i class="off"></i></div></div>
+              <span class="eui-versus__score" id="s2">2</span>
             </div>
           </div>
-          <div class="mh-points">
-            <div class="mh-point is-team1 mh-t-team1" data-mh-ring style="--v:1"><b>A</b></div>
-            <div class="mh-point is-contested mh-t-team2" data-mh-ring style="--v:.45" id="pB"><b>B</b></div>
-            <div class="mh-point is-team2 mh-t-team2" data-mh-ring style="--v:1"><b>C</b></div>
+          <div class="eui-points">
+            <div class="eui-point is-team1 eui-t-team1" data-eui-ring style="--v:1"><b>A</b></div>
+            <div class="eui-point is-contested eui-t-team2" data-eui-ring style="--v:.45" id="pB"><b>B</b></div>
+            <div class="eui-point is-team2 eui-t-team2" data-eui-ring style="--v:1"><b>C</b></div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-tr" style="top:40px">
-          <div class="mh-panel mh-standings">
-            <div class="mh-panel__head" style="padding:10px 12px"><span class="mh-kicker">Sıralama</span><span class="mh-kicker" style="margin-left:auto">Ö / A</span></div>
-            <div class="mh-standing"><span class="mh-rank is-1">1</span><span>NabeMedia</span><b>14 / 3</b></div>
-            <div class="mh-standing is-self"><span class="mh-rank is-2">2</span><span>Amiral Router</span><b>11 / 4</b></div>
-            <div class="mh-standing"><span class="mh-rank is-3">3</span><span>Bandit #8</span><b>9 / 6</b></div>
-            <div class="mh-standing"><span class="mh-rank">4</span><span>MSK</span><b>7 / 7</b></div>
+        <div class="eui-anchor eui-tr" style="top:40px">
+          <div class="eui-panel eui-standings">
+            <div class="eui-panel__head" style="padding:10px 12px"><span class="eui-kicker">Sıralama</span><span class="eui-kicker" style="margin-left:auto">Ö / A</span></div>
+            <div class="eui-standing"><span class="eui-rank is-1">1</span><span>NabeMedia</span><b>14 / 3</b></div>
+            <div class="eui-standing is-self"><span class="eui-rank is-2">2</span><span>Amiral Router</span><b>11 / 4</b></div>
+            <div class="eui-standing"><span class="eui-rank is-3">3</span><span>Bandit #8</span><b>9 / 6</b></div>
+            <div class="eui-standing"><span class="eui-rank">4</span><span>MSK</span><b>7 / 7</b></div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-tl" style="top:40px">
-          <div class="mh-panel mh-pad" style="width:300px">
-            <div class="mh-flex mh-between"><span class="mh-kicker mh-kicker--accent">Bölge B</span><span class="mh-badge mh-t-danger mh-badge--dot mh-badge--live">Çekişmeli</span></div>
-            <div class="mh-title mh-title--sm" style="margin:6px 0 10px">Noktayı ele geçir</div>
-            <div class="mh-bar mh-bar--md mh-t-team1" id="capbar" data-v="45"><i class="mh-bar__fill"></i></div>
-            <div class="mh-flex mh-between mh-dim" style="font-size:12px;margin-top:8px"><span>Alandaki takım: 2 – 1</span><span class="mh-num" id="cappct">45%</span></div>
+        <div class="eui-anchor eui-tl" style="top:40px">
+          <div class="eui-panel eui-pad" style="width:300px">
+            <div class="eui-flex eui-between"><span class="eui-kicker eui-kicker--accent">Bölge B</span><span class="eui-badge eui-t-danger eui-badge--dot eui-badge--live">Çekişmeli</span></div>
+            <div class="eui-title eui-title--sm" style="margin:6px 0 10px">Noktayı ele geçir</div>
+            <div class="eui-bar eui-bar--md eui-t-team1" id="capbar" data-v="45"><i class="eui-bar__fill"></i></div>
+            <div class="eui-flex eui-between eui-dim" style="font-size:12px;margin-top:8px"><span>Alandaki takım: 2 – 1</span><span class="eui-num" id="cappct">45%</span></div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-mc"><div class="mh-crosshair"><i></i><i></i><i></i><i></i><b></b></div></div>
-        <div class="mh-anchor mh-mc" data-mh="countdown" style="margin-top:-40px"></div>
+        <div class="eui-anchor eui-mc"><div class="eui-crosshair"><i></i><i></i><i></i><i></i><b></b></div></div>
+        <div class="eui-anchor eui-mc" data-eui="countdown" style="margin-top:-40px"></div>
       </div>
     </div>
     <div class="demo-actions">
@@ -79,29 +79,29 @@
   <div class="demo-specs">
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:200px;gap:48px">
-        <div class="mh-timer"><span class="mh-kicker">Kalan süre</span><span class="mh-timer__value" id="t1">04:59</span></div>
-        <div class="mh-timer is-urgent"><span class="mh-kicker">Son</span><span class="mh-timer__value">00:07</span></div>
+        <div class="eui-timer"><span class="eui-kicker">Kalan süre</span><span class="eui-timer__value" id="t1">04:59</span></div>
+        <div class="eui-timer is-urgent"><span class="eui-kicker">Son</span><span class="eui-timer__value">00:07</span></div>
       </div>
-      <div class="demo-spec__meta"><b>Sayaç</b><span><code>MH.timer(el, saniye, { urgent: 10, onEnd })</code> — son saniyelerde kırmızı tık animasyonu.</span></div>
+      <div class="demo-spec__meta"><b>Sayaç</b><span><code>EUI.timer(el, saniye, { urgent: 10, onEnd })</code> — son saniyelerde kırmızı tık animasyonu.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:200px">
-        <div class="mh-wave">
-          <div class="mh-wave__title"><span class="mh-kicker mh-kicker--accent">Hayatta kal</span><span class="mh-wave__num">Dalga 8</span></div>
-          <div class="mh-bar mh-t-danger" data-v="62"><i class="mh-bar__fill"></i></div>
-          <div class="mh-wave__meta"><span>Kalan düşman <b class="mh-num" style="color:var(--mh-text)">14</b></span><span>Sonraki dalga 0:32</span></div>
+        <div class="eui-wave">
+          <div class="eui-wave__title"><span class="eui-kicker eui-kicker--accent">Hayatta kal</span><span class="eui-wave__num">Dalga 8</span></div>
+          <div class="eui-bar eui-t-danger" data-v="62"><i class="eui-bar__fill"></i></div>
+          <div class="eui-wave__meta"><span>Kalan düşman <b class="eui-num" style="color:var(--eui-text)">14</b></span><span>Sonraki dalga 0:32</span></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Dalga</b><span><code>.mh-wave</code> — survival modları için dalga numarası ve kalan düşman.</span></div>
+      <div class="demo-spec__meta"><b>Dalga</b><span><code>.eui-wave</code> — survival modları için dalga numarası ve kalan düşman.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:200px">
-        <div class="mh-points">
-          <div class="mh-point is-team1 mh-t-team1" data-mh-ring style="--v:1"><b>A</b></div>
-          <div class="mh-point mh-t-team1" data-mh-ring style="--v:.3"><b>B</b></div>
-          <div class="mh-point is-contested mh-t-team2" data-mh-ring style="--v:.7"><b>C</b></div>
-          <div class="mh-point is-team2 mh-t-team2" data-mh-ring style="--v:1"><b>D</b></div>
-          <div class="mh-point" data-mh-ring style="--v:0"><b>E</b></div>
+        <div class="eui-points">
+          <div class="eui-point is-team1 eui-t-team1" data-eui-ring style="--v:1"><b>A</b></div>
+          <div class="eui-point eui-t-team1" data-eui-ring style="--v:.3"><b>B</b></div>
+          <div class="eui-point is-contested eui-t-team2" data-eui-ring style="--v:.7"><b>C</b></div>
+          <div class="eui-point is-team2 eui-t-team2" data-eui-ring style="--v:1"><b>D</b></div>
+          <div class="eui-point" data-eui-ring style="--v:0"><b>E</b></div>
         </div>
       </div>
       <div class="demo-spec__meta"><b>Ele geçirme noktaları</b><span>Sahip: <code>is-team1</code>/<code>is-team2</code>; halka = ele geçirme ilerlemesi; <code>is-contested</code> yanıp söner.</span></div>
@@ -112,81 +112,81 @@
   <div class="demo-specs">
     <div class="demo-spec demo-spec--full">
       <div class="demo-spec__view" style="--h:560px;--dim:.35">
-        <div class="mh-panel mh-scoreboard" style="--w:1060px">
-          <div class="mh-scoreboard__head">
-            <div class="mh-col" style="gap:4px;flex:1"><span class="mh-kicker mh-kicker--accent">Takım ölüm maçı · Vinewood</span><span class="mh-title mh-title--lg">Skor tablosu</span></div>
-            <div class="mh-menu__stats">
-              <div class="mh-stat"><span class="mh-kicker">Tur</span><b>7 / 9</b></div>
-              <div class="mh-stat"><span class="mh-kicker">Süre</span><b>01:24</b></div>
-              <div class="mh-stat"><span class="mh-kicker">Oyuncu</span><b>10</b></div>
+        <div class="eui-panel eui-scoreboard" style="--w:1060px">
+          <div class="eui-scoreboard__head">
+            <div class="eui-col" style="gap:4px;flex:1"><span class="eui-kicker eui-kicker--accent">Takım ölüm maçı · Vinewood</span><span class="eui-title eui-title--lg">Skor tablosu</span></div>
+            <div class="eui-menu__stats">
+              <div class="eui-stat"><span class="eui-kicker">Tur</span><b>7 / 9</b></div>
+              <div class="eui-stat"><span class="eui-kicker">Süre</span><b>01:24</b></div>
+              <div class="eui-stat"><span class="eui-kicker">Oyuncu</span><b>10</b></div>
             </div>
           </div>
-          <div class="mh-scoreboard__teams">
+          <div class="eui-scoreboard__teams">
             <div>
-              <div class="mh-teamhead mh-t-team1"><b>Mavi takım</b><strong>3</strong></div>
-              <table class="mh-table">
+              <div class="eui-teamhead eui-t-team1"><b>Mavi takım</b><strong>3</strong></div>
+              <table class="eui-table">
                 <thead><tr><th>Oyuncu</th><th class="r">Ö</th><th class="r">A</th><th class="r">Asist</th><th class="r">Skor</th><th class="r">Ping</th></tr></thead>
                 <tbody>
-                  <tr><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team1">NM</span>NabeMedia <i data-i="crown-f" class="mh-i--sm" style="color:var(--mh-warn)"></i></div></td><td class="r mh-num">14</td><td class="r mh-num">3</td><td class="r mh-num">5</td><td class="r mh-num">2.410</td><td class="r"><span class="mh-ping"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr class="is-self"><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team1">AR</span>Amiral Router</div></td><td class="r mh-num">11</td><td class="r mh-num">4</td><td class="r mh-num">8</td><td class="r mh-num">2.180</td><td class="r"><span class="mh-ping"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team1">MS</span>MSK</div></td><td class="r mh-num">7</td><td class="r mh-num">7</td><td class="r mh-num">2</td><td class="r mh-num">1.320</td><td class="r"><span class="mh-ping is-mid"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr class="is-dead"><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team1">D</span>Deniz <i data-i="skull" class="mh-i--sm"></i></div></td><td class="r mh-num">4</td><td class="r mh-num">8</td><td class="r mh-num">6</td><td class="r mh-num">990</td><td class="r"><span class="mh-ping"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team1">RA</span>RAPAFI</div></td><td class="r mh-num">3</td><td class="r mh-num">6</td><td class="r mh-num">4</td><td class="r mh-num">760</td><td class="r"><span class="mh-ping is-bad"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team1">NM</span>NabeMedia <i data-i="crown-f" class="eui-i--sm" style="color:var(--eui-warn)"></i></div></td><td class="r eui-num">14</td><td class="r eui-num">3</td><td class="r eui-num">5</td><td class="r eui-num">2.410</td><td class="r"><span class="eui-ping"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr class="is-self"><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team1">AR</span>Amiral Router</div></td><td class="r eui-num">11</td><td class="r eui-num">4</td><td class="r eui-num">8</td><td class="r eui-num">2.180</td><td class="r"><span class="eui-ping"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team1">MS</span>MSK</div></td><td class="r eui-num">7</td><td class="r eui-num">7</td><td class="r eui-num">2</td><td class="r eui-num">1.320</td><td class="r"><span class="eui-ping is-mid"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr class="is-dead"><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team1">D</span>Deniz <i data-i="skull" class="eui-i--sm"></i></div></td><td class="r eui-num">4</td><td class="r eui-num">8</td><td class="r eui-num">6</td><td class="r eui-num">990</td><td class="r"><span class="eui-ping"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team1">RA</span>RAPAFI</div></td><td class="r eui-num">3</td><td class="r eui-num">6</td><td class="r eui-num">4</td><td class="r eui-num">760</td><td class="r"><span class="eui-ping is-bad"><i></i><i></i><i></i><i></i></span></td></tr>
                 </tbody>
               </table>
             </div>
             <div>
-              <div class="mh-teamhead mh-t-team2"><b>Kırmızı takım</b><strong>2</strong></div>
-              <table class="mh-table">
+              <div class="eui-teamhead eui-t-team2"><b>Kırmızı takım</b><strong>2</strong></div>
+              <table class="eui-table">
                 <thead><tr><th>Oyuncu</th><th class="r">Ö</th><th class="r">A</th><th class="r">Asist</th><th class="r">Skor</th><th class="r">Ping</th></tr></thead>
                 <tbody>
-                  <tr><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team2">B</span>Bandit #8</div></td><td class="r mh-num">9</td><td class="r mh-num">6</td><td class="r mh-num">3</td><td class="r mh-num">1.760</td><td class="r"><span class="mh-ping"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team2 is-live">S</span>Serkan_TV <span class="mh-badge mh-t-danger" style="height:16px;font-size:9px">Canlı</span></div></td><td class="r mh-num">8</td><td class="r mh-num">9</td><td class="r mh-num">7</td><td class="r mh-num">1.640</td><td class="r"><span class="mh-ping is-mid"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr class="is-dead"><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team2">V</span>Vargas <i data-i="skull" class="mh-i--sm"></i></div></td><td class="r mh-num">6</td><td class="r mh-num">7</td><td class="r mh-num">1</td><td class="r mh-num">1.050</td><td class="r"><span class="mh-ping"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr class="is-dead"><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team2">T</span>Toprak <i data-i="skull" class="mh-i--sm"></i></div></td><td class="r mh-num">5</td><td class="r mh-num">8</td><td class="r mh-num">2</td><td class="r mh-num">880</td><td class="r"><span class="mh-ping"><i></i><i></i><i></i><i></i></span></td></tr>
-                  <tr><td><div class="mh-flex mh-gap-2"><span class="mh-avatar mh-avatar--sm mh-t-team2">M</span>Mert</div></td><td class="r mh-num">2</td><td class="r mh-num">9</td><td class="r mh-num">5</td><td class="r mh-num">640</td><td class="r"><span class="mh-ping is-bad"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team2">B</span>Bandit #8</div></td><td class="r eui-num">9</td><td class="r eui-num">6</td><td class="r eui-num">3</td><td class="r eui-num">1.760</td><td class="r"><span class="eui-ping"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team2 is-live">S</span>Serkan_TV <span class="eui-badge eui-t-danger" style="height:16px;font-size:9px">Canlı</span></div></td><td class="r eui-num">8</td><td class="r eui-num">9</td><td class="r eui-num">7</td><td class="r eui-num">1.640</td><td class="r"><span class="eui-ping is-mid"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr class="is-dead"><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team2">V</span>Vargas <i data-i="skull" class="eui-i--sm"></i></div></td><td class="r eui-num">6</td><td class="r eui-num">7</td><td class="r eui-num">1</td><td class="r eui-num">1.050</td><td class="r"><span class="eui-ping"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr class="is-dead"><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team2">T</span>Toprak <i data-i="skull" class="eui-i--sm"></i></div></td><td class="r eui-num">5</td><td class="r eui-num">8</td><td class="r eui-num">2</td><td class="r eui-num">880</td><td class="r"><span class="eui-ping"><i></i><i></i><i></i><i></i></span></td></tr>
+                  <tr><td><div class="eui-flex eui-gap-2"><span class="eui-avatar eui-avatar--sm eui-t-team2">M</span>Mert</div></td><td class="r eui-num">2</td><td class="r eui-num">9</td><td class="r eui-num">5</td><td class="r eui-num">640</td><td class="r"><span class="eui-ping is-bad"><i></i><i></i><i></i><i></i></span></td></tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="mh-panel__foot mh-hints" style="justify-content:space-between">
-            <span class="mh-hint"><span class="mh-key">TAB</span>Kapat</span>
-            <span class="mh-hint"><span class="mh-key mh-key--sm"><i data-i="mouse"></i></span>Oyuncu profili</span>
-            <span class="mh-hint mh-mute" style="margin-left:auto">Sunucu: Event Fabric #1 · 10/32</span>
+          <div class="eui-panel__foot eui-hints" style="justify-content:space-between">
+            <span class="eui-hint"><span class="eui-key">TAB</span>Kapat</span>
+            <span class="eui-hint"><span class="eui-key eui-key--sm"><i data-i="mouse"></i></span>Oyuncu profili</span>
+            <span class="eui-hint eui-mute" style="margin-left:auto">Sunucu: Event Fabric #1 · 10/32</span>
           </div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Takımlı skor tablosu</b><span><code>.mh-scoreboard</code> › <code>.mh-teamhead</code> + <code>.mh-table</code>. Satır durumları: <code>is-self</code>, <code>is-dead</code>; ping: <code>.mh-ping</code>, <code>is-mid</code>, <code>is-bad</code>.</span></div>
+      <div class="demo-spec__meta"><b>Takımlı skor tablosu</b><span><code>.eui-scoreboard</code> › <code>.eui-teamhead</code> + <code>.eui-table</code>. Satır durumları: <code>is-self</code>, <code>is-dead</code>; ping: <code>.eui-ping</code>, <code>is-mid</code>, <code>is-bad</code>.</span></div>
     </div>
   </div>
   <div class="demo-h2"><h2>Etkileşimli mod parçaları</h2><p>Beceri kontrolü, hızlı tuş dizisi, alan daralması, ganimet, izleyici modu</p></div>
-  <div class="demo-specs mh-catch">
+  <div class="demo-specs eui-catch">
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:240px;gap:10px"><div id="skill" class="mh-skill"></div><span class="mh-sub" id="skill-res">&nbsp;</span></div>
-      <div class="demo-spec__meta"><b>Beceri kontrolü</b><span><code>MH.skillCheck(el, { key: 'SPACE', zone, size })</code> → <code>'great' | 'good' | 'miss'</code>. Kilit açma, tamir, balık tutma. Denemek için <span class="mh-key mh-key--sm" id="skill-go">Boşluk</span></span></div>
+      <div class="demo-spec__view eui-col" style="--h:240px;gap:10px"><div id="skill" class="eui-skill"></div><span class="eui-sub" id="skill-res">&nbsp;</span></div>
+      <div class="demo-spec__meta"><b>Beceri kontrolü</b><span><code>EUI.skillCheck(el, { key: 'SPACE', zone, size })</code> → <code>'great' | 'good' | 'miss'</code>. Kilit açma, tamir, balık tutma. Denemek için <span class="eui-key eui-key--sm" id="skill-go">Boşluk</span></span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:240px;gap:14px"><span class="mh-kicker">Sırayla bas</span><div id="qte" class="mh-qte"></div><span class="mh-sub" id="qte-res">&nbsp;</span></div>
-      <div class="demo-spec__meta"><b>Hızlı tuş dizisi (QTE)</b><span><code>MH.qte(el, ['W','A','S','D'], { duration: 4000 })</code> → <code>true | false</code>. <a href="#" id="qte-go">Başlat</a></span></div>
+      <div class="demo-spec__view eui-col" style="--h:240px;gap:14px"><span class="eui-kicker">Sırayla bas</span><div id="qte" class="eui-qte"></div><span class="eui-sub" id="qte-res">&nbsp;</span></div>
+      <div class="demo-spec__meta"><b>Hızlı tuş dizisi (QTE)</b><span><code>EUI.qte(el, ['W','A','S','D'], { duration: 4000 })</code> → <code>true | false</code>. <a href="#" id="qte-go">Başlat</a></span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:240px;gap:16px">
-        <div class="mh-panel mh-zone" id="zone"><span class="mh-zone__ring" data-mh-ring style="--v:1"><i data-i="storm"></i></span><div><span class="mh-kicker">Alan daralıyor</span><div class="mh-zone__time">01:00</div></div></div>
-        <div class="mh-daycount"><span>Gün</span><b id="day">12</b></div>
+      <div class="demo-spec__view eui-col" style="--h:240px;gap:16px">
+        <div class="eui-panel eui-zone" id="zone"><span class="eui-zone__ring" data-eui-ring style="--v:1"><i data-i="storm"></i></span><div><span class="eui-kicker">Alan daralıyor</span><div class="eui-zone__time">01:00</div></div></div>
+        <div class="eui-daycount"><span>Gün</span><b id="day">12</b></div>
       </div>
-      <div class="demo-spec__meta"><b>Alan & gün sayacı</b><span><code>MH.zone(el, 60, { warn: 15 })</code> — son 15 sn kırmızı tıkırdar. <code>.mh-daycount</code> hayatta kalma günleri.</span></div>
+      <div class="demo-spec__meta"><b>Alan & gün sayacı</b><span><code>EUI.zone(el, 60, { warn: 15 })</code> — son 15 sn kırmızı tıkırdar. <code>.eui-daycount</code> hayatta kalma günleri.</span></div>
     </div>
     <div class="demo-spec demo-spec--2">
-      <div class="demo-spec__view mh-col" style="--h:240px;gap:10px" id="loot-host">
-        <div class="mh-loot is-rare"><div class="mh-loot__art"><svg class="mh-weapon-art" viewBox="0 0 160 48"></svg></div><div class="mh-loot__body"><span class="mh-loot__tier">Nadir</span><b>Pompalı tüfek</b><span>Hasar +12 · Atış hızı +8</span></div></div>
+      <div class="demo-spec__view eui-col" style="--h:240px;gap:10px" id="loot-host">
+        <div class="eui-loot is-rare"><div class="eui-loot__art"><svg class="eui-weapon-art" viewBox="0 0 160 48"></svg></div><div class="eui-loot__body"><span class="eui-loot__tier">Nadir</span><b>Pompalı tüfek</b><span>Hasar +12 · Atış hızı +8</span></div></div>
       </div>
-      <div class="demo-spec__meta"><b>Ganimet kartı</b><span><code>MH.loot({ tier: 'common'|'rare'|'epic'|'legendary', art: 'w:shotgun' | 'i:chest' | emoji, name, desc, amount })</code> — parlama süpürmesiyle girer. <a href="#" id="loot-go">Yeni ganimet</a></span></div>
+      <div class="demo-spec__meta"><b>Ganimet kartı</b><span><code>EUI.loot({ tier: 'common'|'rare'|'epic'|'legendary', art: 'w:shotgun' | 'i:chest' | emoji, name, desc, amount })</code> — parlama süpürmesiyle girer. <a href="#" id="loot-go">Yeni ganimet</a></span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:240px">
-        <div class="mh-panel mh-spectate"><span class="mh-key">Q</span><div class="mh-spectate__who"><span class="mh-avatar mh-avatar--round">NM</span><div><span class="mh-kicker">İzleniyor · 2 / 5</span><b>NabeMedia</b></div></div><span class="mh-key">E</span></div>
+        <div class="eui-panel eui-spectate"><span class="eui-key">Q</span><div class="eui-spectate__who"><span class="eui-avatar eui-avatar--round">NM</span><div><span class="eui-kicker">İzleniyor · 2 / 5</span><b>NabeMedia</b></div></div><span class="eui-key">E</span></div>
       </div>
-      <div class="demo-spec__meta"><b>İzleyici modu</b><span><code>.mh-spectate</code> — ölünce takım arkadaşları arasında geçiş.</span></div>
+      <div class="demo-spec__meta"><b>İzleyici modu</b><span><code>.eui-spectate</code> — ölünce takım arkadaşları arasında geçiş.</span></div>
     </div>
   </div>
 
@@ -194,70 +194,70 @@
   <div class="demo-specs">
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:320px">
-        <div class="mh-survivors">
-          <div class="mh-survivor is-self" style="--hp:.64;--temp:.12"><span class="mh-avatar">AR</span><div class="mh-survivor__top"><span class="mh-survivor__name">Amiral Router</span><span class="mh-survivor__hp">76</span></div><div class="mh-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="mh-survivor__items"><i data-i="first-aid"></i><i data-i="pills" class="is-empty"></i><i data-i="molotov"></i></div></div>
-          <div class="mh-survivor is-low" style="--hp:.18"><span class="mh-avatar">RA</span><div class="mh-survivor__top"><span class="mh-survivor__name">RAPAFI</span><span class="mh-survivor__hp">18</span></div><div class="mh-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="mh-survivor__items"><i data-i="first-aid" class="is-empty"></i><i data-i="pills"></i><i data-i="molotov" class="is-empty"></i></div></div>
-          <div class="mh-survivor is-down" style="--hp:0;--temp:.3"><span class="mh-avatar">MS</span><div class="mh-survivor__top"><span class="mh-survivor__name">MSK</span><span class="mh-survivor__hp">30</span></div><div class="mh-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="mh-survivor__items"><i data-i="first-aid" class="is-empty"></i><i data-i="pills" class="is-empty"></i><i data-i="molotov" class="is-empty"></i></div></div>
-          <div class="mh-survivor is-bw" style="--hp:.4"><span class="mh-avatar">NM</span><div class="mh-survivor__top"><span class="mh-survivor__name">NabeMedia</span><span class="mh-survivor__hp">40</span></div><div class="mh-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="mh-survivor__items"><i data-i="first-aid"></i><i data-i="pills" class="is-empty"></i><i data-i="molotov" class="is-empty"></i></div></div>
+        <div class="eui-survivors">
+          <div class="eui-survivor is-self" style="--hp:.64;--temp:.12"><span class="eui-avatar">AR</span><div class="eui-survivor__top"><span class="eui-survivor__name">Amiral Router</span><span class="eui-survivor__hp">76</span></div><div class="eui-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="eui-survivor__items"><i data-i="first-aid"></i><i data-i="pills" class="is-empty"></i><i data-i="molotov"></i></div></div>
+          <div class="eui-survivor is-low" style="--hp:.18"><span class="eui-avatar">RA</span><div class="eui-survivor__top"><span class="eui-survivor__name">RAPAFI</span><span class="eui-survivor__hp">18</span></div><div class="eui-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="eui-survivor__items"><i data-i="first-aid" class="is-empty"></i><i data-i="pills"></i><i data-i="molotov" class="is-empty"></i></div></div>
+          <div class="eui-survivor is-down" style="--hp:0;--temp:.3"><span class="eui-avatar">MS</span><div class="eui-survivor__top"><span class="eui-survivor__name">MSK</span><span class="eui-survivor__hp">30</span></div><div class="eui-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="eui-survivor__items"><i data-i="first-aid" class="is-empty"></i><i data-i="pills" class="is-empty"></i><i data-i="molotov" class="is-empty"></i></div></div>
+          <div class="eui-survivor is-bw" style="--hp:.4"><span class="eui-avatar">NM</span><div class="eui-survivor__top"><span class="eui-survivor__name">NabeMedia</span><span class="eui-survivor__hp">40</span></div><div class="eui-survivor__bar"><i class="hp"></i><i class="temp"></i></div><div class="eui-survivor__items"><i data-i="first-aid"></i><i data-i="pills" class="is-empty"></i><i data-i="molotov" class="is-empty"></i></div></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Hayatta kalanlar</b><span><code>.mh-survivor</code> — <code>--hp</code>, <code>--temp</code> (çizgili geçici can); <code>is-low</code>, <code>is-down</code>, <code>is-bw</code> (siyah-beyaz), <code>is-dead</code>, <code>is-self</code>.</span></div>
+      <div class="demo-spec__meta"><b>Hayatta kalanlar</b><span><code>.eui-survivor</code> — <code>--hp</code>, <code>--temp</code> (çizgili geçici can); <code>is-low</code>, <code>is-down</code>, <code>is-bw</code> (siyah-beyaz), <code>is-dead</code>, <code>is-self</code>.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:320px;gap:22px">
-        <div class="mh-infected"><span class="mh-infected__icon"><i data-i="zombie"></i></span><div><span class="mh-kicker">Özel düşman</span><b>Hunter</b></div><small>Üstüne atlar</small></div>
-        <div class="mh-infected is-boss" style="animation:none"><span class="mh-infected__icon"><i data-i="skull"></i></span><div><span class="mh-kicker">Tehlike</span><b>Tank</b></div></div>
-        <div class="mh-revive"><b>MSK ayağa kaldırılıyor</b><div class="mh-bar mh-t-health" data-v="62"><i class="mh-bar__fill"></i></div><small>E basılı tut</small></div>
+      <div class="demo-spec__view eui-col" style="--h:320px;gap:22px">
+        <div class="eui-infected"><span class="eui-infected__icon"><i data-i="zombie"></i></span><div><span class="eui-kicker">Özel düşman</span><b>Hunter</b></div><small>Üstüne atlar</small></div>
+        <div class="eui-infected is-boss" style="animation:none"><span class="eui-infected__icon"><i data-i="skull"></i></span><div><span class="eui-kicker">Tehlike</span><b>Tank</b></div></div>
+        <div class="eui-revive"><b>MSK ayağa kaldırılıyor</b><div class="eui-bar eui-t-health" data-v="62"><i class="eui-bar__fill"></i></div><small>E basılı tut</small></div>
       </div>
-      <div class="demo-spec__meta"><b>Özel düşman & ayağa kaldırma</b><span><code>MH.infected({ name, icon, boss, hint })</code>, <code>.mh-revive</code>; sürü bandı: <code>MH.horde({ title, sub })</code>.</span></div>
+      <div class="demo-spec__meta"><b>Özel düşman & ayağa kaldırma</b><span><code>EUI.infected({ name, icon, boss, hint })</code>, <code>.eui-revive</code>; sürü bandı: <code>EUI.horde({ title, sub })</code>.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:320px;gap:18px">
-        <div class="mh-panel mh-rescue"><span class="mh-rescue__icon"><i data-i="heli"></i></span><div><span class="mh-kicker">Kurtarma</span><b id="rescue">01:30</b></div></div>
-        <div class="mh-loadout">
-          <div class="mh-loadout__slot is-active"><span class="mh-slot__key">1</span><i data-weapon="shotgun" class="mh-weapon-art"></i><small>8 / 56</small></div>
-          <div class="mh-loadout__slot"><span class="mh-slot__key">2</span><i data-weapon="pistol" class="mh-weapon-art"></i><small>∞</small></div>
-          <div class="mh-loadout__slot"><span class="mh-slot__key">3</span><i data-i="molotov"></i></div>
-          <div class="mh-loadout__slot is-empty"><span class="mh-slot__key">4</span><i data-i="first-aid"></i></div>
+      <div class="demo-spec__view eui-col" style="--h:320px;gap:18px">
+        <div class="eui-panel eui-rescue"><span class="eui-rescue__icon"><i data-i="heli"></i></span><div><span class="eui-kicker">Kurtarma</span><b id="rescue">01:30</b></div></div>
+        <div class="eui-loadout">
+          <div class="eui-loadout__slot is-active"><span class="eui-slot__key">1</span><i data-weapon="shotgun" class="eui-weapon-art"></i><small>8 / 56</small></div>
+          <div class="eui-loadout__slot"><span class="eui-slot__key">2</span><i data-weapon="pistol" class="eui-weapon-art"></i><small>∞</small></div>
+          <div class="eui-loadout__slot"><span class="eui-slot__key">3</span><i data-i="molotov"></i></div>
+          <div class="eui-loadout__slot is-empty"><span class="eui-slot__key">4</span><i data-i="first-aid"></i></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Kurtarma & eşya yuvaları</b><span><code>.mh-rescue</code> + <code>MH.timer</code>; <code>.mh-loadout__slot</code> (<code>is-active</code>, <code>is-empty</code>).</span></div>
+      <div class="demo-spec__meta"><b>Kurtarma & eşya yuvaları</b><span><code>.eui-rescue</code> + <code>EUI.timer</code>; <code>.eui-loadout__slot</code> (<code>is-active</code>, <code>is-empty</code>).</span></div>
     </div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var S = { s1: 3, s2: 2, cap: 45 };
-  var rt = MH.timer('#rt', 84, { urgent: 10 });
-  MH.timer('#t1', 299);
+  var rt = EUI.timer('#rt', 84, { urgent: 10 });
+  EUI.timer('#t1', 299);
   setInterval(function () {
-    S.cap = (S.cap + .4) % 101; MH.bar('#capbar', S.cap); document.getElementById('cappct').textContent = Math.round(S.cap) + '%';
-    MH.ring('#pB', S.cap / 100);
+    S.cap = (S.cap + .4) % 101; EUI.bar('#capbar', S.cap); document.getElementById('cappct').textContent = Math.round(S.cap) + '%';
+    EUI.ring('#pB', S.cap / 100);
   }, 120);
   var A = {
-    count: function () { MH.countdown(3, { target: '[data-mh="countdown"]', go: 'Başla' }); },
+    count: function () { EUI.countdown(3, { target: '[data-eui="countdown"]', go: 'Başla' }); },
     score1: function () { S.s1++; document.getElementById('s1').textContent = S.s1; },
     score2: function () { S.s2++; document.getElementById('s2').textContent = S.s2; },
-    urgent: function () { rt.stop(); rt = MH.timer('#rt', 10, { urgent: 10 }); },
-    win: function () { MH.banner({ target: '#screen', title: 'Tur kazanıldı', sub: 'Mavi takım 4 – 2 önde', rewards: [{ value: '+$2.500', label: 'Ödül', tone: 'success' }, { value: '+420', label: 'RP' }, { value: 'MVP', label: 'NabeMedia', tone: 'accent' }] }); }
+    urgent: function () { rt.stop(); rt = EUI.timer('#rt', 10, { urgent: 10 }); },
+    win: function () { EUI.banner({ target: '#screen', title: 'Tur kazanıldı', sub: 'Mavi takım 4 – 2 önde', rewards: [{ value: '+$2.500', label: 'Ödül', tone: 'success' }, { value: '+420', label: 'RP' }, { value: 'MVP', label: 'NabeMedia', tone: 'accent' }] }); }
   };
   Demo.on('[data-act]', function (e) { A[e.currentTarget.getAttribute('data-act')](); });
 
   /* Etkileşimli parçalar */
-  function skill() { MH.skillCheck('#skill', { key: 'SPACE' }).then(function (r) { document.getElementById('skill-res').textContent = { great: 'Mükemmel!', good: 'İyi', miss: 'Kaçtı' }[r]; setTimeout(skill, 1400); }); }
+  function skill() { EUI.skillCheck('#skill', { key: 'SPACE' }).then(function (r) { document.getElementById('skill-res').textContent = { great: 'Mükemmel!', good: 'İyi', miss: 'Kaçtı' }[r]; setTimeout(skill, 1400); }); }
   skill();
   document.getElementById('skill-go').addEventListener('click', function (e) { e.preventDefault(); });
-  function qte() { var keys = ['W', 'A', 'S', 'D', 'Q', 'E']; var seq = [0, 1, 2, 3].map(function () { return Demo.pick(keys); }); MH.qte('#qte', seq, { duration: 4000 }).then(function (ok) { document.getElementById('qte-res').textContent = ok ? 'Başarılı ✓' : 'Başarısız ✕'; }); }
+  function qte() { var keys = ['W', 'A', 'S', 'D', 'Q', 'E']; var seq = [0, 1, 2, 3].map(function () { return Demo.pick(keys); }); EUI.qte('#qte', seq, { duration: 4000 }).then(function (ok) { document.getElementById('qte-res').textContent = ok ? 'Başarılı ✓' : 'Başarısız ✕'; }); }
   document.getElementById('qte-go').addEventListener('click', function (e) { e.preventDefault(); qte(); });
   qte();
-  (function zone() { MH.zone('#zone', 60, { warn: 15, onEnd: function () { document.getElementById('day').textContent = +document.getElementById('day').textContent + 1; zone(); } }); })();
-  MH.timer('#rescue', 90);
+  (function zone() { EUI.zone('#zone', 60, { warn: 15, onEnd: function () { document.getElementById('day').textContent = +document.getElementById('day').textContent + 1; zone(); } }); })();
+  EUI.timer('#rescue', 90);
   var LOOT = [{ tier: 'common', icon: 'bandage', name: 'Sargı bezi', desc: '+15 can', amount: 3 }, { tier: 'rare', art: 'w:shotgun', name: 'Pompalı tüfek', desc: 'Hasar +12' },
     { tier: 'epic', icon: 'shield', name: 'Ağır zırh', desc: 'Zırh +100' }, { tier: 'legendary', art: 'w:sniper', name: 'Altın keskin nişancı', desc: 'Tek atış' }];
-  document.getElementById('loot-go').addEventListener('click', function (e) { e.preventDefault(); var h = document.getElementById('loot-host'); h.innerHTML = ''; MH.loot(Object.assign({ target: h, duration: 0 }, Demo.pick(LOOT))); });
-  document.querySelector('#loot-host .mh-weapon-art').outerHTML = MH.weapon('shotgun');
+  document.getElementById('loot-go').addEventListener('click', function (e) { e.preventDefault(); var h = document.getElementById('loot-host'); h.innerHTML = ''; EUI.loot(Object.assign({ target: h, duration: 0 }, Demo.pick(LOOT))); });
+  document.querySelector('#loot-host .eui-weapon-art').outerHTML = EUI.weapon('shotgun');
 </script>
 </body>
 </html>

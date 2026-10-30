@@ -1,8 +1,8 @@
 {
-  "name": "mhud",
-  "version": "3.0.0",
+  "name": "ember-ui",
+  "version": "4.0.0",
   "private": true,
-  "description": "Single-look, dependency-free HUD & UI kit for StreamEmber game mods and live-stream overlays: data-driven menus (MH.Menu), vitals, location, economy, gear, vehicle, feeds, gifts, broadcast crop. AI-first docs (AI.md).",
+  "description": "Single-look, dependency-free HUD & UI kit for StreamEmber game mods and live-stream overlays: data-driven menus (EUI.Menu), vitals, location, economy, gear, vehicle, feeds, gifts, broadcast crop. AI-first docs (AI.md).",
   "keywords": [
     "hud",
     "game-ui",
@@ -16,13 +16,13 @@
     "css",
     "ai-friendly"
   ],
-  "homepage": "https://streamember.github.io/mhud/",
+  "homepage": "https://streamember.github.io/ember-ui/",
   "bugs": {
-    "url": "https://github.com/StreamEmber/mhud/issues"
+    "url": "https://github.com/StreamEmber/ember-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/StreamEmber/mhud.git"
+    "url": "git+https://github.com/StreamEmber/ember-ui.git"
   },
   "license": "MIT",
   "author": "Stream Ember Platform",

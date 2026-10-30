@@ -26,7 +26,7 @@ jobs:
       - name: Sürüm tutarlılığı
         run: |
           V="$(node -p "require('./package.json').version")"
-          grep -q "version: '$V'" kit/js/mhud.js || { echo "::error::kit/js/mhud.js sürümü $V değil (npm run version)"; exit 1; }
+          grep -q "version: '$V'" kit/js/ember-ui.js || { echo "::error::kit/js/ember-ui.js sürümü $V değil (npm run version)"; exit 1; }
       - name: Her varyant bir sunum sayfasında mı
         run: node tools/coverage.mjs
       - name: Yapay zekâya görünmeyen sınıf / belgesiz API var mı

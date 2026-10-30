@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Ember UI — menüler & tam ekranlar
+   Menü katmanı ve kabuğu (EUI.Menu), fiyat, envanter ızgarası, ayar satırları,
+   skor tablosu, tur sonu, modal, radial, bağlam menüsü, ölüm ve yükleme ekranı.
+   ========================================================================== */
+
+.eui-layer { position: absolute; inset: 0; z-index: var(--eui-z-menu); display: grid; place-items: center; }
+.eui-scrim { position: absolute; inset: 0; background: var(--eui-scrim); }
+.eui-scrim--soft { background: radial-gradient(ellipse at center, rgb(0 0 0 / .35), rgb(0 0 0 / .75)); }
+
+/* ==========================================================================
+   MENÜ KABUĞU
+   ========================================================================== */
+/* Ekrandan büyük olamaz: --w/--h üst sınırdır, katman (.eui-layer) içinde ekrana sığar. */
+.eui-menu {
+  position: relative; width: min(var(--w, 1180px), 100% - 2 * var(--eui-safe-x)); height: min(var(--h, 700px), 100% - 2 * var(--eui-safe-y));
+  display: grid; grid-template-rows: auto 1fr auto; overflow: hidden;
+  background: var(--eui-surface-solid); background: rgb(var(--eui-surface-rgb) / .94);
+}
+.eui-menu__head { display: flex; align-items: center; gap: 24px; padding: 20px 24px 18px; border-bottom: 1px solid var(--eui-line); }
+.eui-menu__title { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.eui-menu__title .eui-title { font-size: 30px; }
+.eui-menu__stats { display: flex; gap: 22px; }
+.eui-stat { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.eui-stat b { font-family: var(--eui-font-num); font-size: 22px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.eui-menu__body { display: grid; grid-template-columns: var(--nav, 220px) 1fr var(--aside, 340px); min-height: 0; }
+.eui-menu__body--2 { grid-template-columns: var(--nav, 220px) 1fr; }
+.eui-menu__nav { border-right: 1px solid var(--eui-line-soft); padding: 14px 0; overflow-y: auto; }
+.eui-menu__main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.eui-menu__toolbar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--eui-line-soft); }
+.eui-menu__aside { border-left: 1px solid var(--eui-line-soft); padding: 18px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
+.eui-menu__scroll { flex: 1; min-height: 0; overflow-y: auto; }
+.eui-menu__main > .eui-shopgrid { padding: 16px; }
+.eui-menu__pad { padding: 12px 16px; }
+.eui-menu__aside > .eui-buy { width: auto; }
+.eui-menu__actions { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+.eui-menu .eui-setting.is-active { background: var(--eui-raise); box-shadow: inset 3px 0 var(--eui-accent); }
+.eui-menu .eui-table tr[data-eui-item] { cursor: pointer; }
+.eui-menu .eui-table tr.is-active td { background: var(--eui-accent-soft); }
+.eui-nav__item.is-danger { color: rgb(var(--eui-danger-rgb) / .85); }
+.eui-nav__item.is-danger .eui-i { color: var(--eui-danger); }
+.eui-menu__foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; border-top: 1px solid var(--eui-line); background: rgb(0 0 0 / .18); }
+
+/* Oyuncu çipi */
+.eui-player { display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 6px; background: var(--eui-raise); border: 1px solid var(--eui-line-soft); border-radius: var(--eui-r-3); }
+.eui-player__name { font-size: 14px; font-weight: 600; line-height: 1.2; }
+.eui-player__sub { font-size: 11px; color: var(--eui-text-3); }
+
+/* Dikey gezinme */
+.eui-nav__group { padding: 14px 18px 6px; }
+.eui-nav__item {
+  position: relative; display: flex; align-items: center; gap: 12px; width: 100%; height: 40px; padding: 0 18px;
+  font-size: 14px; font-weight: 500; color: var(--eui-text-2); text-align: left;
+  transition: color var(--eui-dur-1), background var(--eui-dur-1);
+}
+.eui-nav__item .eui-i { width: 18px; height: 18px; color: var(--eui-text-3); transition: color var(--eui-dur-1); }
+.eui-nav__item:hover { color: var(--eui-text); background: var(--eui-raise); }
+.eui-nav__item.is-active { color: var(--eui-text); background: linear-gradient(90deg, var(--eui-accent-soft), transparent); }
+.eui-nav__item.is-active .eui-i { color: var(--eui-accent); }
+.eui-nav__item.is-active::before { content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; background: var(--eui-accent); border-radius: 0 2px 2px 0; box-shadow: var(--eui-accent-glow); }
+.eui-nav__item .eui-count, .eui-nav__item small { margin-left: auto; }
+.eui-nav__item small { font-family: var(--eui-font-num); font-size: 12px; color: var(--eui-text-3); }
+
+/* Önizleme */
+.eui-preview { position: relative; height: 180px; display: grid; place-items: center; border-radius: var(--eui-r-3); overflow: hidden;
+  background: radial-gradient(ellipse at 50% 60%, var(--eui-accent-soft), transparent 70%), var(--eui-raise); border: 1px solid var(--eui-line-soft); }
+.eui-preview .eui-weapon-art, .eui-preview > .eui-i { width: 64%; height: auto; color: var(--eui-text); filter: drop-shadow(0 8px 14px rgb(0 0 0 / .6)); }
+.eui-preview > .eui-i { width: 72px; height: 72px; }
+.eui-preview .eui-badge { position: absolute; top: 10px; left: 10px; }
+.eui-statlines { display: flex; flex-direction: column; gap: 10px; }
+.eui-statline { display: grid; grid-template-columns: 82px 1fr 34px; align-items: center; gap: 10px; }
+.eui-statline .eui-bar { --h: 4px; }
+.eui-statline b { font-family: var(--eui-font-num); font-size: 13px; text-align: right; font-weight: 600; }
+.eui-statline .eui-bar__gain { transform: scaleX(var(--g, 0)); background: rgb(var(--eui-success-rgb) / .8); }
+
+/* Ayar satırı */
+.eui-setting { display: flex; align-items: center; gap: 20px; padding: 14px 18px; border-bottom: 1px solid var(--eui-line-soft); }
+.eui-setting__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.eui-setting__text b { font-size: 14px; font-weight: 600; }
+.eui-setting__text span { font-size: 12px; color: var(--eui-text-3); }
+.eui-setting__control { flex: none; width: 260px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+.eui-setting__control .eui-slider { flex: 1; }
+.eui-setting__control > b { font-family: var(--eui-font-num); font-size: 14px; min-width: 38px; text-align: right; }
+
+/* ==========================================================================
+   FİYAT
+   ========================================================================== */
+.eui-price { font-family: var(--eui-font-num); font-size: 17px; font-weight: 600; color: var(--eui-success); font-variant-numeric: tabular-nums; }
+.eui-price.is-locked { color: var(--eui-text-3); }
+.eui-price s { color: var(--eui-text-3); font-size: 13px; margin-right: 6px; }
+
+/* ==========================================================================
+   ENVANTER IZGARASI
+   ========================================================================== */
+.eui-inv { display: grid; grid-template-columns: repeat(var(--cols, 5), 1fr); gap: 6px; }
+.eui-cell {
+  --tone-rgb: var(--eui-silver-rgb);
+  position: relative; aspect-ratio: 1 / 1; display: grid; place-items: center; cursor: pointer;
+  background: rgb(0 0 0 / .25); border: 1px solid var(--eui-line-soft); border-radius: var(--eui-r-2);
+  transition: border-color var(--eui-dur-1), background var(--eui-dur-1);
+}
+.eui-cell:hover { border-color: var(--eui-line-strong); background: var(--eui-raise); }
+.eui-cell.is-active { border-color: var(--eui-accent); background: var(--eui-accent-soft); }
+.eui-cell .eui-i { width: 30px; height: 30px; color: var(--eui-text); }
+.eui-cell__count { position: absolute; right: 5px; bottom: 3px; font-family: var(--eui-font-num); font-size: 12px; font-weight: 600; color: var(--eui-text-2); }
+.eui-cell__key { position: absolute; left: 5px; top: 3px; font-family: var(--eui-font-num); font-size: 10px; font-weight: 700; color: var(--eui-text-3); }
+.eui-cell::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 0; height: 2px; background: rgb(var(--tone-rgb)); opacity: .7; border-radius: 1px; }
+.eui-cell.is-empty::after, .eui-cell.is-empty .eui-i { display: none; }
+.eui-cell.is-rare { --tone-rgb: var(--eui-info-rgb); } .eui-cell.is-epic { --tone-rgb: var(--eui-legendary-rgb); } .eui-cell.is-legendary { --tone-rgb: var(--eui-gold-rgb); }
+
+/* ==========================================================================
+   SKOR TABLOSU
+   ========================================================================== */
+.eui-scoreboard { width: var(--w, 1040px); }
+.eui-scoreboard__head { display: flex; align-items: center; gap: 20px; padding: 18px 22px; border-bottom: 1px solid var(--eui-line); }
+.eui-scoreboard__teams { display: grid; grid-template-columns: 1fr 1fr; }
+.eui-scoreboard__teams > * + * { border-left: 1px solid var(--eui-line-soft); }
+.eui-teamhead { --tone-rgb: var(--eui-team-1-rgb); display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: linear-gradient(90deg, rgb(var(--tone-rgb) / .2), transparent); border-bottom: 2px solid rgb(var(--tone-rgb)); }
+.eui-teamhead b { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); text-transform: var(--eui-display-case); font-size: 18px; letter-spacing: .05em; }
+.eui-teamhead strong { font-family: var(--eui-font-num); font-size: 30px; line-height: 1; color: rgb(var(--tone-rgb)); }
+.eui-ping { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; vertical-align: middle; }
+.eui-ping i { width: 3px; background: var(--eui-success); border-radius: 1px; }
+.eui-ping i:nth-child(1) { height: 4px; } .eui-ping i:nth-child(2) { height: 7px; } .eui-ping i:nth-child(3) { height: 10px; } .eui-ping i:nth-child(4) { height: 12px; }
+.eui-ping.is-mid i { background: var(--eui-warn); } .eui-ping.is-mid i:nth-child(4) { background: var(--eui-track); }
+.eui-ping.is-bad i { background: var(--eui-danger); } .eui-ping.is-bad i:nth-child(n+3) { background: var(--eui-track); }
+
+/* Kompakt sıralama listesi (ekran köşesi) */
+.eui-standings { width: var(--w, 280px); }
+.eui-standing { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 6px 12px; font-size: 13px; }
+.eui-standing + .eui-standing { border-top: 1px solid var(--eui-line-soft); }
+.eui-standing b { font-family: var(--eui-font-num); font-weight: 600; font-variant-numeric: tabular-nums; }
+.eui-standing.is-self { background: var(--eui-accent-soft); box-shadow: inset 2px 0 0 var(--eui-accent); }
+
+/* ==========================================================================
+   TUR SONU / SONUÇLAR
+   ========================================================================== */
+.eui-results { display: flex; flex-direction: column; align-items: center; gap: 28px; width: 1100px; }
+.eui-results__title { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; text-shadow: var(--eui-hud-shadow); }
+.eui-results__title b { font-family: var(--eui-font-display); font-weight: 700; font-size: 96px; line-height: .9; text-transform: var(--eui-display-case); letter-spacing: .03em; color: var(--eui-accent); text-shadow: 0 0 calc(40px * var(--eui-glow-a)) rgb(var(--eui-accent-rgb) / .5), 0 3px 8px rgb(0 0 0 / .7); }
+.eui-podium { display: flex; align-items: flex-end; justify-content: center; gap: 14px; }
+.eui-podium__slot { --tone-rgb: var(--eui-gold-rgb); width: 240px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.eui-podium__slot.is-2 { --tone-rgb: var(--eui-silver-rgb); } .eui-podium__slot.is-3 { --tone-rgb: var(--eui-bronze-rgb); }
+.eui-podium__who { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.eui-podium__who .eui-avatar { width: 72px; height: 72px; font-size: 28px; border-width: 2px; }
+.eui-podium__who b { font-size: 17px; font-weight: 700; }
+.eui-podium__block {
+  width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; padding-top: 14px;
+  background: linear-gradient(180deg, rgb(var(--tone-rgb) / .3), rgb(var(--tone-rgb) / .04)); border-top: 3px solid rgb(var(--tone-rgb));
+  border-radius: var(--eui-r-2) var(--eui-r-2) 0 0;
+}
+.eui-podium__slot.is-1 .eui-podium__block { height: 150px; } .eui-podium__slot.is-2 .eui-podium__block { height: 110px; } .eui-podium__slot.is-3 .eui-podium__block { height: 82px; }
+.eui-podium__block strong { font-family: var(--eui-font-display); font-weight: 700; font-size: 44px; line-height: 1; color: rgb(var(--tone-rgb)); }
+.eui-podium__block span { font-family: var(--eui-font-num); font-size: 14px; color: var(--eui-text-2); }
+.eui-summary { display: flex; gap: 0; }
+.eui-summary > div { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0 28px; }
+.eui-summary > div + div { border-left: 1px solid var(--eui-line); }
+.eui-summary b { font-family: var(--eui-font-num); font-size: 30px; font-weight: 600; line-height: 1; }
+
+/* ==========================================================================
+   MODAL
+   ========================================================================== */
+.eui-modal { position: relative; width: var(--w, 440px); display: flex; flex-direction: column; animation: eui-in-pop var(--eui-dur-3) var(--eui-ease-out) both; }
+.eui-modal__icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; color: rgb(var(--tone-rgb, var(--eui-accent-rgb))); background: rgb(var(--tone-rgb, var(--eui-accent-rgb)) / .14); margin-bottom: 4px; }
+.eui-modal__icon .eui-i { width: 22px; height: 22px; }
+.eui-modal__actions { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 24px; border-top: 1px solid var(--eui-line-soft); background: rgb(0 0 0 / .15); }
+/* EUI.modal: başlık + içerik + hata + eylemler */
+.eui-layer--modal { z-index: var(--eui-z-modal); }
+.eui-modal { max-height: calc(100% - 80px); }
+.eui-modal__head { display: flex; align-items: flex-start; gap: 14px; padding: 22px 24px 4px; }
+.eui-modal__head .eui-modal__icon { flex: none; margin: 0; }
+.eui-modal__titles { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.eui-modal__titles .eui-sub { margin-top: 2px; }
+.eui-modal__who { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: 4px; padding: 3px 10px 3px 3px; border-radius: 999px; background: var(--eui-raise); border: 1px solid var(--eui-line-soft); font-size: 13px; }
+.eui-modal__who b { font-weight: 600; }
+.eui-modal__x { margin: -4px -8px 0 0; }
+.eui-modal__content { padding: 16px 24px 20px; display: flex; flex-direction: column; gap: 14px; min-height: 0; overflow-y: auto; }
+.eui-modal__error { margin: -6px 24px 14px; padding: 8px 12px; font-size: 12.5px; color: var(--eui-danger); background: rgb(var(--eui-danger-rgb) / .1); border: 1px solid rgb(var(--eui-danger-rgb) / .35); border-radius: var(--eui-r-2); }
+.eui-modal.is-shake { animation: eui-modal-shake .35s; }
+@keyframes eui-modal-shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.eui-modal__actions .eui-btn .eui-key { margin-right: 2px; }
+.eui-form { display: grid; grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr)); gap: 14px; }
+.eui-form .is-wide { grid-column: 1 / -1; }
+.eui-textarea { height: auto; min-height: 84px; padding: 10px 12px; resize: none; line-height: 1.45; font-family: inherit; }
+.eui-select { appearance: none; -webkit-appearance: none; padding-right: 34px; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 17px) 17px, calc(100% - 12px) 17px; background-size: 5px 5px; background-repeat: no-repeat; }
+.eui-select option { background: var(--eui-surface-solid); color: var(--eui-text); }
+.eui-help { font-size: 11.5px; color: var(--eui-text-3); }
+.eui-optcards { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 8px; }
+.eui-optcard { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: var(--eui-r-2); border: 1px solid var(--eui-line); background: var(--eui-raise); cursor: pointer; transition: border-color var(--eui-dur-1), background var(--eui-dur-1); }
+.eui-optcard input { position: absolute; opacity: 0; pointer-events: none; }
+.eui-optcard .eui-i { width: 22px; height: 22px; color: var(--eui-text-2); }
+.eui-optcard b { font-size: 13px; }
+.eui-optcard span { font-size: 11.5px; color: var(--eui-text-3); line-height: 1.35; }
+.eui-optcard:hover { border-color: var(--eui-line-strong); }
+.eui-optcard.is-active { border-color: var(--eui-accent-line); background: var(--eui-accent-soft); }
+.eui-optcard.is-active .eui-i { color: var(--eui-accent); }   /* is-active, EUI.mount tarafından input:checked ile eşitlenir (:has gerektirmez) */
+
+/* EUI.choose — seçim listesi */
+.eui-choose { display: flex; flex-direction: column; gap: 10px; }
+.eui-choose .eui-input-wrap .eui-input { padding-left: 36px; }
+.eui-choose__list { max-height: 340px; overflow-y: auto; margin: 0 -24px; border-top: 1px solid var(--eui-line-soft); border-bottom: 1px solid var(--eui-line-soft); }
+.eui-choose__row { display: flex; align-items: center; gap: 12px; padding: 9px 24px; cursor: pointer; transition: background var(--eui-dur-1); }
+.eui-choose__row + .eui-choose__row { border-top: 1px solid var(--eui-line-soft); }
+.eui-choose__row:hover, .eui-choose__row.is-active { background: var(--eui-raise); }
+.eui-choose__row.is-picked { background: var(--eui-accent-soft); }
+.eui-choose__row.is-disabled { opacity: .4; cursor: default; }
+.eui-choose__row .eui-check { pointer-events: none; }
+.eui-choose__foot { display: flex; align-items: center; justify-content: space-between; }
+
+/* EUI.amount — tutar seçici */
+.eui-amount { display: flex; flex-direction: column; gap: 12px; }
+.eui-amount__field { display: flex; align-items: center; gap: 6px; padding: 6px; border: 1px solid var(--eui-line); border-radius: var(--eui-r-control); background: rgb(0 0 0 / .25); }
+.eui-amount__fix { padding: 0 6px 0 10px; font-family: var(--eui-font-num); font-size: 22px; font-weight: 600; color: var(--eui-text-3); }
+.eui-amount__input { flex: 1; min-width: 0; height: 44px; text-align: center; font-family: var(--eui-font-num); font-size: 30px; font-weight: 700; color: var(--eui-text); background: transparent; border: 0; outline: none; font-variant-numeric: tabular-nums; user-select: text; -moz-appearance: textfield; }
+.eui-amount__input::-webkit-inner-spin-button, .eui-amount__input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.eui-amount__range { display: flex; justify-content: space-between; font-family: var(--eui-font-num); font-size: 11.5px; color: var(--eui-text-3); margin-top: -6px; }
+.eui-amount__quick { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ==========================================================================
+   RADİAL MENÜ (SVG dilimleri JS ile çizilir)
+   ========================================================================== */
+.eui-radial { position: relative; width: var(--size, 440px); height: var(--size, 440px); }
+.eui-radial > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.eui-radial__base { fill: rgb(var(--eui-surface-rgb) / .9); stroke: none; pointer-events: none; }
+.eui-radial__base.is-disabled { fill: rgb(var(--eui-surface-rgb) / .5); }
+.eui-radial__seg { fill: transparent; stroke: var(--eui-line); stroke-width: 1; cursor: pointer; transition: fill var(--eui-dur-2), stroke var(--eui-dur-2); }
+.eui-radial__seg:hover, .eui-radial__seg.is-active { fill: rgb(var(--eui-accent-rgb) / .2); stroke: var(--eui-accent-line); }
+.eui-radial__seg.is-disabled { fill: transparent; cursor: default; }
+.eui-radial__ring { fill: none; stroke: var(--eui-accent); stroke-width: 3; transition: d var(--eui-dur-2); filter: drop-shadow(0 0 calc(6px * var(--eui-glow-a)) var(--eui-accent)); }
+.eui-radial__item { position: absolute; width: 96px; margin-left: -48px; margin-top: -30px; display: flex; flex-direction: column; align-items: center; gap: 5px; pointer-events: none; text-align: center; transition: transform var(--eui-dur-2) var(--eui-ease); }
+.eui-radial__item .eui-i { width: 26px; height: 26px; color: var(--eui-text-2); transition: color var(--eui-dur-2); }
+.eui-radial__item span { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--eui-text-2); }
+.eui-radial__item small { font-family: var(--eui-font-num); font-size: 11px; color: var(--eui-text-3); }
+.eui-radial__item.is-active { transform: scale(1.1); }
+.eui-radial__item.is-active .eui-i, .eui-radial__item.is-active span { color: var(--eui-text); }
+.eui-radial__item.is-active .eui-i { color: var(--eui-accent); }
+.eui-radial__center {
+  position: absolute; left: 50%; top: 50%; width: 34%; height: 34%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; padding: 10px;
+  border-radius: 50%; background: var(--eui-surface-solid); border: 1px solid var(--eui-line); pointer-events: none;
+}
+.eui-radial__center b { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); text-transform: var(--eui-display-case); font-size: 19px; letter-spacing: .04em; line-height: 1.05; }
+.eui-radial__center span { font-size: 12px; color: var(--eui-text-3); line-height: 1.3; }
+
+/* ==========================================================================
+   BAĞLAM MENÜSÜ
+   ========================================================================== */
+.eui-context { width: var(--w, 232px); padding: 6px; display: flex; flex-direction: column; }
+.eui-context__head { padding: 6px 10px 8px; }
+.eui-context__item { display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 10px; border-radius: var(--eui-r-2); font-size: 13px; color: var(--eui-text); text-align: left; width: 100%; transition: background var(--eui-dur-1); }
+.eui-context__item .eui-i { width: 16px; height: 16px; color: var(--eui-text-2); }
+.eui-context__item:hover, .eui-context__item.is-active { background: var(--eui-raise-2); }
+.eui-context__item:hover .eui-i { color: var(--eui-accent); }
+.eui-context__item .eui-key, .eui-context__item small { margin-left: auto; }
+.eui-context__item small { font-size: 11px; color: var(--eui-text-3); }
+.eui-context__item.is-danger { color: var(--eui-danger); }
+.eui-context__item.is-danger .eui-i { color: var(--eui-danger); }
+.eui-context__sep { height: 1px; margin: 5px 4px; background: var(--eui-line-soft); }
+
+/* ==========================================================================
+   ÖLÜM EKRANI
+   ========================================================================== */
+.eui-dead { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; z-index: var(--eui-z-modal);
+  background: radial-gradient(ellipse at center, rgb(40 0 4 / .35), rgb(10 0 2 / .85)); }
+.eui-dead__title { font-family: var(--eui-font-display); font-weight: 700; font-size: 120px; line-height: .9; letter-spacing: .04em; text-transform: var(--eui-display-case); color: var(--eui-danger); text-shadow: 0 0 calc(40px * var(--eui-glow-a)) rgb(var(--eui-danger-rgb) / .5), 0 4px 10px #000; animation: eui-title-in 1s var(--eui-ease-out) both; }
+.eui-killer { display: flex; align-items: center; gap: 14px; padding: 12px 18px 12px 12px; }
+.eui-killer__stats { display: flex; gap: 18px; margin-left: 12px; padding-left: 18px; border-left: 1px solid var(--eui-line); }
+.eui-killer__stats div { display: flex; flex-direction: column; gap: 2px; }
+.eui-killer__stats b { font-family: var(--eui-font-num); font-size: 18px; font-weight: 600; }
+.eui-respawn { display: flex; align-items: center; gap: 14px; }
+.eui-respawn__ring { position: relative; width: 64px; height: 64px; display: grid; place-items: center; }
+.eui-respawn__ring > .eui-ring { position: absolute; inset: 0; width: 100%; height: 100%; --sw: 3; }
+.eui-respawn__ring b { font-family: var(--eui-font-num); font-size: 24px; font-weight: 600; }
+
+/* ==========================================================================
+   YÜKLEME EKRANI
+   ========================================================================== */
+.eui-loading { position: absolute; inset: 0; display: grid; grid-template-rows: 1fr auto; z-index: var(--eui-z-top); background: #07090c; overflow: hidden; }
+.eui-loading__art { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.eui-loading__art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(5 7 10 / .92) 0%, rgb(5 7 10 / .55) 45%, rgb(5 7 10 / .2) 100%), linear-gradient(0deg, rgb(5 7 10 / .95), transparent 45%); }
+.eui-loading__main { position: relative; align-self: center; padding: 0 120px; display: flex; flex-direction: column; gap: 18px; max-width: 900px; }
+.eui-loading__main .eui-title { font-size: 92px; line-height: .9; }
+.eui-loading__foot { position: relative; display: grid; grid-template-columns: 1fr 520px; gap: 60px; align-items: end; padding: 0 120px 70px; }
+.eui-loading__tip { display: flex; flex-direction: column; gap: 8px; max-width: 560px; }
+.eui-loading__tip p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--eui-text-2); }
+.eui-loading__progress { display: flex; flex-direction: column; gap: 10px; }
+.eui-loading__progress .eui-bar { --h: 4px; }
+.eui-loading__status { display: flex; justify-content: space-between; font-size: 13px; color: var(--eui-text-2); }
+.eui-loading__status b { font-family: var(--eui-font-num); color: var(--eui-text); }

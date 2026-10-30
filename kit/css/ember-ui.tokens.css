@@ -1,0 +1,167 @@
+/* ==========================================================================
+   Ember UI — Tasarım tokenları
+   Varsayılan tema "modern" bu dosyadadır. Diğer temalar themes/*.css içinde
+   yalnızca bu değişkenleri ve gerekirse birkaç bileşen detayını ezer.
+
+   Renkler "r g b" üçlüsü olarak tutulur, böylece her ton saydamlıkla
+   kullanılabilir:   color: rgb(var(--eui-accent-rgb) / .5)
+   ========================================================================== */
+
+/* Temel değerler hem kökte hem de her tema kapsayıcısında yeniden tanımlanır;
+   böylece iç içe temalar (ör. galeri kartları) birbirinden etkilenmez. */
+:root {
+  /* ---------- Yazı tipleri ---------- */
+  --eui-font-ui:      'EUI Inter', 'Segoe UI', system-ui, sans-serif;
+  --eui-font-display: 'EUI Barlow Condensed', 'Arial Narrow', 'Segoe UI', sans-serif;
+  --eui-font-num:     'EUI Barlow Semi', 'EUI Inter', 'Segoe UI', sans-serif;
+  --eui-font-mono:    'EUI Mono', Consolas, monospace;
+  --eui-display-weight: 700;
+  --eui-display-case: uppercase;
+  --eui-display-track: .02em;
+
+  /* Tip ölçeği (1080p referans) */
+  --eui-fs-2xs: 10px;
+  --eui-fs-xs:  11px;
+  --eui-fs-sm:  12px;
+  --eui-fs-md:  14px;
+  --eui-fs-lg:  16px;
+  --eui-fs-xl:  20px;
+  --eui-fs-2xl: 28px;
+  --eui-fs-3xl: 40px;
+  --eui-fs-4xl: 64px;
+  --eui-fs-5xl: 96px;
+
+  /* Küçük başlık (kicker) */
+  --eui-kicker-font:   var(--eui-font-ui);
+  --eui-kicker-size:   10.5px;
+  --eui-kicker-weight: 600;
+  --eui-kicker-track:  .14em;
+
+  /* ---------- Yüzeyler ---------- */
+  --eui-surface-rgb:   11 14 19;
+  --eui-surface-a:     .74;
+  --eui-surface:       rgb(var(--eui-surface-rgb) / var(--eui-surface-a));
+  --eui-surface-2:     rgb(20 25 33 / .78);
+  --eui-surface-solid: #0d1117;
+  --eui-raise:         rgb(255 255 255 / .04);
+  --eui-raise-2:       rgb(255 255 255 / .08);
+  --eui-raise-3:       rgb(255 255 255 / .13);
+  --eui-scrim:         rgb(4 6 9 / .72);
+  --eui-track:         rgb(255 255 255 / .10);   /* bar arka planı */
+
+  /* ---------- Çizgiler ---------- */
+  --eui-line-soft:   rgb(255 255 255 / .06);
+  --eui-line:        rgb(255 255 255 / .10);
+  --eui-line-strong: rgb(255 255 255 / .20);
+
+  /* ---------- Metin ---------- */
+  --eui-text-rgb: 240 243 247;
+  --eui-text:   rgb(var(--eui-text-rgb));
+  --eui-text-2: rgb(var(--eui-text-rgb) / .72);
+  --eui-text-3: rgb(var(--eui-text-rgb) / .46);
+  --eui-text-4: rgb(var(--eui-text-rgb) / .28);
+
+  /* ---------- Vurgu ---------- */
+  --eui-accent-rgb:   245 184 61;
+  --eui-accent-2-rgb: 255 122 69;    /* ikincil (gradyan ucu) */
+  --eui-on-accent:    #0b0d10;
+
+  /* ---------- Anlamsal ---------- */
+  --eui-success-rgb:   88 214 125;
+  --eui-info-rgb:      77 166 255;
+  --eui-warn-rgb:      255 176 32;
+  --eui-danger-rgb:    255 77 90;
+  --eui-legendary-rgb: 192 123 255;
+  --eui-gold-rgb:      255 204 77;
+  --eui-silver-rgb:    205 214 226;
+  --eui-bronze-rgb:    214 141 84;
+
+  /* ---------- Oyun ölçerleri ---------- */
+  --eui-health-rgb:  114 214 82;
+  --eui-armor-rgb:   77 166 255;
+  --eui-stamina-rgb: 255 213 74;
+  --eui-special-rgb: 240 244 248;   /* yetenek / dead-eye */
+  --eui-oxygen-rgb:  87 224 230;
+  --eui-hunger-rgb:  255 150 70;
+  --eui-thirst-rgb:  90 180 255;
+  --eui-stress-rgb:  220 90 255;
+  --eui-xp-rgb:      var(--eui-accent-rgb);
+
+  /* ---------- Takım renkleri ---------- */
+  --eui-team-1-rgb: 77 166 255;
+  --eui-team-2-rgb: 255 90 100;
+  --eui-team-3-rgb: 88 214 125;
+  --eui-team-4-rgb: 192 123 255;
+  --eui-team-5-rgb: 255 196 71;
+  --eui-friend-rgb: 88 214 125;
+  --eui-enemy-rgb:  255 77 90;
+
+  /* ---------- Geometri ---------- */
+  --eui-r-1: 2px;
+  --eui-r-2: 4px;
+  --eui-r-3: 6px;
+  --eui-r-4: 10px;
+  --eui-r-pill: 999px;
+  --eui-r-panel: var(--eui-r-3);
+  --eui-r-control: var(--eui-r-2);
+  --eui-border-w: 1px;
+  --eui-cut: 0px;                 /* köşe kesiği (temalar isteğe bağlı kullanır) */
+
+  --eui-safe-x: 40px;             /* ekran güvenli alanı (1080p) */
+  --eui-safe-y: 32px;
+  --eui-gap: 12px;
+
+  /* ---------- Derinlik ---------- */
+  --eui-blur: 12px;
+  --eui-panel-shadow: 0 12px 32px -12px rgb(0 0 0 / .6), inset 0 1px 0 rgb(255 255 255 / .04);
+  --eui-shadow-pop: 0 24px 60px -16px rgb(0 0 0 / .75);
+  --eui-text-shadow: 0 1px 2px rgb(0 0 0 / .8);
+  --eui-hud-shadow: 0 1px 2px rgb(0 0 0 / .9), 0 0 12px rgb(0 0 0 / .45);  /* panelsiz HUD yazısı */
+  --eui-glow-a: 0;                 /* 0 = parlama yok, 1 = tam */
+
+  /* ---------- Hareket ---------- */
+  --eui-dur-1: 90ms;
+  --eui-dur-2: 160ms;
+  --eui-dur-3: 280ms;
+  --eui-dur-4: 480ms;
+  --eui-ease:     cubic-bezier(.2, .7, .25, 1);
+  --eui-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --eui-ease-in:  cubic-bezier(.5, 0, .9, .3);
+  --eui-spring:   cubic-bezier(.34, 1.56, .64, 1);
+
+  /* ---------- Katman sırası ---------- */
+  --eui-z-world: 10;
+  --eui-z-hud:   20;
+  --eui-z-feed:  30;
+  --eui-z-menu:  40;
+  --eui-z-toast: 60;
+  --eui-z-modal: 80;
+  --eui-z-top:   100;
+}
+
+/* --------------------------------------------------------------------------
+   Türetilmiş renkler. Tema/vurgu üçlüleri hangi elemanda ezilirse ezilsin,
+   bu kural aynı elemanda yeniden hesaplanır (CSS değişkenleri tanımlandığı
+   elemanda çözülür; bu yüzden tek bir :root tanımı yetmez).
+   -------------------------------------------------------------------------- */
+:root, [data-eui-accent] {
+  --eui-accent:      rgb(var(--eui-accent-rgb));
+  --eui-accent-2:    rgb(var(--eui-accent-2-rgb));
+  --eui-accent-soft: rgb(var(--eui-accent-rgb) / .14);
+  --eui-accent-line: rgb(var(--eui-accent-rgb) / .45);
+  --eui-accent-glow: 0 0 calc(18px * var(--eui-glow-a)) rgb(var(--eui-accent-rgb) / calc(.55 * var(--eui-glow-a)));
+  --eui-success: rgb(var(--eui-success-rgb));
+  --eui-info:    rgb(var(--eui-info-rgb));
+  --eui-warn:    rgb(var(--eui-warn-rgb));
+  --eui-danger:  rgb(var(--eui-danger-rgb));
+  --eui-legendary: rgb(var(--eui-legendary-rgb));
+  --eui-xp-rgb:  var(--eui-accent-rgb);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eui *, .eui *::before, .eui *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

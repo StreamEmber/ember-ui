@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Ember UI — ton sınıfları
+   Herhangi bir bileşene "--tone-rgb" verir. Bileşenlerin varsayılan tonunu
+   ezebilmesi için bileşen dosyalarından SONRA yüklenir.
+   Örnek: <div class="eui-bar eui-t-health">  <span class="eui-badge eui-t-danger">
+   ========================================================================== */
+
+.eui-t-accent    { --tone-rgb: var(--eui-accent-rgb); }
+.eui-t-success   { --tone-rgb: var(--eui-success-rgb); }
+.eui-t-info      { --tone-rgb: var(--eui-info-rgb); }
+.eui-t-warn      { --tone-rgb: var(--eui-warn-rgb); }
+.eui-t-danger    { --tone-rgb: var(--eui-danger-rgb); }
+.eui-t-legendary { --tone-rgb: var(--eui-legendary-rgb); }
+.eui-t-gold      { --tone-rgb: var(--eui-gold-rgb); }
+.eui-t-silver    { --tone-rgb: var(--eui-silver-rgb); }
+.eui-t-bronze    { --tone-rgb: var(--eui-bronze-rgb); }
+.eui-t-neutral   { --tone-rgb: var(--eui-text-rgb); }
+.eui-t-health    { --tone-rgb: var(--eui-health-rgb); }
+.eui-t-armor     { --tone-rgb: var(--eui-armor-rgb); }
+.eui-t-stamina   { --tone-rgb: var(--eui-stamina-rgb); }
+.eui-t-special   { --tone-rgb: var(--eui-special-rgb); }
+.eui-t-oxygen    { --tone-rgb: var(--eui-oxygen-rgb); }
+.eui-t-hunger    { --tone-rgb: var(--eui-hunger-rgb); }
+.eui-t-thirst    { --tone-rgb: var(--eui-thirst-rgb); }
+.eui-t-stress    { --tone-rgb: var(--eui-stress-rgb); }
+.eui-t-xp        { --tone-rgb: var(--eui-xp-rgb); }
+.eui-t-team1 { --tone-rgb: var(--eui-team-1-rgb); } .eui-t-team2 { --tone-rgb: var(--eui-team-2-rgb); }
+.eui-t-team3 { --tone-rgb: var(--eui-team-3-rgb); } .eui-t-team4 { --tone-rgb: var(--eui-team-4-rgb); }
+.eui-t-team5 { --tone-rgb: var(--eui-team-5-rgb); }
+.eui-t-friend { --tone-rgb: var(--eui-friend-rgb); } .eui-t-enemy { --tone-rgb: var(--eui-enemy-rgb); }
+.eui-tone { color: rgb(var(--tone-rgb)); }
+

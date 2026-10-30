@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Ember UI — bildirimler & akışlar
+   Toast, ölüm akışı, hediye kartı, duyuru, büyük şerit (görev tamam/başarısız),
+   seviye atlama, başarım, eşya alma, kayan yazı, geri sayım.
+   ========================================================================== */
+
+/* ==========================================================================
+   TOAST
+   ========================================================================== */
+.eui-toasts { position: relative; z-index: var(--eui-z-toast); display: flex; flex-direction: column; gap: 8px; width: var(--w, 360px); }
+.eui-toast {
+  --tone-rgb: var(--eui-info-rgb);
+  position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 2px 12px; align-items: start;
+  padding: 12px 12px 13px 12px; overflow: hidden;
+  background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-panel);
+  box-shadow: var(--eui-panel-shadow);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-toast::after { /* sol ton çizgisi */
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: rgb(var(--tone-rgb));
+  box-shadow: 0 0 calc(10px * var(--eui-glow-a)) rgb(var(--tone-rgb));
+}
+.eui-toast__icon {
+  grid-row: span 3; width: 34px; height: 34px; display: grid; place-items: center; border-radius: var(--eui-r-2);
+  color: rgb(var(--tone-rgb)); background: rgb(var(--tone-rgb) / .14);
+}
+.eui-toast__icon .eui-i { width: 18px; height: 18px; }
+.eui-toast__title { font-size: 14px; font-weight: 600; line-height: 1.3; padding-top: 1px; }
+.eui-toast__text { grid-column: 2; font-size: 13px; color: var(--eui-text-2); line-height: 1.4; }
+.eui-toast__text b { color: var(--eui-text); font-weight: 600; }
+.eui-toast__meta { grid-column: 2; margin-top: 4px; font-size: 11px; color: var(--eui-text-3); }
+.eui-toast__close { grid-column: 3; grid-row: 1; width: 22px; height: 22px; display: grid; place-items: center; color: var(--eui-text-3); border-radius: var(--eui-r-1); }
+.eui-toast__close:hover { color: var(--eui-text); background: var(--eui-raise); }
+.eui-toast__close .eui-i { width: 14px; height: 14px; }
+.eui-toast__actions { grid-column: 2 / 4; display: flex; gap: 6px; margin-top: 8px; }
+.eui-toast__timer { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgb(var(--tone-rgb) / .8); transform-origin: left; }
+.eui-toast__timer.is-run { animation: eui-timer linear both; }
+@keyframes eui-timer { to { transform: scaleX(0); } }
+
+/* ==========================================================================
+   ÖLÜM AKIŞI (killfeed)
+   ========================================================================== */
+.eui-feed { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.eui-kill {
+  display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px;
+  background: var(--eui-surface); border: 1px solid transparent; border-radius: var(--eui-r-2);
+  font-size: 13px; font-weight: 600; white-space: nowrap;
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-kill__actor, .eui-kill__victim { color: rgb(var(--tone-rgb, var(--eui-text-rgb))); }
+.eui-kill__actor { --tone-rgb: var(--eui-team-1-rgb); }
+.eui-kill__victim { --tone-rgb: var(--eui-team-2-rgb); }
+.eui-kill .eui-i { width: 17px; height: 17px; color: var(--eui-text-2); }
+.eui-kill__weapon { width: 52px; height: 18px; color: var(--eui-text-2); }
+.eui-kill .is-head { color: var(--eui-warn); }
+.eui-kill.is-self { border-color: var(--eui-accent-line); background: linear-gradient(90deg, var(--eui-surface), var(--eui-accent-soft)); }
+.eui-kill.is-death { border-color: rgb(var(--eui-danger-rgb) / .5); background: linear-gradient(90deg, var(--eui-surface), rgb(var(--eui-danger-rgb) / .16)); }
+
+/* ==========================================================================
+   HEDİYE KARTI (canlı yayın)
+   ========================================================================== */
+.eui-gifts { display: flex; flex-direction: column; gap: 8px; width: var(--w, 380px); }
+.eui-gift {
+  --tone-rgb: var(--eui-info-rgb);
+  position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0 12px;
+  padding: 10px 14px 10px 10px; overflow: hidden;
+  background: linear-gradient(100deg, rgb(var(--tone-rgb) / .22), var(--eui-surface) 55%);
+  border: 1px solid rgb(var(--tone-rgb) / .45); border-radius: var(--eui-r-panel);
+  box-shadow: var(--eui-panel-shadow), 0 0 calc(24px * var(--eui-glow-a)) -6px rgb(var(--tone-rgb) / .6);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-gift__art {
+  position: relative; width: 52px; height: 52px; display: grid; place-items: center;
+  border-radius: var(--eui-r-3); background: rgb(var(--tone-rgb) / .16); color: rgb(var(--tone-rgb));
+  font-size: 30px; line-height: 1;
+}
+.eui-gift__art img { width: 44px; height: 44px; object-fit: contain; }
+.eui-gift__art .eui-i { width: 28px; height: 28px; }
+.eui-gift__art .eui-avatar { position: absolute; right: -6px; bottom: -6px; width: 24px; height: 24px; font-size: 11px; border: 2px solid var(--eui-surface-solid); background: var(--eui-surface-solid); }
+.eui-gift__body { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.eui-gift__from { font-size: 12px; color: var(--eui-text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-gift__from b { color: var(--eui-text); font-weight: 700; }
+.eui-gift__name { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); text-transform: var(--eui-display-case); letter-spacing: .03em; font-size: 20px; line-height: 1.05; color: rgb(var(--tone-rgb)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-gift__effect { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--eui-text-2); }
+.eui-gift__effect .eui-i { width: 13px; height: 13px; color: rgb(var(--tone-rgb)); }
+.eui-gift__combo { display: flex; flex-direction: column; align-items: flex-end; }
+.eui-gift__combo b { font-family: var(--eui-font-num); font-size: 34px; font-weight: 700; line-height: .9; font-style: italic; color: #fff; text-shadow: 0 0 calc(14px * var(--eui-glow-a)) rgb(var(--tone-rgb)), var(--eui-text-shadow); }
+.eui-gift__combo b small { font-size: .55em; margin-right: 1px; color: rgb(var(--tone-rgb)); }
+.eui-gift__combo span { font-family: var(--eui-font-num); font-size: 11px; color: var(--eui-text-3); }
+.eui-gift.is-bump .eui-gift__combo b { animation: eui-bump .35s var(--eui-spring); }
+@keyframes eui-bump { 40% { transform: scale(1.35); } }
+/* Seviyeler */
+.eui-gift.is-common    { --tone-rgb: var(--eui-silver-rgb); }
+.eui-gift.is-rare      { --tone-rgb: var(--eui-info-rgb); }
+.eui-gift.is-epic      { --tone-rgb: var(--eui-legendary-rgb); }
+.eui-gift.is-legendary { --tone-rgb: var(--eui-gold-rgb); }
+.eui-gift.is-legendary::before, .eui-gift.is-epic::before { /* parlama süpürmesi */
+  content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / .18), transparent);
+  animation: eui-sheen 2.6s ease-in-out infinite;
+}
+@keyframes eui-sheen { 0% { left: -40%; } 60%, 100% { left: 130%; } }
+.eui-gift__progress { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: rgb(var(--tone-rgb)); transform-origin: left; }
+
+/* Büyük hediye (ekran ortası) */
+.eui-gift-hero { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; --tone-rgb: var(--eui-gold-rgb); }
+.eui-gift-hero__art { position: relative; width: 150px; height: 150px; display: grid; place-items: center; font-size: 96px; line-height: 1; }
+.eui-gift-hero__art::before { content: ""; position: absolute; inset: -20px; border-radius: 50%; background: radial-gradient(circle, rgb(var(--tone-rgb) / .5), transparent 65%); animation: eui-pulse-soft 1.6s ease-in-out infinite; }
+.eui-gift-hero__art::after { content: ""; position: absolute; inset: -40px; background: repeating-conic-gradient(from 0deg, rgb(var(--tone-rgb) / .14) 0 8deg, transparent 8deg 22deg); border-radius: 50%; -webkit-mask-image: radial-gradient(circle, #000 30%, transparent 70%); mask-image: radial-gradient(circle, #000 30%, transparent 70%); animation: eui-spin 14s linear infinite; }
+.eui-gift-hero__art > * { position: relative; z-index: 1; }
+.eui-gift-hero__from { font-size: 16px; color: var(--eui-text-2); text-shadow: var(--eui-hud-shadow); }
+.eui-gift-hero__from b { color: var(--eui-text); }
+.eui-gift-hero__name { font-family: var(--eui-font-display); font-weight: 700; font-size: 52px; line-height: 1; letter-spacing: .03em; text-transform: var(--eui-display-case); color: rgb(var(--tone-rgb)); text-shadow: 0 0 24px rgb(var(--tone-rgb) / .5), var(--eui-hud-shadow); }
+@keyframes eui-pulse-soft { 50% { transform: scale(1.08); opacity: .75; } }
+
+/* ==========================================================================
+   DUYURU (ekran ortası)
+   ========================================================================== */
+.eui-announce { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; text-shadow: var(--eui-hud-shadow); }
+.eui-announce__kicker { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--eui-accent); }
+.eui-announce__kicker::before, .eui-announce__kicker::after { content: ""; width: 48px; height: 1px; background: linear-gradient(90deg, transparent, var(--eui-accent-line)); }
+.eui-announce__kicker::after { transform: scaleX(-1); }
+.eui-announce__title { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); text-transform: var(--eui-display-case); font-size: 76px; line-height: .95; letter-spacing: .02em; }
+.eui-announce__sub { font-size: 17px; color: var(--eui-text-2); max-width: 640px; }
+.eui-announce.is-in .eui-announce__title { animation: eui-title-in .7s var(--eui-ease-out) both; }
+.eui-announce.is-in .eui-announce__kicker { animation: eui-in-fade .5s .1s both; }
+.eui-announce.is-in .eui-announce__sub { animation: eui-in-up .5s .25s var(--eui-ease-out) both; }
+@keyframes eui-title-in { from { opacity: 0; letter-spacing: .3em; filter: blur(6px); } }
+
+/* ==========================================================================
+   BÜYÜK ŞERİT — Görev tamamlandı / başarısız / ölüm
+   ========================================================================== */
+.eui-banner {
+  --tone-rgb: var(--eui-accent-rgb);
+  position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 34px 0 30px;
+  background: linear-gradient(90deg, transparent, rgb(0 0 0 / .72) 22%, rgb(0 0 0 / .72) 78%, transparent);
+  text-align: center;
+}
+.eui-banner::before, .eui-banner::after { content: ""; position: absolute; left: 18%; right: 18%; height: 1px; background: linear-gradient(90deg, transparent, rgb(var(--tone-rgb) / .7), transparent); }
+.eui-banner::before { top: 0; } .eui-banner::after { bottom: 0; }
+.eui-banner__title { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); text-transform: var(--eui-display-case); font-size: 84px; line-height: .9; letter-spacing: .02em; color: rgb(var(--tone-rgb)); text-shadow: 0 0 calc(30px * var(--eui-glow-a)) rgb(var(--tone-rgb) / .6), 0 2px 4px #000; }
+.eui-banner__sub { font-size: 18px; color: var(--eui-text-2); }
+.eui-banner__rewards { display: flex; gap: 28px; margin-top: 8px; }
+.eui-reward { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.eui-reward b { font-family: var(--eui-font-num); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.eui-reward span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--eui-text-3); }
+.eui-banner.is-fail { --tone-rgb: var(--eui-danger-rgb); }
+.eui-banner.is-in { animation: eui-band-in .6s var(--eui-ease-out) both; }
+.eui-banner.is-in .eui-banner__title { animation: eui-title-in .8s .1s var(--eui-ease-out) both; }
+.eui-banner.is-in .eui-banner__rewards > * { animation: eui-in-up .45s var(--eui-ease-out) both; }
+.eui-banner.is-in .eui-banner__rewards > :nth-child(1) { animation-delay: .5s; }
+.eui-banner.is-in .eui-banner__rewards > :nth-child(2) { animation-delay: .62s; }
+.eui-banner.is-in .eui-banner__rewards > :nth-child(3) { animation-delay: .74s; }
+@keyframes eui-band-in { from { clip-path: inset(50% 0 50% 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* ==========================================================================
+   SEVİYE ATLAMA
+   ========================================================================== */
+.eui-levelup { display: flex; align-items: center; gap: 18px; padding: 14px 26px 14px 18px; }
+.eui-levelup__badge { position: relative; width: 64px; height: 64px; display: grid; place-items: center; font-family: var(--eui-font-num); font-size: 26px; font-weight: 700; color: var(--eui-on-accent); }
+.eui-levelup__badge::before { content: ""; position: absolute; inset: 7px; background: var(--eui-accent); transform: rotate(45deg); border-radius: 6px; box-shadow: 0 0 0 4px var(--eui-accent-soft), var(--eui-accent-glow); }
+.eui-levelup__badge span { position: relative; }
+.eui-levelup__unlocks { display: flex; gap: 6px; margin-top: 6px; }
+
+/* ==========================================================================
+   BAŞARIM
+   ========================================================================== */
+.eui-achv { display: flex; align-items: center; gap: 14px; padding: 8px 22px 8px 8px; border-radius: var(--eui-r-pill); }
+.eui-achv__icon { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, rgb(var(--eui-gold-rgb)), rgb(var(--eui-gold-rgb) / .6)); color: #1a1204; box-shadow: 0 0 0 3px rgb(var(--eui-gold-rgb) / .25); }
+.eui-achv__icon .eui-i { width: 26px; height: 26px; }
+.eui-achv__body { display: flex; flex-direction: column; gap: 1px; }
+.eui-achv__name { font-size: 15px; font-weight: 600; }
+.eui-achv__pts { margin-left: 10px; font-family: var(--eui-font-num); font-size: 18px; font-weight: 600; color: rgb(var(--eui-gold-rgb)); }
+
+/* ==========================================================================
+   EŞYA ALMA
+   ========================================================================== */
+.eui-pickups { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.eui-pickup { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; text-shadow: var(--eui-hud-shadow); }
+.eui-pickup b { font-family: var(--eui-font-num); font-weight: 700; color: var(--eui-success); min-width: 28px; text-align: right; font-variant-numeric: tabular-nums; }
+.eui-pickup.is-neg b { color: var(--eui-danger); }
+.eui-pickup__icon { width: 30px; height: 30px; display: grid; place-items: center; background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-2); }
+.eui-pickup__icon .eui-i { width: 17px; height: 17px; }
+
+/* ==========================================================================
+   KAYAN YAZI
+   ========================================================================== */
+.eui-ticker { position: relative; display: flex; align-items: center; width: var(--w, 100%); height: 34px; overflow: hidden; background: var(--eui-surface); border-top: 1px solid var(--eui-line); border-bottom: 1px solid var(--eui-line); }
+.eui-ticker__label { position: relative; z-index: 1; height: 100%; display: flex; align-items: center; gap: 6px; padding: 0 14px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--eui-on-accent); background: var(--eui-accent); }
+.eui-ticker__track { display: flex; gap: 48px; padding-left: 24px; white-space: nowrap; font-size: 13px; color: var(--eui-text-2); animation: eui-marquee var(--speed, 30s) linear infinite; }
+.eui-ticker__track b { color: var(--eui-text); }
+@keyframes eui-marquee { to { transform: translateX(-50%); } }
+
+/* ==========================================================================
+   GERİ SAYIM (3-2-1-BAŞLA)
+   ========================================================================== */
+.eui-countdown { font-family: var(--eui-font-display); font-weight: 700; font-size: 180px; line-height: 1; color: var(--eui-text); text-shadow: 0 0 calc(40px * var(--eui-glow-a)) var(--eui-accent), 0 4px 12px rgb(0 0 0 / .8); animation: eui-count 1s var(--eui-ease-out) both; }
+.eui-countdown.is-go { color: var(--eui-accent); font-size: 130px; letter-spacing: .04em; text-transform: var(--eui-display-case); }
+@keyframes eui-count { 0% { opacity: 0; transform: scale(1.8); } 20% { opacity: 1; transform: scale(1); } 80% { opacity: 1; } 100% { opacity: 0; transform: scale(.85); } }

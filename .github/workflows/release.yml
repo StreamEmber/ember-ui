@@ -1,6 +1,6 @@
 # v* etiketi itildiğinde: etiketteki dist/ doğru mu denetle, GitHub Release aç.
 # Dağıtım npm değil, doğrudan bu etiketten jsDelivr:
-#   https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v<sürüm>/dist/mhud.min.css
+#   https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v<sürüm>/dist/ember-ui.min.css
 # Etiket `npm version x.y.z` ile oluşturulur (dist/ commit'e girer), sonra: git push --follow-tags
 name: Release
 
@@ -42,6 +42,6 @@ jobs:
           generate_release_notes: true
           body: |
             ```html
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@${{ github.ref_name }}/dist/mhud.min.css">
-            <script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@${{ github.ref_name }}/dist/mhud.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@${{ github.ref_name }}/dist/ember-ui.min.css">
+            <script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@${{ github.ref_name }}/dist/ember-ui.min.js"></script>
             ```

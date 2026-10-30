@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Ember UI — yayıncı katmanı
+   İzleyici oylaması, hedef çubuğu, en çok destekleyenler, canlı istatistik,
+   olay kuyruğu, beğeni patlaması, komut ipuçları.
+   ========================================================================== */
+
+/* ==========================================================================
+   İZLEYİCİ OYLAMASI
+   ========================================================================== */
+.eui-vote { width: var(--w, 360px); }
+.eui-vote__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 14px 16px 12px; }
+.eui-vote__q { font-size: 16px; font-weight: 600; line-height: 1.3; margin-top: 3px; }
+.eui-vote__opts { display: flex; flex-direction: column; gap: 6px; padding: 0 12px 12px; }
+.eui-opt { --tone-rgb: var(--eui-accent-rgb); position: relative; display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 12px 0 8px; border-radius: var(--eui-r-2); overflow: hidden; background: var(--eui-raise); }
+.eui-opt__fill { position: absolute; inset: 0; transform-origin: left; transform: scaleX(var(--v, 0)); background: linear-gradient(90deg, rgb(var(--tone-rgb) / .32), rgb(var(--tone-rgb) / .14)); transition: transform .6s var(--eui-ease); }
+.eui-opt > * { position: relative; }
+.eui-opt__cmd { min-width: 26px; height: 22px; padding: 0 6px; display: grid; place-items: center; font-family: var(--eui-font-mono); font-size: 12px; font-weight: 700; color: rgb(var(--tone-rgb)); background: rgb(0 0 0 / .35); border-radius: var(--eui-r-1); }
+.eui-opt__label { flex: 1; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-opt__pct { font-family: var(--eui-font-num); font-size: 15px; font-weight: 700; color: rgb(var(--tone-rgb)); font-variant-numeric: tabular-nums; }
+.eui-opt.is-leading { box-shadow: inset 0 0 0 1px rgb(var(--tone-rgb) / .6); }
+.eui-opt.is-winner { box-shadow: inset 0 0 0 2px rgb(var(--tone-rgb)); }
+.eui-opt.is-winner .eui-opt__label::after { content: " ✓"; color: rgb(var(--tone-rgb)); }
+.eui-vote__foot { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-top: 1px solid var(--eui-line-soft); font-size: 12px; color: var(--eui-text-3); }
+.eui-vote__foot b { color: var(--eui-text); font-family: var(--eui-font-num); }
+.eui-vote__timer { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--eui-accent); transform-origin: left; }
+
+/* ==========================================================================
+   HEDEF ÇUBUĞU (beğeni / hediye hedefi)
+   ========================================================================== */
+.eui-goal { width: var(--w, 420px); display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; }
+.eui-goal__head { display: flex; align-items: center; gap: 10px; }
+.eui-goal__icon { width: 30px; height: 30px; display: grid; place-items: center; border-radius: var(--eui-r-2); color: var(--eui-on-accent); background: var(--eui-accent); }
+.eui-goal__icon .eui-i { width: 17px; height: 17px; }
+.eui-goal__title { flex: 1; font-size: 14px; font-weight: 600; }
+.eui-goal__count { font-family: var(--eui-font-num); font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.eui-goal__count span { color: var(--eui-text-3); }
+.eui-goal .eui-bar { --h: 10px; --eui-bar-r: 5px; }
+.eui-goal .eui-bar__fill { background: linear-gradient(90deg, var(--eui-accent), var(--eui-accent-2)); }
+.eui-goal .eui-bar__fill::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, rgb(255 255 255 / .16) 0 6px, transparent 6px 12px); animation: eui-stripes 1s linear infinite; background-size: 17px 17px; }
+@keyframes eui-stripes { to { background-position: 17px 0; } }
+.eui-goal__marks { display: flex; justify-content: space-between; font-size: 11px; color: var(--eui-text-3); }
+.eui-goal__reward { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--eui-text-2); }
+.eui-goal__reward .eui-i { width: 14px; height: 14px; color: var(--eui-accent); }
+
+/* ==========================================================================
+   EN ÇOK DESTEKLEYENLER
+   ========================================================================== */
+.eui-leader { width: var(--w, 300px); }
+.eui-leader__row { display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 10px; padding: 8px 14px; }
+.eui-leader__row + .eui-leader__row { border-top: 1px solid var(--eui-line-soft); }
+.eui-leader__name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-leader__val { display: flex; align-items: center; gap: 5px; font-family: var(--eui-font-num); font-size: 14px; font-weight: 600; color: rgb(var(--eui-gold-rgb)); }
+.eui-leader__val .eui-i { width: 13px; height: 13px; }
+.eui-leader__row.is-new { animation: eui-row-flash 1.4s var(--eui-ease) both; }
+@keyframes eui-row-flash { from { background: var(--eui-accent-soft); } }
+
+/* ==========================================================================
+   CANLI İSTATİSTİK ŞERİDİ
+   ========================================================================== */
+.eui-livestats { display: flex; align-items: stretch; gap: 0; padding: 0; }
+.eui-livestat { display: flex; align-items: center; gap: 10px; padding: 10px 16px; }
+.eui-livestat + .eui-livestat { border-left: 1px solid var(--eui-line-soft); }
+.eui-livestat > .eui-i { width: 20px; height: 20px; color: rgb(var(--tone-rgb, var(--eui-text-rgb))); }
+.eui-livestat div { display: flex; flex-direction: column; gap: 1px; }
+.eui-livestat b { font-family: var(--eui-font-num); font-size: 18px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.eui-livestat .eui-kicker { font-size: 9.5px; }
+.eui-onair { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; font-size: 11px; font-weight: 800; letter-spacing: .14em; color: #fff; background: rgb(var(--eui-danger-rgb)); border-radius: var(--eui-r-1); }
+.eui-onair::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; animation: eui-blink 1.2s steps(2, jump-none) infinite; }
+
+/* ==========================================================================
+   OLAY KUYRUĞU (sıradaki gelen hediye etkileri)
+   ========================================================================== */
+.eui-queue { width: var(--w, 300px); }
+.eui-queue__item { display: flex; align-items: center; gap: 10px; padding: 8px 14px; font-size: 13px; }
+.eui-queue__item + .eui-queue__item { border-top: 1px solid var(--eui-line-soft); }
+.eui-queue__item .eui-i { width: 16px; height: 16px; color: rgb(var(--tone-rgb, var(--eui-accent-rgb))); }
+.eui-queue__item span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-queue__item small { font-family: var(--eui-font-num); font-size: 12px; color: var(--eui-text-3); }
+.eui-queue__item.is-running { background: linear-gradient(90deg, var(--eui-accent-soft), transparent); }
+.eui-queue__item.is-running small { color: var(--eui-accent); }
+
+/* ==========================================================================
+   BEĞENİ PATLAMASI (yüzen kalpler)
+   ========================================================================== */
+.eui-likes { position: relative; width: 120px; height: 320px; pointer-events: none; }
+.eui-like { position: absolute; bottom: 0; left: 50%; color: rgb(var(--tone-rgb, 254 44 85)); animation: eui-like-rise var(--d, 2.6s) var(--eui-ease) both; }
+.eui-like .eui-i { width: var(--s, 28px); height: var(--s, 28px); filter: drop-shadow(0 2px 4px rgb(0 0 0 / .5)); }
+@keyframes eui-like-rise {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(.4); }
+  10% { opacity: 1; transform: translate(-50%, -20px) scale(1); }
+  50% { transform: translate(calc(-50% + var(--x1, 20px)), -150px) scale(1); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x2, -16px)), -310px) scale(.85); }
+}
+
+/* ==========================================================================
+   KOMUT İPUÇLARI (sohbet komutları)
+   ========================================================================== */
+.eui-commands { display: flex; flex-direction: column; gap: 6px; }
+.eui-command { display: flex; align-items: center; gap: 10px; font-size: 13px; text-shadow: var(--eui-hud-shadow); }
+.eui-command code { padding: 2px 7px; font-family: var(--eui-font-mono); font-size: 12px; font-weight: 700; color: var(--eui-accent); background: rgb(0 0 0 / .45); border: 1px solid var(--eui-accent-line); border-radius: var(--eui-r-1); text-shadow: none; }
+.eui-command .eui-gift-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px 2px 4px; font-size: 12px; font-weight: 600; background: rgb(0 0 0 / .45); border: 1px solid var(--eui-line); border-radius: var(--eui-r-pill); text-shadow: none; }
+
+/* ==========================================================================
+   YAYINCI KARTI (oyuncu = yayıncı)
+   ========================================================================== */
+.eui-streamer { display: flex; align-items: center; gap: 12px; padding: 8px 14px 8px 8px; }
+.eui-streamer__name { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; }
+.eui-streamer__name .eui-i { width: 15px; height: 15px; color: var(--eui-info); }
+.eui-streamer__meta { display: flex; gap: 12px; font-size: 12px; color: var(--eui-text-2); }
+.eui-streamer__meta span { display: inline-flex; align-items: center; gap: 4px; }
+.eui-streamer__meta .eui-i { width: 13px; height: 13px; }

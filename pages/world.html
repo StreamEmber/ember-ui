@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dünya katmanı — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Dünya katmanı — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 <style>
   .demo-figs { position: absolute; inset: 0; pointer-events: none; }
@@ -14,43 +14,43 @@
   .demo-crate { position: absolute; width: 120px; height: 90px; background: linear-gradient(#3a2d22, #261c15); border: 3px solid #1b140f; box-shadow: inset 0 0 0 6px rgb(0 0 0 / .2); }
 </style>
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Oyun içi HUD</span>
     <h1>Dünya katmanı</h1>
-    <p>Kafa üstü etiketleri, hedef işaretçileri ve nesne istemleri. <code>MH.Nametags('#world')</code> düğüm havuzu tutar, konumu yalnızca <code>translate3d</code> ile yazar ve sadece değişen etiketi yeniden çizer (<code>sig</code> alanı). Lua tarafı ekran koordinatlarını 0–1 aralığında gönderir.</p>
+    <p>Kafa üstü etiketleri, hedef işaretçileri ve nesne istemleri. <code>EUI.Nametags('#world')</code> düğüm havuzu tutar, konumu yalnızca <code>translate3d</code> ile yazar ve sadece değişen etiketi yeniden çizer (<code>sig</code> alanı). Lua tarafı ekran koordinatlarını 0–1 aralığında gönderir.</p>
   </header>
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
       <div class="demo-figs" id="figs"></div>
       <div class="demo-crate" style="left:1380px;top:820px"></div>
-      <div class="mh-screen" id="screen">
-        <div class="mh-world" id="world"></div>
-        <div class="mh-world" id="markers"></div>
+      <div class="eui-screen" id="screen">
+        <div class="eui-world" id="world"></div>
+        <div class="eui-world" id="markers"></div>
 
-        <div class="mh-wprompt" style="position:absolute;left:1430px;top:770px">
-          <span class="mh-wprompt__dot"></span>
-          <div class="mh-wprompt__card"><span class="mh-key">E</span>Sandığı aç</div>
+        <div class="eui-wprompt" style="position:absolute;left:1430px;top:770px">
+          <span class="eui-wprompt__dot"></span>
+          <div class="eui-wprompt__card"><span class="eui-key">E</span>Sandığı aç</div>
         </div>
 
-        <div class="mh-anchor mh-bc" style="bottom:150px;gap:10px">
-          <div class="mh-flex mh-gap-3" style="align-items:center">
-            <div class="mh-hold" data-mh-ring id="hold"><span class="mh-key mh-key--lg">E</span></div>
-            <div class="mh-col" style="gap:2px"><b style="font-size:15px">Basılı tut: Kilidi kır</b><span class="mh-sub">Maymuncuk · 3 adet</span></div>
+        <div class="eui-anchor eui-bc" style="bottom:150px;gap:10px">
+          <div class="eui-flex eui-gap-3" style="align-items:center">
+            <div class="eui-hold" data-eui-ring id="hold"><span class="eui-key eui-key--lg">E</span></div>
+            <div class="eui-col" style="gap:2px"><b style="font-size:15px">Basılı tut: Kilidi kır</b><span class="eui-sub">Maymuncuk · 3 adet</span></div>
           </div>
         </div>
-        <div class="mh-anchor mh-bc" data-mh="progress" style="bottom:60px"></div>
+        <div class="eui-anchor eui-bc" data-eui="progress" style="bottom:60px"></div>
 
-        <div class="mh-anchor mh-tl">
-          <div class="mh-panel mh-pad-s" style="width:250px">
-            <span class="mh-kicker">Etiket ayarları</span>
-            <div class="mh-col mh-gap-2 mh-catch" style="margin-top:10px">
-              <label class="mh-toggle"><input type="checkbox" checked data-opt="bars"><span class="mh-toggle__track"></span>Can barları</label>
-              <label class="mh-toggle"><input type="checkbox" checked data-opt="sub"><span class="mh-toggle__track"></span>Alt bilgi</label>
-              <label class="mh-toggle"><input type="checkbox" checked data-opt="badges"><span class="mh-toggle__track"></span>Rozetler</label>
-              <label class="mh-toggle"><input type="checkbox" data-opt="compact"><span class="mh-toggle__track"></span>Kompakt</label>
+        <div class="eui-anchor eui-tl">
+          <div class="eui-panel eui-pad-s" style="width:250px">
+            <span class="eui-kicker">Etiket ayarları</span>
+            <div class="eui-col eui-gap-2 eui-catch" style="margin-top:10px">
+              <label class="eui-toggle"><input type="checkbox" checked data-opt="bars"><span class="eui-toggle__track"></span>Can barları</label>
+              <label class="eui-toggle"><input type="checkbox" checked data-opt="sub"><span class="eui-toggle__track"></span>Alt bilgi</label>
+              <label class="eui-toggle"><input type="checkbox" checked data-opt="badges"><span class="eui-toggle__track"></span>Rozetler</label>
+              <label class="eui-toggle"><input type="checkbox" data-opt="compact"><span class="eui-toggle__track"></span>Kompakt</label>
             </div>
           </div>
         </div>
@@ -69,53 +69,53 @@
   <div class="demo-h2"><h2>İsim etiketleri</h2><p>Durumlar ve varyantlar</p></div>
   <div class="demo-specs" style="--cols:4">
     <div class="demo-spec"><div class="demo-spec__view" style="--h:170px">
-      <div class="mh-tag is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span><span class="mh-tag__id">12</span><span class="mh-badge mh-t-success">Dost</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 38 · 24 M</div></div>
-    </div><div class="demo-spec__meta"><b>Dost</b><span><code>.mh-tag.is-friend</code></span></div></div>
+      <div class="eui-tag is-friend"><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span><span class="eui-tag__id">12</span><span class="eui-badge eui-t-success">Dost</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">SVY 38 · 24 M</div></div>
+    </div><div class="demo-spec__meta"><b>Dost</b><span><code>.eui-tag.is-friend</code></span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:170px">
-      <div class="mh-tag is-enemy"><div class="mh-tag__line"><i data-i="skull"></i><span class="mh-tag__name">Bandit #42</span><span class="mh-badge mh-t-danger">Düşman</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-danger" data-v="22"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Silahlı · 61 M</div></div>
-    </div><div class="demo-spec__meta"><b>Düşman</b><span><code>.mh-tag.is-enemy</code></span></div></div>
+      <div class="eui-tag is-enemy"><div class="eui-tag__line"><i data-i="skull"></i><span class="eui-tag__name">Bandit #42</span><span class="eui-badge eui-t-danger">Düşman</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-danger" data-v="22"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">Silahlı · 61 M</div></div>
+    </div><div class="demo-spec__meta"><b>Düşman</b><span><code>.eui-tag.is-enemy</code></span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:170px">
-      <div class="mh-tag is-talking mh-t-team4"><div class="mh-tag__bubble">!saldırı geliyorr 🔥</div><div class="mh-tag__line"><span class="mh-tag__voice"><i data-i="mic"></i></span><span class="mh-tag__name">Serkan_TV</span><span class="mh-badge mh-t-legendary">Yayıncı</span></div><div class="mh-tag__sub">4,2 B İZLEYİCİ</div></div>
-    </div><div class="demo-spec__meta"><b>Konuşuyor + balon</b><span><code>is-talking</code>, <code>.mh-tag__bubble</code> sohbet mesajı.</span></div></div>
+      <div class="eui-tag is-talking eui-t-team4"><div class="eui-tag__bubble">!saldırı geliyorr 🔥</div><div class="eui-tag__line"><span class="eui-tag__voice"><i data-i="mic"></i></span><span class="eui-tag__name">Serkan_TV</span><span class="eui-badge eui-t-legendary">Yayıncı</span></div><div class="eui-tag__sub">4,2 B İZLEYİCİ</div></div>
+    </div><div class="demo-spec__meta"><b>Konuşuyor + balon</b><span><code>is-talking</code>, <code>.eui-tag__bubble</code> sohbet mesajı.</span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:170px;gap:30px">
-      <div class="mh-tag is-dead"><div class="mh-tag__line"><i data-i="skull"></i><span class="mh-tag__name">MSK</span></div><div class="mh-tag__sub">Öldü · 0:08</div></div>
-      <div class="mh-tag mh-tag--compact mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">Deniz</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="60"><i class="mh-bar__fill"></i></div></div></div>
-    </div><div class="demo-spec__meta"><b>Ölü & kompakt</b><span><code>is-dead</code>, <code>.mh-tag--compact</code></span></div></div>
+      <div class="eui-tag is-dead"><div class="eui-tag__line"><i data-i="skull"></i><span class="eui-tag__name">MSK</span></div><div class="eui-tag__sub">Öldü · 0:08</div></div>
+      <div class="eui-tag eui-tag--compact eui-t-team1"><div class="eui-tag__line"><span class="eui-tag__name">Deniz</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="60"><i class="eui-bar__fill"></i></div></div></div>
+    </div><div class="demo-spec__meta"><b>Ölü & kompakt</b><span><code>is-dead</code>, <code>.eui-tag--compact</code></span></div></div>
   </div>
 
   <div class="demo-h2"><h2>İşaretçiler & istemler</h2><p>Hedef, nesne ve etkileşim</p></div>
   <div class="demo-specs">
     <div class="demo-spec"><div class="demo-spec__view" style="--h:200px;gap:40px">
-      <div class="mh-marker is-pulse"><span class="mh-marker__label">Teslimat</span><span class="mh-marker__pin"><i data-i="package"></i></span><span class="mh-marker__dist">320 m</span></div>
-      <div class="mh-marker mh-t-danger"><span class="mh-marker__label">Hedef</span><span class="mh-marker__pin"><i data-i="crosshair"></i></span><span class="mh-marker__dist">1,4 km</span></div>
-      <div class="mh-marker mh-t-team1"><span class="mh-marker__pin"><i data-i="user"></i></span><span class="mh-marker__dist">48 m</span></div>
-    </div><div class="demo-spec__meta"><b>İşaretçi</b><span><code>MH.Markers(world).update([{ x, y, icon, label, dist, tone, pulse }])</code></span></div></div>
+      <div class="eui-marker is-pulse"><span class="eui-marker__label">Teslimat</span><span class="eui-marker__pin"><i data-i="package"></i></span><span class="eui-marker__dist">320 m</span></div>
+      <div class="eui-marker eui-t-danger"><span class="eui-marker__label">Hedef</span><span class="eui-marker__pin"><i data-i="crosshair"></i></span><span class="eui-marker__dist">1,4 km</span></div>
+      <div class="eui-marker eui-t-team1"><span class="eui-marker__pin"><i data-i="user"></i></span><span class="eui-marker__dist">48 m</span></div>
+    </div><div class="demo-spec__meta"><b>İşaretçi</b><span><code>EUI.Markers(world).update([{ x, y, icon, label, dist, tone, pulse }])</code></span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:200px;gap:28px">
-      <div class="mh-wprompt"><span class="mh-wprompt__dot"></span><div class="mh-wprompt__card"><span class="mh-key">E</span>Kapıyı aç</div></div>
-      <div class="mh-wprompt is-far"><span class="mh-wprompt__dot"></span><div class="mh-wprompt__card">Gizli</div></div>
+      <div class="eui-wprompt"><span class="eui-wprompt__dot"></span><div class="eui-wprompt__card"><span class="eui-key">E</span>Kapıyı aç</div></div>
+      <div class="eui-wprompt is-far"><span class="eui-wprompt__dot"></span><div class="eui-wprompt__card">Gizli</div></div>
     </div><div class="demo-spec__meta"><b>Dünya istemi</b><span>Uzakta yalnız nokta (<code>is-far</code>), yaklaşınca tuş kartı açılır.</span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:200px">
-      <div class="mh-prompt">
-        <div class="mh-prompt__row"><span class="mh-key">E</span>Konuş</div>
-        <div class="mh-prompt__row"><span class="mh-key">G</span>Soy<small>Aranma +1</small></div>
-        <div class="mh-prompt__row"><span class="mh-key mh-key--solid">F</span>Tehdit et</div>
+      <div class="eui-prompt">
+        <div class="eui-prompt__row"><span class="eui-key">E</span>Konuş</div>
+        <div class="eui-prompt__row"><span class="eui-key">G</span>Soy<small>Aranma +1</small></div>
+        <div class="eui-prompt__row"><span class="eui-key eui-key--solid">F</span>Tehdit et</div>
       </div>
-    </div><div class="demo-spec__meta"><b>Etkileşim istemi</b><span><code>.mh-prompt__row</code> — <code>.mh-key--solid</code> birincil eylemi öne çıkarır.</span></div></div>
+    </div><div class="demo-spec__meta"><b>Etkileşim istemi</b><span><code>.eui-prompt__row</code> — <code>.eui-key--solid</code> birincil eylemi öne çıkarır.</span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:200px;gap:30px">
-      <div class="mh-hold" data-mh-ring style="--v:.65"><span class="mh-key mh-key--lg">E</span></div>
-      <div class="mh-hold mh-t-danger" data-mh-ring style="--v:.3"><span class="mh-key mh-key--lg">X</span></div>
-    </div><div class="demo-spec__meta"><b>Basılı tut halkası</b><span><code>MH.hold(el, { duration, onDone })</code> → <code>start()</code> / <code>stop()</code></span></div></div>
+      <div class="eui-hold" data-eui-ring style="--v:.65"><span class="eui-key eui-key--lg">E</span></div>
+      <div class="eui-hold eui-t-danger" data-eui-ring style="--v:.3"><span class="eui-key eui-key--lg">X</span></div>
+    </div><div class="demo-spec__meta"><b>Basılı tut halkası</b><span><code>EUI.hold(el, { duration, onDone })</code> → <code>start()</code> / <code>stop()</code></span></div></div>
     <div class="demo-spec demo-spec--2"><div class="demo-spec__view" style="--h:200px">
-      <div class="mh-panel mh-progress">
-        <div class="mh-progress__head"><i data-i="pick"></i><span class="mh-progress__label">Kasa kilidi açılıyor</span><span class="mh-progress__pct">62%</span></div>
-        <div class="mh-bar" data-v="62"><i class="mh-bar__fill"></i></div>
-        <div class="mh-progress__foot"><span>1,9 sn</span><span class="mh-hint"><span class="mh-key mh-key--sm">X</span>İptal</span></div>
+      <div class="eui-panel eui-progress">
+        <div class="eui-progress__head"><i data-i="pick"></i><span class="eui-progress__label">Kasa kilidi açılıyor</span><span class="eui-progress__pct">62%</span></div>
+        <div class="eui-bar" data-v="62"><i class="eui-bar__fill"></i></div>
+        <div class="eui-progress__foot"><span>1,9 sn</span><span class="eui-hint"><span class="eui-key eui-key--sm">X</span>İptal</span></div>
       </div>
-    </div><div class="demo-spec__meta"><b>İlerleme çubuğu</b><span><code>MH.progress({ label, icon, duration })</code> bir Promise döner: tamamlanınca <code>true</code>, <code>.cancel()</code> ile <code>false</code>.</span></div></div>
+    </div><div class="demo-spec__meta"><b>İlerleme çubuğu</b><span><code>EUI.progress({ label, icon, duration })</code> bir Promise döner: tamamlanınca <code>true</code>, <code>.cancel()</code> ile <code>false</code>.</span></div></div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   // Demo figürleri (dünyadaki oyuncular)
@@ -128,7 +128,7 @@
   var figs = document.getElementById('figs');
   P.forEach(function (p) { var f = document.createElement('div'); f.className = 'demo-fig'; f.style.left = p.x + 'px'; f.style.top = (p.y - 160 * p.s) + 'px'; f.style.transform = 'scale(' + p.s + ')'; f.style.width = '0'; f.style.height = '160px'; figs.appendChild(f); });
   var opts = { bars: true, sub: true, badges: true, compact: false };
-  var tags = MH.Nametags('#world', opts), t0 = performance.now();
+  var tags = EUI.Nametags('#world', opts), t0 = performance.now();
   function frame(t) {
     var k = (t - t0) / 1000;
     tags.update(P.map(function (p) {
@@ -142,33 +142,33 @@
   }
   requestAnimationFrame(frame);
   // işaretçiler
-  MH.Markers('#markers').update([
+  EUI.Markers('#markers').update([
     { id: 'm1', x: 980, y: 560, icon: 'package', label: 'Teslimat', dist: 320, pulse: true },
     { id: 'm2', x: 1800, y: 420, icon: 'crosshair', label: 'Hedef', dist: 1400, tone: 'danger' }
   ]);
   document.querySelectorAll('[data-opt]').forEach(function (c) {
     c.addEventListener('change', function () {
       opts[c.getAttribute('data-opt')] = c.checked;
-      tags.clear(); tags = MH.Nametags('#world', opts);
+      tags.clear(); tags = EUI.Nametags('#world', opts);
     });
   });
   // Basılı tut
-  var hold = MH.hold('#hold', { duration: 1400, onDone: function () { MH.toast({ tone: 'success', title: 'Kilit kırıldı', text: 'Sandık açıldı: +3 mühimmat kutusu', duration: 3000 }); setTimeout(hold.stop, 400); } });
+  var hold = EUI.hold('#hold', { duration: 1400, onDone: function () { EUI.toast({ tone: 'success', title: 'Kilit kırıldı', text: 'Sandık açıldı: +3 mühimmat kutusu', duration: 3000 }); setTimeout(hold.stop, 400); } });
   document.addEventListener('keydown', function (e) { if (e.key === 'e' || e.key === 'E') hold.start(); });
   document.addEventListener('keyup', function (e) { if (e.key === 'e' || e.key === 'E') hold.stop(); });
   var A = {
     hold: function () { hold.start(); setTimeout(function () { }, 1500); },
     progress: function () {
-      var p = MH.progress({ target: '[data-mh="progress"]', label: 'Kasa kilidi açılıyor', icon: 'pick', duration: 3200 });
-      p.then(function (ok) { MH.toast({ tone: ok ? 'success' : 'danger', title: ok ? 'Kilit açıldı' : 'İptal edildi', duration: 2500 }); });
+      var p = EUI.progress({ target: '[data-eui="progress"]', label: 'Kasa kilidi açılıyor', icon: 'pick', duration: 3200 });
+      p.then(function (ok) { EUI.toast({ tone: ok ? 'success' : 'danger', title: ok ? 'Kilit açıldı' : 'İptal edildi', duration: 2500 }); });
       window.__p = p;
     },
     talk: function () { P.forEach(function (p) { p.talking = Math.random() < .5; }); }
   };
   Demo.on('[data-act]', function (e) { A[e.currentTarget.getAttribute('data-act')](); });
   document.addEventListener('keydown', function (e) { if ((e.key === 'x' || e.key === 'X') && window.__p) window.__p.cancel(); });
-  var th = document.createElement('div'); th.className = 'mh-anchor mh-tr';
-  th.innerHTML = '<div class="mh-toasts" data-mh="toasts"></div>'; document.getElementById('screen').appendChild(th);
+  var th = document.createElement('div'); th.className = 'eui-anchor eui-tr';
+  th.innerHTML = '<div class="eui-toasts" data-eui="toasts"></div>'; document.getElementById('screen').appendChild(th);
 </script>
 </body>
 </html>

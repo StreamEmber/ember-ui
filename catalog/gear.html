@@ -1,84 +1,84 @@
 <!-- family: Ekipman | Silah ve cephane, yuva şeridi, envanter ızgarası, teçhizat ve kıyafet yuvaları, silah bakımı, mermi türleri, karşılaştırma. Ekip üyeleri için "Ekip" ailesine, satın alma için "Mağaza" ailesine bak. -->
 
-<section data-id="weapon" data-title="Silah paneli" data-use="Sağ alt köşe: silah adı, çizimi, şarjör/yedek, şarjör segmentleri, yan eşyalar. is-low şarjör kırmızı, is-reloading soluk." data-js="MH.pips(el.querySelector('.mh-pips'), 24, 30); el.querySelector('.mh-weapon__clip').textContent = 24">
-<div class="mh-weapon">
-  <div class="mh-weapon__name"><span class="mh-weapon__reload mh-hidden">Şarjör değişiyor</span><span class="mh-badge">Otomatik</span><span class="mh-kicker">Karabina tüfeği</span></div>
-  <div class="mh-weapon__main">
-    <i data-weapon="carbine" class="mh-weapon__art"></i>
-    <div class="mh-weapon__ammo"><span class="mh-weapon__clip">24</span><span class="mh-weapon__reserve">/ 180</span></div>
+<section data-id="weapon" data-title="Silah paneli" data-use="Sağ alt köşe: silah adı, çizimi, şarjör/yedek, şarjör segmentleri, yan eşyalar. is-low şarjör kırmızı, is-reloading soluk." data-js="EUI.pips(el.querySelector('.eui-pips'), 24, 30); el.querySelector('.eui-weapon__clip').textContent = 24">
+<div class="eui-weapon">
+  <div class="eui-weapon__name"><span class="eui-weapon__reload eui-hidden">Şarjör değişiyor</span><span class="eui-badge">Otomatik</span><span class="eui-kicker">Karabina tüfeği</span></div>
+  <div class="eui-weapon__main">
+    <i data-weapon="carbine" class="eui-weapon__art"></i>
+    <div class="eui-weapon__ammo"><span class="eui-weapon__clip">24</span><span class="eui-weapon__reserve">/ 180</span></div>
   </div>
-  <div class="mh-pips" data-pips="24/30" style="gap:2px"></div>
-  <div class="mh-weapon__extra"><span><i data-i="grenade"></i>3</span><span><i data-i="first-aid"></i>2</span><span><i data-i="bullets"></i>Zırh delici</span></div>
+  <div class="eui-pips" data-pips="24/30" style="gap:2px"></div>
+  <div class="eui-weapon__extra"><span><i data-i="grenade"></i>3</span><span><i data-i="first-aid"></i>2</span><span><i data-i="bullets"></i>Zırh delici</span></div>
 </div>
 </section>
 
 <section data-id="ammo" data-title="Mermi sayacı" data-use="Silah çizimi olmadan yalnız şarjör / yedek. is-low şarjörü kırmızıya çevirir." data-js="el.querySelector('b').textContent = 24">
-<div class="mh-flex mh-gap-5">
-  <div class="mh-ammo"><b>24</b><span>/ 180</span></div>
-  <div class="mh-ammo is-low"><b>3</b><span>/ 12</span></div>
+<div class="eui-flex eui-gap-5">
+  <div class="eui-ammo"><b>24</b><span>/ 180</span></div>
+  <div class="eui-ammo is-low"><b>3</b><span>/ 12</span></div>
 </div>
 </section>
 
-<section data-id="hotbar" data-title="Yuva şeridi" data-use="Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı. Dayanıklılık: yuvanın içine mh-slot__durability > i (--v yüzde)." data-js="el.children[0].classList.add('is-active')">
-<div class="mh-hotbar">
-  <div class="mh-slot is-active"><span class="mh-slot__key">1</span><i data-i="rifle"></i><span class="mh-slot__count">24</span></div>
-  <div class="mh-slot"><span class="mh-slot__key">2</span><i data-i="pistol"></i><span class="mh-slot__count">12</span></div>
-  <div class="mh-slot"><span class="mh-slot__key">3</span><i data-i="knife"></i></div>
-  <div class="mh-slot is-cooldown" style="--cd:.6"><span class="mh-slot__key">4</span><i data-i="grenade"></i><span class="mh-slot__count">3</span></div>
-  <div class="mh-slot is-empty"><span class="mh-slot__key">5</span><i data-i="box"></i></div>
+<section data-id="hotbar" data-title="Yuva şeridi" data-use="Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı. Dayanıklılık: yuvanın içine eui-slot__durability > i (--v yüzde)." data-js="el.children[0].classList.add('is-active')">
+<div class="eui-hotbar">
+  <div class="eui-slot is-active"><span class="eui-slot__key">1</span><i data-i="rifle"></i><span class="eui-slot__count">24</span></div>
+  <div class="eui-slot"><span class="eui-slot__key">2</span><i data-i="pistol"></i><span class="eui-slot__count">12</span></div>
+  <div class="eui-slot"><span class="eui-slot__key">3</span><i data-i="knife"></i></div>
+  <div class="eui-slot is-cooldown" style="--cd:.6"><span class="eui-slot__key">4</span><i data-i="grenade"></i><span class="eui-slot__count">3</span></div>
+  <div class="eui-slot is-empty"><span class="eui-slot__key">5</span><i data-i="box"></i></div>
 </div>
 </section>
 
 <section data-id="inventory" data-title="Envanter ızgarası" data-use="Eşya hücreleri; --cols sütun sayısı. Nadirlik is-rare|is-epic|is-legendary, seçili is-active." data-js="">
-<div class="mh-inv" style="--cols:6;width:300px">
-  <div class="mh-cell is-active"><span class="mh-cell__key">1</span><i data-i="rifle"></i><span class="mh-cell__count">1</span></div>
-  <div class="mh-cell is-rare"><span class="mh-cell__key">2</span><i data-i="pistol"></i><span class="mh-cell__count">1</span></div>
-  <div class="mh-cell"><span class="mh-cell__key">3</span><i data-i="knife"></i></div>
-  <div class="mh-cell is-epic"><span class="mh-cell__key">4</span><i data-i="grenade"></i><span class="mh-cell__count">4</span></div>
-  <div class="mh-cell"><i data-i="bullets"></i><span class="mh-cell__count">180</span></div>
-  <div class="mh-cell is-legendary"><i data-i="diamond"></i><span class="mh-cell__count">2</span></div>
+<div class="eui-inv" style="--cols:6;width:300px">
+  <div class="eui-cell is-active"><span class="eui-cell__key">1</span><i data-i="rifle"></i><span class="eui-cell__count">1</span></div>
+  <div class="eui-cell is-rare"><span class="eui-cell__key">2</span><i data-i="pistol"></i><span class="eui-cell__count">1</span></div>
+  <div class="eui-cell"><span class="eui-cell__key">3</span><i data-i="knife"></i></div>
+  <div class="eui-cell is-epic"><span class="eui-cell__key">4</span><i data-i="grenade"></i><span class="eui-cell__count">4</span></div>
+  <div class="eui-cell"><i data-i="bullets"></i><span class="eui-cell__count">180</span></div>
+  <div class="eui-cell is-legendary"><i data-i="diamond"></i><span class="eui-cell__count">2</span></div>
 </div>
 </section>
 
-<section data-id="loadout-slots" data-title="Teçhizat yuvaları" data-use="Kare görsel alanlı yuvalar: etiket (Birincil, İkincil…) + ad. --cols sütun, --ratio görsel oranı (silah için 16/9 iyi). is-active seçili, is-empty boş (kesik çerçeve). Görsel alanına ikon, data-weapon ya da img konur." data-js="el.querySelectorAll('.mh-gearslot')[1].classList.add('is-active')">
-<div class="mh-gearslots" style="--cols:4;width:440px">
-  <div class="mh-gearslot is-active"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-weapon="repeater"></i></div><span>Birincil</span><b>Lancaster tüfek</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-weapon="revolver"></i></div><span>İkincil</span><b>Cattleman</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-i="knife"></i></div><span>Yakın</span><b>Av bıçağı</b></div>
-  <div class="mh-gearslot is-empty"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-i="dynamite"></i></div><span>Atılabilir</span><b>Boş</b></div>
+<section data-id="loadout-slots" data-title="Teçhizat yuvaları" data-use="Kare görsel alanlı yuvalar: etiket (Birincil, İkincil…) + ad. --cols sütun, --ratio görsel oranı (silah için 16/9 iyi). is-active seçili, is-empty boş (kesik çerçeve). Görsel alanına ikon, data-weapon ya da img konur." data-js="el.querySelectorAll('.eui-gearslot')[1].classList.add('is-active')">
+<div class="eui-gearslots" style="--cols:4;width:440px">
+  <div class="eui-gearslot is-active"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-weapon="repeater"></i></div><span>Birincil</span><b>Lancaster tüfek</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-weapon="revolver"></i></div><span>İkincil</span><b>Cattleman</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-i="knife"></i></div><span>Yakın</span><b>Av bıçağı</b></div>
+  <div class="eui-gearslot is-empty"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-i="dynamite"></i></div><span>Atılabilir</span><b>Boş</b></div>
 </div>
 </section>
 
-<section data-id="outfit" data-title="Kıyafet ve binek yuvaları" data-use="Kare yuvalar: şapka, ceket, çanta, eyer gibi giyilen/takılan parçalar. Aynı .mh-gearslot; --cols ile 2x2 ya da tek sıra." data-js="—">
-<div class="mh-gearslots" style="--cols:4;width:360px">
-  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="hat"></i></div><span>Şapka</span><b>Kovboy</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="shield"></i></div><span>Yelek</span><b>Deri yelek</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="backpack"></i></div><span>Çanta</span><b>Heybe</b></div>
-  <div class="mh-gearslot is-empty"><div class="mh-gearslot__art"><i data-i="horseshoe"></i></div><span>Eyer</span><b>Yok</b></div>
+<section data-id="outfit" data-title="Kıyafet ve binek yuvaları" data-use="Kare yuvalar: şapka, ceket, çanta, eyer gibi giyilen/takılan parçalar. Aynı .eui-gearslot; --cols ile 2x2 ya da tek sıra." data-js="—">
+<div class="eui-gearslots" style="--cols:4;width:360px">
+  <div class="eui-gearslot"><div class="eui-gearslot__art"><i data-i="hat"></i></div><span>Şapka</span><b>Kovboy</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art"><i data-i="shield"></i></div><span>Yelek</span><b>Deri yelek</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art"><i data-i="backpack"></i></div><span>Çanta</span><b>Heybe</b></div>
+  <div class="eui-gearslot is-empty"><div class="eui-gearslot__art"><i data-i="horseshoe"></i></div><span>Eyer</span><b>Yok</b></div>
 </div>
 </section>
 
-<section data-id="condition" data-title="Silah bakımı" data-use="Silah durumu (kir/aşınma) barı: ikon, ad, yüzde; düşükse ton mh-t-warn / mh-t-danger. RDR2 tarzı temizlik hatırlatması için." data-js="MH.bar(el.querySelector('.mh-bar'), 42)">
-<div class="mh-col mh-gap-3">
-  <div class="mh-condition"><i data-i="wrench"></i><b>Lancaster tüfek</b><small>%86</small><div class="mh-bar mh-t-success" data-v="86"><i class="mh-bar__fill"></i></div></div>
-  <div class="mh-condition"><i data-i="wrench"></i><b>Cattleman · kirli</b><small>%34</small><div class="mh-bar mh-t-warn" data-v="34"><i class="mh-bar__fill"></i></div></div>
+<section data-id="condition" data-title="Silah bakımı" data-use="Silah durumu (kir/aşınma) barı: ikon, ad, yüzde; düşükse ton eui-t-warn / eui-t-danger. RDR2 tarzı temizlik hatırlatması için." data-js="EUI.bar(el.querySelector('.eui-bar'), 42)">
+<div class="eui-col eui-gap-3">
+  <div class="eui-condition"><i data-i="wrench"></i><b>Lancaster tüfek</b><small>%86</small><div class="eui-bar eui-t-success" data-v="86"><i class="eui-bar__fill"></i></div></div>
+  <div class="eui-condition"><i data-i="wrench"></i><b>Cattleman · kirli</b><small>%34</small><div class="eui-bar eui-t-warn" data-v="34"><i class="eui-bar__fill"></i></div></div>
 </div>
 </section>
 
 <section data-id="ammo-types" data-title="Mermi türleri" data-use="Mermi türü seçici: satır başına ikon, ad, adet. is-active seçili, is-empty tükenmiş." data-js="el.children[1].classList.add('is-active')">
-<div class="mh-ammotypes">
-  <div class="mh-ammotype is-active"><i data-i="bullets"></i><span>Normal</span><small>142</small></div>
-  <div class="mh-ammotype"><i data-i="bolt"></i><span>Hızlı</span><small>36</small></div>
-  <div class="mh-ammotype"><i data-i="flame"></i><span>Ateşli</span><small>12</small></div>
-  <div class="mh-ammotype is-empty"><i data-i="poison"></i><span>Zehirli</span><small>0</small></div>
+<div class="eui-ammotypes">
+  <div class="eui-ammotype is-active"><i data-i="bullets"></i><span>Normal</span><small>142</small></div>
+  <div class="eui-ammotype"><i data-i="bolt"></i><span>Hızlı</span><small>36</small></div>
+  <div class="eui-ammotype"><i data-i="flame"></i><span>Ateşli</span><small>12</small></div>
+  <div class="eui-ammotype is-empty"><i data-i="poison"></i><span>Zehirli</span><small>0</small></div>
 </div>
 </section>
 
-<section data-id="compare" data-title="Silah karşılaştırma" data-use="Satın almadan önce kuşanılı silahla fark: mh-statline; artış için .mh-bar__gain (--g yeni değer oranı) yeşil gösterilir." data-js="—">
-<div class="mh-statlines" style="width:300px">
-  <div class="mh-statline"><span class="mh-kicker">Hasar</span><div class="mh-bar" data-v="58"><i class="mh-bar__gain" style="--g:.74"></i><i class="mh-bar__fill"></i></div><b>74</b></div>
-  <div class="mh-statline"><span class="mh-kicker">Menzil</span><div class="mh-bar" data-v="62"><i class="mh-bar__gain" style="--g:.81"></i><i class="mh-bar__fill"></i></div><b>81</b></div>
-  <div class="mh-statline"><span class="mh-kicker">Atış hızı</span><div class="mh-bar" data-v="44"><i class="mh-bar__fill"></i></div><b>44</b></div>
-  <div class="mh-statline"><span class="mh-kicker">Doldurma</span><div class="mh-bar" data-v="38"><i class="mh-bar__fill"></i></div><b>38</b></div>
+<section data-id="compare" data-title="Silah karşılaştırma" data-use="Satın almadan önce kuşanılı silahla fark: eui-statline; artış için .eui-bar__gain (--g yeni değer oranı) yeşil gösterilir." data-js="—">
+<div class="eui-statlines" style="width:300px">
+  <div class="eui-statline"><span class="eui-kicker">Hasar</span><div class="eui-bar" data-v="58"><i class="eui-bar__gain" style="--g:.74"></i><i class="eui-bar__fill"></i></div><b>74</b></div>
+  <div class="eui-statline"><span class="eui-kicker">Menzil</span><div class="eui-bar" data-v="62"><i class="eui-bar__gain" style="--g:.81"></i><i class="eui-bar__fill"></i></div><b>81</b></div>
+  <div class="eui-statline"><span class="eui-kicker">Atış hızı</span><div class="eui-bar" data-v="44"><i class="eui-bar__fill"></i></div><b>44</b></div>
+  <div class="eui-statline"><span class="eui-kicker">Doldurma</span><div class="eui-bar" data-v="38"><i class="eui-bar__fill"></i></div><b>38</b></div>
 </div>
 </section>

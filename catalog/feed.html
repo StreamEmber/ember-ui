@@ -1,65 +1,65 @@
-<!-- family: Bildirim ve akış | Ekrana kısa süre düşen JS bileşenleri: toast, ölüm akışı, hediye, duyuru, görev şeridi, seviye atlama, başarım, eşya alma, geri sayım, altyazı, ilerleme. Hepsi tek çağrı; HTML yazılmaz. Kapsayıcıyı kendileri .mh-screen içinde açar. -->
+<!-- family: Bildirim ve akış | Ekrana kısa süre düşen JS bileşenleri: toast, ölüm akışı, hediye, duyuru, görev şeridi, seviye atlama, başarım, eşya alma, geri sayım, altyazı, ilerleme. Hepsi tek çağrı; HTML yazılmaz. Kapsayıcıyı kendileri .eui-screen içinde açar. -->
 
 <section data-id="toast" data-title="Toast" data-use="Köşe bildirimi: ton info|success|warn|danger|accent|legendary, süre ms (0 = kalıcı), en fazla 5 adet. text düz metindir; html: true ile HTML." data-run="1">
-MH.toast({ tone: 'success', title: 'Kaydedildi', text: 'Ayarların güncellendi.', meta: 'az önce', duration: 5000 });
+EUI.toast({ tone: 'success', title: 'Kaydedildi', text: 'Ayarların güncellendi.', meta: 'az önce', duration: 5000 });
 </section>
 
 <section data-id="toast-action" data-title="Toast + eylem" data-use="Düğmeli bildirim (davet, onay). actions: [{ label, key, primary, onClick }]; düğmeye basınca kapanır." data-run="1">
-MH.toast({ tone: 'accent', icon: 'user-plus', title: 'Ekip daveti', text: '<b>NabeMedia</b> seni ekibine davet ediyor.', html: true, duration: 9000, actions: [{ label: 'Kabul et', key: 'Y', primary: true }, { label: 'Reddet', key: 'N' }] });
+EUI.toast({ tone: 'accent', icon: 'user-plus', title: 'Ekip daveti', text: '<b>NabeMedia</b> seni ekibine davet ediyor.', html: true, duration: 9000, actions: [{ label: 'Kabul et', key: 'Y', primary: true }, { label: 'Reddet', key: 'N' }] });
 </section>
 
 <section data-id="kill" data-title="Ölüm akışı" data-use="Sağ üst akış satırı: öldüren, silah, ölen. self: true senin öldürmen (vurgulu), death: true senin ölümün (kırmızı), headshot: true. weapon: silah çizim adı." data-run="1">
-MH.kill({ actor: 'Amiral Router', victim: 'Haydut', weapon: 'carbine', headshot: true, self: true });
+EUI.kill({ actor: 'Amiral Router', victim: 'Haydut', weapon: 'carbine', headshot: true, self: true });
 </section>
 
 <section data-id="gift" data-title="Hediye kartı" data-use="Yayın hediyesi: gönderen, hediye adı, art (emoji | 'i:ikon' | resim adresi), adet, coins, tier. Aynı key canlıyken gelirse yeni kart açılmaz, kombo sayacı zıplar." data-run="1">
-MH.gift({ key: 'lion', from: 'NabeMedia', name: 'Aslan', art: '🦁', count: 1, coins: 29999, tier: 'legendary' });
+EUI.gift({ key: 'lion', from: 'NabeMedia', name: 'Aslan', art: '🦁', count: 1, coins: 29999, tier: 'legendary' });
 </section>
 
 <section data-id="announce" data-title="Duyuru" data-use="Ekran ortası büyük duyuru: kicker, title, sub. Yeni dalga, tur başı gibi anlar için." data-run="1">
-MH.announce({ kicker: 'Yeni dalga', title: 'Dalga 8', sub: 'Zırhlı düşmanlar yaklaşıyor', duration: 3500 });
+EUI.announce({ kicker: 'Yeni dalga', title: 'Dalga 8', sub: 'Zırhlı düşmanlar yaklaşıyor', duration: 3500 });
 </section>
 
 <section data-id="banner" data-title="Görev şeridi" data-use="Görev sonu şeridi: ortadan genişler, ödüller sırayla düşer. fail: true başarısızlık." data-run="1">
-MH.banner({ title: 'Görev tamamlandı', sub: 'Konvoy baskını · 08:42', rewards: [{ value: '+$25.000', label: 'Ödeme', tone: 'success' }, { value: '+1.250', label: 'RP' }, { value: 'Altın', label: 'Derece', tone: 'gold' }] });
+EUI.banner({ title: 'Görev tamamlandı', sub: 'Konvoy baskını · 08:42', rewards: [{ value: '+$25.000', label: 'Ödeme', tone: 'success' }, { value: '+1.250', label: 'RP' }, { value: 'Altın', label: 'Derece', tone: 'gold' }] });
 </section>
 
 <section data-id="levelup" data-title="Seviye atlama" data-use="Seviye rozeti + açılan özellikler listesi." data-run="1">
-MH.levelUp({ level: 43, unlocks: ['Ağır zırh', '+1 envanter slotu'] });
+EUI.levelUp({ level: 43, unlocks: ['Ağır zırh', '+1 envanter slotu'] });
 </section>
 
 <section data-id="achievement" data-title="Başarım" data-use="Alt kenardan kayan başarım bildirimi: ad, puan, ikon." data-run="1">
-MH.achievement({ name: 'Keskin nişancı', points: '+50', icon: 'trophy' });
+EUI.achievement({ name: 'Keskin nişancı', points: '+50', icon: 'trophy' });
 </section>
 
 <section data-id="pickup" data-title="Eşya alma" data-use="Sol alt köşe kısa liste: ikon, ad, miktar. Negatif miktar kırmızı (harcama)." data-run="1">
-MH.pickup({ icon: 'bullets', name: 'Tüfek mermisi', amount: 30 });
+EUI.pickup({ icon: 'bullets', name: 'Tüfek mermisi', amount: 30 });
 </section>
 
 <section data-id="countdown" data-title="Geri sayım" data-use="Ekran ortasında 3-2-1 + go yazısı. onTick(n) her adımda çağrılır." data-run="1">
-MH.countdown(3, { go: 'Başla' });
+EUI.countdown(3, { go: 'Başla' });
 </section>
 
 <section data-id="subtitle" data-title="Altyazı" data-use="Alt orta konuşma altyazısı: speaker, text, color; boxed: true kutulu (parlak sahnelerde okunur)." data-run="1">
-MH.subtitle({ speaker: 'Lester', text: 'Kamyonu limana getir. Polis peşindeyse önce onlardan kurtul.', boxed: false });
+EUI.subtitle({ speaker: 'Lester', text: 'Kamyonu limana getir. Polis peşindeyse önce onlardan kurtul.', boxed: false });
 </section>
 
 <section data-id="progress" data-title="İlerleme çubuğu" data-use="İşlem çubuğu (arama, tamir, hack): label, icon, duration ms. Promise döner (bitince true, iptalde false); .cancel() iptal eder." data-run="1">
-MH.progress({ label: 'Kasa açılıyor', icon: 'lock', duration: 3000 }).then(function (ok) { console.log(ok ? 'bitti' : 'iptal'); });
+EUI.progress({ label: 'Kasa açılıyor', icon: 'lock', duration: 3000 }).then(function (ok) { console.log(ok ? 'bitti' : 'iptal'); });
 </section>
 
-<section data-id="chat" data-title="Sohbet" data-use="Oyun içi sohbet: mh-chat__log içinde mh-msg satırları (is-system sistem, __tag rozet, __name tonlu ad) + giriş. Yeni satırı log'a ekle; eskiyi sen sil (en fazla 50)." data-js="log.insertAdjacentHTML('beforeend', '&lt;div class=&quot;mh-msg&quot;&gt;…&lt;/div&gt;')">
-<div class="mh-chat">
-  <div class="mh-chat__log">
-    <div class="mh-msg is-system">Sunucuya hoş geldin.</div>
-    <div class="mh-msg"><span class="mh-msg__tag mh-t-danger">YETKİLİ</span><span class="mh-msg__name mh-t-danger">Amiral:</span>Etkinlik 5 dakika içinde başlıyor.</div>
-    <div class="mh-msg"><span class="mh-msg__name mh-t-team1">NabeMedia:</span>hazırız, B noktasındayız</div>
+<section data-id="chat" data-title="Sohbet" data-use="Oyun içi sohbet: eui-chat__log içinde eui-msg satırları (is-system sistem, __tag rozet, __name tonlu ad) + giriş. Yeni satırı log'a ekle; eskiyi sen sil (en fazla 50)." data-js="log.insertAdjacentHTML('beforeend', '&lt;div class=&quot;eui-msg&quot;&gt;…&lt;/div&gt;')">
+<div class="eui-chat">
+  <div class="eui-chat__log">
+    <div class="eui-msg is-system">Sunucuya hoş geldin.</div>
+    <div class="eui-msg"><span class="eui-msg__tag eui-t-danger">YETKİLİ</span><span class="eui-msg__name eui-t-danger">Amiral:</span>Etkinlik 5 dakika içinde başlıyor.</div>
+    <div class="eui-msg"><span class="eui-msg__name eui-t-team1">NabeMedia:</span>hazırız, B noktasındayız</div>
   </div>
-  <div class="mh-input-wrap mh-catch"><i data-i="chat"></i><input class="mh-input" placeholder="Mesaj yaz…"><span class="mh-key mh-key--sm">ENTER</span></div>
+  <div class="eui-input-wrap eui-catch"><i data-i="chat"></i><input class="eui-input" placeholder="Mesaj yaz…"><span class="eui-key eui-key--sm">ENTER</span></div>
 </div>
 </section>
 
 <section data-id="ticker" data-title="Kayan şerit" data-use="Alt kenarda sürekli kayan haber şeridi: etiket + __track içinde span'ler. Kesintisiz kayma için içeriği iki kez yaz." data-wide="1" data-js="—">
-<div class="mh-ticker" style="--w:640px"><span class="mh-ticker__label"><i data-i="broadcast" class="mh-i--sm"></i>Canlı</span>
-<div class="mh-ticker__track"><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30</span><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30</span></div></div>
+<div class="eui-ticker" style="--w:640px"><span class="eui-ticker__label"><i data-i="broadcast" class="eui-i--sm"></i>Canlı</span>
+<div class="eui-ticker__track"><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30</span><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30</span></div></div>
 </section>

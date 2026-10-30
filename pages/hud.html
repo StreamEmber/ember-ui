@@ -3,175 +3,175 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oyuncu HUD — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Oyuncu HUD — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 <style>
   .demo-player-arrow { position: absolute; left: 50%; top: 50%; width: 0; height: 0; border: 9px solid transparent; border-bottom: 16px solid #fff; transform: translate(-50%, -70%) rotate(20deg); filter: drop-shadow(0 1px 2px #000); }
 </style>
 </head>
-<body class="mh">
+<body class="eui">
 
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Oyun içi HUD</span>
     <h1>Oyuncu HUD'u</h1>
-    <p>Ekran kenarlarına yerleşen tam HUD. Aşağıdaki düğmeler gerçek API çağrılarıyla (<code>MH.bar</code>, <code>MH.money</code>, <code>MH.pips</code>…) değerleri sürer. Soldan tema değiştir: aynı işaretleme beş farklı dile bürünür; <b>Frontier</b>'da barların yerini RDR2 çekirdekleri alır.</p>
+    <p>Ekran kenarlarına yerleşen tam HUD. Aşağıdaki düğmeler gerçek API çağrılarıyla (<code>EUI.bar</code>, <code>EUI.money</code>, <code>EUI.pips</code>…) değerleri sürer. Soldan tema değiştir: aynı işaretleme beş farklı dile bürünür; <b>Frontier</b>'da barların yerini RDR2 çekirdekleri alır.</p>
   </header>
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
+      <div class="eui-screen" id="screen">
 
         <!-- Üst sol: görev -->
-        <div class="mh-anchor mh-tl">
-          <div class="mh-panel mh-objective" id="objective">
-            <div class="mh-objective__head">
+        <div class="eui-anchor eui-tl">
+          <div class="eui-panel eui-objective" id="objective">
+            <div class="eui-objective__head">
               <div>
-                <span class="mh-kicker mh-kicker--accent">Aktif görev</span>
-                <div class="mh-title" style="margin-top:4px">Konvoy baskını</div>
+                <span class="eui-kicker eui-kicker--accent">Aktif görev</span>
+                <div class="eui-title" style="margin-top:4px">Konvoy baskını</div>
               </div>
-              <span class="mh-badge mh-t-accent mh-num" id="obj-time">04:12</span>
+              <span class="eui-badge eui-t-accent eui-num" id="obj-time">04:12</span>
             </div>
-            <div class="mh-objective__steps" id="steps">
-              <div class="mh-step is-done"><span class="mh-step__box"><i data-i="check"></i></span>Paleto Körfezi'ne ulaş</div>
-              <div class="mh-step is-active"><span class="mh-step__box"><i data-i="check"></i></span><span>Muhafızları etkisiz hale getir <b id="obj-count">3/8</b></span></div>
-              <div class="mh-step"><span class="mh-step__box"><i data-i="check"></i></span>Kamyonu ele geçir</div>
-              <div class="mh-step is-optional"><span class="mh-step__box"><i data-i="check"></i></span>Alarmı tetikleme</div>
+            <div class="eui-objective__steps" id="steps">
+              <div class="eui-step is-done"><span class="eui-step__box"><i data-i="check"></i></span>Paleto Körfezi'ne ulaş</div>
+              <div class="eui-step is-active"><span class="eui-step__box"><i data-i="check"></i></span><span>Muhafızları etkisiz hale getir <b id="obj-count">3/8</b></span></div>
+              <div class="eui-step"><span class="eui-step__box"><i data-i="check"></i></span>Kamyonu ele geçir</div>
+              <div class="eui-step is-optional"><span class="eui-step__box"><i data-i="check"></i></span>Alarmı tetikleme</div>
             </div>
-            <div class="mh-objective__foot">
-              <div class="mh-flex mh-between"><span class="mh-kicker">İlerleme</span><span class="mh-num mh-dim" style="font-size:12px" id="obj-pct">38%</span></div>
-              <div class="mh-bar mh-bar--sm" id="obj-bar" data-v="38"><i class="mh-bar__fill"></i></div>
+            <div class="eui-objective__foot">
+              <div class="eui-flex eui-between"><span class="eui-kicker">İlerleme</span><span class="eui-num eui-dim" style="font-size:12px" id="obj-pct">38%</span></div>
+              <div class="eui-bar eui-bar--sm" id="obj-bar" data-v="38"><i class="eui-bar__fill"></i></div>
             </div>
           </div>
         </div>
 
         <!-- Üst orta: pusula -->
-        <div class="mh-anchor mh-tc">
-          <div class="mh-compass" id="compass"></div>
+        <div class="eui-anchor eui-tc">
+          <div class="eui-compass" id="compass"></div>
         </div>
 
         <!-- Üst sağ: para, aranma, saat, etkiler -->
-        <div class="mh-anchor mh-tr" style="gap:10px">
-          <div class="mh-clock">
+        <div class="eui-anchor eui-tr" style="gap:10px">
+          <div class="eui-clock">
             <i data-i="sun"></i>
-            <span class="mh-clock__time" id="clock">21:14</span>
-            <span class="mh-clock__meta"><span>Açık · 24°C</span><span>Cumartesi</span></span>
+            <span class="eui-clock__time" id="clock">21:14</span>
+            <span class="eui-clock__meta"><span>Açık · 24°C</span><span>Cumartesi</span></span>
           </div>
-          <div class="mh-cash" id="cash">
-            <div class="mh-cash__value"><small>$</small><b data-cash>12.480</b></div>
-            <div class="mh-cash__bank"><i data-i="bank"></i><span>1.204.900</span></div>
+          <div class="eui-cash" id="cash">
+            <div class="eui-cash__value"><small>$</small><b data-cash>12.480</b></div>
+            <div class="eui-cash__bank"><i data-i="bank"></i><span>1.204.900</span></div>
           </div>
-          <div class="mh-wanted" id="wanted">
+          <div class="eui-wanted" id="wanted">
             <i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f"></i><i data-i="star-f"></i><i data-i="star-f"></i>
           </div>
-          <div class="mh-effects" style="margin-top:6px">
-            <div class="mh-effect" style="--v:.72"><i data-i="shield-f"></i><span class="mh-effect__time">0:43</span></div>
-            <div class="mh-effect" style="--v:.4"><i data-i="run"></i><span class="mh-effect__time">0:18</span><span class="mh-effect__stack">2</span></div>
-            <div class="mh-effect is-debuff" style="--v:.85"><i data-i="flame"></i><span class="mh-effect__time">0:06</span></div>
+          <div class="eui-effects" style="margin-top:6px">
+            <div class="eui-effect" style="--v:.72"><i data-i="shield-f"></i><span class="eui-effect__time">0:43</span></div>
+            <div class="eui-effect" style="--v:.4"><i data-i="run"></i><span class="eui-effect__time">0:18</span><span class="eui-effect__stack">2</span></div>
+            <div class="eui-effect is-debuff" style="--v:.85"><i data-i="flame"></i><span class="eui-effect__time">0:06</span></div>
           </div>
         </div>
 
         <!-- Sol orta: ekip -->
-        <div class="mh-anchor mh-ml" style="margin-top:40px">
-          <div class="mh-party">
-            <div class="mh-member is-talking">
-              <span class="mh-avatar mh-avatar--sm mh-t-team1">N</span>
-              <div class="mh-member__name"><i data-i="crown-f" style="color:var(--mh-warn)"></i><span>NabeMedia</span></div>
-              <span class="mh-member__dist">24 m</span>
-              <div class="mh-member__bars"><div class="mh-bar mh-t-health" data-v="86"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="40"><i class="mh-bar__fill"></i></div></div>
+        <div class="eui-anchor eui-ml" style="margin-top:40px">
+          <div class="eui-party">
+            <div class="eui-member is-talking">
+              <span class="eui-avatar eui-avatar--sm eui-t-team1">N</span>
+              <div class="eui-member__name"><i data-i="crown-f" style="color:var(--eui-warn)"></i><span>NabeMedia</span></div>
+              <span class="eui-member__dist">24 m</span>
+              <div class="eui-member__bars"><div class="eui-bar eui-t-health" data-v="86"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="40"><i class="eui-bar__fill"></i></div></div>
             </div>
-            <div class="mh-member">
-              <span class="mh-avatar mh-avatar--sm mh-t-team1">K</span>
-              <div class="mh-member__name"><span>MSK</span></div>
-              <span class="mh-member__dist">61 m</span>
-              <div class="mh-member__bars"><div class="mh-bar mh-t-health" data-v="54"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="0"><i class="mh-bar__fill"></i></div></div>
+            <div class="eui-member">
+              <span class="eui-avatar eui-avatar--sm eui-t-team1">K</span>
+              <div class="eui-member__name"><span>MSK</span></div>
+              <span class="eui-member__dist">61 m</span>
+              <div class="eui-member__bars"><div class="eui-bar eui-t-health" data-v="54"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="0"><i class="eui-bar__fill"></i></div></div>
             </div>
-            <div class="mh-member is-down">
-              <span class="mh-avatar mh-avatar--sm mh-t-danger">S</span>
-              <div class="mh-member__name"><i data-i="heartbeat"></i><span>Serkan_TV · yerde</span></div>
-              <span class="mh-member__dist">12 m</span>
-              <div class="mh-member__bars"><div class="mh-bar mh-t-danger" data-v="12"><i class="mh-bar__fill"></i></div></div>
+            <div class="eui-member is-down">
+              <span class="eui-avatar eui-avatar--sm eui-t-danger">S</span>
+              <div class="eui-member__name"><i data-i="heartbeat"></i><span>Serkan_TV · yerde</span></div>
+              <span class="eui-member__dist">12 m</span>
+              <div class="eui-member__bars"><div class="eui-bar eui-t-danger" data-v="12"><i class="eui-bar__fill"></i></div></div>
             </div>
           </div>
         </div>
 
         <!-- Sağ orta: eşya alma -->
-        <div class="mh-anchor mh-mr" style="margin-top:60px">
-          <div class="mh-pickups" id="pickups">
-            <div class="mh-pickup"><b>+30</b><span>Tüfek mermisi</span><span class="mh-pickup__icon"><i data-i="bullets"></i></span></div>
-            <div class="mh-pickup"><b>+1</b><span>İlk yardım çantası</span><span class="mh-pickup__icon"><i data-i="first-aid"></i></span></div>
+        <div class="eui-anchor eui-mr" style="margin-top:60px">
+          <div class="eui-pickups" id="pickups">
+            <div class="eui-pickup"><b>+30</b><span>Tüfek mermisi</span><span class="eui-pickup__icon"><i data-i="bullets"></i></span></div>
+            <div class="eui-pickup"><b>+1</b><span>İlk yardım çantası</span><span class="eui-pickup__icon"><i data-i="first-aid"></i></span></div>
           </div>
         </div>
 
         <!-- Orta: nişangâh -->
-        <div class="mh-anchor mh-mc"><div class="mh-crosshair" id="cross"><i></i><i></i><i></i><i></i><b></b></div></div>
+        <div class="eui-anchor eui-mc"><div class="eui-crosshair" id="cross"><i></i><i></i><i></i><i></i><b></b></div></div>
 
         <!-- Alt sol: minimap + yaşam -->
-        <div class="mh-anchor mh-bl" style="gap:10px">
-          <div class="mh-flex mh-gap-4" style="align-items:flex-end">
-            <div class="mh-col mh-gap-3">
-              <div class="mh-minimap">
-                <div class="mh-minimap__map"><img class="demo-map" alt="" src="../demo/scenes/minimap.svg" style="width:100%;height:100%;object-fit:cover"><span class="demo-player-arrow"></span></div>
-                <div class="mh-minimap__frame"></div>
-                <span class="mh-minimap__north">K</span>
-                <div class="mh-minimap__zone"><span>Vinewood Tepeleri</span><span class="mh-num">21:14</span></div>
+        <div class="eui-anchor eui-bl" style="gap:10px">
+          <div class="eui-flex eui-gap-4" style="align-items:flex-end">
+            <div class="eui-col eui-gap-3">
+              <div class="eui-minimap">
+                <div class="eui-minimap__map"><img class="demo-map" alt="" src="../demo/scenes/minimap.svg" style="width:100%;height:100%;object-fit:cover"><span class="demo-player-arrow"></span></div>
+                <div class="eui-minimap__frame"></div>
+                <span class="eui-minimap__north">K</span>
+                <div class="eui-minimap__zone"><span>Vinewood Tepeleri</span><span class="eui-num">21:14</span></div>
               </div>
-              <div class="mh-vitals">
-                <div class="mh-vitals__pair">
-                  <div class="mh-vital mh-t-health"><i data-i="heart-f"></i><div class="mh-bar" id="hp" data-v="82" data-critical="25"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val" id="hp-val">82</span></div>
-                  <div class="mh-vital mh-t-armor"><i data-i="shield-f"></i><div class="mh-bar" id="ar" data-v="45"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val" id="ar-val">45</span></div>
+              <div class="eui-vitals">
+                <div class="eui-vitals__pair">
+                  <div class="eui-vital eui-t-health"><i data-i="heart-f"></i><div class="eui-bar" id="hp" data-v="82" data-critical="25"><i class="eui-bar__ghost"></i><i class="eui-bar__fill"></i></div><span class="eui-vital__val" id="hp-val">82</span></div>
+                  <div class="eui-vital eui-t-armor"><i data-i="shield-f"></i><div class="eui-bar" id="ar" data-v="45"><i class="eui-bar__ghost"></i><i class="eui-bar__fill"></i></div><span class="eui-vital__val" id="ar-val">45</span></div>
                 </div>
-                <div class="mh-vital mh-t-stamina"><i data-i="bolt-f"></i><div class="mh-bar" data-v="68"><i class="mh-bar__fill"></i></div><span class="mh-vital__val">68</span></div>
+                <div class="eui-vital eui-t-stamina"><i data-i="bolt-f"></i><div class="eui-bar" data-v="68"><i class="eui-bar__fill"></i></div><span class="eui-vital__val">68</span></div>
               </div>
             </div>
-            <div class="mh-col mh-gap-4" style="padding-bottom:4px">
-              <div class="mh-needs mh-needs--vertical">
-                <div class="mh-need mh-t-hunger" data-mh-ring style="--v:.62"><i data-i="meat"></i></div>
-                <div class="mh-need mh-t-thirst" data-mh-ring style="--v:.35"><i data-i="droplet"></i></div>
-                <div class="mh-need mh-t-stress is-low" data-mh-ring style="--v:.18"><i data-i="brain"></i></div>
+            <div class="eui-col eui-gap-4" style="padding-bottom:4px">
+              <div class="eui-needs eui-needs--vertical">
+                <div class="eui-need eui-t-hunger" data-eui-ring style="--v:.62"><i data-i="meat"></i></div>
+                <div class="eui-need eui-t-thirst" data-eui-ring style="--v:.35"><i data-i="droplet"></i></div>
+                <div class="eui-need eui-t-stress is-low" data-eui-ring style="--v:.18"><i data-i="brain"></i></div>
               </div>
             </div>
-            <div class="mh-col mh-gap-3" style="padding-bottom:4px">
-              <div class="mh-location">
-                <span class="mh-location__dir" id="dir">KB</span>
-                <span class="mh-vrule"></span>
-                <div><div class="mh-location__street">Mirror Park Bulvarı</div><div class="mh-location__zone">East Vinewood · Los Santos</div></div>
+            <div class="eui-col eui-gap-3" style="padding-bottom:4px">
+              <div class="eui-location">
+                <span class="eui-location__dir" id="dir">KB</span>
+                <span class="eui-vrule"></span>
+                <div><div class="eui-location__street">Mirror Park Bulvarı</div><div class="eui-location__zone">East Vinewood · Los Santos</div></div>
               </div>
-              <div class="mh-voice-range is-talking" id="voice"><span class="mh-voice-range__bars"><i class="on"></i><i class="on"></i><i></i></span><span>Normal</span><span class="mh-eq"><i></i><i></i><i></i><i></i></span></div>
+              <div class="eui-voice-range is-talking" id="voice"><span class="eui-voice-range__bars"><i class="on"></i><i class="on"></i><i></i></span><span>Normal</span><span class="eui-eq"><i></i><i></i><i></i><i></i></span></div>
             </div>
           </div>
         </div>
 
         <!-- Alt orta: hızlı erişim + XP -->
-        <div class="mh-anchor mh-bc" style="gap:18px">
-          <div class="mh-hotbar" id="hotbar">
-            <div class="mh-slot is-active"><span class="mh-slot__key">1</span><i data-i="rifle"></i><span class="mh-slot__count">24</span></div>
-            <div class="mh-slot"><span class="mh-slot__key">2</span><i data-i="pistol"></i><span class="mh-slot__count">12</span></div>
-            <div class="mh-slot"><span class="mh-slot__key">3</span><i data-i="knife"></i></div>
-            <div class="mh-slot is-cooldown" style="--cd:.6"><span class="mh-slot__key">4</span><i data-i="grenade"></i><span class="mh-slot__count">3</span></div>
-            <div class="mh-slot"><span class="mh-slot__key">5</span><i data-i="first-aid"></i><span class="mh-slot__count">2</span></div>
-            <div class="mh-slot is-empty"><span class="mh-slot__key">6</span><i data-i="box"></i></div>
+        <div class="eui-anchor eui-bc" style="gap:18px">
+          <div class="eui-hotbar" id="hotbar">
+            <div class="eui-slot is-active"><span class="eui-slot__key">1</span><i data-i="rifle"></i><span class="eui-slot__count">24</span></div>
+            <div class="eui-slot"><span class="eui-slot__key">2</span><i data-i="pistol"></i><span class="eui-slot__count">12</span></div>
+            <div class="eui-slot"><span class="eui-slot__key">3</span><i data-i="knife"></i></div>
+            <div class="eui-slot is-cooldown" style="--cd:.6"><span class="eui-slot__key">4</span><i data-i="grenade"></i><span class="eui-slot__count">3</span></div>
+            <div class="eui-slot"><span class="eui-slot__key">5</span><i data-i="first-aid"></i><span class="eui-slot__count">2</span></div>
+            <div class="eui-slot is-empty"><span class="eui-slot__key">6</span><i data-i="box"></i></div>
           </div>
-          <div class="mh-xp" style="--w:440px">
-            <div class="mh-xp__level"><span id="lvl">42</span></div>
-            <div class="mh-xp__body">
-              <div class="mh-xp__meta"><span>Seviye 42 · <b id="xp-gain">+250 RP</b></span><span class="mh-num"><span id="xp-val">18.450</span> / 24.000</span></div>
-              <div class="mh-bar" id="xp" data-v="77"><i class="mh-bar__gain"></i><i class="mh-bar__fill"></i></div>
+          <div class="eui-xp" style="--w:440px">
+            <div class="eui-xp__level"><span id="lvl">42</span></div>
+            <div class="eui-xp__body">
+              <div class="eui-xp__meta"><span>Seviye 42 · <b id="xp-gain">+250 RP</b></span><span class="eui-num"><span id="xp-val">18.450</span> / 24.000</span></div>
+              <div class="eui-bar" id="xp" data-v="77"><i class="eui-bar__gain"></i><i class="eui-bar__fill"></i></div>
             </div>
           </div>
         </div>
 
         <!-- Alt sağ: silah -->
-        <div class="mh-anchor mh-br">
-          <div class="mh-weapon" id="weapon">
-            <div class="mh-weapon__name"><span class="mh-weapon__reload mh-hidden" id="reload">Şarjör değişiyor</span><span class="mh-badge" id="firemode">Otomatik</span><span class="mh-kicker">Karabina tüfeği</span></div>
-            <div class="mh-weapon__main">
-              <i data-weapon="carbine" class="mh-weapon__art"></i>
-              <div class="mh-weapon__ammo"><span class="mh-weapon__clip" id="clip">24</span><span class="mh-weapon__reserve">/ <span id="reserve">180</span></span></div>
+        <div class="eui-anchor eui-br">
+          <div class="eui-weapon" id="weapon">
+            <div class="eui-weapon__name"><span class="eui-weapon__reload eui-hidden" id="reload">Şarjör değişiyor</span><span class="eui-badge" id="firemode">Otomatik</span><span class="eui-kicker">Karabina tüfeği</span></div>
+            <div class="eui-weapon__main">
+              <i data-weapon="carbine" class="eui-weapon__art"></i>
+              <div class="eui-weapon__ammo"><span class="eui-weapon__clip" id="clip">24</span><span class="eui-weapon__reserve">/ <span id="reserve">180</span></span></div>
             </div>
-            <div class="mh-pips" id="clip-pips" data-pips="24/30" style="gap:2px"></div>
-            <div class="mh-weapon__extra"><span><i data-i="grenade"></i>3</span><span><i data-i="first-aid"></i>2</span><span><i data-i="bullets"></i>Zırh delici</span></div>
+            <div class="eui-pips" id="clip-pips" data-pips="24/30" style="gap:2px"></div>
+            <div class="eui-weapon__extra"><span><i data-i="grenade"></i>3</span><span><i data-i="first-aid"></i>2</span><span><i data-i="bullets"></i>Zırh delici</span></div>
           </div>
         </div>
 
@@ -199,77 +199,77 @@
   <div class="demo-h2"><h2>Yaşam göstergeleri</h2><p>Bar, çekirdek ve ihtiyaç halkaları</p></div>
   <div class="demo-specs">
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px">
-        <div class="mh-vitals">
-          <div class="mh-vitals__pair">
-            <div class="mh-vital mh-t-health"><i data-i="heart-f"></i><div class="mh-bar" data-v="74"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val">74</span></div>
-            <div class="mh-vital mh-t-armor"><i data-i="shield-f"></i><div class="mh-bar" data-v="100"><i class="mh-bar__fill"></i></div><span class="mh-vital__val">100</span></div>
+      <div class="demo-spec__view eui-col" style="--h:200px">
+        <div class="eui-vitals">
+          <div class="eui-vitals__pair">
+            <div class="eui-vital eui-t-health"><i data-i="heart-f"></i><div class="eui-bar" data-v="74"><i class="eui-bar__ghost"></i><i class="eui-bar__fill"></i></div><span class="eui-vital__val">74</span></div>
+            <div class="eui-vital eui-t-armor"><i data-i="shield-f"></i><div class="eui-bar" data-v="100"><i class="eui-bar__fill"></i></div><span class="eui-vital__val">100</span></div>
           </div>
-          <div class="mh-vital mh-t-stamina"><i data-i="bolt-f"></i><div class="mh-bar" data-v="45"><i class="mh-bar__fill"></i></div><span class="mh-vital__val">45</span></div>
-          <div class="mh-vital mh-t-oxygen"><i data-i="lungs"></i><div class="mh-bar" data-v="88"><i class="mh-bar__fill"></i></div><span class="mh-vital__val">88</span></div>
+          <div class="eui-vital eui-t-stamina"><i data-i="bolt-f"></i><div class="eui-bar" data-v="45"><i class="eui-bar__fill"></i></div><span class="eui-vital__val">45</span></div>
+          <div class="eui-vital eui-t-oxygen"><i data-i="lungs"></i><div class="eui-bar" data-v="88"><i class="eui-bar__fill"></i></div><span class="eui-vital__val">88</span></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Yaşam barları</b><span><code>.mh-vitals</code> › <code>.mh-vital.mh-t-health</code> › <code>.mh-bar</code>. Hasar alınca beyaz "hayalet" katman gecikmeli erir.</span></div>
+      <div class="demo-spec__meta"><b>Yaşam barları</b><span><code>.eui-vitals</code> › <code>.eui-vital.eui-t-health</code> › <code>.eui-bar</code>. Hasar alınca beyaz "hayalet" katman gecikmeli erir.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px">
-        <div class="mh-vitals mh-vitals--slim" style="--w:280px">
-          <div class="mh-vitals__pair">
-            <div class="mh-vital mh-t-health is-low"><i data-i="heart-f"></i><div class="mh-bar is-critical" data-v="18"><i class="mh-bar__ghost" style="transform:scaleX(.42)"></i><i class="mh-bar__fill"></i></div></div>
-            <div class="mh-vital mh-t-armor"><i data-i="shield-f"></i><div class="mh-bar" data-v="0"><i class="mh-bar__fill"></i></div></div>
+      <div class="demo-spec__view eui-col" style="--h:200px">
+        <div class="eui-vitals eui-vitals--slim" style="--w:280px">
+          <div class="eui-vitals__pair">
+            <div class="eui-vital eui-t-health is-low"><i data-i="heart-f"></i><div class="eui-bar is-critical" data-v="18"><i class="eui-bar__ghost" style="transform:scaleX(.42)"></i><i class="eui-bar__fill"></i></div></div>
+            <div class="eui-vital eui-t-armor"><i data-i="shield-f"></i><div class="eui-bar" data-v="0"><i class="eui-bar__fill"></i></div></div>
           </div>
         </div>
-        <div class="mh-vitals" style="--w:280px">
-          <div class="mh-vital mh-t-health is-low"><i data-i="heart-f"></i><div class="mh-bar is-critical" data-v="18"><i class="mh-bar__fill"></i></div><span class="mh-vital__val">18</span></div>
+        <div class="eui-vitals" style="--w:280px">
+          <div class="eui-vital eui-t-health is-low"><i data-i="heart-f"></i><div class="eui-bar is-critical" data-v="18"><i class="eui-bar__fill"></i></div><span class="eui-vital__val">18</span></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>İnce & kritik durum</b><span><code>.mh-vitals--slim</code> GTA'daki gibi yalın bloklar. <code>data-critical="25"</code> altında bar ve ikon nabız gibi atar.</span></div>
+      <div class="demo-spec__meta"><b>İnce & kritik durum</b><span><code>.eui-vitals--slim</code> GTA'daki gibi yalın bloklar. <code>data-critical="25"</code> altında bar ve ikon nabız gibi atar.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:200px">
-        <div class="mh-cores" style="gap:16px">
-          <div class="mh-core mh-t-health" data-mh-ring style="--v:.9;--core:.75"><span class="mh-core__fill"></span><i data-i="heart-f"></i></div>
-          <div class="mh-core mh-t-stamina" data-mh-ring style="--v:.55;--core:1"><span class="mh-core__fill"></span><i data-i="run"></i></div>
-          <div class="mh-core mh-t-special is-boosted" data-mh-ring style="--v:1;--core:.4"><span class="mh-core__fill"></span><i data-i="eye"></i></div>
-          <div class="mh-core mh-t-health is-low" data-mh-ring style="--v:.16;--core:.1"><span class="mh-core__fill"></span><i data-i="heart-f"></i></div>
+        <div class="eui-cores" style="gap:16px">
+          <div class="eui-core eui-t-health" data-eui-ring style="--v:.9;--core:.75"><span class="eui-core__fill"></span><i data-i="heart-f"></i></div>
+          <div class="eui-core eui-t-stamina" data-eui-ring style="--v:.55;--core:1"><span class="eui-core__fill"></span><i data-i="run"></i></div>
+          <div class="eui-core eui-t-special is-boosted" data-eui-ring style="--v:1;--core:.4"><span class="eui-core__fill"></span><i data-i="eye"></i></div>
+          <div class="eui-core eui-t-health is-low" data-eui-ring style="--v:.16;--core:.1"><span class="eui-core__fill"></span><i data-i="heart-f"></i></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Çekirdekler (RDR2)</b><span>Dış halka anlık değer, iç dolgu çekirdek. <code>MH.core(el, { value: 80, core: 60 })</code></span></div>
+      <div class="demo-spec__meta"><b>Çekirdekler (RDR2)</b><span>Dış halka anlık değer, iç dolgu çekirdek. <code>EUI.core(el, { value: 80, core: 60 })</code></span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:170px">
-        <div class="mh-needs">
-          <div class="mh-need mh-t-hunger" data-mh-ring style="--v:.7"><i data-i="meat"></i></div>
-          <div class="mh-need mh-t-thirst" data-mh-ring style="--v:.45"><i data-i="droplet"></i></div>
-          <div class="mh-need mh-t-stress" data-mh-ring style="--v:.3"><i data-i="brain"></i></div>
-          <div class="mh-need mh-t-oxygen" data-mh-ring style="--v:1"><i data-i="lungs"></i></div>
-          <div class="mh-need mh-t-warn" data-mh-ring style="--v:.55"><i data-i="thermometer"></i></div>
-          <div class="mh-need is-low" data-mh-ring style="--v:.12"><i data-i="moon"></i></div>
+        <div class="eui-needs">
+          <div class="eui-need eui-t-hunger" data-eui-ring style="--v:.7"><i data-i="meat"></i></div>
+          <div class="eui-need eui-t-thirst" data-eui-ring style="--v:.45"><i data-i="droplet"></i></div>
+          <div class="eui-need eui-t-stress" data-eui-ring style="--v:.3"><i data-i="brain"></i></div>
+          <div class="eui-need eui-t-oxygen" data-eui-ring style="--v:1"><i data-i="lungs"></i></div>
+          <div class="eui-need eui-t-warn" data-eui-ring style="--v:.55"><i data-i="thermometer"></i></div>
+          <div class="eui-need is-low" data-eui-ring style="--v:.12"><i data-i="moon"></i></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>İhtiyaçlar</b><span>Açlık, susuzluk, stres, oksijen, sıcaklık, uyku. <code>.mh-need.is-low</code> kırmızıya döner.</span></div>
+      <div class="demo-spec__meta"><b>İhtiyaçlar</b><span>Açlık, susuzluk, stres, oksijen, sıcaklık, uyku. <code>.eui-need.is-low</code> kırmızıya döner.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:170px">
-        <div class="mh-xp" style="--w:340px">
-          <div class="mh-xp__level"><span>42</span></div>
-          <div class="mh-xp__body">
-            <div class="mh-xp__meta"><span>Seviye 42 · <b>+250 RP</b></span><span class="mh-num">18.450 / 24.000</span></div>
-            <div class="mh-bar" data-v="77"><i class="mh-bar__gain" style="transform:scaleX(.82)"></i><i class="mh-bar__fill"></i></div>
+        <div class="eui-xp" style="--w:340px">
+          <div class="eui-xp__level"><span>42</span></div>
+          <div class="eui-xp__body">
+            <div class="eui-xp__meta"><span>Seviye 42 · <b>+250 RP</b></span><span class="eui-num">18.450 / 24.000</span></div>
+            <div class="eui-bar" data-v="77"><i class="eui-bar__gain" style="transform:scaleX(.82)"></i><i class="eui-bar__fill"></i></div>
           </div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Deneyim çubuğu</b><span><code>.mh-xp</code> — <code>.mh-bar__gain</code> yeni kazanılan kısmı soluk gösterir.</span></div>
+      <div class="demo-spec__meta"><b>Deneyim çubuğu</b><span><code>.eui-xp</code> — <code>.eui-bar__gain</code> yeni kazanılan kısmı soluk gösterir.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:170px;gap:14px">
-        <div class="mh-voice-range is-talking"><span class="mh-voice-range__bars"><i class="on"></i><i class="on"></i><i class="on"></i></span><span>Bağırma</span><span class="mh-eq"><i></i><i></i><i></i><i></i></span></div>
-        <div class="mh-voice">
-          <div class="mh-speaker"><i data-i="mic-f"></i>NabeMedia<span class="mh-eq"><i></i><i></i><i></i><i></i></span></div>
-          <div class="mh-speaker is-radio"><i data-i="broadcast"></i>MSK · Telsiz 1</div>
+      <div class="demo-spec__view eui-col" style="--h:170px;gap:14px">
+        <div class="eui-voice-range is-talking"><span class="eui-voice-range__bars"><i class="on"></i><i class="on"></i><i class="on"></i></span><span>Bağırma</span><span class="eui-eq"><i></i><i></i><i></i><i></i></span></div>
+        <div class="eui-voice">
+          <div class="eui-speaker"><i data-i="mic-f"></i>NabeMedia<span class="eui-eq"><i></i><i></i><i></i><i></i></span></div>
+          <div class="eui-speaker is-radio"><i data-i="broadcast"></i>MSK · Telsiz 1</div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Ses</b><span>Ses menzili (<code>.mh-voice-range</code>) ve konuşanlar listesi (<code>.mh-speaker</code>).</span></div>
+      <div class="demo-spec__meta"><b>Ses</b><span>Ses menzili (<code>.eui-voice-range</code>) ve konuşanlar listesi (<code>.eui-speaker</code>).</span></div>
     </div>
   </div>
 
@@ -277,38 +277,38 @@
   <div class="demo-specs">
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:290px;gap:34px">
-        <div class="mh-minimap" style="--w:260px;--h:170px">
-          <div class="mh-minimap__map"><img class="demo-map" alt="" src="../demo/scenes/minimap.svg" style="width:100%;height:100%;object-fit:cover"><span class="demo-player-arrow"></span></div>
-          <div class="mh-minimap__frame"></div><span class="mh-minimap__north">K</span>
-          <div class="mh-minimap__zone"><span>Sandy Shores</span><span class="mh-num">06:40</span></div>
+        <div class="eui-minimap" style="--w:260px;--h:170px">
+          <div class="eui-minimap__map"><img class="demo-map" alt="" src="../demo/scenes/minimap.svg" style="width:100%;height:100%;object-fit:cover"><span class="demo-player-arrow"></span></div>
+          <div class="eui-minimap__frame"></div><span class="eui-minimap__north">K</span>
+          <div class="eui-minimap__zone"><span>Sandy Shores</span><span class="eui-num">06:40</span></div>
         </div>
       </div>
       <div class="demo-spec__meta"><b>Minimap çerçevesi</b><span>İçi saydamdır: oyunun kendi minimap'i altta çizilir. <code>--w</code>/<code>--h</code> ile oyundaki minimap boyutuna eşitle.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:290px">
-        <div class="mh-minimap mh-minimap--round" style="--w:200px;--h:200px">
-          <div class="mh-minimap__map"><img class="demo-map" alt="" src="../demo/scenes/minimap.svg" style="width:100%;height:100%;object-fit:cover"><span class="demo-player-arrow"></span></div>
-          <div class="mh-minimap__frame"></div><span class="mh-minimap__north">K</span>
+        <div class="eui-minimap eui-minimap--round" style="--w:200px;--h:200px">
+          <div class="eui-minimap__map"><img class="demo-map" alt="" src="../demo/scenes/minimap.svg" style="width:100%;height:100%;object-fit:cover"><span class="demo-player-arrow"></span></div>
+          <div class="eui-minimap__frame"></div><span class="eui-minimap__north">K</span>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Yuvarlak minimap</b><span><code>.mh-minimap--round</code> — RP sunucularında yaygın dairesel harita.</span></div>
+      <div class="demo-spec__meta"><b>Yuvarlak minimap</b><span><code>.eui-minimap--round</code> — RP sunucularında yaygın dairesel harita.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:290px;gap:26px">
-        <div class="mh-location">
-          <span class="mh-location__dir">K</span><span class="mh-vrule"></span>
-          <div><div class="mh-location__street">Valentine</div><div class="mh-location__zone">Heartlands · New Hanover</div></div>
+      <div class="demo-spec__view eui-col" style="--h:290px;gap:26px">
+        <div class="eui-location">
+          <span class="eui-location__dir">K</span><span class="eui-vrule"></span>
+          <div><div class="eui-location__street">Valentine</div><div class="eui-location__zone">Heartlands · New Hanover</div></div>
         </div>
-        <div class="mh-clock"><i data-i="rain"></i><span class="mh-clock__time">06:40</span><span class="mh-clock__meta"><span>Yağmurlu · 11°C</span><span>Pazartesi</span></span></div>
+        <div class="eui-clock"><i data-i="rain"></i><span class="eui-clock__time">06:40</span><span class="eui-clock__meta"><span>Yağmurlu · 11°C</span><span>Pazartesi</span></span></div>
       </div>
-      <div class="demo-spec__meta"><b>Konum & saat</b><span><code>.mh-location</code> yön + sokak + bölge; <code>.mh-clock</code> saat, hava, gün.</span></div>
+      <div class="demo-spec__meta"><b>Konum & saat</b><span><code>.eui-location</code> yön + sokak + bölge; <code>.eui-clock</code> saat, hava, gün.</span></div>
     </div>
     <div class="demo-spec demo-spec--3">
       <div class="demo-spec__view" style="--h:130px">
-        <div class="mh-compass" id="compass2" style="--w:720px"></div>
+        <div class="eui-compass" id="compass2" style="--w:720px"></div>
       </div>
-      <div class="demo-spec__meta"><b>Pusula şeridi</b><span><code>MH.compass(el, yön, [{ bearing: 120, icon: 'pin-f', tone: 'accent' }])</code> — şerit yalnız transform ile kayar; hedefler şerit üstünde işaretlenir. Kart yön harfleri Türkçedir (K, D, G, B); <code>MH.cardinals()</code> ile değiştirilebilir.</span></div>
+      <div class="demo-spec__meta"><b>Pusula şeridi</b><span><code>EUI.compass(el, yön, [{ bearing: 120, icon: 'pin-f', tone: 'accent' }])</code> — şerit yalnız transform ile kayar; hedefler şerit üstünde işaretlenir. Kart yön harfleri Türkçedir (K, D, G, B); <code>EUI.cardinals()</code> ile değiştirilebilir.</span></div>
     </div>
   </div>
 
@@ -316,33 +316,33 @@
   <div class="demo-specs">
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:200px">
-        <div class="mh-cash" id="cash2">
-          <div class="mh-cash__value"><small>$</small><b data-cash>4.250</b></div>
-          <div class="mh-cash__bank"><i data-i="bank"></i><span>86.300</span></div>
+        <div class="eui-cash" id="cash2">
+          <div class="eui-cash__value"><small>$</small><b data-cash>4.250</b></div>
+          <div class="eui-cash__bank"><i data-i="bank"></i><span>86.300</span></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Para</b><span><code>MH.money('#cash', 5250)</code> sayarak geçer ve <code>+$1.000</code> farkını kısa süre gösterir. <a href="#" onclick="MH.money('#cash2', (document.querySelector('#cash2 [data-cash]').__val||4250) + 1000);return false">Dene</a></span></div>
+      <div class="demo-spec__meta"><b>Para</b><span><code>EUI.money('#cash', 5250)</code> sayarak geçer ve <code>+$1.000</code> farkını kısa süre gösterir. <a href="#" onclick="EUI.money('#cash2', (document.querySelector('#cash2 [data-cash]').__val||4250) + 1000);return false">Dene</a></span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px;gap:20px">
-        <div class="mh-wanted is-flashing"><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f"></i></div>
+      <div class="demo-spec__view eui-col" style="--h:200px;gap:20px">
+        <div class="eui-wanted is-flashing"><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f"></i></div>
       </div>
-      <div class="demo-spec__meta"><b>Aranma</b><span><code>.mh-wanted.is-flashing</code> polis arıyor.</span></div>
+      <div class="demo-spec__meta"><b>Aranma</b><span><code>.eui-wanted.is-flashing</code> polis arıyor.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px;gap:30px">
-        <div class="mh-effects">
-          <div class="mh-effect" style="--v:.9"><i data-i="shield-f"></i><span class="mh-effect__time">1:30</span></div>
-          <div class="mh-effect" style="--v:.5"><i data-i="bolt-f"></i><span class="mh-effect__time">0:20</span><span class="mh-effect__stack">3</span></div>
-          <div class="mh-effect mh-t-legendary" style="--v:.3"><i data-i="sparkles"></i><span class="mh-effect__time">0:09</span></div>
-          <div class="mh-effect is-debuff is-expiring" style="--v:.1"><i data-i="droplet-f"></i><span class="mh-effect__time">0:02</span></div>
+      <div class="demo-spec__view eui-col" style="--h:200px;gap:30px">
+        <div class="eui-effects">
+          <div class="eui-effect" style="--v:.9"><i data-i="shield-f"></i><span class="eui-effect__time">1:30</span></div>
+          <div class="eui-effect" style="--v:.5"><i data-i="bolt-f"></i><span class="eui-effect__time">0:20</span><span class="eui-effect__stack">3</span></div>
+          <div class="eui-effect eui-t-legendary" style="--v:.3"><i data-i="sparkles"></i><span class="eui-effect__time">0:09</span></div>
+          <div class="eui-effect is-debuff is-expiring" style="--v:.1"><i data-i="droplet-f"></i><span class="eui-effect__time">0:02</span></div>
         </div>
-        <div class="mh-col mh-gap-2" style="align-items:flex-end">
-          <div class="mh-effect-line mh-t-success"><span class="mh-kicker">Dokunulmaz</span><b>00:43</b></div>
-          <div class="mh-effect-line mh-t-danger"><span class="mh-kicker">Kanama</span><b>00:06</b></div>
+        <div class="eui-col eui-gap-2" style="align-items:flex-end">
+          <div class="eui-effect-line eui-t-success"><span class="eui-kicker">Dokunulmaz</span><b>00:43</b></div>
+          <div class="eui-effect-line eui-t-danger"><span class="eui-kicker">Kanama</span><b>00:06</b></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Etkiler</b><span>Simge (<code>.mh-effect</code>, <code>--v</code> kalan süre) ya da RDR2 tarzı metin satırı (<code>.mh-effect-line</code>).</span></div>
+      <div class="demo-spec__meta"><b>Etkiler</b><span>Simge (<code>.eui-effect</code>, <code>--v</code> kalan süre) ya da RDR2 tarzı metin satırı (<code>.eui-effect-line</code>).</span></div>
     </div>
   </div>
 
@@ -350,128 +350,128 @@
   <div class="demo-specs">
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:240px">
-        <div class="mh-weapon is-low">
-          <div class="mh-weapon__name"><span class="mh-badge mh-t-danger">Az mermi</span><span class="mh-kicker">Çift namlulu tüfek</span></div>
-          <div class="mh-weapon__main"><i data-weapon="shotgun" class="mh-weapon__art"></i><div class="mh-weapon__ammo"><span class="mh-weapon__clip">2</span><span class="mh-weapon__reserve">/ 8</span></div></div>
-          <div class="mh-pips" data-pips="2/8" style="width:140px"></div>
+        <div class="eui-weapon is-low">
+          <div class="eui-weapon__name"><span class="eui-badge eui-t-danger">Az mermi</span><span class="eui-kicker">Çift namlulu tüfek</span></div>
+          <div class="eui-weapon__main"><i data-weapon="shotgun" class="eui-weapon__art"></i><div class="eui-weapon__ammo"><span class="eui-weapon__clip">2</span><span class="eui-weapon__reserve">/ 8</span></div></div>
+          <div class="eui-pips" data-pips="2/8" style="width:140px"></div>
         </div>
       </div>
       <div class="demo-spec__meta"><b>Silah paneli</b><span>Silüetler: <code>carbine</code>, <code>smg</code>, <code>pistol</code>, <code>revolver</code>, <code>shotgun</code>, <code>repeater</code>, <code>sniper</code> — <code>&lt;i data-weapon="…"&gt;</code></span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:240px">
-        <div class="mh-weapon">
-          <div class="mh-weapon__name"><span class="mh-kicker">Cattleman tabancası</span></div>
-          <div class="mh-weapon__main"><i data-weapon="revolver" class="mh-weapon__art" style="width:110px"></i><div class="mh-weapon__ammo"><span class="mh-weapon__clip">6</span><span class="mh-weapon__reserve">/ 48</span></div></div>
-          <div class="mh-pips" data-pips="6/6" style="width:auto"></div>
+        <div class="eui-weapon">
+          <div class="eui-weapon__name"><span class="eui-kicker">Cattleman tabancası</span></div>
+          <div class="eui-weapon__main"><i data-weapon="revolver" class="eui-weapon__art" style="width:110px"></i><div class="eui-weapon__ammo"><span class="eui-weapon__clip">6</span><span class="eui-weapon__reserve">/ 48</span></div></div>
+          <div class="eui-pips" data-pips="6/6" style="width:auto"></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Tabanca</b><span>Mermi parçaları <code>MH.pips(el, 6, 6)</code>. Frontier temasında fişek gibi dikey çizgilere dönüşür.</span></div>
+      <div class="demo-spec__meta"><b>Tabanca</b><span>Mermi parçaları <code>EUI.pips(el, 6, 6)</code>. Frontier temasında fişek gibi dikey çizgilere dönüşür.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:240px">
-        <div class="mh-hotbar">
-          <div class="mh-slot"><span class="mh-slot__key">1</span><i data-i="pistol"></i><span class="mh-slot__count">12</span></div>
-          <div class="mh-slot is-active"><span class="mh-slot__key">2</span><i data-i="bow"></i><span class="mh-slot__count">18</span><span class="mh-slot__durability"><i style="--v:60%"></i></span></div>
-          <div class="mh-slot"><span class="mh-slot__key">3</span><i data-i="lantern"></i></div>
-          <div class="mh-slot is-cooldown" style="--cd:.35"><span class="mh-slot__key">4</span><i data-i="dynamite"></i><span class="mh-slot__count">2</span></div>
+        <div class="eui-hotbar">
+          <div class="eui-slot"><span class="eui-slot__key">1</span><i data-i="pistol"></i><span class="eui-slot__count">12</span></div>
+          <div class="eui-slot is-active"><span class="eui-slot__key">2</span><i data-i="bow"></i><span class="eui-slot__count">18</span><span class="eui-slot__durability"><i style="--v:60%"></i></span></div>
+          <div class="eui-slot"><span class="eui-slot__key">3</span><i data-i="lantern"></i></div>
+          <div class="eui-slot is-cooldown" style="--cd:.35"><span class="eui-slot__key">4</span><i data-i="dynamite"></i><span class="eui-slot__count">2</span></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Hızlı erişim</b><span><code>.mh-slot</code>: <code>is-active</code>, <code>is-cooldown</code> (<code>--cd</code>), <code>is-empty</code>, dayanıklılık çizgisi.</span></div>
+      <div class="demo-spec__meta"><b>Hızlı erişim</b><span><code>.eui-slot</code>: <code>is-active</code>, <code>is-cooldown</code> (<code>--cd</code>), <code>is-empty</code>, dayanıklılık çizgisi.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:300px">
-        <div class="mh-party">
-          <div class="mh-member"><span class="mh-avatar mh-avatar--sm mh-t-team1">AR</span><div class="mh-member__name"><i data-i="crown-f" style="color:var(--mh-warn)"></i><span>Amiral Router</span></div><span class="mh-member__dist">—</span><div class="mh-member__bars"><div class="mh-bar mh-t-health" data-v="100"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="60"><i class="mh-bar__fill"></i></div></div></div>
-          <div class="mh-member is-talking"><span class="mh-avatar mh-avatar--sm mh-t-team1">NM</span><div class="mh-member__name"><span>NabeMedia</span></div><span class="mh-member__dist">31 m</span><div class="mh-member__bars"><div class="mh-bar mh-t-health" data-v="64"><i class="mh-bar__fill"></i></div></div></div>
-          <div class="mh-member is-dead"><span class="mh-avatar mh-avatar--sm">MS</span><div class="mh-member__name"><i data-i="skull"></i><span>MSK</span></div><span class="mh-member__dist">88 m</span><div class="mh-member__bars"><div class="mh-bar" data-v="0"><i class="mh-bar__fill"></i></div></div></div>
+        <div class="eui-party">
+          <div class="eui-member"><span class="eui-avatar eui-avatar--sm eui-t-team1">AR</span><div class="eui-member__name"><i data-i="crown-f" style="color:var(--eui-warn)"></i><span>Amiral Router</span></div><span class="eui-member__dist">—</span><div class="eui-member__bars"><div class="eui-bar eui-t-health" data-v="100"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="60"><i class="eui-bar__fill"></i></div></div></div>
+          <div class="eui-member is-talking"><span class="eui-avatar eui-avatar--sm eui-t-team1">NM</span><div class="eui-member__name"><span>NabeMedia</span></div><span class="eui-member__dist">31 m</span><div class="eui-member__bars"><div class="eui-bar eui-t-health" data-v="64"><i class="eui-bar__fill"></i></div></div></div>
+          <div class="eui-member is-dead"><span class="eui-avatar eui-avatar--sm">MS</span><div class="eui-member__name"><i data-i="skull"></i><span>MSK</span></div><span class="eui-member__dist">88 m</span><div class="eui-member__bars"><div class="eui-bar" data-v="0"><i class="eui-bar__fill"></i></div></div></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Ekip listesi</b><span><code>.mh-member</code>: lider tacı, konuşma halkası, <code>is-down</code>, <code>is-dead</code>.</span></div>
+      <div class="demo-spec__meta"><b>Ekip listesi</b><span><code>.eui-member</code>: lider tacı, konuşma halkası, <code>is-down</code>, <code>is-dead</code>.</span></div>
     </div>
     <div class="demo-spec demo-spec--2">
       <div class="demo-spec__view" style="--h:300px">
-        <div class="mh-panel mh-objective" style="--w:340px">
-          <div class="mh-objective__head"><div><span class="mh-kicker mh-kicker--accent">Hikâye · Bölüm 3</span><div class="mh-title" style="margin-top:4px">Saint Denis soygunu</div></div><span class="mh-badge mh-t-danger">Zor</span></div>
-          <div class="mh-objective__steps">
-            <div class="mh-step is-done"><span class="mh-step__box"><i data-i="check"></i></span>Bankaya gir</div>
-            <div class="mh-step is-done"><span class="mh-step__box"><i data-i="check"></i></span>Kasayı patlat</div>
-            <div class="mh-step is-active"><span class="mh-step__box"><i data-i="check"></i></span><span>Altınları topla <b>4/6</b></span></div>
-            <div class="mh-step is-failed"><span class="mh-step__box"><i data-i="x"></i></span>Kimseyi öldürme</div>
+        <div class="eui-panel eui-objective" style="--w:340px">
+          <div class="eui-objective__head"><div><span class="eui-kicker eui-kicker--accent">Hikâye · Bölüm 3</span><div class="eui-title" style="margin-top:4px">Saint Denis soygunu</div></div><span class="eui-badge eui-t-danger">Zor</span></div>
+          <div class="eui-objective__steps">
+            <div class="eui-step is-done"><span class="eui-step__box"><i data-i="check"></i></span>Bankaya gir</div>
+            <div class="eui-step is-done"><span class="eui-step__box"><i data-i="check"></i></span>Kasayı patlat</div>
+            <div class="eui-step is-active"><span class="eui-step__box"><i data-i="check"></i></span><span>Altınları topla <b>4/6</b></span></div>
+            <div class="eui-step is-failed"><span class="eui-step__box"><i data-i="x"></i></span>Kimseyi öldürme</div>
           </div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Görev takibi</b><span><code>.mh-objective</code> adım durumları: <code>is-done</code>, <code>is-active</code>, <code>is-failed</code>, <code>is-optional</code>.</span></div>
+      <div class="demo-spec__meta"><b>Görev takibi</b><span><code>.eui-objective</code> adım durumları: <code>is-done</code>, <code>is-active</code>, <code>is-failed</code>, <code>is-optional</code>.</span></div>
     </div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   // ---- Demo durumu ----
   var S = { hp: 82, ar: 45, clip: 24, reserve: 180, cash: 12480, wanted: 2, step: 3, slot: 0, heading: 312, xp: 18450 };
 
-  MH.compass('#compass', S.heading, [{ bearing: 20, icon: 'pin-f', tone: 'accent' }, { bearing: 280, icon: 'skull', tone: 'danger' }, { bearing: 340, icon: 'user-f', tone: 'team1' }]);
-  MH.compass('#compass2', 75, [{ bearing: 120, icon: 'pin-f', tone: 'accent' }, { bearing: 40, icon: 'flag-3', tone: 'success' }]);
+  EUI.compass('#compass', S.heading, [{ bearing: 20, icon: 'pin-f', tone: 'accent' }, { bearing: 280, icon: 'skull', tone: 'danger' }, { bearing: 340, icon: 'user-f', tone: 'team1' }]);
+  EUI.compass('#compass2', 75, [{ bearing: 120, icon: 'pin-f', tone: 'accent' }, { bearing: 40, icon: 'flag-3', tone: 'success' }]);
   setInterval(function () {
     S.heading = (S.heading + 0.35) % 360;
-    MH.compass('#compass', S.heading);
+    EUI.compass('#compass', S.heading);
     var d = ['K', 'KD', 'D', 'GD', 'G', 'GB', 'B', 'KB'][Math.round(S.heading / 45) % 8];
     document.getElementById('dir').textContent = d;
   }, 50);
 
   function vit() {
-    MH.bar('#hp', S.hp, { critical: 25 }); MH.bar('#ar', S.ar);
-    MH.count('#hp-val', S.hp, { duration: 300 }); MH.count('#ar-val', S.ar, { duration: 300 }); MH.count('#hpf-val', Math.round(S.hp * 35), { duration: 300 });
+    EUI.bar('#hp', S.hp, { critical: 25 }); EUI.bar('#ar', S.ar);
+    EUI.count('#hp-val', S.hp, { duration: 300 }); EUI.count('#ar-val', S.ar, { duration: 300 }); EUI.count('#hpf-val', Math.round(S.hp * 35), { duration: 300 });
   }
   function ammo() {
     document.getElementById('clip').textContent = S.clip;
     document.getElementById('reserve').textContent = S.reserve;
-    MH.pips('#clip-pips', S.clip, 30);
+    EUI.pips('#clip-pips', S.clip, 30);
     document.getElementById('weapon').classList.toggle('is-low', S.clip <= 6);
   }
-  function wanted() { document.querySelectorAll('#wanted .mh-i').forEach(function (s, i) { s.classList.toggle('on', i < S.wanted); }); document.getElementById('wanted').classList.toggle('is-flashing', S.wanted >= 3); }
+  function wanted() { document.querySelectorAll('#wanted .eui-i').forEach(function (s, i) { s.classList.toggle('on', i < S.wanted); }); document.getElementById('wanted').classList.toggle('is-flashing', S.wanted >= 3); }
 
   var A = {
     hurt: function () {
       var dmg = Math.round(Demo.rand(8, 22));
       if (S.ar > 0) { S.ar = Math.max(0, S.ar - dmg); } else S.hp = Math.max(0, S.hp - dmg);
-      vit(); MH.damageFrom('#screen', Demo.rand(-160, 160)); MH.flash('#screen', true);
+      vit(); EUI.damageFrom('#screen', Demo.rand(-160, 160)); EUI.flash('#screen', true);
     },
-    heal: function () { S.hp = Math.min(100, S.hp + 30); S.ar = Math.min(100, S.ar + 20); vit(); MH.pickup({ target: '#pickups', icon: 'first-aid', name: 'İlk yardım', amount: -1 }); },
+    heal: function () { S.hp = Math.min(100, S.hp + 30); S.ar = Math.min(100, S.ar + 20); vit(); EUI.pickup({ target: '#pickups', icon: 'first-aid', name: 'İlk yardım', amount: -1 }); },
     shoot: function () {
       if (S.clip <= 0) return A.reload();
-      S.clip--; ammo(); MH.hit('#screen', Math.random() < .2 ? 'head' : null);
+      S.clip--; ammo(); EUI.hit('#screen', Math.random() < .2 ? 'head' : null);
       var c = document.getElementById('cross'); c.style.setProperty('--gap', '12px'); setTimeout(function () { c.style.removeProperty('--gap'); }, 120);
     },
     reload: function () {
       var w = document.getElementById('weapon'), r = document.getElementById('reload');
-      w.classList.add('is-reloading'); r.classList.remove('mh-hidden');
-      setTimeout(function () { var need = Math.min(30 - S.clip, S.reserve); S.clip += need; S.reserve -= need; ammo(); w.classList.remove('is-reloading'); r.classList.add('mh-hidden'); }, 1200);
+      w.classList.add('is-reloading'); r.classList.remove('eui-hidden');
+      setTimeout(function () { var need = Math.min(30 - S.clip, S.reserve); S.clip += need; S.reserve -= need; ammo(); w.classList.remove('is-reloading'); r.classList.add('eui-hidden'); }, 1200);
     },
-    earn: function () { S.cash += Math.round(Demo.rand(2, 9)) * 250; MH.money('#cash', S.cash); S.xp += 250; MH.count('#xp-val', S.xp); MH.bar('#xp', S.xp / 24000 * 100); },
-    spend: function () { S.cash = Math.max(0, S.cash - 1500); MH.money('#cash', S.cash); },
+    earn: function () { S.cash += Math.round(Demo.rand(2, 9)) * 250; EUI.money('#cash', S.cash); S.xp += 250; EUI.count('#xp-val', S.xp); EUI.bar('#xp', S.xp / 24000 * 100); },
+    spend: function () { S.cash = Math.max(0, S.cash - 1500); EUI.money('#cash', S.cash); },
     wanted: function () { S.wanted = (S.wanted + 1) % 6; wanted(); },
     step: function () {
       S.step = Math.min(8, S.step + 1);
       document.getElementById('obj-count').textContent = S.step + '/8';
-      var pct = Math.round(S.step / 8 * 100); MH.bar('#obj-bar', pct); document.getElementById('obj-pct').textContent = pct + '%';
+      var pct = Math.round(S.step / 8 * 100); EUI.bar('#obj-bar', pct); document.getElementById('obj-pct').textContent = pct + '%';
       if (S.step === 8) {
-        var steps = document.querySelectorAll('#steps .mh-step'); steps[1].classList.remove('is-active'); steps[1].classList.add('is-done'); steps[2].classList.add('is-active');
-        MH.toast({ target: null, tone: 'success', title: 'Muhafızlar temizlendi', text: 'Şimdi kamyonu ele geçir.', duration: 3500 });
+        var steps = document.querySelectorAll('#steps .eui-step'); steps[1].classList.remove('is-active'); steps[1].classList.add('is-done'); steps[2].classList.add('is-active');
+        EUI.toast({ target: null, tone: 'success', title: 'Muhafızlar temizlendi', text: 'Şimdi kamyonu ele geçir.', duration: 3500 });
       }
     },
     slot: function () {
-      var slots = document.querySelectorAll('#hotbar .mh-slot'); S.slot = (S.slot + 1) % 5;
+      var slots = document.querySelectorAll('#hotbar .eui-slot'); S.slot = (S.slot + 1) % 5;
       slots.forEach(function (s, i) { s.classList.toggle('is-active', i === S.slot); });
     }
   };
   Demo.on('[data-act]', function (e) { A[e.currentTarget.getAttribute('data-act')](); });
 
   // toast'lar sahnenin sağ üstüne, para altına düşsün
-  var th = document.createElement('div'); th.className = 'mh-anchor mh-tr'; th.style.top = '330px';
-  th.innerHTML = '<div class="mh-toasts" data-mh="toasts" style="--w:340px"></div>'; document.getElementById('screen').appendChild(th);
+  var th = document.createElement('div'); th.className = 'eui-anchor eui-tr'; th.style.top = '330px';
+  th.innerHTML = '<div class="eui-toasts" data-eui="toasts" style="--w:340px"></div>'; document.getElementById('screen').appendChild(th);
 
   // saat
   Demo.every(1000, function () { var d = new Date(); document.getElementById('clock').textContent = ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); });

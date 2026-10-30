@@ -1,18 +1,18 @@
 // Katalog okuyucu: catalog/<aile>.html -> aileler ve varyantlar (build-ai ve build-site ortak kullanır).
 // Her <section data-id data-title data-use [data-js] [data-run] [data-wide] [data-box]> bir varyanttır.
-// Varyanttaki her mh-* sınıfının kit CSS'inde olduğunu doğrular.
+// Varyanttaki her eui-* sınıfının kit CSS'inde olduğunu doğrular.
 import { readdir, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const { version } = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
-export const CDN = `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v${version}/`;
+export const CDN = `https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v${version}/`;
 
 const cssFiles = [];
 for (const d of ['kit/css']) for (const f of await readdir(path.join(root, d))) if (f.endsWith('.css')) cssFiles.push(path.join(root, d, f));
 const css = (await Promise.all(cssFiles.map(f => readFile(f, 'utf8')))).join('\n');
-export const known = new Set(css.match(/\.mh-[a-z0-9_-]+/g).map(c => c.slice(1)));
+export const known = new Set(css.match(/\.eui-[a-z0-9_-]+/g).map(c => c.slice(1)));
 
 export const families = [];
 const ids = new Set();
@@ -29,7 +29,7 @@ for (const file of (await readdir(path.join(root, 'catalog'))).filter(f => f.end
     if (ids.has(it.id)) throw new Error(`yinelenen kimlik: ${it.id}`);
     ids.add(it.id);
     if (!it.run) for (const c of it.html.matchAll(/class="([^"]*)"/g)) for (const k of c[1].split(/\s+/)) {
-      if (k.startsWith('mh-') && !known.has(k)) throw new Error(`${it.id}: CSS'te olmayan sınıf ${k}`);
+      if (k.startsWith('eui-') && !known.has(k)) throw new Error(`${it.id}: CSS'te olmayan sınıf ${k}`);
     }
     fam.items.push(it);
   }

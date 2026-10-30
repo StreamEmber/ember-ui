@@ -12,7 +12,7 @@ for (const f of families) await writeFile(path.join(root, 'ai', `${f.id}.md`), `
 const intro = (await readFile(path.join(root, 'catalog', '_intro.md'), 'utf8')).replaceAll('{{version}}', version);
 const index = families.map(f => `### ${f.title} → ${CDN}ai/${f.id}.md\n${f.items.map(i => `- \`${i.id}\` ${i.title}: ${i.use.split('. ')[0].replace(/\.$/, '')}`).join('\n')}\n`).join('\n');
 // ikon adları (data-i, icon:) — kitte olmayan ad boş kalır, bu yüzden dizinde açıkça listelenir
-const iconSrc = await readFile(path.join(root, 'kit/js/mhud-icons.js'), 'utf8');
+const iconSrc = await readFile(path.join(root, 'kit/js/ember-ui-icons.js'), 'utf8');
 const icons = [...iconSrc.matchAll(/^    '([a-z0-9-]+)':/gm)].map(m => m[1]);
 const weapons = Object.keys(JSON.parse(iconSrc.match(/var WEAPONS = (\{[\s\S]*?\});/)[1]));
 const iconMd = `## İkonlar\n\n\`<i data-i="ad">\` / \`icon: 'ad'\` için geçerli ${icons.length} ad (başka ad boş çıkar): ${icons.join(' ')}\n\nSilah çizimleri (\`<i data-weapon="ad">\` / \`weapon: 'ad'\`): ${weapons.join(' ')}\n`;

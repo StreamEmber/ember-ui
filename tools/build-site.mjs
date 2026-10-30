@@ -14,7 +14,7 @@ import { PAGES, FAMILY_ICON, ACCENTS, SCENES, REPO } from '../demo/site.mjs';
 const LOCAL = process.argv.includes('--local');
 const KIT = CDN + 'dist/';
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const I = n => `<svg class="mh-i" aria-hidden="true"><use href="#mi-${n}"></use></svg>`;
+const I = n => `<svg class="eui-i" aria-hidden="true"><use href="#mi-${n}"></use></svg>`;
 const slug = s => s.toLocaleLowerCase('tr').replace(/[^a-z0-9çğıöşü]+/g, '-').replace(/^-|-$/g, '');
 const kit = rel => (LOCAL ? rel + 'dist/' : KIT);
 const sceneUrl = (rel, id) => (id === 'none' ? 'none' : `url('${rel}demo/scenes/${id}.svg')`);
@@ -29,7 +29,7 @@ await writeFile(path.join(site, '.nojekyll'), '');
 
 // ---- site haritası
 const COMPONENTS = families.map(f => ({ href: `components/${f.id}.html`, label: f.title, icon: FAMILY_ICON[f.id] || 'layers', count: f.items.length, desc: f.desc, id: f.id }));
-const FLAT = [{ href: 'index.html', label: 'Genel bakış', sec: 'MHud' }];
+const FLAT = [{ href: 'index.html', label: 'Genel bakış', sec: 'Ember UI' }];
 for (const g of PAGES) for (const it of g.items) FLAT.push({ ...it, sec: 'Sunumlar', group: g.group });
 FLAT.push({ href: 'components/index.html', label: 'Tüm bileşenler', sec: 'Bileşenler' });
 for (const c of COMPONENTS) FLAT.push({ ...c, sec: 'Bileşenler' });
@@ -49,7 +49,7 @@ function side(cur, rel) {
   const shows = PAGES.map(g => `<div class="demo-group"><div class="demo-group__label">${g.group}</div><nav class="demo-nav">${g.items.map(it => navLink(it, cur, rel)).join('')}</nav></div>`).join('');
   const comps = `<nav class="demo-nav">${navLink({ href: 'components/index.html', label: 'Tüm bileşenler', icon: 'grid' }, cur, rel, `<small>${variantCount}</small>`)}${COMPONENTS.map(c => navLink(c, cur, rel, `<small>${c.count}</small>`)).join('')}</nav>`;
   return `<aside class="demo-side">
-<a class="demo-brand" href="${rel}index.html"><span class="demo-brand__mark">M</span><span class="demo-brand__text"><span class="demo-brand__name">MHud</span><span class="demo-brand__sub">HUD &amp; UI kiti</span></span><span class="demo-brand__ver">v${version}</span></a>
+<a class="demo-brand" href="${rel}index.html"><span class="demo-brand__mark">M</span><span class="demo-brand__text"><span class="demo-brand__name">Ember UI</span><span class="demo-brand__sub">HUD &amp; UI kiti</span></span><span class="demo-brand__ver">v${version}</span></a>
 <label class="demo-search">${I('search')}<input type="search" placeholder="Sayfa veya bileşen ara" aria-label="Ara"><kbd>/</kbd></label>
 <nav class="demo-nav">${navLink({ href: 'index.html', label: 'Genel bakış', icon: 'grid' }, cur, rel)}</nav>
 ${section('shows', 'focus', 'Sunumlar', listed.size, shows)}
@@ -95,16 +95,16 @@ const doc = (cur, rel, title, main, toc) => {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title} — MHud</title>
-<link rel="stylesheet" href="${kit(rel)}mhud.min.css">
+<title>${title} — Ember UI</title>
+<link rel="stylesheet" href="${kit(rel)}ember-ui.min.css">
 <link rel="stylesheet" href="${rel}demo/demo.css">
 </head>
-<body class="mh demo">
+<body class="eui demo">
 ${c.before}
 ${main}
 ${c.after}
-<div class="mh-screen" style="position:fixed;z-index:70"></div>
-<script src="${kit(rel)}mhud.min.js"></script>
+<div class="eui-screen" style="position:fixed;z-index:70"></div>
+<script src="${kit(rel)}ember-ui.min.js"></script>
 <script src="${rel}demo/demo.js"></script>
 </body>
 </html>
@@ -117,7 +117,7 @@ await mkdir(path.join(site, 'pages'), { recursive: true });
 for (const f of sources) {
   const href = 'pages/' + f;
   let src = await readFile(path.join(root, href), 'utf8');
-  if (!src.includes(KIT + 'mhud.min.css') || !src.includes(KIT + 'mhud.min.js')) throw new Error(`${href}: kit ${KIT} adresinden yüklenmiyor (node tools/set-version.mjs)`);
+  if (!src.includes(KIT + 'ember-ui.min.css') || !src.includes(KIT + 'ember-ui.min.js')) throw new Error(`${href}: kit ${KIT} adresinden yüklenmiyor (node tools/set-version.mjs)`);
   const d = src.match(/<header class="demo-head">[\s\S]*?<p>([\s\S]*?)<\/p>/);
   descs[href] = d ? d[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() : '';
   // içindekiler: bölüm başlıkları, yoksa kimlikli örnek kartları; canlı sahne varsa en üstte
@@ -133,8 +133,8 @@ for (const f of sources) {
     toc.unshift({ id: 'sahne', label: 'Canlı sahne' });
   }
   const c = chrome(href, '../', toc);
-  if (!src.includes('<body class="mh">') || !src.includes('</main>')) throw new Error(`${href}: <body class="mh"> ve </main> bekleniyor`);
-  src = src.replace('<body class="mh">', `<body class="mh demo">\n${c.before}`).replace('</main>', `</main>\n${c.after}`);
+  if (!src.includes('<body class="eui">') || !src.includes('</main>')) throw new Error(`${href}: <body class="eui"> ve </main> bekleniyor`);
+  src = src.replace('<body class="eui">', `<body class="eui demo">\n${c.before}`).replace('</main>', `</main>\n${c.after}`);
   if (LOCAL) src = src.replaceAll(KIT, '../dist/');
   await writeFile(path.join(site, href), src);
 }
@@ -177,7 +177,7 @@ const home = `<main class="demo-main">
 <section class="demo-home__hero">
 <span class="demo-head__kicker">Stream Ember · HUD &amp; UI kiti · v${version}</span>
 <h1>Oyun modları ve canlı yayın katmanları için<br>tek görünümlü arayüz kiti</h1>
-<p>Bağımlılıksız HTML/CSS + küçük bir JS. StreamEmber overlay'i (GTA V, RDR2), OBS kaynağı ve HTML5 oyunlarında aynı bileşenler; tek tema, on vurgu rengi, veriyle kurulan menü (<code>MH.Menu</code>). Bu site iki katmandan oluşur: bileşenlerin gerçek sahnede bir arada kullanıldığı <b>sunum sayfaları</b> ve her varyantın kodu ve AI kimliğiyle tek tek gösterildiği <b>bileşen aileleri</b>.</p>
+<p>Bağımlılıksız HTML/CSS + küçük bir JS. StreamEmber overlay'i (GTA V, RDR2), OBS kaynağı ve HTML5 oyunlarında aynı bileşenler; tek tema, on vurgu rengi, veriyle kurulan menü (<code>EUI.Menu</code>). Bu site iki katmandan oluşur: bileşenlerin gerçek sahnede bir arada kullanıldığı <b>sunum sayfaları</b> ve her varyantın kodu ve AI kimliğiyle tek tek gösterildiği <b>bileşen aileleri</b>.</p>
 <div class="demo-home__cta"><a class="demo-btn demo-btn--accent" href="${first.href}">${I('play')}Sunumlara başla</a><a class="demo-btn" href="components/index.html">${I('layers')}Bileşenlere göz at</a><a class="demo-btn" href="${CDN}AI.md" target="_blank" rel="noopener">${I('robot')}AI.md</a><a class="demo-btn" href="${REPO}" target="_blank" rel="noopener">${I('share')}GitHub</a></div>
 <div class="demo-stats"><div><b>${listed.size}</b><span>sunum sayfası</span></div><div><b>${families.length}</b><span>bileşen ailesi</span></div><div><b>${variantCount}</b><span>varyant</span></div><div><b>${ACCENTS.length - 1}</b><span>vurgu rengi</span></div></div>
 </section>

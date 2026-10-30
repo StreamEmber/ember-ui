@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Ember UI — dünya katmanı
+   Ekrana yansıtılan öğeler: kafa üstü etiketleri, işaretçiler, dünya istemi,
+   uçan hasar sayıları. Konumlar JS tarafından yalnızca transform ile yazılır.
+   ========================================================================== */
+
+.eui-world { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: var(--eui-z-world); }
+.eui-world > * { position: absolute; left: 0; top: 0; will-change: transform, opacity; }
+
+/* ==========================================================================
+   İSİM ETİKETİ
+   ========================================================================== */
+.eui-tag {
+  --tone-rgb: var(--eui-text-rgb);
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  transform-origin: 50% 100%;
+  text-shadow: 0 1px 2px #000, 0 0 6px rgb(0 0 0 / .7);
+}
+.eui-tag__line { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.eui-tag__name { font-size: 15px; font-weight: 700; color: rgb(var(--tone-rgb)); letter-spacing: .01em; }
+.eui-tag__id { font-family: var(--eui-font-num); font-size: 12px; font-weight: 600; color: var(--eui-text-3); }
+.eui-tag .eui-i { width: 14px; height: 14px; filter: drop-shadow(0 1px 1px #000); }
+.eui-tag .eui-badge { height: 16px; padding: 0 5px; font-size: 9px; text-shadow: none; }
+.eui-tag__bars { display: flex; flex-direction: column; gap: 2px; width: 84px; }
+.eui-tag__bars .eui-bar { --h: 4px; box-shadow: 0 0 0 1px rgb(0 0 0 / .55); }
+.eui-tag__bars .eui-bar + .eui-bar { --h: 2px; }
+.eui-tag__sub { font-family: var(--eui-font-num); font-size: 11px; font-weight: 600; color: var(--eui-text-2); letter-spacing: .04em; }
+.eui-tag.is-talking .eui-tag__name { color: var(--eui-success); }
+.eui-tag.is-talking .eui-tag__voice { display: inline-flex; }
+.eui-tag__voice { display: none; color: var(--eui-success); }
+.eui-tag.is-dead { opacity: .55; }
+.eui-tag.is-dead .eui-tag__name { color: var(--eui-text-3); text-decoration: line-through; }
+.eui-tag.is-friend { --tone-rgb: var(--eui-friend-rgb); }
+.eui-tag.is-enemy  { --tone-rgb: var(--eui-enemy-rgb); }
+.eui-tag.is-typing .eui-tag__name::after { content: " …"; color: var(--eui-text-2); }
+/* Kompakt: yalnız isim + tek ince bar */
+.eui-tag--compact .eui-tag__sub, .eui-tag--compact .eui-badge { display: none; }
+.eui-tag--compact .eui-tag__name { font-size: 13px; }
+.eui-tag--compact .eui-tag__bars { width: 56px; }
+
+/* ---------- v2 etiket biçimleri: aynı yapı (line / bars / sub), yalnız .eui-tag--<biçim> değişir ---------- */
+.eui-tag__line > .eui-avatar { width: 22px; height: 22px; font-size: 10px; flex: none; }
+.eui-tag__role { font-size: 9px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--tone-rgb)); }
+/* Plaka: panel zemin, tonlu üst çizgi */
+.eui-tag--plate { align-items: stretch; gap: 5px; padding: 6px 10px 7px; background: var(--eui-surface-solid); border: 1px solid var(--eui-line); border-top: 2px solid rgb(var(--tone-rgb)); border-radius: var(--eui-r-2); text-shadow: none; }
+.eui-tag--plate .eui-tag__bars { width: 100%; }
+.eui-tag--plate .eui-tag__sub { text-align: center; }
+/* Bayrak: solda tonlu şerit, sola yaslı */
+.eui-tag--flag { align-items: flex-start; padding: 3px 12px 3px 9px; background: linear-gradient(90deg, rgb(var(--tone-rgb) / .28), rgb(0 0 0 / .6) 60%, rgb(0 0 0 / .15)); border-left: 3px solid rgb(var(--tone-rgb)); gap: 2px; }
+.eui-tag--flag .eui-tag__bars { width: 100%; }
+/* Hap: tek satır kapsül */
+.eui-tag--pill { flex-direction: row; gap: 7px; padding: 3px 11px 3px 6px; background: rgb(0 0 0 / .62); border-radius: 999px; box-shadow: inset 0 0 0 1px rgb(var(--tone-rgb) / .6); }
+.eui-tag--pill .eui-tag__bars { width: 40px; }
+.eui-tag--pill .eui-tag__sub { display: none; }
+/* Çizgi: yalnız ad, altında ince can çizgisi */
+.eui-tag--line .eui-tag__bars { width: 100%; min-width: 60px; }
+.eui-tag--line .eui-tag__bars .eui-bar { --h: 2px; box-shadow: none; }
+.eui-tag--line .eui-tag__sub, .eui-tag--line .eui-badge { display: none; }
+/* Yalnız bar: ad yok */
+.eui-tag--bar .eui-tag__line, .eui-tag--bar .eui-tag__sub { display: none; }
+.eui-tag--bar .eui-tag__bars { width: 64px; }
+.eui-tag--bar .eui-tag__bars .eui-bar { --h: 5px; }
+/* Elmas: altında yön işaretçisi */
+.eui-tag--pointer::after { content: ""; width: 8px; height: 8px; margin-top: 2px; background: rgb(var(--tone-rgb)); transform: rotate(45deg); box-shadow: 0 0 calc(8px * var(--eui-glow-a)) rgb(var(--tone-rgb)); }
+/* Takım afişi: eğik dolu şerit */
+.eui-tag--banner { padding: 3px 14px; background: rgb(var(--tone-rgb)); transform-origin: 50% 100%; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); text-shadow: none; }
+.eui-tag--banner .eui-tag__name, .eui-tag--banner .eui-tag__id { color: #0b0d10; }
+.eui-tag--banner .eui-tag__bars, .eui-tag--banner .eui-tag__sub { display: none; }
+/* Köşeli: hedef çerçevesi gibi dört köşe */
+.eui-tag--bracket { padding: 6px 12px; background: linear-gradient(rgb(0 0 0 / .35), rgb(0 0 0 / .35)); --b: rgb(var(--tone-rgb));
+  background-image: linear-gradient(rgb(0 0 0 / .35), rgb(0 0 0 / .35)), linear-gradient(var(--b), var(--b)), linear-gradient(var(--b), var(--b)), linear-gradient(var(--b), var(--b)), linear-gradient(var(--b), var(--b)), linear-gradient(var(--b), var(--b)), linear-gradient(var(--b), var(--b)), linear-gradient(var(--b), var(--b)), linear-gradient(var(--b), var(--b));
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 8px 2px, 2px 8px, 8px 2px, 2px 8px, 8px 2px, 2px 8px, 8px 2px, 2px 8px;
+  background-position: 0 0, 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%; }
+/* Büyük (boss / özel hedef) */
+.eui-tag--boss { gap: 5px; }
+.eui-tag--boss .eui-tag__name { font-family: var(--eui-font-display); font-size: 22px; letter-spacing: .08em; text-transform: var(--eui-display-case); }
+.eui-tag--boss .eui-tag__bars { width: 200px; }
+.eui-tag--boss .eui-tag__bars .eui-bar { --h: 8px; }
+/* NPC: yumuşak, ad üstte rol küçük */
+.eui-tag--npc .eui-tag__name { font-weight: 600; font-size: 14px; }
+/* Uzaklık: sönük, yalnız ad + mesafe */
+.eui-tag--far { opacity: .75; }
+.eui-tag--far .eui-tag__bars, .eui-tag--far .eui-badge { display: none; }
+/* Aranan (ödül etiketi, kâğıt temalarında mürekkep) */
+
+/* ---------- Etiket ekleri: klan, seviye, sıra/numara, can sayısı, kalkan segmentleri ---------- */
+.eui-tag__clan { font-family: var(--eui-font-num); font-size: 12px; font-weight: 700; color: rgb(var(--tone-rgb) / .75); }
+.eui-tag__lvl { min-width: 20px; height: 18px; padding: 0 4px; display: inline-grid; place-items: center; font-family: var(--eui-font-num); font-size: 11px; font-weight: 800; color: #0b0d10; background: rgb(var(--tone-rgb)); border-radius: 3px; text-shadow: none; }
+.eui-tag__num { width: 18px; height: 18px; display: inline-grid; place-items: center; font-family: var(--eui-font-num); font-size: 11px; font-weight: 800; color: rgb(var(--tone-rgb)); border: 1.5px solid rgb(var(--tone-rgb)); border-radius: 3px; }
+.eui-tag__hp { font-family: var(--eui-font-num); font-size: 12px; font-weight: 700; color: var(--eui-text); }
+.eui-tag .eui-pips { width: 84px; gap: 2px; }
+.eui-tag .eui-pips > i { height: 3px; }
+.eui-tag .eui-wanted .eui-i { width: 12px; height: 12px; }
+/* Durumlar */
+.eui-tag.is-down .eui-tag__name { color: var(--eui-danger); }
+.eui-tag.is-down { animation: eui-critical 1s ease-in-out infinite; }
+.eui-tag.is-afk { opacity: .5; } .eui-tag.is-afk .eui-tag__name::after { content: " · AFK"; font-size: 11px; color: var(--eui-text-3); }
+.eui-tag.is-leader .eui-tag__name::before { content: "♛ "; color: rgb(var(--eui-gold-rgb)); }
+.eui-tag.is-target .eui-tag__name { text-decoration: underline 2px rgb(var(--eui-danger-rgb)); text-underline-offset: 3px; }
+/* İzleyici (canlı yayın): avatar halkası + seviye */
+.eui-tag--viewer { flex-direction: row; gap: 7px; padding: 3px 10px 3px 3px; background: rgb(0 0 0 / .6); border-radius: 999px; }
+.eui-tag--viewer .eui-tag__line { gap: 6px; }
+.eui-tag--viewer .eui-avatar { box-shadow: 0 0 0 2px rgb(var(--tone-rgb)); }
+.eui-tag--viewer .eui-tag__bars { display: none; }
+.eui-tag--viewer .eui-tag__sub { font-size: 10px; }
+/* Kart: avatar solda, iki satır sağda (yakın plan, lobi) */
+.eui-tag--card { flex-direction: row; align-items: center; gap: 8px; padding: 6px 10px 6px 6px; background: var(--eui-surface-solid); border: 1px solid var(--eui-line); border-left: 3px solid rgb(var(--tone-rgb)); border-radius: var(--eui-r-2); text-shadow: none; }
+.eui-tag--card > .eui-avatar { width: 34px; height: 34px; }
+.eui-tag--card .eui-tag__body { display: flex; flex-direction: column; gap: 3px; }
+.eui-tag--card .eui-tag__bars { width: 110px; }
+/* Sayı: ad + büyük can sayısı, bar yok */
+.eui-tag--hp .eui-tag__bars { display: none; }
+.eui-tag--hp .eui-tag__hp { font-size: 16px; color: rgb(var(--tone-rgb)); }
+/* Yarış: sıra kutusu + ad */
+.eui-tag--race { flex-direction: row; gap: 0; padding: 0; background: rgb(0 0 0 / .65); text-shadow: none; }
+.eui-tag--race .eui-tag__pos { padding: 2px 7px; font-family: var(--eui-font-display); font-size: 16px; font-weight: 800; color: #0b0d10; background: rgb(var(--tone-rgb)); }
+.eui-tag--race .eui-tag__line { padding: 0 9px; }
+.eui-tag--race .eui-tag__bars, .eui-tag--race .eui-tag__sub { display: none; }
+/* Korunacak hedef (VIP / eskort) */
+.eui-tag--vip { gap: 4px; }
+.eui-tag--vip .eui-tag__name { font-size: 17px; color: rgb(var(--eui-gold-rgb)); }
+.eui-tag--vip::before { content: "KORU"; padding: 1px 8px; font-size: 9px; font-weight: 800; letter-spacing: .2em; color: #0b0d10; background: rgb(var(--eui-gold-rgb)); border-radius: 2px; text-shadow: none; }
+/* Neon çerçeve (arena / e-spor) */
+.eui-tag--glow { padding: 3px 12px; border: 1px solid rgb(var(--tone-rgb)); border-radius: 3px; background: rgb(var(--tone-rgb) / .1); box-shadow: 0 0 calc(12px * var(--eui-glow-a) + 4px) rgb(var(--tone-rgb) / .55), inset 0 0 8px rgb(var(--tone-rgb) / .3); }
+.eui-tag--glow .eui-tag__name { color: #fff; text-shadow: 0 0 8px rgb(var(--tone-rgb)); }
+/* Yığın: kalabalık bir grubu tek etikette say */
+.eui-tag__more { font-family: var(--eui-font-num); font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 999px; background: rgb(var(--tone-rgb) / .25); color: rgb(var(--tone-rgb)); }
+
+/* Yayıncı / izleyici ikonu üzerindeki konuşma balonu */
+.eui-tag__bubble {
+  max-width: 220px; padding: 5px 9px; margin-bottom: 2px;
+  font-size: 12px; font-weight: 500; color: var(--eui-text); white-space: normal; text-align: center; text-shadow: none;
+  background: var(--eui-surface-solid); border: 1px solid var(--eui-line); border-radius: var(--eui-r-3);
+  position: relative;
+}
+.eui-tag__bubble::after { content: ""; position: absolute; left: 50%; bottom: -5px; width: 8px; height: 8px; margin-left: -4px; background: inherit; border: inherit; border-top: 0; border-left: 0; transform: rotate(45deg); }
+
+/* ==========================================================================
+   İŞARETÇİ (waypoint / hedef)
+   ========================================================================== */
+.eui-marker { --tone-rgb: var(--eui-accent-rgb); display: flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: var(--eui-hud-shadow); }
+.eui-marker__pin {
+  position: relative; width: 34px; height: 34px; display: grid; place-items: center; color: #0b0d10;
+}
+.eui-marker__pin::before {
+  content: ""; position: absolute; inset: 5px; transform: rotate(45deg); border-radius: 4px;
+  background: rgb(var(--tone-rgb)); box-shadow: 0 0 0 3px rgb(var(--tone-rgb) / .25), 0 0 calc(16px * var(--eui-glow-a)) rgb(var(--tone-rgb));
+}
+.eui-marker__pin .eui-i { position: relative; width: 16px; height: 16px; stroke-width: 2.25; }
+.eui-marker__label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.eui-marker__dist { font-family: var(--eui-font-num); font-size: 13px; font-weight: 600; color: rgb(var(--tone-rgb)); }
+.eui-marker.is-pulse .eui-marker__pin::after { content: ""; position: absolute; inset: 0; border: 2px solid rgb(var(--tone-rgb)); border-radius: 50%; animation: eui-ping 1.6s var(--eui-ease-out) infinite; }
+@keyframes eui-ping { from { transform: scale(.6); opacity: 1; } to { transform: scale(2); opacity: 0; } }
+/* Ekran dışındaki hedef: kenarda ok */
+.eui-marker--edge .eui-marker__pin::before { border-radius: 2px 50% 50% 50%; }
+.eui-marker__arrow { position: absolute; width: 0; height: 0; border: 7px solid transparent; border-bottom: 10px solid rgb(var(--tone-rgb)); top: -16px; left: 50%; margin-left: -7px; transform-origin: 50% 33px; transform: rotate(var(--a, 0deg)); }
+
+/* Hedef çerçevesi (kilitlenme) */
+.eui-lockon { --tone-rgb: var(--eui-danger-rgb); width: 64px; height: 64px; position: relative; }
+.eui-lockon i { position: absolute; width: 14px; height: 14px; border: 2px solid rgb(var(--tone-rgb)); }
+.eui-lockon i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; }
+.eui-lockon i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; }
+.eui-lockon i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; }
+.eui-lockon i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; }
+.eui-lockon.is-locking { animation: eui-lock .5s var(--eui-ease-out) both; }
+@keyframes eui-lock { from { transform: scale(1.6); opacity: 0; } }
+
+/* ==========================================================================
+   DÜNYA İSTEMİ (nesne üstü tuş)
+   ========================================================================== */
+.eui-wprompt { display: flex; align-items: center; gap: 8px; }
+.eui-wprompt__dot { width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgb(0 0 0 / .35), 0 0 10px rgb(255 255 255 / .6); }
+.eui-wprompt__card {
+  display: flex; align-items: center; gap: 8px; padding: 4px 10px 4px 4px;
+  background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-2);
+  font-size: 13px; font-weight: 600; white-space: nowrap;
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-wprompt.is-far .eui-wprompt__card { display: none; }
+
+/* ==========================================================================
+   UÇAN HASAR SAYISI — dış sarmalayıcı (.eui-float) konumlanır, içteki sayı canlanır
+   ========================================================================== */
+.eui-float { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
+.eui-dmgnum {
+  display: block;
+  font-family: var(--eui-font-num); font-size: 22px; font-weight: 700; color: #fff; white-space: nowrap; font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 2px #000, 0 0 6px rgb(0 0 0 / .8);
+  animation: eui-dmgnum 1s var(--eui-ease-out) both;
+}
+.eui-dmgnum.is-crit { font-size: 30px; color: var(--eui-warn); }
+.eui-dmgnum.is-heal { color: var(--eui-success); }
+.eui-dmgnum.is-armor { color: var(--eui-info); }
+@keyframes eui-dmgnum { 0% { opacity: 0; transform: translate(-50%, 6px) scale(1.4); } 15% { opacity: 1; transform: translate(-50%, 0) scale(1); } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 12px)), -46px); } }

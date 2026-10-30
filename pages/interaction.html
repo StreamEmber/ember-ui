@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Etkileşim — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Etkileşim — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Arayüz</span>
@@ -17,19 +17,19 @@
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
-        <div class="mh-anchor mh-mc mh-catch"><div id="radial"></div></div>
-        <div class="mh-anchor mh-tl">
-          <div class="mh-panel mh-pad" style="width:300px">
-            <span class="mh-kicker">Son seçim</span>
-            <div class="mh-title mh-title--sm" id="picked" style="margin-top:6px">—</div>
-            <div class="mh-sub" style="margin-top:4px">Radial'a tıkla ya da sahnede sağ tıkla.</div>
+      <div class="eui-screen" id="screen">
+        <div class="eui-anchor eui-mc eui-catch"><div id="radial"></div></div>
+        <div class="eui-anchor eui-tl">
+          <div class="eui-panel eui-pad" style="width:300px">
+            <span class="eui-kicker">Son seçim</span>
+            <div class="eui-title eui-title--sm" id="picked" style="margin-top:6px">—</div>
+            <div class="eui-sub" style="margin-top:4px">Radial'a tıkla ya da sahnede sağ tıkla.</div>
           </div>
         </div>
-        <div class="mh-anchor mh-bc">
-          <div class="mh-hints"><span class="mh-hint"><span class="mh-key mh-key--sm"><i data-i="mouse"></i></span>Seç</span><span class="mh-hint"><span class="mh-key">TAB</span>Bırakınca onayla</span><span class="mh-hint"><span class="mh-key">ESC</span>Kapat</span></div>
+        <div class="eui-anchor eui-bc">
+          <div class="eui-hints"><span class="eui-hint"><span class="eui-key eui-key--sm"><i data-i="mouse"></i></span>Seç</span><span class="eui-hint"><span class="eui-key">TAB</span>Bırakınca onayla</span><span class="eui-hint"><span class="eui-key">ESC</span>Kapat</span></div>
         </div>
-        <div class="mh-anchor mh-tr"><div class="mh-toasts" data-mh="toasts"></div></div>
+        <div class="eui-anchor eui-tr"><div class="eui-toasts" data-eui="toasts"></div></div>
       </div>
     </div>
     <div class="demo-actions">
@@ -42,40 +42,40 @@
     </div>
   </div>
 
-  <div class="demo-h2"><h2>Radial & bağlam</h2><p><code>MH.radial(el, items, opts)</code> · <code>MH.context(x, y, items)</code></p></div>
+  <div class="demo-h2"><h2>Radial & bağlam</h2><p><code>EUI.radial(el, items, opts)</code> · <code>EUI.context(x, y, items)</code></p></div>
   <div class="demo-specs">
     <div class="demo-spec">
-      <div class="demo-spec__view mh-catch" style="--h:420px;--dim:.3"><div id="wheel2"></div></div>
+      <div class="demo-spec__view eui-catch" style="--h:420px;--dim:.3"><div id="wheel2"></div></div>
       <div class="demo-spec__meta"><b>Silah çarkı</b><span>Dilim simgesi olarak silah silüeti; alt satırda mermi sayısı (<code>sub</code>).</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:420px;align-items:flex-start;padding-top:50px">
-        <div class="mh-panel mh-context" style="position:relative">
-          <div class="mh-context__head"><span class="mh-kicker">NabeMedia üzerinde</span></div>
-          <button class="mh-context__item"><i data-i="user"></i><span>Profili gör</span><span class="mh-key mh-key--sm">P</span></button>
-          <button class="mh-context__item is-active"><i data-i="user-plus"></i><span>Ekibe davet et</span></button>
-          <button class="mh-context__item"><i data-i="pin"></i><span>İşaretle</span><span class="mh-key mh-key--sm">M</span></button>
-          <button class="mh-context__item"><i data-i="cash"></i><span>Para gönder</span><small>$</small></button>
-          <div class="mh-context__sep"></div>
-          <button class="mh-context__item"><i data-i="volume-off"></i><span>Sustur</span></button>
-          <button class="mh-context__item is-danger"><i data-i="ban"></i><span>Oyundan at</span></button>
+        <div class="eui-panel eui-context" style="position:relative">
+          <div class="eui-context__head"><span class="eui-kicker">NabeMedia üzerinde</span></div>
+          <button class="eui-context__item"><i data-i="user"></i><span>Profili gör</span><span class="eui-key eui-key--sm">P</span></button>
+          <button class="eui-context__item is-active"><i data-i="user-plus"></i><span>Ekibe davet et</span></button>
+          <button class="eui-context__item"><i data-i="pin"></i><span>İşaretle</span><span class="eui-key eui-key--sm">M</span></button>
+          <button class="eui-context__item"><i data-i="cash"></i><span>Para gönder</span><small>$</small></button>
+          <div class="eui-context__sep"></div>
+          <button class="eui-context__item"><i data-i="volume-off"></i><span>Sustur</span></button>
+          <button class="eui-context__item is-danger"><i data-i="ban"></i><span>Oyundan at</span></button>
         </div>
       </div>
       <div class="demo-spec__meta"><b>Bağlam menüsü</b><span>Ekran kenarına taşarsa kendini içeri kaydırır; dışarı tıklayınca kapanır. <code>danger: true</code>, <code>key</code>, <code>'-'</code> ayırıcı.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:420px;--dim:.35">
-        <div class="mh-panel mh-modal mh-t-danger" style="animation:none">
-          <div class="mh-modal__head"><div class="mh-modal__icon"><i data-i="alert"></i></div><div class="mh-modal__titles"><div class="mh-title">Eşyayı yok et?</div><div class="mh-sub">Bu işlem geri alınamaz. Ağır yelek kalıcı olarak silinecek.</div></div></div>
-          <div class="mh-modal__actions"><button class="mh-btn mh-btn--ghost"><span class="mh-key mh-key--sm">ESC</span>Vazgeç</button><button class="mh-btn mh-btn--tone mh-t-danger"><span class="mh-key mh-key--sm">ENTER</span>Yok et</button></div>
+        <div class="eui-panel eui-modal eui-t-danger" style="animation:none">
+          <div class="eui-modal__head"><div class="eui-modal__icon"><i data-i="alert"></i></div><div class="eui-modal__titles"><div class="eui-title">Eşyayı yok et?</div><div class="eui-sub">Bu işlem geri alınamaz. Ağır yelek kalıcı olarak silinecek.</div></div></div>
+          <div class="eui-modal__actions"><button class="eui-btn eui-btn--ghost"><span class="eui-key eui-key--sm">ESC</span>Vazgeç</button><button class="eui-btn eui-btn--tone eui-t-danger"><span class="eui-key eui-key--sm">ENTER</span>Yok et</button></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Onay modalı</b><span><code>await MH.confirm({ title, text, danger })</code> → <code>true</code> / <code>false</code>. ESC ve Enter klavyeden çalışır.</span></div>
+      <div class="demo-spec__meta"><b>Onay modalı</b><span><code>await EUI.confirm({ title, text, danger })</code> → <code>true</code> / <code>false</code>. ESC ve Enter klavyeden çalışır.</span></div>
     </div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var INTERACT = [
@@ -95,33 +95,33 @@
     { icon: 'grenade', label: 'Bomba', sub: '×3' }, { icon: 'hand', label: 'Yumruk', sub: '—' }
   ];
   function wheel(sel, size) {
-    var r = MH.radial(sel, WEAPONS.map(function (w) { return { icon: w.icon || 'crosshair', label: w.label, sub: w.sub, desc: w.sub }; }), { size: size, title: 'Silahlar', hint: 'Fareyle seç', inner: .38, onPick: pick });
+    var r = EUI.radial(sel, WEAPONS.map(function (w) { return { icon: w.icon || 'crosshair', label: w.label, sub: w.sub, desc: w.sub }; }), { size: size, title: 'Silahlar', hint: 'Fareyle seç', inner: .38, onPick: pick });
     // silüetleri ikonların yerine koy
-    document.querySelectorAll(sel + ' .mh-radial__item').forEach(function (it, i) {
+    document.querySelectorAll(sel + ' .eui-radial__item').forEach(function (it, i) {
       if (!WEAPONS[i].w) return;
-      var svg = it.querySelector('.mh-i'); svg.outerHTML = MH.weapon(WEAPONS[i].w, 'mh-i');
-      var s = it.querySelector('.mh-weapon-art'); s.style.width = '74px'; s.style.height = '24px';
+      var svg = it.querySelector('.eui-i'); svg.outerHTML = EUI.weapon(WEAPONS[i].w, 'eui-i');
+      var s = it.querySelector('.eui-weapon-art'); s.style.width = '74px'; s.style.height = '24px';
     });
     return r;
   }
-  function pick(it) { document.getElementById('picked').textContent = it.label; MH.toast({ tone: 'accent', icon: 'check', title: it.label + ' seçildi', duration: 1800 }); }
-  function interact() { MH.radial('#radial', INTERACT, { size: 520, title: 'Etkileşim', hint: 'Bir seçenek seç', onPick: pick }); }
+  function pick(it) { document.getElementById('picked').textContent = it.label; EUI.toast({ tone: 'accent', icon: 'check', title: it.label + ' seçildi', duration: 1800 }); }
+  function interact() { EUI.radial('#radial', INTERACT, { size: 520, title: 'Etkileşim', hint: 'Bir seçenek seç', onPick: pick }); }
   interact();
   wheel('#wheel2', 360);
 
   document.getElementById('screen').addEventListener('contextmenu', function (e) {
     e.preventDefault();
     var r = this.getBoundingClientRect(), k = r.width / 1920;
-    MH.context((e.clientX - r.left) / k, (e.clientY - r.top) / k, [
+    EUI.context((e.clientX - r.left) / k, (e.clientY - r.top) / k, [
       { icon: 'user', label: 'Profili gör', key: 'P' }, { icon: 'user-plus', label: 'Ekibe davet et' },
       { icon: 'pin', label: 'İşaretle', key: 'M' }, '-', { icon: 'volume-off', label: 'Sustur' },
       { icon: 'ban', label: 'Oyundan at', danger: true, onClick: function () { A.danger(); } }
     ], { title: 'NabeMedia üzerinde', onPick: pick });
   });
   var A = {
-    confirm: function () { MH.confirm({ title: 'Ekibe katıl?', text: 'NabeMedia seni Gece Kuşları ekibine davet ediyor.', ok: 'Katıl', icon: 'users' }).then(function (ok) { MH.toast({ tone: ok ? 'success' : 'info', title: ok ? 'Ekibe katıldın' : 'Davet reddedildi', duration: 2200 }); }); },
-    danger: function () { MH.confirm({ title: 'Oyuncuyu at?', text: 'NabeMedia sunucudan atılacak.', danger: true, ok: 'At' }).then(function (ok) { MH.toast({ tone: ok ? 'danger' : 'info', title: ok ? 'Oyuncu atıldı' : 'Vazgeçildi', duration: 2200 }); }); },
-    input: function () { MH.input({ title: 'Plaka değiştir', label: 'Yeni plaka', placeholder: '34 ABC 123', max: 8, ok: 'Kaydet' }).then(function (v) { if (v) MH.toast({ tone: 'success', title: 'Plaka güncellendi', text: v, duration: 2200 }); }); },
+    confirm: function () { EUI.confirm({ title: 'Ekibe katıl?', text: 'NabeMedia seni Gece Kuşları ekibine davet ediyor.', ok: 'Katıl', icon: 'users' }).then(function (ok) { EUI.toast({ tone: ok ? 'success' : 'info', title: ok ? 'Ekibe katıldın' : 'Davet reddedildi', duration: 2200 }); }); },
+    danger: function () { EUI.confirm({ title: 'Oyuncuyu at?', text: 'NabeMedia sunucudan atılacak.', danger: true, ok: 'At' }).then(function (ok) { EUI.toast({ tone: ok ? 'danger' : 'info', title: ok ? 'Oyuncu atıldı' : 'Vazgeçildi', duration: 2200 }); }); },
+    input: function () { EUI.input({ title: 'Plaka değiştir', label: 'Yeni plaka', placeholder: '34 ABC 123', max: 8, ok: 'Kaydet' }).then(function (v) { if (v) EUI.toast({ tone: 'success', title: 'Plaka güncellendi', text: v, duration: 2200 }); }); },
     wheel: function () { wheel('#radial', 560); },
     radial: interact
   };

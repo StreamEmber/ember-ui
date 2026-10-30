@@ -1,21 +1,21 @@
-# MHud
+# Ember UI
 
-[![jsDelivr](https://img.shields.io/badge/CDN-jsDelivr%20gh-f5b83d)](https://www.jsdelivr.com/package/gh/StreamEmber/mhud)
+[![jsDelivr](https://img.shields.io/badge/CDN-jsDelivr%20gh-f5b83d)](https://www.jsdelivr.com/package/gh/StreamEmber/ember-ui)
 [![license](https://img.shields.io/badge/license-MIT-f5b83d)](LICENSE)
 
-StreamEmber oyun modları (overlay: GTA V, RDR2), OBS tarayıcı kaynakları ve HTML5 oyunlar için **tek görünümlü**, bağımlılıksız HUD ve arayüz kiti.
-Tam ekran menüler HTML yazılarak değil **veriyle** kurulur (`MH.Menu`). Oyuna göre değişen tek şey vurgu rengidir.
+StreamEmber oyun modları (overlay: GTA V, RDR2), OBS tarayıcı kaynakları ve HTML5 oyunlar için **tek görünümlü**, bağımlılıksız HUD ve arayüz kiti. Eski adı **MHud** (3.x); Ember.js ile ilgisi yoktur.
+Tam ekran menüler HTML yazılarak değil **veriyle** kurulur (`EUI.Menu`). Oyuna göre değişen tek şey vurgu rengidir.
 
-**Galeri:** https://streamember.github.io/mhud/  ·  **Yapay zeka için kılavuz:** [`AI.md`](AI.md)
+**Galeri:** https://streamember.github.io/ember-ui/  ·  **Yapay zeka için kılavuz:** [`AI.md`](AI.md)
 
 ## Kurulum
 
 ```html
-<html class="mh-overlay">  <!-- yalnız oyun overlay'inde -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
-<body class="mh" data-mh-accent="mint">
-  <div class="mh-screen"> … </div>
-  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<html class="eui-overlay">  <!-- yalnız oyun overlay'inde -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
+<body class="eui" data-eui-accent="mint">
+  <div class="eui-screen"> … </div>
+  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 </body>
 ```
 
@@ -23,26 +23,26 @@ Her zaman tam sürüm yazın (`@latest` / `@main` görünümü habersizce deği�
 
 ## Kullanım
 
-Bir bileşen = katalogdaki HTML + isteğe bağlı `MH.*` çağrısı. Menü:
+Bir bileşen = katalogdaki HTML + isteğe bağlı `EUI.*` çağrısı. Menü:
 
 ```js
-var menu = MH.Menu({
+var menu = EUI.Menu({
   title: 'Mod menüsü', post: 'menu',
   sections: [
     { id: 'inv', label: 'Envanter', icon: 'backpack', view: 'list', items: [{ id: 'medkit', title: 'İlk yardım', icon: 'first-aid' }] },
     { id: 'set', label: 'Ayarlar', icon: 'settings', view: 'settings', fields: [{ id: 'scale', label: 'HUD ölçeği', type: 'slider', value: 100, unit: '%' }] }
   ]
 });
-MH.on('menu', function (d) { d.open ? menu.open() : menu.close(); });   // oyun → sayfa
-// her eylem MH.post('menu', { action, section, id, value }) ile oyuna gider
+EUI.on('menu', function (d) { d.open ? menu.open() : menu.close(); });   // oyun → sayfa
+// her eylem EUI.post('menu', { action, section, id, value }) ile oyuna gider
 ```
 
 | Aile | İçerik |
 |---|---|
-| [Menü ve ekranlar](ai/menu.md) | `MH.Menu` (veriyle tam ekran menü), onay / seçim / tutar / metin pencereleri, bağlam ve radyal menü, skor tablosu, podyum, ölüm / sonuç / yükleme ekranı |
+| [Menü ve ekranlar](ai/menu.md) | `EUI.Menu` (veriyle tam ekran menü), onay / seçim / tutar / metin pencereleri, bağlam ve radyal menü, skor tablosu, podyum, ölüm / sonuç / yükleme ekranı |
 | [Yaşam göstergeleri](ai/vitals.md) | Can, zırh, stamina, ihtiyaç halkaları |
 | [Barlar](ai/bars.md) | Boss, dalga, hedef, XP, kanal, ele geçirme, tehdit, yükleme |
-| [İsim etiketleri](ai/tags.md) | Oyuncu / NPC başı etiketleri (`MH.Nametags`) |
+| [İsim etiketleri](ai/tags.md) | Oyuncu / NPC başı etiketleri (`EUI.Nametags`) |
 | [Ekonomi ve durum](ai/economy.md) | Para, aranma, saat-hava, seviye, etkiler, seri |
 | [Ekipman](ai/gear.md) | Silah, cephane, yuva şeridi, envanter ızgarası, teçhizat |
 | [Ekip](ai/crew.md) | Portre, üye kartı, kompakt satır, emir çubuğu, binek |
@@ -58,8 +58,8 @@ MH.on('menu', function (d) { d.open ? menu.open() : menu.close(); });   // oyun 
 
 ### Yapay zeka ile kullanım
 
-Yapay zekaya yalnız `AI.md` adresini verin: `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/AI.md`. Altın kuralları, sayfa iskeletini, ihtiyaç → bileşen tablosunu ve tam API dizinini içerir; yapay zeka ilgili ailenin dosyasını açar, kaynak kodu okumaz.
-Yapılan sayfayı denetlemek için: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/tools/lint.mjs && node lint.mjs web/`.
+Yapay zekaya yalnız `AI.md` adresini verin: `https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/AI.md`. Altın kuralları, sayfa iskeletini, ihtiyaç → bileşen tablosunu ve tam API dizinini içerir; yapay zeka ilgili ailenin dosyasını açar, kaynak kodu okumaz.
+Yapılan sayfayı denetlemek için: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/tools/lint.mjs && node lint.mjs web/`.
 
 ## Geliştirme
 
@@ -70,7 +70,9 @@ npm run audit    # görünmeyen sınıf, belgesiz API, sunumda olmayan varyant
 npm run site     # build + ai + statik site (_site/); kit jsDelivr'den
 npm run dev      # aynısı, ama sayfalar yerel dist/'i kullanır
 npm run serve    # site: http://localhost:5173
-npm run icons    # kit/js/mhud-icons.js'i yeniden üret
+npm run icons    # kit/js/ember-ui-icons.js'i yeniden üret
 ```
+
+**MHud 3.x'ten geçiş:** `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/tools/migrate.mjs && node migrate.mjs web/` adları çevirir (`mh-` → `eui-`, `MH` → `EUI`, `mhud` → `ember-ui`); ardından `lint.mjs`.
 
 **Sürüm yayınlamak:** `CHANGELOG.md`'yi güncelle, `npm version <x.y.z> -m "release: v%s"`, `git push --follow-tags`. Geliştirme kuralları: [`AGENTS.md`](AGENTS.md).

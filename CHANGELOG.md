@@ -1,6 +1,26 @@
 # Değişiklik günlüğü
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@3.0.0`).
+Ember UI (4.0'dan önce: MHud).
+
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.0.0`).
+
+## 4.0.0 — 2026-10-30
+
+**Yeni ad: Ember UI** (eski adı MHud). Yalnız adlandırma değişti; bileşenler, API ve davranış 3.0 ile aynı. Kit HUD'un ötesine (lobi, ekranlar, Godot) büyüyeceği için ad içeriğe göre seçildi. Ember.js ile ilgisi yoktur.
+
+| Ne | MHud 3.x | Ember UI 4 |
+|---|---|---|
+| Repo / site | `StreamEmber/mhud`, `streamember.github.io/mhud` | `StreamEmber/ember-ui`, `streamember.github.io/ember-ui` |
+| CDN | `…/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css` | `…/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css` |
+| Sınıf / değişken / öznitelik | `mh-*` / `--mh-*` / `data-mh-*` | `eui-*` / `--eui-*` / `data-eui-*` |
+| Kök sınıflar | `.mh`, `html.mh-overlay` | `.eui`, `html.eui-overlay` |
+| JS global | `MH` (`MH_ICONS`, `MH_WEAPONS`) | `EUI` (`EUI_ICONS`, `EUI_WEAPONS`) |
+| Yazı tipi aileleri | `'MH Inter'` … | `'EUI Inter'` … |
+| Kaynak dosyalar | `kit/css/mhud.*.css`, `kit/js/mhud*.js` | `kit/css/ember-ui.*.css`, `kit/js/ember-ui*.js` |
+
+- Yeni `tools/migrate.mjs`: bir klasördeki adları tek komutla çevirir (`node migrate.mjs web/`, `--dry` ile önizleme, `--test` kendini sınar).
+- `tools/lint.mjs` eski MHud adlarını (`mh-`, `MH.`, `mhud@`) hata sayar ve 4.x'ten eski sürümü reddeder.
+- `AI.md` başında "Ember.js ile ilgisi yoktur" uyarısı ve eski adlara karşı not.
 
 ## 3.0.0 — 2026-10-30
 

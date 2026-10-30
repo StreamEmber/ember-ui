@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bildirimler — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Bildirimler — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Akışlar</span>
@@ -17,28 +17,28 @@
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
-        <div class="mh-anchor mh-tr"><div class="mh-toasts" data-mh="toasts"></div></div>
-        <div class="mh-anchor mh-tc" data-mh="announce" style="top:22%"></div>
-        <div class="mh-anchor mh-tc" data-mh="levelup" style="top:12%"></div>
-        <div class="mh-anchor mh-bc" data-mh="achv" style="bottom:170px"></div>
-        <div class="mh-anchor mh-mr" style="margin-top:80px"><div class="mh-pickups" data-mh="pickups"></div></div>
-        <div class="mh-anchor mh-bc" data-mh="subtitle" style="bottom:96px"></div>
+      <div class="eui-screen" id="screen">
+        <div class="eui-anchor eui-tr"><div class="eui-toasts" data-eui="toasts"></div></div>
+        <div class="eui-anchor eui-tc" data-eui="announce" style="top:22%"></div>
+        <div class="eui-anchor eui-tc" data-eui="levelup" style="top:12%"></div>
+        <div class="eui-anchor eui-bc" data-eui="achv" style="bottom:170px"></div>
+        <div class="eui-anchor eui-mr" style="margin-top:80px"><div class="eui-pickups" data-eui="pickups"></div></div>
+        <div class="eui-anchor eui-bc" data-eui="subtitle" style="bottom:96px"></div>
 
-        <div class="mh-anchor mh-bl" style="bottom:90px">
-          <div class="mh-chat">
-            <div class="mh-chat__log" id="chat">
-              <div class="mh-msg is-system">Sunucuya hoş geldin. Kurallar için /kurallar yaz.</div>
-              <div class="mh-msg"><span class="mh-msg__tag mh-t-danger">YETKİLİ</span><span class="mh-msg__name mh-t-danger">Amiral Router:</span>Etkinlik 5 dakika içinde başlıyor.</div>
-              <div class="mh-msg"><span class="mh-msg__name mh-t-team1">NabeMedia:</span>hazırız, takım B noktasında</div>
-              <div class="mh-msg"><span class="mh-msg__tag mh-t-legendary">YAYINCI</span><span class="mh-msg__name mh-t-legendary">Serkan_TV:</span>izleyiciler oylama açtı 👀</div>
+        <div class="eui-anchor eui-bl" style="bottom:90px">
+          <div class="eui-chat">
+            <div class="eui-chat__log" id="chat">
+              <div class="eui-msg is-system">Sunucuya hoş geldin. Kurallar için /kurallar yaz.</div>
+              <div class="eui-msg"><span class="eui-msg__tag eui-t-danger">YETKİLİ</span><span class="eui-msg__name eui-t-danger">Amiral Router:</span>Etkinlik 5 dakika içinde başlıyor.</div>
+              <div class="eui-msg"><span class="eui-msg__name eui-t-team1">NabeMedia:</span>hazırız, takım B noktasında</div>
+              <div class="eui-msg"><span class="eui-msg__tag eui-t-legendary">YAYINCI</span><span class="eui-msg__name eui-t-legendary">Serkan_TV:</span>izleyiciler oylama açtı 👀</div>
             </div>
-            <div class="mh-input-wrap mh-catch"><i data-i="chat"></i><input class="mh-input" placeholder="Mesaj yaz…  (T)" id="chat-in"><span class="mh-key mh-key--sm">ENTER</span></div>
+            <div class="eui-input-wrap eui-catch"><i data-i="chat"></i><input class="eui-input" placeholder="Mesaj yaz…  (T)" id="chat-in"><span class="eui-key eui-key--sm">ENTER</span></div>
           </div>
         </div>
-        <div class="mh-anchor mh-bc" style="bottom:0;left:0;right:0;transform:none;align-items:stretch">
-          <div class="mh-ticker"><span class="mh-ticker__label"><i data-i="broadcast" class="mh-i--sm"></i>Canlı</span>
-            <div class="mh-ticker__track"><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30'da</span><span>Sunucu rekoru: <b>32 oyuncu</b></span><span><b>MSK</b> seviye 28 oldu</span><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30'da</span><span>Sunucu rekoru: <b>32 oyuncu</b></span><span><b>MSK</b> seviye 28 oldu</span></div>
+        <div class="eui-anchor eui-bc" style="bottom:0;left:0;right:0;transform:none;align-items:stretch">
+          <div class="eui-ticker"><span class="eui-ticker__label"><i data-i="broadcast" class="eui-i--sm"></i>Canlı</span>
+            <div class="eui-ticker__track"><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30'da</span><span>Sunucu rekoru: <b>32 oyuncu</b></span><span><b>MSK</b> seviye 28 oldu</span><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30'da</span><span>Sunucu rekoru: <b>32 oyuncu</b></span><span><b>MSK</b> seviye 28 oldu</span></div>
           </div>
         </div>
       </div>
@@ -61,32 +61,32 @@
     </div>
   </div>
 
-  <div class="demo-h2"><h2>Toast</h2><p><code>MH.toast({ tone, icon, title, text, meta, duration, actions })</code></p></div>
+  <div class="demo-h2"><h2>Toast</h2><p><code>EUI.toast({ tone, icon, title, text, meta, duration, actions })</code></p></div>
   <div class="demo-specs">
     <div class="demo-spec demo-spec--2">
       <div class="demo-spec__view" style="--h:360px;align-items:flex-start;gap:16px">
-        <div class="mh-toasts">
-          <div class="mh-toast mh-t-success"><div class="mh-toast__icon"><i data-i="circle-check"></i></div><div class="mh-toast__title">Satın alındı</div><button class="mh-toast__close"><i data-i="x"></i></button><div class="mh-toast__text"><b>Karabina tüfeği</b> envantere eklendi.</div><div class="mh-toast__meta">−$3.200 · Ammu-Nation</div></div>
-          <div class="mh-toast mh-t-warn"><div class="mh-toast__icon"><i data-i="alert"></i></div><div class="mh-toast__title">Yakıt azalıyor</div><button class="mh-toast__close"><i data-i="x"></i></button><div class="mh-toast__text">En yakın benzinlik 1,2 km.</div></div>
-          <div class="mh-toast mh-t-danger"><div class="mh-toast__icon"><i data-i="alert-circle"></i></div><div class="mh-toast__title">Bağlantı koptu</div><button class="mh-toast__close"><i data-i="x"></i></button><div class="mh-toast__text">Sunucuya yeniden bağlanılıyor…</div><i class="mh-toast__timer" style="transform:scaleX(.4)"></i></div>
+        <div class="eui-toasts">
+          <div class="eui-toast eui-t-success"><div class="eui-toast__icon"><i data-i="circle-check"></i></div><div class="eui-toast__title">Satın alındı</div><button class="eui-toast__close"><i data-i="x"></i></button><div class="eui-toast__text"><b>Karabina tüfeği</b> envantere eklendi.</div><div class="eui-toast__meta">−$3.200 · Ammu-Nation</div></div>
+          <div class="eui-toast eui-t-warn"><div class="eui-toast__icon"><i data-i="alert"></i></div><div class="eui-toast__title">Yakıt azalıyor</div><button class="eui-toast__close"><i data-i="x"></i></button><div class="eui-toast__text">En yakın benzinlik 1,2 km.</div></div>
+          <div class="eui-toast eui-t-danger"><div class="eui-toast__icon"><i data-i="alert-circle"></i></div><div class="eui-toast__title">Bağlantı koptu</div><button class="eui-toast__close"><i data-i="x"></i></button><div class="eui-toast__text">Sunucuya yeniden bağlanılıyor…</div><i class="eui-toast__timer" style="transform:scaleX(.4)"></i></div>
         </div>
-        <div class="mh-toasts">
-          <div class="mh-toast mh-t-accent"><div class="mh-toast__icon"><i data-i="user-plus"></i></div><div class="mh-toast__title">Ekip daveti</div><button class="mh-toast__close"><i data-i="x"></i></button><div class="mh-toast__text"><b>NabeMedia</b> seni <b>Gece Kuşları</b> ekibine davet ediyor.</div><div class="mh-toast__actions"><button class="mh-btn mh-btn--sm mh-btn--primary"><span class="mh-key">Y</span>Kabul et</button><button class="mh-btn mh-btn--sm mh-btn--outline"><span class="mh-key">N</span>Reddet</button></div><i class="mh-toast__timer" style="transform:scaleX(.7)"></i></div>
-          <div class="mh-toast mh-t-info"><div class="mh-toast__icon"><i data-i="phone"></i></div><div class="mh-toast__title">Lester</div><button class="mh-toast__close"><i data-i="x"></i></button><div class="mh-toast__text">Kamyonu limana getir, gerisini ben hallederim.</div><div class="mh-toast__meta">Mesaj · şimdi</div></div>
+        <div class="eui-toasts">
+          <div class="eui-toast eui-t-accent"><div class="eui-toast__icon"><i data-i="user-plus"></i></div><div class="eui-toast__title">Ekip daveti</div><button class="eui-toast__close"><i data-i="x"></i></button><div class="eui-toast__text"><b>NabeMedia</b> seni <b>Gece Kuşları</b> ekibine davet ediyor.</div><div class="eui-toast__actions"><button class="eui-btn eui-btn--sm eui-btn--primary"><span class="eui-key">Y</span>Kabul et</button><button class="eui-btn eui-btn--sm eui-btn--outline"><span class="eui-key">N</span>Reddet</button></div><i class="eui-toast__timer" style="transform:scaleX(.7)"></i></div>
+          <div class="eui-toast eui-t-info"><div class="eui-toast__icon"><i data-i="phone"></i></div><div class="eui-toast__title">Lester</div><button class="eui-toast__close"><i data-i="x"></i></button><div class="eui-toast__text">Kamyonu limana getir, gerisini ben hallederim.</div><div class="eui-toast__meta">Mesaj · şimdi</div></div>
         </div>
       </div>
       <div class="demo-spec__meta"><b>Tonlar & eylemler</b><span>Tonlar: <code>info</code>, <code>success</code>, <code>warn</code>, <code>danger</code>, <code>accent</code>, <code>legendary</code>. Alt çizgi kalan süreyi gösterir; <code>actions</code> tuş kapaklı butonlar ekler.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:360px;gap:26px">
-        <div class="mh-pickups">
-          <div class="mh-pickup"><b>+120</b><span>Tabanca mermisi</span><span class="mh-pickup__icon"><i data-i="bullets"></i></span></div>
-          <div class="mh-pickup"><b>+2</b><span>Konserve</span><span class="mh-pickup__icon"><i data-i="meat"></i></span></div>
-          <div class="mh-pickup is-neg"><b>−1</b><span>Maymuncuk</span><span class="mh-pickup__icon"><i data-i="key"></i></span></div>
+      <div class="demo-spec__view eui-col" style="--h:360px;gap:26px">
+        <div class="eui-pickups">
+          <div class="eui-pickup"><b>+120</b><span>Tabanca mermisi</span><span class="eui-pickup__icon"><i data-i="bullets"></i></span></div>
+          <div class="eui-pickup"><b>+2</b><span>Konserve</span><span class="eui-pickup__icon"><i data-i="meat"></i></span></div>
+          <div class="eui-pickup is-neg"><b>−1</b><span>Maymuncuk</span><span class="eui-pickup__icon"><i data-i="key"></i></span></div>
         </div>
-        <div class="mh-panel mh-achv"><div class="mh-achv__icon"><i data-i="trophy"></i></div><div class="mh-achv__body"><span class="mh-kicker">Başarım açıldı</span><span class="mh-achv__name">Keskin nişancı</span></div><div class="mh-achv__pts">+50</div></div>
+        <div class="eui-panel eui-achv"><div class="eui-achv__icon"><i data-i="trophy"></i></div><div class="eui-achv__body"><span class="eui-kicker">Başarım açıldı</span><span class="eui-achv__name">Keskin nişancı</span></div><div class="eui-achv__pts">+50</div></div>
       </div>
-      <div class="demo-spec__meta"><b>Eşya alma & başarım</b><span><code>MH.pickup({ icon, name, amount })</code>, <code>MH.achievement({ name, points, icon })</code></span></div>
+      <div class="demo-spec__meta"><b>Eşya alma & başarım</b><span><code>EUI.pickup({ icon, name, amount })</code>, <code>EUI.achievement({ name, points, icon })</code></span></div>
     </div>
   </div>
 
@@ -94,32 +94,32 @@
   <div class="demo-specs">
     <div class="demo-spec demo-spec--2">
       <div class="demo-spec__view" style="--h:320px;padding:0;position:relative">
-        <div class="mh-banner" style="position:absolute">
-          <div class="mh-banner__title">Görev tamamlandı</div>
-          <div class="mh-banner__sub">Konvoy baskını · 08:42</div>
-          <div class="mh-banner__rewards"><div class="mh-reward"><b class="mh-tone mh-t-success">+$25.000</b><span>Ödeme</span></div><div class="mh-reward"><b>+1.250</b><span>RP</span></div><div class="mh-reward"><b class="mh-tone mh-t-gold">Altın</b><span>Derece</span></div></div>
+        <div class="eui-banner" style="position:absolute">
+          <div class="eui-banner__title">Görev tamamlandı</div>
+          <div class="eui-banner__sub">Konvoy baskını · 08:42</div>
+          <div class="eui-banner__rewards"><div class="eui-reward"><b class="eui-tone eui-t-success">+$25.000</b><span>Ödeme</span></div><div class="eui-reward"><b>+1.250</b><span>RP</span></div><div class="eui-reward"><b class="eui-tone eui-t-gold">Altın</b><span>Derece</span></div></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Görev şeridi</b><span><code>MH.banner({ title, sub, rewards, fail })</code> — açılırken şerit ortadan genişler, ödüller sırayla düşer.</span></div>
+      <div class="demo-spec__meta"><b>Görev şeridi</b><span><code>EUI.banner({ title, sub, rewards, fail })</code> — açılırken şerit ortadan genişler, ödüller sırayla düşer.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:320px">
-        <div class="mh-announce"><div class="mh-announce__kicker">Yeni dalga</div><div class="mh-announce__title">Dalga 8</div><div class="mh-announce__sub">Zırhlı düşmanlar yaklaşıyor</div></div>
+        <div class="eui-announce"><div class="eui-announce__kicker">Yeni dalga</div><div class="eui-announce__title">Dalga 8</div><div class="eui-announce__sub">Zırhlı düşmanlar yaklaşıyor</div></div>
       </div>
-      <div class="demo-spec__meta"><b>Duyuru</b><span><code>MH.announce({ kicker, title, sub })</code></span></div>
+      <div class="demo-spec__meta"><b>Duyuru</b><span><code>EUI.announce({ kicker, title, sub })</code></span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:220px">
-        <div class="mh-panel mh-levelup"><div class="mh-levelup__badge"><span>43</span></div><div><span class="mh-kicker mh-kicker--accent">Seviye atladın</span><div class="mh-title mh-title--lg">Seviye 43</div><div class="mh-levelup__unlocks"><span class="mh-badge mh-t-accent">Ağır zırh</span><span class="mh-badge mh-t-accent">+1 slot</span></div></div></div>
+        <div class="eui-panel eui-levelup"><div class="eui-levelup__badge"><span>43</span></div><div><span class="eui-kicker eui-kicker--accent">Seviye atladın</span><div class="eui-title eui-title--lg">Seviye 43</div><div class="eui-levelup__unlocks"><span class="eui-badge eui-t-accent">Ağır zırh</span><span class="eui-badge eui-t-accent">+1 slot</span></div></div></div>
       </div>
-      <div class="demo-spec__meta"><b>Seviye atlama</b><span><code>MH.levelUp({ level, unlocks })</code></span></div>
+      <div class="demo-spec__meta"><b>Seviye atlama</b><span><code>EUI.levelUp({ level, unlocks })</code></span></div>
     </div>
     <div class="demo-spec demo-spec--2">
-      <div class="demo-spec__view mh-col" style="--h:220px;gap:18px">
-        <div class="mh-subtitle"><b>Lester:</b>Kamyonu limana getir. Polis peşindeyse önce onlardan kurtul.</div>
-        <div class="mh-subtitle mh-subtitle--boxed"><b style="--speaker:#9fd672">Dutch:</b>Bir planım var, Arthur.</div>
+      <div class="demo-spec__view eui-col" style="--h:220px;gap:18px">
+        <div class="eui-subtitle"><b>Lester:</b>Kamyonu limana getir. Polis peşindeyse önce onlardan kurtul.</div>
+        <div class="eui-subtitle eui-subtitle--boxed"><b style="--speaker:#9fd672">Dutch:</b>Bir planım var, Arthur.</div>
       </div>
-      <div class="demo-spec__meta"><b>Altyazı</b><span><code>MH.subtitle({ speaker, text, color, boxed })</code> — kutulu varyant parlak sahnelerde okunurluğu artırır.</span></div>
+      <div class="demo-spec__meta"><b>Altyazı</b><span><code>EUI.subtitle({ speaker, text, color, boxed })</code> — kutulu varyant parlak sahnelerde okunurluğu artırır.</span></div>
     </div>
   </div>
 
@@ -127,34 +127,34 @@
   <div class="demo-specs">
     <div class="demo-spec demo-spec--2">
       <div class="demo-spec__view" style="--h:340px;--dim:.25">
-        <div class="mh-dialog">
-          <div class="mh-dialog__speaker"><span class="mh-avatar mh-avatar--lg mh-avatar--round mh-t-warn">L</span><div class="mh-col" style="gap:2px"><span class="mh-kicker mh-kicker--accent">Lester Crest</span><span class="mh-sub">Organizatör</span></div></div>
-          <div class="mh-dialog__line">“Bankanın arka kapısı gece yarısı açılıyor. Sessiz mi gireriz, yoksa kapıyı mı uçururuz?”</div>
-          <div class="mh-dialog__choices">
-            <button class="mh-choice is-active"><span class="mh-key">1</span>Sessizce gireriz.<small>Gizlilik</small></button>
-            <button class="mh-choice"><span class="mh-key">2</span>Kapıyı uçururuz.<small>Agresif</small></button>
-            <button class="mh-choice is-used"><span class="mh-key">3</span>Planı tekrar anlat.</button>
+        <div class="eui-dialog">
+          <div class="eui-dialog__speaker"><span class="eui-avatar eui-avatar--lg eui-avatar--round eui-t-warn">L</span><div class="eui-col" style="gap:2px"><span class="eui-kicker eui-kicker--accent">Lester Crest</span><span class="eui-sub">Organizatör</span></div></div>
+          <div class="eui-dialog__line">“Bankanın arka kapısı gece yarısı açılıyor. Sessiz mi gireriz, yoksa kapıyı mı uçururuz?”</div>
+          <div class="eui-dialog__choices">
+            <button class="eui-choice is-active"><span class="eui-key">1</span>Sessizce gireriz.<small>Gizlilik</small></button>
+            <button class="eui-choice"><span class="eui-key">2</span>Kapıyı uçururuz.<small>Agresif</small></button>
+            <button class="eui-choice is-used"><span class="eui-key">3</span>Planı tekrar anlat.</button>
           </div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Diyalog seçimleri</b><span><code>.mh-dialog</code> › <code>.mh-choice</code> (<code>is-active</code>, <code>is-used</code>) — 1-4 tuşlarıyla seçilir.</span></div>
+      <div class="demo-spec__meta"><b>Diyalog seçimleri</b><span><code>.eui-dialog</code> › <code>.eui-choice</code> (<code>is-active</code>, <code>is-used</code>) — 1-4 tuşlarıyla seçilir.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:340px;--dim:.2">
-        <div class="mh-chat" style="--w:100%">
-          <div class="mh-chat__log">
-            <div class="mh-msg"><span class="mh-msg__name mh-t-team1">NabeMedia:</span>B'ye geliyorum</div>
-            <div class="mh-msg"><span class="mh-msg__tag mh-t-accent">EKİP</span><span class="mh-msg__name mh-t-team1">MSK:</span>arkanı kolla</div>
-            <div class="mh-msg is-system">Serkan_TV sunucuya katıldı.</div>
+        <div class="eui-chat" style="--w:100%">
+          <div class="eui-chat__log">
+            <div class="eui-msg"><span class="eui-msg__name eui-t-team1">NabeMedia:</span>B'ye geliyorum</div>
+            <div class="eui-msg"><span class="eui-msg__tag eui-t-accent">EKİP</span><span class="eui-msg__name eui-t-team1">MSK:</span>arkanı kolla</div>
+            <div class="eui-msg is-system">Serkan_TV sunucuya katıldı.</div>
           </div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Sohbet</b><span><code>.mh-chat</code> — eski mesajlar üstte maskeyle solar.</span></div>
+      <div class="demo-spec__meta"><b>Sohbet</b><span><code>.eui-chat</code> — eski mesajlar üstte maskeyle solar.</span></div>
     </div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var T = {
@@ -164,26 +164,26 @@
     danger: { tone: 'danger', title: 'Aracın patlamak üzere', text: 'Motor hasarı kritik seviyede!' }
   };
   var A = {
-    't-info': function () { MH.toast(T.info); }, 't-success': function () { MH.toast(T.success); },
-    't-warn': function () { MH.toast(T.warn); }, 't-danger': function () { MH.toast(T.danger); },
-    't-action': function () { MH.toast({ tone: 'accent', icon: 'user-plus', title: 'Ekip daveti', text: '<b>NabeMedia</b> seni ekibine davet ediyor.', html: true, duration: 9000, actions: [{ label: 'Kabul et', key: 'Y', primary: true, onClick: function () { MH.toast({ tone: 'success', title: 'Ekibe katıldın', duration: 2500 }); } }, { label: 'Reddet', key: 'N' }] }); },
-    announce: function () { MH.announce({ kicker: 'Yeni dalga', title: 'Dalga ' + Math.round(Demo.rand(2, 12)), sub: 'Zırhlı düşmanlar yaklaşıyor' }); },
-    passed: function () { MH.banner({ title: 'Görev tamamlandı', sub: 'Konvoy baskını · 08:42', rewards: [{ value: '+$25.000', label: 'Ödeme', tone: 'success' }, { value: '+1.250', label: 'RP' }, { value: 'Altın', label: 'Derece', tone: 'gold' }] }); },
-    failed: function () { MH.banner({ fail: true, title: 'Görev başarısız', sub: 'Kamyon imha edildi' }); },
-    level: function () { MH.levelUp({ level: 43, unlocks: ['Ağır zırh', '+1 envanter slotu'] }); },
-    achv: function () { MH.achievement({ name: Demo.pick(['Keskin nişancı', 'Hayatta kalan', 'Cömert sponsor']), points: '+50', icon: Demo.pick(['trophy', 'medal', 'crown']) }); },
-    pickup: function () { MH.pickup(Demo.pick([{ icon: 'bullets', name: 'Tüfek mermisi', amount: 30 }, { icon: 'first-aid', name: 'İlk yardım', amount: 1 }, { icon: 'cash', name: 'Nakit', amount: 250 }, { icon: 'key', name: 'Maymuncuk', amount: -1 }])); },
-    sub: function () { MH.subtitle(Demo.pick([{ speaker: 'Lester', text: 'Kamyonu limana getir. Polis peşindeyse önce onlardan kurtul.' }, { speaker: 'NabeMedia', color: '#58d67d', text: 'Arka taraftan dolanıyorum, ateş açmayın!' }])); }
+    't-info': function () { EUI.toast(T.info); }, 't-success': function () { EUI.toast(T.success); },
+    't-warn': function () { EUI.toast(T.warn); }, 't-danger': function () { EUI.toast(T.danger); },
+    't-action': function () { EUI.toast({ tone: 'accent', icon: 'user-plus', title: 'Ekip daveti', text: '<b>NabeMedia</b> seni ekibine davet ediyor.', html: true, duration: 9000, actions: [{ label: 'Kabul et', key: 'Y', primary: true, onClick: function () { EUI.toast({ tone: 'success', title: 'Ekibe katıldın', duration: 2500 }); } }, { label: 'Reddet', key: 'N' }] }); },
+    announce: function () { EUI.announce({ kicker: 'Yeni dalga', title: 'Dalga ' + Math.round(Demo.rand(2, 12)), sub: 'Zırhlı düşmanlar yaklaşıyor' }); },
+    passed: function () { EUI.banner({ title: 'Görev tamamlandı', sub: 'Konvoy baskını · 08:42', rewards: [{ value: '+$25.000', label: 'Ödeme', tone: 'success' }, { value: '+1.250', label: 'RP' }, { value: 'Altın', label: 'Derece', tone: 'gold' }] }); },
+    failed: function () { EUI.banner({ fail: true, title: 'Görev başarısız', sub: 'Kamyon imha edildi' }); },
+    level: function () { EUI.levelUp({ level: 43, unlocks: ['Ağır zırh', '+1 envanter slotu'] }); },
+    achv: function () { EUI.achievement({ name: Demo.pick(['Keskin nişancı', 'Hayatta kalan', 'Cömert sponsor']), points: '+50', icon: Demo.pick(['trophy', 'medal', 'crown']) }); },
+    pickup: function () { EUI.pickup(Demo.pick([{ icon: 'bullets', name: 'Tüfek mermisi', amount: 30 }, { icon: 'first-aid', name: 'İlk yardım', amount: 1 }, { icon: 'cash', name: 'Nakit', amount: 250 }, { icon: 'key', name: 'Maymuncuk', amount: -1 }])); },
+    sub: function () { EUI.subtitle(Demo.pick([{ speaker: 'Lester', text: 'Kamyonu limana getir. Polis peşindeyse önce onlardan kurtul.' }, { speaker: 'NabeMedia', color: '#58d67d', text: 'Arka taraftan dolanıyorum, ateş açmayın!' }])); }
   };
   Demo.on('[data-act]', function (e) { A[e.currentTarget.getAttribute('data-act')](); });
   document.getElementById('chat-in').addEventListener('keydown', function (e) {
     if (e.key !== 'Enter' || !this.value.trim()) return;
-    var m = document.createElement('div'); m.className = 'mh-msg mh-enter-up';
-    m.innerHTML = '<span class="mh-msg__name mh-t-accent">Sen:</span>' + MH.esc(this.value);
+    var m = document.createElement('div'); m.className = 'eui-msg eui-enter-up';
+    m.innerHTML = '<span class="eui-msg__name eui-t-accent">Sen:</span>' + EUI.esc(this.value);
     document.getElementById('chat').appendChild(m); this.value = '';
   });
-  setTimeout(function () { MH.toast(T.info); }, 400);
-  setTimeout(function () { MH.toast(T.success); }, 900);
+  setTimeout(function () { EUI.toast(T.info); }, 400);
+  setTimeout(function () { EUI.toast(T.success); }, 900);
 </script>
 </body>
 </html>

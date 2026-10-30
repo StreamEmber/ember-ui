@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ekip & kanallar — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Ekip & kanallar — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Arayüz</span>
     <h1>Ekip & kanallar</h1>
-    <p>Veri güdümlü sosyal menü (<code>MH.Social</code>, <code>MH.Menu</code> üstünde): ekip (üyeler, yardım, para gönderme, rütbe, atma), davetler (gelen/gönderilen, süre sayacı), ekip kasası, cephanelik, rütbe izinleri, <b>kanallar</b>, arkadaşlar, gelen kutusu ve takas. Her eylem bir modal açar ve sonunda oyuna <code>MH.post('social', { action, data })</code> gider; bu sayfada sahte bir sunucu cevap veriyor. <b>Kanal</b>: aynı oyun oturumunda ayrı bir dünya. Aynı kanaldakiler birbirini görür, diğerleri görünmez.</p>
+    <p>Veri güdümlü sosyal menü (<code>EUI.Social</code>, <code>EUI.Menu</code> üstünde): ekip (üyeler, yardım, para gönderme, rütbe, atma), davetler (gelen/gönderilen, süre sayacı), ekip kasası, cephanelik, rütbe izinleri, <b>kanallar</b>, arkadaşlar, gelen kutusu ve takas. Her eylem bir modal açar ve sonunda oyuna <code>EUI.post('social', { action, data })</code> gider; bu sayfada sahte bir sunucu cevap veriyor. <b>Kanal</b>: aynı oyun oturumunda ayrı bir dünya. Aynı kanaldakiler birbirini görür, diğerleri görünmez.</p>
   </header>
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
-        <div class="mh-layer mh-catch"><div class="mh-scrim mh-scrim--soft"></div><div id="social-host"></div></div>
-        <div class="mh-anchor mh-tr" style="z-index:120"><div class="mh-toasts" data-mh="toasts" style="--w:340px"></div></div>
+      <div class="eui-screen" id="screen">
+        <div class="eui-layer eui-catch"><div class="eui-scrim eui-scrim--soft"></div><div id="social-host"></div></div>
+        <div class="eui-anchor eui-tr" style="z-index:120"><div class="eui-toasts" data-eui="toasts" style="--w:340px"></div></div>
       </div>
     </div>
     <div class="demo-actions">
@@ -35,27 +35,27 @@
     <div class="demo-note">Q / E ile bölümler arasında gez. Menü içi tüm düğmeler çalışır; sahte sunucu durumu günceller ve sağ üstte bildirim gösterir.</div>
   </div>
 
-  <div class="demo-h2"><h2>Modal sistemi</h2><p>Yığınlanır (üstteki ESC/Enter alır), form değerlerini toplar, doğrular · <code>MH.modal</code>, <code>MH.choose</code>, <code>MH.amount</code>, <code>MH.confirm</code>, <code>MH.input</code></p></div>
-  <div class="demo-specs mh-catch">
+  <div class="demo-h2"><h2>Modal sistemi</h2><p>Yığınlanır (üstteki ESC/Enter alır), form değerlerini toplar, doğrular · <code>EUI.modal</code>, <code>EUI.choose</code>, <code>EUI.amount</code>, <code>EUI.confirm</code>, <code>EUI.input</code></p></div>
+  <div class="demo-specs eui-catch">
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px;gap:10px"><button class="mh-btn mh-btn--primary" data-m="form"><i data-i="layers"></i>Form modalı</button><span class="mh-sub" data-out="form">&nbsp;</span></div>
-      <div class="demo-spec__meta"><b>MH.modal — form</b><span><code>body</code> içindeki <code>[name]</code> alanları <code>submit: true</code> eylemiyle nesne olarak döner; <code>validate(v)</code> hata metni döndürürse modal sallanır.</span></div>
+      <div class="demo-spec__view eui-col" style="--h:200px;gap:10px"><button class="eui-btn eui-btn--primary" data-m="form"><i data-i="layers"></i>Form modalı</button><span class="eui-sub" data-out="form">&nbsp;</span></div>
+      <div class="demo-spec__meta"><b>EUI.modal — form</b><span><code>body</code> içindeki <code>[name]</code> alanları <code>submit: true</code> eylemiyle nesne olarak döner; <code>validate(v)</code> hata metni döndürürse modal sallanır.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px;gap:10px"><button class="mh-btn mh-btn--primary" data-m="choose"><i data-i="user-plus"></i>Oyuncu seç</button><span class="mh-sub" data-out="choose">&nbsp;</span></div>
-      <div class="demo-spec__meta"><b>MH.choose</b><span>Aranabilir liste, tekli ya da çoklu (<code>multi</code>, <code>max</code>). ↑↓ gez, Boşluk seç, Enter onayla.</span></div>
+      <div class="demo-spec__view eui-col" style="--h:200px;gap:10px"><button class="eui-btn eui-btn--primary" data-m="choose"><i data-i="user-plus"></i>Oyuncu seç</button><span class="eui-sub" data-out="choose">&nbsp;</span></div>
+      <div class="demo-spec__meta"><b>EUI.choose</b><span>Aranabilir liste, tekli ya da çoklu (<code>multi</code>, <code>max</code>). ↑↓ gez, Boşluk seç, Enter onayla.</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px;gap:10px"><button class="mh-btn mh-btn--primary" data-m="amount"><i data-i="cash"></i>Tutar seç</button><span class="mh-sub" data-out="amount">&nbsp;</span></div>
-      <div class="demo-spec__meta"><b>MH.amount</b><span>Büyük sayı alanı, ± düğmeleri, kaydırıcı ve hızlı tutarlar (<code>quick: [100, 'half', 'max']</code>).</span></div>
+      <div class="demo-spec__view eui-col" style="--h:200px;gap:10px"><button class="eui-btn eui-btn--primary" data-m="amount"><i data-i="cash"></i>Tutar seç</button><span class="eui-sub" data-out="amount">&nbsp;</span></div>
+      <div class="demo-spec__meta"><b>EUI.amount</b><span>Büyük sayı alanı, ± düğmeleri, kaydırıcı ve hızlı tutarlar (<code>quick: [100, 'half', 'max']</code>).</span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view mh-col" style="--h:200px;gap:10px"><button class="mh-btn mh-btn--outline" data-m="stack"><i data-i="layers"></i>İç içe modal</button><span class="mh-sub" data-out="stack">&nbsp;</span></div>
-      <div class="demo-spec__meta"><b>Yığın</b><span>Bir modal içinden ikincisi açılır; ESC yalnız üstekini kapatır. <code>MH.closeModals()</code> hepsini kapatır.</span></div>
+      <div class="demo-spec__view eui-col" style="--h:200px;gap:10px"><button class="eui-btn eui-btn--outline" data-m="stack"><i data-i="layers"></i>İç içe modal</button><span class="eui-sub" data-out="stack">&nbsp;</span></div>
+      <div class="demo-spec__meta"><b>Yığın</b><span>Bir modal içinden ikincisi açılır; ESC yalnız üstekini kapatır. <code>EUI.closeModals()</code> hepsini kapatır.</span></div>
     </div>
   </div>
 
-  <div class="demo-h2"><h2>Protokol</h2><p><code>kit/js/mhud-social.js</code> · menü veriyi çizer, eylemleri geri yollar</p></div>
+  <div class="demo-h2"><h2>Protokol</h2><p><code>kit/js/ember-ui-social.js</code> · menü veriyi çizer, eylemleri geri yollar</p></div>
   <div class="demo-cols">
     <div class="demo-box">
       <h3>Oyundan menüye</h3>
@@ -77,7 +77,7 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
   locked, owner, crew, system, friends: [..], members: [..], rules: [..] }] }</pre>
     </div>
     <div class="demo-box">
-      <h3>Menüden oyuna · <code>MH.post('social', { action, data })</code></h3>
+      <h3>Menüden oyuna · <code>EUI.post('social', { action, data })</code></h3>
       <table class="demo-table">
         <tr><th>Eylem</th><th>Veri</th></tr>
         <tr><td><code>crew:create</code></td><td><code>{ name, tag, motto, tone, join }</code></td></tr>
@@ -99,7 +99,7 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   /* ================= Sahte sunucu durumu ================= */
@@ -198,7 +198,7 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
   };
 
   /* ================= Sahte sunucu: eylemleri uygular ================= */
-  function toast(t, x, ic, tone) { MH.toast({ title: t, text: x, icon: ic || 'check', tone: tone || 'success', duration: 2600 }); }
+  function toast(t, x, ic, tone) { EUI.toast({ title: t, text: x, icon: ic || 'check', tone: tone || 'success', duration: 2600 }); }
   function by(arr, id) { return (arr || []).filter(function (x) { return String(x.id) === String(id); })[0]; }
   function pname(id) { var p = by(S.players, id) || by(S.friends, id) || (S.crew && by(S.crew.members, id)); return p ? p.name : 'Oyuncu'; }
   function logIt(e) { if (S.crew) { S.crew.log.unshift(Object.assign({ time: new Date().toTimeString().slice(0, 5), who: S.me.name }, e)); } }
@@ -223,7 +223,7 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
     'crew:perm': function (d) { var r = by(S.crew.ranks, d.rank); r.perms[d.perm] = d.value ? 1 : 0; toast('İzin güncellendi', r.label + ' · ' + d.perm, 'check', 'info'); },
     'crew:rankAdd': function (d) { S.crew.ranks.splice(S.crew.ranks.length - 1, 0, { id: 'r' + (NEXT++), label: d.label, perms: {} }); toast('Rütbe eklendi', d.label, 'crown', 'info'); },
     'crew:announce': function (d) { if (d.pin) S.crew.announcement = d.text; S.inbox.unshift({ id: 'm' + (NEXT++), kind: 'crew', title: 'Ekip duyurusu', from: S.me.name, text: d.text, time: 'şimdi' }); toast('Duyuru yayınlandı', null, 'bell'); },
-    'player:give': function (d) { S.me.cash -= d.amount; toast('$' + MH.fmt(d.amount) + ' gönderildi', pname(d.id), 'cash'); },
+    'player:give': function (d) { S.me.cash -= d.amount; toast('$' + EUI.fmt(d.amount) + ' gönderildi', pname(d.id), 'cash'); },
     'player:message': function (d) { toast('Mesaj gönderildi', pname(d.id), 'chat', 'info'); },
     'invite:accept': function (d) {
       var x = by(S.invites.incoming, d.id); S.invites.incoming = S.invites.incoming.filter(function (i) { return i !== x; });
@@ -237,9 +237,9 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
     'invite:decline': function (d) { S.invites.incoming = S.invites.incoming.filter(function (i) { return String(i.id) !== String(d.id); }); toast('Davet reddedildi', null, 'x', 'info'); },
     'invite:declineAll': function () { S.invites.incoming = []; toast('Tüm davetler reddedildi', null, 'x', 'info'); },
     'invite:cancel': function (d) { S.invites.outgoing = S.invites.outgoing.filter(function (i) { return String(i.id) !== String(d.id); }); toast('Davet geri alındı', null, 'x', 'info'); },
-    'vault:deposit': function (d) { S.me.cash -= d.amount; S.crew.bank += d.amount; S.crew.bankDelta += d.amount; logIt({ type: 'deposit', amount: d.amount }); toast('$' + MH.fmt(d.amount) + ' kasaya yatırıldı', null, 'arrow-down'); },
-    'vault:withdraw': function (d) { S.me.cash += d.amount; S.crew.bank -= d.amount; S.crew.bankDelta -= d.amount; S.crew.withdrawnToday += d.amount; logIt({ type: 'withdraw', amount: d.amount }); toast('$' + MH.fmt(d.amount) + ' çekildi', null, 'arrow-up'); },
-    'vault:split': function (d) { S.crew.bank -= d.amount; S.crew.bankDelta -= d.amount; S.me.cash += Math.floor(d.amount / d.ids.length); logIt({ type: 'split', amount: d.amount, note: d.ids.length + ' üyeye' }); toast('$' + MH.fmt(d.amount) + ' dağıtıldı', d.ids.length + ' üye · kişi başı $' + MH.fmt(Math.floor(d.amount / d.ids.length)), 'users'); },
+    'vault:deposit': function (d) { S.me.cash -= d.amount; S.crew.bank += d.amount; S.crew.bankDelta += d.amount; logIt({ type: 'deposit', amount: d.amount }); toast('$' + EUI.fmt(d.amount) + ' kasaya yatırıldı', null, 'arrow-down'); },
+    'vault:withdraw': function (d) { S.me.cash += d.amount; S.crew.bank -= d.amount; S.crew.bankDelta -= d.amount; S.crew.withdrawnToday += d.amount; logIt({ type: 'withdraw', amount: d.amount }); toast('$' + EUI.fmt(d.amount) + ' çekildi', null, 'arrow-up'); },
+    'vault:split': function (d) { S.crew.bank -= d.amount; S.crew.bankDelta -= d.amount; S.me.cash += Math.floor(d.amount / d.ids.length); logIt({ type: 'split', amount: d.amount, note: d.ids.length + ' üyeye' }); toast('$' + EUI.fmt(d.amount) + ' dağıtıldı', d.ids.length + ' üye · kişi başı $' + EUI.fmt(Math.floor(d.amount / d.ids.length)), 'users'); },
     'armory:take': function (d) { var it = by(S.crew.armory, d.id); it.count -= d.count; logIt({ type: 'take', item: it.name + ' ×' + d.count }); toast(it.name + ' alındı', '×' + d.count, 'arrow-up'); },
     'armory:put': function (d) { var it = by(S.inventory, d.id); it.count -= d.count; if (it.count <= 0) S.inventory = S.inventory.filter(function (x) { return x !== it; });
       var ex = S.crew.armory.filter(function (a) { return a.name === it.name; })[0]; if (ex) ex.count += d.count; else S.crew.armory.push({ id: 'a' + (NEXT++), name: it.name, art: it.art, count: d.count, tier: 'common' });
@@ -259,7 +259,7 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
     'inbox:action': function (d) { toast(d.action === 'join' ? 'Etkinliğe kayıt olundu' : 'Hatırlatıcı kuruldu', null, d.action === 'join' ? 'flag' : 'bell'); by(S.inbox, d.id).unread = false; },
     'prefs:set': function (d) { S.prefs[d.key] = d.value; }
   };
-  var menu = MH.Social('#social-host', {
+  var menu = EUI.Social('#social-host', {
     section: 'crew', w: 1320, h: 820,
     onAction: function (action, data, m) {
       if (SERVER[action]) { SERVER[action](data); setTimeout(function () { m.set(S); }, 60); }
@@ -273,14 +273,14 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
     var ch = false;
     S.invites.incoming.forEach(function (x) { if (x.expires != null) { x.expires--; ch = true; } });
     S.invites.incoming = S.invites.incoming.filter(function (x) { return x.expires == null || x.expires > 0; });
-    if (ch && menu.ui.section === 'invites' && !document.querySelector('.mh-modal')) menu.set(S);
+    if (ch && menu.ui.section === 'invites' && !document.querySelector('.eui-modal')) menu.set(S);
   }, 1000);
 
   /* Takas: karşı taraf sahte */
   var trade = null;
   function openTrade(partner) {
     var st = { partner: { name: partner }, cash: S.me.cash, inventory: S.inventory, mine: { items: [], money: 0, ready: false }, theirs: { items: [], money: 0, ready: false } };
-    trade = MH.trade(Object.assign(st, { onAction: function (a, d) {
+    trade = EUI.trade(Object.assign(st, { onAction: function (a, d) {
       if (a === 'trade:add') { var it = by(S.inventory, d.id); st.mine.items.push({ id: it.id, name: it.name, art: it.art, count: d.count }); st.mine.ready = st.theirs.ready = false; }
       if (a === 'trade:remove') { st.mine.items = st.mine.items.filter(function (x) { return String(x.id) !== String(d.id); }); st.mine.ready = st.theirs.ready = false; }
       if (a === 'trade:money') { st.mine.money = d.amount; st.mine.ready = st.theirs.ready = false; }
@@ -298,42 +298,42 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
       var x = Demo.pick([{ kind: 'crew', from: 'kaan', target: 'Kızıl Kurtlar', text: 'seni Kızıl Kurtlar ekibine davet etti' }, { kind: 'channel', from: 'NabeMedia', target: 'Gece baskını', text: 'seni Gece baskını kanalına çağırıyor', note: 'Soygun · 4 / 8' },
         { kind: 'duel', from: 'ricky', text: 'seni düelloya çağırıyor', note: 'Western düello · tek tabanca' }, { kind: 'trade', from: 'bora', text: 'seninle takas yapmak istiyor' }]);
       x = Object.assign({ id: 'i' + (NEXT++), expires: 60, total: 60 }, x); S.invites.incoming.unshift(x);
-      MH.toast({ tone: 'accent', icon: 'email', title: x.from + ' · davet', text: x.text, duration: 3000 }); menu.set(S);
+      EUI.toast({ tone: 'accent', icon: 'email', title: x.from + ' · davet', text: x.text, duration: 3000 }); menu.set(S);
     },
     trade: function () { openTrade('MSK'); },
-    down: function () { var m = by(S.crew && S.crew.members, 2); if (!m) return; m.status = 'down'; m.hp = 0; menu.ui.member = 2; menu.open('crew'); menu.set(S); MH.toast({ tone: 'danger', icon: 'revive', title: 'NabeMedia yerde!', text: 'Yardım et › Ayağa kaldır' }); },
+    down: function () { var m = by(S.crew && S.crew.members, 2); if (!m) return; m.status = 'down'; m.hp = 0; menu.ui.member = 2; menu.open('crew'); menu.set(S); EUI.toast({ tone: 'danger', icon: 'revive', title: 'NabeMedia yerde!', text: 'Yardım et › Ayağa kaldır' }); },
     nocrew: function () { S.crew = S.crew ? null : freshCrew(); menu.set(S); },
     rank: function () { if (!S.crew) return; var me = by(S.crew.members, 1); me.rank = me.rank === 'leader' ? 'recruit' : 'leader'; menu.set(S); toast('Rütben: ' + (me.rank === 'leader' ? 'Lider' : 'Acemi'), 'Düğmeler yetkiye göre değişir', 'crown', 'info'); }
   };
   Demo.on('[data-act]', function (e) { A[e.currentTarget.getAttribute('data-act')](); });
 
   /* Modal örnekleri: sayfanın kendi katmanında açılsın (sahnenin dışında) */
-  var mh = document.createElement('div'); mh.className = 'mh-screen'; mh.id = 'modal-host'; mh.style.cssText = 'position:fixed;inset:0;z-index:1000';
-  mh.style.fontFamily = 'var(--mh-font-ui)'; mh.style.color = 'var(--mh-text)'; mh.style.fontSize = '14px'; document.body.appendChild(mh);
+  var mh = document.createElement('div'); mh.className = 'eui-screen'; mh.id = 'modal-host'; mh.style.cssText = 'position:fixed;inset:0;z-index:1000';
+  mh.style.fontFamily = 'var(--eui-font-ui)'; mh.style.color = 'var(--eui-text)'; mh.style.fontSize = '14px'; document.body.appendChild(mh);
   var T = '#modal-host';
   /* Modal örnekleri */
   function out(k, v) { document.querySelector('[data-out="' + k + '"]').textContent = v; }
   var M = {
     form: function () {
-      MH.modal({ target: T, kicker: 'Örnek', title: 'Etkinlik oluştur', icon: 'flag', size: 'lg',
-        body: '<div class="mh-form" style="--cols:2"><label class="mh-field is-wide"><span class="mh-kicker">Ad</span><input class="mh-input" name="name" placeholder="Konvoy baskını"></label>' +
-          '<label class="mh-field"><span class="mh-kicker">Saat</span><input class="mh-input" name="time" type="time" value="21:30"></label>' +
-          '<label class="mh-field"><span class="mh-kicker">Ödül ($)</span><input class="mh-input" name="prize" type="number" value="50000"></label>' +
-          '<div class="mh-field is-wide"><span class="mh-kicker">Tür</span><div class="mh-optcards"><label class="mh-optcard"><input type="radio" name="kind" value="pvp" checked><i data-i="crosshair"></i><b>PvP</b><span>Oyuncuya karşı</span></label><label class="mh-optcard"><input type="radio" name="kind" value="pve"><i data-i="zombie"></i><b>PvE</b><span>Yapay zekâya karşı</span></label><label class="mh-optcard"><input type="radio" name="kind" value="race"><i data-i="flag-3"></i><b>Yarış</b><span>Kontrol noktaları</span></label></div></div>' +
-          '<label class="mh-field is-wide"><span class="mh-kicker">Açıklama</span><textarea class="mh-input mh-textarea" name="desc" placeholder="Kısa açıklama…"></textarea></label>' +
-          '<label class="mh-check is-wide"><input type="checkbox" name="announce" checked><span class="mh-check__box"></span>Tüm sunucuya duyur</label></div>',
+      EUI.modal({ target: T, kicker: 'Örnek', title: 'Etkinlik oluştur', icon: 'flag', size: 'lg',
+        body: '<div class="eui-form" style="--cols:2"><label class="eui-field is-wide"><span class="eui-kicker">Ad</span><input class="eui-input" name="name" placeholder="Konvoy baskını"></label>' +
+          '<label class="eui-field"><span class="eui-kicker">Saat</span><input class="eui-input" name="time" type="time" value="21:30"></label>' +
+          '<label class="eui-field"><span class="eui-kicker">Ödül ($)</span><input class="eui-input" name="prize" type="number" value="50000"></label>' +
+          '<div class="eui-field is-wide"><span class="eui-kicker">Tür</span><div class="eui-optcards"><label class="eui-optcard"><input type="radio" name="kind" value="pvp" checked><i data-i="crosshair"></i><b>PvP</b><span>Oyuncuya karşı</span></label><label class="eui-optcard"><input type="radio" name="kind" value="pve"><i data-i="zombie"></i><b>PvE</b><span>Yapay zekâya karşı</span></label><label class="eui-optcard"><input type="radio" name="kind" value="race"><i data-i="flag-3"></i><b>Yarış</b><span>Kontrol noktaları</span></label></div></div>' +
+          '<label class="eui-field is-wide"><span class="eui-kicker">Açıklama</span><textarea class="eui-input eui-textarea" name="desc" placeholder="Kısa açıklama…"></textarea></label>' +
+          '<label class="eui-check is-wide"><input type="checkbox" name="announce" checked><span class="eui-check__box"></span>Tüm sunucuya duyur</label></div>',
         validate: function (v) { return v.name ? null : 'Etkinliğe bir ad ver'; },
         actions: [{ label: 'Vazgeç', value: null }, { label: 'Oluştur', primary: true, submit: true, icon: 'check' }] })
         .then(function (v) { out('form', v ? JSON.stringify(v) : 'vazgeçildi'); });
     },
     choose: function () {
-      MH.choose({ target: T, title: 'Oyuncu seç', text: 'Çoklu seçim · en fazla 3', icon: 'user-plus', multi: true, max: 3, items: S.players.map(function (p) { return { id: p.id, label: p.name, sub: p.dist + ' m', badge: p.friend ? 'Arkadaş' : null, badgeTone: 'success' }; }) })
+      EUI.choose({ target: T, title: 'Oyuncu seç', text: 'Çoklu seçim · en fazla 3', icon: 'user-plus', multi: true, max: 3, items: S.players.map(function (p) { return { id: p.id, label: p.name, sub: p.dist + ' m', badge: p.friend ? 'Arkadaş' : null, badgeTone: 'success' }; }) })
         .then(function (v) { out('choose', v ? v.map(pname).join(', ') : 'vazgeçildi'); });
     },
-    amount: function () { MH.amount({ target: T, title: 'Kasaya yatır', icon: 'bank', max: S.me.cash, maxLabel: 'Cebindeki', quick: [1000, 5000, 'half', 'max'] }).then(function (v) { out('amount', v == null ? 'vazgeçildi' : '$' + MH.fmt(v)); }); },
+    amount: function () { EUI.amount({ target: T, title: 'Kasaya yatır', icon: 'bank', max: S.me.cash, maxLabel: 'Cebindeki', quick: [1000, 5000, 'half', 'max'] }).then(function (v) { out('amount', v == null ? 'vazgeçildi' : '$' + EUI.fmt(v)); }); },
     stack: function () {
-      MH.modal({ target: T, title: 'Birinci modal', icon: 'layers', body: '<span class="mh-sub">Buradan ikinci bir onay aç; ESC önce onu kapatır.</span>',
-        actions: [{ label: 'Kapat', value: 'kapandı' }, { label: 'İkinciyi aç', primary: true, onClick: function () { MH.confirm({ target: T, title: 'İkinci modal', text: 'Üstte duruyorum.', ok: 'Tamam' }).then(function (ok) { out('stack', 'ikinci: ' + ok); }); return false; } }] })
+      EUI.modal({ target: T, title: 'Birinci modal', icon: 'layers', body: '<span class="eui-sub">Buradan ikinci bir onay aç; ESC önce onu kapatır.</span>',
+        actions: [{ label: 'Kapat', value: 'kapandı' }, { label: 'İkinciyi aç', primary: true, onClick: function () { EUI.confirm({ target: T, title: 'İkinci modal', text: 'Üstte duruyorum.', ok: 'Tamam' }).then(function (ok) { out('stack', 'ikinci: ' + ok); }); return false; } }] })
         .then(function (v) { out('stack', 'birinci: ' + v); });
     }
   };

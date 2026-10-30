@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Ember UI — MAĞAZA / SATIN ALMA
+   Ürün kutucuğu (.eui-item) ve onu dizen kaplar: ızgara (.eui-shopgrid, gruplu),
+   liste (.eui-item--row), yatay şerit (.eui-shopstrip), mini ızgara (.eui-item--mini).
+   Görsel alanı (.eui-item__art) oranı sabittir: --ratio (varsayılan 16/10),
+   .eui-item--square 1:1. İçine ikon, silah çizimi ya da <img> konur.
+   Satın alma paneli (.eui-buy), sepet (.eui-cart), kategori (.eui-shopcats),
+   adet (.eui-qty), tuş listesi (.eui-keylist).
+   Durumlar: is-active seçili, is-owned sahip, is-locked kilitli, is-sale indirim.
+   ========================================================================== */
+
+/* ---------- Ürün kutucuğu ---------- */
+.eui-item {
+  --tone-rgb: var(--eui-text-rgb);
+  position: relative; display: flex; flex-direction: column; gap: 9px; min-width: 0; padding: 9px;
+  background: var(--eui-raise); border: 1px solid var(--eui-line-soft); border-radius: var(--eui-r-3);
+  cursor: pointer; transition: border-color var(--eui-dur-2), background var(--eui-dur-2), transform var(--eui-dur-2) var(--eui-ease);
+}
+.eui-item:hover { border-color: var(--eui-line-strong); background: var(--eui-raise-2); }
+.eui-item.is-active { border-color: var(--eui-accent); box-shadow: 0 0 0 1px var(--eui-accent), var(--eui-accent-glow); }
+.eui-item__art {
+  position: relative; aspect-ratio: var(--ratio, 16 / 10); display: grid; place-items: center; overflow: hidden;
+  border-radius: var(--eui-r-2);
+  background: radial-gradient(ellipse at 50% 75%, rgb(var(--tone-rgb) / .12), transparent 70%), var(--eui-track);
+}
+.eui-item__art > .eui-i { width: 30%; max-width: 54px; height: auto; aspect-ratio: 1; color: rgb(var(--eui-text-rgb) / .78); filter: drop-shadow(0 4px 8px rgb(0 0 0 / .45)); }
+.eui-item__art > .eui-weapon-art { width: 72%; color: rgb(var(--eui-text-rgb) / .9); filter: drop-shadow(0 4px 8px rgb(0 0 0 / .5)); }
+.eui-item__art > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: var(--fit, cover); }
+.eui-item__art > .eui-badge { position: absolute; top: 7px; left: 7px; z-index: 1; }
+.eui-item__art > .eui-item__corner { position: absolute; top: 7px; right: 7px; z-index: 1; }
+.eui-item__body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.eui-item__name { font-size: 14px; font-weight: 700; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eui-item__meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12.5px; color: var(--eui-text-2); min-width: 0; }
+.eui-item__meta > span:first-child { display: inline-flex; align-items: center; gap: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eui-item__meta .eui-i { width: 13px; height: 13px; }
+.eui-item.is-owned .eui-price { color: var(--eui-text-3); }
+.eui-item.is-locked .eui-item__art > :not(.eui-badge) { opacity: .3; filter: grayscale(1); }
+.eui-item.is-locked { cursor: default; }
+.eui-item.is-common { --tone-rgb: var(--eui-silver-rgb); } .eui-item.is-rare { --tone-rgb: var(--eui-info-rgb); }
+.eui-item.is-epic { --tone-rgb: var(--eui-legendary-rgb); } .eui-item.is-legendary { --tone-rgb: var(--eui-gold-rgb); }
+.eui-item:is(.is-rare, .is-epic, .is-legendary) .eui-item__art { box-shadow: inset 0 -2px 0 rgb(var(--tone-rgb)); }
+
+/* Kare görsel */
+.eui-item--square .eui-item__art { aspect-ratio: 1; }
+/* Liste satırı: solda kare küçük görsel, sağda fiyat/eylem */
+.eui-item--row { flex-direction: row; align-items: center; gap: 12px; padding: 7px 12px 7px 7px; }
+.eui-item--row .eui-item__art { width: var(--s, 56px); flex: none; aspect-ratio: 1; }
+.eui-item--row .eui-item__art > .eui-i { width: 50%; }
+.eui-item--row .eui-item__art > .eui-weapon-art { width: 88%; }
+.eui-item--row .eui-item__body { flex: 1; }
+.eui-item--row .eui-item__meta { justify-content: flex-start; }
+.eui-item__side { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex: none; }
+.eui-item__side small { font-size: 11.5px; color: var(--eui-text-3); }
+/* Mini: yalnız kare görsel + kısa ad + fiyat */
+.eui-item--mini { padding: 6px; gap: 6px; }
+.eui-item--mini .eui-item__art { aspect-ratio: 1; }
+.eui-item--mini .eui-item__art > .eui-i { width: 44%; }
+.eui-item--mini .eui-item__name { font-size: 12px; font-weight: 600; }
+.eui-item--mini .eui-price { font-size: 13px; }
+
+/* ---------- Kaplar ---------- */
+.eui-shopgrid { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: var(--gap, 10px); align-content: start; }
+.eui-shopgroup { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.eui-shopgroup:first-child { margin-top: 0; }
+.eui-shopgroup::after { content: ""; flex: 1; height: 1px; background: var(--eui-line-soft); order: 1; }
+.eui-shopgroup small { order: 2; font-family: var(--eui-font-num); font-size: 11.5px; color: var(--eui-text-3); }
+.eui-shoplist { display: flex; flex-direction: column; gap: 6px; }
+.eui-shopstrip { display: grid; grid-auto-flow: column; grid-auto-columns: var(--w, 170px); gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+.eui-shopstrip > * { scroll-snap-align: start; }
+
+/* ---------- Kategoriler ---------- */
+.eui-shopcats { display: flex; flex-wrap: wrap; gap: 6px; }
+.eui-shopcat {
+  display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: var(--eui-r-2);
+  border: 1px solid var(--eui-line-soft); background: var(--eui-raise); color: var(--eui-text-2); font: 600 12.5px var(--eui-font-ui); cursor: pointer;
+}
+.eui-shopcat .eui-i { width: 15px; height: 15px; }
+.eui-shopcat small { font-family: var(--eui-font-num); font-size: 11px; color: var(--eui-text-3); }
+.eui-shopcat:hover { color: var(--eui-text); border-color: var(--eui-line-strong); }
+.eui-shopcat.is-active { background: var(--eui-accent); border-color: var(--eui-accent); color: var(--eui-on-accent); }
+.eui-shopcat.is-active small { color: inherit; opacity: .75; }
+
+/* ---------- Fiyat ---------- */
+.eui-price--sm { font-size: 13.5px; }
+.eui-price.is-short { color: var(--eui-danger); }
+.eui-price.is-free { color: var(--eui-info); }
+.eui-price--tag { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: var(--eui-r-2); background: rgb(var(--eui-success-rgb) / .14); }
+.eui-price--tag.is-short { background: rgb(var(--eui-danger-rgb) / .14); }
+
+/* ---------- Adet ---------- */
+.eui-qty { display: inline-flex; align-items: stretch; height: 34px; border: 1px solid var(--eui-line); border-radius: var(--eui-r-2); overflow: hidden; }
+.eui-qty button { width: 32px; border: 0; background: var(--eui-raise); color: var(--eui-text); font: 700 16px var(--eui-font-ui); cursor: pointer; }
+.eui-qty button:hover { background: var(--eui-raise-3); }
+.eui-qty b { min-width: 40px; display: grid; place-items: center; font-family: var(--eui-font-num); font-size: 15px; border-inline: 1px solid var(--eui-line-soft); }
+
+/* ---------- Satın alma paneli ---------- */
+.eui-buy { display: flex; flex-direction: column; gap: 14px; width: var(--w, 320px); }
+.eui-buy__art { position: relative; aspect-ratio: var(--ratio, 4 / 3); display: grid; place-items: center; overflow: hidden; border-radius: var(--eui-r-3); background: radial-gradient(ellipse at 50% 70%, rgb(var(--eui-accent-rgb) / .12), transparent 70%), var(--eui-track); }
+.eui-buy__art > .eui-i { width: 28%; height: auto; aspect-ratio: 1; color: rgb(var(--eui-text-rgb) / .85); }
+.eui-buy__art > .eui-weapon-art { width: 74%; color: var(--eui-text); filter: drop-shadow(0 8px 14px rgb(0 0 0 / .5)); }
+.eui-buy__art > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.eui-buy__art > .eui-badge { position: absolute; top: 10px; left: 10px; }
+.eui-buy__title { display: flex; flex-direction: column; gap: 4px; }
+.eui-buy__desc { margin: 0; font-size: 13px; line-height: 1.55; color: var(--eui-text-2); }
+.eui-buy__specs { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 0; font-size: 13px; }
+.eui-buy__specs dt { color: var(--eui-text-3); }
+.eui-buy__specs dd { margin: 0; text-align: right; font-family: var(--eui-font-num); font-weight: 600; }
+.eui-buy__total { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid var(--eui-line-soft); }
+.eui-buy__total .eui-price { font-size: 22px; }
+.eui-buy__note { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--eui-text-3); }
+.eui-buy__note .eui-i { width: 14px; height: 14px; }
+
+/* ---------- Sepet ---------- */
+.eui-cart { display: flex; flex-direction: column; gap: 8px; width: var(--w, 320px); }
+.eui-cart__line { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 6px; border-radius: var(--eui-r-2); background: var(--eui-raise); }
+.eui-cart__line .eui-item__art { width: 40px; aspect-ratio: 1; }
+.eui-cart__line .eui-item__art > .eui-i { width: 55%; }
+.eui-cart__line .eui-item__art > .eui-weapon-art { width: 90%; }
+.eui-cart__line b { display: block; font-size: 13px; font-weight: 600; }
+.eui-cart__line small { font-family: var(--eui-font-num); font-size: 12px; color: var(--eui-text-3); }
+.eui-cart__sum { display: grid; grid-template-columns: 1fr auto; gap: 5px 12px; padding-top: 10px; border-top: 1px solid var(--eui-line-soft); font-size: 13px; color: var(--eui-text-2); }
+.eui-cart__sum b { font-family: var(--eui-font-num); text-align: right; color: var(--eui-text); }
+.eui-cart__sum .is-total { font-size: 15px; color: var(--eui-text); font-weight: 700; }
+
+/* ---------- Tuş listesi ---------- */
+.eui-keylist { display: flex; flex-direction: column; }
+.eui-keylist__row { display: grid; grid-template-columns: var(--key-w, 84px) 1fr; align-items: center; gap: 12px; min-height: 36px; padding: 4px 2px; border-bottom: 1px solid var(--eui-line-soft); font-size: 13px; color: var(--eui-text); }
+.eui-keylist__row:last-child { border-bottom: 0; }
+.eui-keylist__row > span:first-child { display: flex; gap: 4px; align-items: center; }
+.eui-keylist__row small { display: block; font-size: 11.5px; color: var(--eui-text-3); }

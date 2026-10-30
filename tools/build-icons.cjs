@@ -1,4 +1,4 @@
-// MHud ikon seti üreticisi — Material Design Icons (Pictogrammers, Apache 2.0) + MHud'a özel ikonlar
+// Ember UI ikon seti üreticisi — Material Design Icons (Pictogrammers, Apache 2.0) + Ember UI'a özel ikonlar
 const fs = require('fs'), path = require('path');
 // Kullanım:  npm i @mdi/svg@7.4.47  &&  node tools/build-icons.cjs
 //   (MDI klasörü farklıysa: MDI_SVG=yol/svg node tools/build-icons.cjs)
@@ -7,7 +7,7 @@ const MDI = process.env.MDI_SVG || path.join(ROOT, 'node_modules/@mdi/svg/svg');
 const CUSTOM = require('./icons/custom-icons.cjs');
 const WEAPONS = require('./icons/weapons.cjs');
 
-// [ad, kaynak]  kaynak: MDI dosya adı  |  '@' = MHud özel
+// [ad, kaynak]  kaynak: MDI dosya adı  |  '@' = Ember UI özel
 const GROUPS = {
   'Yaşam & durum': [
     ['heart','heart'],['heart-o','heart-outline'],['heart-half','heart-half-full'],['heart-broken','heart-broken'],['heart-plus','heart-plus'],
@@ -112,11 +112,11 @@ for (const [a, t] of Object.entries(ALIAS)) if (!ICONS[a] && ICONS[t]) aliases[a
 if (miss.length) console.error('EKSİK:', miss.join(', '));
 const esc = s => s.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 const out = `/*!
- * MHud — ikon seti (${Object.keys(ICONS).length} ikon)
+ * Ember UI — ikon seti (${Object.keys(ICONS).length} ikon)
  * Kaynak: Material Design Icons — Pictogrammers (Apache 2.0). Silah, yakın dövüş ve karakter ikonlarının bir kısmı
  * (revolver, rifle, shotgun, sniper, smg, repeater, machete, crowbar, fist, grenade, molotov, dynamite, cop, soldier,
- * sheriff, zombie) MHud'a özeldir. Tüm ikonlar dolgulu, 24×24, currentColor.
- * Kullanım:  <i data-i="axe"></i>   ·   MH.icon('axe')   ·   <svg class="mh-i"><use href="#mi-axe"/></svg>
+ * sheriff, zombie) Ember UI'a özeldir. Tüm ikonlar dolgulu, 24×24, currentColor.
+ * Kullanım:  <i data-i="axe"></i>   ·   EUI.icon('axe')   ·   <svg class="eui-i"><use href="#mi-axe"/></svg>
  */
 (function (root) {
   'use strict';
@@ -129,19 +129,19 @@ ${Object.entries(ICONS).map(([k, v]) => `    '${k}': '${esc(v)}'`).join(',\n')}
   /* Silah silüetleri (160x48, namlu sağa bakar) — büyük silah görseli için */
   var WEAPONS = ${JSON.stringify(WEAPONS)};
   function inject() {
-    if (document.getElementById('mh-sprite')) return;
-    var html = '<svg id="mh-sprite" xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">';
+    if (document.getElementById('eui-sprite')) return;
+    var html = '<svg id="eui-sprite" xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">';
     for (var k in ICONS) html += '<symbol id="mi-' + k + '" viewBox="0 0 24 24">' + ICONS[k] + '</symbol>';
     html += '</svg>';
     (document.body || document.documentElement).insertAdjacentHTML('afterbegin', html);
   }
-  root.MH_ICONS = ICONS;
+  root.EUI_ICONS = ICONS;
   root.MH_ICON_GROUPS = GROUPS;
   root.MH_ICON_ALIASES = ALIASES;
-  root.MH_WEAPONS = WEAPONS;
+  root.EUI_WEAPONS = WEAPONS;
   root.MH_ICON_SPRITE = inject;
   if (document.body) inject(); else document.addEventListener('DOMContentLoaded', inject);
 })(window);
 `;
-fs.writeFileSync(path.join(ROOT, 'kit/js/mhud-icons.js'), out);
+fs.writeFileSync(path.join(ROOT, 'kit/js/ember-ui-icons.js'), out);
 console.log('ikon', Object.keys(ICONS).length, 'takma ad', Object.keys(aliases).length, (out.length / 1024).toFixed(1) + 'KB');

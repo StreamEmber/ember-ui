@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Çatışma — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Çatışma — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 <style>
   .demo-target { position: absolute; left: 1180px; top: 470px; width: 60px; height: 150px; }
   .demo-target::before { content: ""; position: absolute; left: 18px; top: 0; width: 24px; height: 24px; border-radius: 50%; background: #1b1820; }
   .demo-target::after { content: ""; position: absolute; left: 8px; top: 26px; width: 44px; height: 124px; border-radius: 16px 16px 4px 4px; background: #1b1820; }
-  .demo-target .mh-lockon { position: absolute; left: -22px; top: -12px; width: 104px; height: 176px; }
+  .demo-target .eui-lockon { position: absolute; left: -22px; top: -12px; width: 104px; height: 176px; }
 </style>
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Oyun içi HUD</span>
@@ -23,47 +23,47 @@
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
-        <div class="mh-vignette" id="vig"></div>
-        <div class="mh-world" id="world"></div>
+      <div class="eui-screen" id="screen">
+        <div class="eui-vignette" id="vig"></div>
+        <div class="eui-world" id="world"></div>
 
-        <div class="demo-target"><div class="mh-lockon is-locking"><i></i><i></i><i></i><i></i></div></div>
+        <div class="demo-target"><div class="eui-lockon is-locking"><i></i><i></i><i></i><i></i></div></div>
 
-        <div class="mh-anchor mh-tc" style="top:44px">
-          <div class="mh-boss" style="--w:720px">
-            <div class="mh-boss__head">
-              <div class="mh-col" style="gap:4px"><span class="mh-kicker mh-kicker--accent">Bölüm sonu</span><span class="mh-boss__name">Çete lideri — Vargas</span></div>
-              <span class="mh-boss__phase"><span>Aşama 2 / 3</span><span class="mh-badge mh-t-danger mh-badge--dot mh-badge--live">Öfkeli</span></span>
+        <div class="eui-anchor eui-tc" style="top:44px">
+          <div class="eui-boss" style="--w:720px">
+            <div class="eui-boss__head">
+              <div class="eui-col" style="gap:4px"><span class="eui-kicker eui-kicker--accent">Bölüm sonu</span><span class="eui-boss__name">Çete lideri — Vargas</span></div>
+              <span class="eui-boss__phase"><span>Aşama 2 / 3</span><span class="eui-badge eui-t-danger eui-badge--dot eui-badge--live">Öfkeli</span></span>
             </div>
-            <div class="mh-bar" id="boss" data-v="64" style="position:relative"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i><span class="mh-boss__marks"><i style="left:33.3%"></i><i style="left:66.6%"></i></span></div>
-            <div class="mh-bar mh-boss__shield" id="boss-shield" data-v="30"><i class="mh-bar__fill"></i></div>
+            <div class="eui-bar" id="boss" data-v="64" style="position:relative"><i class="eui-bar__ghost"></i><i class="eui-bar__fill"></i><span class="eui-boss__marks"><i style="left:33.3%"></i><i style="left:66.6%"></i></span></div>
+            <div class="eui-bar eui-boss__shield" id="boss-shield" data-v="30"><i class="eui-bar__fill"></i></div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-tr" style="top:40px">
-          <div class="mh-feed" id="feed">
-            <div class="mh-kill"><span class="mh-kill__actor">NabeMedia</span><i data-weapon="sniper" class="mh-kill__weapon"></i><i data-i="crosshair" class="is-head"></i><span class="mh-kill__victim">Bandit #42</span></div>
-            <div class="mh-kill is-self"><span class="mh-kill__actor">Amiral Router</span><i data-weapon="carbine" class="mh-kill__weapon"></i><span class="mh-kill__victim">Bandit #17</span></div>
-            <div class="mh-kill"><span class="mh-kill__actor mh-t-team2">Bandit #8</span><i data-i="bomb"></i><span class="mh-kill__victim mh-t-team1">MSK</span></div>
+        <div class="eui-anchor eui-tr" style="top:40px">
+          <div class="eui-feed" id="feed">
+            <div class="eui-kill"><span class="eui-kill__actor">NabeMedia</span><i data-weapon="sniper" class="eui-kill__weapon"></i><i data-i="crosshair" class="is-head"></i><span class="eui-kill__victim">Bandit #42</span></div>
+            <div class="eui-kill is-self"><span class="eui-kill__actor">Amiral Router</span><i data-weapon="carbine" class="eui-kill__weapon"></i><span class="eui-kill__victim">Bandit #17</span></div>
+            <div class="eui-kill"><span class="eui-kill__actor eui-t-team2">Bandit #8</span><i data-i="bomb"></i><span class="eui-kill__victim eui-t-team1">MSK</span></div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-mc"><div class="mh-crosshair is-target" id="cross"><i></i><i></i><i></i><i></i><b></b></div></div>
+        <div class="eui-anchor eui-mc"><div class="eui-crosshair is-target" id="cross"><i></i><i></i><i></i><i></i><b></b></div></div>
 
-        <div class="mh-anchor mh-bl">
-          <div class="mh-vitals">
-            <div class="mh-vitals__pair">
-              <div class="mh-vital mh-t-health"><i data-i="heart-f"></i><div class="mh-bar" id="hp" data-v="64" data-critical="25"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val" id="hp-val">64</span></div>
-              <div class="mh-vital mh-t-armor"><i data-i="shield-f"></i><div class="mh-bar" id="ar" data-v="20"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val" id="ar-val">20</span></div>
+        <div class="eui-anchor eui-bl">
+          <div class="eui-vitals">
+            <div class="eui-vitals__pair">
+              <div class="eui-vital eui-t-health"><i data-i="heart-f"></i><div class="eui-bar" id="hp" data-v="64" data-critical="25"><i class="eui-bar__ghost"></i><i class="eui-bar__fill"></i></div><span class="eui-vital__val" id="hp-val">64</span></div>
+              <div class="eui-vital eui-t-armor"><i data-i="shield-f"></i><div class="eui-bar" id="ar" data-v="20"><i class="eui-bar__ghost"></i><i class="eui-bar__fill"></i></div><span class="eui-vital__val" id="ar-val">20</span></div>
             </div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-br">
-          <div class="mh-weapon">
-            <div class="mh-weapon__name"><span class="mh-kicker">Keskin nişancı tüfeği</span></div>
-            <div class="mh-weapon__main"><i data-weapon="sniper" class="mh-weapon__art"></i><div class="mh-weapon__ammo"><span class="mh-weapon__clip" id="clip">5</span><span class="mh-weapon__reserve">/ 25</span></div></div>
-            <div class="mh-pips mh-pips--tall" id="pips" data-pips="5/5" style="width:120px"></div>
+        <div class="eui-anchor eui-br">
+          <div class="eui-weapon">
+            <div class="eui-weapon__name"><span class="eui-kicker">Keskin nişancı tüfeği</span></div>
+            <div class="eui-weapon__main"><i data-weapon="sniper" class="eui-weapon__art"></i><div class="eui-weapon__ammo"><span class="eui-weapon__clip" id="clip">5</span><span class="eui-weapon__reserve">/ 25</span></div></div>
+            <div class="eui-pips eui-pips--tall" id="pips" data-pips="5/5" style="width:120px"></div>
           </div>
         </div>
       </div>
@@ -83,69 +83,69 @@
 
   <div class="demo-h2"><h2>Nişangâh</h2><p>CSS değişkenleriyle ayarlanır: <code>--gap</code>, <code>--len</code>, <code>--thick</code>, <code>--c</code></p></div>
   <div class="demo-specs" style="--cols:4">
-    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px"><div class="mh-crosshair"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>Artı</b><span><code>.mh-crosshair</code></span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px"><div class="mh-crosshair mh-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>Nokta</b><span><code>.mh-crosshair--dot</code></span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px"><div class="mh-crosshair mh-crosshair--circle" style="--gap:9px"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>Halka</b><span><code>.mh-crosshair--circle</code> — pompalı için yayılım</span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px;gap:40px"><div class="mh-crosshair mh-crosshair--t is-friend"><i></i><i></i><i></i><i></i><b></b></div><div class="mh-crosshair is-target" style="--gap:3px;--len:10px"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>T & hedef durumu</b><span><code>is-target</code> düşman, <code>is-friend</code> dost</span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px"><div class="eui-crosshair"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>Artı</b><span><code>.eui-crosshair</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px"><div class="eui-crosshair eui-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>Nokta</b><span><code>.eui-crosshair--dot</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px"><div class="eui-crosshair eui-crosshair--circle" style="--gap:9px"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>Halka</b><span><code>.eui-crosshair--circle</code> — pompalı için yayılım</span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view" style="--h:150px;gap:40px"><div class="eui-crosshair eui-crosshair--t is-friend"><i></i><i></i><i></i><i></i><b></b></div><div class="eui-crosshair is-target" style="--gap:3px;--len:10px"><i></i><i></i><i></i><i></i><b></b></div></div><div class="demo-spec__meta"><b>T & hedef durumu</b><span><code>is-target</code> düşman, <code>is-friend</code> dost</span></div></div>
   </div>
 
   <div class="demo-h2"><h2>Geri bildirim</h2><p>Vuruş, hasar ve kilitlenme</p></div>
   <div class="demo-specs">
     <div class="demo-spec">
-      <div class="demo-spec__view" style="--h:220px" id="hitbox"><div class="mh-crosshair mh-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div></div>
-      <div class="demo-spec__meta"><b>Vuruş işareti</b><span><code>MH.hit(el, 'head' | 'kill')</code> — <a href="#" onclick="MH.hit('#hitbox', Demo.pick([null,'head','kill']));return false">tetikle</a></span></div>
+      <div class="demo-spec__view" style="--h:220px" id="hitbox"><div class="eui-crosshair eui-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div></div>
+      <div class="demo-spec__meta"><b>Vuruş işareti</b><span><code>EUI.hit(el, 'head' | 'kill')</code> — <a href="#" onclick="EUI.hit('#hitbox', Demo.pick([null,'head','kill']));return false">tetikle</a></span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view" style="--h:220px;--dim:.2" id="dmgbox"><div class="mh-crosshair mh-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div></div>
-      <div class="demo-spec__meta"><b>Hasar yönü</b><span><code>MH.damageFrom(el, açı)</code> — 0 önden, 90 sağdan, 180 arkadan. <a href="#" onclick="MH.damageFrom('#dmgbox', Demo.rand(-180,180));return false">tetikle</a></span></div>
+      <div class="demo-spec__view" style="--h:220px;--dim:.2" id="dmgbox"><div class="eui-crosshair eui-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div></div>
+      <div class="demo-spec__meta"><b>Hasar yönü</b><span><code>EUI.damageFrom(el, açı)</code> — 0 önden, 90 sağdan, 180 arkadan. <a href="#" onclick="EUI.damageFrom('#dmgbox', Demo.rand(-180,180));return false">tetikle</a></span></div>
     </div>
     <div class="demo-spec">
-      <div class="demo-spec__view" style="--h:220px"><div class="mh-lockon is-locking"><i></i><i></i><i></i><i></i></div><div class="mh-lockon mh-t-accent" style="width:44px;height:44px"><i></i><i></i><i></i><i></i></div></div>
-      <div class="demo-spec__meta"><b>Kilitlenme çerçevesi</b><span><code>.mh-lockon</code> — hedefe <code>is-locking</code> ile oturur.</span></div>
+      <div class="demo-spec__view" style="--h:220px"><div class="eui-lockon is-locking"><i></i><i></i><i></i><i></i></div><div class="eui-lockon eui-t-accent" style="width:44px;height:44px"><i></i><i></i><i></i><i></i></div></div>
+      <div class="demo-spec__meta"><b>Kilitlenme çerçevesi</b><span><code>.eui-lockon</code> — hedefe <code>is-locking</code> ile oturur.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:220px;position:relative" id="numbox"></div>
-      <div class="demo-spec__meta"><b>Uçan hasar sayıları</b><span><code>MH.damageNumber(world, { x, y, value, kind: 'crit' | 'heal' | 'armor' })</code></span></div>
+      <div class="demo-spec__meta"><b>Uçan hasar sayıları</b><span><code>EUI.damageNumber(world, { x, y, value, kind: 'crit' | 'heal' | 'armor' })</code></span></div>
     </div>
     <div class="demo-spec demo-spec--2">
       <div class="demo-spec__view" style="--h:220px">
-        <div class="mh-feed">
-          <div class="mh-kill"><span class="mh-kill__actor">Serkan_TV</span><i data-weapon="repeater" class="mh-kill__weapon"></i><span class="mh-kill__victim">O'Driscoll</span></div>
-          <div class="mh-kill"><span class="mh-kill__actor">NabeMedia</span><i data-i="bow"></i><i data-i="crosshair" class="is-head"></i><span class="mh-kill__victim">O'Driscoll</span></div>
-          <div class="mh-kill is-self"><span class="mh-kill__actor">Amiral Router</span><i data-weapon="revolver" class="mh-kill__weapon" style="width:40px"></i><span class="mh-kill__victim">Lemoyne Raider</span></div>
-          <div class="mh-kill is-death"><span class="mh-kill__actor mh-t-team2">Bandit #8</span><i data-i="dynamite"></i><span class="mh-kill__victim">Amiral Router</span></div>
+        <div class="eui-feed">
+          <div class="eui-kill"><span class="eui-kill__actor">Serkan_TV</span><i data-weapon="repeater" class="eui-kill__weapon"></i><span class="eui-kill__victim">O'Driscoll</span></div>
+          <div class="eui-kill"><span class="eui-kill__actor">NabeMedia</span><i data-i="bow"></i><i data-i="crosshair" class="is-head"></i><span class="eui-kill__victim">O'Driscoll</span></div>
+          <div class="eui-kill is-self"><span class="eui-kill__actor">Amiral Router</span><i data-weapon="revolver" class="eui-kill__weapon" style="width:40px"></i><span class="eui-kill__victim">Lemoyne Raider</span></div>
+          <div class="eui-kill is-death"><span class="eui-kill__actor eui-t-team2">Bandit #8</span><i data-i="dynamite"></i><span class="eui-kill__victim">Amiral Router</span></div>
         </div>
       </div>
-      <div class="demo-spec__meta"><b>Ölüm akışı</b><span><code>MH.kill({ actor, victim, weapon: 'carbine', headshot: true, self: true })</code> — kendi öldürmelerin vurgulu, kendi ölümün kırmızı.</span></div>
+      <div class="demo-spec__meta"><b>Ölüm akışı</b><span><code>EUI.kill({ actor, victim, weapon: 'carbine', headshot: true, self: true })</code> — kendi öldürmelerin vurgulu, kendi ölümün kırmızı.</span></div>
     </div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var S = { hp: 64, ar: 20, clip: 5, boss: 64, shield: 30 };
   var NAMES = ['Bandit #3', 'Bandit #12', 'Bandit #27', 'Vargas korumaları', 'Ballas üyesi'];
-  function vit() { MH.bar('#hp', S.hp, { critical: 25 }); MH.bar('#ar', S.ar); MH.count('#hp-val', S.hp, { duration: 250 }); MH.count('#ar-val', S.ar, { duration: 250 }); MH.vignette('#vig', S.hp); }
+  function vit() { EUI.bar('#hp', S.hp, { critical: 25 }); EUI.bar('#ar', S.ar); EUI.count('#hp-val', S.hp, { duration: 250 }); EUI.count('#ar-val', S.ar, { duration: 250 }); EUI.vignette('#vig', S.hp); }
   function shot(kind) {
-    if (S.clip <= 0) { S.clip = 5; } S.clip--; document.getElementById('clip').textContent = S.clip; MH.pips('#pips', S.clip, 5);
-    MH.hit('#screen', kind);
+    if (S.clip <= 0) { S.clip = 5; } S.clip--; document.getElementById('clip').textContent = S.clip; EUI.pips('#pips', S.clip, 5);
+    EUI.hit('#screen', kind);
     var w = document.getElementById('world');
-    MH.damageNumber(w, { x: 1210 + Demo.rand(-20, 20), y: 500 + Demo.rand(-20, 40), value: kind === 'head' ? 248 : Math.round(Demo.rand(32, 64)), kind: kind === 'head' ? 'crit' : null });
+    EUI.damageNumber(w, { x: 1210 + Demo.rand(-20, 20), y: 500 + Demo.rand(-20, 40), value: kind === 'head' ? 248 : Math.round(Demo.rand(32, 64)), kind: kind === 'head' ? 'crit' : null });
   }
   var A = {
     hit: function () { shot(null); },
     head: function () { shot('head'); },
-    kill: function () { shot('kill'); MH.kill({ target: '#feed', actor: 'Amiral Router', victim: Demo.pick(NAMES), weapon: 'sniper', headshot: Math.random() < .5, self: true }); },
-    dmg: function () { var d = Math.round(Demo.rand(6, 18)); if (S.ar > 0) S.ar = Math.max(0, S.ar - d); else S.hp = Math.max(1, S.hp - d); vit(); MH.damageFrom('#screen', Demo.rand(-180, 180)); },
+    kill: function () { shot('kill'); EUI.kill({ target: '#feed', actor: 'Amiral Router', victim: Demo.pick(NAMES), weapon: 'sniper', headshot: Math.random() < .5, self: true }); },
+    dmg: function () { var d = Math.round(Demo.rand(6, 18)); if (S.ar > 0) S.ar = Math.max(0, S.ar - d); else S.hp = Math.max(1, S.hp - d); vit(); EUI.damageFrom('#screen', Demo.rand(-180, 180)); },
     low: function () { S.hp = S.hp > 30 ? 14 : 80; S.ar = 0; vit(); },
-    boss: function () { if (S.shield > 0) S.shield = Math.max(0, S.shield - 12); else S.boss = Math.max(0, S.boss - 9); MH.bar('#boss', S.boss); MH.bar('#boss-shield', S.shield); shot(null); }
+    boss: function () { if (S.shield > 0) S.shield = Math.max(0, S.shield - 12); else S.boss = Math.max(0, S.boss - 9); EUI.bar('#boss', S.boss); EUI.bar('#boss-shield', S.shield); shot(null); }
   };
   Demo.on('[data-act]', function (e) { A[e.currentTarget.getAttribute('data-act')](); });
   setInterval(function () {
     var b = document.getElementById('numbox'); if (!b) return;
     var k = Demo.pick([null, null, 'crit', 'heal', 'armor']);
-    MH.damageNumber(b, { x: Demo.rand(.3, .7), y: Demo.rand(.45, .7), value: k === 'crit' ? Math.round(Demo.rand(180, 260)) : Math.round(Demo.rand(12, 60)), kind: k });
+    EUI.damageNumber(b, { x: Demo.rand(.3, .7), y: Demo.rand(.45, .7), value: k === 'crit' ? Math.round(Demo.rand(180, 260)) : Math.round(Demo.rand(12, 60)), kind: k });
   }, 450);
 </script>
 </body>

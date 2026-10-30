@@ -1,4 +1,4 @@
-/* MHud sunum kabuğu — yalnızca tarayıcı önizlemesi. Oyuna taşınmaz.
+/* Ember UI sunum kabuğu — yalnızca tarayıcı önizlemesi. Oyuna taşınmaz.
    Menü, üst çubuk, görünüm paneli ve içindekiler tools/build-site.mjs ile statik yazılır;
    bu dosya yalnız davranış ekler: vurgu/sahne durumu, arama, çekmeceler, içindekiler takibi, sahne ölçekleme. */
 (function () {
@@ -8,7 +8,7 @@
   var BASE = script.getAttribute('src').replace(/demo\/demo\.js.*$/, '');   // '' veya '../'
 
   function store(k, v) {
-    try { if (v === undefined) return localStorage.getItem('mhud-demo:' + k); localStorage.setItem('mhud-demo:' + k, v); } catch (e) { return null; }
+    try { if (v === undefined) return localStorage.getItem('ember-ui-demo:' + k); localStorage.setItem('ember-ui-demo:' + k, v); } catch (e) { return null; }
   }
   function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
   function wide() { return !matchMedia('(max-width: 1440px)').matches; }
@@ -27,7 +27,7 @@
   function apply() {
     if (!SCENE_OK(state.scene)) state.scene = DEFAULTS.scene;
     var b = document.body;
-    if (state.accent) b.setAttribute('data-mh-accent', state.accent); else b.removeAttribute('data-mh-accent');
+    if (state.accent) b.setAttribute('data-eui-accent', state.accent); else b.removeAttribute('data-eui-accent');
     if (state.cols !== 'auto') b.setAttribute('data-demo-cols', state.cols); else b.removeAttribute('data-demo-cols');
     b.classList.toggle('demo-noaside', state.aside === '0');
     document.documentElement.style.setProperty('--demo-scene', sceneUrl(state.scene));
@@ -159,14 +159,14 @@
     on: function (sel, fn) { each(sel, function (n) { n.addEventListener('click', fn); }); },
     // Sayfadaki ölçerlere rastgele değer ver (her sayfada çalışır)
     shuffle: function () {
-      if (!window.MH) return;
-      each('.demo-main .mh-bar[data-v]', function (b) { MH.bar(b, rnd() * 100); });
-      each('.demo-main .mh-ringval', function (n) { var v = rnd(); MH.ring(n, v); var t = n.querySelector('b'); if (t) t.textContent = Math.round(v * 100); });
-      each('.demo-main .mh-core', function (n) { MH.core(n, { value: rnd() * 100, core: rnd() * 100 }); });
-      each('.demo-main .mh-compass', function (n) { MH.compass(n, rnd() * 360); });
-      each('.demo-main .mh-wayarrow', function (n) { n.style.setProperty('--a', Math.round(rnd() * 360) + 'deg'); });
-      each('.demo-main .mh-speedo', function (n) { MH.speedo(n, { speed: rnd() * 240, rpm: rnd(), gear: 1 + Math.floor(rnd() * 6) }); });
-      each('.demo-main [data-pips]', function (n) { var t = n.children.length; MH.pips(n, Math.round(rnd() * t), t); });
+      if (!window.EUI) return;
+      each('.demo-main .eui-bar[data-v]', function (b) { EUI.bar(b, rnd() * 100); });
+      each('.demo-main .eui-ringval', function (n) { var v = rnd(); EUI.ring(n, v); var t = n.querySelector('b'); if (t) t.textContent = Math.round(v * 100); });
+      each('.demo-main .eui-core', function (n) { EUI.core(n, { value: rnd() * 100, core: rnd() * 100 }); });
+      each('.demo-main .eui-compass', function (n) { EUI.compass(n, rnd() * 360); });
+      each('.demo-main .eui-wayarrow', function (n) { n.style.setProperty('--a', Math.round(rnd() * 360) + 'deg'); });
+      each('.demo-main .eui-speedo', function (n) { EUI.speedo(n, { speed: rnd() * 240, rpm: rnd(), gear: 1 + Math.floor(rnd() * 6) }); });
+      each('.demo-main [data-pips]', function (n) { var t = n.children.length; EUI.pips(n, Math.round(rnd() * t), t); });
     }
   };
 
@@ -177,7 +177,7 @@
     buildStages();
     initToc();
     apply();
-    if (window.MH) MH.mount();
+    if (window.EUI) EUI.mount();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();

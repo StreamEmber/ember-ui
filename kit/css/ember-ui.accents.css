@@ -1,0 +1,16 @@
+/* Ember UI — vurgu renkleri. Temalardan SONRA yüklenir ki temanın vurgusunu ezebilsin. */
+
+/* --------------------------------------------------------------------------
+   Vurgu rengi seçenekleri — data-eui-accent="..."
+   -------------------------------------------------------------------------- */
+[data-eui-accent="amber"]   { --eui-accent-rgb: 245 184 61;  --eui-accent-2-rgb: 255 122 69;  --eui-on-accent: #0b0d10; }
+[data-eui-accent="crimson"] { --eui-accent-rgb: 255 72 88;   --eui-accent-2-rgb: 255 140 90;  --eui-on-accent: #ffffff; }
+[data-eui-accent="mint"]    { --eui-accent-rgb: 70 222 150;  --eui-accent-2-rgb: 60 200 230;  --eui-on-accent: #04140c; }
+[data-eui-accent="ice"]     { --eui-accent-rgb: 80 170 255;  --eui-accent-2-rgb: 120 110 255; --eui-on-accent: #03111f; }
+[data-eui-accent="violet"]  { --eui-accent-rgb: 168 120 255; --eui-accent-2-rgb: 255 90 200;  --eui-on-accent: #ffffff; }
+[data-eui-accent="rose"]    { --eui-accent-rgb: 255 92 170;  --eui-accent-2-rgb: 255 160 90;  --eui-on-accent: #ffffff; }
+[data-eui-accent="cyan"]    { --eui-accent-rgb: 62 232 255;  --eui-accent-2-rgb: 255 62 165;  --eui-on-accent: #031419; }
+[data-eui-accent="lime"]    { --eui-accent-rgb: 196 240 82;  --eui-accent-2-rgb: 255 170 40;  --eui-on-accent: #0d1404; }
+[data-eui-accent="gold"]    { --eui-accent-rgb: 205 170 105; --eui-accent-2-rgb: 179 53 42;   --eui-on-accent: #120d06; }
+[data-eui-accent="tiktok"]  { --eui-accent-rgb: 254 44 85;   --eui-accent-2-rgb: 37 244 238;  --eui-on-accent: #ffffff; }
+

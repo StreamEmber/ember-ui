@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Ember UI — hayatta kalma / ko-op (Left 4 Dead tarzı)
+   Hayatta kalan kartları (geçici can, yerde, siyah-beyaz), özel düşman
+   uyarısı, sürü uyarısı, kurtarma/güvenli oda sayacı, eşya yuvaları.
+   ========================================================================== */
+
+/* ---------- Hayatta kalan kartı ---------- */
+.eui-survivors { display: flex; flex-direction: column; gap: 6px; width: var(--w, 300px); }
+.eui-survivor {
+  --tone-rgb: var(--eui-health-rgb);
+  display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; align-items: center;
+  padding: 8px 10px; background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-panel);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-survivor .eui-avatar { grid-row: span 3; width: 46px; height: 46px; font-size: 20px; }
+.eui-survivor__top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.eui-survivor__name { flex: 1; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-survivor__hp { font-family: var(--eui-font-num); font-size: 16px; font-weight: 700; color: rgb(var(--tone-rgb)); font-variant-numeric: tabular-nums; }
+.eui-survivor__bar { position: relative; height: 8px; background: var(--eui-track); border-radius: 1px; overflow: hidden; }
+.eui-survivor__bar i { position: absolute; top: 0; bottom: 0; left: 0; transform-origin: left; transition: transform var(--eui-dur-3) var(--eui-ease); }
+.eui-survivor__bar .hp { width: 100%; transform: scaleX(var(--hp, 1)); background: rgb(var(--tone-rgb)); }
+/* geçici can (ağrı kesici): kalıcı canın hemen sağında çizgili */
+.eui-survivor__bar .temp { left: calc(var(--hp, 1) * 100%); width: calc(var(--temp, 0) * 100%);
+  background: repeating-linear-gradient(-45deg, rgb(var(--tone-rgb) / .75) 0 4px, rgb(var(--tone-rgb) / .35) 4px 8px); }
+.eui-survivor__items { display: flex; gap: 4px; }
+.eui-survivor__items .eui-i { width: 18px; height: 18px; padding: 2px; border-radius: var(--eui-r-1); color: var(--eui-text-2); background: var(--eui-raise); }
+.eui-survivor__items .eui-i.is-empty { opacity: .2; }
+.eui-survivor.is-mid  { --tone-rgb: var(--eui-warn-rgb); }
+.eui-survivor.is-low  { --tone-rgb: var(--eui-danger-rgb); }
+.eui-survivor.is-down { --tone-rgb: var(--eui-danger-rgb); border-color: rgb(var(--eui-danger-rgb) / .7); animation: eui-down 1s ease-in-out infinite; }
+.eui-survivor.is-down .eui-survivor__name::after { content: " · YERDE"; color: var(--eui-danger); font-size: 11px; letter-spacing: .1em; }
+.eui-survivor.is-bw { filter: grayscale(1); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .5); }
+.eui-survivor.is-bw .eui-survivor__name::after { content: " · SİYAH-BEYAZ"; font-size: 11px; letter-spacing: .1em; color: var(--eui-text-2); }
+.eui-survivor.is-dead { opacity: .4; }
+.eui-survivor.is-dead .eui-survivor__name { text-decoration: line-through; }
+.eui-survivor.is-self { border-color: var(--eui-accent-line); }
+@keyframes eui-down { 50% { background: rgb(var(--eui-danger-rgb) / .22); } }
+
+/* Yerde iken ayağa kaldırma barı */
+.eui-revive { display: flex; flex-direction: column; align-items: center; gap: 8px; text-shadow: var(--eui-hud-shadow); }
+.eui-revive b { font-size: 16px; font-weight: 700; }
+.eui-revive .eui-bar { --h: 8px; width: 320px; }
+.eui-revive small { font-size: 12px; color: var(--eui-text-2); }
+
+/* ---------- Özel düşman uyarısı ---------- */
+.eui-infected { display: flex; align-items: center; gap: 12px; padding: 8px 18px 8px 8px; margin-bottom: 6px;
+  background: linear-gradient(90deg, rgb(var(--eui-danger-rgb) / .35), var(--eui-surface) 70%); border: 1px solid rgb(var(--eui-danger-rgb) / .6); border-radius: var(--eui-r-panel);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur)); text-shadow: var(--eui-text-shadow); }
+.eui-infected__icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: var(--eui-r-2); background: rgb(var(--eui-danger-rgb)); color: #fff; }
+.eui-infected__icon .eui-i { width: 26px; height: 26px; }
+.eui-infected b { display: block; font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); text-transform: var(--eui-display-case); font-size: 22px; line-height: 1; letter-spacing: .04em; }
+.eui-infected small { margin-left: 6px; font-size: 12px; color: var(--eui-text-2); }
+.eui-infected.is-boss { padding: 12px 24px 12px 12px; border-width: 2px; animation: eui-boss-pulse 1s ease-in-out infinite; }
+.eui-infected.is-boss .eui-infected__icon { width: 56px; height: 56px; }
+.eui-infected.is-boss b { font-size: 34px; color: var(--eui-danger); }
+@keyframes eui-boss-pulse { 50% { box-shadow: 0 0 40px -6px rgb(var(--eui-danger-rgb)); } }
+
+/* ---------- Sürü uyarısı ---------- */
+.eui-horde { position: absolute; left: 0; right: 0; top: 30%; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 0;
+  background: linear-gradient(90deg, transparent, rgb(80 0 0 / .55) 25%, rgb(80 0 0 / .55) 75%, transparent); text-shadow: var(--eui-hud-shadow);
+  animation: eui-band-in .5s var(--eui-ease-out) both; }
+.eui-horde b { font-family: var(--eui-font-display); font-weight: 700; text-transform: var(--eui-display-case); font-size: 52px; line-height: 1; letter-spacing: .04em; color: #fff; }
+.eui-horde span { font-size: 15px; color: var(--eui-text-2); }
+.eui-horde__drums { display: flex; gap: 6px; height: 18px; align-items: flex-end; }
+.eui-horde__drums i { width: 6px; background: var(--eui-danger); border-radius: 1px; animation: eui-drum .5s ease-in-out infinite; }
+.eui-horde__drums i:nth-child(2) { animation-delay: -.1s; } .eui-horde__drums i:nth-child(3) { animation-delay: -.2s; }
+.eui-horde__drums i:nth-child(4) { animation-delay: -.3s; } .eui-horde__drums i:nth-child(5) { animation-delay: -.4s; }
+@keyframes eui-drum { 0%, 100% { height: 4px; } 50% { height: 18px; } }
+
+/* ---------- Kurtarma / güvenli oda ---------- */
+.eui-rescue { display: flex; align-items: center; gap: 14px; padding: 10px 18px 10px 10px; }
+.eui-rescue__icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--eui-accent-soft); color: var(--eui-accent); }
+.eui-rescue__icon .eui-i { width: 24px; height: 24px; }
+.eui-rescue div { display: flex; flex-direction: column; }
+.eui-rescue b { font-family: var(--eui-font-num); font-size: 28px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+
+/* ---------- Eşya yuvaları (birincil, ikincil, atılabilir, sağlık, hap) ---------- */
+.eui-loadout { display: flex; gap: 6px; }
+.eui-loadout__slot { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; width: 84px; height: 64px;
+  background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-2); -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur)); }
+.eui-loadout__slot .eui-i { width: 26px; height: 26px; }
+.eui-loadout__slot .eui-weapon-art { width: 70px; height: 22px; color: var(--eui-text); }
+.eui-loadout__slot small { font-family: var(--eui-font-num); font-size: 12px; font-weight: 600; color: var(--eui-text-2); }
+.eui-loadout__slot .eui-slot__key { position: absolute; top: 3px; left: 5px; font-family: var(--eui-font-num); font-size: 10px; font-weight: 700; color: var(--eui-text-3); }
+.eui-loadout__slot.is-active { border-color: var(--eui-accent); background: linear-gradient(180deg, var(--eui-accent-soft), var(--eui-surface)); }
+.eui-loadout__slot.is-empty > :not(.eui-slot__key) { opacity: .15; }
+
+/* ---------- Dikey yayında sıkıştırma ---------- */
+.eui-screen[data-eui-crop="vertical"] .eui-survivors { --w: 230px; gap: 4px; }
+.eui-screen[data-eui-crop="vertical"] .eui-survivor { padding: 5px 8px; }
+.eui-screen[data-eui-crop="vertical"] .eui-survivor .eui-avatar { width: 30px; height: 30px; font-size: 14px; grid-row: span 2; }
+.eui-screen[data-eui-crop="vertical"] .eui-survivor__items { display: none; }
+.eui-screen[data-eui-crop="vertical"] .eui-infected.is-boss b { font-size: 26px; }
+.eui-screen[data-eui-crop="vertical"] .eui-horde b { font-size: 40px; }
+.eui-screen[data-eui-crop="vertical"] .eui-horde { left: var(--eui-crop-l); right: var(--eui-crop-r); }

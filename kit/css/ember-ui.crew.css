@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Ember UI — EKİP (crew / posse / squad)
+   Yapay zekâ ekip üyeleri ya da oyuncu takımı: kart, kompakt satır, alt şerit
+   kutucukları, emir çubuğu, binek durumu, üye ayrıntısı.
+   Portreler karedir (halka içine kare koyulmaz). Ton: .eui-t-team1..5 / .eui-t-*.
+   Durumlar: is-down (yerde), is-dead (ölü), is-attacking, is-selected, is-mounted.
+   ========================================================================== */
+
+/* ---------- Portre: kare alan; içinde ikon, harf ya da <img> ---------- */
+.eui-portrait {
+  --tone-rgb: var(--eui-team-1-rgb);
+  position: relative; flex: none; width: var(--s, 44px); height: var(--s, 44px);
+  display: grid; place-items: center; overflow: hidden;
+  border-radius: var(--eui-r-2);
+  background: linear-gradient(160deg, rgb(var(--tone-rgb) / .28), rgb(var(--tone-rgb) / .08)), var(--eui-track);
+  box-shadow: inset 0 0 0 1px rgb(var(--tone-rgb) / .45);
+  font-family: var(--eui-font-display); font-weight: var(--eui-display-weight, 700); font-size: calc(var(--s, 44px) * .4);
+  color: var(--eui-text); text-transform: uppercase;
+}
+.eui-portrait > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.eui-portrait > .eui-i { width: 52%; height: 52%; color: rgb(var(--eui-text-rgb) / .85); }
+.eui-portrait__badge {
+  position: absolute; right: 2px; bottom: 2px; width: 16px; height: 16px; display: grid; place-items: center;
+  border-radius: 3px; background: rgb(var(--tone-rgb)); color: #0b0d10; box-shadow: 0 1px 3px rgb(0 0 0 / .5);
+}
+.eui-portrait__badge .eui-i { width: 11px; height: 11px; color: inherit; }
+.eui-portrait--lg { --s: 96px; }
+.eui-portrait--xl { --s: 100%; aspect-ratio: 1; height: auto; }
+
+/* ---------- Üye kartı (ayrıntılı) ---------- */
+.eui-crewcard {
+  --tone-rgb: var(--eui-team-1-rgb);
+  position: relative; display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start;
+  width: var(--w, 340px); padding: 10px 12px 10px 10px;
+  background: var(--eui-surface); border: 1px solid var(--eui-line-soft); border-left: 3px solid rgb(var(--tone-rgb));
+  border-radius: var(--eui-r-3);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-crewcard .eui-portrait { --s: 56px; }
+.eui-crewcard__main { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.eui-crewcard__head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.eui-crewcard__head b { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-crewcard__head .eui-badge { margin-left: auto; flex: none; }
+.eui-crewcard__hp { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; }
+.eui-crewcard__hp .eui-bar { --h: 5px; }
+.eui-crewcard__hp span { font-family: var(--eui-font-num); font-size: 12px; color: var(--eui-text-2); }
+.eui-crewcard__gear { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--eui-text-2); }
+.eui-crewcard__gear > span { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.eui-crewcard__gear .eui-i { width: 14px; height: 14px; color: var(--eui-text-3); }
+.eui-crewcard__gear .eui-weapon-art { width: 42px; height: 13px; color: var(--eui-text); }
+.eui-crewcard__gear .is-off { opacity: .45; text-decoration: line-through; }
+.eui-crewcard.is-selected { border-color: var(--eui-accent-line); box-shadow: 0 0 0 1px var(--eui-accent-line); border-left-color: var(--eui-accent); }
+.eui-crewcard.is-attacking { --tone-rgb: var(--eui-danger-rgb); }
+.eui-crewcard.is-down { --tone-rgb: var(--eui-danger-rgb); }
+.eui-crewcard.is-down .eui-portrait { animation: eui-crew-pulse 1.1s ease-in-out infinite; }
+.eui-crewcard.is-dead { opacity: .5; }
+.eui-crewcard.is-dead .eui-portrait { filter: grayscale(1); }
+@keyframes eui-crew-pulse { 50% { box-shadow: inset 0 0 0 1px rgb(var(--eui-danger-rgb)), 0 0 12px rgb(var(--eui-danger-rgb) / .6); } }
+
+/* ---------- Kompakt satır (HUD kenar listesi) ---------- */
+.eui-crewlist { display: flex; flex-direction: column; gap: 4px; width: var(--w, 260px); }
+.eui-crewrow {
+  --tone-rgb: var(--eui-team-1-rgb);
+  display: grid; grid-template-columns: auto 1fr auto; grid-template-rows: auto auto; align-items: center; gap: 3px 9px;
+  padding: 5px 9px 6px 5px; background: var(--eui-surface); border-radius: var(--eui-r-2);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-crewrow .eui-portrait { --s: 30px; grid-row: span 2; }
+.eui-crewrow__name { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.eui-crewrow__icons { display: flex; align-items: center; gap: 6px; color: var(--eui-text-3); font-family: var(--eui-font-num); font-size: 11px; }
+.eui-crewrow__icons .eui-i { width: 13px; height: 13px; }
+.eui-crewrow__icons .is-on { color: var(--eui-text); }
+.eui-crewrow .eui-bar { --h: 3px; grid-column: 2 / 4; }
+.eui-crewrow.is-attacking { box-shadow: inset 2px 0 0 var(--eui-danger); }
+.eui-crewrow.is-down .eui-crewrow__name { color: var(--eui-danger); }
+.eui-crewrow.is-down .eui-portrait { animation: eui-crew-pulse 1.1s ease-in-out infinite; }
+.eui-crewrow.is-dead { opacity: .45; }
+.eui-crewrow.is-dead .eui-portrait { filter: grayscale(1); }
+
+/* ---------- Kutucuklar (alt şerit: kare portre + can) ---------- */
+.eui-crewtiles { display: flex; gap: 8px; }
+.eui-crewtile { --tone-rgb: var(--eui-team-1-rgb); display: flex; flex-direction: column; gap: 4px; width: var(--s, 58px); }
+.eui-crewtile .eui-portrait { --s: 100%; aspect-ratio: 1; height: auto; }
+.eui-crewtile .eui-bar { --h: 4px; }
+.eui-crewtile small { font-size: 10.5px; font-weight: 600; color: var(--eui-text-2); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: var(--eui-hud-shadow); }
+.eui-crewtile__state { position: absolute; inset: 0; display: grid; place-items: center; background: rgb(var(--eui-danger-rgb) / .55); }
+.eui-crewtile__state .eui-i { width: 46%; height: 46%; color: #fff; }
+.eui-crewtile.is-dead .eui-portrait { filter: grayscale(1); opacity: .55; }
+.eui-crewtile.is-down .eui-portrait { animation: eui-crew-pulse 1.1s ease-in-out infinite; }
+
+/* ---------- Emir çubuğu ---------- */
+.eui-orders { display: inline-flex; gap: 4px; padding: 4px; background: var(--eui-surface); border-radius: var(--eui-r-3); -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur)); }
+.eui-order {
+  display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 12px 0 6px; border: 1px solid transparent; border-radius: var(--eui-r-2);
+  background: none; color: var(--eui-text-2); font: 600 12.5px var(--eui-font-ui); white-space: nowrap; cursor: pointer;
+}
+.eui-order .eui-i { width: 15px; height: 15px; }
+.eui-order:hover { background: var(--eui-raise); color: var(--eui-text); }
+.eui-order.is-active { background: var(--eui-accent-soft); border-color: var(--eui-accent-line); color: var(--eui-text); }
+.eui-order.is-active .eui-i { color: var(--eui-accent); }
+.eui-order.is-danger.is-active { background: rgb(var(--eui-danger-rgb) / .16); border-color: rgb(var(--eui-danger-rgb) / .5); }
+.eui-order.is-danger.is-active .eui-i { color: var(--eui-danger); }
+
+/* ---------- Binek durumu (at / araç) ---------- */
+.eui-mount {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 10px; width: var(--w, 240px);
+  padding: 8px 10px; background: var(--eui-surface); border-radius: var(--eui-r-2);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-mount > .eui-i { grid-row: span 3; width: 30px; height: 30px; color: var(--eui-text); }
+.eui-mount b { font-size: 13px; font-weight: 600; }
+.eui-mount small { font-size: 11px; color: var(--eui-text-3); text-align: right; }
+.eui-mount .eui-bar { --h: 3px; grid-column: 2 / 4; }
+.eui-mount.is-off { opacity: .55; }
+
+/* ---------- Ekipman yuvaları (üye ayrıntısı, teçhizat) ---------- */
+.eui-gearslots { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 8px; }
+.eui-gearslot { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.eui-gearslot__art {
+  position: relative; aspect-ratio: var(--ratio, 1); display: grid; place-items: center; overflow: hidden;
+  border-radius: var(--eui-r-2); background: var(--eui-track); box-shadow: inset 0 0 0 1px var(--eui-line-soft);
+}
+.eui-gearslot__art > .eui-i { width: 40%; height: 40%; color: var(--eui-text); }
+.eui-gearslot__art > .eui-weapon-art { width: 82%; color: var(--eui-text); }
+.eui-gearslot__art > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.eui-gearslot__art .eui-slot__key { z-index: 1; }
+.eui-gearslot span { font-family: var(--eui-kicker-font, var(--eui-font-ui)); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--eui-text-3); }
+.eui-gearslot b { font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-gearslot.is-empty .eui-gearslot__art { background: none; box-shadow: inset 0 0 0 1px var(--eui-line); border: 1px dashed var(--eui-line); }
+.eui-gearslot.is-empty .eui-gearslot__art > * { opacity: .3; }
+.eui-gearslot.is-empty b { color: var(--eui-text-3); font-weight: 500; }
+.eui-gearslot.is-active .eui-gearslot__art { box-shadow: inset 0 0 0 1px var(--eui-accent), var(--eui-accent-glow); }
+
+/* ---------- Silah bakımı ---------- */
+.eui-condition { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 10px; width: var(--w, 260px); }
+.eui-condition > .eui-i { grid-row: span 2; width: 22px; height: 22px; color: var(--eui-text-2); }
+.eui-condition b { font-size: 12.5px; font-weight: 600; }
+.eui-condition small { font-family: var(--eui-font-num); font-size: 12px; color: var(--eui-text-2); }
+.eui-condition .eui-bar { --h: 4px; grid-column: 2 / 4; }
+
+/* ---------- Mermi türleri ---------- */
+.eui-ammotypes { display: flex; flex-direction: column; gap: 3px; width: var(--w, 260px); }
+.eui-ammotype {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; height: 34px; padding: 0 10px;
+  border-radius: var(--eui-r-2); border: 1px solid transparent; color: var(--eui-text-2); font-size: 13px; cursor: pointer;
+}
+.eui-ammotype .eui-i { width: 16px; height: 16px; color: var(--eui-text-3); }
+.eui-ammotype small { font-family: var(--eui-font-num); font-size: 12.5px; }
+.eui-ammotype:hover { background: var(--eui-raise); color: var(--eui-text); }
+.eui-ammotype.is-active { background: var(--eui-accent-soft); border-color: var(--eui-accent-line); color: var(--eui-text); }
+.eui-ammotype.is-active .eui-i { color: var(--eui-accent); }
+.eui-ammotype.is-empty { opacity: .4; }
+
+/* ---------- Halka içinde avatar: yuvarlak olur (kare alanı halka sarmaz) ---------- */
+.eui-ringval > .eui-avatar.eui-avatar, .eui-ringval > img { border-radius: 50%; width: calc(100% - 10px); height: calc(100% - 10px); }

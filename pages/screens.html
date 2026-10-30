@@ -3,39 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tam ekranlar — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Tam ekranlar — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Arayüz</span>
     <h1>Tam ekranlar</h1>
-    <p>Ölüm / yeniden doğma, tur sonu sonuçları ve sunucu yükleme ekranı. Yükleme ekranı oyunun ayrı bir overlay sayfası olarak da kullanılabilir; ilerlemeyi oyundan gelen bir mesajla (<code>MH.on</code>) beslersin.</p>
+    <p>Ölüm / yeniden doğma, tur sonu sonuçları ve sunucu yükleme ekranı. Yükleme ekranı oyunun ayrı bir overlay sayfası olarak da kullanılabilir; ilerlemeyi oyundan gelen bir mesajla (<code>EUI.on</code>) beslersin.</p>
   </header>
 
   <div class="demo-h2" style="margin-top:0"><h2>Ölüm ekranı</h2><p>Katil kartı ve yeniden doğma sayacı</p></div>
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="s1">
-      <div class="mh-screen">
-        <div class="mh-dead">
-          <span class="mh-kicker" style="letter-spacing:.4em">Etkisiz hale getirildin</span>
-          <div class="mh-dead__title">Öldün</div>
-          <div class="mh-panel mh-killer">
-            <span class="mh-avatar mh-avatar--lg mh-t-team2">B</span>
-            <div class="mh-col" style="gap:3px"><span class="mh-kicker">Öldüren</span><b style="font-size:18px">Bandit #8</b><span class="mh-sub">Pompalı tüfek · 14 m · kafadan</span></div>
-            <div class="mh-killer__stats">
-              <div><span class="mh-kicker">Can</span><b class="mh-tone mh-t-danger">38</b></div>
-              <div><span class="mh-kicker">Zırh</span><b>0</b></div>
-              <div><span class="mh-kicker">Seri</span><b>4</b></div>
+      <div class="eui-screen">
+        <div class="eui-dead">
+          <span class="eui-kicker" style="letter-spacing:.4em">Etkisiz hale getirildin</span>
+          <div class="eui-dead__title">Öldün</div>
+          <div class="eui-panel eui-killer">
+            <span class="eui-avatar eui-avatar--lg eui-t-team2">B</span>
+            <div class="eui-col" style="gap:3px"><span class="eui-kicker">Öldüren</span><b style="font-size:18px">Bandit #8</b><span class="eui-sub">Pompalı tüfek · 14 m · kafadan</span></div>
+            <div class="eui-killer__stats">
+              <div><span class="eui-kicker">Can</span><b class="eui-tone eui-t-danger">38</b></div>
+              <div><span class="eui-kicker">Zırh</span><b>0</b></div>
+              <div><span class="eui-kicker">Seri</span><b>4</b></div>
             </div>
           </div>
-          <div class="mh-respawn" style="margin-top:12px">
-            <div class="mh-respawn__ring" data-mh-ring id="rs-ring" style="--v:1"><b id="rs-t">8</b></div>
-            <div class="mh-col" style="gap:6px">
-              <span class="mh-kicker">Yeniden doğma</span>
-              <div class="mh-hints"><span class="mh-hint"><span class="mh-key">E</span>Hastanede doğ<b style="margin-left:4px">−$500</b></span><span class="mh-hint"><span class="mh-key">G</span>Ekibi izle</span></div>
+          <div class="eui-respawn" style="margin-top:12px">
+            <div class="eui-respawn__ring" data-eui-ring id="rs-ring" style="--v:1"><b id="rs-t">8</b></div>
+            <div class="eui-col" style="gap:6px">
+              <span class="eui-kicker">Yeniden doğma</span>
+              <div class="eui-hints"><span class="eui-hint"><span class="eui-key">E</span>Hastanede doğ<b style="margin-left:4px">−$500</b></span><span class="eui-hint"><span class="eui-key">G</span>Ekibi izle</span></div>
             </div>
           </div>
         </div>
@@ -46,25 +46,25 @@
   <div class="demo-h2"><h2>Tur sonu</h2><p>Podyum, MVP ve özet</p></div>
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="s2">
-      <div class="mh-screen">
-        <div class="mh-layer"><div class="mh-scrim mh-scrim--soft"></div>
-          <div class="mh-results" style="position:relative">
-            <div class="mh-results__title"><span class="mh-kicker mh-kicker--accent" style="letter-spacing:.4em">Maç bitti · 5 – 3</span><b>Zafer</b><span class="mh-sub" style="font-size:16px">Mavi takım Vinewood'u ele geçirdi</span></div>
-            <div class="mh-podium">
-              <div class="mh-podium__slot is-2"><div class="mh-podium__who"><span class="mh-avatar mh-t-silver">AR</span><b>Amiral Router</b><span class="mh-sub">11 öldürme · 8 asist</span></div><div class="mh-podium__block"><strong>2</strong><span>2.180 puan</span></div></div>
-              <div class="mh-podium__slot is-1"><div class="mh-podium__who"><i data-i="crown-f" style="width:28px;height:28px;color:rgb(var(--mh-gold-rgb))"></i><span class="mh-avatar mh-t-gold">NM</span><b>NabeMedia</b><span class="mh-badge mh-t-gold">MVP</span></div><div class="mh-podium__block"><strong>1</strong><span>2.410 puan</span></div></div>
-              <div class="mh-podium__slot is-3"><div class="mh-podium__who"><span class="mh-avatar mh-t-bronze">B</span><b>Bandit #8</b><span class="mh-sub">9 öldürme · 3 asist</span></div><div class="mh-podium__block"><strong>3</strong><span>1.760 puan</span></div></div>
+      <div class="eui-screen">
+        <div class="eui-layer"><div class="eui-scrim eui-scrim--soft"></div>
+          <div class="eui-results" style="position:relative">
+            <div class="eui-results__title"><span class="eui-kicker eui-kicker--accent" style="letter-spacing:.4em">Maç bitti · 5 – 3</span><b>Zafer</b><span class="eui-sub" style="font-size:16px">Mavi takım Vinewood'u ele geçirdi</span></div>
+            <div class="eui-podium">
+              <div class="eui-podium__slot is-2"><div class="eui-podium__who"><span class="eui-avatar eui-t-silver">AR</span><b>Amiral Router</b><span class="eui-sub">11 öldürme · 8 asist</span></div><div class="eui-podium__block"><strong>2</strong><span>2.180 puan</span></div></div>
+              <div class="eui-podium__slot is-1"><div class="eui-podium__who"><i data-i="crown-f" style="width:28px;height:28px;color:rgb(var(--eui-gold-rgb))"></i><span class="eui-avatar eui-t-gold">NM</span><b>NabeMedia</b><span class="eui-badge eui-t-gold">MVP</span></div><div class="eui-podium__block"><strong>1</strong><span>2.410 puan</span></div></div>
+              <div class="eui-podium__slot is-3"><div class="eui-podium__who"><span class="eui-avatar eui-t-bronze">B</span><b>Bandit #8</b><span class="eui-sub">9 öldürme · 3 asist</span></div><div class="eui-podium__block"><strong>3</strong><span>1.760 puan</span></div></div>
             </div>
-            <div class="mh-panel mh-pad-l">
-              <div class="mh-summary">
-                <div><span class="mh-kicker">Kazanç</span><b class="mh-tone mh-t-success">+$8.400</b></div>
-                <div><span class="mh-kicker">Deneyim</span><b>+1.250 RP</b></div>
-                <div><span class="mh-kicker">Öldürme</span><b>11</b></div>
-                <div><span class="mh-kicker">İsabet</span><b>42%</b></div>
-                <div><span class="mh-kicker">Süre</span><b>14:32</b></div>
+            <div class="eui-panel eui-pad-l">
+              <div class="eui-summary">
+                <div><span class="eui-kicker">Kazanç</span><b class="eui-tone eui-t-success">+$8.400</b></div>
+                <div><span class="eui-kicker">Deneyim</span><b>+1.250 RP</b></div>
+                <div><span class="eui-kicker">Öldürme</span><b>11</b></div>
+                <div><span class="eui-kicker">İsabet</span><b>42%</b></div>
+                <div><span class="eui-kicker">Süre</span><b>14:32</b></div>
               </div>
             </div>
-            <div class="mh-flex mh-gap-2 mh-catch"><button class="mh-btn mh-btn--primary mh-btn--lg"><span class="mh-key mh-key--sm">ENTER</span>Tekrar oyna</button><button class="mh-btn mh-btn--outline mh-btn--lg">Lobiye dön</button></div>
+            <div class="eui-flex eui-gap-2 eui-catch"><button class="eui-btn eui-btn--primary eui-btn--lg"><span class="eui-key eui-key--sm">ENTER</span>Tekrar oyna</button><button class="eui-btn eui-btn--outline eui-btn--lg">Lobiye dön</button></div>
           </div>
         </div>
       </div>
@@ -74,21 +74,21 @@
   <div class="demo-h2"><h2>Yükleme ekranı</h2><p>Sunucuya bağlanırken</p></div>
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="s3" data-no-scene>
-      <div class="mh-screen" style="z-index:auto">
-        <div class="mh-loading">
-          <div class="mh-loading__art" id="ld-art"></div>
-          <div class="mh-loading__main">
-            <span class="mh-kicker mh-kicker--accent" style="letter-spacing:.3em">Stream Ember sunar</span>
-            <div class="mh-title" id="ld-title" lang="en">Event Fabric</div>
-            <div class="mh-sub" style="font-size:18px;max-width:620px">Yayıncılar ve izleyiciler aynı oyunda: hediyeler düşman çağırır, oylar hava durumunu değiştirir.</div>
-            <div class="mh-flex mh-gap-2" style="margin-top:6px"><span class="mh-badge mh-badge--pill mh-badge--dot mh-t-success">32 / 64 oyuncu</span><span class="mh-badge mh-badge--pill">Türkiye · Ping 18 ms</span><span class="mh-badge mh-badge--pill mh-t-accent">Etkinlik: Konvoy baskını</span></div>
+      <div class="eui-screen" style="z-index:auto">
+        <div class="eui-loading">
+          <div class="eui-loading__art" id="ld-art"></div>
+          <div class="eui-loading__main">
+            <span class="eui-kicker eui-kicker--accent" style="letter-spacing:.3em">Stream Ember sunar</span>
+            <div class="eui-title" id="ld-title" lang="en">Event Fabric</div>
+            <div class="eui-sub" style="font-size:18px;max-width:620px">Yayıncılar ve izleyiciler aynı oyunda: hediyeler düşman çağırır, oylar hava durumunu değiştirir.</div>
+            <div class="eui-flex eui-gap-2" style="margin-top:6px"><span class="eui-badge eui-badge--pill eui-badge--dot eui-t-success">32 / 64 oyuncu</span><span class="eui-badge eui-badge--pill">Türkiye · Ping 18 ms</span><span class="eui-badge eui-badge--pill eui-t-accent">Etkinlik: Konvoy baskını</span></div>
           </div>
-          <div class="mh-loading__foot">
-            <div class="mh-loading__tip"><span class="mh-kicker">İpucu</span><p id="ld-tip">F1 ile etkileşim menüsünü, TAB ile skor tablosunu açabilirsin. Ekip arkadaşların haritada mavi görünür.</p></div>
-            <div class="mh-loading__progress">
-              <div class="mh-loading__status"><span id="ld-step">Haritalar yükleniyor…</span><b id="ld-pct">0%</b></div>
-              <div class="mh-bar" id="ld-bar"><i class="mh-bar__fill"></i></div>
-              <div class="mh-loading__status"><span class="mh-mute">Kaynak 128 / 214</span><span class="mh-mute">v1.0.0</span></div>
+          <div class="eui-loading__foot">
+            <div class="eui-loading__tip"><span class="eui-kicker">İpucu</span><p id="ld-tip">F1 ile etkileşim menüsünü, TAB ile skor tablosunu açabilirsin. Ekip arkadaşların haritada mavi görünür.</p></div>
+            <div class="eui-loading__progress">
+              <div class="eui-loading__status"><span id="ld-step">Haritalar yükleniyor…</span><b id="ld-pct">0%</b></div>
+              <div class="eui-bar" id="ld-bar"><i class="eui-bar__fill"></i></div>
+              <div class="eui-loading__status"><span class="eui-mute">Kaynak 128 / 214</span><span class="eui-mute">v1.0.0</span></div>
             </div>
           </div>
         </div>
@@ -97,19 +97,19 @@
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   // Ölüm sayacı
   var t = 8;
-  setInterval(function () { t = t <= 0 ? 8 : t - 1; document.getElementById('rs-t').textContent = t; MH.ring('#rs-ring', t / 8); }, 1000);
+  setInterval(function () { t = t <= 0 ? 8 : t - 1; document.getElementById('rs-t').textContent = t; EUI.ring('#rs-ring', t / 8); }, 1000);
   // Yükleme ekranı
   var STEPS = ['Haritalar yükleniyor…', 'Araç modelleri…', 'Ses dosyaları…', 'Oyuncu verisi…', 'Dünyaya giriliyor…'];
   var TIPS = ['F1 ile etkileşim menüsünü, TAB ile skor tablosunu açabilirsin.', 'Hediyeler düşman dalgası çağırabilir — hazırlıklı ol.', 'Ekip kasası tüm üyelerin ortak parasıdır.', 'Basılı tut istemlerinde tuşu bırakırsan işlem iptal olur.'];
   var p = 0;
   setInterval(function () {
     p = p >= 100 ? 0 : p + Math.random() * 3;
-    MH.bar('#ld-bar', p); document.getElementById('ld-pct').textContent = Math.floor(Math.min(p, 100)) + '%';
+    EUI.bar('#ld-bar', p); document.getElementById('ld-pct').textContent = Math.floor(Math.min(p, 100)) + '%';
     document.getElementById('ld-step').textContent = STEPS[Math.min(4, Math.floor(p / 20))];
   }, 120);
   setInterval(function () { document.getElementById('ld-tip').textContent = Demo.pick(TIPS); }, 4000);

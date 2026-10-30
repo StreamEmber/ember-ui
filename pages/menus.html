@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Menüler — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Menüler — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Arayüz</span>
     <h1>Menüler</h1>
-    <p>Tam ekran menü <b>HTML yazılarak değil, veriyle</b> kurulur: <code>MH.Menu(host, spec)</code>. Bölümleri (<code>list</code>, <code>grid</code>, <code>settings</code>, <code>table</code>, <code>custom</code>) ve öğeleri verirsin; katman, ekrana sığma, aç/kapa, ESC, ↑↓ / Q E ile gezinme, detay paneline göre 2/3 sütun ve alt ipuçları kitin işidir. Sahnede klavyeyle dene; her eylem sağdaki günlüğe düşer.</p>
+    <p>Tam ekran menü <b>HTML yazılarak değil, veriyle</b> kurulur: <code>EUI.Menu(host, spec)</code>. Bölümleri (<code>list</code>, <code>grid</code>, <code>settings</code>, <code>table</code>, <code>custom</code>) ve öğeleri verirsin; katman, ekrana sığma, aç/kapa, ESC, ↑↓ / Q E ile gezinme, detay paneline göre 2/3 sütun ve alt ipuçları kitin işidir. Sahnede klavyeyle dene; her eylem sağdaki günlüğe düşer.</p>
   </header>
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen"></div>
+      <div class="eui-screen" id="screen"></div>
     </div>
     <div class="demo-actions">
       <button class="demo-btn" id="open-menu"><i data-i="menu"></i>Menüyü aç (F1)</button>
@@ -31,12 +31,12 @@
   <div class="demo-h2"><h2>2 sütunlu menü</h2><p>Hiçbir bölümde detay paneli yoksa menü kendiliğinden 2 sütun çizilir. Ayarlar <code>view: 'settings'</code>: ↑↓ satır seçer, ←→ değeri değiştirir.</p></div>
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage2">
-      <div class="mh-screen" id="screen2"></div>
+      <div class="eui-screen" id="screen2"></div>
     </div>
   </div>
 
   <div class="demo-h2"><h2>Kod</h2><p>Yukarıdaki menünün iskeleti. Tüm alanlar <code>ai/menu.md</code>'de.</p></div>
-  <pre class="demo-code"><code>var menu = MH.Menu('#screen', {
+  <pre class="demo-code"><code>var menu = EUI.Menu('#screen', {
   kicker: 'Oyuncu menüsü', title: 'Etkileşim menüsü',
   stats: [{ label: 'Nakit', value: '$12.480', tone: 'success' }],
   sections: [
@@ -52,102 +52,102 @@
   ],
   onAction: function (a) { /* a.action: open|close|section|select|activate|change|&lt;eylem id&gt; */ }
 });
-MH.on('menu:open', ...);  menu.open('inv');  menu.update('inv', { items: yeni });</code></pre>
+EUI.on('menu:open', ...);  menu.open('inv');  menu.update('inv', { items: yeni });</code></pre>
 
   <template id="tpl-bag">
-<div class="mh-inv" style="--cols:6;width:300px">
-  <div class="mh-cell is-active"><span class="mh-cell__key">1</span><i data-i="rifle"></i><span class="mh-cell__count">1</span></div>
-  <div class="mh-cell is-rare"><span class="mh-cell__key">2</span><i data-i="pistol"></i><span class="mh-cell__count">1</span></div>
-  <div class="mh-cell"><span class="mh-cell__key">3</span><i data-i="knife"></i></div>
-  <div class="mh-cell is-epic"><span class="mh-cell__key">4</span><i data-i="grenade"></i><span class="mh-cell__count">4</span></div>
-  <div class="mh-cell"><i data-i="bullets"></i><span class="mh-cell__count">180</span></div>
-  <div class="mh-cell is-legendary"><i data-i="diamond"></i><span class="mh-cell__count">2</span></div>
+<div class="eui-inv" style="--cols:6;width:300px">
+  <div class="eui-cell is-active"><span class="eui-cell__key">1</span><i data-i="rifle"></i><span class="eui-cell__count">1</span></div>
+  <div class="eui-cell is-rare"><span class="eui-cell__key">2</span><i data-i="pistol"></i><span class="eui-cell__count">1</span></div>
+  <div class="eui-cell"><span class="eui-cell__key">3</span><i data-i="knife"></i></div>
+  <div class="eui-cell is-epic"><span class="eui-cell__key">4</span><i data-i="grenade"></i><span class="eui-cell__count">4</span></div>
+  <div class="eui-cell"><i data-i="bullets"></i><span class="eui-cell__count">180</span></div>
+  <div class="eui-cell is-legendary"><i data-i="diamond"></i><span class="eui-cell__count">2</span></div>
 </div>
   </template>
   <template id="tpl-stats">
-<div class="mh-stats">
-                  <div class="mh-flex mh-between">
-                    <div><span class="mh-kicker mh-kicker--accent">Sezon 3 · son 30 gün</span><div class="mh-title" style="margin-top:4px">Oyuncu istatistikleri</div></div>
-                    <div class="mh-seg" data-mh-seg="range"><button>7 gün</button><button class="is-active">30 gün</button><button>Tümü</button></div>
+<div class="eui-stats">
+                  <div class="eui-flex eui-between">
+                    <div><span class="eui-kicker eui-kicker--accent">Sezon 3 · son 30 gün</span><div class="eui-title" style="margin-top:4px">Oyuncu istatistikleri</div></div>
+                    <div class="eui-seg" data-eui-seg="range"><button>7 gün</button><button class="is-active">30 gün</button><button>Tümü</button></div>
                   </div>
-                  <div class="mh-stats__tiles">
-                    <div class="mh-tile mh-t-danger"><i data-i="skull-crossbones"></i><span class="mh-kicker">Öldürme</span><b>1.284</b><span class="mh-delta is-up">▲ %12</span><div class="mh-tile__spark mh-t-danger" data-spark="12,18,15,22,19,28,24,31,27,35,30,38" data-w="160" data-h="30"></div></div>
-                    <div class="mh-tile mh-t-info"><i data-i="crosshair"></i><span class="mh-kicker">Ö/A oranı</span><b>2,41</b><span class="mh-delta is-up">▲ 0,18</span><div class="mh-tile__spark mh-t-info" data-spark="1.8,2.1,1.9,2.3,2.2,2.0,2.4,2.5,2.3,2.6,2.4,2.41" data-w="160" data-h="30"></div></div>
-                    <div class="mh-tile mh-t-success"><i data-i="trophy"></i><span class="mh-kicker">Galibiyet</span><b>%64</b><span class="mh-delta is-down">▼ %3</span><div class="mh-tile__spark mh-t-success" data-spark="70,68,72,66,69,65,67,63,66,62,65,64" data-w="160" data-h="30"></div></div>
-                    <div class="mh-tile mh-t-warn"><i data-i="clock"></i><span class="mh-kicker">Oynama</span><b>86 sa</b><small>Ortalama 2,9 sa / gün</small><div class="mh-tile__spark mh-t-warn" data-spark="2,3,1,4,3,2,5,3,4,2,3,3" data-w="160" data-h="30"></div></div>
+                  <div class="eui-stats__tiles">
+                    <div class="eui-tile eui-t-danger"><i data-i="skull-crossbones"></i><span class="eui-kicker">Öldürme</span><b>1.284</b><span class="eui-delta is-up">▲ %12</span><div class="eui-tile__spark eui-t-danger" data-spark="12,18,15,22,19,28,24,31,27,35,30,38" data-w="160" data-h="30"></div></div>
+                    <div class="eui-tile eui-t-info"><i data-i="crosshair"></i><span class="eui-kicker">Ö/A oranı</span><b>2,41</b><span class="eui-delta is-up">▲ 0,18</span><div class="eui-tile__spark eui-t-info" data-spark="1.8,2.1,1.9,2.3,2.2,2.0,2.4,2.5,2.3,2.6,2.4,2.41" data-w="160" data-h="30"></div></div>
+                    <div class="eui-tile eui-t-success"><i data-i="trophy"></i><span class="eui-kicker">Galibiyet</span><b>%64</b><span class="eui-delta is-down">▼ %3</span><div class="eui-tile__spark eui-t-success" data-spark="70,68,72,66,69,65,67,63,66,62,65,64" data-w="160" data-h="30"></div></div>
+                    <div class="eui-tile eui-t-warn"><i data-i="clock"></i><span class="eui-kicker">Oynama</span><b>86 sa</b><small>Ortalama 2,9 sa / gün</small><div class="eui-tile__spark eui-t-warn" data-spark="2,3,1,4,3,2,5,3,4,2,3,3" data-w="160" data-h="30"></div></div>
                   </div>
-                  <div class="mh-stats__grid">
-                    <div class="mh-box">
-                      <div class="mh-box__head"><span class="mh-kicker">Son 14 maç · öldürme</span><span class="mh-badge mh-t-accent">En iyi: 31</span></div>
-                      <div class="mh-columns" id="kills-col" style="--h:120px"></div>
+                  <div class="eui-stats__grid">
+                    <div class="eui-box">
+                      <div class="eui-box__head"><span class="eui-kicker">Son 14 maç · öldürme</span><span class="eui-badge eui-t-accent">En iyi: 31</span></div>
+                      <div class="eui-columns" id="kills-col" style="--h:120px"></div>
                     </div>
-                    <div class="mh-box">
-                      <div class="mh-box__head"><span class="mh-kicker">Galibiyet / mağlubiyet</span></div>
-                      <div class="mh-flex mh-gap-4">
-                        <div class="mh-donut mh-t-success" data-mh-ring style="--v:.64"><div><b>%64</b><span>Galibiyet</span></div></div>
-                        <div class="mh-col mh-gap-2">
-                          <div class="mh-flex mh-gap-2"><span class="mh-badge mh-t-success">82 G</span><span class="mh-badge mh-t-danger">46 M</span></div>
-                          <span class="mh-sub">Son 10 maç</span><div class="mh-history" data-history="WWLWWWLWLW"></div>
-                          <span class="mh-sub">En uzun seri: <b style="color:var(--mh-text)">9 galibiyet</b></span>
+                    <div class="eui-box">
+                      <div class="eui-box__head"><span class="eui-kicker">Galibiyet / mağlubiyet</span></div>
+                      <div class="eui-flex eui-gap-4">
+                        <div class="eui-donut eui-t-success" data-eui-ring style="--v:.64"><div><b>%64</b><span>Galibiyet</span></div></div>
+                        <div class="eui-col eui-gap-2">
+                          <div class="eui-flex eui-gap-2"><span class="eui-badge eui-t-success">82 G</span><span class="eui-badge eui-t-danger">46 M</span></div>
+                          <span class="eui-sub">Son 10 maç</span><div class="eui-history" data-history="WWLWWWLWLW"></div>
+                          <span class="eui-sub">En uzun seri: <b style="color:var(--eui-text)">9 galibiyet</b></span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="mh-stats__grid">
-                    <div class="mh-box">
-                      <div class="mh-box__head"><span class="mh-kicker">Silah kullanımı · öldürme</span></div>
-                      <div class="mh-hbars" id="weapon-bars"></div>
+                  <div class="eui-stats__grid">
+                    <div class="eui-box">
+                      <div class="eui-box__head"><span class="eui-kicker">Silah kullanımı · öldürme</span></div>
+                      <div class="eui-hbars" id="weapon-bars"></div>
                     </div>
-                    <div class="mh-box">
-                      <div class="mh-box__head"><span class="mh-kicker">Başarımlar</span><span class="mh-sub">18 / 42</span></div>
-                      <div class="mh-col mh-gap-3">
-                        <div class="mh-achieve"><i data-i="trophy"></i><b>Keskin nişancı</b><small>500 / 500</small><div class="mh-bar mh-t-gold" data-v="100"><i class="mh-bar__fill"></i></div></div>
-                        <div class="mh-achieve"><i data-i="fist"></i><b>Çıplak eller</b><small>38 / 50</small><div class="mh-bar mh-t-accent" data-v="76"><i class="mh-bar__fill"></i></div></div>
-                        <div class="mh-achieve"><i data-i="zombie"></i><b>Sürü avcısı</b><small>2.140 / 5.000</small><div class="mh-bar mh-t-accent" data-v="43"><i class="mh-bar__fill"></i></div></div>
-                        <div class="mh-achieve is-locked"><i data-i="lock"></i><b>Ölümsüz</b><small>0 / 1</small><div class="mh-bar" data-v="0"><i class="mh-bar__fill"></i></div></div>
+                    <div class="eui-box">
+                      <div class="eui-box__head"><span class="eui-kicker">Başarımlar</span><span class="eui-sub">18 / 42</span></div>
+                      <div class="eui-col eui-gap-3">
+                        <div class="eui-achieve"><i data-i="trophy"></i><b>Keskin nişancı</b><small>500 / 500</small><div class="eui-bar eui-t-gold" data-v="100"><i class="eui-bar__fill"></i></div></div>
+                        <div class="eui-achieve"><i data-i="fist"></i><b>Çıplak eller</b><small>38 / 50</small><div class="eui-bar eui-t-accent" data-v="76"><i class="eui-bar__fill"></i></div></div>
+                        <div class="eui-achieve"><i data-i="zombie"></i><b>Sürü avcısı</b><small>2.140 / 5.000</small><div class="eui-bar eui-t-accent" data-v="43"><i class="eui-bar__fill"></i></div></div>
+                        <div class="eui-achieve is-locked"><i data-i="lock"></i><b>Ölümsüz</b><small>0 / 1</small><div class="eui-bar" data-v="0"><i class="eui-bar__fill"></i></div></div>
                       </div>
                     </div>
                   </div>
-                  <div class="mh-box">
-                    <div class="mh-box__head"><span class="mh-kicker">Maç geçmişi</span><span class="mh-sub">Son 5</span></div>
-                    <div class="mh-matches">
-                      <div class="mh-match"><span class="mh-match__res is-win">G</span><div><b>Takım ölüm maçı</b> <small>· Vinewood · 14:32</small></div><b>24 / 6</b><span class="mh-badge mh-t-gold">MVP</span></div>
-                      <div class="mh-match"><span class="mh-match__res is-loss">M</span><div><b>Hayatta kal</b> <small>· Dalga 9 · 21:04</small></div><b>61 / 1</b><span class="mh-badge">Dalga 9</span></div>
-                      <div class="mh-match"><span class="mh-match__res is-win">G</span><div><b>Bölge kontrolü</b> <small>· Paleto · 18:11</small></div><b>17 / 9</b><span class="mh-badge mh-t-info">3 nokta</span></div>
-                      <div class="mh-match"><span class="mh-match__res is-win">G</span><div><b>Düello</b> <small>· Valentine · 06:40</small></div><b>5 / 0</b><span class="mh-badge mh-t-accent">Kusursuz</span></div>
-                      <div class="mh-match"><span class="mh-match__res">B</span><div><b>Konvoy baskını</b> <small>· Sandy · 12:55</small></div><b>11 / 7</b><span class="mh-badge">Berabere</span></div>
+                  <div class="eui-box">
+                    <div class="eui-box__head"><span class="eui-kicker">Maç geçmişi</span><span class="eui-sub">Son 5</span></div>
+                    <div class="eui-matches">
+                      <div class="eui-match"><span class="eui-match__res is-win">G</span><div><b>Takım ölüm maçı</b> <small>· Vinewood · 14:32</small></div><b>24 / 6</b><span class="eui-badge eui-t-gold">MVP</span></div>
+                      <div class="eui-match"><span class="eui-match__res is-loss">M</span><div><b>Hayatta kal</b> <small>· Dalga 9 · 21:04</small></div><b>61 / 1</b><span class="eui-badge">Dalga 9</span></div>
+                      <div class="eui-match"><span class="eui-match__res is-win">G</span><div><b>Bölge kontrolü</b> <small>· Paleto · 18:11</small></div><b>17 / 9</b><span class="eui-badge eui-t-info">3 nokta</span></div>
+                      <div class="eui-match"><span class="eui-match__res is-win">G</span><div><b>Düello</b> <small>· Valentine · 06:40</small></div><b>5 / 0</b><span class="eui-badge eui-t-accent">Kusursuz</span></div>
+                      <div class="eui-match"><span class="eui-match__res">B</span><div><b>Konvoy baskını</b> <small>· Sandy · 12:55</small></div><b>11 / 7</b><span class="eui-badge">Berabere</span></div>
                     </div>
                   </div>
                 </div>
   </template>
   <template id="tpl-events">
-<div class="mh-events">
-                  <div class="mh-flex mh-between" style="margin-bottom:4px"><div><span class="mh-kicker mh-kicker--accent">Sunucu takvimi</span><div class="mh-title" style="margin-top:4px">Etkinlikler</div></div><div class="mh-seg" data-mh-seg="ev"><button class="is-active">Yaklaşan</button><button>Geçmiş</button></div></div>
-                  <div class="mh-event is-live"><div class="mh-event__date"><b>08</b><span>Eki</span></div><div class="mh-event__body"><div class="mh-flex mh-gap-2"><b>Konvoy baskını</b><span class="mh-badge mh-badge--dot mh-badge--live mh-t-danger">Canlı</span></div><div class="mh-event__meta"><span><i data-i="clock"></i>21:30 – 22:30</span><span><i data-i="users"></i>24 / 32</span><span><i data-i="cash"></i>$50.000 ödül havuzu</span></div></div><button class="mh-btn mh-btn--primary mh-btn--sm">Katıl</button></div>
-                  <div class="mh-event"><div class="mh-event__date"><b>09</b><span>Eki</span></div><div class="mh-event__body"><div class="mh-flex mh-gap-2"><b>Zombi gecesi</b><span class="mh-badge mh-t-info">Yarın</span></div><div class="mh-event__meta"><span><i data-i="clock"></i>22:00</span><span><i data-i="zombie"></i>Hayatta kal · 4 kişilik ekip</span><span><i data-i="gift"></i>Hediye 2× etki</span></div></div><button class="mh-btn mh-btn--outline mh-btn--sm"><i data-i="bell"></i>Hatırlat</button></div>
-                  <div class="mh-event"><div class="mh-event__date"><b>11</b><span>Eki</span></div><div class="mh-event__body"><div class="mh-flex mh-gap-2"><b>Düello turnuvası</b><span class="mh-badge mh-t-gold">Turnuva</span></div><div class="mh-event__meta"><span><i data-i="clock"></i>20:00</span><span><i data-i="revolver"></i>Yalnız tabanca</span><span><i data-i="trophy"></i>Kupa + $100.000</span></div></div><button class="mh-btn mh-btn--outline mh-btn--sm">Kayıt ol</button></div>
-                  <div class="mh-event"><div class="mh-event__date"><b>14</b><span>Eki</span></div><div class="mh-event__body"><div class="mh-flex mh-gap-2"><b>Yayıncılar arası savaş</b><span class="mh-badge mh-t-legendary">Özel</span></div><div class="mh-event__meta"><span><i data-i="clock"></i>21:00</span><span><i data-i="broadcast"></i>8 yayıncı · izleyici oyu</span></div></div><button class="mh-btn mh-btn--outline mh-btn--sm">Detay</button></div>
+<div class="eui-events">
+                  <div class="eui-flex eui-between" style="margin-bottom:4px"><div><span class="eui-kicker eui-kicker--accent">Sunucu takvimi</span><div class="eui-title" style="margin-top:4px">Etkinlikler</div></div><div class="eui-seg" data-eui-seg="ev"><button class="is-active">Yaklaşan</button><button>Geçmiş</button></div></div>
+                  <div class="eui-event is-live"><div class="eui-event__date"><b>08</b><span>Eki</span></div><div class="eui-event__body"><div class="eui-flex eui-gap-2"><b>Konvoy baskını</b><span class="eui-badge eui-badge--dot eui-badge--live eui-t-danger">Canlı</span></div><div class="eui-event__meta"><span><i data-i="clock"></i>21:30 – 22:30</span><span><i data-i="users"></i>24 / 32</span><span><i data-i="cash"></i>$50.000 ödül havuzu</span></div></div><button class="eui-btn eui-btn--primary eui-btn--sm">Katıl</button></div>
+                  <div class="eui-event"><div class="eui-event__date"><b>09</b><span>Eki</span></div><div class="eui-event__body"><div class="eui-flex eui-gap-2"><b>Zombi gecesi</b><span class="eui-badge eui-t-info">Yarın</span></div><div class="eui-event__meta"><span><i data-i="clock"></i>22:00</span><span><i data-i="zombie"></i>Hayatta kal · 4 kişilik ekip</span><span><i data-i="gift"></i>Hediye 2× etki</span></div></div><button class="eui-btn eui-btn--outline eui-btn--sm"><i data-i="bell"></i>Hatırlat</button></div>
+                  <div class="eui-event"><div class="eui-event__date"><b>11</b><span>Eki</span></div><div class="eui-event__body"><div class="eui-flex eui-gap-2"><b>Düello turnuvası</b><span class="eui-badge eui-t-gold">Turnuva</span></div><div class="eui-event__meta"><span><i data-i="clock"></i>20:00</span><span><i data-i="revolver"></i>Yalnız tabanca</span><span><i data-i="trophy"></i>Kupa + $100.000</span></div></div><button class="eui-btn eui-btn--outline eui-btn--sm">Kayıt ol</button></div>
+                  <div class="eui-event"><div class="eui-event__date"><b>14</b><span>Eki</span></div><div class="eui-event__body"><div class="eui-flex eui-gap-2"><b>Yayıncılar arası savaş</b><span class="eui-badge eui-t-legendary">Özel</span></div><div class="eui-event__meta"><span><i data-i="clock"></i>21:00</span><span><i data-i="broadcast"></i>8 yayıncı · izleyici oyu</span></div></div><button class="eui-btn eui-btn--outline eui-btn--sm">Detay</button></div>
                 </div>
   </template>
   <template id="tpl-keys">
-<div class="mh-keylist" style="--key-w:110px">
-                  <div class="mh-keylist__row"><span><span class="mh-key">F1</span></span>Etkileşim menüsü</div>
-                  <div class="mh-keylist__row"><span><span class="mh-key">TAB</span></span><div>Radyal menü<small>Basılı tut, bırakınca onayla</small></div></div>
-                  <div class="mh-keylist__row"><span><span class="mh-key">I</span></span>Çanta</div>
-                  <div class="mh-keylist__row"><span><span class="mh-key">Q</span><span class="mh-key">E</span></span>Sekme değiştir</div>
-                  <div class="mh-keylist__row"><span><span class="mh-key">Shift</span><span class="mh-key">F1</span></span>Ayarlar</div>
+<div class="eui-keylist" style="--key-w:110px">
+                  <div class="eui-keylist__row"><span><span class="eui-key">F1</span></span>Etkileşim menüsü</div>
+                  <div class="eui-keylist__row"><span><span class="eui-key">TAB</span></span><div>Radyal menü<small>Basılı tut, bırakınca onayla</small></div></div>
+                  <div class="eui-keylist__row"><span><span class="eui-key">I</span></span>Çanta</div>
+                  <div class="eui-keylist__row"><span><span class="eui-key">Q</span><span class="eui-key">E</span></span>Sekme değiştir</div>
+                  <div class="eui-keylist__row"><span><span class="eui-key">Shift</span><span class="eui-key">F1</span></span>Ayarlar</div>
                 </div>
   </template>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   function tpl(id) { return document.getElementById(id).innerHTML; }
   function show(a) { document.getElementById('last-action').textContent = a.action + (a.section ? ' · ' + a.section : '') + (a.id != null ? ' · ' + a.id : '') + (a.value != null ? ' = ' + a.value : ''); }
   var gun = function (id, title, sub, price, o) { return Object.assign({ id: id, title: title, sub: sub, weapon: id, price: price }, o || {}); };
 
-  var menu = MH.Menu('#screen', {
+  var menu = EUI.Menu('#screen', {
     open: true, closable: true, w: 1240, h: 760,
     kicker: 'Event Fabric · Oyuncu menüsü', title: 'Etkileşim menüsü',
     stats: [{ label: 'Nakit', value: '$12.480', tone: 'success' }, { label: 'Ekip kasası', value: '$86.300' }],
@@ -181,7 +181,7 @@ MH.on('menu:open', ...);  menu.open('inv');  menu.update('inv', { items: yeni })
         gun('smg', 'Hafif makineli', 'Yüksek atış hızı', 6800, { group: 'Tüfek', tone: 'rare' }),
         gun('sniper', 'Keskin nişancı', 'Tek atış · 900 m', 24500, { group: 'Tüfek', tone: 'legendary', locked: true, badge: { text: 'Svy 50', icon: 'lock' } })
       ]},
-      { id: 'bag', label: 'Çanta', icon: 'grid', render: function () { return { main: '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">Çanta</span></div><div class="mh-scroll mh-menu__scroll mh-menu__pad">' + tpl('tpl-bag') + '</div>' }; } },
+      { id: 'bag', label: 'Çanta', icon: 'grid', render: function () { return { main: '<div class="eui-menu__toolbar"><span class="eui-title eui-title--sm">Çanta</span></div><div class="eui-scroll eui-menu__scroll eui-menu__pad">' + tpl('tpl-bag') + '</div>' }; } },
       { id: 'team', label: 'Ekip', icon: 'users', small: 4, view: 'table', columns: [
         { key: 'name', label: 'Oyuncu' }, { key: 'role', label: 'Rol' }, { key: 'k', label: 'Ö', align: 'r', num: true }, { key: 'd', label: 'A', align: 'r', num: true }, { key: 'dist', label: 'Mesafe', align: 'r', num: true }
       ], rows: [
@@ -202,8 +202,8 @@ MH.on('menu:open', ...);  menu.open('inv');  menu.update('inv', { items: yeni })
         { id: 'bati', title: 'Bati 801', sub: 'Motosiklet · Garaj 2', icon: 'bike', stats: [{ label: 'Motor', value: 100 }, { label: 'Gövde', value: 100 }, { label: 'Yakıt', value: 85 }], actions: [{ id: 'call', label: 'Yanına çağır', key: 'E' }] },
         { id: 'buzzard', title: 'Buzzard', sub: 'Helikopter · Vinewood', icon: 'heli', locked: true, desc: 'Helipad gerekir.' }
       ]},
-      { id: 'events', label: 'Etkinlikler', icon: 'flag', count: 2, render: function () { return { main: '<div class="mh-scroll mh-menu__scroll mh-menu__pad">' + tpl('tpl-events') + '</div>' }; } },
-      { id: 'stats', label: 'İstatistik', icon: 'stats', render: function () { return { main: '<div class="mh-scroll mh-menu__scroll mh-menu__pad">' + tpl('tpl-stats') + '</div>' }; } },
+      { id: 'events', label: 'Etkinlikler', icon: 'flag', count: 2, render: function () { return { main: '<div class="eui-scroll eui-menu__scroll eui-menu__pad">' + tpl('tpl-events') + '</div>' }; } },
+      { id: 'stats', label: 'İstatistik', icon: 'stats', render: function () { return { main: '<div class="eui-scroll eui-menu__scroll eui-menu__pad">' + tpl('tpl-stats') + '</div>' }; } },
       { group: 'Sistem' },
       { id: 'set', label: 'Ayarlar', icon: 'settings', view: 'settings', fields: [
         { heading: 'Görüntü' },
@@ -214,30 +214,30 @@ MH.on('menu:open', ...);  menu.open('inv');  menu.update('inv', { items: yeni })
         { id: 'voice', label: 'Bas-konuş', desc: 'Sesli sohbet için tuşa basılı tut', type: 'toggle', value: true },
         { id: 'reset', label: 'Varsayılanlar', desc: 'Bu profildeki ayarları sıfırla', type: 'button', text: 'Sıfırla', icon: 'refresh' }
       ]},
-      { id: 'keys', label: 'Tuşlar', icon: 'keyboard', render: function () { return { main: '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">Tuşlar</span></div><div class="mh-scroll mh-menu__scroll mh-menu__pad">' + tpl('tpl-keys') + '</div>' }; } },
+      { id: 'keys', label: 'Tuşlar', icon: 'keyboard', render: function () { return { main: '<div class="eui-menu__toolbar"><span class="eui-title eui-title--sm">Tuşlar</span></div><div class="eui-scroll eui-menu__scroll eui-menu__pad">' + tpl('tpl-keys') + '</div>' }; } },
       { id: 'quit', label: 'Çıkış', icon: 'door', danger: true, confirm: { title: 'Oyundan çıkılsın mı?', text: 'Kaydedilmemiş ilerleme kaybolabilir.', danger: true, ok: 'Çıkış yap' } }
     ],
     onRender: function (m) {
       if (m.section !== 'stats') return;
-      MH.columns('#kills-col', [18, 24, 12, 31, 22, 15, 27, 9, 20, 26, 14, 29, 21, 24].map(function (v, i) { return { label: i + 1, value: v, tone: v >= 28 ? 'gold' : null }; }));
-      MH.bars('#weapon-bars', [{ label: 'Karabina', value: 482, icon: 'rifle' }, { label: 'Tabanca', value: 296, icon: 'pistol' }, { label: 'Pompalı', value: 214, icon: 'shotgun' }, { label: 'Keskin nişancı', value: 151, icon: 'sniper' }]);
+      EUI.columns('#kills-col', [18, 24, 12, 31, 22, 15, 27, 9, 20, 26, 14, 29, 21, 24].map(function (v, i) { return { label: i + 1, value: v, tone: v >= 28 ? 'gold' : null }; }));
+      EUI.bars('#weapon-bars', [{ label: 'Karabina', value: 482, icon: 'rifle' }, { label: 'Tabanca', value: 296, icon: 'pistol' }, { label: 'Pompalı', value: 214, icon: 'shotgun' }, { label: 'Keskin nişancı', value: 151, icon: 'sniper' }]);
     },
     onAction: function (a, m) {
       show(a);
-      if (a.action === 'destroy') MH.confirm({ title: 'Eşyayı yok et?', text: 'Bu işlem geri alınamaz.', danger: true, ok: 'Yok et' }).then(function (ok) { if (ok) MH.toast({ tone: 'danger', title: 'Eşya yok edildi', duration: 2200 }); });
-      if (a.action === 'buy') MH.toast({ tone: 'success', icon: 'cart', title: a.item.title + ' alındı', text: '×' + (a.value || 1), duration: 2200 });
-      if (a.action === 'quit') MH.toast({ tone: 'danger', title: 'Çıkış yapılıyor…', duration: 2200 });
-      if (a.action === 'change' && a.id === 'accent') MH.accent(a.value, document.body);
-      if (a.action === 'press' && a.id === 'reset') MH.toast({ tone: 'success', title: 'Ayarlar sıfırlandı', duration: 2200 });
+      if (a.action === 'destroy') EUI.confirm({ title: 'Eşyayı yok et?', text: 'Bu işlem geri alınamaz.', danger: true, ok: 'Yok et' }).then(function (ok) { if (ok) EUI.toast({ tone: 'danger', title: 'Eşya yok edildi', duration: 2200 }); });
+      if (a.action === 'buy') EUI.toast({ tone: 'success', icon: 'cart', title: a.item.title + ' alındı', text: '×' + (a.value || 1), duration: 2200 });
+      if (a.action === 'quit') EUI.toast({ tone: 'danger', title: 'Çıkış yapılıyor…', duration: 2200 });
+      if (a.action === 'change' && a.id === 'accent') EUI.accent(a.value, document.body);
+      if (a.action === 'press' && a.id === 'reset') EUI.toast({ tone: 'success', title: 'Ayarlar sıfırlandı', duration: 2200 });
     }
   });
-  var th = document.createElement('div'); th.className = 'mh-anchor mh-tr'; th.style.zIndex = 90;
-  th.innerHTML = '<div class="mh-toasts" data-mh="toasts"></div>'; document.getElementById('screen').appendChild(th);
+  var th = document.createElement('div'); th.className = 'eui-anchor eui-tr'; th.style.zIndex = 90;
+  th.innerHTML = '<div class="eui-toasts" data-eui="toasts"></div>'; document.getElementById('screen').appendChild(th);
   document.getElementById('open-menu').addEventListener('click', function () { menu.open(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'F1') { e.preventDefault(); menu.toggle(); } });
 
   // 2 sütun: yalnız ayarlar, detay paneli yok
-  MH.Menu('#screen2', {
+  EUI.Menu('#screen2', {
     layer: false, w: 1120, h: 720, post: false,
     kicker: 'Sistem · Oyun ayarları', title: 'Ayarlar',
     sections: [

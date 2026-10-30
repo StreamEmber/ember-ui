@@ -1,0 +1,562 @@
+/* ==========================================================================
+   Ember UI — oyuncu HUD'u
+   Yaşam göstergeleri, çekirdekler, ihtiyaçlar, minimap çerçevesi, konum,
+   pusula, saat, silah, para, aranma, araç & binek, görev, sayaç, takım skoru,
+   ele geçirme noktaları, dalga, boss, etkiler, hızlı erişim, ekip, ses, XP.
+   ========================================================================== */
+
+/* ---------- Ortak: panelsiz HUD yazısı ---------- */
+
+/* ==========================================================================
+   YAŞAM GÖSTERGELERİ (bar)
+   ========================================================================== */
+.eui-vitals { display: flex; flex-direction: column; gap: 6px; width: var(--w, 300px); }
+.eui-vitals__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.eui-vital { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.eui-vital > .eui-i { width: 14px; height: 14px; color: rgb(var(--tone-rgb)); filter: drop-shadow(0 1px 1px rgb(0 0 0 / .8)); }
+.eui-vital > .eui-bar { --h: 7px; flex: 1; box-shadow: 0 0 0 1px rgb(0 0 0 / .35); }
+.eui-vital__val {
+  min-width: 28px; text-align: right;
+  font-family: var(--eui-font-num); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums;
+  text-shadow: var(--eui-hud-shadow);
+}
+.eui-vital.is-low > .eui-i { animation: eui-critical .9s ease-in-out infinite; color: var(--eui-danger); }
+.eui-vital.is-low { --tone-rgb: var(--eui-danger-rgb); }
+/* Kompakt: bloklu GTA görünümü — ikon/değer yok */
+.eui-vitals--slim .eui-vital > .eui-i, .eui-vitals--slim .eui-vital__val { display: none; }
+.eui-vitals--slim .eui-vital > .eui-bar { --h: 6px; }
+
+/* ==========================================================================
+   ÇEKİRDEK (RDR2 core) — dış halka: anlık değer, iç dolgu: çekirdek
+   <div class="eui-core eui-t-health" style="--v:.8;--core:.6">
+     <svg class="eui-ring">…</svg><span class="eui-core__fill"></span><i data-i="heart-f"></i></div>
+   ========================================================================== */
+.eui-cores { display: flex; align-items: center; gap: 10px; }
+.eui-core { --tone-rgb: var(--eui-health-rgb); --size: 52px; position: relative; width: var(--size); height: var(--size); flex: none; }
+.eui-core > .eui-ring { position: absolute; inset: 0; width: 100%; height: 100%; --sw: 5; }
+.eui-core > .eui-ring .eui-ring__track { stroke: rgb(0 0 0 / .55); }
+.eui-core__fill {
+  position: absolute; inset: 22%; border-radius: 50%;
+  background: rgb(0 0 0 / .55);
+  overflow: hidden;
+}
+.eui-core__fill::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgb(var(--tone-rgb) / .95), rgb(var(--tone-rgb) / .65));
+  clip-path: inset(calc((1 - var(--core, 1)) * 100%) 0 0 0);
+  transition: clip-path var(--eui-dur-4) var(--eui-ease);
+}
+.eui-core > .eui-i {
+  position: absolute; left: 50%; top: 50%; width: 38%; height: 38%; transform: translate(-50%, -50%);
+  color: #fff; mix-blend-mode: normal; filter: drop-shadow(0 1px 1px rgb(0 0 0 / .9)); z-index: 1;
+}
+.eui-core--sm { --size: 40px; }
+.eui-core--lg { --size: 64px; }
+.eui-core.is-low > .eui-ring .eui-ring__fill { stroke: var(--eui-danger); animation: eui-critical .9s infinite; }
+.eui-core.is-low > .eui-i { animation: eui-heartbeat .9s ease-in-out infinite; }
+.eui-core.is-boosted > .eui-ring .eui-ring__track { stroke: rgb(var(--eui-gold-rgb) / .55); }
+@keyframes eui-heartbeat { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 15% { transform: translate(-50%, -50%) scale(1.18); } 30% { transform: translate(-50%, -50%) scale(1); } }
+
+/* ==========================================================================
+   İHTİYAÇLAR (açlık, susuzluk, stres…) — küçük halkalar
+   ========================================================================== */
+.eui-needs { display: flex; gap: 8px; }
+.eui-need { --tone-rgb: var(--eui-text-rgb); position: relative; width: 38px; height: 38px; flex: none; }
+.eui-need > .eui-ring { position: absolute; inset: 0; width: 100%; height: 100%; --sw: 3.5; }
+.eui-need::before {
+  content: ""; position: absolute; inset: 4px; border-radius: 50%;
+  background: var(--eui-surface); -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-need > .eui-i { position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; transform: translate(-50%, -50%); color: rgb(var(--tone-rgb)); }
+.eui-need.is-low { --tone-rgb: var(--eui-danger-rgb); }
+.eui-need.is-low > .eui-i { animation: eui-critical .9s infinite; }
+.eui-needs--vertical { flex-direction: column; }
+
+/* ==========================================================================
+   MİNİMAP ÇERÇEVESİ
+   Oyunun kendi minimap'i overlay'in altında çizilir; burada yalnızca çerçeve,
+   kenar süsleri ve etiketler vardır. İçi saydamdır.
+   ========================================================================== */
+.eui-minimap { position: relative; width: var(--w, 300px); height: var(--h, 190px); }
+.eui-minimap__frame {
+  position: absolute; inset: 0; border-radius: var(--eui-r-panel);
+  box-shadow: 0 0 0 1px var(--eui-line-strong), 0 0 0 4px rgb(0 0 0 / .25), var(--eui-panel-shadow);
+  pointer-events: none;
+}
+.eui-minimap__map { position: absolute; inset: 0; border-radius: var(--eui-r-panel); overflow: hidden; }
+.eui-minimap__north {
+  position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+  width: 18px; height: 18px; display: grid; place-items: center;
+  font-family: var(--eui-font-display); font-size: 11px; font-weight: 700; color: var(--eui-on-accent);
+  background: var(--eui-accent); border-radius: 50%; box-shadow: 0 2px 6px rgb(0 0 0 / .5);
+}
+.eui-minimap__zone {
+  position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;
+  padding: 18px 10px 7px; border-radius: 0 0 var(--eui-r-panel) var(--eui-r-panel);
+  background: linear-gradient(0deg, rgb(0 0 0 / .65), transparent);
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--eui-text-2);
+}
+.eui-minimap--round { --w: 220px; --h: 220px; }
+.eui-minimap--round .eui-minimap__frame, .eui-minimap--round .eui-minimap__map { border-radius: 50%; }
+.eui-minimap--round .eui-minimap__zone { display: none; }
+
+/* ---------- Konum (sokak / bölge) ---------- */
+.eui-location { display: flex; align-items: center; gap: 12px; text-shadow: var(--eui-hud-shadow); }
+.eui-location__dir {
+  font-family: var(--eui-font-display); font-weight: 700; font-size: 32px; line-height: 1; color: var(--eui-accent);
+  min-width: 30px; text-align: center;
+}
+.eui-location .eui-vrule { background: var(--eui-line-strong); }
+.eui-location__street { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); font-size: 19px; text-transform: var(--eui-display-case); letter-spacing: .03em; line-height: 1.05; }
+.eui-location__zone { font-size: 12px; color: var(--eui-text-2); }
+
+/* ---------- Pusula şeridi ---------- */
+.eui-compass {
+  position: relative; width: var(--w, 520px); height: 40px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+.eui-compass__tape { position: absolute; top: 0; left: 50%; height: 100%; will-change: transform; }
+.eui-compass__tick { position: absolute; top: 6px; width: 1px; height: 6px; background: var(--eui-text-3); }
+.eui-compass__tick.is-major { height: 10px; top: 4px; background: var(--eui-text-2); }
+.eui-compass__lbl {
+  position: absolute; top: 17px; transform: translateX(-50%);
+  font-family: var(--eui-font-num); font-size: 11px; font-weight: 600; color: var(--eui-text-3); text-shadow: var(--eui-hud-shadow);
+}
+.eui-compass__lbl.is-cardinal { font-family: var(--eui-font-display); font-size: 16px; top: 14px; color: var(--eui-text); font-weight: 700; }
+.eui-compass__lbl.is-north { color: var(--eui-accent); }
+.eui-compass__mark { position: absolute; top: 2px; transform: translateX(-50%); color: rgb(var(--tone-rgb, var(--eui-accent-rgb))); }
+.eui-compass__mark .eui-i { width: 14px; height: 14px; filter: drop-shadow(0 1px 1px #000); }
+.eui-compass__needle { position: absolute; left: 50%; top: 0; width: 2px; height: 14px; margin-left: -1px; background: var(--eui-accent); box-shadow: var(--eui-accent-glow); }
+
+/* ---------- v2: yön çipi, hedef oku, koordinat ---------- */
+.eui-heading { display: inline-flex; align-items: baseline; gap: 6px; text-shadow: var(--eui-hud-shadow); }
+.eui-heading b { font-family: var(--eui-font-display); font-size: 28px; font-weight: 700; line-height: 1; color: var(--eui-accent); min-width: 34px; text-align: center; }
+.eui-heading span { font-family: var(--eui-font-num); font-size: 13px; color: var(--eui-text-2); font-variant-numeric: tabular-nums; }
+.eui-wayarrow { --tone-rgb: var(--eui-accent-rgb); display: inline-flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: var(--eui-hud-shadow); }
+.eui-wayarrow > i { width: 38px; height: 38px; background: rgb(var(--tone-rgb)); clip-path: polygon(50% 0, 100% 100%, 50% 78%, 0 100%); transform: rotate(var(--a, 0deg)); transition: transform var(--eui-dur-3) var(--eui-ease); }
+.eui-wayarrow > b { font-family: var(--eui-font-num); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.eui-coords { display: inline-flex; gap: 12px; font-family: var(--eui-font-num); font-size: 12px; color: var(--eui-text-2); font-variant-numeric: tabular-nums; text-shadow: var(--eui-hud-shadow); }
+.eui-coords b { color: var(--eui-text); font-weight: 600; margin-left: 3px; }
+
+/* ---------- Saat / hava ---------- */
+.eui-clock { display: flex; align-items: center; gap: 10px; text-shadow: var(--eui-hud-shadow); }
+.eui-clock__time { font-family: var(--eui-font-num); font-weight: 600; font-size: 22px; line-height: 1; font-variant-numeric: tabular-nums; }
+.eui-clock__meta { display: flex; flex-direction: column; gap: 1px; font-size: 11px; color: var(--eui-text-2); line-height: 1.2; }
+.eui-clock .eui-i { width: 22px; height: 22px; color: var(--eui-accent); }
+
+/* ==========================================================================
+   SİLAH & MÜHİMMAT
+   ========================================================================== */
+/* v2: kompakt mermi sayacı (şarjör / yedek) */
+.eui-ammo { display: inline-flex; align-items: baseline; gap: 4px; text-shadow: var(--eui-hud-shadow); }
+.eui-ammo b { font-family: var(--eui-font-num); font-size: 28px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.eui-ammo span { font-family: var(--eui-font-num); font-size: 14px; color: var(--eui-text-2); }
+.eui-ammo.is-low b { color: var(--eui-danger); }
+.eui-weapon { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-shadow: var(--eui-hud-shadow); }
+.eui-weapon__name { display: flex; align-items: center; gap: 8px; }
+.eui-weapon__main { display: flex; align-items: center; gap: 14px; }
+.eui-weapon__art { width: 132px; height: 44px; color: var(--eui-text); opacity: .92; filter: drop-shadow(0 2px 3px rgb(0 0 0 / .8)); }
+.eui-weapon__ammo { display: flex; align-items: baseline; gap: 4px; }
+.eui-weapon__clip { font-family: var(--eui-font-num); font-weight: 600; font-size: 44px; line-height: .9; font-variant-numeric: tabular-nums; }
+.eui-weapon__reserve { font-family: var(--eui-font-num); font-weight: 500; font-size: 18px; color: var(--eui-text-2); font-variant-numeric: tabular-nums; }
+.eui-weapon .eui-pips { width: 200px; }
+.eui-weapon__extra { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--eui-text-2); }
+.eui-weapon__extra span { display: inline-flex; align-items: center; gap: 5px; }
+.eui-weapon__extra .eui-i { width: 15px; height: 15px; }
+.eui-weapon.is-low .eui-weapon__clip { color: var(--eui-danger); }
+.eui-weapon.is-reloading .eui-weapon__clip { opacity: .35; }
+.eui-weapon__reload { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--eui-warn); text-transform: uppercase; }
+
+/* ==========================================================================
+   PARA
+   ========================================================================== */
+/* v2: kompakt para (ikon + tutar) */
+.eui-coin { --tone-rgb: var(--eui-gold-rgb); display: inline-flex; align-items: center; gap: 6px; font-family: var(--eui-font-num); font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; text-shadow: var(--eui-hud-shadow); }
+.eui-coin > .eui-i { width: 16px; height: 16px; color: rgb(var(--tone-rgb)); }
+.eui-cash { position: relative; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; text-shadow: var(--eui-hud-shadow); }
+.eui-cash__value { display: flex; align-items: baseline; gap: 3px; font-family: var(--eui-font-num); font-weight: 600; font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.eui-cash__value > small { font-size: .62em; color: var(--eui-success); font-weight: 600; }
+.eui-cash__bank { display: flex; align-items: center; gap: 6px; font-family: var(--eui-font-num); font-size: 16px; font-weight: 600; color: var(--eui-text-2); font-variant-numeric: tabular-nums; }
+.eui-cash__bank .eui-i { width: 15px; height: 15px; color: var(--eui-text-3); }
+.eui-cash__delta {
+  position: absolute; right: 0; top: 100%; margin-top: 2px;
+  font-family: var(--eui-font-num); font-size: 20px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums;
+  color: var(--eui-success); animation: eui-delta 2.2s var(--eui-ease-out) both;
+}
+.eui-cash__delta.is-neg { color: var(--eui-danger); }
+@keyframes eui-delta { 0% { opacity: 0; transform: translateY(-6px); } 12% { opacity: 1; transform: none; } 75% { opacity: 1; } 100% { opacity: 0; transform: translateY(10px); } }
+.eui-cash.is-gain .eui-cash__value { animation: eui-gain .6s var(--eui-ease-out); }
+@keyframes eui-gain { 30% { color: var(--eui-success); transform: scale(1.06); } }
+
+/* ==========================================================================
+   ARANMA SEVİYESİ
+   ========================================================================== */
+.eui-wanted { display: flex; gap: 3px; }
+.eui-wanted .eui-i { width: 24px; height: 24px; color: rgb(0 0 0 / .35); stroke: rgb(255 255 255 / .35); stroke-width: 1.25; filter: drop-shadow(0 1px 2px rgb(0 0 0 / .7)); }
+.eui-wanted .eui-i.on { color: #fff; stroke: #fff; }
+.eui-wanted.is-flashing .eui-i.on { animation: eui-wanted-flash .9s steps(2, jump-none) infinite; }
+@keyframes eui-wanted-flash { 50% { color: rgb(var(--eui-info-rgb)); stroke: rgb(var(--eui-info-rgb)); } }
+
+/* ==========================================================================
+   HIZ GÖSTERGESİ
+   ========================================================================== */
+.eui-speedo { position: relative; width: 240px; height: 238px; text-shadow: var(--eui-hud-shadow); }
+.eui-speedo__dial { position: absolute; inset: 0 0 auto 0; width: 240px; height: 240px; overflow: visible; }
+.eui-speedo__dial circle { fill: none; }
+.eui-speedo__track { stroke: rgb(255 255 255 / .1); stroke-width: 10; }
+.eui-speedo__arc {
+  stroke: url(#eui-speedo-grad); stroke: var(--eui-accent); stroke-width: 10; stroke-linecap: butt;
+  transition: stroke-dashoffset .18s linear;
+  filter: drop-shadow(0 0 calc(8px * var(--eui-glow-a)) var(--eui-accent));
+}
+.eui-speedo__redline { stroke: rgb(var(--eui-danger-rgb) / .55); stroke-width: 10; }
+.eui-speedo__rpm { stroke: rgb(255 255 255 / .8); stroke-width: 3; transition: stroke-dashoffset .1s linear; }
+.eui-speedo__rpm-track { stroke: rgb(255 255 255 / .1); stroke-width: 3; }
+.eui-speedo__ticks line { stroke: rgb(255 255 255 / .55); stroke-width: 2; }
+.eui-speedo__ticks line.minor { stroke: rgb(255 255 255 / .22); stroke-width: 1.5; }
+.eui-speedo__ticks text { fill: var(--eui-text-3); font-family: var(--eui-font-num); font-size: 11px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+.eui-speedo__center { position: absolute; left: 0; right: 0; top: 74px; display: flex; flex-direction: column; align-items: center; }
+.eui-speedo__value { font-family: var(--eui-font-num); font-size: 58px; font-weight: 600; line-height: .9; font-variant-numeric: tabular-nums; }
+.eui-speedo__unit { font-size: 11px; font-weight: 700; letter-spacing: .2em; color: var(--eui-text-3); margin-top: 4px; }
+.eui-speedo__gear {
+  margin-top: 10px; width: 28px; height: 28px; display: grid; place-items: center;
+  font-family: var(--eui-font-display); font-size: 18px; font-weight: 700; color: var(--eui-accent);
+  border: 1.5px solid var(--eui-accent-line); border-radius: var(--eui-r-2);
+}
+.eui-speedo__lamps { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; gap: 6px; }
+.eui-speedo__lamps .eui-lamp { width: 22px; height: 22px; }
+.eui-speedo__lamps .eui-lamp .eui-i { width: 16px; height: 16px; }
+.eui-lamp { width: 26px; height: 26px; display: grid; place-items: center; color: rgb(255 255 255 / .2); transition: color var(--eui-dur-2); }
+.eui-lamp .eui-i { width: 18px; height: 18px; }
+.eui-lamp.on { color: rgb(var(--tone-rgb, var(--eui-success-rgb))); filter: drop-shadow(0 0 6px rgb(var(--tone-rgb, var(--eui-success-rgb)) / .6)); }
+.eui-lamp.is-warn { --tone-rgb: var(--eui-danger-rgb); color: var(--eui-danger); animation: eui-critical .8s infinite; }
+
+/* Yakıt / motor dikey küçük barlar */
+.eui-gauges { display: flex; flex-direction: column; gap: 8px; width: 150px; }
+.eui-gauge { display: flex; align-items: center; gap: 8px; }
+.eui-gauge > .eui-i { width: 16px; height: 16px; color: var(--eui-text-2); }
+.eui-gauge > .eui-bar { --h: 5px; flex: 1; }
+.eui-gauge.is-low > .eui-i { color: var(--eui-danger); animation: eui-critical .9s infinite; }
+
+/* Kompakt sayısal hız */
+.eui-speed-mini { display: flex; align-items: flex-end; gap: 12px; text-shadow: var(--eui-hud-shadow); }
+.eui-speed-mini__value { font-family: var(--eui-font-num); font-size: 56px; font-weight: 600; line-height: .82; font-variant-numeric: tabular-nums; }
+.eui-speed-mini__side { display: flex; flex-direction: column; gap: 6px; padding-bottom: 2px; }
+.eui-speed-mini__unit { font-size: 11px; font-weight: 700; letter-spacing: .2em; color: var(--eui-text-3); }
+.eui-speed-mini .eui-pips { width: 120px; }
+.eui-speed-mini .eui-pips > i { height: 8px; }
+.eui-speed-mini .eui-pips > i.on:nth-last-child(-n+3) { --t: var(--eui-danger-rgb); }
+
+/* ==========================================================================
+   GÖREV TAKİBİ
+   ========================================================================== */
+.eui-objective { width: var(--w, 320px); }
+.eui-objective__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 14px 16px 10px; }
+.eui-objective__steps { display: flex; flex-direction: column; gap: 8px; padding: 0 16px 14px; }
+.eui-step { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--eui-text); line-height: 1.35; }
+.eui-step__box {
+  width: 16px; height: 16px; margin-top: 1px; flex: none; display: grid; place-items: center;
+  border: 1.5px solid var(--eui-line-strong); border-radius: var(--eui-r-1);
+}
+.eui-step__box .eui-i { width: 12px; height: 12px; stroke-width: 3; opacity: 0; }
+.eui-step.is-done { color: var(--eui-text-3); }
+.eui-step.is-done .eui-step__box { background: var(--eui-success); border-color: var(--eui-success); color: #04140a; }
+.eui-step.is-done .eui-step__box .eui-i { opacity: 1; }
+.eui-step.is-active .eui-step__box { border-color: var(--eui-accent); box-shadow: 0 0 0 3px var(--eui-accent-soft); }
+.eui-step.is-failed { color: var(--eui-danger); }
+.eui-step.is-failed .eui-step__box { border-color: var(--eui-danger); }
+.eui-step b { color: var(--eui-accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+.eui-step.is-optional::after { content: "isteğe bağlı"; margin-left: auto; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--eui-text-3); }
+.eui-objective__foot { padding: 10px 16px 14px; border-top: 1px solid var(--eui-line-soft); display: flex; flex-direction: column; gap: 7px; }
+
+/* ==========================================================================
+   SAYAÇ / ZAMANLAYICI
+   ========================================================================== */
+.eui-timer { display: flex; flex-direction: column; align-items: center; gap: 2px; text-shadow: var(--eui-hud-shadow); }
+.eui-timer__value { font-family: var(--eui-font-num); font-weight: 600; font-size: 40px; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.eui-timer.is-urgent .eui-timer__value { color: var(--eui-danger); animation: eui-tick 1s ease-in-out infinite; }
+@keyframes eui-tick { 0% { transform: scale(1.12); } 30%, 100% { transform: scale(1); } }
+
+/* ==========================================================================
+   TAKIM SKORU (üst orta)
+   ========================================================================== */
+.eui-versus { display: flex; align-items: stretch; gap: 0; }
+.eui-versus__team {
+  --tone-rgb: var(--eui-team-1-rgb);
+  position: relative; display: flex; align-items: center; gap: 12px; min-width: 190px; padding: 0 16px; height: 54px;
+  background: linear-gradient(90deg, rgb(var(--tone-rgb) / .0), rgb(var(--tone-rgb) / .28));
+  border-bottom: 2px solid rgb(var(--tone-rgb));
+}
+.eui-versus__team.is-right { flex-direction: row-reverse; background: linear-gradient(270deg, rgb(var(--tone-rgb) / .0), rgb(var(--tone-rgb) / .28)); }
+.eui-versus__name { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.eui-versus__team.is-right .eui-versus__name { align-items: flex-end; }
+.eui-versus__name b { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); font-size: 17px; letter-spacing: .05em; text-transform: var(--eui-display-case); text-shadow: var(--eui-hud-shadow); }
+.eui-versus__alive { display: flex; gap: 3px; }
+.eui-versus__alive i { width: 8px; height: 12px; background: rgb(var(--tone-rgb)); border-radius: 1px; transform: skewX(-12deg); }
+.eui-versus__alive i.off { background: rgb(255 255 255 / .16); }
+.eui-versus__score { font-family: var(--eui-font-num); font-weight: 700; font-size: 38px; line-height: 1; color: rgb(var(--tone-rgb)); text-shadow: var(--eui-hud-shadow); font-variant-numeric: tabular-nums; }
+.eui-versus__mid {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  min-width: 108px; padding: 0 14px; background: var(--eui-surface); border-bottom: 2px solid var(--eui-line-strong);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-versus__mid .eui-timer__value { font-size: 26px; }
+
+/* ---------- Ele geçirme noktaları ---------- */
+.eui-points { display: flex; gap: 10px; justify-content: center; }
+.eui-point { --tone-rgb: var(--eui-text-rgb); position: relative; width: 38px; height: 38px; display: grid; place-items: center; }
+.eui-point > .eui-ring { position: absolute; inset: 0; width: 100%; height: 100%; --sw: 3; }
+.eui-point::before {
+  content: ""; position: absolute; inset: 5px; transform: rotate(45deg); border-radius: 3px;
+  background: rgb(var(--owner-rgb, 255 255 255) / var(--owner-a, .12)); border: 1px solid rgb(var(--owner-rgb, 255 255 255) / .55);
+}
+.eui-point > b { position: relative; font-family: var(--eui-font-display); font-weight: 700; font-size: 15px; text-shadow: 0 1px 2px #000; }
+.eui-point.is-team1 { --owner-rgb: var(--eui-team-1-rgb); --owner-a: .55; }
+.eui-point.is-team2 { --owner-rgb: var(--eui-team-2-rgb); --owner-a: .55; }
+.eui-point.is-contested::before { animation: eui-critical .7s infinite; }
+
+/* ==========================================================================
+   DALGA
+   ========================================================================== */
+.eui-wave { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 300px; text-shadow: var(--eui-hud-shadow); }
+.eui-wave__title { display: flex; align-items: baseline; gap: 10px; }
+.eui-wave__num { font-family: var(--eui-font-display); font-weight: 700; font-size: 30px; line-height: 1; letter-spacing: .04em; text-transform: var(--eui-display-case); }
+.eui-wave__meta { display: flex; justify-content: space-between; width: 100%; font-size: 12px; color: var(--eui-text-2); }
+.eui-wave .eui-bar { --h: 4px; }
+
+/* ==========================================================================
+   BOSS / BÜYÜK HEDEF CANI
+   ========================================================================== */
+.eui-boss { width: var(--w, 640px); display: flex; flex-direction: column; gap: 6px; text-shadow: var(--eui-hud-shadow); }
+.eui-boss__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.eui-boss__name { font-family: var(--eui-font-display); font-weight: var(--eui-display-weight); font-size: 22px; letter-spacing: .06em; text-transform: var(--eui-display-case); line-height: 1; }
+.eui-boss__phase { display: flex; gap: 6px; align-items: center; font-size: 11px; color: var(--eui-text-2); letter-spacing: .1em; text-transform: uppercase; }
+.eui-boss .eui-bar { --h: 12px; --tone-rgb: var(--eui-danger-rgb); box-shadow: 0 0 0 1px rgb(0 0 0 / .5), 0 0 0 2px var(--eui-line); }
+.eui-boss .eui-bar__ghost { background: rgb(255 230 180 / .8); }
+.eui-boss__shield { --h: 4px !important; --tone-rgb: var(--eui-info-rgb) !important; }
+.eui-boss__marks { position: absolute; inset: 0; pointer-events: none; }
+.eui-boss__marks i { position: absolute; top: 0; bottom: 0; width: 2px; background: rgb(0 0 0 / .7); }
+
+/* ==========================================================================
+   ETKİLER (buff / debuff)
+   ========================================================================== */
+.eui-effects { display: flex; gap: 6px; }
+.eui-effect {
+  --tone-rgb: var(--eui-success-rgb);
+  position: relative; width: 40px; height: 40px; display: grid; place-items: center; flex: none;
+  background: var(--eui-surface); border: 1px solid rgb(var(--tone-rgb) / .45); border-radius: var(--eui-r-2);
+  color: rgb(var(--tone-rgb));
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-effect.is-debuff { --tone-rgb: var(--eui-danger-rgb); }
+.eui-effect .eui-i { width: 20px; height: 20px; }
+.eui-effect::after { /* kalan süre — üstten alta karartma */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(0 0 0 / .55);
+  transform-origin: bottom; transform: scaleY(calc(1 - var(--v, 1))); transition: transform 1s linear;
+}
+.eui-effect__time { position: absolute; left: 0; right: 0; bottom: -15px; text-align: center; font-family: var(--eui-font-num); font-size: 11px; font-weight: 600; color: var(--eui-text-2); text-shadow: var(--eui-hud-shadow); }
+.eui-effect__stack { position: absolute; top: -6px; right: -6px; z-index: 1; min-width: 16px; height: 16px; padding: 0 4px; display: grid; place-items: center; font-size: 10px; font-weight: 700; color: #0b0d10; background: rgb(var(--tone-rgb)); border-radius: 8px; }
+.eui-effect.is-expiring { animation: eui-critical .6s infinite; }
+
+/* Metin tabanlı etki satırı (RDR2 tarzı) */
+.eui-effect-line { display: flex; align-items: center; gap: 8px; text-shadow: var(--eui-hud-shadow); }
+.eui-effect-line::before { content: ""; width: 2px; height: 14px; background: rgb(var(--tone-rgb, var(--eui-accent-rgb))); box-shadow: 0 0 6px rgb(var(--tone-rgb, var(--eui-accent-rgb)) / .6); }
+.eui-effect-line b { font-family: var(--eui-font-num); font-size: 14px; font-weight: 600; min-width: 44px; text-align: right; color: rgb(var(--tone-rgb, var(--eui-text-rgb))); }
+
+/* ==========================================================================
+   HIZLI ERİŞİM ÇUBUĞU
+   ========================================================================== */
+.eui-hotbar { display: flex; gap: 6px; }
+.eui-slot {
+  position: relative; width: 58px; height: 58px; display: grid; place-items: center;
+  background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-2);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+  transition: border-color var(--eui-dur-2), transform var(--eui-dur-2) var(--eui-ease), background var(--eui-dur-2);
+}
+.eui-slot .eui-i { width: 26px; height: 26px; color: var(--eui-text); }
+.eui-slot__key { position: absolute; top: 4px; left: 5px; font-family: var(--eui-font-num); font-size: 10px; font-weight: 700; color: var(--eui-text-3); }
+.eui-slot__count { position: absolute; right: 5px; bottom: 3px; font-family: var(--eui-font-num); font-size: 12px; font-weight: 600; color: var(--eui-text-2); }
+.eui-slot.is-active { border-color: var(--eui-accent); background: linear-gradient(180deg, var(--eui-accent-soft), var(--eui-surface)); transform: translateY(-4px); box-shadow: var(--eui-accent-glow); }
+.eui-slot.is-active .eui-slot__key { color: var(--eui-accent); }
+.eui-slot.is-empty .eui-i { opacity: .15; }
+.eui-slot.is-cooldown::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(0 0 0 / .6); transform-origin: bottom; transform: scaleY(var(--cd, .5)); }
+.eui-slot__durability { position: absolute; left: 6px; right: 6px; bottom: -1px; height: 2px; background: var(--eui-track); }
+.eui-slot__durability i { display: block; height: 100%; width: var(--v, 100%); background: var(--eui-success); }
+
+/* ==========================================================================
+   EKİP LİSTESİ
+   ========================================================================== */
+.eui-party { display: flex; flex-direction: column; gap: 6px; width: var(--w, 240px); }
+.eui-member {
+  --tone-rgb: var(--eui-team-1-rgb);
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 10px;
+  padding: 7px 10px 8px; background: var(--eui-surface); border-left: 2px solid rgb(var(--tone-rgb));
+  border-radius: 0 var(--eui-r-2) var(--eui-r-2) 0;
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-member .eui-avatar { grid-row: span 2; }
+.eui-member__name { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; min-width: 0; }
+.eui-member__name span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.eui-member__name .eui-i { width: 13px; height: 13px; flex: none; }
+.eui-member__bars { display: flex; flex-direction: column; gap: 2px; grid-column: 2 / 4; }
+.eui-member__bars .eui-bar { --h: 3px; }
+.eui-member__dist { font-family: var(--eui-font-num); font-size: 11px; color: var(--eui-text-3); }
+.eui-member.is-talking .eui-avatar { box-shadow: 0 0 0 2px var(--eui-success); }
+.eui-member.is-down { --tone-rgb: var(--eui-danger-rgb); }
+.eui-member.is-down .eui-member__name { color: var(--eui-danger); }
+.eui-member.is-dead { opacity: .45; }
+
+/* ==========================================================================
+   SES (konuşanlar + menzil)
+   ========================================================================== */
+.eui-voice { display: flex; flex-direction: column; gap: 4px; }
+.eui-speaker { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; text-shadow: var(--eui-hud-shadow); }
+.eui-speaker .eui-i { width: 15px; height: 15px; color: var(--eui-success); }
+.eui-speaker.is-radio .eui-i { color: var(--eui-warn); }
+.eui-eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+.eui-eq i { width: 2px; background: var(--eui-success); border-radius: 1px; animation: eui-eq .7s ease-in-out infinite; }
+.eui-eq i:nth-child(1) { height: 40%; animation-delay: -.2s; } .eui-eq i:nth-child(2) { height: 90%; animation-delay: -.5s; }
+.eui-eq i:nth-child(3) { height: 60%; animation-delay: -.1s; } .eui-eq i:nth-child(4) { height: 75%; animation-delay: -.35s; }
+@keyframes eui-eq { 50% { transform: scaleY(.3); } }
+.eui-voice-range { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--eui-text-2); text-shadow: var(--eui-hud-shadow); }
+.eui-voice-range__bars { display: inline-flex; align-items: flex-end; gap: 2px; }
+.eui-voice-range__bars i { width: 4px; background: rgb(255 255 255 / .22); border-radius: 1px; }
+.eui-voice-range__bars i:nth-child(1) { height: 6px; } .eui-voice-range__bars i:nth-child(2) { height: 10px; } .eui-voice-range__bars i:nth-child(3) { height: 14px; }
+.eui-voice-range__bars i.on { background: var(--eui-text); }
+.eui-voice-range.is-talking .eui-voice-range__bars i.on { background: var(--eui-success); box-shadow: 0 0 6px rgb(var(--eui-success-rgb) / .6); }
+
+/* ==========================================================================
+   XP / SEVİYE
+   ========================================================================== */
+.eui-xp { display: flex; align-items: center; gap: 12px; width: var(--w, 420px); text-shadow: var(--eui-hud-shadow); }
+.eui-xp__level {
+  position: relative; width: 40px; height: 40px; flex: none; display: grid; place-items: center;
+  font-family: var(--eui-font-num); font-size: 16px; font-weight: 700; color: var(--eui-on-accent); text-shadow: none;
+}
+.eui-xp__level::before { content: ""; position: absolute; inset: 3px; background: var(--eui-accent); transform: rotate(45deg); border-radius: 4px; box-shadow: var(--eui-accent-glow); }
+.eui-xp__level span { position: relative; }
+.eui-xp__body { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.eui-xp__meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--eui-text-2); }
+.eui-xp__meta b { color: var(--eui-accent); font-weight: 700; }
+.eui-xp .eui-bar { --h: 5px; --tone-rgb: var(--eui-xp-rgb); }
+
+/* ==========================================================================
+   ARTI İŞARETİ, VURUŞ, HASAR YÖNÜ, VİNYET
+   ========================================================================== */
+.eui-crosshair { --c: #fff; --gap: 6px; --len: 8px; --thick: 2px; position: relative; width: 48px; height: 48px; filter: drop-shadow(0 0 1px rgb(0 0 0 / .9)); transition: --gap var(--eui-dur-2); }
+.eui-crosshair i { position: absolute; left: 50%; top: 50%; background: var(--c); border-radius: 1px; transition: transform var(--eui-dur-2) var(--eui-ease); }
+.eui-crosshair i:nth-child(1) { width: var(--thick); height: var(--len); transform: translate(-50%, calc(-100% - var(--gap))); }
+.eui-crosshair i:nth-child(2) { width: var(--thick); height: var(--len); transform: translate(-50%, var(--gap)); }
+.eui-crosshair i:nth-child(3) { width: var(--len); height: var(--thick); transform: translate(calc(-100% - var(--gap)), -50%); }
+.eui-crosshair i:nth-child(4) { width: var(--len); height: var(--thick); transform: translate(var(--gap), -50%); }
+.eui-crosshair b { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; margin: -1.5px; border-radius: 50%; background: var(--c); }
+.eui-crosshair--dot i { display: none; }
+.eui-crosshair--dot b { width: 5px; height: 5px; margin: -2.5px; }
+.eui-crosshair--circle i { display: none; }
+.eui-crosshair--circle::before { content: ""; position: absolute; left: 50%; top: 50%; width: calc(var(--gap) * 3); height: calc(var(--gap) * 3); transform: translate(-50%, -50%); border: var(--thick) solid var(--c); border-radius: 50%; opacity: .8; }
+.eui-crosshair--t i:nth-child(1) { display: none; }
+.eui-crosshair.is-target { --c: rgb(var(--eui-danger-rgb)); }
+.eui-crosshair.is-friend { --c: rgb(var(--eui-success-rgb)); }
+
+.eui-hitmarker { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px; pointer-events: none; animation: eui-hit .32s var(--eui-ease-out) both; }
+.eui-hitmarker i { position: absolute; left: 50%; top: 50%; width: 9px; height: 2px; background: #fff; box-shadow: 0 0 2px #000; }
+.eui-hitmarker i:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg) translateX(-9px); }
+.eui-hitmarker i:nth-child(2) { transform: translate(-50%, -50%) rotate(135deg) translateX(-9px); }
+.eui-hitmarker i:nth-child(3) { transform: translate(-50%, -50%) rotate(225deg) translateX(-9px); }
+.eui-hitmarker i:nth-child(4) { transform: translate(-50%, -50%) rotate(315deg) translateX(-9px); }
+.eui-hitmarker.is-head i { background: var(--eui-warn); }
+.eui-hitmarker.is-kill i { background: var(--eui-danger); width: 12px; }
+@keyframes eui-hit { from { transform: scale(1.5); opacity: 0; } 25% { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(.9); } }
+
+.eui-dmgdir { position: absolute; left: 50%; top: 50%; width: 0; height: 0; pointer-events: none; }
+.eui-dmgdir__arc {
+  position: absolute; left: -170px; top: -170px; width: 340px; height: 340px; border-radius: 50%;
+  border-top: 7px solid rgb(var(--eui-danger-rgb) / .9);
+  -webkit-mask-image: linear-gradient(90deg, transparent 22%, #000 42%, #000 58%, transparent 78%);
+  mask-image: linear-gradient(90deg, transparent 22%, #000 42%, #000 58%, transparent 78%);
+  filter: drop-shadow(0 -4px 10px rgb(var(--eui-danger-rgb) / .8));
+  animation: eui-dmgdir 1.4s var(--eui-ease) both;
+}
+@keyframes eui-dmgdir { from { opacity: 1; } 60% { opacity: .8; } to { opacity: 0; } }
+
+.eui-vignette {
+  position: absolute; inset: 0; pointer-events: none; opacity: var(--v, 0); transition: opacity .4s;
+  background: radial-gradient(ellipse at center, transparent 45%, rgb(var(--eui-danger-rgb) / .22) 75%, rgb(120 0 10 / .6) 100%);
+}
+.eui-vignette.is-pulse { animation: eui-vignette 1.1s ease-in-out infinite; }
+@keyframes eui-vignette { 50% { opacity: calc(var(--v, 0) * .55); } }
+.eui-flash { position: absolute; inset: 0; pointer-events: none; background: #fff; animation: eui-flash .5s ease-out both; }
+.eui-flash.is-red { background: rgb(var(--eui-danger-rgb) / .5); }
+@keyframes eui-flash { from { opacity: .7; } to { opacity: 0; } }
+
+/* ==========================================================================
+   ETKİLEŞİM İSTEMİ & BASILI TUT
+   ========================================================================== */
+.eui-prompt { display: flex; flex-direction: column; gap: 6px; }
+.eui-prompt__row {
+  display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 6px;
+  background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-2);
+  font-size: 14px; font-weight: 500;
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-prompt__row .eui-key { height: 26px; min-width: 26px; }
+.eui-prompt__row.is-disabled { opacity: .45; }
+.eui-prompt__row small { margin-left: auto; padding-left: 10px; font-size: 11px; color: var(--eui-text-3); }
+
+.eui-hold { --v: 0; --t: var(--tone-rgb, var(--eui-accent-rgb)); position: relative; width: var(--size, 52px); height: var(--size, 52px); display: grid; place-items: center; flex: none; }
+.eui-hold > .eui-ring { position: absolute; inset: 0; width: 100%; height: 100%; --sw: 3.5; }
+.eui-hold > .eui-ring .eui-ring__fill { transition: none; }
+/* Tuş, halkanın içinde yuvarlak bir düğme olur: köşeli tuş yuvarlak halkaya taşmaz */
+.eui-hold > .eui-key {
+  position: relative; width: calc(var(--size, 52px) - 16px); height: calc(var(--size, 52px) - 16px); min-width: 0; padding: 0;
+  border-radius: 50% !important; border: 1px solid rgb(var(--t) / .45); border-bottom-width: 1px;
+  font-size: 15px; background: radial-gradient(circle at 50% 35%, rgb(255 255 255 / .16), rgb(0 0 0 / .35)), rgb(var(--eui-surface-rgb) / .85);
+  box-shadow: 0 2px 6px rgb(0 0 0 / .45);
+}
+.eui-hold.is-done > .eui-key { border-color: rgb(var(--t)); box-shadow: 0 0 0 3px rgb(var(--t) / .25), 0 2px 6px rgb(0 0 0 / .45); }
+
+/* ==========================================================================
+   İLERLEME (eşya topla, kilit aç…)
+   ========================================================================== */
+.eui-progress { width: var(--w, 360px); display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; }
+.eui-progress__head { display: flex; align-items: center; gap: 10px; }
+.eui-progress__head .eui-i { width: 18px; height: 18px; color: var(--eui-accent); }
+.eui-progress__label { flex: 1; font-size: 13px; font-weight: 600; }
+.eui-progress__pct { font-family: var(--eui-font-num); font-size: 13px; font-weight: 600; color: var(--eui-text-2); font-variant-numeric: tabular-nums; }
+.eui-progress .eui-bar { --h: 4px; }
+.eui-progress .eui-bar__fill { transition: none; }
+.eui-progress__foot { display: flex; justify-content: space-between; font-size: 11px; color: var(--eui-text-3); }
+
+/* ==========================================================================
+   ALTYAZI & DİYALOG
+   ========================================================================== */
+.eui-subtitle {
+  max-width: 900px; padding: 6px 14px; text-align: center;
+  font-size: 19px; line-height: 1.45; color: #fff; text-shadow: 0 1px 3px #000, 0 0 10px rgb(0 0 0 / .8);
+}
+.eui-subtitle b { color: var(--speaker, var(--eui-accent)); font-weight: 700; margin-right: 6px; }
+.eui-subtitle--boxed { background: rgb(0 0 0 / .55); border-radius: var(--eui-r-2); text-shadow: none; }
+
+.eui-dialog { width: 720px; display: flex; flex-direction: column; gap: 14px; }
+.eui-dialog__speaker { display: flex; align-items: center; gap: 12px; }
+.eui-dialog__line { font-size: 18px; line-height: 1.55; color: var(--eui-text); text-shadow: var(--eui-hud-shadow); }
+.eui-dialog__choices { display: flex; flex-direction: column; gap: 4px; }
+.eui-choice {
+  display: flex; align-items: center; gap: 12px; width: 100%; padding: 9px 14px 9px 9px; text-align: left;
+  background: var(--eui-surface); border: 1px solid var(--eui-line-soft); border-radius: var(--eui-r-2);
+  font-size: 14px; color: var(--eui-text-2); transition: all var(--eui-dur-2);
+}
+.eui-choice:hover, .eui-choice.is-active { color: var(--eui-text); border-color: var(--eui-accent-line); background: linear-gradient(90deg, var(--eui-accent-soft), var(--eui-surface)); }
+.eui-choice.is-used { opacity: .5; }
+.eui-choice small { margin-left: auto; font-size: 11px; color: var(--eui-text-3); }
+
+/* ==========================================================================
+   SOHBET
+   ========================================================================== */
+.eui-chat { width: var(--w, 460px); display: flex; flex-direction: column; gap: 8px; }
+.eui-chat__log { display: flex; flex-direction: column; gap: 3px; max-height: 260px; overflow: hidden; -webkit-mask-image: linear-gradient(0deg, #000 75%, transparent); mask-image: linear-gradient(0deg, #000 75%, transparent); justify-content: flex-end; }
+.eui-msg { font-size: 14px; line-height: 1.45; text-shadow: 0 1px 2px #000, 0 0 6px rgb(0 0 0 / .8); }
+.eui-msg__tag { display: inline-block; margin-right: 6px; padding: 0 5px; font-size: 10px; font-weight: 700; letter-spacing: .06em; line-height: 16px; vertical-align: 1px; border-radius: 2px; color: #0b0d10; background: rgb(var(--tone-rgb, var(--eui-text-rgb))); text-shadow: none; }
+.eui-msg__name { font-weight: 700; color: rgb(var(--tone-rgb, var(--eui-text-rgb))); margin-right: 4px; }
+.eui-msg.is-system { color: var(--eui-text-2); font-style: italic; }

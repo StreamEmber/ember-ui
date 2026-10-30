@@ -1,5 +1,5 @@
 # main dalına her itmede galeriyi GitHub Pages'e yayınlar:
-#   https://streamember.github.io/mhud/
+#   https://streamember.github.io/ember-ui/
 # Settings > Pages > Source = "GitHub Actions" (ayarlı). Sayfalar kiti jsDelivr'den yükler.
 name: Pages
 

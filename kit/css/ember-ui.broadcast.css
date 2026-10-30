@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Ember UI — yayın düzeni
+   1) Kırpma: EUI.crop('square' | 'vertical' | 'portrait') çağrılınca kenar
+      çapaları yayına giren orta alana çekilir. Platform arayüzünün (TikTok
+      sağ butonlar, alt açıklama) kapattığı alan da hesaba katılır.
+   2) Yayıncı istatistikleri: seviye, can, ekrandaki/kuyruktaki düşman,
+      galibiyet/mağlubiyet, ölüm — telefonda bile okunacak büyüklükte.
+   ========================================================================== */
+
+/* ---------- Kırpma ---------- */
+.eui-screen[data-eui-crop] { --eui-safe-x: 24px; }
+.eui-screen[data-eui-crop="vertical"] { --eui-safe-x: 18px; --eui-safe-y: 22px; --eui-gap: 8px; }
+.eui-screen[data-eui-crop] :is(.eui-tl, .eui-ml, .eui-bl) { left: calc(var(--eui-crop-l, 0px) + var(--eui-safe-x)); }
+.eui-screen[data-eui-crop] :is(.eui-tr, .eui-mr, .eui-br) { right: calc(var(--eui-crop-r, 0px) + var(--eui-safe-x) + var(--eui-crop-pr, 0px)); }
+.eui-screen[data-eui-crop] :is(.eui-tl, .eui-tc, .eui-tr) { top: calc(var(--eui-safe-y) + var(--eui-crop-pt, 0px)); }
+.eui-screen[data-eui-crop] :is(.eui-bl, .eui-bc, .eui-br) { bottom: calc(var(--eui-safe-y) + var(--eui-crop-pb, 0px)); }
+.eui-screen[data-eui-crop] .eui-tc, .eui-screen[data-eui-crop] .eui-bc, .eui-screen[data-eui-crop] .eui-mc { max-width: calc(var(--eui-crop-w, 100%) - 2 * var(--eui-safe-x)); }
+
+/* Görünürlük yardımcıları */
+.eui-screen[data-eui-crop] .eui-hide-crop,
+.eui-screen[data-eui-crop="vertical"] .eui-hide-vertical,
+.eui-screen:not([data-eui-crop]) .eui-only-crop,
+.eui-screen:not([data-eui-crop="vertical"]) .eui-only-vertical { display: none !important; }
+
+/* Dikey yayında üst-orta şeridin altına it (tr/tl) ya da orta çapaları kaydır (ml/mr):
+   <div class="eui-anchor eui-tr eui-v-offset" style="--eui-v-offset:90px"> */
+.eui-screen[data-eui-crop="vertical"] .eui-v-offset { margin-top: var(--eui-v-offset, 92px) !important; }
+
+/* Dikey yayında bileşenleri sıkıştır */
+.eui-screen[data-eui-crop="vertical"] .eui-objective { --w: 250px; }
+.eui-screen[data-eui-crop="vertical"] .eui-toasts { --w: 280px; }
+.eui-screen[data-eui-crop="vertical"] .eui-gifts { --w: 300px; }
+.eui-screen[data-eui-crop="vertical"] .eui-gifts > :nth-child(n+3) { display: none; }
+.eui-screen[data-eui-crop="vertical"] .eui-social > :nth-child(n+3) { display: none; }
+.eui-screen[data-eui-crop="vertical"] .eui-vitals { --w: 220px; }
+.eui-screen[data-eui-crop="vertical"] .eui-boss { --w: 520px; }
+.eui-screen[data-eui-crop="vertical"] .eui-announce__title { font-size: 54px; }
+.eui-screen[data-eui-crop="vertical"] .eui-banner__title { font-size: 54px; }
+.eui-screen[data-eui-crop="vertical"] .eui-banner { left: var(--eui-crop-l); right: var(--eui-crop-r); }
+.eui-screen[data-eui-crop="square"] .eui-banner { left: var(--eui-crop-l); right: var(--eui-crop-r); }
+
+/* ---------- Kırpma kılavuzu (kurulum için) ---------- */
+.eui-crop-guide { position: absolute; inset: 0; pointer-events: none; z-index: var(--eui-z-top); }
+.eui-crop-guide::before, .eui-crop-guide::after { content: ""; position: absolute; top: 0; bottom: 0; background: rgb(0 0 0 / .58); }
+.eui-crop-guide::before { left: 0; width: var(--eui-crop-l); }
+.eui-crop-guide::after { right: 0; width: var(--eui-crop-r); }
+.eui-crop-guide__frame {
+  position: absolute; top: 0; bottom: 0; left: var(--eui-crop-l); right: var(--eui-crop-r);
+  outline: 2px dashed rgb(255 255 255 / .7); outline-offset: -2px;
+}
+.eui-crop-guide__frame span {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%); padding: 3px 10px; border-radius: 99px;
+  font: 600 12px var(--eui-font-ui); color: #fff; background: rgb(0 0 0 / .65); white-space: nowrap;
+}
+.eui-crop-guide__ui { position: absolute; top: 0; bottom: 0; left: var(--eui-crop-l); right: var(--eui-crop-r); }
+.eui-crop-guide__ui b {
+  position: absolute; right: 14px; width: 46px; height: 46px; border-radius: 50%;
+  background: rgb(255 255 255 / .2); box-shadow: inset 0 0 0 2px rgb(255 255 255 / .45);
+}
+.eui-crop-guide__ui b:nth-child(1) { bottom: calc(var(--eui-crop-pb) + 230px); }
+.eui-crop-guide__ui b:nth-child(2) { bottom: calc(var(--eui-crop-pb) + 160px); }
+.eui-crop-guide__ui b:nth-child(3) { bottom: calc(var(--eui-crop-pb) + 90px); }
+.eui-crop-guide__ui b:nth-child(4) { bottom: calc(var(--eui-crop-pb) + 20px); }
+.eui-crop-guide__ui em {
+  position: absolute; left: 0; right: 0; bottom: 0; height: var(--eui-crop-pb);
+  background: repeating-linear-gradient(135deg, rgb(255 255 255 / .1) 0 8px, rgb(255 255 255 / .04) 8px 16px);
+  border-top: 1px dashed rgb(255 255 255 / .5);
+}
+
+/* ==========================================================================
+   İSTATİSTİK ÇİPİ / ŞERİDİ
+   <div class="eui-statbar"><div class="eui-chip-stat eui-t-danger"><i data-i="skull"></i><b data-stat="deaths">3</b><span>Ölüm</span></div>…</div>
+   ========================================================================== */
+.eui-statbar { display: flex; gap: 6px; flex-wrap: wrap; }
+.eui-chip-stat {
+  --tone-rgb: var(--eui-text-rgb);
+  display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; align-items: center; column-gap: 9px;
+  padding: 7px 14px 7px 8px; min-width: 96px;
+  background: var(--eui-surface); border: 1px solid var(--eui-line); border-radius: var(--eui-r-panel);
+  box-shadow: var(--eui-panel-shadow);
+  -webkit-backdrop-filter: blur(var(--eui-blur)); backdrop-filter: blur(var(--eui-blur));
+}
+.eui-chip-stat > .eui-i { grid-row: span 2; width: 30px; height: 30px; padding: 5px; color: rgb(var(--tone-rgb)); background: rgb(var(--tone-rgb) / .14); border-radius: var(--eui-r-2); }
+.eui-chip-stat > b { font-family: var(--eui-font-num); font-size: 24px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: var(--eui-text); }
+.eui-chip-stat > b small { font-size: .6em; color: var(--eui-text-3); font-weight: 600; margin-left: 2px; }
+.eui-chip-stat > span { font-family: var(--eui-kicker-font); font-size: 10px; font-weight: var(--eui-kicker-weight); letter-spacing: var(--eui-kicker-track); text-transform: uppercase; color: var(--eui-text-3); }
+.eui-chip-stat.is-bump > b, .eui-chip-stat > b.is-bump { animation: eui-bump .4s var(--eui-spring); }
+.eui-statbar--lg .eui-chip-stat > b { font-size: 32px; }
+.eui-statbar--lg .eui-chip-stat > .eui-i { width: 38px; height: 38px; padding: 7px; }
+
+/* ==========================================================================
+   YAYINCI KARTI — dikey yayın için tek bakışta her şey
+   ========================================================================== */
+.eui-statcard { width: var(--w, 280px); display: flex; flex-direction: column; gap: 10px; padding: 12px; }
+.eui-statcard__head { display: flex; align-items: center; gap: 10px; }
+.eui-statcard__name { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.eui-statcard__name b { font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eui-statcard__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.eui-statcard__cell { --tone-rgb: var(--eui-text-rgb); display: flex; align-items: center; gap: 8px; padding: 7px 9px; background: var(--eui-raise); border-radius: var(--eui-r-2); }
+.eui-statcard__cell > .eui-i { width: 22px; height: 22px; color: rgb(var(--tone-rgb)); flex: none; }
+.eui-statcard__cell div { display: flex; flex-direction: column; min-width: 0; }
+.eui-statcard__cell b { font-family: var(--eui-font-num); font-size: 22px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.eui-statcard__cell span { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--eui-text-3); white-space: nowrap; }
+.eui-statcard__cell.is-wide { grid-column: span 2; }
+
+/* Seviye halkası */
+.eui-levelring { position: relative; width: var(--size, 52px); height: var(--size, 52px); display: grid; place-items: center; flex: none; }
+.eui-levelring > .eui-ring { position: absolute; inset: 0; width: 100%; height: 100%; --sw: 4; }
+.eui-levelring b { position: relative; font-family: var(--eui-font-num); font-size: calc(var(--size, 52px) * .36); font-weight: 700; line-height: 1; }
+.eui-levelring small { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); padding: 0 5px; font-size: 9px; font-weight: 800; letter-spacing: .1em; color: var(--eui-on-accent); background: var(--eui-accent); border-radius: 3px; }
+
+/* Büyük can barı */
+.eui-hpbig { display: flex; flex-direction: column; gap: 5px; width: var(--w, 260px); }
+.eui-hpbig__head { display: flex; align-items: center; gap: 7px; text-shadow: var(--eui-hud-shadow); }
+.eui-hpbig__head .eui-i { width: 20px; height: 20px; color: rgb(var(--eui-health-rgb)); }
+.eui-hpbig__head b { font-family: var(--eui-font-num); font-size: 24px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.eui-hpbig__head span { font-family: var(--eui-font-num); font-size: 14px; color: var(--eui-text-2); }
+.eui-hpbig .eui-bar { --h: 12px; box-shadow: 0 0 0 1px rgb(0 0 0 / .5); }
+
+/* ==========================================================================
+   DÜŞMAN SAYACI — ekranda / kuyrukta
+   ========================================================================== */
+.eui-enemy { display: flex; align-items: stretch; gap: 0; overflow: hidden; }
+.eui-enemy__part { display: flex; align-items: center; gap: 10px; padding: 9px 14px; }
+.eui-enemy__part + .eui-enemy__part { border-left: 1px solid var(--eui-line); }
+.eui-enemy__part > .eui-i { width: 30px; height: 30px; flex: none; }
+.eui-enemy__part.is-on > .eui-i { color: var(--eui-danger); }
+.eui-enemy__part.is-queue > .eui-i { color: var(--eui-warn); }
+.eui-enemy__part div { display: flex; flex-direction: column; }
+.eui-enemy__part b { font-family: var(--eui-font-num); font-size: 30px; font-weight: 700; line-height: .95; font-variant-numeric: tabular-nums; display: inline-block; }
+.eui-enemy__part b.is-bump { animation: eui-bump .4s var(--eui-spring); }
+.eui-enemy__part span { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--eui-text-3); }
+.eui-enemy .eui-bar { --h: 3px; position: absolute; left: 0; right: 0; bottom: 0; border-radius: 0; }
+.eui-enemy.is-swarm { box-shadow: var(--eui-panel-shadow), 0 0 0 1px rgb(var(--eui-danger-rgb) / .7), 0 0 24px -6px rgb(var(--eui-danger-rgb)); }
+.eui-enemy.is-swarm .is-on > .eui-i { animation: eui-critical .6s infinite; }
+
+/* ==========================================================================
+   GALİBİYET / MAĞLUBİYET
+   ========================================================================== */
+.eui-wl { display: flex; align-items: center; gap: 14px; padding: 9px 14px; }
+.eui-wl__score { display: flex; align-items: baseline; gap: 6px; font-family: var(--eui-font-num); font-weight: 700; line-height: 1; }
+.eui-wl__score b { font-size: 30px; font-variant-numeric: tabular-nums; display: inline-block; }
+.eui-wl__score b.is-bump { animation: eui-bump .4s var(--eui-spring); }
+.eui-wl__score .w { color: var(--eui-success); } .eui-wl__score .l { color: var(--eui-danger); }
+.eui-wl__score i { font-style: normal; font-size: 18px; color: var(--eui-text-3); }
+.eui-wl__meta { display: flex; flex-direction: column; gap: 5px; }
+
+/* Maç geçmişi kareleri: EUI.history(el, 'WWLW') */
+.eui-history { display: flex; gap: 3px; }
+.eui-history i { width: 18px; height: 18px; display: grid; place-items: center; font-style: normal; font-family: var(--eui-font-num); font-size: 10px; font-weight: 800; border-radius: var(--eui-r-1); color: #fff; }
+.eui-history i.is-win { background: rgb(var(--eui-success-rgb)); color: #06140a; }
+.eui-history i.is-loss { background: rgb(var(--eui-danger-rgb)); }
+.eui-history i.is-draw { background: var(--eui-raise-3); color: var(--eui-text-2); }
+.eui-history i:last-child { box-shadow: 0 0 0 2px var(--eui-text); }

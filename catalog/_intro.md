@@ -1,35 +1,36 @@
-# MHud {{version}} — AI kılavuzu
+# Ember UI {{version}} — AI kılavuzu
 
 Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları ve HTML5 oyunlar için **tek görünümlü** HUD ve arayüz kiti (saf CSS + küçük JS).
-**Bu dosyayı baştan sona oku. Kitin kaynak kodunu açma.** Bir bileşen lazımsa aşağıdaki dizinden varyantı seç, yalnız o ailenin `ai/<aile>.md` dosyasını aç, HTML'i olduğu gibi kopyala ya da gösterilen `MH.*` çağrısını kullan.
+> **Ember.js ile ilgisi yoktur.** Ember UI, StreamEmber'in kendi kitidir (eski adı MHud). Sınıflar `eui-`, CSS değişkenleri `--eui-`, öznitelikler `data-eui-*`, JS global `EUI`. Eski `mh-` / `MH` adlarını görürsen ya da yazmak üzereysen dur: onlar kaldırıldı.
+**Bu dosyayı baştan sona oku. Kitin kaynak kodunu açma.** Bir bileşen lazımsa aşağıdaki dizinden varyantı seç, yalnız o ailenin `ai/<aile>.md` dosyasını aç, HTML'i olduğu gibi kopyala ya da gösterilen `EUI.*` çağrısını kullan.
 
 ## Altın kurallar
 
 1. **Kitte olanı yeniden yazma.** Menü, satır, kart, katman, perde, modal, bildirim, sayaç, hasar sayısı, kırmızı ekran, kırpma kılavuzu… hepsi kitte var. Önce "İhtiyaç → bileşen" tablosuna ve API dizinine bak.
-2. **Tam ekran menü = `MH.Menu`.** Menü HTML'i elle yazılmaz; bölümler ve veri verilir. Ayrıntı: `ai/menu.md` (Menü kuralları).
-3. **Tek görünüm.** Tema yok (`data-mh-theme`, `MH.theme` 3.0'da kaldırıldı). Oyuna göre değişen tek şey vurgu rengi: `data-mh-accent` / `MH.accent()`.
-4. **`mh-*` sınıflarını ezme.** Kitin bir sınıfına CSS yazma, `!important` kullanma, kendi `mh-` sınıfını uydurma.
-5. **Renk sabit yazma.** Ton sınıfı (`mh-t-*`) ya da `rgb(var(--mh-…-rgb) / a)`. Yalnız siyah/beyaz gölge ve perde serbest.
-6. **Satır içi stil yalnız belgelenmiş değişkenler için:** `--w`, `--h`, `--v`, `--cols`, `--ratio`, `--core`, `--a`… Yerleşim için `mh-flex`, `mh-col`, `mh-gap-*`, `mh-pad*` (bkz. `base.utils`).
+2. **Tam ekran menü = `EUI.Menu`.** Menü HTML'i elle yazılmaz; bölümler ve veri verilir. Ayrıntı: `ai/menu.md` (Menü kuralları).
+3. **Tek görünüm.** Tema yok (`data-eui-theme`, `EUI.theme` 3.0'da kaldırıldı). Oyuna göre değişen tek şey vurgu rengi: `data-eui-accent` / `EUI.accent()`.
+4. **`eui-*` sınıflarını ezme.** Kitin bir sınıfına CSS yazma, `!important` kullanma, kendi `eui-` sınıfını uydurma.
+5. **Renk sabit yazma.** Ton sınıfı (`eui-t-*`) ya da `rgb(var(--eui-…-rgb) / a)`. Yalnız siyah/beyaz gölge ve perde serbest.
+6. **Satır içi stil yalnız belgelenmiş değişkenler için:** `--w`, `--h`, `--v`, `--cols`, `--ratio`, `--core`, `--a`… Yerleşim için `eui-flex`, `eui-col`, `eui-gap-*`, `eui-pad*` (bkz. `base.utils`).
 7. **Varyant yoksa uydurma.** Önce yakın varyantı ton/boy sınıflarıyla uyarla. Olmuyorsa (ve yalnız o zaman) genişletme kuralına uy ve kullanıcıya kitte neyin eksik olduğunu söyle.
-8. **Davranışı kit yapar.** Değer güncellemede `MH.bar/ring/pips/count/money` çağır; `left/top/width` yazma (titreşim yapar). Oyunla konuşmada `MH.on` / `MH.post` kullan; kendi köprünü, yönlendiricini, ölçekleyicini yazma.
+8. **Davranışı kit yapar.** Değer güncellemede `EUI.bar/ring/pips/count/money` çağır; `left/top/width` yazma (titreşim yapar). Oyunla konuşmada `EUI.on` / `EUI.post` kullan; kendi köprünü, yönlendiricini, ölçekleyicini yazma.
 
 ## Sayfa iskeleti (overlay modu)
 
 ```html
 <!doctype html>
-<html lang="tr" class="mh-overlay">
+<html lang="tr" class="eui-overlay">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v{{version}}/dist/mhud.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v{{version}}/dist/ember-ui.min.css">
 </head>
-<body class="mh" data-mh-accent="mint">
-  <div class="mh-screen">
-    <div class="mh-world"></div>                      <!-- isim etiketi, işaretçi, hasar sayısı katmanı (gerekirse) -->
-    <div class="mh-anchor mh-bl"> … HUD parçaları … </div>
-    <div class="mh-anchor mh-tr"><div class="mh-toasts" data-mh="toasts"></div></div>
+<body class="eui" data-eui-accent="mint">
+  <div class="eui-screen">
+    <div class="eui-world"></div>                      <!-- isim etiketi, işaretçi, hasar sayısı katmanı (gerekirse) -->
+    <div class="eui-anchor eui-bl"> … HUD parçaları … </div>
+    <div class="eui-anchor eui-tr"><div class="eui-toasts" data-eui="toasts"></div></div>
   </div>
-  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v{{version}}/dist/mhud.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v{{version}}/dist/ember-ui.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
@@ -37,38 +38,38 @@ Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları ve HTML5 oyunl
 
 ```js
 // app.js — tek dosya, yalnız veri bağlama
-MH.autoScale();                                        // 1080p referans + oyun yüksekliğine sığdırma (atlas boşluğu dahil)
-var menu = MH.Menu({ title: 'Mod adı', post: 'menu', sections: [ … ] });
-MH.on('hud', function (d) { MH.bar('#hp', d.hp); MH.money('#cash', d.cash); });
-MH.on('menu', function (d) { d.open ? menu.open(d.section) : menu.close(); });
-MH.on('toast', MH.toast);
-MH.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: streamember.post({ cb: 'ready', data })
+EUI.autoScale();                                        // 1080p referans + oyun yüksekliğine sığdırma (atlas boşluğu dahil)
+var menu = EUI.Menu({ title: 'Mod adı', post: 'menu', sections: [ … ] });
+EUI.on('hud', function (d) { EUI.bar('#hp', d.hp); EUI.money('#cash', d.cash); });
+EUI.on('menu', function (d) { d.open ? menu.open(d.section) : menu.close(); });
+EUI.on('toast', EUI.toast);
+EUI.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: streamember.post({ cb: 'ready', data })
 ```
 
 - Sürümü her zaman sabit yaz (`@v{{version}}`; `@latest`, `@main` yok).
-- `html.mh-overlay` overlay sayfasını saydam yapar ve CEF'te pahalı olan cam bulanıklığını kapatır. OBS / normal sayfada bu sınıfı koyma.
-- Oyun → sayfa mesajı `{ action, data }` biçimindedir ve `MH.on(action, fn)`'e gelir; `{ action: 'mhud', fn: 'toast', args: [{…}] }` doğrudan izinli bir `MH.*` çağırır. Sayfa → oyun `MH.post(cb, data)`. Köprü yoksa (normal tarayıcı) sayfa yine açılır; `?mhdebug=1` her mesajı konsola yazar.
-- Sonradan eklenen HTML'e `MH.mount(kapsayıcı)` çağır (ikon, halka, bar, segment, sekme kurulumu). `MH.Menu` ve `MH.*` fabrikaları bunu kendisi yapar.
-- Yerleşim: `.mh-screen` içine `.mh-anchor` + köşe (`mh-tl mh-tc mh-tr mh-ml mh-mc mh-mr mh-bl mh-bc mh-br`). Tıklanacak parça `.mh-catch` içinde olmalı (`.mh-screen` tıklamaları oyuna geçirir; `MH.Menu` ve pencereler bunu kendisi yapar).
-- Kare/dikey yayın kırpması: `MH.crop('vertical')`; ayrıntı `stream.crop`.
+- `html.eui-overlay` overlay sayfasını saydam yapar ve CEF'te pahalı olan cam bulanıklığını kapatır. OBS / normal sayfada bu sınıfı koyma.
+- Oyun → sayfa mesajı `{ action, data }` biçimindedir ve `EUI.on(action, fn)`'e gelir; `{ action: 'ember-ui', fn: 'toast', args: [{…}] }` doğrudan izinli bir `EUI.*` çağırır. Sayfa → oyun `EUI.post(cb, data)`. Köprü yoksa (normal tarayıcı) sayfa yine açılır; `?mhdebug=1` her mesajı konsola yazar.
+- Sonradan eklenen HTML'e `EUI.mount(kapsayıcı)` çağır (ikon, halka, bar, segment, sekme kurulumu). `EUI.Menu` ve `EUI.*` fabrikaları bunu kendisi yapar.
+- Yerleşim: `.eui-screen` içine `.eui-anchor` + köşe (`eui-tl eui-tc eui-tr eui-ml eui-mc eui-mr eui-bl eui-bc eui-br`). Tıklanacak parça `.eui-catch` içinde olmalı (`.eui-screen` tıklamaları oyuna geçirir; `EUI.Menu` ve pencereler bunu kendisi yapar).
+- Kare/dikey yayın kırpması: `EUI.crop('vertical')`; ayrıntı `stream.crop`.
 
 ## Renk
 
-- Vurgu: `data-mh-accent="crimson|mint|ice|violet|rose|cyan|lime|gold|tiktok"` (boş = amber). Koddan `MH.accent('mint')`.
-- Ton sınıfları rengi belirler: `mh-t-health mh-t-armor mh-t-stamina mh-t-special mh-t-oxygen mh-t-hunger mh-t-thirst mh-t-stress mh-t-accent mh-t-success mh-t-info mh-t-warn mh-t-danger mh-t-legendary mh-t-gold mh-t-silver mh-t-bronze mh-t-neutral mh-t-team1 mh-t-team2 mh-t-team3 mh-t-team4 mh-t-team5 mh-t-friend mh-t-enemy mh-t-xp`.
-- Durumlar `is-*` (`is-active`, `is-low`, `is-locked`…), boyutlar `--sm/--lg`. Gizlemek için `mh-hidden` sınıfı.
+- Vurgu: `data-eui-accent="crimson|mint|ice|violet|rose|cyan|lime|gold|tiktok"` (boş = amber). Koddan `EUI.accent('mint')`.
+- Ton sınıfları rengi belirler: `eui-t-health eui-t-armor eui-t-stamina eui-t-special eui-t-oxygen eui-t-hunger eui-t-thirst eui-t-stress eui-t-accent eui-t-success eui-t-info eui-t-warn eui-t-danger eui-t-legendary eui-t-gold eui-t-silver eui-t-bronze eui-t-neutral eui-t-team1 eui-t-team2 eui-t-team3 eui-t-team4 eui-t-team5 eui-t-friend eui-t-enemy eui-t-xp`.
+- Durumlar `is-*` (`is-active`, `is-low`, `is-locked`…), boyutlar `--sm/--lg`. Gizlemek için `eui-hidden` sınıfı.
 
 ## İhtiyaç → bileşen
 
 | İhtiyaç | Kullan |
 |---|---|
-| Tam ekran menü: envanter, mağaza, silahçı, garaj, ayarlar, ekip listesi, görevler | `MH.Menu` → `ai/menu.md` |
-| Ekip / davet / kasa / kanal / arkadaş / takas menüsü | `MH.Social` (hazır, `MH.Menu` üstünde) |
-| Evet-hayır, metin, listeden seçim, sayı, nesne üstü eylemler, silah çarkı | `MH.confirm`, `MH.input`, `MH.choose`, `MH.amount`, `MH.context`, `MH.radial` |
+| Tam ekran menü: envanter, mağaza, silahçı, garaj, ayarlar, ekip listesi, görevler | `EUI.Menu` → `ai/menu.md` |
+| Ekip / davet / kasa / kanal / arkadaş / takas menüsü | `EUI.Social` (hazır, `EUI.Menu` üstünde) |
+| Evet-hayır, metin, listeden seçim, sayı, nesne üstü eylemler, silah çarkı | `EUI.confirm`, `EUI.input`, `EUI.choose`, `EUI.amount`, `EUI.context`, `EUI.radial` |
 | Can, zırh, stamina, açlık/susuzluk | `vitals` (+ `vitals.needs`) |
-| İki taraf sayacı (müttefik / düşman, sahada / sırada) | `stream.statbar` çipleri `mh-t-friend` / `mh-t-enemy` + `MH.stat`; takım skoru için `combat.versus`; ekrandaki düşman sınırı `combat.enemies` |
+| İki taraf sayacı (müttefik / düşman, sahada / sırada) | `stream.statbar` çipleri `eui-t-friend` / `eui-t-enemy` + `EUI.stat`; takım skoru için `combat.versus`; ekrandaki düşman sınırı `combat.enemies` |
 | Boss, dalga, hedef, XP, kanal, ele geçirme, yükleme çubukları | `bars` |
-| Oyuncu / NPC başı etiketi | `tags` + `MH.Nametags(world)` |
+| Oyuncu / NPC başı etiketi | `tags` + `EUI.Nametags(world)` |
 | Para, aranma, saat-hava, seviye-XP, etkiler, seri | `economy` |
 | Silah, cephane, yuva şeridi, envanter ızgarası, teçhizat | `gear` |
 | Ekip üyeleri (HUD kartı, satır, emir çubuğu, binek) | `crew` |
@@ -85,21 +86,21 @@ MH.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: strea
 
 ## Genişletme (son çare)
 
-Kitte gerçekten yoksa: özel stil **tek dosyada** (`x.css`), **yalnız `x-` önekli** sınıflarla, **yalnız token** renkleriyle yazılır; her bloğun üstüne `/* kitte yok: <ne, neden> */` yazılır. `mh-*` sınıfı ezilmez, kitin hazır yapısının (menü, satır, katman, modal, toast) kopyası yazılmaz.
-Denetim: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v{{version}}/tools/lint.mjs && node lint.mjs <web klasörü>` — hata kalmamalı.
+Kitte gerçekten yoksa: özel stil **tek dosyada** (`x.css`), **yalnız `x-` önekli** sınıflarla, **yalnız token** renkleriyle yazılır; her bloğun üstüne `/* kitte yok: <ne, neden> */` yazılır. `eui-*` sınıfı ezilmez, kitin hazır yapısının (menü, satır, katman, modal, toast) kopyası yazılmaz.
+Denetim: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v{{version}}/tools/lint.mjs && node lint.mjs <web klasörü>` — hata kalmamalı.
 
 ## API dizini
 
 Bileşen fabrikalarının ayrıntısı ilgili ailede; burada her public ad bir satır.
 
-**Kurulum ve köprü** — `MH.mount(kök?)` bildirimsel parçaları kurar · `MH.autoScale({ base: 1080, scale })` ölçek + oyun yüksekliği; `{ set(ölçek) }` döner (HUD ölçeği ayarı için bunu çağır, yeniden kurma) · `MH.accent(ad, kapsam?)` vurgu · `MH.on(ad, fn)` / `MH.off(ad, fn)` / `MH.emit(ad, veri)` olaylar · `MH.post(cb, veri)` sayfa → oyun · `MH.route(mesaj)` bir mesajı elle yönlendir · `MH.rpcAllow` oyundan doğrudan çağrılabilen adlar · `MH.bridge` (`window.streamember` ya da null) · `MH.debug` (`?mhdebug=1`) · `MH.connect(wsUrl)` WebSocket köprüsü (OBS / HTML5; `MH.post`'u sokete çevirir) · `MH.Atlas(action)` isim etiketlerini oyunun yerel çerçevesinde çizdiren atlas köprüsü (oyun `{ reset, layout, set, clear }` yollar).
+**Kurulum ve köprü** — `EUI.mount(kök?)` bildirimsel parçaları kurar · `EUI.autoScale({ base: 1080, scale })` ölçek + oyun yüksekliği; `{ set(ölçek) }` döner (HUD ölçeği ayarı için bunu çağır, yeniden kurma) · `EUI.accent(ad, kapsam?)` vurgu · `EUI.on(ad, fn)` / `EUI.off(ad, fn)` / `EUI.emit(ad, veri)` olaylar · `EUI.post(cb, veri)` sayfa → oyun · `EUI.route(mesaj)` bir mesajı elle yönlendir · `EUI.rpcAllow` oyundan doğrudan çağrılabilen adlar · `EUI.bridge` (`window.streamember` ya da null) · `EUI.debug` (`?mhdebug=1`) · `EUI.connect(wsUrl)` WebSocket köprüsü (OBS / HTML5; `EUI.post`'u sokete çevirir) · `EUI.Atlas(action)` isim etiketlerini oyunun yerel çerçevesinde çizdiren atlas köprüsü (oyun `{ reset, layout, set, clear }` yollar).
 
-**Menü ve pencereler** — `MH.Menu(host?, spec)` → `ai/menu.md` · `MH.Social(host, opts)` · `MH.trade(o)` takas penceresi · `MH.modal(o)` genel pencere (Promise) · `MH.confirm(o)` → bool · `MH.input(o)` → metin · `MH.choose(o)` → id / [id] · `MH.amount(o)` → sayı · `MH.modalOpen()` · `MH.closeModals()` · `MH.context(x, y, items, o)` · `MH.closeContext()` · `MH.radial(el, items, o)`.
+**Menü ve pencereler** — `EUI.Menu(host?, spec)` → `ai/menu.md` · `EUI.Social(host, opts)` · `EUI.trade(o)` takas penceresi · `EUI.modal(o)` genel pencere (Promise) · `EUI.confirm(o)` → bool · `EUI.input(o)` → metin · `EUI.choose(o)` → id / [id] · `EUI.amount(o)` → sayı · `EUI.modalOpen()` · `EUI.closeModals()` · `EUI.context(x, y, items, o)` · `EUI.closeContext()` · `EUI.radial(el, items, o)`.
 
-**Değerler** (bar ve halkalar yalnız çizimi günceller; yanındaki sayı metnini sen yaz ya da `MH.count` kullan) — `MH.bar(el, v, { critical })` · `MH.ring(el, 0..1)` · `MH.core(el, { value, core })` · `MH.pips(el, dolu, toplam)` · `MH.count(el, sayı)` · `MH.money(el, tutar)` · `MH.stat(kök, anahtar, değer)` (`[data-stat]`) · `MH.streak(el, sayı, o)` · `MH.history(el, ['W','L'])` · `MH.timer(el, saniye, { urgent, onEnd })` · `MH.zone(el, saniye)` · `MH.hold(el, { duration, onDone })` → `{ start, stop }` · `MH.enemies(el, { onScreen, queued, max })` (max = ekrandaki düşman sınırı; yaklaşınca `is-swarm`) · `MH.compass(el, derece, işaretler)` · `MH.cardinals({ 0: 'N', … })` pusula harfleri · `MH.speedo(el, { speed, rpm, gear })` · `MH.sparkline(el, değerler)` · `MH.bars(el, satırlar)` · `MH.columns(el, satırlar)`.
+**Değerler** (bar ve halkalar yalnız çizimi günceller; yanındaki sayı metnini sen yaz ya da `EUI.count` kullan) — `EUI.bar(el, v, { critical })` · `EUI.ring(el, 0..1)` · `EUI.core(el, { value, core })` · `EUI.pips(el, dolu, toplam)` · `EUI.count(el, sayı)` · `EUI.money(el, tutar)` · `EUI.stat(kök, anahtar, değer)` (`[data-stat]`) · `EUI.streak(el, sayı, o)` · `EUI.history(el, ['W','L'])` · `EUI.timer(el, saniye, { urgent, onEnd })` · `EUI.zone(el, saniye)` · `EUI.hold(el, { duration, onDone })` → `{ start, stop }` · `EUI.enemies(el, { onScreen, queued, max })` (max = ekrandaki düşman sınırı; yaklaşınca `is-swarm`) · `EUI.compass(el, derece, işaretler)` · `EUI.cardinals({ 0: 'N', … })` pusula harfleri · `EUI.speedo(el, { speed, rpm, gear })` · `EUI.sparkline(el, değerler)` · `EUI.bars(el, satırlar)` · `EUI.columns(el, satırlar)`.
 
-**Akış ve efekt** — `MH.toast(o)` · `MH.kill(o)` · `MH.gift(o)` · `MH.social(o)` (katıldı/takip etti satırı) · `MH.announce(o)` · `MH.banner(o)` · `MH.levelUp(o)` · `MH.achievement(o)` · `MH.pickup(o)` · `MH.countdown(n, o)` · `MH.subtitle(o)` · `MH.progress(o)` · `MH.loot(o)` · `MH.horde(o)` · `MH.infected(o)` · `MH.skillCheck(el, o)` · `MH.qte(el, tuşlar, o)` · `MH.hit(el?, tür)` · `MH.damageFrom(el?, açı)` · `MH.flash(el?, kırmızı)` · `MH.vignette(el, can)` · `MH.damageNumber(world, { x, y, value, kind })` · `MH.crop(mod, o)` · `MH.cropGuide(el?, açık, platform)`.
+**Akış ve efekt** — `EUI.toast(o)` · `EUI.kill(o)` · `EUI.gift(o)` · `EUI.social(o)` (katıldı/takip etti satırı) · `EUI.announce(o)` · `EUI.banner(o)` · `EUI.levelUp(o)` · `EUI.achievement(o)` · `EUI.pickup(o)` · `EUI.countdown(n, o)` · `EUI.subtitle(o)` · `EUI.progress(o)` · `EUI.loot(o)` · `EUI.horde(o)` · `EUI.infected(o)` · `EUI.skillCheck(el, o)` · `EUI.qte(el, tuşlar, o)` · `EUI.hit(el?, tür)` · `EUI.damageFrom(el?, açı)` · `EUI.flash(el?, kırmızı)` · `EUI.vignette(el, can)` · `EUI.damageNumber(world, { x, y, value, kind })` · `EUI.crop(mod, o)` · `EUI.cropGuide(el?, açık, platform)`.
 
-**Dünya katmanı** — `MH.Nametags(world, opts).update([{ id, x, y, name, … }])` · `MH.Markers(world).update([{ id, x, y, icon, label, dist }])` · `MH.Pool(world, yap, boya)` ikisinin ortak havuzu (doğrudan gerekmez). `world` = `.mh-world`.
+**Dünya katmanı** — `EUI.Nametags(world, opts).update([{ id, x, y, name, … }])` · `EUI.Markers(world).update([{ id, x, y, icon, label, dist }])` · `EUI.Pool(world, yap, boya)` ikisinin ortak havuzu (doğrudan gerekmez). `world` = `.eui-world`.
 
-**Yardımcılar** — `MH.icon(ad)` · `MH.weapon(ad)` · `MH.art(değer)` (emoji | `i:ikon` | `w:silah` | resim adresi) · `MH.avatar(ad, o)` · `MH.initials(ad)` · `MH.fmt(sayı)` · `MH.compact(sayı)` (12,4 B · 1,2 Mn) · `MH.time(saniye)` · `MH.esc(metin)` · `MH.el(etiket, sınıf, html)` · `MH.$(seçici)` / `MH.$$(seçici)` · `MH.clamp(v, a, b)` · `MH.bump(el)` küçük zıplama · `MH.ringSvg(r)` halka svg'si.
+**Yardımcılar** — `EUI.icon(ad)` · `EUI.weapon(ad)` · `EUI.art(değer)` (emoji | `i:ikon` | `w:silah` | resim adresi) · `EUI.avatar(ad, o)` · `EUI.initials(ad)` · `EUI.fmt(sayı)` · `EUI.compact(sayı)` (12,4 B · 1,2 Mn) · `EUI.time(saniye)` · `EUI.esc(metin)` · `EUI.el(etiket, sınıf, html)` · `EUI.$(seçici)` / `EUI.$$(seçici)` · `EUI.clamp(v, a, b)` · `EUI.bump(el)` küçük zıplama · `EUI.ringSvg(r)` halka svg'si.

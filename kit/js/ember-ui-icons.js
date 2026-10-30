@@ -1,9 +1,9 @@
 /*!
- * MHud — ikon seti (344 ikon)
+ * Ember UI — ikon seti (344 ikon)
  * Kaynak: Material Design Icons — Pictogrammers (Apache 2.0). Silah, yakın dövüş ve karakter ikonlarının bir kısmı
  * (revolver, rifle, shotgun, sniper, smg, repeater, machete, crowbar, fist, grenade, molotov, dynamite, cop, soldier,
- * sheriff, zombie) MHud'a özeldir. Tüm ikonlar dolgulu, 24×24, currentColor.
- * Kullanım:  <i data-i="axe"></i>   ·   MH.icon('axe')   ·   <svg class="mh-i"><use href="#mi-axe"/></svg>
+ * sheriff, zombie) Ember UI'a özeldir. Tüm ikonlar dolgulu, 24×24, currentColor.
+ * Kullanım:  <i data-i="axe"></i>   ·   EUI.icon('axe')   ·   <svg class="eui-i"><use href="#mi-axe"/></svg>
  */
 (function (root) {
   'use strict';
@@ -118,7 +118,7 @@
     'hostile': '<path d="M10 4A4 4 0 0 1 14 8A4 4 0 0 1 10 12A4 4 0 0 1 6 8A4 4 0 0 1 10 4M10 14C14.42 14 18 15.79 18 18V20H2V18C2 15.79 5.58 14 10 14M20 12V7H22V13H20M20 17V15H22V17H20Z" />',
     'police': '<path d="M22 4L20 2C18.85 2.64 17.4 3 16 3C14.6 3 13.14 2.63 12 2C10.86 2.63 9.4 3 8 3C6.6 3 5.15 2.64 4 2L2 4C2 4 4 6 4 8S2 14 2 16C2 20 12 22 12 22S22 20 22 16C22 14 20 10 20 8S22 4 22 4M15.05 16.45L11.97 14.59L8.9 16.45L9.72 12.95L7 10.61L10.58 10.3L11.97 7L13.37 10.29L16.95 10.6L14.23 12.94L15.05 16.45Z" />',
     'cop': '<path d="M5.6 7.2 12 3.4l6.4 3.8v2.2H5.6z"/><path d="M4.6 9.9h14.8l-1.2 1.6H5.8z"/><path d="M7.6 12.3h8.8a4.4 4.4 0 0 1-8.8 0z"/><path fill-rule="evenodd" d="M3.5 22v-1c0-3 3.8-4.8 8.5-4.8s8.5 1.8 8.5 4.8v1zm11.6-3.8.5 1 1.1.2-.8.8.2 1.1-1-.5-1 .5.2-1.1-.8-.8 1.1-.2z"/>',
-    'soldier': '<path d="M5.4 9.2a6.6 6.6 0 0 1 13.2 0v.6H20v1.8H4v-1.8h1.4z"/><path d="M7.4 12.6h9.2a4.6 4.6 0 0 1-9.2 0z"/><path d="M3.5 22v-1c0-3 3.8-4.7 8.5-4.7s8.5 1.7 8.5 4.7v1z"/><path d="M10.4 17.5 12 20l1.6-2.5z" fill="var(--mh-icon-cut, #000)" opacity=".0"/>',
+    'soldier': '<path d="M5.4 9.2a6.6 6.6 0 0 1 13.2 0v.6H20v1.8H4v-1.8h1.4z"/><path d="M7.4 12.6h9.2a4.6 4.6 0 0 1-9.2 0z"/><path d="M3.5 22v-1c0-3 3.8-4.7 8.5-4.7s8.5 1.7 8.5 4.7v1z"/><path d="M10.4 17.5 12 20l1.6-2.5z" fill="var(--eui-icon-cut, #000)" opacity=".0"/>',
     'sheriff': '<path fill-rule="evenodd" d="M12 1.6a1.7 1.7 0 0 1 1.5 2.5l1.6 2.8h3.2a1.7 1.7 0 1 1 1.5 2.6L18.2 12l1.6 2.6a1.7 1.7 0 1 1-1.5 2.6h-3.2l-1.6 2.7a1.7 1.7 0 1 1-3 0l-1.6-2.7H5.7a1.7 1.7 0 1 1-1.5-2.6L5.8 12 4.2 9.4a1.7 1.7 0 1 1 1.5-2.5h3.2l1.6-2.8A1.7 1.7 0 0 1 12 1.6zm0 6.6a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/>',
     'cowboy': '<path d="M20 22H4V20C4 17.8 7.6 16 12 16S20 17.8 20 20M8 9H16V10C16 12.2 14.2 14 12 14S8 12.2 8 10M19 4C18.4 4 18 4.4 18 5V6H16.5L15.1 3C15 2.8 14.9 2.6 14.7 2.5C14.2 2 13.4 1.9 12.7 2.2L12 2.4L11.3 2.1C10.6 1.8 9.8 1.9 9.3 2.4C9.1 2.6 9 2.8 8.9 3L7.5 6H6V5C6 4.4 5.6 4 5 4S4 4.4 4 5V6C4 7.1 4.9 8 6 8H18C19.1 8 20 7.1 20 6V5C20 4.5 19.6 4 19 4Z" />',
     'outlaw': '<path d="M17.06 13C15.2 13 13.64 14.33 13.24 16.1C12.29 15.69 11.42 15.8 10.76 16.09C10.35 14.31 8.79 13 6.94 13C4.77 13 3 14.79 3 17C3 19.21 4.77 21 6.94 21C9 21 10.68 19.38 10.84 17.32C11.18 17.08 12.07 16.63 13.16 17.34C13.34 19.39 15 21 17.06 21C19.23 21 21 19.21 21 17C21 14.79 19.23 13 17.06 13M6.94 19.86C5.38 19.86 4.13 18.58 4.13 17S5.39 14.14 6.94 14.14C8.5 14.14 9.75 15.42 9.75 17S8.5 19.86 6.94 19.86M17.06 19.86C15.5 19.86 14.25 18.58 14.25 17S15.5 14.14 17.06 14.14C18.62 14.14 19.88 15.42 19.88 17S18.61 19.86 17.06 19.86M22 10.5H2V12H22V10.5M15.53 2.63C15.31 2.14 14.75 1.88 14.22 2.05L12 2.79L9.77 2.05L9.72 2.04C9.19 1.89 8.63 2.17 8.43 2.68L6 9H18L15.56 2.68L15.53 2.63Z" />',
@@ -359,16 +359,16 @@
   /* Silah silüetleri (160x48, namlu sağa bakar) — büyük silah görseli için */
   var WEAPONS = {"carbine":"M2 17.5 L28 14.5 L35 14 L35 29 L27 29.5 L10 36.5 L3 36.5 Z M35 11.5 H98 V27 H35 Z M44 7.5 H90 V11.5 H44 Z M98 13.5 H130 V24.5 H98 Z M130 16.5 H156 V19.8 H130 Z M139 9.5 H142.5 V16.5 H139 Z M47 27 H58 L55 43 H44.5 Z M66 27 H79 L81.5 42 Q76 44.5 68 44.5 Z M58 27 Q58 34.5 65.5 34.5 V32.2 Q60.4 32.2 60.4 27 Z","smg":"M8 15 H38 V17.5 H11 V27 H38 V29.5 H8 Z M36 11 H112 V26.5 H36 Z M112 15 H132 V20.5 H112 Z M118 11 H122 V15 H118 Z M44 26.5 H55 L52 42 H41.5 Z M67 26.5 H77 V47 H67 Z M55 26.5 Q55 33.5 62 33.5 V31.2 Q57.4 31.2 57.4 26.5 Z M48 8 H70 V11 H48 Z","pistol":"M44 12 H114 Q116 12 116 14 V23 H44 Z M48 23 H110 V28.5 H48 Z M51 28.5 H70 L64.5 46.5 H44.5 Q43.5 46.5 44 45 Z M70 28.5 Q70 37 79 37 L84 28.5 H81 L77.6 34.4 Q72.6 34.4 72.6 28.5 Z M108 8.5 H112 V12 H108 Z","revolver":"M96 13.5 H150 V20 H96 Z M146 10 H149 V13.5 H146 Z M68 10.5 Q66 10.5 66 13 V25.5 Q66 28 68 28 H96 V10.5 Z M56 9.5 H70 V29 H56 Z M51.5 4.5 L58 3 L61 10 L55 11 Z M57 27 Q50 36 53 46 Q54 47.5 56 47.5 H66 Q67.5 47.5 67 46 Q64 38 70 29 Z M70 29 Q70 36.5 78 36.5 L81 29 H78.6 L76.6 34 Q72.4 34 72.4 29 Z","shotgun":"M2 19 L28 15.5 L33 15.5 L33 29.5 L26 29.5 L5 37 L2 37 Z M33 13 H72 V27 H33 Z M72 14.5 H156 V18.5 H72 Z M72 20 H142 V24 H72 Z M90 18.5 H120 Q122 18.5 122 20.5 V26 Q122 28 120 28 H90 Z M40 27 H51 L48 41.5 H37.5 Z M51 27 Q51 33.5 58 33.5 V31.2 Q53.4 31.2 53.4 27 Z","repeater":"M2 21 L30 15.5 L38 15 L38 27.5 L30 27.5 L5 35.5 L2 35.5 Z M38 13.5 H64 V26.5 H38 Z M64 14.5 H156 V17.5 H64 Z M64 19 H140 V22 H64 Z M150 11.5 H153 V14.5 H150 Z M44 26.5 Q41 38.5 53 38.5 Q61 38.5 61 30 L57.6 30 Q57.6 35.4 52.6 35.4 Q45 35.4 47.8 26.5 Z M98 17.5 H122 V24 H98 Z","sniper":"M2 18 L26 15 L34 15 L34 30 L24 30 L14 34 L6 34 L6 30 L2 30 Z M34 13 H86 V26.5 H34 Z M86 15.5 H156 V18.8 H86 Z M44 5 H82 V11 H44 Z M50 11 H54 V13 H50 Z M72 11 H76 V13 H72 Z M40 26.5 H51 L48 41 H37.5 Z M58 26.5 H68 V38 H58 Z M51 26.5 Q51 33 58 33 V31 Q53.4 31 53.4 26.5 Z"};
   function inject() {
-    if (document.getElementById('mh-sprite')) return;
-    var html = '<svg id="mh-sprite" xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">';
+    if (document.getElementById('eui-sprite')) return;
+    var html = '<svg id="eui-sprite" xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">';
     for (var k in ICONS) html += '<symbol id="mi-' + k + '" viewBox="0 0 24 24">' + ICONS[k] + '</symbol>';
     html += '</svg>';
     (document.body || document.documentElement).insertAdjacentHTML('afterbegin', html);
   }
-  root.MH_ICONS = ICONS;
+  root.EUI_ICONS = ICONS;
   root.MH_ICON_GROUPS = GROUPS;
   root.MH_ICON_ALIASES = ALIASES;
-  root.MH_WEAPONS = WEAPONS;
+  root.EUI_WEAPONS = WEAPONS;
   root.MH_ICON_SPRITE = inject;
   if (document.body) inject(); else document.addEventListener('DOMContentLoaded', inject);
 })(window);

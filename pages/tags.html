@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>İsim etiketleri — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>İsim etiketleri — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Dünya katmanı</span>
     <h1>İsim etiketleri</h1>
-    <p>Oyuncu ve NPC başında görünen bütün isim etiketi biçimleri. Hepsi aynı <code>.mh-tag</code> yapısıdır; biçim <code>.mh-tag--&lt;biçim&gt;</code>, ilişki <code>is-friend</code> / <code>is-enemy</code> / <code>mh-t-team1..5</code>. Çok sayıda etiket için <code>MH.Nametags(world).update(liste)</code>.</p>
+    <p>Oyuncu ve NPC başında görünen bütün isim etiketi biçimleri. Hepsi aynı <code>.eui-tag</code> yapısıdır; biçim <code>.eui-tag--&lt;biçim&gt;</code>, ilişki <code>is-friend</code> / <code>is-enemy</code> / <code>eui-t-team1..5</code>. Çok sayıda etiket için <code>EUI.Nametags(world).update(liste)</code>.</p>
   </header>
   <div class="demo-actions">
     <span class="demo-actions__label">Dene:</span>
@@ -21,213 +21,213 @@
   </div>
   <div class="demo-specs" style="--cols:2">
     <div class="demo-spec" id="tags-default"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag is-friend"><div class="mh-tag__line"><span class="mh-tag__name">AmiralRouter</span><span class="mh-tag__id">12</span><span class="mh-badge mh-t-success">Dost</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 38 · 24 M</div></div>
-<div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span><span class="mh-tag__id">8</span><span class="mh-badge mh-t-danger">Düşman</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="45"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="0"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 31 · 40 M</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag is-friend"><div class="eui-tag__line"><span class="eui-tag__name">AmiralRouter</span><span class="eui-tag__id">12</span><span class="eui-badge eui-t-success">Dost</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">SVY 38 · 24 M</div></div>
+<div class="eui-tag is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span><span class="eui-tag__id">8</span><span class="eui-badge eui-t-danger">Düşman</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="45"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="0"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">SVY 31 · 40 M</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Standart <code>tags.default</code></b><span>Ad, oyuncu numarası, rozet, can ve zırh barı, alt satır. Her biçimin temeli; öğe alanları: name, sid, badge, health, armor, sub.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Standart <code>tags.default</code></b><span>Ad, oyuncu numarası, rozet, can ve zırh barı, alt satır. Her biçimin temeli; öğe alanları: name, sid, badge, health, armor, sub.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec demo-spec--full" id="tags-relations"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--compact is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team2"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team3"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team4"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--compact is-friend"><div class="eui-tag__line"><span class="eui-tag__name">Amiral</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Router</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact"><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team1"><div class="eui-tag__line"><span class="eui-tag__name">Vinh</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team2"><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team3"><div class="eui-tag__line"><span class="eui-tag__name">StreamEmber</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team4"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>İlişki renkleri <code>tags.relations</code></b><span>Aynı etiket, renk ilişkiyi söyler: is-friend, is-enemy, nötr (sınıfsız), takım mh-t-team1..5; ayrıca mh-t-gold (VIP), mh-t-info (polis) gibi tonlar.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>İlişki renkleri <code>tags.relations</code></b><span>Aynı etiket, renk ilişkiyi söyler: is-friend, is-enemy, nötr (sınıfsız), takım eui-t-team1..5; ayrıca eui-t-gold (VIP), eui-t-info (polis) gibi tonlar.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-compact"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--compact is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="30"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team2"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="95"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--compact is-friend"><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Vinh</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="30"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team2"><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="95"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Kompakt <code>tags.compact</code></b><span>mh-tag--compact: rozet ve alt satır gizli, ad 13px, bar 56px. Kalabalık sahneler, battle royale.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Kompakt <code>tags.compact</code></b><span>eui-tag--compact: rozet ve alt satır gizli, ad 13px, bar 56px. Kalabalık sahneler, battle royale.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-hp-number"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--hp is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span><span class="mh-tag__hp">100</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--hp is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span><span class="mh-tag__hp">37</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--hp is-friend"><div class="eui-tag__line"><span class="eui-tag__name">Amiral</span><span class="eui-tag__hp">100</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--hp is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span><span class="eui-tag__hp">37</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Can sayısı <code>tags.hp-number</code></b><span>variant: hp. Bar yerine ad yanında büyük can sayısı; hızlı okunur, az yer kaplar.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Can sayısı <code>tags.hp-number</code></b><span>variant: hp. Bar yerine ad yanında büyük can sayısı; hızlı okunur, az yer kaplar.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-shield-pips"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag is-friend"><div class="mh-tag__line"><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="90"><i class="mh-bar__fill"></i></div></div><div class="mh-pips mh-t-armor" data-pips="2/3"></div></div>
-<div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="60"><i class="mh-bar__fill"></i></div></div><div class="mh-pips mh-t-armor" data-pips="1/4"></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag is-friend"><div class="eui-tag__line"><span class="eui-tag__name">AmiralRouter</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="90"><i class="eui-bar__fill"></i></div></div><div class="eui-pips eui-t-armor" data-pips="2/3"></div></div>
+<div class="eui-tag is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="60"><i class="eui-bar__fill"></i></div></div><div class="eui-pips eui-t-armor" data-pips="1/4"></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Kalkan segmentleri <code>tags.shield-pips</code></b><span>Can barının altına mh-pips (data-pips=&quot;dolu/toplam&quot;): zırh plakası ya da kalkan katmanı.<br><code>MH.pips(el.querySelector('.mh-pips'), 2, 3)</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Kalkan segmentleri <code>tags.shield-pips</code></b><span>Can barının altına eui-pips (data-pips=&quot;dolu/toplam&quot;): zırh plakası ya da kalkan katmanı.<br><code>EUI.pips(el.querySelector('.eui-pips'), 2, 3)</code></span></div></div>
     <div class="demo-spec" id="tags-level-clan"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag is-friend"><div class="mh-tag__line"><span class="mh-tag__lvl">42</span><span class="mh-tag__clan">[SE]</span><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Stream Ember</div></div>
-<div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__lvl">17</span><span class="mh-tag__clan">[NV]</span><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="55"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Night Viper</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag is-friend"><div class="eui-tag__line"><span class="eui-tag__lvl">42</span><span class="eui-tag__clan">[SE]</span><span class="eui-tag__name">Amiral</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">Stream Ember</div></div>
+<div class="eui-tag is-enemy"><div class="eui-tag__line"><span class="eui-tag__lvl">17</span><span class="eui-tag__clan">[NV]</span><span class="eui-tag__name">Vinh</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="55"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">Night Viper</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Seviye ve klan <code>tags.level-clan</code></b><span>level: adın önünde tonlu seviye kutusu; clan: [KLAN] öneki. RPG ve sunucu klanları.<br><code>MH.Nametags(world).update([{ id, x, y, name, level: 42, clan: 'SE' }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Seviye ve klan <code>tags.level-clan</code></b><span>level: adın önünde tonlu seviye kutusu; clan: [KLAN] öneki. RPG ve sunucu klanları.<br><code>EUI.Nametags(world).update([{ id, x, y, name, level: 42, clan: 'SE' }])</code></span></div></div>
     <div class="demo-spec" id="tags-plate"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--plate is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 38 · 24 M</div></div>
-<div class="mh-tag mh-tag--plate is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="40"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="10"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 31 · 40 M</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--plate is-friend"><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">SVY 38 · 24 M</div></div>
+<div class="eui-tag eui-tag--plate is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="40"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="10"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">SVY 31 · 40 M</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Plaka <code>tags.plate</code></b><span>variant: plate. Panel zemin, üstte ilişki rengi çizgisi; açık ve karışık arka planlarda en okunur biçim.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Plaka <code>tags.plate</code></b><span>variant: plate. Panel zemin, üstte ilişki rengi çizgisi; açık ve karışık arka planlarda en okunur biçim.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-flag"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--flag is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span><span class="mh-tag__id">1</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">24 M</div></div>
-<div class="mh-tag mh-tag--flag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span><span class="mh-tag__id">7</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="50"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">40 M</div></div>
-<div class="mh-tag mh-tag--flag mh-t-team3"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">55 M</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--flag is-friend"><div class="eui-tag__line"><span class="eui-tag__name">Amiral</span><span class="eui-tag__id">1</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">24 M</div></div>
+<div class="eui-tag eui-tag--flag is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Router</span><span class="eui-tag__id">7</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="50"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">40 M</div></div>
+<div class="eui-tag eui-tag--flag eui-t-team3"><div class="eui-tag__line"><span class="eui-tag__name">StreamEmber</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">55 M</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Bayrak <code>tags.flag</code></b><span>variant: flag. Solda tonlu şerit, sola yaslı degrade zemin. Takım HUD hissi.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Bayrak <code>tags.flag</code></b><span>variant: flag. Solda tonlu şerit, sola yaslı degrade zemin. Takım HUD hissi.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-pill"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--pill is-friend"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">AR</span><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--pill is-enemy"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">T</span><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="40"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--pill mh-t-team2"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">NM</span><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--pill is-friend"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">AR</span><span class="eui-tag__name">AmiralRouter</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--pill is-enemy"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">T</span><span class="eui-tag__name">Thi</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="40"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--pill eui-t-team2"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">NM</span><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Hap <code>tags.pill</code></b><span>variant: pill. Tek satır kapsül: avatar, ad, kısa can çizgisi. Avatar için öğeye avatar:'AR'.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Hap <code>tags.pill</code></b><span>variant: pill. Tek satır kapsül: avatar, ad, kısa can çizgisi. Avatar için öğeye avatar:'AR'.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-card"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--card is-friend"><span class="mh-avatar mh-avatar--round">AR</span><div class="mh-tag__body"><div class="mh-tag__line"><span class="mh-tag__lvl">42</span><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="85"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="60"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Stream Ember · 12 M</div></div></div>
-<div class="mh-tag mh-tag--card is-enemy"><span class="mh-avatar mh-avatar--round">NV</span><div class="mh-tag__body"><div class="mh-tag__line"><span class="mh-tag__lvl">17</span><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="35"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="0"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Night Viper · 30 M</div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--card is-friend"><span class="eui-avatar eui-avatar--round">AR</span><div class="eui-tag__body"><div class="eui-tag__line"><span class="eui-tag__lvl">42</span><span class="eui-tag__name">AmiralRouter</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="85"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="60"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">Stream Ember · 12 M</div></div></div>
+<div class="eui-tag eui-tag--card is-enemy"><span class="eui-avatar eui-avatar--round">NV</span><div class="eui-tag__body"><div class="eui-tag__line"><span class="eui-tag__lvl">17</span><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="35"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="0"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">Night Viper · 30 M</div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Kart <code>tags.card</code></b><span>variant: card. Solda büyük avatar, sağda seviye + ad + bar. Yakın plan, lobi, konuşulan oyuncu.<br><code>MH.bar(el.querySelector('.mh-bar'), hp)</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Kart <code>tags.card</code></b><span>variant: card. Solda büyük avatar, sağda seviye + ad + bar. Yakın plan, lobi, konuşulan oyuncu.<br><code>EUI.bar(el.querySelector('.eui-bar'), hp)</code></span></div></div>
     <div class="demo-spec" id="tags-line"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--line is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--line is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="30"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--line mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--line is-friend"><div class="eui-tag__line"><span class="eui-tag__name">Amiral</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--line is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Vinh</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="30"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--line eui-t-team1"><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>İnce çizgi <code>tags.line</code></b><span>variant: line. Yalnız ad ve altında 2px can çizgisi, kutu yok. Minimal, sinematik.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>İnce çizgi <code>tags.line</code></b><span>variant: line. Yalnız ad ve altında 2px can çizgisi, kutu yok. Minimal, sinematik.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-glow"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--glow mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div></div>
-<div class="mh-tag mh-tag--glow is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div></div>
-<div class="mh-tag mh-tag--glow mh-t-team3"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--glow eui-t-team1"><div class="eui-tag__line"><span class="eui-tag__name">StreamEmber</span></div></div>
+<div class="eui-tag eui-tag--glow is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Router</span></div></div>
+<div class="eui-tag eui-tag--glow eui-t-team3"><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Parlak çerçeve <code>tags.glow</code></b><span>variant: glow. İnce tonlu çerçeve ve ışıma; arena ve e-spor modları.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Parlak çerçeve <code>tags.glow</code></b><span>variant: glow. İnce tonlu çerçeve ve ışıma; arena ve e-spor modları.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-banner"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--banner is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span></div></div>
-<div class="mh-tag mh-tag--banner is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div></div>
-<div class="mh-tag mh-tag--banner mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div></div>
-<div class="mh-tag mh-tag--banner mh-t-team4"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--banner is-friend"><div class="eui-tag__line"><span class="eui-tag__name">Amiral</span></div></div>
+<div class="eui-tag eui-tag--banner is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div></div>
+<div class="eui-tag eui-tag--banner eui-t-team1"><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div></div>
+<div class="eui-tag eui-tag--banner eui-t-team4"><div class="eui-tag__line"><span class="eui-tag__name">Vinh</span></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Takım afişi <code>tags.banner</code></b><span>variant: banner. Eğik, ilişki renginde dolu şerit, koyu ad. Dalga ve takım modlarında en okunur biçim.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Takım afişi <code>tags.banner</code></b><span>variant: banner. Eğik, ilişki renginde dolu şerit, koyu ad. Dalga ve takım modlarında en okunur biçim.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-bracket"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--bracket is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="60"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">40 M</div></div>
-<div class="mh-tag mh-tag--bracket is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">24 M</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--bracket is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="60"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">40 M</div></div>
+<div class="eui-tag eui-tag--bracket is-friend"><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">24 M</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Köşeli <code>tags.bracket</code></b><span>variant: bracket. Dört köşe işaretli yarı saydam kutu; hedef çerçevesi gibi. Kilitli düşman, keşif modu.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Köşeli <code>tags.bracket</code></b><span>variant: bracket. Dört köşe işaretli yarı saydam kutu; hedef çerçevesi gibi. Kilitli düşman, keşif modu.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-bar-only"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--bar is-enemy"><div class="mh-tag__line"></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="90"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--bar is-enemy"><div class="mh-tag__line"></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="45"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="0"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--bar is-friend"><div class="mh-tag__line"></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="70"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--bar is-enemy"><div class="eui-tag__line"></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="90"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--bar is-enemy"><div class="eui-tag__line"></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="45"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="0"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--bar is-friend"><div class="eui-tag__line"></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="70"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Yalnız bar <code>tags.bar-only</code></b><span>variant: bar. Ad gizli, sadece can/zırh barı. Düşman kalabalıkları, NPC sürüleri.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Yalnız bar <code>tags.bar-only</code></b><span>variant: bar. Ad gizli, sadece can/zırh barı. Düşman kalabalıkları, NPC sürüleri.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-pointer"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--pill mh-tag--pointer is-friend"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">AR</span><span class="mh-tag__name">AmiralRouter</span></div></div>
-<div class="mh-tag mh-tag--line mh-tag--pointer is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div></div>
-<div class="mh-tag mh-tag--banner mh-tag--pointer mh-t-team2"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--pill eui-tag--pointer is-friend"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">AR</span><span class="eui-tag__name">AmiralRouter</span></div></div>
+<div class="eui-tag eui-tag--line eui-tag--pointer is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Vinh</span></div></div>
+<div class="eui-tag eui-tag--banner eui-tag--pointer eui-t-team2"><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>İşaretçili <code>tags.pointer</code></b><span>variant: pointer. Altında renkli elmas; etiketin hangi kişiyi gösterdiği belli olur. Diğer biçimlerle birleşir.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>İşaretçili <code>tags.pointer</code></b><span>variant: pointer. Altında renkli elmas; etiketin hangi kişiyi gösterdiği belli olur. Diğer biçimlerle birleşir.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-squad"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--compact mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__num">1</span><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team2"><div class="mh-tag__line"><span class="mh-tag__num">2</span><span class="mh-tag__name">Router</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team3"><div class="mh-tag__line"><span class="mh-tag__num">3</span><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
-<div class="mh-tag mh-tag--compact mh-t-team4"><div class="mh-tag__line"><span class="mh-tag__num">4</span><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--compact eui-t-team1"><div class="eui-tag__line"><span class="eui-tag__num">1</span><span class="eui-tag__name">Amiral</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team2"><div class="eui-tag__line"><span class="eui-tag__num">2</span><span class="eui-tag__name">Router</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team3"><div class="eui-tag__line"><span class="eui-tag__num">3</span><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
+<div class="eui-tag eui-tag--compact eui-t-team4"><div class="eui-tag__line"><span class="eui-tag__num">4</span><span class="eui-tag__name">Thi</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="80"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="50"><i class="eui-bar__fill"></i></div></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Takım numarası <code>tags.squad</code></b><span>Bölük/ekip sırası: adın önünde numara kutusu (mh-tag__num). Battle royale, taktik ekipler; numara HUD ekip listesiyle eşleşir.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Takım numarası <code>tags.squad</code></b><span>Bölük/ekip sırası: adın önünde numara kutusu (eui-tag__num). Battle royale, taktik ekipler; numara HUD ekip listesiyle eşleşir.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-roles"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--plate mh-t-info"><div class="mh-tag__role">Polis</div><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__sub">Memur · 24 M</div></div>
-<div class="mh-tag mh-tag--plate mh-t-success"><div class="mh-tag__role">Sağlık</div><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__sub">Doktor · 18 M</div></div>
-<div class="mh-tag mh-tag--plate is-enemy"><div class="mh-tag__role">Haydut</div><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__sub">Aranıyor · 40 M</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--plate eui-t-info"><div class="eui-tag__role">Polis</div><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__sub">Memur · 24 M</div></div>
+<div class="eui-tag eui-tag--plate eui-t-success"><div class="eui-tag__role">Sağlık</div><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div><div class="eui-tag__sub">Doktor · 18 M</div></div>
+<div class="eui-tag eui-tag--plate is-enemy"><div class="eui-tag__role">Haydut</div><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__sub">Aranıyor · 40 M</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Rol etiketli <code>tags.roles</code></b><span>role: üstte küçük rol yazısı (POLİS, SAĞLIK, ŞERİF…). Meslekli RP sunucuları, polis-hırsız modları.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Rol etiketli <code>tags.roles</code></b><span>role: üstte küçük rol yazısı (POLİS, SAĞLIK, ŞERİF…). Meslekli RP sunucuları, polis-hırsız modları.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-wanted"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div><div class="mh-wanted"><i class="mh-i on" data-i="star-f"></i><i class="mh-i on" data-i="star-f"></i><i class="mh-i on" data-i="star-f"></i><i class="mh-i" data-i="star-f"></i><i class="mh-i" data-i="star-f"></i></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Router</span></div><div class="eui-wanted"><i class="eui-i on" data-i="star-f"></i><i class="eui-i on" data-i="star-f"></i><i class="eui-i on" data-i="star-f"></i><i class="eui-i" data-i="star-f"></i><i class="eui-i" data-i="star-f"></i></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Aranma seviyesi <code>tags.wanted</code></b><span>Ad altında aranma yıldızları (mh-wanted, i.on dolu). Polis kovalamaca ve RP modları.<br><code>star.classList.toggle('on', i &lt; level)</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Aranma seviyesi <code>tags.wanted</code></b><span>Ad altında aranma yıldızları (eui-wanted, i.on dolu). Polis kovalamaca ve RP modları.<br><code>star.classList.toggle('on', i &lt; level)</code></span></div></div>
     <div class="demo-spec" id="tags-race"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--race mh-t-gold"><span class="mh-tag__pos">P1</span><div class="mh-tag__line"><span class="mh-tag__name">AmiralRouter</span></div></div>
-<div class="mh-tag mh-tag--race mh-t-silver"><span class="mh-tag__pos">P2</span><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div></div>
-<div class="mh-tag mh-tag--race is-enemy"><span class="mh-tag__pos">P7</span><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--race eui-t-gold"><span class="eui-tag__pos">P1</span><div class="eui-tag__line"><span class="eui-tag__name">AmiralRouter</span></div></div>
+<div class="eui-tag eui-tag--race eui-t-silver"><span class="eui-tag__pos">P2</span><div class="eui-tag__line"><span class="eui-tag__name">Vinh</span></div></div>
+<div class="eui-tag eui-tag--race is-enemy"><span class="eui-tag__pos">P7</span><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Yarış sırası <code>tags.race</code></b><span>variant: race. Solda sıra kutusu (mh-tag__pos), yanında ad. Yarış, sürüş ve sıralı modlar.<br><code>el.querySelector('.mh-tag__pos').textContent = 'P' + pos</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Yarış sırası <code>tags.race</code></b><span>variant: race. Solda sıra kutusu (eui-tag__pos), yanında ad. Yarış, sürüş ve sıralı modlar.<br><code>el.querySelector('.eui-tag__pos').textContent = 'P' + pos</code></span></div></div>
     <div class="demo-spec" id="tags-vip"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--vip"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="70"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Konvoy · 60 M</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--vip"><div class="eui-tag__line"><span class="eui-tag__name">StreamEmber</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="70"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">Konvoy · 60 M</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Korunacak hedef <code>tags.vip</code></b><span>variant: vip. Üstte KORU şeridi, altın ad. Eskort, kral koruma ve konvoy görevleri.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Korunacak hedef <code>tags.vip</code></b><span>variant: vip. Üstte KORU şeridi, altın ad. Eskort, kral koruma ve konvoy görevleri.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-boss"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--boss is-enemy"><div class="mh-tag__role">Boss</div><div class="mh-tag__line"><span class="mh-tag__name">Vinh Komutan</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="72"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="30"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 60 · 3 faz</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--boss is-enemy"><div class="eui-tag__role">Boss</div><div class="eui-tag__line"><span class="eui-tag__name">Vinh Komutan</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-health" data-v="72"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-armor" data-v="30"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">SVY 60 · 3 faz</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Boss <code>tags.boss</code></b><span>variant: boss. Büyük başlık fontu, 200px kalın bar. Öne çıkan tek hedef.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Boss <code>tags.boss</code></b><span>variant: boss. Büyük başlık fontu, 200px kalın bar. Öne çıkan tek hedef.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-npc"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--npc mh-tag--line"><div class="mh-tag__line"><i class="mh-i" data-i="chat"></i><span class="mh-tag__name">Satıcı Thi</span></div><div class="mh-tag__sub">Konuşmak için E</div></div>
-<div class="mh-tag mh-tag--npc mh-tag--line"><div class="mh-tag__line"><i class="mh-i" data-i="cash"></i><span class="mh-tag__name">Bankacı Router</span></div><div class="mh-tag__sub">Konuşmak için E</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--npc eui-tag--line"><div class="eui-tag__line"><i class="eui-i" data-i="chat"></i><span class="eui-tag__name">Satıcı Thi</span></div><div class="eui-tag__sub">Konuşmak için E</div></div>
+<div class="eui-tag eui-tag--npc eui-tag--line"><div class="eui-tag__line"><i class="eui-i" data-i="cash"></i><span class="eui-tag__name">Bankacı Router</span></div><div class="eui-tag__sub">Konuşmak için E</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>NPC <code>tags.npc</code></b><span>variant: npc. Sade, yumuşak; konuşulabilir karakter. İkon etkileşimi söyler (icon:'chat').<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>NPC <code>tags.npc</code></b><span>variant: npc. Sade, yumuşak; konuşulabilir karakter. İkon etkileşimi söyler (icon:'chat').<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-viewer"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--viewer mh-t-accent"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">NM</span><span class="mh-tag__lvl">24</span><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__sub">🌹 ×12</div></div>
-<div class="mh-tag mh-tag--viewer mh-t-legendary"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">T</span><span class="mh-tag__lvl">8</span><span class="mh-tag__name">Thi</span></div><div class="mh-tag__sub">Takipçi</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--viewer eui-t-accent"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">NM</span><span class="eui-tag__lvl">24</span><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__sub">🌹 ×12</div></div>
+<div class="eui-tag eui-tag--viewer eui-t-legendary"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">T</span><span class="eui-tag__lvl">8</span><span class="eui-tag__name">Thi</span></div><div class="eui-tag__sub">Takipçi</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Canlı yayın izleyicisi <code>tags.viewer</code></b><span>variant: viewer. Avatar halkalı kapsül, seviye, hediye/takipçi bilgisi. TikTok/Twitch izleyicisinin oyuna girdiği modlar.<br><code>MH.Nametags(world).update([{ id, x, y, name, avatar, level, variant: 'viewer', sub }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Canlı yayın izleyicisi <code>tags.viewer</code></b><span>variant: viewer. Avatar halkalı kapsül, seviye, hediye/takipçi bilgisi. TikTok/Twitch izleyicisinin oyuna girdiği modlar.<br><code>EUI.Nametags(world).update([{ id, x, y, name, avatar, level, variant: 'viewer', sub }])</code></span></div></div>
     <div class="demo-spec" id="tags-far"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--far is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__sub">180 M</div></div>
-<div class="mh-tag mh-tag--far is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__sub">210 M</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--far is-friend"><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div><div class="eui-tag__sub">180 M</div></div>
+<div class="eui-tag eui-tag--far is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__sub">210 M</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Uzaktaki <code>tags.far</code></b><span>variant: far. Uzak mesafede sönük, yalnız ad + mesafe. alpha/scale zaten mesafeye göre verilir.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Uzaktaki <code>tags.far</code></b><span>variant: far. Uzak mesafede sönük, yalnız ad + mesafe. alpha/scale zaten mesafeye göre verilir.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec" id="tags-group"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--pill is-friend"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">NM</span><span class="mh-tag__name">NabeMedia</span><span class="mh-tag__more">+3</span></div></div>
-<div class="mh-tag mh-tag--pill is-enemy"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">V</span><span class="mh-tag__name">Vinh</span><span class="mh-tag__more">+5</span></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--pill is-friend"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">NM</span><span class="eui-tag__name">NabeMedia</span><span class="eui-tag__more">+3</span></div></div>
+<div class="eui-tag eui-tag--pill is-enemy"><div class="eui-tag__line"><span class="eui-avatar eui-avatar--round">V</span><span class="eui-tag__name">Vinh</span><span class="eui-tag__more">+5</span></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Kalabalık özeti <code>tags.group</code></b><span>Üst üste binen grubu tek etikette say: ad + mh-tag__more (+3). Pazar yeri, lobi, sıkışık savaş.<br><code>MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Kalabalık özeti <code>tags.group</code></b><span>Üst üste binen grubu tek etikette say: ad + eui-tag__more (+3). Pazar yeri, lobi, sıkışık savaş.<br><code>EUI.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])</code></span></div></div>
     <div class="demo-spec demo-spec--full" id="tags-states"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--flag is-talking is-friend"><div class="mh-tag__line"><span class="mh-tag__voice"><i class="mh-i" data-i="mic"></i></span><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__sub">Konuşuyor</div></div>
-<div class="mh-tag mh-tag--flag is-typing is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div><div class="mh-tag__sub">Yazıyor</div></div>
-<div class="mh-tag mh-tag--flag is-leader is-friend"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div><div class="mh-tag__sub">Ekip lideri</div></div>
-<div class="mh-tag mh-tag--flag is-afk is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__sub">Klavyeden uzak</div></div>
-<div class="mh-tag mh-tag--flag is-target is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__sub">Hedef</div></div>
-<div class="mh-tag mh-tag--flag is-dead mh-t-team1"><div class="mh-tag__line"><i class="mh-i" data-i="skull"></i><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__sub">Öldü</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag eui-tag--flag is-talking is-friend"><div class="eui-tag__line"><span class="eui-tag__voice"><i class="eui-i" data-i="mic"></i></span><span class="eui-tag__name">Amiral</span></div><div class="eui-tag__sub">Konuşuyor</div></div>
+<div class="eui-tag eui-tag--flag is-typing is-friend"><div class="eui-tag__line"><span class="eui-tag__name">Router</span></div><div class="eui-tag__sub">Yazıyor</div></div>
+<div class="eui-tag eui-tag--flag is-leader is-friend"><div class="eui-tag__line"><span class="eui-tag__name">StreamEmber</span></div><div class="eui-tag__sub">Ekip lideri</div></div>
+<div class="eui-tag eui-tag--flag is-afk is-friend"><div class="eui-tag__line"><span class="eui-tag__name">Thi</span></div><div class="eui-tag__sub">Klavyeden uzak</div></div>
+<div class="eui-tag eui-tag--flag is-target is-enemy"><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div><div class="eui-tag__sub">Hedef</div></div>
+<div class="eui-tag eui-tag--flag is-dead eui-t-team1"><div class="eui-tag__line"><i class="eui-i" data-i="skull"></i><span class="eui-tag__name">Vinh</span></div><div class="eui-tag__sub">Öldü</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Durumlar <code>tags.states</code></b><span>Herhangi bir biçime eklenir: is-talking (yeşil + mikrofon), is-typing (…), is-leader (taç), is-afk (sönük), is-target (altı çizili), is-dead (üstü çizili).<br><code>MH.Nametags(world).update([{ id, x, y, name, talking, typing, leader, afk, dead }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Durumlar <code>tags.states</code></b><span>Herhangi bir biçime eklenir: is-talking (yeşil + mikrofon), is-typing (…), is-leader (taç), is-afk (sönük), is-target (altı çizili), is-dead (üstü çizili).<br><code>EUI.Nametags(world).update([{ id, x, y, name, talking, typing, leader, afk, dead }])</code></span></div></div>
     <div class="demo-spec" id="tags-downed"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag is-down is-friend"><div class="mh-tag__line"><i class="mh-i" data-i="revive"></i><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-danger" data-v="40"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Kaldır: E basılı tut</div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag is-down is-friend"><div class="eui-tag__line"><i class="eui-i" data-i="revive"></i><span class="eui-tag__name">AmiralRouter</span></div><div class="eui-tag__bars"><div class="eui-bar eui-t-danger" data-v="40"><i class="eui-bar__fill"></i></div></div><div class="eui-tag__sub">Kaldır: E basılı tut</div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Yere düştü <code>tags.downed</code></b><span>is-down: kırmızı, yanıp sönen ad; bar kalan kanama süresi, alt satır kaldırma ipucu. Ortak oynanışta canlandırma.<br><code>MH.Nametags(world).update([{ id, x, y, name, down: true, health: bleed }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Yere düştü <code>tags.downed</code></b><span>is-down: kırmızı, yanıp sönen ad; bar kalan kanama süresi, alt satır kaldırma ipucu. Ortak oynanışta canlandırma.<br><code>EUI.Nametags(world).update([{ id, x, y, name, down: true, health: bleed }])</code></span></div></div>
     <div class="demo-spec" id="tags-bubble"><div class="demo-spec__view" style="--h:200px;--dim:.35">
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag is-friend"><div class="mh-tag__bubble">Merhaba! Yardıma geliyorum.</div><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div></div>
-<div class="mh-tag is-enemy"><div class="mh-tag__bubble">Köprüde buluşalım</div><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div></div>
+<div class="eui-flex" style="gap:26px;align-items:flex-end">
+<div class="eui-tag is-friend"><div class="eui-tag__bubble">Merhaba! Yardıma geliyorum.</div><div class="eui-tag__line"><span class="eui-tag__name">NabeMedia</span></div></div>
+<div class="eui-tag is-enemy"><div class="eui-tag__bubble">Köprüde buluşalım</div><div class="eui-tag__line"><span class="eui-tag__name">Nguyen</span></div></div>
 </div>
-    </div><div class="demo-spec__meta"><b>Konuşma balonu <code>tags.bubble</code></b><span>bubble: etiketin üstünde kısa sohbet metni (yayıncı/izleyici mesajı); 220px'e kadar kayar.<br><code>MH.Nametags(world).update([{ id, x, y, name, bubble: 'Merhaba' }])</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Konuşma balonu <code>tags.bubble</code></b><span>bubble: etiketin üstünde kısa sohbet metni (yayıncı/izleyici mesajı); 220px'e kadar kayar.<br><code>EUI.Nametags(world).update([{ id, x, y, name, bubble: 'Merhaba' }])</code></span></div></div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   // Sayfadaki her ölçeri gerçek API çağrılarıyla rastgele değerlere sürer
   function shuffle() {
     var r = Math.random;
-    document.querySelectorAll('.mh-bar[data-v]').forEach(function (b) { MH.bar(b, Math.round(r() * 100)); });
-    document.querySelectorAll('.mh-ringval').forEach(function (n) { var v = r(); MH.ring(n, v); var t = n.querySelector('b'); if (t && /^\d+%?$/.test(t.textContent)) t.textContent = Math.round(v * 100) + (t.textContent.indexOf('%') >= 0 ? '%' : ''); });
-    document.querySelectorAll('[data-pips]').forEach(function (n) { var t = n.children.length; MH.pips(n, Math.round(r() * t), t); });
-    document.querySelectorAll('.mh-core').forEach(function (n) { MH.core(n, { value: r() * 100, core: r() * 100 }); });
-    document.querySelectorAll('.mh-tug').forEach(function (n) { var a = Math.round(20 + r() * 60); n.children[0].style.setProperty('--a', a); n.children[1].style.setProperty('--a', 100 - a); });
-    document.querySelectorAll('.mh-wayarrow').forEach(function (n) { n.style.setProperty('--a', Math.round(r() * 360) + 'deg'); });
-    document.querySelectorAll('.mh-compass').forEach(function (n) { MH.compass(n, r() * 360); });
+    document.querySelectorAll('.eui-bar[data-v]').forEach(function (b) { EUI.bar(b, Math.round(r() * 100)); });
+    document.querySelectorAll('.eui-ringval').forEach(function (n) { var v = r(); EUI.ring(n, v); var t = n.querySelector('b'); if (t && /^\d+%?$/.test(t.textContent)) t.textContent = Math.round(v * 100) + (t.textContent.indexOf('%') >= 0 ? '%' : ''); });
+    document.querySelectorAll('[data-pips]').forEach(function (n) { var t = n.children.length; EUI.pips(n, Math.round(r() * t), t); });
+    document.querySelectorAll('.eui-core').forEach(function (n) { EUI.core(n, { value: r() * 100, core: r() * 100 }); });
+    document.querySelectorAll('.eui-tug').forEach(function (n) { var a = Math.round(20 + r() * 60); n.children[0].style.setProperty('--a', a); n.children[1].style.setProperty('--a', 100 - a); });
+    document.querySelectorAll('.eui-wayarrow').forEach(function (n) { n.style.setProperty('--a', Math.round(r() * 360) + 'deg'); });
+    document.querySelectorAll('.eui-compass').forEach(function (n) { EUI.compass(n, r() * 360); });
   }
   var timer = 0;
   document.getElementById('shuffle').onclick = shuffle;

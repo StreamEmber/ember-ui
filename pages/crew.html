@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ekip &amp; ekipman — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Ekip &amp; ekipman — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Oyun içi HUD</span>
@@ -17,45 +17,45 @@
 
   <div class="demo-stage-wrap">
     <div class="demo-stage" id="stage">
-      <div class="mh-screen" id="screen">
-        <div class="mh-anchor mh-tl" style="top:120px">
-          <span class="mh-kicker" style="text-shadow:var(--mh-hud-shadow)">Posse · 5 / 8</span>
-          <div class="mh-crewlist" id="crewlist">
-            <div class="mh-crewrow mh-t-team1"><span class="mh-portrait"><i data-i="medic"></i></span><span class="mh-crewrow__name">Sadie Adler</span><span class="mh-crewrow__icons"><i data-i="revolver"></i><i data-i="horse" class="is-on"></i><span>12m</span></span><div class="mh-bar mh-t-health" data-v="92"><i class="mh-bar__fill"></i></div></div>
-            <div class="mh-crewrow mh-t-team1"><span class="mh-portrait"><i data-i="sniper"></i></span><span class="mh-crewrow__name">Javier Escuella</span><span class="mh-crewrow__icons"><i data-i="sniper"></i><i data-i="horse" class="is-on"></i><span>18m</span></span><div class="mh-bar mh-t-health" data-v="72"><i class="mh-bar__fill"></i></div></div>
-            <div class="mh-crewrow mh-t-team1"><span class="mh-portrait"><i data-i="rider"></i></span><span class="mh-crewrow__name">Charles Smith</span><span class="mh-crewrow__icons"><i data-i="rifle"></i><i data-i="horse" class="is-on"></i><span>30m</span></span><div class="mh-bar mh-t-health" data-v="54"><i class="mh-bar__fill"></i></div></div>
-            <div class="mh-crewrow mh-t-team1"><span class="mh-portrait"><i data-i="fist"></i></span><span class="mh-crewrow__name">Bill Williamson</span><span class="mh-crewrow__icons"><i data-i="fist"></i><i data-i="horse"></i><span>22m</span></span><div class="mh-bar mh-t-health" data-v="66"><i class="mh-bar__fill"></i></div></div>
-            <div class="mh-crewrow mh-t-team1"><span class="mh-portrait"><i data-i="knife"></i></span><span class="mh-crewrow__name">Lenny Summers</span><span class="mh-crewrow__icons"><i data-i="knife"></i><i data-i="horse" class="is-on"></i><span>9m</span></span><div class="mh-bar mh-t-health" data-v="100"><i class="mh-bar__fill"></i></div></div>
+      <div class="eui-screen" id="screen">
+        <div class="eui-anchor eui-tl" style="top:120px">
+          <span class="eui-kicker" style="text-shadow:var(--eui-hud-shadow)">Posse · 5 / 8</span>
+          <div class="eui-crewlist" id="crewlist">
+            <div class="eui-crewrow eui-t-team1"><span class="eui-portrait"><i data-i="medic"></i></span><span class="eui-crewrow__name">Sadie Adler</span><span class="eui-crewrow__icons"><i data-i="revolver"></i><i data-i="horse" class="is-on"></i><span>12m</span></span><div class="eui-bar eui-t-health" data-v="92"><i class="eui-bar__fill"></i></div></div>
+            <div class="eui-crewrow eui-t-team1"><span class="eui-portrait"><i data-i="sniper"></i></span><span class="eui-crewrow__name">Javier Escuella</span><span class="eui-crewrow__icons"><i data-i="sniper"></i><i data-i="horse" class="is-on"></i><span>18m</span></span><div class="eui-bar eui-t-health" data-v="72"><i class="eui-bar__fill"></i></div></div>
+            <div class="eui-crewrow eui-t-team1"><span class="eui-portrait"><i data-i="rider"></i></span><span class="eui-crewrow__name">Charles Smith</span><span class="eui-crewrow__icons"><i data-i="rifle"></i><i data-i="horse" class="is-on"></i><span>30m</span></span><div class="eui-bar eui-t-health" data-v="54"><i class="eui-bar__fill"></i></div></div>
+            <div class="eui-crewrow eui-t-team1"><span class="eui-portrait"><i data-i="fist"></i></span><span class="eui-crewrow__name">Bill Williamson</span><span class="eui-crewrow__icons"><i data-i="fist"></i><i data-i="horse"></i><span>22m</span></span><div class="eui-bar eui-t-health" data-v="66"><i class="eui-bar__fill"></i></div></div>
+            <div class="eui-crewrow eui-t-team1"><span class="eui-portrait"><i data-i="knife"></i></span><span class="eui-crewrow__name">Lenny Summers</span><span class="eui-crewrow__icons"><i data-i="knife"></i><i data-i="horse" class="is-on"></i><span>9m</span></span><div class="eui-bar eui-t-health" data-v="100"><i class="eui-bar__fill"></i></div></div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-tr" style="top:120px">
-          <div class="mh-crewlist" style="--w:250px">
-            <div class="mh-flex mh-between" style="padding:0 2px 2px"><span class="mh-kicker" style="text-shadow:var(--mh-hud-shadow)">İşaretli · <b id="markcount">2</b></span><span class="mh-hint"><span class="mh-key mh-key--sm">H</span>Saldır</span></div>
+        <div class="eui-anchor eui-tr" style="top:120px">
+          <div class="eui-crewlist" style="--w:250px">
+            <div class="eui-flex eui-between" style="padding:0 2px 2px"><span class="eui-kicker" style="text-shadow:var(--eui-hud-shadow)">İşaretli · <b id="markcount">2</b></span><span class="eui-hint"><span class="eui-key eui-key--sm">H</span>Saldır</span></div>
             <div id="marks">
-              <div class="mh-crewrow mh-t-enemy" style="margin-bottom:4px"><span class="mh-portrait"><i data-i="target"></i></span><span class="mh-crewrow__name">O'Driscoll haydut</span><span class="mh-crewrow__icons"><i data-i="revolver"></i>46m</span><div class="mh-bar mh-t-enemy" data-v="100"><i class="mh-bar__fill"></i></div></div>
-              <div class="mh-crewrow mh-t-enemy"><span class="mh-portrait"><i data-i="target"></i></span><span class="mh-crewrow__name">Lemoyne akıncısı</span><span class="mh-crewrow__icons"><i data-i="horse" class="is-on"></i>71m</span><div class="mh-bar mh-t-enemy" data-v="64"><i class="mh-bar__fill"></i></div></div>
+              <div class="eui-crewrow eui-t-enemy" style="margin-bottom:4px"><span class="eui-portrait"><i data-i="target"></i></span><span class="eui-crewrow__name">O'Driscoll haydut</span><span class="eui-crewrow__icons"><i data-i="revolver"></i>46m</span><div class="eui-bar eui-t-enemy" data-v="100"><i class="eui-bar__fill"></i></div></div>
+              <div class="eui-crewrow eui-t-enemy"><span class="eui-portrait"><i data-i="target"></i></span><span class="eui-crewrow__name">Lemoyne akıncısı</span><span class="eui-crewrow__icons"><i data-i="horse" class="is-on"></i>71m</span><div class="eui-bar eui-t-enemy" data-v="64"><i class="eui-bar__fill"></i></div></div>
             </div>
           </div>
         </div>
 
-        <div class="mh-anchor mh-br">
-          <div class="mh-mount" id="mount"><i data-i="horse"></i><b>Boaz · Mustang</b><small id="mount-state">Binmiş</small><div class="mh-bar mh-t-health" data-v="82"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-stamina" data-v="46"><i class="mh-bar__fill"></i></div></div>
+        <div class="eui-anchor eui-br">
+          <div class="eui-mount" id="mount"><i data-i="horse"></i><b>Boaz · Mustang</b><small id="mount-state">Binmiş</small><div class="eui-bar eui-t-health" data-v="82"><i class="eui-bar__fill"></i></div><div class="eui-bar eui-t-stamina" data-v="46"><i class="eui-bar__fill"></i></div></div>
         </div>
 
-        <div class="mh-anchor mh-bc mh-catch">
-          <div class="mh-orders" id="orders">
-            <button class="mh-order is-active" data-o="follow"><span class="mh-key mh-key--sm">1</span><i data-i="route"></i>Takip et</button>
-            <button class="mh-order" data-o="wait"><span class="mh-key mh-key--sm">2</span><i data-i="hand"></i>Bekle</button>
-            <button class="mh-order is-danger" data-o="attack"><span class="mh-key mh-key--sm">H</span><i data-i="crosshair"></i>Saldır</button>
-            <button class="mh-order" data-o="mount"><span class="mh-key mh-key--sm">4</span><i data-i="horse"></i>Atlara bin</button>
+        <div class="eui-anchor eui-bc eui-catch">
+          <div class="eui-orders" id="orders">
+            <button class="eui-order is-active" data-o="follow"><span class="eui-key eui-key--sm">1</span><i data-i="route"></i>Takip et</button>
+            <button class="eui-order" data-o="wait"><span class="eui-key eui-key--sm">2</span><i data-i="hand"></i>Bekle</button>
+            <button class="eui-order is-danger" data-o="attack"><span class="eui-key eui-key--sm">H</span><i data-i="crosshair"></i>Saldır</button>
+            <button class="eui-order" data-o="mount"><span class="eui-key eui-key--sm">4</span><i data-i="horse"></i>Atlara bin</button>
           </div>
-          <div class="mh-crewtiles" id="tiles">
-            <div class="mh-crewtile mh-t-team1"><span class="mh-portrait"><i data-i="medic"></i><span class="mh-portrait__badge"><i data-i="horse"></i></span></span><div class="mh-bar mh-t-health" data-v="92"><i class="mh-bar__fill"></i></div><small>Sadie</small></div>
-            <div class="mh-crewtile mh-t-team1"><span class="mh-portrait"><i data-i="sniper"></i><span class="mh-portrait__badge"><i data-i="horse"></i></span></span><div class="mh-bar mh-t-health" data-v="72"><i class="mh-bar__fill"></i></div><small>Javier</small></div>
-            <div class="mh-crewtile mh-t-team1"><span class="mh-portrait"><i data-i="rider"></i><span class="mh-portrait__badge"><i data-i="horse"></i></span></span><div class="mh-bar mh-t-health" data-v="54"><i class="mh-bar__fill"></i></div><small>Charles</small></div>
-            <div class="mh-crewtile mh-t-team1"><span class="mh-portrait"><i data-i="fist"></i></span><div class="mh-bar mh-t-health" data-v="66"><i class="mh-bar__fill"></i></div><small>Bill</small></div>
-            <div class="mh-crewtile mh-t-team1"><span class="mh-portrait"><i data-i="knife"></i><span class="mh-portrait__badge"><i data-i="horse"></i></span></span><div class="mh-bar mh-t-health" data-v="100"><i class="mh-bar__fill"></i></div><small>Lenny</small></div>
+          <div class="eui-crewtiles" id="tiles">
+            <div class="eui-crewtile eui-t-team1"><span class="eui-portrait"><i data-i="medic"></i><span class="eui-portrait__badge"><i data-i="horse"></i></span></span><div class="eui-bar eui-t-health" data-v="92"><i class="eui-bar__fill"></i></div><small>Sadie</small></div>
+            <div class="eui-crewtile eui-t-team1"><span class="eui-portrait"><i data-i="sniper"></i><span class="eui-portrait__badge"><i data-i="horse"></i></span></span><div class="eui-bar eui-t-health" data-v="72"><i class="eui-bar__fill"></i></div><small>Javier</small></div>
+            <div class="eui-crewtile eui-t-team1"><span class="eui-portrait"><i data-i="rider"></i><span class="eui-portrait__badge"><i data-i="horse"></i></span></span><div class="eui-bar eui-t-health" data-v="54"><i class="eui-bar__fill"></i></div><small>Charles</small></div>
+            <div class="eui-crewtile eui-t-team1"><span class="eui-portrait"><i data-i="fist"></i></span><div class="eui-bar eui-t-health" data-v="66"><i class="eui-bar__fill"></i></div><small>Bill</small></div>
+            <div class="eui-crewtile eui-t-team1"><span class="eui-portrait"><i data-i="knife"></i><span class="eui-portrait__badge"><i data-i="horse"></i></span></span><div class="eui-bar eui-t-health" data-v="100"><i class="eui-bar__fill"></i></div><small>Lenny</small></div>
           </div>
         </div>
       </div>
@@ -75,53 +75,53 @@
   <div class="demo-h2"><h2>Üye kartları ve durumlar</h2><p>Ayrıntılı kart, kare portre, durum rozetleri</p></div>
   <div class="demo-specs" style="--cols:2">
     <div class="demo-spec"><div class="demo-spec__view" style="--h:300px;--dim:.35">
-<div class="mh-col mh-gap-2">
-  <div class="mh-crewcard mh-t-team1 is-selected">
-    <span class="mh-portrait"><i data-i="sniper"></i><span class="mh-portrait__badge"><i data-i="horse"></i></span></span>
-    <div class="mh-crewcard__main">
-      <div class="mh-crewcard__head"><b>Javier Escuella</b><span class="mh-badge mh-t-info">Keskin nişancı</span></div>
-      <div class="mh-crewcard__hp"><div class="mh-bar mh-t-health" data-v="72"><i class="mh-bar__fill"></i></div><span>360 / 500</span></div>
-      <div class="mh-crewcard__gear"><span><i data-weapon="sniper"></i>24</span><span><i data-i="horse"></i>Boaz · atta</span><span><i data-i="distance"></i>18 m</span></div>
+<div class="eui-col eui-gap-2">
+  <div class="eui-crewcard eui-t-team1 is-selected">
+    <span class="eui-portrait"><i data-i="sniper"></i><span class="eui-portrait__badge"><i data-i="horse"></i></span></span>
+    <div class="eui-crewcard__main">
+      <div class="eui-crewcard__head"><b>Javier Escuella</b><span class="eui-badge eui-t-info">Keskin nişancı</span></div>
+      <div class="eui-crewcard__hp"><div class="eui-bar eui-t-health" data-v="72"><i class="eui-bar__fill"></i></div><span>360 / 500</span></div>
+      <div class="eui-crewcard__gear"><span><i data-weapon="sniper"></i>24</span><span><i data-i="horse"></i>Boaz · atta</span><span><i data-i="distance"></i>18 m</span></div>
     </div>
   </div>
-  <div class="mh-crewcard mh-t-team1 is-down">
-    <span class="mh-portrait"><i data-i="fist"></i></span>
-    <div class="mh-crewcard__main">
-      <div class="mh-crewcard__head"><b>Bill Williamson</b><span class="mh-badge mh-badge--dot mh-badge--live mh-t-danger">Yerde</span></div>
-      <div class="mh-crewcard__hp"><div class="mh-bar mh-t-danger" data-v="8"><i class="mh-bar__fill"></i></div><span>40 / 500</span></div>
-      <div class="mh-crewcard__gear"><span><i data-i="fist"></i>Yumruk</span><span class="is-off"><i data-i="horse"></i>Yaya</span><span><i data-i="distance"></i>42 m</span></div>
+  <div class="eui-crewcard eui-t-team1 is-down">
+    <span class="eui-portrait"><i data-i="fist"></i></span>
+    <div class="eui-crewcard__main">
+      <div class="eui-crewcard__head"><b>Bill Williamson</b><span class="eui-badge eui-badge--dot eui-badge--live eui-t-danger">Yerde</span></div>
+      <div class="eui-crewcard__hp"><div class="eui-bar eui-t-danger" data-v="8"><i class="eui-bar__fill"></i></div><span>40 / 500</span></div>
+      <div class="eui-crewcard__gear"><span><i data-i="fist"></i>Yumruk</span><span class="is-off"><i data-i="horse"></i>Yaya</span><span><i data-i="distance"></i>42 m</span></div>
     </div>
   </div>
 </div>
     </div><div class="demo-spec__meta"><b>Üye kartı <code>crew.card</code></b><span>Can, elindeki silah ve mermi, binek (yoksa <code>.is-off</code>), mesafe. <code>is-selected</code>, <code>is-down</code> (portre nabız atar), <code>is-dead</code>.</span></div></div>
 
     <div class="demo-spec"><div class="demo-spec__view" style="--h:300px;--dim:.35">
-<div class="mh-flex" style="gap:10px">
-  <span class="mh-portrait mh-t-team1">AR</span>
-  <span class="mh-portrait mh-t-team2"><i data-i="medic"></i><span class="mh-portrait__badge"><i data-i="horse"></i></span></span>
-  <span class="mh-portrait mh-t-team3" style="--s:56px"><i data-i="cowboy"></i><span class="mh-portrait__badge"><i data-i="crown-f"></i></span></span>
-  <span class="mh-portrait mh-t-danger" style="--s:32px"><i data-i="outlaw"></i></span>
+<div class="eui-flex" style="gap:10px">
+  <span class="eui-portrait eui-t-team1">AR</span>
+  <span class="eui-portrait eui-t-team2"><i data-i="medic"></i><span class="eui-portrait__badge"><i data-i="horse"></i></span></span>
+  <span class="eui-portrait eui-t-team3" style="--s:56px"><i data-i="cowboy"></i><span class="eui-portrait__badge"><i data-i="crown-f"></i></span></span>
+  <span class="eui-portrait eui-t-danger" style="--s:32px"><i data-i="outlaw"></i></span>
 </div>
     </div><div class="demo-spec__meta"><b>Portre <code>crew.portrait</code></b><span>Kare alan: harf, rol ikonu ya da <code>&lt;img&gt;</code>; köşe rozeti binek/lider.</span></div></div>
 
     <div class="demo-spec"><div class="demo-spec__view" style="--h:240px;--dim:.35">
-<div class="mh-flex" style="gap:6px;flex-wrap:wrap;max-width:420px">
-  <span class="mh-badge mh-t-info"><i data-i="route"></i>Takip ediyor</span>
-  <span class="mh-badge mh-t-danger"><i data-i="crosshair"></i>Saldırıyor</span>
-  <span class="mh-badge mh-t-warn"><i data-i="hourglass"></i>Bekliyor</span>
-  <span class="mh-badge mh-t-warn"><i data-i="bandage"></i>Yaralı</span>
-  <span class="mh-badge mh-badge--dot mh-badge--live mh-t-danger">Yerde</span>
-  <span class="mh-badge mh-t-success"><i data-i="horse"></i>Atta</span>
-  <span class="mh-badge mh-t-success"><i data-i="car"></i>Araçta</span>
-  <span class="mh-badge mh-t-enemy"><i data-i="target"></i>Hedef işaretli</span>
+<div class="eui-flex" style="gap:6px;flex-wrap:wrap;max-width:420px">
+  <span class="eui-badge eui-t-info"><i data-i="route"></i>Takip ediyor</span>
+  <span class="eui-badge eui-t-danger"><i data-i="crosshair"></i>Saldırıyor</span>
+  <span class="eui-badge eui-t-warn"><i data-i="hourglass"></i>Bekliyor</span>
+  <span class="eui-badge eui-t-warn"><i data-i="bandage"></i>Yaralı</span>
+  <span class="eui-badge eui-badge--dot eui-badge--live eui-t-danger">Yerde</span>
+  <span class="eui-badge eui-t-success"><i data-i="horse"></i>Atta</span>
+  <span class="eui-badge eui-t-success"><i data-i="car"></i>Araçta</span>
+  <span class="eui-badge eui-t-enemy"><i data-i="target"></i>Hedef işaretli</span>
 </div>
     </div><div class="demo-spec__meta"><b>Durum rozetleri <code>crew.states</code></b><span>Takip, saldırı, bekleme, yaralı, yerde, atta/araçta, hedef işaretli.</span></div></div>
 
     <div class="demo-spec"><div class="demo-spec__view" style="--h:240px;--dim:.35">
-<div class="mh-flex" style="gap:8px">
-  <div class="mh-ringval mh-t-health" data-mh-ring style="--v:.86;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team1">N</span></div>
-  <div class="mh-ringval mh-t-health" data-mh-ring style="--v:.54;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team2">M</span></div>
-  <div class="mh-ringval mh-t-danger" data-mh-ring style="--v:.12;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team3">S</span></div>
+<div class="eui-flex" style="gap:8px">
+  <div class="eui-ringval eui-t-health" data-eui-ring style="--v:.86;width:40px;height:40px"><span class="eui-avatar eui-avatar--sm eui-t-team1">N</span></div>
+  <div class="eui-ringval eui-t-health" data-eui-ring style="--v:.54;width:40px;height:40px"><span class="eui-avatar eui-avatar--sm eui-t-team2">M</span></div>
+  <div class="eui-ringval eui-t-danger" data-eui-ring style="--v:.12;width:40px;height:40px"><span class="eui-avatar eui-avatar--sm eui-t-team3">S</span></div>
 </div>
     </div><div class="demo-spec__meta"><b>Ekip halkaları <code>crew.squad-rings</code></b><span>Halkanın içindeki avatar artık yuvarlak: kare bir alan halkayla sarılmaz.</span></div></div>
 
@@ -130,26 +130,26 @@
   <div class="demo-h2"><h2>Üye ayrıntısı ve tablo</h2><p>Menüdeki "Ekibim" bölümü için</p></div>
   <div class="demo-specs" style="--cols:3">
     <div class="demo-spec"><div class="demo-spec__view" style="--h:640px;--dim:.35">
-<div class="mh-panel" style="padding:16px"><div class="mh-col mh-gap-3" style="width:300px">
-  <span class="mh-portrait mh-portrait--xl mh-t-team1" style="max-height:170px;aspect-ratio:16/10"><i data-i="sniper"></i></span>
-  <div><div class="mh-title mh-title--lg">Javier Escuella</div><div class="mh-sub">Keskin nişancı · ekipte 3 gün</div></div>
-  <div class="mh-statlines">
-    <div class="mh-statline"><span class="mh-kicker">Can</span><div class="mh-bar mh-t-health" data-v="72"><i class="mh-bar__fill"></i></div><b>360</b></div>
-    <div class="mh-statline"><span class="mh-kicker">Doğruluk</span><div class="mh-bar" data-v="88"><i class="mh-bar__fill"></i></div><b>88</b></div>
-    <div class="mh-statline"><span class="mh-kicker">Cesaret</span><div class="mh-bar" data-v="64"><i class="mh-bar__fill"></i></div><b>64</b></div>
+<div class="eui-panel" style="padding:16px"><div class="eui-col eui-gap-3" style="width:300px">
+  <span class="eui-portrait eui-portrait--xl eui-t-team1" style="max-height:170px;aspect-ratio:16/10"><i data-i="sniper"></i></span>
+  <div><div class="eui-title eui-title--lg">Javier Escuella</div><div class="eui-sub">Keskin nişancı · ekipte 3 gün</div></div>
+  <div class="eui-statlines">
+    <div class="eui-statline"><span class="eui-kicker">Can</span><div class="eui-bar eui-t-health" data-v="72"><i class="eui-bar__fill"></i></div><b>360</b></div>
+    <div class="eui-statline"><span class="eui-kicker">Doğruluk</span><div class="eui-bar" data-v="88"><i class="eui-bar__fill"></i></div><b>88</b></div>
+    <div class="eui-statline"><span class="eui-kicker">Cesaret</span><div class="eui-bar" data-v="64"><i class="eui-bar__fill"></i></div><b>64</b></div>
   </div>
-  <div class="mh-gearslots" style="--cols:3"><div class="mh-gearslot"><div class="mh-gearslot__art"><i data-weapon="sniper"></i></div><span>Silah</span><b>Rolling Block</b></div><div class="mh-gearslot"><div class="mh-gearslot__art"><i data-weapon="revolver"></i></div><span>Yan</span><b>Schofield</b></div><div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="horse"></i></div><span>Binek</span><b>Boaz</b></div></div>
-  <div class="mh-flex mh-gap-2"><button class="mh-btn mh-btn--primary mh-grow"><i data-i="horse"></i>Ata bindir</button><button class="mh-btn mh-btn--tone mh-t-danger"><i data-i="user-minus"></i>Kov</button></div>
+  <div class="eui-gearslots" style="--cols:3"><div class="eui-gearslot"><div class="eui-gearslot__art"><i data-weapon="sniper"></i></div><span>Silah</span><b>Rolling Block</b></div><div class="eui-gearslot"><div class="eui-gearslot__art"><i data-weapon="revolver"></i></div><span>Yan</span><b>Schofield</b></div><div class="eui-gearslot"><div class="eui-gearslot__art"><i data-i="horse"></i></div><span>Binek</span><b>Boaz</b></div></div>
+  <div class="eui-flex eui-gap-2"><button class="eui-btn eui-btn--primary eui-grow"><i data-i="horse"></i>Ata bindir</button><button class="eui-btn eui-btn--tone eui-t-danger"><i data-i="user-minus"></i>Kov</button></div>
 </div></div>
     </div><div class="demo-spec__meta"><b>Üye ayrıntısı <code>crew.detail</code></b><span>Büyük kare portre, can/doğruluk/cesaret, silah-yan silah-binek yuvaları, eylemler.</span></div></div>
 
     <div class="demo-spec demo-spec--2"><div class="demo-spec__view" style="--h:640px;--dim:.35">
-<div class="mh-panel" style="padding:12px"><table class="mh-table" style="width:620px">
+<div class="eui-panel" style="padding:12px"><table class="eui-table" style="width:620px">
   <thead><tr><th>Üye</th><th>Rol</th><th>Can</th><th>Silah</th><th>Binek</th><th class="r">Durum</th></tr></thead>
   <tbody>
-    <tr class="is-self"><td><div class="mh-flex mh-gap-2"><span class="mh-portrait mh-t-team1" style="--s:28px"><i data-i="medic"></i></span>Sadie Adler</div></td><td>Sağlıkçı</td><td><div class="mh-flex mh-gap-2"><div class="mh-bar mh-t-health" data-v="92" style="width:70px"><i class="mh-bar__fill"></i></div><span class="mh-num">460</span></div></td><td><i data-i="revolver"></i></td><td><i data-i="horse"></i></td><td class="r"><span class="mh-badge mh-t-info">Takipte</span></td></tr>
-    <tr><td><div class="mh-flex mh-gap-2"><span class="mh-portrait mh-t-team1" style="--s:28px"><i data-i="rifle"></i></span>Charles Smith</div></td><td>Atlı tüfekçi</td><td><div class="mh-flex mh-gap-2"><div class="mh-bar mh-t-health" data-v="54" style="width:70px"><i class="mh-bar__fill"></i></div><span class="mh-num">270</span></div></td><td><i data-i="rifle"></i></td><td><i data-i="horse"></i></td><td class="r"><span class="mh-badge mh-t-danger">Saldırıyor</span></td></tr>
-    <tr><td><div class="mh-flex mh-gap-2"><span class="mh-portrait mh-t-team1" style="--s:28px"><i data-i="fist"></i></span>Bill Williamson</div></td><td>Yumrukçu</td><td><div class="mh-flex mh-gap-2"><div class="mh-bar mh-t-danger" data-v="8" style="width:70px"><i class="mh-bar__fill"></i></div><span class="mh-num">40</span></div></td><td><i data-i="fist"></i></td><td>—</td><td class="r"><span class="mh-badge mh-badge--dot mh-badge--live mh-t-danger">Yerde</span></td></tr>
+    <tr class="is-self"><td><div class="eui-flex eui-gap-2"><span class="eui-portrait eui-t-team1" style="--s:28px"><i data-i="medic"></i></span>Sadie Adler</div></td><td>Sağlıkçı</td><td><div class="eui-flex eui-gap-2"><div class="eui-bar eui-t-health" data-v="92" style="width:70px"><i class="eui-bar__fill"></i></div><span class="eui-num">460</span></div></td><td><i data-i="revolver"></i></td><td><i data-i="horse"></i></td><td class="r"><span class="eui-badge eui-t-info">Takipte</span></td></tr>
+    <tr><td><div class="eui-flex eui-gap-2"><span class="eui-portrait eui-t-team1" style="--s:28px"><i data-i="rifle"></i></span>Charles Smith</div></td><td>Atlı tüfekçi</td><td><div class="eui-flex eui-gap-2"><div class="eui-bar eui-t-health" data-v="54" style="width:70px"><i class="eui-bar__fill"></i></div><span class="eui-num">270</span></div></td><td><i data-i="rifle"></i></td><td><i data-i="horse"></i></td><td class="r"><span class="eui-badge eui-t-danger">Saldırıyor</span></td></tr>
+    <tr><td><div class="eui-flex eui-gap-2"><span class="eui-portrait eui-t-team1" style="--s:28px"><i data-i="fist"></i></span>Bill Williamson</div></td><td>Yumrukçu</td><td><div class="eui-flex eui-gap-2"><div class="eui-bar eui-t-danger" data-v="8" style="width:70px"><i class="eui-bar__fill"></i></div><span class="eui-num">40</span></div></td><td><i data-i="fist"></i></td><td>—</td><td class="r"><span class="eui-badge eui-badge--dot eui-badge--live eui-t-danger">Yerde</span></td></tr>
   </tbody>
 </table></div>
     </div><div class="demo-spec__meta"><b>Ekip tablosu <code>crew.roster</code></b><span>Kare portre + ad, rol, can (bar + sayı), silah, binek, durum. Mağaza sayfasındaki Posse menüsünde canlı.</span></div></div>
@@ -158,92 +158,92 @@
   <div class="demo-h2"><h2>Ekipman</h2><p>Teçhizat ve kıyafet yuvaları, silah bakımı, mermi türleri, karşılaştırma</p></div>
   <div class="demo-specs" style="--cols:2">
     <div class="demo-spec demo-spec--full"><div class="demo-spec__view" style="--h:240px;--dim:.35">
-<div class="mh-panel" style="padding:14px"><div class="mh-gearslots" style="--cols:4;width:440px">
-  <div class="mh-gearslot is-active"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-weapon="repeater"></i></div><span>Birincil</span><b>Lancaster tüfek</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-weapon="revolver"></i></div><span>İkincil</span><b>Cattleman</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-i="knife"></i></div><span>Yakın</span><b>Av bıçağı</b></div>
-  <div class="mh-gearslot is-empty"><div class="mh-gearslot__art" style="--ratio:16/10"><i data-i="dynamite"></i></div><span>Atılabilir</span><b>Boş</b></div>
+<div class="eui-panel" style="padding:14px"><div class="eui-gearslots" style="--cols:4;width:440px">
+  <div class="eui-gearslot is-active"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-weapon="repeater"></i></div><span>Birincil</span><b>Lancaster tüfek</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-weapon="revolver"></i></div><span>İkincil</span><b>Cattleman</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-i="knife"></i></div><span>Yakın</span><b>Av bıçağı</b></div>
+  <div class="eui-gearslot is-empty"><div class="eui-gearslot__art" style="--ratio:16/10"><i data-i="dynamite"></i></div><span>Atılabilir</span><b>Boş</b></div>
 </div></div>
-    </div><div class="demo-spec__meta"><b>Teçhizat yuvaları <code>gear.loadout-slots</code></b><span><code>.mh-gearslot</code>: sabit oranlı görsel (<code>--ratio</code>), etiket, ad; <code>is-active</code>, <code>is-empty</code>.</span></div></div>
+    </div><div class="demo-spec__meta"><b>Teçhizat yuvaları <code>gear.loadout-slots</code></b><span><code>.eui-gearslot</code>: sabit oranlı görsel (<code>--ratio</code>), etiket, ad; <code>is-active</code>, <code>is-empty</code>.</span></div></div>
 
     <div class="demo-spec"><div class="demo-spec__view" style="--h:240px;--dim:.35">
-<div class="mh-panel" style="padding:14px"><div class="mh-gearslots" style="--cols:4;width:360px">
-  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="hat"></i></div><span>Şapka</span><b>Kovboy</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="shield"></i></div><span>Yelek</span><b>Deri yelek</b></div>
-  <div class="mh-gearslot"><div class="mh-gearslot__art"><i data-i="backpack"></i></div><span>Çanta</span><b>Heybe</b></div>
-  <div class="mh-gearslot is-empty"><div class="mh-gearslot__art"><i data-i="horseshoe"></i></div><span>Eyer</span><b>Yok</b></div>
+<div class="eui-panel" style="padding:14px"><div class="eui-gearslots" style="--cols:4;width:360px">
+  <div class="eui-gearslot"><div class="eui-gearslot__art"><i data-i="hat"></i></div><span>Şapka</span><b>Kovboy</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art"><i data-i="shield"></i></div><span>Yelek</span><b>Deri yelek</b></div>
+  <div class="eui-gearslot"><div class="eui-gearslot__art"><i data-i="backpack"></i></div><span>Çanta</span><b>Heybe</b></div>
+  <div class="eui-gearslot is-empty"><div class="eui-gearslot__art"><i data-i="horseshoe"></i></div><span>Eyer</span><b>Yok</b></div>
 </div></div>
     </div><div class="demo-spec__meta"><b>Kıyafet ve binek yuvaları <code>gear.outfit</code></b><span>Kare yuvalar: şapka, yelek, çanta, eyer.</span></div></div>
 
     <div class="demo-spec"><div class="demo-spec__view" style="--h:240px;--dim:.35">
-<div class="mh-panel" style="padding:14px"><div class="mh-col mh-gap-3">
-  <div class="mh-condition"><i data-i="wrench"></i><b>Lancaster tüfek</b><small>%86</small><div class="mh-bar mh-t-success" data-v="86"><i class="mh-bar__fill"></i></div></div>
-  <div class="mh-condition"><i data-i="wrench"></i><b>Cattleman · kirli</b><small>%34</small><div class="mh-bar mh-t-warn" data-v="34"><i class="mh-bar__fill"></i></div></div>
+<div class="eui-panel" style="padding:14px"><div class="eui-col eui-gap-3">
+  <div class="eui-condition"><i data-i="wrench"></i><b>Lancaster tüfek</b><small>%86</small><div class="eui-bar eui-t-success" data-v="86"><i class="eui-bar__fill"></i></div></div>
+  <div class="eui-condition"><i data-i="wrench"></i><b>Cattleman · kirli</b><small>%34</small><div class="eui-bar eui-t-warn" data-v="34"><i class="eui-bar__fill"></i></div></div>
 </div></div>
-    </div><div class="demo-spec__meta"><b>Silah bakımı <code>gear.condition</code></b><span>Kir/aşınma barı; düşükse <code>mh-t-warn</code>.</span></div></div>
+    </div><div class="demo-spec__meta"><b>Silah bakımı <code>gear.condition</code></b><span>Kir/aşınma barı; düşükse <code>eui-t-warn</code>.</span></div></div>
 
     <div class="demo-spec"><div class="demo-spec__view" style="--h:240px;--dim:.35">
-<div class="mh-panel" style="padding:10px"><div class="mh-ammotypes">
-  <div class="mh-ammotype is-active"><i data-i="bullets"></i><span>Normal</span><small>142</small></div>
-  <div class="mh-ammotype"><i data-i="bolt"></i><span>Hızlı</span><small>36</small></div>
-  <div class="mh-ammotype"><i data-i="flame"></i><span>Ateşli</span><small>12</small></div>
-  <div class="mh-ammotype is-empty"><i data-i="poison"></i><span>Zehirli</span><small>0</small></div>
+<div class="eui-panel" style="padding:10px"><div class="eui-ammotypes">
+  <div class="eui-ammotype is-active"><i data-i="bullets"></i><span>Normal</span><small>142</small></div>
+  <div class="eui-ammotype"><i data-i="bolt"></i><span>Hızlı</span><small>36</small></div>
+  <div class="eui-ammotype"><i data-i="flame"></i><span>Ateşli</span><small>12</small></div>
+  <div class="eui-ammotype is-empty"><i data-i="poison"></i><span>Zehirli</span><small>0</small></div>
 </div></div>
     </div><div class="demo-spec__meta"><b>Mermi türleri <code>gear.ammo-types</code></b><span>Seçili tür <code>is-active</code>, tükenen <code>is-empty</code>.</span></div></div>
 
     <div class="demo-spec"><div class="demo-spec__view" style="--h:240px;--dim:.35">
-<div class="mh-panel" style="padding:14px"><div class="mh-statlines" style="width:300px">
-  <div class="mh-statline"><span class="mh-kicker">Hasar</span><div class="mh-bar" data-v="58"><i class="mh-bar__gain" style="--g:.74"></i><i class="mh-bar__fill"></i></div><b>74</b></div>
-  <div class="mh-statline"><span class="mh-kicker">Menzil</span><div class="mh-bar" data-v="62"><i class="mh-bar__gain" style="--g:.81"></i><i class="mh-bar__fill"></i></div><b>81</b></div>
-  <div class="mh-statline"><span class="mh-kicker">Atış hızı</span><div class="mh-bar" data-v="44"><i class="mh-bar__fill"></i></div><b>44</b></div>
-  <div class="mh-statline"><span class="mh-kicker">Doldurma</span><div class="mh-bar" data-v="38"><i class="mh-bar__fill"></i></div><b>38</b></div>
+<div class="eui-panel" style="padding:14px"><div class="eui-statlines" style="width:300px">
+  <div class="eui-statline"><span class="eui-kicker">Hasar</span><div class="eui-bar" data-v="58"><i class="eui-bar__gain" style="--g:.74"></i><i class="eui-bar__fill"></i></div><b>74</b></div>
+  <div class="eui-statline"><span class="eui-kicker">Menzil</span><div class="eui-bar" data-v="62"><i class="eui-bar__gain" style="--g:.81"></i><i class="eui-bar__fill"></i></div><b>81</b></div>
+  <div class="eui-statline"><span class="eui-kicker">Atış hızı</span><div class="eui-bar" data-v="44"><i class="eui-bar__fill"></i></div><b>44</b></div>
+  <div class="eui-statline"><span class="eui-kicker">Doldurma</span><div class="eui-bar" data-v="38"><i class="eui-bar__fill"></i></div><b>38</b></div>
 </div></div>
-    </div><div class="demo-spec__meta"><b>Silah karşılaştırma <code>gear.compare</code></b><span>Yeşil kısım satın alınacak silahın artışı (<code>.mh-bar__gain</code>, <code>--g</code>).</span></div></div>
+    </div><div class="demo-spec__meta"><b>Silah karşılaştırma <code>gear.compare</code></b><span>Yeşil kısım satın alınacak silahın artışı (<code>.eui-bar__gain</code>, <code>--g</code>).</span></div></div>
 
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
-  var rows = function () { return document.querySelectorAll('#crewlist .mh-crewrow'); };
-  var tiles = function () { return document.querySelectorAll('#tiles .mh-crewtile'); };
+  var rows = function () { return document.querySelectorAll('#crewlist .eui-crewrow'); };
+  var tiles = function () { return document.querySelectorAll('#tiles .eui-crewtile'); };
   function setHp(i, v) {
     var r = rows()[i], t = tiles()[i]; v = Math.max(0, Math.min(100, v));
     [r, t].forEach(function (el) {
-      var b = el.querySelector('.mh-bar'); MH.bar(b, v);
-      b.classList.toggle('mh-t-health', v > 15); b.classList.toggle('mh-t-danger', v <= 15);
+      var b = el.querySelector('.eui-bar'); EUI.bar(b, v);
+      b.classList.toggle('eui-t-health', v > 15); b.classList.toggle('eui-t-danger', v <= 15);
       el.classList.toggle('is-down', v > 0 && v <= 15);
-      var st = el.querySelector('.mh-crewtile__state'); if (st) st.remove();
-      if (el.classList.contains('mh-crewtile') && v <= 15) el.querySelector('.mh-portrait').insertAdjacentHTML('beforeend', '<span class="mh-crewtile__state">' + MH.icon('heartbeat') + '</span>');
+      var st = el.querySelector('.eui-crewtile__state'); if (st) st.remove();
+      if (el.classList.contains('eui-crewtile') && v <= 15) el.querySelector('.eui-portrait').insertAdjacentHTML('beforeend', '<span class="eui-crewtile__state">' + EUI.icon('heartbeat') + '</span>');
     });
   }
   var hp = [92, 72, 54, 66, 100];
   Demo.on('[data-act]', function () {
     var a = this.getAttribute('data-act');
     if (a === 'hurt') { var i = Math.floor(Math.random() * 5); hp[i] = Math.max(16, hp[i] - Demo.rand(10, 35)); setHp(i, hp[i]); }
-    if (a === 'down') { var j = Math.floor(Math.random() * 5); hp[j] = 8; setHp(j, 8); MH.toast({ tone: 'danger', icon: 'heartbeat', title: rows()[j].querySelector('.mh-crewrow__name').textContent + ' yerde', text: 'Sağlıkçı yolda', duration: 2400 }); }
+    if (a === 'down') { var j = Math.floor(Math.random() * 5); hp[j] = 8; setHp(j, 8); EUI.toast({ tone: 'danger', icon: 'heartbeat', title: rows()[j].querySelector('.eui-crewrow__name').textContent + ' yerde', text: 'Sağlıkçı yolda', duration: 2400 }); }
     if (a === 'heal') { hp.forEach(function (v, k) { if (v <= 15) { hp[k] = 60; setHp(k, 60); } }); }
     if (a === 'mark') {
       var m = document.getElementById('marks');
-      m.insertAdjacentHTML('beforeend', '<div class="mh-crewrow mh-t-enemy" style="margin-top:4px"><span class="mh-portrait">' + MH.icon('target') + '</span><span class="mh-crewrow__name">' + Demo.pick(['Kanun kaçağı', 'Lemoyne akıncısı', 'Kiralık silahşor', 'Pinkerton ajanı']) + '</span><span class="mh-crewrow__icons">' + Math.round(Demo.rand(20, 90)) + 'm</span><div class="mh-bar mh-t-enemy" data-v="100"><i class="mh-bar__fill"></i></div></div>');
-      MH.mount(m.lastElementChild);
+      m.insertAdjacentHTML('beforeend', '<div class="eui-crewrow eui-t-enemy" style="margin-top:4px"><span class="eui-portrait">' + EUI.icon('target') + '</span><span class="eui-crewrow__name">' + Demo.pick(['Kanun kaçağı', 'Lemoyne akıncısı', 'Kiralık silahşor', 'Pinkerton ajanı']) + '</span><span class="eui-crewrow__icons">' + Math.round(Demo.rand(20, 90)) + 'm</span><div class="eui-bar eui-t-enemy" data-v="100"><i class="eui-bar__fill"></i></div></div>');
+      EUI.mount(m.lastElementChild);
       document.getElementById('markcount').textContent = m.children.length;
     }
     if (a === 'dismount') {
       var off = document.getElementById('mount').classList.toggle('is-off');
       document.getElementById('mount-state').textContent = off ? 'Yaya' : 'Binmiş';
-      document.querySelectorAll('#crewlist .mh-crewrow__icons [class*="mh-i"]').forEach(function (n, k) { if (k % 2) n.classList.toggle('is-on', !off); });
+      document.querySelectorAll('#crewlist .eui-crewrow__icons [class*="eui-i"]').forEach(function (n, k) { if (k % 2) n.classList.toggle('is-on', !off); });
     }
   });
   document.getElementById('orders').addEventListener('click', function (e) {
-    var b = e.target.closest('.mh-order'); if (!b) return;
-    this.querySelectorAll('.mh-order').forEach(function (x) { x.classList.toggle('is-active', x === b); });
+    var b = e.target.closest('.eui-order'); if (!b) return;
+    this.querySelectorAll('.eui-order').forEach(function (x) { x.classList.toggle('is-active', x === b); });
     var atk = b.getAttribute('data-o') === 'attack';
     rows().forEach(function (r) { r.classList.toggle('is-attacking', atk); });
   });
-  var th = document.createElement('div'); th.className = 'mh-anchor mh-tc'; th.style.zIndex = 90;
-  th.innerHTML = '<div class="mh-toasts" data-mh="toasts"></div>'; document.getElementById('screen').appendChild(th);
+  var th = document.createElement('div'); th.className = 'eui-anchor eui-tc'; th.style.zIndex = 90;
+  th.innerHTML = '<div class="eui-toasts" data-eui="toasts"></div>'; document.getElementById('screen').appendChild(th);
 </script>
 </body>
 </html>

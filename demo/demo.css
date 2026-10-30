@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MHud sunum kabuğu — YALNIZCA tarayıcı önizlemesi içindir.
+   Ember UI sunum kabuğu — YALNIZCA tarayıcı önizlemesi içindir.
    Oyun resource'una taşınmaz. Kitten bağımsız, nötr bir görünümü vardır.
    Yerleşim: sol gezinme (sunumlar + bileşenler) · içerik · sağ görünüm paneli.
    ========================================================================== */
@@ -15,8 +15,8 @@
   --d-text-2: #a2a8b3;
   --d-text-3: #6b717c;
   --d-accent: #f5b83d;
-  --d-font: 'MH Inter', 'Segoe UI', system-ui, sans-serif;
-  --d-mono: 'MH Mono', Consolas, monospace;
+  --d-font: 'EUI Inter', 'Segoe UI', system-ui, sans-serif;
+  --d-mono: 'EUI Mono', Consolas, monospace;
   --d-side: 272px;
   --d-aside: 288px;
   --d-top: 56px;
@@ -27,7 +27,7 @@ body.demo.demo-noaside { padding-right: 0; }
 body.demo *, body.demo *::before, body.demo *::after { box-sizing: border-box; }
 .demo a { color: inherit; }
 .demo-side, .demo-aside, .demo-top { font-family: var(--d-font); }
-.demo-side .mh-i, .demo-aside .mh-i, .demo-top .mh-i, .demo-pager .mh-i, .demo-home .mh-i { width: 16px; height: 16px; flex: none; }
+.demo-side .eui-i, .demo-aside .eui-i, .demo-top .eui-i, .demo-pager .eui-i, .demo-home .eui-i { width: 16px; height: 16px; flex: none; }
 .demo-side ::-webkit-scrollbar, .demo-aside ::-webkit-scrollbar { width: 6px; }
 .demo-side, .demo-aside { scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / .12) transparent; }
 
@@ -55,10 +55,10 @@ body.demo .demo-search input { flex: 1; min-width: 0; height: 100%; border: 0; o
 body.demo .demo-sec__head { display: flex; align-items: center; gap: 9px; width: 100%; height: 34px; padding: 0 8px; border: 0; border-radius: 7px; background: none; color: var(--d-text); font: 650 12px var(--d-font); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; text-align: left; }
 body.demo .demo-sec__head:hover { background: rgb(255 255 255 / .03); }
 .demo-sec__icon { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 6px; background: rgb(245 184 61 / .12); color: var(--d-accent); }
-.demo-sec__icon .mh-i { width: 13px !important; height: 13px !important; }
+.demo-sec__icon .eui-i { width: 13px !important; height: 13px !important; }
 .demo-sec__count { margin-left: auto; font: 600 10.5px var(--d-mono); color: var(--d-text-3); letter-spacing: 0; }
 .demo-sec__chev { color: var(--d-text-3); transition: transform .3s cubic-bezier(.2, .7, .2, 1); }
-.demo-sec__chev .mh-i { width: 14px !important; height: 14px !important; }
+.demo-sec__chev .eui-i { width: 14px !important; height: 14px !important; }
 .demo-sec.is-closed .demo-sec__chev { transform: rotate(-90deg); }
 .demo-sec__body { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .32s cubic-bezier(.2, .7, .2, 1), opacity .24s ease; }
 .demo-sec__inner { min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 2px; padding: 4px 0; transition: transform .32s cubic-bezier(.2, .7, .2, 1), padding .32s cubic-bezier(.2, .7, .2, 1); }
@@ -75,8 +75,8 @@ body.demo .demo-sec__head:hover { background: rgb(255 255 255 / .03); }
 .demo-nav a:hover { background: rgb(255 255 255 / .04); color: var(--d-text); }
 .demo-nav a.is-active { background: rgb(255 255 255 / .07); color: var(--d-text); }
 .demo-nav a.is-active::before { content: ""; position: absolute; left: -14px; top: 7px; bottom: 7px; width: 3px; border-radius: 0 3px 3px 0; background: var(--d-accent); }
-.demo-nav a .mh-i { color: var(--d-text-3); }
-.demo-nav a.is-active .mh-i { color: var(--d-accent); }
+.demo-nav a .eui-i { color: var(--d-text-3); }
+.demo-nav a.is-active .eui-i { color: var(--d-accent); }
 .demo-nav a small { margin-left: auto; font: 500 10.5px var(--d-mono); color: var(--d-text-3); }
 .demo-side.is-searching .demo-sec__body { grid-template-rows: 1fr; opacity: 1; }
 .demo-side.is-searching .demo-sec__inner { transform: none; }
@@ -84,7 +84,7 @@ body.demo .demo-sec__head:hover { background: rgb(255 255 255 / .03); }
 .demo-side__foot { margin-top: auto; display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 4px 0; border-top: 1px solid var(--d-line); }
 .demo-side__foot a { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 6px; font-size: 12px; color: var(--d-text-3); text-decoration: none; }
 .demo-side__foot a:hover { color: var(--d-text); background: rgb(255 255 255 / .04); }
-.demo-side__foot .mh-i { width: 14px !important; height: 14px !important; }
+.demo-side__foot .eui-i { width: 14px !important; height: 14px !important; }
 
 /* ---------- Üst çubuk ---------- */
 .demo-top {
@@ -157,7 +157,7 @@ body.demo .demo-switch.is-on::after { transform: translateX(16px); }
 .demo-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .demo-chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 20px; background: rgb(255 255 255 / .05); box-shadow: inset 0 0 0 1px var(--d-line); font-size: 12px; color: var(--d-text-2); text-decoration: none; }
 a.demo-chip:hover { color: var(--d-text); background: rgb(255 255 255 / .08); }
-.demo-chip .mh-i { width: 13px; height: 13px; }
+.demo-chip .eui-i { width: 13px; height: 13px; }
 .demo-chip b { color: var(--d-text); font-weight: 600; }
 
 .demo-h2 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; margin: 56px 0 16px; }
@@ -172,8 +172,8 @@ a.demo-chip:hover { color: var(--d-text); background: rgb(255 255 255 / .08); }
 }
 .demo-canvas { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
 .demo-scene { position: absolute; inset: 0; background: var(--demo-scene) center / cover no-repeat; }
-.demo-stage .mh-screen { position: absolute; inset: 0; }
-.demo-stage .mh-screen, .demo-spec__view { font-family: var(--mh-font-ui); color: var(--mh-text); font-size: var(--mh-fs-md); line-height: 1.4; }
+.demo-stage .eui-screen { position: absolute; inset: 0; }
+.demo-stage .eui-screen, .demo-spec__view { font-family: var(--eui-font-ui); color: var(--eui-text); font-size: var(--eui-fs-md); line-height: 1.4; }
 .demo-stage__badge { opacity: 0; transition: opacity .2s; position: absolute; right: 10px; bottom: 10px; z-index: 200; padding: 3px 8px; border-radius: 5px; font: 600 11px var(--d-mono); color: rgb(255 255 255 / .7); background: rgb(0 0 0 / .5); pointer-events: none; }
 .demo-stage:hover .demo-stage__badge { opacity: 1; }
 .demo-stage.is-fullscreen { border-radius: 0; }
@@ -183,12 +183,12 @@ a.demo-chip:hover { color: var(--d-text); background: rgb(255 255 255 / .08); }
 .demo-actions__label { font-size: 12px; color: var(--d-text-3); margin-right: 6px; }
 body.demo .demo-btn { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 7px; border: 1px solid var(--d-line-2); background: var(--d-panel); color: var(--d-text-2); font: 500 12.5px var(--d-font); cursor: pointer; transition: all .12s; text-decoration: none; }
 body.demo .demo-btn:hover { color: var(--d-text); border-color: rgb(255 255 255 / .22); background: #171a20; }
-body.demo .demo-btn .mh-i { width: 15px; height: 15px; }
+body.demo .demo-btn .eui-i { width: 15px; height: 15px; }
 body.demo .demo-btn.is-active { color: var(--d-text); border-color: var(--d-text); }
 body.demo .demo-btn--accent { background: var(--d-accent); color: #160f02; border-color: transparent; font-weight: 600; }
 body.demo .demo-btn--accent:hover { background: #ffc85c; color: #160f02; }
 body.demo .demo-btn--sm { height: 26px; padding: 0 9px; font-size: 11.5px; gap: 5px; }
-body.demo .demo-btn--sm .mh-i { width: 13px; height: 13px; }
+body.demo .demo-btn--sm .eui-i { width: 13px; height: 13px; }
 .demo-sep { width: 1px; height: 20px; background: var(--d-line-2); margin: 0 4px; }
 
 /* ---------- Örnek kartları ---------- */
@@ -246,7 +246,7 @@ body[data-demo-cols="2"] .demo-spec--3 { grid-column: span 2; }
 .demo-card:hover { box-shadow: 0 0 0 1px rgb(255 255 255 / .2); transform: translateY(-2px); }
 .demo-card__top { display: flex; align-items: center; gap: 12px; }
 .demo-card__icon { width: 38px; height: 38px; flex: none; display: grid; place-items: center; border-radius: 9px; background: rgb(245 184 61 / .12); color: var(--d-accent); }
-.demo-card__icon .mh-i { width: 20px !important; height: 20px !important; }
+.demo-card__icon .eui-i { width: 20px !important; height: 20px !important; }
 .demo-card__icon--alt { background: rgb(80 170 255 / .12); color: #6db8ff; }
 .demo-card b { font-size: 15px; font-weight: 600; }
 .demo-card > span { font-size: 13px; color: var(--d-text-2); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
@@ -310,10 +310,10 @@ body[data-demo-cols="2"] .demo-spec--3 { grid-column: span 2; }
 }
 
 /* ---------- Katalog sayfaları (components/) ---------- */
-.demo-cat .mh-flex { flex-wrap: wrap; }
+.demo-cat .eui-flex { flex-wrap: wrap; }
 /* galeri kutusu: tam ekran parçalar kutunun içinde akar, giriş animasyonu oynamaz */
-.demo-cat .mh-dead, .demo-cat .mh-results { position: relative; inset: auto; width: auto; min-height: 360px; }
-.demo-cat .mh-modal { animation: none; }
-.demo-cat .mh-wprompt, .demo-cat .mh-context { position: relative; }
-.demo-cat .mh-minimap__map { background: linear-gradient(135deg, #3b4a3a, #27332a); }
+.demo-cat .eui-dead, .demo-cat .eui-results { position: relative; inset: auto; width: auto; min-height: 360px; }
+.demo-cat .eui-modal { animation: none; }
+.demo-cat .eui-wprompt, .demo-cat .eui-context { position: relative; }
+.demo-cat .eui-minimap__map { background: linear-gradient(135deg, #3b4a3a, #27332a); }
 .demo-src__box .demo-btn span { color: inherit; font-size: inherit; }

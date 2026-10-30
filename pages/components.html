@@ -3,36 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Temel bileşenler — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<title>Temel bileşenler — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 <style>
   .demo-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; width: 100%; }
-  .demo-sw { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; color: var(--mh-text-2); }
+  .demo-sw { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; color: var(--eui-text-2); }
   .demo-sw i { height: 44px; border-radius: 6px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08); background: rgb(var(--c)); }
-  .demo-sw code { font-family: var(--d-mono); font-size: 10.5px; color: var(--mh-text-3); }
+  .demo-sw code { font-family: var(--d-mono); font-size: 10.5px; color: var(--eui-text-3); }
   .demo-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; width: 100%; }
   .demo-icongroups { display: flex; flex-direction: column; gap: 22px; width: 100%; }
   .demo-icongroup h3 { display: flex; align-items: baseline; gap: 8px; margin: 0 0 10px; font: 600 13px var(--d-font); color: var(--d-text); }
   .demo-icongroup h3 small { font-weight: 500; color: var(--d-text-3); }
   .demo-iconsearch { width: 280px; }
-  .demo-icon { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 4px 10px; border-radius: 8px; background: rgb(255 255 255 / .02); font-family: var(--d-mono); font-size: 10.5px; color: var(--mh-text-3); cursor: copy; }
-  .demo-icon:hover { background: rgb(255 255 255 / .06); color: var(--mh-text); }
-  .demo-icon .mh-i { width: 24px; height: 24px; color: var(--mh-text); }
+  .demo-icon { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 4px 10px; border-radius: 8px; background: rgb(255 255 255 / .02); font-family: var(--d-mono); font-size: 10.5px; color: var(--eui-text-3); cursor: copy; }
+  .demo-icon:hover { background: rgb(255 255 255 / .06); color: var(--eui-text); }
+  .demo-icon .eui-i { width: 24px; height: 24px; color: var(--eui-text); }
   .demo-weapons { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; width: 100%; }
-  .demo-weapons div { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px 12px; border-radius: 8px; background: rgb(255 255 255 / .02); font-family: var(--d-mono); font-size: 11px; color: var(--mh-text-3); }
-  .demo-weapons .mh-weapon-art { width: 150px; height: 45px; color: var(--mh-text); }
+  .demo-weapons div { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px 12px; border-radius: 8px; background: rgb(255 255 255 / .02); font-family: var(--d-mono); font-size: 11px; color: var(--eui-text-3); }
+  .demo-weapons .eui-weapon-art { width: 150px; height: 45px; color: var(--eui-text); }
   .demo-type { display: flex; flex-direction: column; gap: 14px; width: 100%; }
   .demo-type > div { display: grid; grid-template-columns: 150px 1fr; align-items: baseline; gap: 20px; }
-  .demo-type code { font-family: var(--d-mono); font-size: 11px; color: var(--mh-text-3); }
+  .demo-type code { font-family: var(--d-mono); font-size: 11px; color: var(--eui-text-3); }
 </style>
 </head>
-<body class="mh">
+<body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Başlangıç</span>
     <h1>Temel bileşenler</h1>
-    <p>Kitin yapı taşları. Her şey <code>--mh-*</code> tokenlarından beslenir; tema değiştirince renk, yazı tipi, köşe ve süslemeler birlikte değişir. Ton sınıfları (<code>.mh-t-success</code>, <code>.mh-t-danger</code>, <code>.mh-t-team1</code>…) herhangi bir bileşene renk verir.</p>
+    <p>Kitin yapı taşları. Her şey <code>--eui-*</code> tokenlarından beslenir; tema değiştirince renk, yazı tipi, köşe ve süslemeler birlikte değişir. Ton sınıfları (<code>.eui-t-success</code>, <code>.eui-t-danger</code>, <code>.eui-t-team1</code>…) herhangi bir bileşene renk verir.</p>
   </header>
 
   <div class="demo-h2" style="margin-top:0"><h2>Renk tokenları</h2><p>Etkin temanın değerleri</p></div>
@@ -41,164 +41,164 @@
   <div class="demo-h2"><h2>Tipografi</h2><p>Ekran, arayüz, sayı ve etiket yazı tipleri</p></div>
   <div class="demo-specs" style="--cols:1"><div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain" style="--h:auto;padding:28px 32px">
     <div class="demo-type">
-      <div><code>.mh-title--xl</code><span class="mh-title mh-title--xl">Görev tamamlandı</span></div>
-      <div><code>.mh-title--lg</code><span class="mh-title mh-title--lg">Etkileşim menüsü</span></div>
-      <div><code>.mh-title</code><span class="mh-title">Konvoy baskını</span></div>
-      <div><code>.mh-kicker</code><span class="mh-kicker">Aktif görev · Bölüm 3</span></div>
-      <div><code>.mh-sub</code><span class="mh-sub">Paleto Körfezi'ne ulaş ve muhafızları etkisiz hale getir. ğüşıöç ĞÜŞİÖÇ</span></div>
-      <div><code>.mh-num</code><span class="mh-num" style="font-size:32px;font-weight:600">$1.204.900 · 24 / 180 · 01:24</span></div>
-      <div><code>.mh-mono</code><span class="mh-mono">!saldırı · 34 KTR 2026</span></div>
+      <div><code>.eui-title--xl</code><span class="eui-title eui-title--xl">Görev tamamlandı</span></div>
+      <div><code>.eui-title--lg</code><span class="eui-title eui-title--lg">Etkileşim menüsü</span></div>
+      <div><code>.eui-title</code><span class="eui-title">Konvoy baskını</span></div>
+      <div><code>.eui-kicker</code><span class="eui-kicker">Aktif görev · Bölüm 3</span></div>
+      <div><code>.eui-sub</code><span class="eui-sub">Paleto Körfezi'ne ulaş ve muhafızları etkisiz hale getir. ğüşıöç ĞÜŞİÖÇ</span></div>
+      <div><code>.eui-num</code><span class="eui-num" style="font-size:32px;font-weight:600">$1.204.900 · 24 / 180 · 01:24</span></div>
+      <div><code>.eui-mono</code><span class="eui-mono">!saldırı · 34 KTR 2026</span></div>
     </div>
   </div></div></div>
 
   <div class="demo-h2"><h2>Butonlar & tuşlar</h2></div>
   <div class="demo-specs">
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:240px;gap:12px">
-      <div class="mh-flex mh-gap-2 mh-wrap"><button class="mh-btn mh-btn--primary">Onayla</button><button class="mh-btn">Varsayılan</button><button class="mh-btn mh-btn--outline">Çerçeve</button><button class="mh-btn mh-btn--ghost">Hayalet</button></div>
-      <div class="mh-flex mh-gap-2 mh-wrap"><button class="mh-btn mh-btn--tone mh-t-success"><i data-i="cart"></i>Satın al</button><button class="mh-btn mh-btn--tone mh-t-danger"><i data-i="x"></i>Sil</button><button class="mh-btn" disabled>Kilitli</button></div>
-      <div class="mh-flex mh-gap-2 mh-wrap"><button class="mh-btn mh-btn--sm">Küçük</button><button class="mh-btn mh-btn--lg mh-btn--primary"><span class="mh-key mh-key--sm">E</span>Büyük</button><button class="mh-btn mh-btn--icon"><i data-i="settings"></i></button><button class="mh-btn mh-btn--hold mh-btn--outline" style="--p:.6">Basılı tut</button></div>
-    </div><div class="demo-spec__meta"><b>Buton</b><span><code>.mh-btn</code> + <code>--primary</code>, <code>--outline</code>, <code>--ghost</code>, <code>--tone</code>, <code>--sm</code>, <code>--lg</code>, <code>--icon</code>, <code>--hold</code> (<code>--p</code>)</span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:240px;gap:16px">
-      <div class="mh-flex mh-gap-2"><span class="mh-key">E</span><span class="mh-key">F5</span><span class="mh-key">TAB</span><span class="mh-key mh-key--lg">G</span><span class="mh-key mh-key--round">L</span><span class="mh-key mh-key--solid">ENTER</span><span class="mh-key mh-key--accent">Y</span><span class="mh-key"><i data-i="mouse"></i></span></div>
-      <div class="mh-hints"><span class="mh-hint"><span class="mh-key">E</span>Kapıyı aç</span><span class="mh-hint"><span class="mh-key">SHIFT</span><span class="mh-key">E</span>Zorla</span></div>
-      <div class="mh-hints"><span class="mh-hint"><span class="mh-key">↑</span><span class="mh-key">↓</span>Seç</span><span class="mh-hint"><span class="mh-key">ESC</span><b>Kapat</b></span></div>
-    </div><div class="demo-spec__meta"><b>Tuş kapakları & ipuçları</b><span><code>.mh-key</code> (<code>--sm</code>, <code>--lg</code>, <code>--round</code>, <code>--solid</code>, <code>--accent</code>), <code>.mh-hint</code>, <code>.mh-hints</code></span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:240px;gap:14px">
-      <div class="mh-seg" data-mh-seg="a"><button class="is-active">Hepsi</button><button>Dostlar</button><button>Takım</button><button>Düşman</button></div>
-      <div class="mh-flex mh-gap-2 mh-wrap" data-mh-seg="b"><button class="mh-chip is-active">Aktif</button><button class="mh-chip"><i data-i="rifle"></i>Silah</button><button class="mh-chip">Araç</button><button class="mh-chip">Kıyafet</button></div>
-      <div class="mh-tabs" data-mh-tabs="" style="width:100%"><button class="is-active">Silahlar</button><button>Askerler <span class="mh-count">3</span></button><button>Atlar</button></div>
-    </div><div class="demo-spec__meta"><b>Segment, çip, sekme</b><span><code>data-mh-seg</code> ve <code>data-mh-tabs</code> ile JS yazmadan çalışır.</span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:240px;gap:12px">
+      <div class="eui-flex eui-gap-2 eui-wrap"><button class="eui-btn eui-btn--primary">Onayla</button><button class="eui-btn">Varsayılan</button><button class="eui-btn eui-btn--outline">Çerçeve</button><button class="eui-btn eui-btn--ghost">Hayalet</button></div>
+      <div class="eui-flex eui-gap-2 eui-wrap"><button class="eui-btn eui-btn--tone eui-t-success"><i data-i="cart"></i>Satın al</button><button class="eui-btn eui-btn--tone eui-t-danger"><i data-i="x"></i>Sil</button><button class="eui-btn" disabled>Kilitli</button></div>
+      <div class="eui-flex eui-gap-2 eui-wrap"><button class="eui-btn eui-btn--sm">Küçük</button><button class="eui-btn eui-btn--lg eui-btn--primary"><span class="eui-key eui-key--sm">E</span>Büyük</button><button class="eui-btn eui-btn--icon"><i data-i="settings"></i></button><button class="eui-btn eui-btn--hold eui-btn--outline" style="--p:.6">Basılı tut</button></div>
+    </div><div class="demo-spec__meta"><b>Buton</b><span><code>.eui-btn</code> + <code>--primary</code>, <code>--outline</code>, <code>--ghost</code>, <code>--tone</code>, <code>--sm</code>, <code>--lg</code>, <code>--icon</code>, <code>--hold</code> (<code>--p</code>)</span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:240px;gap:16px">
+      <div class="eui-flex eui-gap-2"><span class="eui-key">E</span><span class="eui-key">F5</span><span class="eui-key">TAB</span><span class="eui-key eui-key--lg">G</span><span class="eui-key eui-key--round">L</span><span class="eui-key eui-key--solid">ENTER</span><span class="eui-key eui-key--accent">Y</span><span class="eui-key"><i data-i="mouse"></i></span></div>
+      <div class="eui-hints"><span class="eui-hint"><span class="eui-key">E</span>Kapıyı aç</span><span class="eui-hint"><span class="eui-key">SHIFT</span><span class="eui-key">E</span>Zorla</span></div>
+      <div class="eui-hints"><span class="eui-hint"><span class="eui-key">↑</span><span class="eui-key">↓</span>Seç</span><span class="eui-hint"><span class="eui-key">ESC</span><b>Kapat</b></span></div>
+    </div><div class="demo-spec__meta"><b>Tuş kapakları & ipuçları</b><span><code>.eui-key</code> (<code>--sm</code>, <code>--lg</code>, <code>--round</code>, <code>--solid</code>, <code>--accent</code>), <code>.eui-hint</code>, <code>.eui-hints</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:240px;gap:14px">
+      <div class="eui-seg" data-eui-seg="a"><button class="is-active">Hepsi</button><button>Dostlar</button><button>Takım</button><button>Düşman</button></div>
+      <div class="eui-flex eui-gap-2 eui-wrap" data-eui-seg="b"><button class="eui-chip is-active">Aktif</button><button class="eui-chip"><i data-i="rifle"></i>Silah</button><button class="eui-chip">Araç</button><button class="eui-chip">Kıyafet</button></div>
+      <div class="eui-tabs" data-eui-tabs="" style="width:100%"><button class="is-active">Silahlar</button><button>Askerler <span class="eui-count">3</span></button><button>Atlar</button></div>
+    </div><div class="demo-spec__meta"><b>Segment, çip, sekme</b><span><code>data-eui-seg</code> ve <code>data-eui-tabs</code> ile JS yazmadan çalışır.</span></div></div>
   </div>
 
   <div class="demo-h2"><h2>Rozet & kimlik</h2></div>
   <div class="demo-specs">
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:200px;gap:10px">
-      <div class="mh-flex mh-gap-2 mh-wrap" style="justify-content:center"><span class="mh-badge">Nötr</span><span class="mh-badge mh-t-accent">Vurgu</span><span class="mh-badge mh-t-success">Aktif</span><span class="mh-badge mh-t-danger">Banlı</span><span class="mh-badge mh-t-warn">Uyarı</span><span class="mh-badge mh-t-info">Yeni</span><span class="mh-badge mh-t-legendary">Efsanevi</span></div>
-      <div class="mh-flex mh-gap-2 mh-wrap" style="justify-content:center"><span class="mh-badge mh-badge--solid mh-t-accent">Seviye 42</span><span class="mh-badge mh-badge--pill mh-badge--dot mh-badge--live mh-t-danger">Canlı</span><span class="mh-badge mh-badge--pill mh-badge--dot mh-t-success">Çevrimiçi</span><span class="mh-count">3</span><span class="mh-onair">Yayında</span></div>
-    </div><div class="demo-spec__meta"><b>Rozet</b><span><code>.mh-badge</code> + ton sınıfı; <code>--solid</code>, <code>--pill</code>, <code>--dot</code>, <code>--live</code></span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:200px;gap:16px">
-      <div class="mh-flex mh-gap-2"><span class="mh-rank is-1">1</span><span class="mh-rank is-2">2</span><span class="mh-rank is-3">3</span><span class="mh-rank">12</span><span class="mh-avatar mh-avatar--sm">A</span><span class="mh-avatar mh-t-danger">N</span><span class="mh-avatar mh-avatar--lg mh-avatar--round mh-t-team1">K</span><span class="mh-avatar mh-avatar--round is-live mh-t-legendary">S</span></div>
-      <div class="mh-player"><span class="mh-avatar mh-t-accent">AR</span><div><div class="mh-player__name">Amiral Router</div><div class="mh-player__sub">Mavi takım · Seviye 42</div></div></div>
-    </div><div class="demo-spec__meta"><b>Sıra, avatar, oyuncu çipi</b><span><code>.mh-rank.is-1</code>, <code>.mh-avatar</code> (<code>--sm</code>, <code>--lg</code>, <code>--round</code>, <code>is-live</code>), <code>.mh-player</code></span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:200px;gap:18px">
-      <div class="mh-flex mh-gap-4"><span class="mh-spinner"></span><span class="mh-spinner mh-spinner--lg"></span><span class="mh-ping"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-mid"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-bad"><i></i><i></i><i></i><i></i></span></div>
-      <div class="mh-empty" style="padding:0"><i data-i="box"></i>Bu kategoride eşya yok</div>
-    </div><div class="demo-spec__meta"><b>Yükleniyor, ping, boş durum</b><span><code>.mh-spinner</code>, <code>.mh-ping</code>, <code>.mh-empty</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:200px;gap:10px">
+      <div class="eui-flex eui-gap-2 eui-wrap" style="justify-content:center"><span class="eui-badge">Nötr</span><span class="eui-badge eui-t-accent">Vurgu</span><span class="eui-badge eui-t-success">Aktif</span><span class="eui-badge eui-t-danger">Banlı</span><span class="eui-badge eui-t-warn">Uyarı</span><span class="eui-badge eui-t-info">Yeni</span><span class="eui-badge eui-t-legendary">Efsanevi</span></div>
+      <div class="eui-flex eui-gap-2 eui-wrap" style="justify-content:center"><span class="eui-badge eui-badge--solid eui-t-accent">Seviye 42</span><span class="eui-badge eui-badge--pill eui-badge--dot eui-badge--live eui-t-danger">Canlı</span><span class="eui-badge eui-badge--pill eui-badge--dot eui-t-success">Çevrimiçi</span><span class="eui-count">3</span><span class="eui-onair">Yayında</span></div>
+    </div><div class="demo-spec__meta"><b>Rozet</b><span><code>.eui-badge</code> + ton sınıfı; <code>--solid</code>, <code>--pill</code>, <code>--dot</code>, <code>--live</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:200px;gap:16px">
+      <div class="eui-flex eui-gap-2"><span class="eui-rank is-1">1</span><span class="eui-rank is-2">2</span><span class="eui-rank is-3">3</span><span class="eui-rank">12</span><span class="eui-avatar eui-avatar--sm">A</span><span class="eui-avatar eui-t-danger">N</span><span class="eui-avatar eui-avatar--lg eui-avatar--round eui-t-team1">K</span><span class="eui-avatar eui-avatar--round is-live eui-t-legendary">S</span></div>
+      <div class="eui-player"><span class="eui-avatar eui-t-accent">AR</span><div><div class="eui-player__name">Amiral Router</div><div class="eui-player__sub">Mavi takım · Seviye 42</div></div></div>
+    </div><div class="demo-spec__meta"><b>Sıra, avatar, oyuncu çipi</b><span><code>.eui-rank.is-1</code>, <code>.eui-avatar</code> (<code>--sm</code>, <code>--lg</code>, <code>--round</code>, <code>is-live</code>), <code>.eui-player</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:200px;gap:18px">
+      <div class="eui-flex eui-gap-4"><span class="eui-spinner"></span><span class="eui-spinner eui-spinner--lg"></span><span class="eui-ping"><i></i><i></i><i></i><i></i></span><span class="eui-ping is-mid"><i></i><i></i><i></i><i></i></span><span class="eui-ping is-bad"><i></i><i></i><i></i><i></i></span></div>
+      <div class="eui-empty" style="padding:0"><i data-i="box"></i>Bu kategoride eşya yok</div>
+    </div><div class="demo-spec__meta"><b>Yükleniyor, ping, boş durum</b><span><code>.eui-spinner</code>, <code>.eui-ping</code>, <code>.eui-empty</code></span></div></div>
   </div>
 
   <div class="demo-h2"><h2>Ölçerler</h2></div>
   <div class="demo-specs">
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:220px;gap:12px;align-items:stretch">
-      <div class="mh-bar mh-bar--xs mh-t-info" data-v="30"><i class="mh-bar__fill"></i></div>
-      <div class="mh-bar mh-t-success" data-v="55"><i class="mh-bar__fill"></i></div>
-      <div class="mh-bar mh-bar--md mh-bar--grad mh-t-legendary" data-v="70"><i class="mh-bar__fill"></i></div>
-      <div class="mh-bar mh-bar--lg mh-bar--notch mh-t-health" data-v="84" style="--notch:10"><i class="mh-bar__fill"></i></div>
-      <div class="mh-meter"><span class="mh-meter__label">Dayanıklılık</span><span></span><span class="mh-meter__value">64 / 100</span><div class="mh-bar mh-t-warn" data-v="64"><i class="mh-bar__fill"></i></div></div>
-    </div><div class="demo-spec__meta"><b>Bar</b><span><code>MH.bar(el, değer, { max, critical })</code>; boyutlar <code>--xs</code>…<code>--xl</code>, <code>--grad</code>, <code>--notch</code> (<code>--notch: 10</code>)</span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:220px;gap:12px;align-items:stretch">
+      <div class="eui-bar eui-bar--xs eui-t-info" data-v="30"><i class="eui-bar__fill"></i></div>
+      <div class="eui-bar eui-t-success" data-v="55"><i class="eui-bar__fill"></i></div>
+      <div class="eui-bar eui-bar--md eui-bar--grad eui-t-legendary" data-v="70"><i class="eui-bar__fill"></i></div>
+      <div class="eui-bar eui-bar--lg eui-bar--notch eui-t-health" data-v="84" style="--notch:10"><i class="eui-bar__fill"></i></div>
+      <div class="eui-meter"><span class="eui-meter__label">Dayanıklılık</span><span></span><span class="eui-meter__value">64 / 100</span><div class="eui-bar eui-t-warn" data-v="64"><i class="eui-bar__fill"></i></div></div>
+    </div><div class="demo-spec__meta"><b>Bar</b><span><code>EUI.bar(el, değer, { max, critical })</code>; boyutlar <code>--xs</code>…<code>--xl</code>, <code>--grad</code>, <code>--notch</code> (<code>--notch: 10</code>)</span></div></div>
     <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain" style="--h:220px;gap:22px">
-      <div data-mh-ring style="--v:.25;width:48px;height:48px" class="mh-t-danger"></div>
-      <div data-mh-ring style="--v:.6;width:48px;height:48px" class="mh-t-warn"></div>
-      <div data-mh-ring style="--v:.9;width:48px;height:48px" class="mh-t-success"></div>
-      <div data-mh-ring style="--v:.75;width:64px;height:64px;--sw:6"></div>
-    </div><div class="demo-spec__meta"><b>Halka</b><span><code>data-mh-ring</code> SVG halkası ekler; <code>MH.ring(el, 0..1)</code> ya da <code>--v</code>; kalınlık <code>--sw</code>.</span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:220px;gap:16px;align-items:stretch">
-      <div class="mh-pips mh-t-accent" data-pips="7/10"></div>
-      <div class="mh-pips mh-pips--tall mh-t-danger" data-pips="2/6"></div>
-      <div class="mh-pips mh-pips--tall mh-t-success" data-pips="12/12"></div>
-    </div><div class="demo-spec__meta"><b>Segment ölçer</b><span><code>MH.pips(el, dolu, toplam)</code> ya da <code>data-pips="7/10"</code></span></div></div>
+      <div data-eui-ring style="--v:.25;width:48px;height:48px" class="eui-t-danger"></div>
+      <div data-eui-ring style="--v:.6;width:48px;height:48px" class="eui-t-warn"></div>
+      <div data-eui-ring style="--v:.9;width:48px;height:48px" class="eui-t-success"></div>
+      <div data-eui-ring style="--v:.75;width:64px;height:64px;--sw:6"></div>
+    </div><div class="demo-spec__meta"><b>Halka</b><span><code>data-eui-ring</code> SVG halkası ekler; <code>EUI.ring(el, 0..1)</code> ya da <code>--v</code>; kalınlık <code>--sw</code>.</span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:220px;gap:16px;align-items:stretch">
+      <div class="eui-pips eui-t-accent" data-pips="7/10"></div>
+      <div class="eui-pips eui-pips--tall eui-t-danger" data-pips="2/6"></div>
+      <div class="eui-pips eui-pips--tall eui-t-success" data-pips="12/12"></div>
+    </div><div class="demo-spec__meta"><b>Segment ölçer</b><span><code>EUI.pips(el, dolu, toplam)</code> ya da <code>data-pips="7/10"</code></span></div></div>
   </div>
 
   <div class="demo-h2"><h2>Form kontrolleri</h2></div>
   <div class="demo-specs">
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:240px;gap:12px;align-items:stretch">
-      <label class="mh-field"><span class="mh-kicker">Oyuncu adı</span><input class="mh-input" value="Amiral Router"></label>
-      <div class="mh-input-wrap"><i data-i="search"></i><input class="mh-input" placeholder="Envanterde ara…"><span class="mh-key mh-key--sm">/</span></div>
-    </div><div class="demo-spec__meta"><b>Metin girişi</b><span><code>.mh-input</code>, ikonlu <code>.mh-input-wrap</code>, etiketli <code>.mh-field</code></span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:240px;gap:14px;align-items:flex-start">
-      <label class="mh-toggle"><input type="checkbox" checked><span class="mh-toggle__track"></span>İsim etiketleri</label>
-      <label class="mh-toggle"><input type="checkbox"><span class="mh-toggle__track"></span>Hasar sayıları</label>
-      <label class="mh-check"><input type="checkbox" checked><span class="mh-check__box"></span>Sesli sohbet</label>
-      <label class="mh-check mh-check--radio"><input type="radio" name="r" checked><span class="mh-check__box"></span>Sağ üst</label>
-    </div><div class="demo-spec__meta"><b>Anahtar, onay, seçenek</b><span><code>.mh-toggle</code>, <code>.mh-check</code>, <code>.mh-check--radio</code></span></div></div>
-    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col" style="--h:240px;gap:18px;align-items:stretch">
-      <div class="mh-flex mh-gap-3"><input type="range" class="mh-slider" min="0" max="100" value="64" data-out="#sv" data-unit="%"><b class="mh-num" id="sv" style="min-width:40px;text-align:right">64%</b></div>
-      <div class="mh-flex mh-between"><span class="mh-dim" style="font-size:13px">Zorluk</span><div class="mh-stepper" data-mh-stepper="Kolay|Normal|Zor|Kabus" data-index="1"></div></div>
-    </div><div class="demo-spec__meta"><b>Kaydırıcı & değer seçici</b><span><code>.mh-slider</code> (<code>data-out</code>), <code>data-mh-stepper="A|B|C"</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:240px;gap:12px;align-items:stretch">
+      <label class="eui-field"><span class="eui-kicker">Oyuncu adı</span><input class="eui-input" value="Amiral Router"></label>
+      <div class="eui-input-wrap"><i data-i="search"></i><input class="eui-input" placeholder="Envanterde ara…"><span class="eui-key eui-key--sm">/</span></div>
+    </div><div class="demo-spec__meta"><b>Metin girişi</b><span><code>.eui-input</code>, ikonlu <code>.eui-input-wrap</code>, etiketli <code>.eui-field</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:240px;gap:14px;align-items:flex-start">
+      <label class="eui-toggle"><input type="checkbox" checked><span class="eui-toggle__track"></span>İsim etiketleri</label>
+      <label class="eui-toggle"><input type="checkbox"><span class="eui-toggle__track"></span>Hasar sayıları</label>
+      <label class="eui-check"><input type="checkbox" checked><span class="eui-check__box"></span>Sesli sohbet</label>
+      <label class="eui-check eui-check--radio"><input type="radio" name="r" checked><span class="eui-check__box"></span>Sağ üst</label>
+    </div><div class="demo-spec__meta"><b>Anahtar, onay, seçenek</b><span><code>.eui-toggle</code>, <code>.eui-check</code>, <code>.eui-check--radio</code></span></div></div>
+    <div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col" style="--h:240px;gap:18px;align-items:stretch">
+      <div class="eui-flex eui-gap-3"><input type="range" class="eui-slider" min="0" max="100" value="64" data-out="#sv" data-unit="%"><b class="eui-num" id="sv" style="min-width:40px;text-align:right">64%</b></div>
+      <div class="eui-flex eui-between"><span class="eui-dim" style="font-size:13px">Zorluk</span><div class="eui-stepper" data-eui-stepper="Kolay|Normal|Zor|Kabus" data-index="1"></div></div>
+    </div><div class="demo-spec__meta"><b>Kaydırıcı & değer seçici</b><span><code>.eui-slider</code> (<code>data-out</code>), <code>data-eui-stepper="A|B|C"</code></span></div></div>
   </div>
 
   <div class="demo-h2"><h2>Panel & liste</h2></div>
   <div class="demo-specs">
     <div class="demo-spec"><div class="demo-spec__view" style="--h:280px">
-      <div class="mh-panel" style="width:300px">
-        <div class="mh-panel__head"><i data-i="flag" style="color:var(--mh-accent)"></i><span class="mh-kicker">Panel başlığı</span><span class="mh-badge mh-t-accent" style="margin-left:auto">Yeni</span></div>
-        <div class="mh-pad"><div class="mh-title">Başlık</div><p class="mh-sub" style="margin:6px 0 12px">Kısa açıklama metni burada.</p><div class="mh-rule"></div><p class="mh-sub" style="margin:12px 0 0">Ayırıcı temaya göre değişir.</p></div>
-        <div class="mh-panel__foot"><span class="mh-hint"><span class="mh-key mh-key--sm">E</span>Seç</span></div>
+      <div class="eui-panel" style="width:300px">
+        <div class="eui-panel__head"><i data-i="flag" style="color:var(--eui-accent)"></i><span class="eui-kicker">Panel başlığı</span><span class="eui-badge eui-t-accent" style="margin-left:auto">Yeni</span></div>
+        <div class="eui-pad"><div class="eui-title">Başlık</div><p class="eui-sub" style="margin:6px 0 12px">Kısa açıklama metni burada.</p><div class="eui-rule"></div><p class="eui-sub" style="margin:12px 0 0">Ayırıcı temaya göre değişir.</p></div>
+        <div class="eui-panel__foot"><span class="eui-hint"><span class="eui-key eui-key--sm">E</span>Seç</span></div>
       </div>
-    </div><div class="demo-spec__meta"><b>Panel</b><span><code>.mh-panel</code> (<code>--solid</code>, <code>--flat</code>, <code>--ghost</code>) + <code>__head</code>, <code>__foot</code>, <code>.mh-rule</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Panel</b><span><code>.eui-panel</code> (<code>--solid</code>, <code>--flat</code>, <code>--ghost</code>) + <code>__head</code>, <code>__foot</code>, <code>.eui-rule</code></span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:280px">
-      <div class="mh-panel mh-list" style="width:330px">
-        <div class="mh-row is-active"><span class="mh-row__icon"><i data-i="first-aid"></i></span><div class="mh-row__main"><span class="mh-row__title">İlk yardım</span><span class="mh-row__sub">Canı doldurur</span></div><div class="mh-row__meta mh-num">×3</div></div>
-        <div class="mh-row"><span class="mh-row__icon"><i data-i="shield"></i></span><div class="mh-row__main"><span class="mh-row__title">Ağır yelek</span><span class="mh-row__sub">Zırh +100</span></div><div class="mh-row__meta"><span class="mh-price mh-price--sm">$1.500</span></div></div>
-        <div class="mh-row is-disabled" style="border-bottom:0"><span class="mh-row__icon"><i data-i="lock"></i></span><div class="mh-row__main"><span class="mh-row__title">Kilitli</span><span class="mh-row__sub">Seviye 50</span></div></div>
+      <div class="eui-panel eui-list" style="width:330px">
+        <div class="eui-row is-active"><span class="eui-row__icon"><i data-i="first-aid"></i></span><div class="eui-row__main"><span class="eui-row__title">İlk yardım</span><span class="eui-row__sub">Canı doldurur</span></div><div class="eui-row__meta eui-num">×3</div></div>
+        <div class="eui-row"><span class="eui-row__icon"><i data-i="shield"></i></span><div class="eui-row__main"><span class="eui-row__title">Ağır yelek</span><span class="eui-row__sub">Zırh +100</span></div><div class="eui-row__meta"><span class="eui-price eui-price--sm">$1.500</span></div></div>
+        <div class="eui-row is-disabled" style="border-bottom:0"><span class="eui-row__icon"><i data-i="lock"></i></span><div class="eui-row__main"><span class="eui-row__title">Kilitli</span><span class="eui-row__sub">Seviye 50</span></div></div>
       </div>
-    </div><div class="demo-spec__meta"><b>Liste satırı</b><span><code>.mh-row</code> (<code>is-active</code>, <code>is-disabled</code>) + <code>__icon</code>, <code>__main</code>, <code>__meta</code>, <code>__price</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Liste satırı</b><span><code>.eui-row</code> (<code>is-active</code>, <code>is-disabled</code>) + <code>__icon</code>, <code>__main</code>, <code>__meta</code>, <code>__price</code></span></div></div>
     <div class="demo-spec"><div class="demo-spec__view" style="--h:280px">
-      <div class="mh-panel" style="width:340px">
-        <table class="mh-table"><thead><tr><th>#</th><th>Oyuncu</th><th class="r">Puan</th></tr></thead><tbody>
-          <tr><td><span class="mh-rank is-1">1</span></td><td>NabeMedia</td><td class="r mh-num">2.410</td></tr>
-          <tr class="is-self"><td><span class="mh-rank is-2">2</span></td><td>Amiral Router</td><td class="r mh-num">2.180</td></tr>
-          <tr class="is-dead"><td><span class="mh-rank is-3">3</span></td><td>MSK</td><td class="r mh-num">1.320</td></tr>
+      <div class="eui-panel" style="width:340px">
+        <table class="eui-table"><thead><tr><th>#</th><th>Oyuncu</th><th class="r">Puan</th></tr></thead><tbody>
+          <tr><td><span class="eui-rank is-1">1</span></td><td>NabeMedia</td><td class="r eui-num">2.410</td></tr>
+          <tr class="is-self"><td><span class="eui-rank is-2">2</span></td><td>Amiral Router</td><td class="r eui-num">2.180</td></tr>
+          <tr class="is-dead"><td><span class="eui-rank is-3">3</span></td><td>MSK</td><td class="r eui-num">1.320</td></tr>
         </tbody></table>
       </div>
-    </div><div class="demo-spec__meta"><b>Tablo</b><span><code>.mh-table</code> — <code>.r</code>/<code>.c</code> hizalama, <code>is-self</code>, <code>is-dead</code></span></div></div>
+    </div><div class="demo-spec__meta"><b>Tablo</b><span><code>.eui-table</code> — <code>.r</code>/<code>.c</code> hizalama, <code>is-self</code>, <code>is-dead</code></span></div></div>
   </div>
 
-  <div class="demo-h2"><h2>İkonlar</h2><p id="icon-count">Tıkla: adı panoya kopyalanır · <code>&lt;i data-i="ad"&gt;&lt;/i&gt;</code> veya <code>MH.icon('ad')</code></p></div>
-  <div class="demo-specs" style="--cols:1"><div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain mh-col mh-catch" style="--h:auto;padding:20px;align-items:stretch;gap:18px"><div class="mh-input-wrap demo-iconsearch"><i data-i="search"></i><input class="mh-input" id="icon-q" placeholder="İkon ara… (ör. silah, zombie, horse)"></div><div class="demo-icongroups" id="icons"></div></div></div></div>
+  <div class="demo-h2"><h2>İkonlar</h2><p id="icon-count">Tıkla: adı panoya kopyalanır · <code>&lt;i data-i="ad"&gt;&lt;/i&gt;</code> veya <code>EUI.icon('ad')</code></p></div>
+  <div class="demo-specs" style="--cols:1"><div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain eui-col eui-catch" style="--h:auto;padding:20px;align-items:stretch;gap:18px"><div class="eui-input-wrap demo-iconsearch"><i data-i="search"></i><input class="eui-input" id="icon-q" placeholder="İkon ara… (ör. silah, zombie, horse)"></div><div class="demo-icongroups" id="icons"></div></div></div></div>
 
-  <div class="demo-h2"><h2>Silah silüetleri</h2><p><code>&lt;i data-weapon="ad"&gt;&lt;/i&gt;</code> veya <code>MH.weapon('ad')</code> — 160×48, <code>currentColor</code></p></div>
+  <div class="demo-h2"><h2>Silah silüetleri</h2><p><code>&lt;i data-weapon="ad"&gt;&lt;/i&gt;</code> veya <code>EUI.weapon('ad')</code> — 160×48, <code>currentColor</code></p></div>
   <div class="demo-specs" style="--cols:1"><div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain" style="--h:auto;padding:20px"><div class="demo-weapons" id="weapons"></div></div></div></div>
   <div class="demo-h2"><h2>Yardımcı sınıflar</h2><p>Satır içi stil yerine yerleşim ve yazı yardımcıları (<code>base.utils</code>).</p></div>
   <div class="demo-specs">
     <div class="demo-spec demo-spec--2">
       <div class="demo-spec__view" style="--h:420px">
-<div class="mh-panel mh-panel--solid mh-pad mh-col mh-gap-3" style="--w:520px">
-  <div class="mh-flex mh-between"><span class="mh-title mh-title--xl">Başlık</span><i data-i="star-f" class="mh-i--lg mh-accent-text"></i></div>
-  <div class="mh-rule mh-rule--accent"></div>
-  <div class="mh-flex mh-wrap mh-gap-1"><span class="mh-badge mh-badge--solid mh-t-accent">Dolu rozet</span><span class="mh-badge">Rozet</span></div>
-  <span class="mh-ellipsis mh-mono mh-dim">Çok uzun bir satır taşarsa üç noktayla kısalır ve mono yazı tipiyle yazılır</span>
-  <div class="mh-rule mh-rule--fade"></div>
-  <div class="mh-flex mh-gap-5"><span class="mh-hud-text">HUD metni</span><i data-i="heart" class="mh-i--sm"></i><i data-i="heart" class="mh-i--md"></i><i data-i="heart" class="mh-i--xl"></i></div>
-  <div class="mh-panel mh-panel--flat mh-pad-s">Düz panel</div><div class="mh-panel mh-panel--ghost mh-pad-l">Hayalet panel</div>
+<div class="eui-panel eui-panel--solid eui-pad eui-col eui-gap-3" style="--w:520px">
+  <div class="eui-flex eui-between"><span class="eui-title eui-title--xl">Başlık</span><i data-i="star-f" class="eui-i--lg eui-accent-text"></i></div>
+  <div class="eui-rule eui-rule--accent"></div>
+  <div class="eui-flex eui-wrap eui-gap-1"><span class="eui-badge eui-badge--solid eui-t-accent">Dolu rozet</span><span class="eui-badge">Rozet</span></div>
+  <span class="eui-ellipsis eui-mono eui-dim">Çok uzun bir satır taşarsa üç noktayla kısalır ve mono yazı tipiyle yazılır</span>
+  <div class="eui-rule eui-rule--fade"></div>
+  <div class="eui-flex eui-gap-5"><span class="eui-hud-text">HUD metni</span><i data-i="heart" class="eui-i--sm"></i><i data-i="heart" class="eui-i--md"></i><i data-i="heart" class="eui-i--xl"></i></div>
+  <div class="eui-panel eui-panel--flat eui-pad-s">Düz panel</div><div class="eui-panel eui-panel--ghost eui-pad-l">Hayalet panel</div>
 </div>
       </div>
-      <div class="demo-spec__meta"><b>Yardımcılar <code>base.utils</code></b><span><code>mh-flex</code>, <code>mh-col</code>, <code>mh-gap-*</code>, <code>mh-pad*</code>, <code>mh-ellipsis</code>, <code>mh-rule</code>, ikon boyları, panel biçimleri.</span></div>
+      <div class="demo-spec__meta"><b>Yardımcılar <code>base.utils</code></b><span><code>eui-flex</code>, <code>eui-col</code>, <code>eui-gap-*</code>, <code>eui-pad*</code>, <code>eui-ellipsis</code>, <code>eui-rule</code>, ikon boyları, panel biçimleri.</span></div>
     </div>
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var TOK = ['accent', 'accent-2', 'success', 'info', 'warn', 'danger', 'legendary', 'gold', 'silver', 'bronze', 'health', 'armor', 'stamina', 'special', 'oxygen', 'hunger', 'thirst', 'stress', 'team-1', 'team-2', 'team-3', 'team-4', 'team-5', 'friend', 'enemy', 'text', 'surface'];
-  document.getElementById('swatches').innerHTML = TOK.map(function (t) { return '<div class="demo-sw"><i style="--c:var(--mh-' + t + '-rgb)"></i><span>' + t + '</span><code>--mh-' + t + '-rgb</code></div>'; }).join('');
-  var names = Object.keys(window.MH_ICONS).sort(), groups = window.MH_ICON_GROUPS || {}, seen = {};
+  document.getElementById('swatches').innerHTML = TOK.map(function (t) { return '<div class="demo-sw"><i style="--c:var(--eui-' + t + '-rgb)"></i><span>' + t + '</span><code>--eui-' + t + '-rgb</code></div>'; }).join('');
+  var names = Object.keys(window.EUI_ICONS).sort(), groups = window.MH_ICON_GROUPS || {}, seen = {};
   var G = Object.keys(groups).map(function (g) { groups[g].forEach(function (n) { seen[n] = 1; }); return [g, groups[g]]; });
   var rest = names.filter(function (n) { return !seen[n]; });
   if (rest.length) G.push(['Diğer', rest]);
-  function cell(n) { return '<div class="demo-icon" data-name="' + n + '">' + MH.icon(n) + '<span>' + n + '</span></div>'; }
+  function cell(n) { return '<div class="demo-icon" data-name="' + n + '">' + EUI.icon(n) + '<span>' + n + '</span></div>'; }
   function renderIcons(q) {
     q = (q || '').toLowerCase().trim();
     document.getElementById('icons').innerHTML = G.map(function (g) {
       var list = g[1].filter(function (n) { return !q || n.indexOf(q) >= 0 || g[0].toLowerCase().indexOf(q) >= 0; });
       return list.length ? '<div class="demo-icongroup"><h3>' + g[0] + ' <small>' + list.length + '</small></h3><div class="demo-icons">' + list.map(cell).join('') + '</div></div>' : '';
-    }).join('') || '<span class="mh-sub">Sonuç yok</span>';
+    }).join('') || '<span class="eui-sub">Sonuç yok</span>';
   }
   renderIcons();
   document.getElementById('icon-q').addEventListener('input', function () { renderIcons(this.value); });
-  document.getElementById('icon-count').insertAdjacentHTML('afterbegin', names.length + ' ikon (Material Design Icons + MHud) · ');
-  document.getElementById('icons').addEventListener('click', function (e) { var d = e.target.closest('.demo-icon'); if (!d) return; try { navigator.clipboard.writeText(d.getAttribute('data-name')); } catch (x) {} d.style.color = 'var(--mh-success)'; setTimeout(function () { d.style.color = ''; }, 600); });
-  document.getElementById('weapons').innerHTML = Object.keys(window.MH_WEAPONS).map(function (n) { return '<div>' + MH.weapon(n) + '<span>' + n + '</span></div>'; }).join('');
+  document.getElementById('icon-count').insertAdjacentHTML('afterbegin', names.length + ' ikon (Material Design Icons + Ember UI) · ');
+  document.getElementById('icons').addEventListener('click', function (e) { var d = e.target.closest('.demo-icon'); if (!d) return; try { navigator.clipboard.writeText(d.getAttribute('data-name')); } catch (x) {} d.style.color = 'var(--eui-success)'; setTimeout(function () { d.style.color = ''; }, 600); });
+  document.getElementById('weapons').innerHTML = Object.keys(window.EUI_WEAPONS).map(function (n) { return '<div>' + EUI.weapon(n) + '<span>' + n + '</span></div>'; }).join('');
 </script>
 </body>
 </html>

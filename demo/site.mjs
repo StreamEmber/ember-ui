@@ -1,9 +1,9 @@
 // Sunum sitesinin içerik haritası — tools/build-site.mjs okur, statik HTML'e işler.
 // Yeni sunum sayfası: pages/<ad>.html yaz + aşağıdaki PAGES listesine bir satır ekle.
 
-export const REPO = 'https://github.com/StreamEmber/mhud';
+export const REPO = 'https://github.com/StreamEmber/ember-ui';
 
-// Sunum sayfaları: bileşenlerin bir arada, gerçek sahnede kullanımı. icon = MH ikon adı.
+// Sunum sayfaları: bileşenlerin bir arada, gerçek sahnede kullanımı. icon = EUI ikon adı.
 export const PAGES = [
   { group: 'Başlangıç', items: [
     { href: 'pages/components.html', label: 'Temel bileşenler', icon: 'layers' }

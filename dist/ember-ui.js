@@ -1,11 +1,11 @@
-/*! MHud v3.0.0 | MIT | https://streamember.github.io/mhud/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
-/* kit/js/mhud-icons.js */
+/*! Ember UI v4.0.0 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
+/* kit/js/ember-ui-icons.js */
 /*!
- * MHud — ikon seti (344 ikon)
+ * Ember UI — ikon seti (344 ikon)
  * Kaynak: Material Design Icons — Pictogrammers (Apache 2.0). Silah, yakın dövüş ve karakter ikonlarının bir kısmı
  * (revolver, rifle, shotgun, sniper, smg, repeater, machete, crowbar, fist, grenade, molotov, dynamite, cop, soldier,
- * sheriff, zombie) MHud'a özeldir. Tüm ikonlar dolgulu, 24×24, currentColor.
- * Kullanım:  <i data-i="axe"></i>   ·   MH.icon('axe')   ·   <svg class="mh-i"><use href="#mi-axe"/></svg>
+ * sheriff, zombie) Ember UI'a özeldir. Tüm ikonlar dolgulu, 24×24, currentColor.
+ * Kullanım:  <i data-i="axe"></i>   ·   EUI.icon('axe')   ·   <svg class="eui-i"><use href="#mi-axe"/></svg>
  */
 (function (root) {
   'use strict';
@@ -120,7 +120,7 @@
     'hostile': '<path d="M10 4A4 4 0 0 1 14 8A4 4 0 0 1 10 12A4 4 0 0 1 6 8A4 4 0 0 1 10 4M10 14C14.42 14 18 15.79 18 18V20H2V18C2 15.79 5.58 14 10 14M20 12V7H22V13H20M20 17V15H22V17H20Z" />',
     'police': '<path d="M22 4L20 2C18.85 2.64 17.4 3 16 3C14.6 3 13.14 2.63 12 2C10.86 2.63 9.4 3 8 3C6.6 3 5.15 2.64 4 2L2 4C2 4 4 6 4 8S2 14 2 16C2 20 12 22 12 22S22 20 22 16C22 14 20 10 20 8S22 4 22 4M15.05 16.45L11.97 14.59L8.9 16.45L9.72 12.95L7 10.61L10.58 10.3L11.97 7L13.37 10.29L16.95 10.6L14.23 12.94L15.05 16.45Z" />',
     'cop': '<path d="M5.6 7.2 12 3.4l6.4 3.8v2.2H5.6z"/><path d="M4.6 9.9h14.8l-1.2 1.6H5.8z"/><path d="M7.6 12.3h8.8a4.4 4.4 0 0 1-8.8 0z"/><path fill-rule="evenodd" d="M3.5 22v-1c0-3 3.8-4.8 8.5-4.8s8.5 1.8 8.5 4.8v1zm11.6-3.8.5 1 1.1.2-.8.8.2 1.1-1-.5-1 .5.2-1.1-.8-.8 1.1-.2z"/>',
-    'soldier': '<path d="M5.4 9.2a6.6 6.6 0 0 1 13.2 0v.6H20v1.8H4v-1.8h1.4z"/><path d="M7.4 12.6h9.2a4.6 4.6 0 0 1-9.2 0z"/><path d="M3.5 22v-1c0-3 3.8-4.7 8.5-4.7s8.5 1.7 8.5 4.7v1z"/><path d="M10.4 17.5 12 20l1.6-2.5z" fill="var(--mh-icon-cut, #000)" opacity=".0"/>',
+    'soldier': '<path d="M5.4 9.2a6.6 6.6 0 0 1 13.2 0v.6H20v1.8H4v-1.8h1.4z"/><path d="M7.4 12.6h9.2a4.6 4.6 0 0 1-9.2 0z"/><path d="M3.5 22v-1c0-3 3.8-4.7 8.5-4.7s8.5 1.7 8.5 4.7v1z"/><path d="M10.4 17.5 12 20l1.6-2.5z" fill="var(--eui-icon-cut, #000)" opacity=".0"/>',
     'sheriff': '<path fill-rule="evenodd" d="M12 1.6a1.7 1.7 0 0 1 1.5 2.5l1.6 2.8h3.2a1.7 1.7 0 1 1 1.5 2.6L18.2 12l1.6 2.6a1.7 1.7 0 1 1-1.5 2.6h-3.2l-1.6 2.7a1.7 1.7 0 1 1-3 0l-1.6-2.7H5.7a1.7 1.7 0 1 1-1.5-2.6L5.8 12 4.2 9.4a1.7 1.7 0 1 1 1.5-2.5h3.2l1.6-2.8A1.7 1.7 0 0 1 12 1.6zm0 6.6a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/>',
     'cowboy': '<path d="M20 22H4V20C4 17.8 7.6 16 12 16S20 17.8 20 20M8 9H16V10C16 12.2 14.2 14 12 14S8 12.2 8 10M19 4C18.4 4 18 4.4 18 5V6H16.5L15.1 3C15 2.8 14.9 2.6 14.7 2.5C14.2 2 13.4 1.9 12.7 2.2L12 2.4L11.3 2.1C10.6 1.8 9.8 1.9 9.3 2.4C9.1 2.6 9 2.8 8.9 3L7.5 6H6V5C6 4.4 5.6 4 5 4S4 4.4 4 5V6C4 7.1 4.9 8 6 8H18C19.1 8 20 7.1 20 6V5C20 4.5 19.6 4 19 4Z" />',
     'outlaw': '<path d="M17.06 13C15.2 13 13.64 14.33 13.24 16.1C12.29 15.69 11.42 15.8 10.76 16.09C10.35 14.31 8.79 13 6.94 13C4.77 13 3 14.79 3 17C3 19.21 4.77 21 6.94 21C9 21 10.68 19.38 10.84 17.32C11.18 17.08 12.07 16.63 13.16 17.34C13.34 19.39 15 21 17.06 21C19.23 21 21 19.21 21 17C21 14.79 19.23 13 17.06 13M6.94 19.86C5.38 19.86 4.13 18.58 4.13 17S5.39 14.14 6.94 14.14C8.5 14.14 9.75 15.42 9.75 17S8.5 19.86 6.94 19.86M17.06 19.86C15.5 19.86 14.25 18.58 14.25 17S15.5 14.14 17.06 14.14C18.62 14.14 19.88 15.42 19.88 17S18.61 19.86 17.06 19.86M22 10.5H2V12H22V10.5M15.53 2.63C15.31 2.14 14.75 1.88 14.22 2.05L12 2.79L9.77 2.05L9.72 2.04C9.19 1.89 8.63 2.17 8.43 2.68L6 9H18L15.56 2.68L15.53 2.63Z" />',
@@ -361,41 +361,41 @@
   /* Silah silüetleri (160x48, namlu sağa bakar) — büyük silah görseli için */
   var WEAPONS = {"carbine":"M2 17.5 L28 14.5 L35 14 L35 29 L27 29.5 L10 36.5 L3 36.5 Z M35 11.5 H98 V27 H35 Z M44 7.5 H90 V11.5 H44 Z M98 13.5 H130 V24.5 H98 Z M130 16.5 H156 V19.8 H130 Z M139 9.5 H142.5 V16.5 H139 Z M47 27 H58 L55 43 H44.5 Z M66 27 H79 L81.5 42 Q76 44.5 68 44.5 Z M58 27 Q58 34.5 65.5 34.5 V32.2 Q60.4 32.2 60.4 27 Z","smg":"M8 15 H38 V17.5 H11 V27 H38 V29.5 H8 Z M36 11 H112 V26.5 H36 Z M112 15 H132 V20.5 H112 Z M118 11 H122 V15 H118 Z M44 26.5 H55 L52 42 H41.5 Z M67 26.5 H77 V47 H67 Z M55 26.5 Q55 33.5 62 33.5 V31.2 Q57.4 31.2 57.4 26.5 Z M48 8 H70 V11 H48 Z","pistol":"M44 12 H114 Q116 12 116 14 V23 H44 Z M48 23 H110 V28.5 H48 Z M51 28.5 H70 L64.5 46.5 H44.5 Q43.5 46.5 44 45 Z M70 28.5 Q70 37 79 37 L84 28.5 H81 L77.6 34.4 Q72.6 34.4 72.6 28.5 Z M108 8.5 H112 V12 H108 Z","revolver":"M96 13.5 H150 V20 H96 Z M146 10 H149 V13.5 H146 Z M68 10.5 Q66 10.5 66 13 V25.5 Q66 28 68 28 H96 V10.5 Z M56 9.5 H70 V29 H56 Z M51.5 4.5 L58 3 L61 10 L55 11 Z M57 27 Q50 36 53 46 Q54 47.5 56 47.5 H66 Q67.5 47.5 67 46 Q64 38 70 29 Z M70 29 Q70 36.5 78 36.5 L81 29 H78.6 L76.6 34 Q72.4 34 72.4 29 Z","shotgun":"M2 19 L28 15.5 L33 15.5 L33 29.5 L26 29.5 L5 37 L2 37 Z M33 13 H72 V27 H33 Z M72 14.5 H156 V18.5 H72 Z M72 20 H142 V24 H72 Z M90 18.5 H120 Q122 18.5 122 20.5 V26 Q122 28 120 28 H90 Z M40 27 H51 L48 41.5 H37.5 Z M51 27 Q51 33.5 58 33.5 V31.2 Q53.4 31.2 53.4 27 Z","repeater":"M2 21 L30 15.5 L38 15 L38 27.5 L30 27.5 L5 35.5 L2 35.5 Z M38 13.5 H64 V26.5 H38 Z M64 14.5 H156 V17.5 H64 Z M64 19 H140 V22 H64 Z M150 11.5 H153 V14.5 H150 Z M44 26.5 Q41 38.5 53 38.5 Q61 38.5 61 30 L57.6 30 Q57.6 35.4 52.6 35.4 Q45 35.4 47.8 26.5 Z M98 17.5 H122 V24 H98 Z","sniper":"M2 18 L26 15 L34 15 L34 30 L24 30 L14 34 L6 34 L6 30 L2 30 Z M34 13 H86 V26.5 H34 Z M86 15.5 H156 V18.8 H86 Z M44 5 H82 V11 H44 Z M50 11 H54 V13 H50 Z M72 11 H76 V13 H72 Z M40 26.5 H51 L48 41 H37.5 Z M58 26.5 H68 V38 H58 Z M51 26.5 Q51 33 58 33 V31 Q53.4 31 53.4 26.5 Z"};
   function inject() {
-    if (document.getElementById('mh-sprite')) return;
-    var html = '<svg id="mh-sprite" xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">';
+    if (document.getElementById('eui-sprite')) return;
+    var html = '<svg id="eui-sprite" xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">';
     for (var k in ICONS) html += '<symbol id="mi-' + k + '" viewBox="0 0 24 24">' + ICONS[k] + '</symbol>';
     html += '</svg>';
     (document.body || document.documentElement).insertAdjacentHTML('afterbegin', html);
   }
-  root.MH_ICONS = ICONS;
+  root.EUI_ICONS = ICONS;
   root.MH_ICON_GROUPS = GROUPS;
   root.MH_ICON_ALIASES = ALIASES;
-  root.MH_WEAPONS = WEAPONS;
+  root.EUI_WEAPONS = WEAPONS;
   root.MH_ICON_SPRITE = inject;
   if (document.body) inject(); else document.addEventListener('DOMContentLoaded', inject);
 })(window);
 
-/* kit/js/mhud.js */
+/* kit/js/ember-ui.js */
 /*!
- * MHud — davranış katmanı ve StreamEmber overlay köprüsü
+ * Ember UI — davranış katmanı ve StreamEmber overlay köprüsü
  * Bağımlılıksız. StreamEmber overlay'inde (CEF), OBS'de ve normal tarayıcıda çalışır.
- * Önce mhud-icons.js yüklenmelidir. Tam API dizini: AI.md.
+ * Önce ember-ui-icons.js yüklenmelidir. Tam API dizini: AI.md.
  *
  * Kısa özet:
- *   MH.accent('mint')  MH.autoScale()
- *   MH.bar('#hp', 64)  MH.ring(el, .8)  MH.core(el, { value: 80, core: 60 })
- *   MH.money('#cash', 15200)  MH.count(el, 1500)
- *   MH.toast({...})  MH.kill({...})  MH.gift({...})  MH.announce({...})  MH.banner({...})
- *   MH.Menu(host, spec)  MH.confirm({...})  MH.radial(el, items)  MH.context(x, y, items)
- *   MH.Nametags('#world')  MH.Markers('#world')  MH.damageNumber(...)
- *   MH.on('action', fn)  MH.post('callback', data)
+ *   EUI.accent('mint')  EUI.autoScale()
+ *   EUI.bar('#hp', 64)  EUI.ring(el, .8)  EUI.core(el, { value: 80, core: 60 })
+ *   EUI.money('#cash', 15200)  EUI.count(el, 1500)
+ *   EUI.toast({...})  EUI.kill({...})  EUI.gift({...})  EUI.announce({...})  EUI.banner({...})
+ *   EUI.Menu(host, spec)  EUI.confirm({...})  EUI.radial(el, items)  EUI.context(x, y, items)
+ *   EUI.Nametags('#world')  EUI.Markers('#world')  EUI.damageNumber(...)
+ *   EUI.on('action', fn)  EUI.post('callback', data)
  */
 (function (root) {
   'use strict';
 
-  var MH = { version: '3.0.0' };
+  var EUI = { version: '4.0.0' };
   var doc = root.document;
-  MH.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
+  EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
   /* ======================================================================
      Yardımcılar
@@ -430,13 +430,13 @@
     return nf(n);
   }
   function icon(name, cls) {
-    return '<svg class="mh-i' + (cls ? ' ' + cls : '') + '" aria-hidden="true"><use href="#mi-' + name + '"></use></svg>';
+    return '<svg class="eui-i' + (cls ? ' ' + cls : '') + '" aria-hidden="true"><use href="#mi-' + name + '"></use></svg>';
   }
   function weapon(name, cls) {
-    var d = (root.MH_WEAPONS || {})[name];
+    var d = (root.EUI_WEAPONS || {})[name];
     if (!d) return icon('crosshair', cls);
     var paths = d.split(/(?=M)/).map(function (p) { return '<path d="' + p.trim() + '"/>'; }).join('');
-    return '<svg class="mh-weapon-art' + (cls ? ' ' + cls : '') + '" viewBox="0 0 160 48" fill="currentColor" stroke="currentColor" stroke-width=".6" stroke-linejoin="round" aria-hidden="true">' + paths + '</svg>';
+    return '<svg class="eui-weapon-art' + (cls ? ' ' + cls : '') + '" viewBox="0 0 160 48" fill="currentColor" stroke="currentColor" stroke-width=".6" stroke-linejoin="round" aria-hidden="true">' + paths + '</svg>';
   }
   /* Görsel: emoji, ikon adı (i:gift), silah (w:carbine) ya da resim yolu */
   function art(v, cls) {
@@ -455,39 +455,39 @@
   }
   function avatar(name, opts) {
     opts = opts || {};
-    var tone = opts.tone ? ' mh-t-' + opts.tone : '';
+    var tone = opts.tone ? ' eui-t-' + opts.tone : '';
     var inner = opts.src ? '<img src="' + esc(opts.src) + '" alt="">' : esc(initials(name));
-    return '<span class="mh-avatar' + (opts.cls ? ' ' + opts.cls : '') + tone + '">' + inner + '</span>';
+    return '<span class="eui-avatar' + (opts.cls ? ' ' + opts.cls : '') + tone + '">' + inner + '</span>';
   }
   function remove(node, cls) {
     if (!node || node.__leaving) return;
     node.__leaving = true;
-    node.classList.add(cls || 'mh-leave');
+    node.classList.add(cls || 'eui-leave');
     setTimeout(function () { if (node.parentNode) node.parentNode.removeChild(node); }, 300);
   }
   function raf(fn) { return (root.requestAnimationFrame || setTimeout)(fn); }
 
-  MH.$ = $; MH.$$ = $$; MH.el = el; MH.esc = esc; MH.clamp = clamp;
-  MH.fmt = nf; MH.time = time; MH.compact = compact;
-  MH.icon = icon; MH.weapon = weapon; MH.art = art; MH.avatar = avatar; MH.initials = initials;
+  EUI.$ = $; EUI.$$ = $$; EUI.el = el; EUI.esc = esc; EUI.clamp = clamp;
+  EUI.fmt = nf; EUI.time = time; EUI.compact = compact;
+  EUI.icon = icon; EUI.weapon = weapon; EUI.art = art; EUI.avatar = avatar; EUI.initials = initials;
 
   /* ======================================================================
      Vurgu & ölçek
      ====================================================================== */
-  MH.accent = function (name, scope) {
+  EUI.accent = function (name, scope) {
     scope = $(scope) || doc.body;
-    if (name) scope.setAttribute('data-mh-accent', name); else scope.removeAttribute('data-mh-accent');
+    if (name) scope.setAttribute('data-eui-accent', name); else scope.removeAttribute('data-eui-accent');
     emit('accent', name);
   };
   /* 1080p referansına göre ölçekler; opts.scale oyuncu ayarı (ör. 0.9).
-     Overlay görünümü oyundan uzun olabilir (altında isim etiketi atlası): .mh-screen oyun yüksekliğinde kalır. */
-  MH.autoScale = function (opts) {
+     Overlay görünümü oyundan uzun olabilir (altında isim etiketi atlası): .eui-screen oyun yüksekliğinde kalır. */
+  EUI.autoScale = function (opts) {
     opts = opts || {};
     var base = opts.base || 1080, user = opts.scale || 1, target = $(opts.target) || doc.documentElement;
     function apply() {
-      var game = Math.min(MH.bridge && MH.bridge.screenHeight || root.innerHeight, root.innerHeight), z = game / base * user;
+      var game = Math.min(EUI.bridge && EUI.bridge.screenHeight || root.innerHeight, root.innerHeight), z = game / base * user;
       target.style.zoom = z;
-      doc.documentElement.style.setProperty('--mh-atlas-gap', (root.innerHeight - game) / z + 'px');
+      doc.documentElement.style.setProperty('--eui-atlas-gap', (root.innerHeight - game) / z + 'px');
     }
     apply();
     root.addEventListener('resize', apply);
@@ -497,14 +497,14 @@
   /* ======================================================================
      Bar, halka, çekirdek, segment
      ====================================================================== */
-  MH.bar = function (target, value, opts) {
+  EUI.bar = function (target, value, opts) {
     var b = $(target); if (!b) return;
     opts = opts || {};
     var max = opts.max || 100;
     var v = clamp((value || 0) / max, 0, 1);
-    var ax = b.classList.contains('mh-bar--v') ? 'scaleY(' : 'scaleX(';
-    var fill = b.querySelector('.mh-bar__fill');
-    var ghost = b.querySelector('.mh-bar__ghost');
+    var ax = b.classList.contains('eui-bar--v') ? 'scaleY(' : 'scaleX(';
+    var fill = b.querySelector('.eui-bar__fill');
+    var ghost = b.querySelector('.eui-bar__ghost');
     var prev = b.__v == null ? v : b.__v;
     b.__v = v;
     b.style.setProperty('--v', v);
@@ -515,25 +515,25 @@
     }
     var crit = opts.critical == null ? b.getAttribute('data-critical') : opts.critical;
     if (crit != null) b.classList.toggle('is-critical', value <= Number(crit));
-    var row = b.closest('.mh-vital, .mh-gauge');
+    var row = b.closest('.eui-vital, .eui-gauge');
     if (row && crit != null) row.classList.toggle('is-low', value <= Number(crit));
     return v;
   };
   function ringSvg(r, vb) {
     vb = vb || 48; r = r || (vb / 2 - 3);
     var c = vb / 2;
-    return '<svg class="mh-ring" viewBox="0 0 ' + vb + ' ' + vb + '" aria-hidden="true">' +
-      '<circle class="mh-ring__track" cx="' + c + '" cy="' + c + '" r="' + r + '" pathLength="100"></circle>' +
-      '<circle class="mh-ring__fill" cx="' + c + '" cy="' + c + '" r="' + r + '" pathLength="100"></circle></svg>';
+    return '<svg class="eui-ring" viewBox="0 0 ' + vb + ' ' + vb + '" aria-hidden="true">' +
+      '<circle class="eui-ring__track" cx="' + c + '" cy="' + c + '" r="' + r + '" pathLength="100"></circle>' +
+      '<circle class="eui-ring__fill" cx="' + c + '" cy="' + c + '" r="' + r + '" pathLength="100"></circle></svg>';
   }
-  MH.ringSvg = ringSvg;
+  EUI.ringSvg = ringSvg;
   /* value 0..1 */
-  MH.ring = function (target, value) {
+  EUI.ring = function (target, value) {
     var n = $(target); if (!n) return;
     n.style.setProperty('--v', clamp(value, 0, 1));
   };
   /* RDR2 çekirdeği: value = dış halka (0-100), core = iç dolgu (0-100) */
-  MH.core = function (target, o) {
+  EUI.core = function (target, o) {
     var n = $(target); if (!n) return;
     o = o || {};
     if (o.value != null) n.style.setProperty('--v', clamp(o.value / 100, 0, 1));
@@ -543,7 +543,7 @@
     if (o.core != null) n.classList.toggle('is-empty', o.core <= 0);
     if (o.boosted != null) n.classList.toggle('is-boosted', !!o.boosted);
   };
-  MH.pips = function (target, on, total) {
+  EUI.pips = function (target, on, total) {
     var n = $(target); if (!n) return;
     total = total || n.children.length || 10;
     if (n.children.length !== total) n.innerHTML = new Array(total + 1).join('<i></i>');
@@ -553,7 +553,7 @@
   /* ======================================================================
      Sayı animasyonu & para
      ====================================================================== */
-  MH.count = function (target, to, opts) {
+  EUI.count = function (target, to, opts) {
     var n = $(target); if (!n) return;
     opts = opts || {};
     var from = n.__val == null ? Number(String(n.textContent).replace(/[^\d-]/g, '')) || 0 : n.__val;
@@ -571,18 +571,18 @@
       if (k < 1) n.__raf = raf(step);
     })(t0);
   };
-  /* .mh-cash kapsayıcısı ya da içindeki değer düğümü */
-  MH.money = function (target, value, opts) {
+  /* .eui-cash kapsayıcısı ya da içindeki değer düğümü */
+  EUI.money = function (target, value, opts) {
     var box = $(target); if (!box) return;
     opts = opts || {};
-    var cash = box.classList.contains('mh-cash') ? box : box.closest('.mh-cash') || box;
-    var num = cash.querySelector('[data-cash]') || cash.querySelector('.mh-cash__value b') || box;
+    var cash = box.classList.contains('eui-cash') ? box : box.closest('.eui-cash') || box;
+    var num = cash.querySelector('[data-cash]') || cash.querySelector('.eui-cash__value b') || box;
     var prev = num.__val == null ? value : num.__val;
-    MH.count(num, value, opts);
+    EUI.count(num, value, opts);
     var diff = value - prev;
-    if (diff && opts.delta !== false && cash.classList.contains('mh-cash')) {
-      var d = el('div', 'mh-cash__delta' + (diff < 0 ? ' is-neg' : ''), (diff > 0 ? '+' : '−') + (opts.symbol || '$') + nf(Math.abs(diff)));
-      var old = cash.querySelector('.mh-cash__delta'); if (old) old.remove();
+    if (diff && opts.delta !== false && cash.classList.contains('eui-cash')) {
+      var d = el('div', 'eui-cash__delta' + (diff < 0 ? ' is-neg' : ''), (diff > 0 ? '+' : '−') + (opts.symbol || '$') + nf(Math.abs(diff)));
+      var old = cash.querySelector('.eui-cash__delta'); if (old) old.remove();
       cash.appendChild(d);
       setTimeout(function () { d.remove(); }, 2300);
       if (diff > 0) { cash.classList.remove('is-gain'); void cash.offsetWidth; cash.classList.add('is-gain'); }
@@ -597,36 +597,36 @@
     var h = $(sel);
     if (!h) {
       h = el('div', cls);
-      var a = $(anchor) || $('.mh-screen') || doc.body;
+      var a = $(anchor) || $('.eui-screen') || doc.body;
       a.appendChild(h);
     }
     return h;
   }
-  MH.toast = function (o) {
+  EUI.toast = function (o) {
     o = o || {};
     var tone = o.tone || 'info';
-    var stack = $(o.target) || host('[data-mh="toasts"]', 'mh-toasts');
-    var t = el('div', 'mh-toast mh-t-' + tone + ' mh-enter-' + (o.from || 'right'));
-    var html = '<div class="mh-toast__icon">' + icon(o.icon || TONE_ICON[tone] || 'bell') + '</div>' +
-      '<div class="mh-toast__title">' + esc(o.title || '') + '</div>';
-    if (o.closable !== false) html += '<button class="mh-toast__close mh-catch" aria-label="Kapat">' + icon('x') + '</button>';
-    if (o.text) html += '<div class="mh-toast__text">' + (o.html ? o.text : esc(o.text)) + '</div>';
-    if (o.meta) html += '<div class="mh-toast__meta">' + esc(o.meta) + '</div>';
+    var stack = $(o.target) || host('[data-eui="toasts"]', 'eui-toasts');
+    var t = el('div', 'eui-toast eui-t-' + tone + ' eui-enter-' + (o.from || 'right'));
+    var html = '<div class="eui-toast__icon">' + icon(o.icon || TONE_ICON[tone] || 'bell') + '</div>' +
+      '<div class="eui-toast__title">' + esc(o.title || '') + '</div>';
+    if (o.closable !== false) html += '<button class="eui-toast__close eui-catch" aria-label="Kapat">' + icon('x') + '</button>';
+    if (o.text) html += '<div class="eui-toast__text">' + (o.html ? o.text : esc(o.text)) + '</div>';
+    if (o.meta) html += '<div class="eui-toast__meta">' + esc(o.meta) + '</div>';
     if (o.actions) {
-      html += '<div class="mh-toast__actions mh-catch">' + o.actions.map(function (a, i) {
-        return '<button class="mh-btn mh-btn--sm ' + (a.primary ? 'mh-btn--primary' : 'mh-btn--outline') + '" data-i="' + i + '">' + (a.key ? '<span class="mh-key">' + esc(a.key) + '</span>' : '') + esc(a.label) + '</button>';
+      html += '<div class="eui-toast__actions eui-catch">' + o.actions.map(function (a, i) {
+        return '<button class="eui-btn eui-btn--sm ' + (a.primary ? 'eui-btn--primary' : 'eui-btn--outline') + '" data-i="' + i + '">' + (a.key ? '<span class="eui-key">' + esc(a.key) + '</span>' : '') + esc(a.label) + '</button>';
       }).join('') + '</div>';
     }
     var dur = o.duration == null ? 5000 : o.duration;
-    if (dur > 0) html += '<i class="mh-toast__timer is-run" style="animation-duration:' + dur + 'ms"></i>';
+    if (dur > 0) html += '<i class="eui-toast__timer is-run" style="animation-duration:' + dur + 'ms"></i>';
     t.innerHTML = html;
     if (o.newestOnTop === false) stack.appendChild(t); else stack.insertBefore(t, stack.firstChild);
     var max = o.max || 5;
     while (stack.children.length > max) stack.removeChild(o.newestOnTop === false ? stack.firstChild : stack.lastChild);
     var timer = dur > 0 ? setTimeout(close, dur) : null;
-    function close() { clearTimeout(timer); remove(t, 'mh-leave-right'); if (o.onClose) o.onClose(); }
-    var cb = t.querySelector('.mh-toast__close'); if (cb) cb.onclick = close;
-    $$('.mh-toast__actions button', t).forEach(function (b) {
+    function close() { clearTimeout(timer); remove(t, 'eui-leave-right'); if (o.onClose) o.onClose(); }
+    var cb = t.querySelector('.eui-toast__close'); if (cb) cb.onclick = close;
+    $$('.eui-toast__actions button', t).forEach(function (b) {
       b.onclick = function () { var a = o.actions[+b.getAttribute('data-i')]; if (a.onClick) a.onClick(); close(); };
     });
     return { el: t, close: close };
@@ -635,19 +635,19 @@
   /* ======================================================================
      Ölüm akışı
      ====================================================================== */
-  MH.kill = function (o) {
+  EUI.kill = function (o) {
     o = o || {};
-    var feed = $(o.target) || host('[data-mh="feed"]', 'mh-feed');
-    var row = el('div', 'mh-kill mh-enter-right' + (o.self ? ' is-self' : '') + (o.death ? ' is-death' : ''));
-    var aTone = o.actorTeam ? ' mh-t-' + o.actorTeam : '';
-    var vTone = o.victimTeam ? ' mh-t-' + o.victimTeam : '';
-    var w = o.weapon ? (root.MH_WEAPONS && root.MH_WEAPONS[o.weapon] ? weapon(o.weapon, 'mh-kill__weapon') : icon(o.weapon)) : icon('skull');
-    row.innerHTML = (o.actor ? '<span class="mh-kill__actor' + aTone + '" style="' + (o.actorTeam ? '' : '') + '">' + esc(o.actor) + '</span>' : '') +
+    var feed = $(o.target) || host('[data-eui="feed"]', 'eui-feed');
+    var row = el('div', 'eui-kill eui-enter-right' + (o.self ? ' is-self' : '') + (o.death ? ' is-death' : ''));
+    var aTone = o.actorTeam ? ' eui-t-' + o.actorTeam : '';
+    var vTone = o.victimTeam ? ' eui-t-' + o.victimTeam : '';
+    var w = o.weapon ? (root.EUI_WEAPONS && root.EUI_WEAPONS[o.weapon] ? weapon(o.weapon, 'eui-kill__weapon') : icon(o.weapon)) : icon('skull');
+    row.innerHTML = (o.actor ? '<span class="eui-kill__actor' + aTone + '" style="' + (o.actorTeam ? '' : '') + '">' + esc(o.actor) + '</span>' : '') +
       w + (o.headshot ? icon('crosshair', 'is-head') : '') + (o.extra ? icon(o.extra) : '') +
-      '<span class="mh-kill__victim' + vTone + '">' + esc(o.victim || '') + '</span>';
+      '<span class="eui-kill__victim' + vTone + '">' + esc(o.victim || '') + '</span>';
     feed.insertBefore(row, feed.firstChild);
     while (feed.children.length > (o.max || 6)) feed.removeChild(feed.lastChild);
-    setTimeout(function () { remove(row, 'mh-leave-right'); }, o.duration || 6000);
+    setTimeout(function () { remove(row, 'eui-leave-right'); }, o.duration || 6000);
     return row;
   };
 
@@ -655,36 +655,36 @@
      Hediye kartı (aynı anahtar gelirse kombo sayacı artar)
      ====================================================================== */
   var giftLive = {};
-  MH.gift = function (o) {
+  EUI.gift = function (o) {
     o = o || {};
-    var list = $(o.target) || host('[data-mh="gifts"]', 'mh-gifts');
+    var list = $(o.target) || host('[data-eui="gifts"]', 'eui-gifts');
     var key = o.key || (o.from + '|' + o.name);
     var dur = o.duration || 5200;
     var count = o.count || 1;
     var live = giftLive[key];
     if (live && live.el.parentNode) {
       live.total += count;
-      live.el.querySelector('.mh-gift__combo b').innerHTML = '<small>x</small>' + nf(live.total);
-      if (o.coins) live.el.querySelector('.mh-gift__combo span').textContent = nf(o.coins * live.total) + ' jeton';
+      live.el.querySelector('.eui-gift__combo b').innerHTML = '<small>x</small>' + nf(live.total);
+      if (o.coins) live.el.querySelector('.eui-gift__combo span').textContent = nf(o.coins * live.total) + ' jeton';
       live.el.classList.remove('is-bump'); void live.el.offsetWidth; live.el.classList.add('is-bump');
       clearTimeout(live.timer);
       live.restart();
       return live.el;
     }
-    var g = el('div', 'mh-gift is-' + (o.tier || 'rare') + ' mh-enter-left');
-    g.innerHTML = '<div class="mh-gift__art">' + art(o.art || 'i:gift') + (o.from ? avatar(o.from, { src: o.avatar }) : '') + '</div>' +
-      '<div class="mh-gift__body"><div class="mh-gift__from"><b>' + esc(o.from || 'Anonim') + '</b> gönderdi</div>' +
-      '<div class="mh-gift__name">' + esc(o.name || 'Hediye') + '</div>' +
-      (o.effect ? '<div class="mh-gift__effect">' + icon(o.effectIcon || 'bolt') + esc(o.effect) + '</div>' : '') + '</div>' +
-      '<div class="mh-gift__combo"><b><small>x</small>' + nf(count) + '</b><span>' + (o.coins ? nf(o.coins * count) + ' jeton' : '') + '</span></div>' +
-      '<i class="mh-gift__progress"></i>';
+    var g = el('div', 'eui-gift is-' + (o.tier || 'rare') + ' eui-enter-left');
+    g.innerHTML = '<div class="eui-gift__art">' + art(o.art || 'i:gift') + (o.from ? avatar(o.from, { src: o.avatar }) : '') + '</div>' +
+      '<div class="eui-gift__body"><div class="eui-gift__from"><b>' + esc(o.from || 'Anonim') + '</b> gönderdi</div>' +
+      '<div class="eui-gift__name">' + esc(o.name || 'Hediye') + '</div>' +
+      (o.effect ? '<div class="eui-gift__effect">' + icon(o.effectIcon || 'bolt') + esc(o.effect) + '</div>' : '') + '</div>' +
+      '<div class="eui-gift__combo"><b><small>x</small>' + nf(count) + '</b><span>' + (o.coins ? nf(o.coins * count) + ' jeton' : '') + '</span></div>' +
+      '<i class="eui-gift__progress"></i>';
     list.insertBefore(g, list.firstChild);
     while (list.children.length > (o.max || 4)) list.removeChild(list.lastChild);
     var rec = { el: g, total: count, timer: 0, restart: function () {
-      var bar = g.querySelector('.mh-gift__progress');
+      var bar = g.querySelector('.eui-gift__progress');
       bar.style.transition = 'none'; bar.style.transform = 'scaleX(1)'; void bar.offsetWidth;
       bar.style.transition = 'transform ' + dur + 'ms linear'; bar.style.transform = 'scaleX(0)';
-      rec.timer = setTimeout(function () { remove(g, 'mh-leave-left'); delete giftLive[key]; }, dur);
+      rec.timer = setTimeout(function () { remove(g, 'eui-leave-left'); delete giftLive[key]; }, dur);
     } };
     giftLive[key] = rec;
     rec.restart();
@@ -695,80 +695,80 @@
      Duyuru, büyük şerit, seviye, başarım, eşya, geri sayım, altyazı
      ====================================================================== */
   function center(sel, cls) { return host(sel, cls); }
-  MH.announce = function (o) {
+  EUI.announce = function (o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="announce"]', 'mh-anchor mh-tc');
+    var box = $(o.target) || center('[data-eui="announce"]', 'eui-anchor eui-tc');
     if (!o.target && !box.style.top) box.style.top = '22%';
     box.innerHTML = '';
-    var a = el('div', 'mh-announce is-in' + (o.tone ? ' mh-t-' + o.tone : ''));
-    a.innerHTML = (o.kicker ? '<div class="mh-announce__kicker">' + esc(o.kicker) + '</div>' : '') +
-      '<div class="mh-announce__title">' + esc(o.title || '') + '</div>' +
-      (o.sub ? '<div class="mh-announce__sub">' + esc(o.sub) + '</div>' : '');
+    var a = el('div', 'eui-announce is-in' + (o.tone ? ' eui-t-' + o.tone : ''));
+    a.innerHTML = (o.kicker ? '<div class="eui-announce__kicker">' + esc(o.kicker) + '</div>' : '') +
+      '<div class="eui-announce__title">' + esc(o.title || '') + '</div>' +
+      (o.sub ? '<div class="eui-announce__sub">' + esc(o.sub) + '</div>' : '');
     box.appendChild(a);
     clearTimeout(box.__t);
     box.__t = setTimeout(function () { remove(a); }, o.duration || 3200);
     return a;
   };
-  MH.banner = function (o) {
+  EUI.banner = function (o) {
     o = o || {};
-    var scr = $(o.target) || $('.mh-screen') || doc.body;
-    var old = scr.querySelector(':scope > .mh-banner'); if (old) old.remove();
-    var b = el('div', 'mh-banner is-in' + (o.fail ? ' is-fail' : '') + (o.tone ? ' mh-t-' + o.tone : ''));
-    b.innerHTML = '<div class="mh-banner__title">' + esc(o.title || 'GÖREV TAMAMLANDI') + '</div>' +
-      (o.sub ? '<div class="mh-banner__sub">' + esc(o.sub) + '</div>' : '') +
-      (o.rewards ? '<div class="mh-banner__rewards">' + o.rewards.map(function (r) {
-        return '<div class="mh-reward"><b' + (r.tone ? ' class="mh-tone mh-t-' + r.tone + '"' : '') + '>' + esc(r.value) + '</b><span>' + esc(r.label) + '</span></div>';
+    var scr = $(o.target) || $('.eui-screen') || doc.body;
+    var old = scr.querySelector(':scope > .eui-banner'); if (old) old.remove();
+    var b = el('div', 'eui-banner is-in' + (o.fail ? ' is-fail' : '') + (o.tone ? ' eui-t-' + o.tone : ''));
+    b.innerHTML = '<div class="eui-banner__title">' + esc(o.title || 'GÖREV TAMAMLANDI') + '</div>' +
+      (o.sub ? '<div class="eui-banner__sub">' + esc(o.sub) + '</div>' : '') +
+      (o.rewards ? '<div class="eui-banner__rewards">' + o.rewards.map(function (r) {
+        return '<div class="eui-reward"><b' + (r.tone ? ' class="eui-tone eui-t-' + r.tone + '"' : '') + '>' + esc(r.value) + '</b><span>' + esc(r.label) + '</span></div>';
       }).join('') + '</div>' : '');
     scr.appendChild(b);
     if (o.duration !== 0) setTimeout(function () { remove(b); }, o.duration || 5000);
     return b;
   };
-  MH.levelUp = function (o) {
+  EUI.levelUp = function (o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="levelup"]', 'mh-anchor mh-tc');
+    var box = $(o.target) || center('[data-eui="levelup"]', 'eui-anchor eui-tc');
     if (!o.target && !box.style.top) box.style.top = '14%';
     box.innerHTML = '';
-    var n = el('div', 'mh-panel mh-levelup mh-enter-pop');
-    n.innerHTML = '<div class="mh-levelup__badge"><span>' + esc(o.level) + '</span></div><div>' +
-      '<span class="mh-kicker mh-kicker--accent">' + esc(o.kicker || 'Seviye atladın') + '</span>' +
-      '<div class="mh-title mh-title--lg">' + esc(o.title || ('Seviye ' + o.level)) + '</div>' +
-      (o.unlocks ? '<div class="mh-levelup__unlocks">' + o.unlocks.map(function (u) { return '<span class="mh-badge mh-t-accent">' + esc(u) + '</span>'; }).join('') + '</div>' : '') + '</div>';
+    var n = el('div', 'eui-panel eui-levelup eui-enter-pop');
+    n.innerHTML = '<div class="eui-levelup__badge"><span>' + esc(o.level) + '</span></div><div>' +
+      '<span class="eui-kicker eui-kicker--accent">' + esc(o.kicker || 'Seviye atladın') + '</span>' +
+      '<div class="eui-title eui-title--lg">' + esc(o.title || ('Seviye ' + o.level)) + '</div>' +
+      (o.unlocks ? '<div class="eui-levelup__unlocks">' + o.unlocks.map(function (u) { return '<span class="eui-badge eui-t-accent">' + esc(u) + '</span>'; }).join('') + '</div>' : '') + '</div>';
     box.appendChild(n);
     setTimeout(function () { remove(n); }, o.duration || 4200);
     return n;
   };
-  MH.achievement = function (o) {
+  EUI.achievement = function (o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="achv"]', 'mh-anchor mh-bc');
+    var box = $(o.target) || center('[data-eui="achv"]', 'eui-anchor eui-bc');
     if (!o.target && !box.style.bottom) box.style.bottom = '160px';
-    var n = el('div', 'mh-panel mh-achv mh-enter-up');
-    n.innerHTML = '<div class="mh-achv__icon">' + icon(o.icon || 'trophy') + '</div><div class="mh-achv__body">' +
-      '<span class="mh-kicker">' + esc(o.kicker || 'Başarım açıldı') + '</span><span class="mh-achv__name">' + esc(o.name || '') + '</span></div>' +
-      (o.points ? '<div class="mh-achv__pts">' + esc(o.points) + '</div>' : '');
+    var n = el('div', 'eui-panel eui-achv eui-enter-up');
+    n.innerHTML = '<div class="eui-achv__icon">' + icon(o.icon || 'trophy') + '</div><div class="eui-achv__body">' +
+      '<span class="eui-kicker">' + esc(o.kicker || 'Başarım açıldı') + '</span><span class="eui-achv__name">' + esc(o.name || '') + '</span></div>' +
+      (o.points ? '<div class="eui-achv__pts">' + esc(o.points) + '</div>' : '');
     box.appendChild(n);
     setTimeout(function () { remove(n); }, o.duration || 4500);
     return n;
   };
-  MH.pickup = function (o) {
+  EUI.pickup = function (o) {
     o = o || {};
-    var list = $(o.target) || host('[data-mh="pickups"]', 'mh-pickups');
+    var list = $(o.target) || host('[data-eui="pickups"]', 'eui-pickups');
     var amt = o.amount == null ? 1 : o.amount;
-    var n = el('div', 'mh-pickup mh-enter-right' + (amt < 0 ? ' is-neg' : ''));
-    n.innerHTML = '<b>' + (amt < 0 ? '−' : '+') + nf(Math.abs(amt)) + '</b><span>' + esc(o.name || '') + '</span><span class="mh-pickup__icon">' + art(o.icon ? 'i:' + o.icon : 'i:package') + '</span>';
+    var n = el('div', 'eui-pickup eui-enter-right' + (amt < 0 ? ' is-neg' : ''));
+    n.innerHTML = '<b>' + (amt < 0 ? '−' : '+') + nf(Math.abs(amt)) + '</b><span>' + esc(o.name || '') + '</span><span class="eui-pickup__icon">' + art(o.icon ? 'i:' + o.icon : 'i:package') + '</span>';
     list.appendChild(n);
     while (list.children.length > (o.max || 5)) list.removeChild(list.firstChild);
-    setTimeout(function () { remove(n, 'mh-leave-right'); }, o.duration || 3200);
+    setTimeout(function () { remove(n, 'eui-leave-right'); }, o.duration || 3200);
     return n;
   };
-  MH.countdown = function (from, o) {
+  EUI.countdown = function (from, o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="countdown"]', 'mh-anchor mh-mc');
+    var box = $(o.target) || center('[data-eui="countdown"]', 'eui-anchor eui-mc');
     var n = from == null ? 3 : from;
     return new Promise(function (resolve) {
       (function tick() {
         box.innerHTML = '';
         var go = n <= 0;
-        var c = el('div', 'mh-countdown' + (go ? ' is-go' : ''), go ? esc(o.go || 'BAŞLA') : String(n));
+        var c = el('div', 'eui-countdown' + (go ? ' is-go' : ''), go ? esc(o.go || 'BAŞLA') : String(n));
         box.appendChild(c);
         if (o.onTick) o.onTick(n);
         if (go) { setTimeout(function () { box.innerHTML = ''; resolve(); }, 1000); return; }
@@ -776,12 +776,12 @@
       })();
     });
   };
-  MH.subtitle = function (o) {
+  EUI.subtitle = function (o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="subtitle"]', 'mh-anchor mh-bc');
+    var box = $(o.target) || center('[data-eui="subtitle"]', 'eui-anchor eui-bc');
     if (!o.target && !box.style.bottom) box.style.bottom = '120px';
     box.innerHTML = '';
-    var s = el('div', 'mh-subtitle mh-enter-fade' + (o.boxed ? ' mh-subtitle--boxed' : ''));
+    var s = el('div', 'eui-subtitle eui-enter-fade' + (o.boxed ? ' eui-subtitle--boxed' : ''));
     s.innerHTML = (o.speaker ? '<b' + (o.color ? ' style="--speaker:' + esc(o.color) + '"' : '') + '>' + esc(o.speaker) + ':</b>' : '') + esc(o.text || '');
     box.appendChild(s);
     clearTimeout(box.__t);
@@ -792,22 +792,22 @@
   /* ======================================================================
      İlerleme (iptal edilebilir)
      ====================================================================== */
-  MH.progress = function (o) {
+  EUI.progress = function (o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="progress"]', 'mh-anchor mh-bc');
+    var box = $(o.target) || center('[data-eui="progress"]', 'eui-anchor eui-bc');
     if (!o.target && !box.style.bottom) box.style.bottom = '150px';
     box.innerHTML = '';
-    var p = el('div', 'mh-panel mh-progress mh-enter-up');
-    p.innerHTML = '<div class="mh-progress__head">' + icon(o.icon || 'hourglass') + '<span class="mh-progress__label">' + esc(o.label || 'İşleniyor') + '</span><span class="mh-progress__pct">0%</span></div>' +
-      '<div class="mh-bar"><i class="mh-bar__fill"></i></div>' +
-      '<div class="mh-progress__foot"><span class="mh-progress__time"></span>' + (o.cancelKey !== false ? '<span class="mh-hint"><span class="mh-key mh-key--sm">' + esc(o.cancelKey || 'X') + '</span>İptal</span>' : '') + '</div>';
+    var p = el('div', 'eui-panel eui-progress eui-enter-up');
+    p.innerHTML = '<div class="eui-progress__head">' + icon(o.icon || 'hourglass') + '<span class="eui-progress__label">' + esc(o.label || 'İşleniyor') + '</span><span class="eui-progress__pct">0%</span></div>' +
+      '<div class="eui-bar"><i class="eui-bar__fill"></i></div>' +
+      '<div class="eui-progress__foot"><span class="eui-progress__time"></span>' + (o.cancelKey !== false ? '<span class="eui-hint"><span class="eui-key eui-key--sm">' + esc(o.cancelKey || 'X') + '</span>İptal</span>' : '') + '</div>';
     box.appendChild(p);
-    var fill = p.querySelector('.mh-bar__fill'), pct = p.querySelector('.mh-progress__pct'), tm = p.querySelector('.mh-progress__time');
+    var fill = p.querySelector('.eui-bar__fill'), pct = p.querySelector('.eui-progress__pct'), tm = p.querySelector('.eui-progress__time');
     var dur = o.duration || 3000, t0 = performance.now(), done = false, rafId, resolveFn;
     var promise = new Promise(function (r) { resolveFn = r; });
     function finish(ok) {
       if (done) return; done = true; cancelAnimationFrame(rafId);
-      if (!ok) p.querySelector('.mh-bar').classList.add('mh-t-danger');
+      if (!ok) p.querySelector('.eui-bar').classList.add('eui-t-danger');
       setTimeout(function () { remove(p); }, ok ? 150 : 400);
       resolveFn(ok);
     }
@@ -823,8 +823,8 @@
     return promise;
   };
 
-  /* Basılı tutma halkası: el = .mh-hold; döner { start, stop } */
-  MH.hold = function (target, o) {
+  /* Basılı tutma halkası: el = .eui-hold; döner { start, stop } */
+  EUI.hold = function (target, o) {
     var n = $(target); if (!n) return;
     o = o || {};
     var dur = o.duration || 1200, t0 = 0, id = 0, v = 0;
@@ -844,7 +844,7 @@
      Modal: onay & metin girişi
      ====================================================================== */
   /* ----------------------------------------------------------------------
-     MH.modal — genel modal (yığınlanır: üstteki ESC/Enter'ı alır)
+     EUI.modal — genel modal (yığınlanır: üstteki ESC/Enter'ı alır)
      o: { kicker, title, text, icon, tone, danger, w | size: 'sm'|'md'|'lg'|'xl',
           body: html | Node, actions: [{ label, value, primary, danger, icon, key, submit }],
           dismiss (true), close (sağ üst ×, true), target, onOpen(m, api), validate(values) }
@@ -852,7 +852,7 @@
      ESC / dış alan → null. Promise üzerinde .close(v) ve .el vardır.
      ---------------------------------------------------------------------- */
   var modalStack = [];
-  MH.modalOpen = function () { return modalStack.length > 0; };
+  EUI.modalOpen = function () { return modalStack.length > 0; };
   doc.addEventListener('keydown', function (e) {
     var top = modalStack[modalStack.length - 1]; if (!top) return;
     if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); if (top.dismiss) top.close(null); }
@@ -873,32 +873,32 @@
     return v;
   }
   var MSIZE = { sm: 380, md: 460, lg: 620, xl: 820 };
-  MH.modal = function (o) {
+  EUI.modal = function (o) {
     o = o || {};
     var api = {}, resolveFn;
     var p = new Promise(function (res) { resolveFn = res; });
-    var l = el('div', 'mh-layer mh-layer--modal mh-catch');
-    l.innerHTML = '<div class="mh-scrim mh-enter-fade"></div>';
-    var tone = o.danger ? ' mh-t-danger' : o.tone ? ' mh-t-' + o.tone : '';
-    var m = el('div', 'mh-panel mh-modal' + tone + (o.cls ? ' ' + o.cls : ''));
+    var l = el('div', 'eui-layer eui-layer--modal eui-catch');
+    l.innerHTML = '<div class="eui-scrim eui-enter-fade"></div>';
+    var tone = o.danger ? ' eui-t-danger' : o.tone ? ' eui-t-' + o.tone : '';
+    var m = el('div', 'eui-panel eui-modal' + tone + (o.cls ? ' ' + o.cls : ''));
     m.style.setProperty('--w', (o.w || MSIZE[o.size || 'md'] || 460) + 'px');
-    var head = (o.title || o.kicker || o.who) ? '<div class="mh-modal__head">' + (o.icon ? '<div class="mh-modal__icon">' + icon(o.icon) + '</div>' : '') +
-      '<div class="mh-modal__titles">' + (o.kicker ? '<span class="mh-kicker mh-kicker--accent">' + esc(o.kicker) + '</span>' : '') + '<div class="mh-title">' + esc(o.title || '') + '</div>' +
-      (o.who ? '<span class="mh-modal__who">' + avatar(o.who, { cls: 'mh-avatar--sm mh-avatar--round', src: o.whoAvatar }) + '<b>' + esc(o.who) + '</b></span>' : '') +
-      (o.text ? '<div class="mh-sub">' + esc(o.text) + '</div>' : '') + '</div>' +
-      (o.close !== false ? '<button class="mh-btn mh-btn--ghost mh-btn--sm mh-btn--icon mh-modal__x" data-x>' + icon('x') + '</button>' : '') + '</div>' : '';
+    var head = (o.title || o.kicker || o.who) ? '<div class="eui-modal__head">' + (o.icon ? '<div class="eui-modal__icon">' + icon(o.icon) + '</div>' : '') +
+      '<div class="eui-modal__titles">' + (o.kicker ? '<span class="eui-kicker eui-kicker--accent">' + esc(o.kicker) + '</span>' : '') + '<div class="eui-title">' + esc(o.title || '') + '</div>' +
+      (o.who ? '<span class="eui-modal__who">' + avatar(o.who, { cls: 'eui-avatar--sm eui-avatar--round', src: o.whoAvatar }) + '<b>' + esc(o.who) + '</b></span>' : '') +
+      (o.text ? '<div class="eui-sub">' + esc(o.text) + '</div>' : '') + '</div>' +
+      (o.close !== false ? '<button class="eui-btn eui-btn--ghost eui-btn--sm eui-btn--icon eui-modal__x" data-x>' + icon('x') + '</button>' : '') + '</div>' : '';
     var acts = o.actions || [{ label: 'Kapat', value: null }];
-    m.innerHTML = head + '<div class="mh-modal__content"></div><div class="mh-modal__error mh-hidden"></div>' +
-      (acts.length ? '<div class="mh-modal__actions">' + acts.map(function (a, i) {
-        var cls = a.primary ? (a.danger ? 'mh-btn--tone mh-t-danger' : 'mh-btn--primary') : a.danger ? 'mh-btn--tone mh-t-danger' : 'mh-btn--ghost';
-        return '<button class="mh-btn ' + cls + '" data-act="' + i + '"' + (a.primary ? ' data-primary' : '') + (a.disabled ? ' disabled' : '') + (a.left ? ' style="margin-right:auto"' : '') + '>' +
-          (a.key ? '<span class="mh-key mh-key--sm">' + esc(a.key) + '</span>' : a.icon ? icon(a.icon) : '') + esc(a.label) + '</button>';
+    m.innerHTML = head + '<div class="eui-modal__content"></div><div class="eui-modal__error eui-hidden"></div>' +
+      (acts.length ? '<div class="eui-modal__actions">' + acts.map(function (a, i) {
+        var cls = a.primary ? (a.danger ? 'eui-btn--tone eui-t-danger' : 'eui-btn--primary') : a.danger ? 'eui-btn--tone eui-t-danger' : 'eui-btn--ghost';
+        return '<button class="eui-btn ' + cls + '" data-act="' + i + '"' + (a.primary ? ' data-primary' : '') + (a.disabled ? ' disabled' : '') + (a.left ? ' style="margin-right:auto"' : '') + '>' +
+          (a.key ? '<span class="eui-key eui-key--sm">' + esc(a.key) + '</span>' : a.icon ? icon(a.icon) : '') + esc(a.label) + '</button>';
       }).join('') + '</div>' : '');
-    var content = m.querySelector('.mh-modal__content');
+    var content = m.querySelector('.eui-modal__content');
     if (o.body && o.body.nodeType) content.appendChild(o.body); else content.innerHTML = o.body || '';
-    if (!o.body) content.classList.add('mh-hidden');
+    if (!o.body) content.classList.add('eui-hidden');
     l.appendChild(m);
-    ($(o.target) || $('.mh-screen') || doc.body).appendChild(l);
+    ($(o.target) || $('.eui-screen') || doc.body).appendChild(l);
     var entry = { el: m, dismiss: o.dismiss !== false, close: close };
     modalStack.push(entry);
     function close(v) {
@@ -906,7 +906,7 @@
       modalStack.splice(i, 1);
       remove(l); resolveFn(v);
     }
-    function error(msg) { var e = m.querySelector('.mh-modal__error'); e.textContent = msg || ''; e.classList.toggle('mh-hidden', !msg); if (msg) { m.classList.remove('is-shake'); void m.offsetWidth; m.classList.add('is-shake'); } }
+    function error(msg) { var e = m.querySelector('.eui-modal__error'); e.textContent = msg || ''; e.classList.toggle('eui-hidden', !msg); if (msg) { m.classList.remove('is-shake'); void m.offsetWidth; m.classList.add('is-shake'); } }
     $$('[data-act]', m).forEach(function (b) {
       b.onclick = function () {
         var a = acts[+b.getAttribute('data-act')];
@@ -922,55 +922,55 @@
       };
     });
     var x = m.querySelector('[data-x]'); if (x) x.onclick = function () { close(null); };
-    l.querySelector('.mh-scrim').onclick = function () { if (entry.dismiss) close(null); };
+    l.querySelector('.eui-scrim').onclick = function () { if (entry.dismiss) close(null); };
     api.el = m; api.close = close; api.error = error; api.content = content;
     p.el = m; p.close = close; p.error = error;
-    MH.mount(m);
+    EUI.mount(m);
     var f = m.querySelector('[autofocus], input:not([type=hidden]):not([type=checkbox]):not([type=radio]), textarea');
     if (f) setTimeout(function () { f.focus(); if (f.select) f.select(); }, 60);
     if (o.onOpen) o.onOpen(m, api);
     return p;
   };
-  MH.closeModals = function () { modalStack.slice().reverse().forEach(function (e) { e.close(null); }); };
+  EUI.closeModals = function () { modalStack.slice().reverse().forEach(function (e) { e.close(null); }); };
 
-  MH.confirm = function (o) {
+  EUI.confirm = function (o) {
     o = o || {};
-    return MH.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Emin misin?', text: o.text, icon: o.icon !== false ? (o.icon || (o.danger ? 'alert' : 'info')) : null, danger: o.danger, tone: o.tone, size: o.size || 'md', close: false, target: o.target,
+    return EUI.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Emin misin?', text: o.text, icon: o.icon !== false ? (o.icon || (o.danger ? 'alert' : 'info')) : null, danger: o.danger, tone: o.tone, size: o.size || 'md', close: false, target: o.target,
       body: o.body, actions: [{ label: o.cancel || 'Vazgeç', value: false, key: 'ESC' }, { label: o.ok || 'Onayla', value: true, primary: true, danger: o.danger, key: 'ENTER' }] })
       .then(function (v) { return !!v; });
   };
-  MH.input = function (o) {
+  EUI.input = function (o) {
     o = o || {};
-    var body = '<label class="mh-field">' + (o.label ? '<span class="mh-kicker">' + esc(o.label) + '</span>' : '') +
-      '<input class="mh-input" name="value" type="' + (o.type || 'text') + '" placeholder="' + esc(o.placeholder || '') + '" value="' + esc(o.value || '') + '" maxlength="' + (o.max || 64) + '"></label>';
-    return MH.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Değer gir', text: o.text, icon: o.icon, size: o.size || 'md', body: body, target: o.target,
+    var body = '<label class="eui-field">' + (o.label ? '<span class="eui-kicker">' + esc(o.label) + '</span>' : '') +
+      '<input class="eui-input" name="value" type="' + (o.type || 'text') + '" placeholder="' + esc(o.placeholder || '') + '" value="' + esc(o.value || '') + '" maxlength="' + (o.max || 64) + '"></label>';
+    return EUI.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Değer gir', text: o.text, icon: o.icon, size: o.size || 'md', body: body, target: o.target,
       validate: o.validate ? function (v) { return o.validate(v.value); } : (o.required ? function (v) { return String(v.value || '').trim() ? null : (o.requiredText || 'Bu alan boş bırakılamaz'); } : null),
       actions: [{ label: o.cancel || 'Vazgeç', value: null }, { label: o.ok || 'Kaydet', primary: true, submit: true }] })
       .then(function (v) { return v ? v.value : null; });
   };
 
-  /* MH.choose — aranabilir seçim listesi (oyuncu davet etme vb.)
+  /* EUI.choose — aranabilir seçim listesi (oyuncu davet etme vb.)
      o: { title, text, items: [{ id, label, sub, icon, avatar, tone, badge, right, disabled }], multi, search (true), ok, empty, max }
      Dönüş: multi ? [id] : id  — vazgeçilirse null */
-  MH.choose = function (o) {
+  EUI.choose = function (o) {
     o = o || {};
     var items = o.items || [], picked = {};
     (o.selected || []).forEach(function (id) { picked[id] = 1; });
-    var body = el('div', 'mh-choose');
-    body.innerHTML = (o.search !== false ? '<div class="mh-input-wrap">' + icon('search') + '<input class="mh-input" placeholder="' + esc(o.placeholder || 'Ara…') + '"></div>' : '') +
-      '<div class="mh-choose__list mh-scroll"></div>' + (o.multi ? '<div class="mh-choose__foot"><span class="mh-sub"><b data-n>0</b> seçildi</span><button class="mh-btn mh-btn--ghost mh-btn--sm" data-all>Tümünü seç</button></div>' : '');
-    var list = body.querySelector('.mh-choose__list'), cur = 0;
-    function vis() { return $$('.mh-choose__row:not(.is-disabled)', list); }
+    var body = el('div', 'eui-choose');
+    body.innerHTML = (o.search !== false ? '<div class="eui-input-wrap">' + icon('search') + '<input class="eui-input" placeholder="' + esc(o.placeholder || 'Ara…') + '"></div>' : '') +
+      '<div class="eui-choose__list eui-scroll"></div>' + (o.multi ? '<div class="eui-choose__foot"><span class="eui-sub"><b data-n>0</b> seçildi</span><button class="eui-btn eui-btn--ghost eui-btn--sm" data-all>Tümünü seç</button></div>' : '');
+    var list = body.querySelector('.eui-choose__list'), cur = 0;
+    function vis() { return $$('.eui-choose__row:not(.is-disabled)', list); }
     function draw(q) {
       q = (q || '').toLowerCase().trim();
       var rows = items.filter(function (it) { return !q || String(it.label).toLowerCase().indexOf(q) >= 0 || String(it.sub || '').toLowerCase().indexOf(q) >= 0; });
       list.innerHTML = rows.length ? rows.map(function (it) {
-        var art = it.avatar !== undefined || !it.icon ? avatar(it.label, { src: it.avatar, tone: it.tone, cls: 'mh-avatar--sm mh-avatar--round' }) : '<span class="mh-row__icon">' + icon(it.icon) + '</span>';
-        return '<div class="mh-choose__row' + (picked[it.id] ? ' is-picked' : '') + (it.disabled ? ' is-disabled' : '') + '" data-id="' + esc(it.id) + '">' +
-          (o.multi ? '<span class="mh-check"><input type="checkbox"' + (picked[it.id] ? ' checked' : '') + (it.disabled ? ' disabled' : '') + '><span class="mh-check__box"></span></span>' : '') + art +
-          '<div class="mh-row__main"><span class="mh-row__title">' + esc(it.label) + '</span>' + (it.sub ? '<span class="mh-row__sub">' + esc(it.sub) + '</span>' : '') + '</div>' +
-          (it.badge ? '<span class="mh-badge' + (it.badgeTone ? ' mh-t-' + it.badgeTone : '') + '">' + esc(it.badge) + '</span>' : '') + (it.right ? '<span class="mh-num mh-dim">' + esc(it.right) + '</span>' : '') + '</div>';
-      }).join('') : '<div class="mh-empty">' + icon('search') + '<span>' + esc(o.empty || 'Sonuç yok') + '</span></div>';
+        var art = it.avatar !== undefined || !it.icon ? avatar(it.label, { src: it.avatar, tone: it.tone, cls: 'eui-avatar--sm eui-avatar--round' }) : '<span class="eui-row__icon">' + icon(it.icon) + '</span>';
+        return '<div class="eui-choose__row' + (picked[it.id] ? ' is-picked' : '') + (it.disabled ? ' is-disabled' : '') + '" data-id="' + esc(it.id) + '">' +
+          (o.multi ? '<span class="eui-check"><input type="checkbox"' + (picked[it.id] ? ' checked' : '') + (it.disabled ? ' disabled' : '') + '><span class="eui-check__box"></span></span>' : '') + art +
+          '<div class="eui-row__main"><span class="eui-row__title">' + esc(it.label) + '</span>' + (it.sub ? '<span class="eui-row__sub">' + esc(it.sub) + '</span>' : '') + '</div>' +
+          (it.badge ? '<span class="eui-badge' + (it.badgeTone ? ' eui-t-' + it.badgeTone : '') + '">' + esc(it.badge) + '</span>' : '') + (it.right ? '<span class="eui-num eui-dim">' + esc(it.right) + '</span>' : '') + '</div>';
+      }).join('') : '<div class="eui-empty">' + icon('search') + '<span>' + esc(o.empty || 'Sonuç yok') + '</span></div>';
       cur = 0; hl();
     }
     function hl() { vis().forEach(function (r, i) { r.classList.toggle('is-active', i === cur); }); }
@@ -983,9 +983,9 @@
       if (on && o.max && Object.keys(picked).filter(function (k) { return picked[k]; }).length >= o.max) return api.error('En fazla ' + o.max + ' seçebilirsin');
       picked[id] = on ? 1 : 0; r.classList.toggle('is-picked', on); r.querySelector('input').checked = on; count(); api.error('');
     }
-    list.addEventListener('click', function (e) { var r = e.target.closest('.mh-choose__row'); if (!r || r.classList.contains('is-disabled')) return; e.preventDefault(); toggle(r); });
+    list.addEventListener('click', function (e) { var r = e.target.closest('.eui-choose__row'); if (!r || r.classList.contains('is-disabled')) return; e.preventDefault(); toggle(r); });
     draw('');
-    var inp = body.querySelector('input.mh-input');
+    var inp = body.querySelector('input.eui-input');
     if (inp) {
       inp.addEventListener('input', function () { draw(inp.value); });
       inp.addEventListener('keydown', function (e) {
@@ -1004,33 +1004,33 @@
       if (!ids.length) { a.error(o.needText || 'En az bir kişi seç'); return false; }
       a.close(ids); return false;
     } }] : [{ label: 'Vazgeç', value: null }];
-    var pr = MH.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Seç', text: o.text, icon: o.icon, size: o.size || 'md', body: body, actions: acts, target: o.target, cls: 'mh-modal--choose' });
+    var pr = EUI.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Seç', text: o.text, icon: o.icon, size: o.size || 'md', body: body, actions: acts, target: o.target, cls: 'eui-modal--choose' });
     api = { close: pr.close, error: pr.error };
     return pr;
   };
 
-  /* MH.amount — tutar/adet seçici
+  /* EUI.amount — tutar/adet seçici
      o: { title, text, label, min (1), max, value, step (1), prefix ('$'), suffix, quick: [100, 1000, 'max'], decimals, ok } → Promise(sayı | null) */
-  MH.amount = function (o) {
+  EUI.amount = function (o) {
     o = o || {};
     var min = o.min == null ? 1 : o.min, max = o.max == null ? 1e9 : o.max, step = o.step || 1, val = clamp(o.value == null ? min : o.value, min, max);
     var quick = o.quick || [];
-    var body = el('div', 'mh-amount');
-    body.innerHTML = (o.label ? '<span class="mh-kicker">' + esc(o.label) + '</span>' : '') +
-      '<div class="mh-amount__field">' + (o.prefix !== '' ? '<span class="mh-amount__fix">' + esc(o.prefix == null ? '$' : o.prefix) + '</span>' : '') +
-      '<button class="mh-btn mh-btn--ghost mh-btn--icon" data-d="-1">' + icon('minus') + '</button>' +
-      '<input class="mh-amount__input" type="number" name="amount" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '">' +
-      '<button class="mh-btn mh-btn--ghost mh-btn--icon" data-d="1">' + icon('plus') + '</button>' + (o.suffix ? '<span class="mh-amount__fix">' + esc(o.suffix) + '</span>' : '') + '</div>' +
-      (max < 1e9 ? '<input type="range" class="mh-slider" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '">' +
-        '<div class="mh-amount__range"><span>' + esc(nf(min)) + '</span><span>' + esc((o.maxLabel ? o.maxLabel + ' · ' : '') + nf(max)) + '</span></div>' : '') +
-      (quick.length ? '<div class="mh-amount__quick">' + quick.map(function (q) { return '<button class="mh-chip" data-q="' + q + '">' + (q === 'max' ? 'Tümü' : q === 'half' ? 'Yarısı' : (o.prefix == null ? '$' : o.prefix) + nf(q)) + '</button>'; }).join('') + '</div>' : '');
-    var inp = body.querySelector('.mh-amount__input'), rng = body.querySelector('input[type=range]');
+    var body = el('div', 'eui-amount');
+    body.innerHTML = (o.label ? '<span class="eui-kicker">' + esc(o.label) + '</span>' : '') +
+      '<div class="eui-amount__field">' + (o.prefix !== '' ? '<span class="eui-amount__fix">' + esc(o.prefix == null ? '$' : o.prefix) + '</span>' : '') +
+      '<button class="eui-btn eui-btn--ghost eui-btn--icon" data-d="-1">' + icon('minus') + '</button>' +
+      '<input class="eui-amount__input" type="number" name="amount" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '">' +
+      '<button class="eui-btn eui-btn--ghost eui-btn--icon" data-d="1">' + icon('plus') + '</button>' + (o.suffix ? '<span class="eui-amount__fix">' + esc(o.suffix) + '</span>' : '') + '</div>' +
+      (max < 1e9 ? '<input type="range" class="eui-slider" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '">' +
+        '<div class="eui-amount__range"><span>' + esc(nf(min)) + '</span><span>' + esc((o.maxLabel ? o.maxLabel + ' · ' : '') + nf(max)) + '</span></div>' : '') +
+      (quick.length ? '<div class="eui-amount__quick">' + quick.map(function (q) { return '<button class="eui-chip" data-q="' + q + '">' + (q === 'max' ? 'Tümü' : q === 'half' ? 'Yarısı' : (o.prefix == null ? '$' : o.prefix) + nf(q)) + '</button>'; }).join('') + '</div>' : '');
+    var inp = body.querySelector('.eui-amount__input'), rng = body.querySelector('input[type=range]');
     function set(v) { v = clamp(Math.round(Number(v) / step) * step, min, max); if (isNaN(v)) v = min; inp.value = v; if (rng) { rng.value = v; rng.dispatchEvent(new Event('input')); } }
     if (rng) rng.addEventListener('input', function () { inp.value = rng.value; });
     inp.addEventListener('change', function () { set(inp.value); });
     $$('[data-d]', body).forEach(function (b) { b.onclick = function () { set(Number(inp.value) + step * +b.getAttribute('data-d') * (o.bigStep || 1)); }; });
     $$('[data-q]', body).forEach(function (b) { b.onclick = function () { var q = b.getAttribute('data-q'); set(q === 'max' ? max : q === 'half' ? Math.floor(max / 2) : q); }; });
-    return MH.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Tutar', text: o.text, icon: o.icon, tone: o.tone, size: o.size || 'md', body: body, target: o.target,
+    return EUI.modal({ kicker: o.kicker, who: o.who, title: o.title || 'Tutar', text: o.text, icon: o.icon, tone: o.tone, size: o.size || 'md', body: body, target: o.target,
       validate: function (v) { var n = Number(v.amount); return isNaN(n) || n < min ? 'En az ' + nf(min) : n > max ? 'En fazla ' + nf(max) : (o.validate ? o.validate(n) : null); },
       actions: [{ label: 'Vazgeç', value: null }, { label: o.ok || 'Onayla', primary: true, submit: true, icon: o.okIcon }] })
       .then(function (v) { return v ? Number(v.amount) : null; });
@@ -1040,12 +1040,12 @@
      Radial menü — SVG dilimleri
      items: [{ id, icon, label, sub, disabled }]
      ====================================================================== */
-  MH.radial = function (target, items, o) {
+  EUI.radial = function (target, items, o) {
     var box = $(target); if (!box) return;
     o = o || {};
     var size = o.size || 440, R = size / 2, ro = R - 4, ri = R * (o.inner || .36), gap = (o.gap == null ? 1.2 : o.gap) * Math.PI / 180;
     var n = items.length, step = Math.PI * 2 / n, start = -Math.PI / 2 - step / 2;
-    box.classList.add('mh-radial');
+    box.classList.add('eui-radial');
     box.style.setProperty('--size', size + 'px');
     function pt(r, a) { return (R + r * Math.cos(a)).toFixed(2) + ' ' + (R + r * Math.sin(a)).toFixed(2); }
     function wedge(a0, a1, r0, r1) {
@@ -1058,20 +1058,20 @@
       var a0 = start + i * step + gap / 2, a1 = start + (i + 1) * step - gap / 2;
       var d = wedge(a0, a1, ri, ro);
       // alt katman dilimin zeminidir; üstteki dilim seçilince yalnız renk tonu ekler (arka plan sızmaz)
-      svg += '<path class="mh-radial__base' + (it.disabled ? ' is-disabled' : '') + '" d="' + d + '"/><path class="mh-radial__seg' + (it.disabled ? ' is-disabled' : '') + '" data-i="' + i + '" d="' + d + '"/>';
+      svg += '<path class="eui-radial__base' + (it.disabled ? ' is-disabled' : '') + '" d="' + d + '"/><path class="eui-radial__seg' + (it.disabled ? ' is-disabled' : '') + '" data-i="' + i + '" d="' + d + '"/>';
     });
-    svg += '<path class="mh-radial__ring" d=""/></svg>';
+    svg += '<path class="eui-radial__ring" d=""/></svg>';
     var html = svg;
     items.forEach(function (it, i) {
       var a = start + (i + .5) * step, rm = (ri + ro) / 2;
       var x = R + rm * Math.cos(a), y = R + rm * Math.sin(a);
-      html += '<div class="mh-radial__item" data-i="' + i + '" style="left:' + x.toFixed(1) + 'px;top:' + y.toFixed(1) + 'px">' + icon(it.icon || 'grid') +
+      html += '<div class="eui-radial__item" data-i="' + i + '" style="left:' + x.toFixed(1) + 'px;top:' + y.toFixed(1) + 'px">' + icon(it.icon || 'grid') +
         '<span>' + esc(it.label || '') + '</span>' + (it.sub ? '<small>' + esc(it.sub) + '</small>' : '') + '</div>';
     });
-    html += '<div class="mh-radial__center"><b>' + esc(o.title || 'Menü') + '</b><span>' + esc(o.hint || 'Bir seçenek seç') + '</span></div>';
+    html += '<div class="eui-radial__center"><b>' + esc(o.title || 'Menü') + '</b><span>' + esc(o.hint || 'Bir seçenek seç') + '</span></div>';
     box.innerHTML = html;
-    var ring = box.querySelector('.mh-radial__ring');
-    var cTitle = box.querySelector('.mh-radial__center b'), cSub = box.querySelector('.mh-radial__center span');
+    var ring = box.querySelector('.eui-radial__ring');
+    var cTitle = box.querySelector('.eui-radial__center b'), cSub = box.querySelector('.eui-radial__center span');
     var active = -1;
     function set(i) {
       if (i === active) return;
@@ -1079,8 +1079,8 @@
       $$('.is-active', box).forEach(function (x) { x.classList.remove('is-active'); });
       if (i < 0) { ring.setAttribute('d', ''); cTitle.textContent = o.title || 'Menü'; cSub.textContent = o.hint || 'Bir seçenek seç'; return; }
       var it = items[i];
-      box.querySelector('.mh-radial__seg[data-i="' + i + '"]').classList.add('is-active');
-      box.querySelector('.mh-radial__item[data-i="' + i + '"]').classList.add('is-active');
+      box.querySelector('.eui-radial__seg[data-i="' + i + '"]').classList.add('is-active');
+      box.querySelector('.eui-radial__item[data-i="' + i + '"]').classList.add('is-active');
       ring.setAttribute('d', arc(start + i * step + gap / 2, start + (i + 1) * step - gap / 2, ro + 6));
       cTitle.textContent = it.label || '';
       cSub.textContent = it.desc || it.sub || '';
@@ -1103,31 +1103,31 @@
   /* ======================================================================
      Bağlam menüsü
      ====================================================================== */
-  MH.context = function (x, y, items, o) {
+  EUI.context = function (x, y, items, o) {
     o = o || {};
-    MH.closeContext();
-    var scr = $(o.target) || $('.mh-screen') || doc.body;
-    var m = el('div', 'mh-panel mh-context mh-catch mh-enter-pop');
-    m.setAttribute('data-mh', 'context');
+    EUI.closeContext();
+    var scr = $(o.target) || $('.eui-screen') || doc.body;
+    var m = el('div', 'eui-panel eui-context eui-catch eui-enter-pop');
+    m.setAttribute('data-eui', 'context');
     m.style.position = 'absolute'; m.style.left = x + 'px'; m.style.top = y + 'px'; m.style.zIndex = 70;
-    m.innerHTML = (o.title ? '<div class="mh-context__head"><span class="mh-kicker">' + esc(o.title) + '</span></div>' : '') + items.map(function (it, i) {
-      if (it === '-' || it.sep) return '<div class="mh-context__sep"></div>';
-      return '<button class="mh-context__item' + (it.danger ? ' is-danger' : '') + '" data-i="' + i + '">' + (it.icon ? icon(it.icon) : '') + '<span>' + esc(it.label) + '</span>' +
-        (it.key ? '<span class="mh-key mh-key--sm">' + esc(it.key) + '</span>' : it.hint ? '<small>' + esc(it.hint) + '</small>' : '') + '</button>';
+    m.innerHTML = (o.title ? '<div class="eui-context__head"><span class="eui-kicker">' + esc(o.title) + '</span></div>' : '') + items.map(function (it, i) {
+      if (it === '-' || it.sep) return '<div class="eui-context__sep"></div>';
+      return '<button class="eui-context__item' + (it.danger ? ' is-danger' : '') + '" data-i="' + i + '">' + (it.icon ? icon(it.icon) : '') + '<span>' + esc(it.label) + '</span>' +
+        (it.key ? '<span class="eui-key eui-key--sm">' + esc(it.key) + '</span>' : it.hint ? '<small>' + esc(it.hint) + '</small>' : '') + '</button>';
     }).join('');
     scr.appendChild(m);
     var r = m.getBoundingClientRect(), pr = scr.getBoundingClientRect(), k = pr.width / (scr.offsetWidth || pr.width);
     if (r.right > pr.right) m.style.left = (x - r.width / k) + 'px';
     if (r.bottom > pr.bottom) m.style.top = (y - r.height / k) + 'px';
-    $$('.mh-context__item', m).forEach(function (b) {
-      b.onclick = function (e) { e.stopPropagation(); var it = items[+b.getAttribute('data-i')]; MH.closeContext(); if (it.onClick) it.onClick(); if (o.onPick) o.onPick(it); };
+    $$('.eui-context__item', m).forEach(function (b) {
+      b.onclick = function (e) { e.stopPropagation(); var it = items[+b.getAttribute('data-i')]; EUI.closeContext(); if (it.onClick) it.onClick(); if (o.onPick) o.onPick(it); };
     });
     setTimeout(function () { doc.addEventListener('mousedown', outside); }, 0);
-    function outside(e) { if (!m.contains(e.target)) MH.closeContext(); }
+    function outside(e) { if (!m.contains(e.target)) EUI.closeContext(); }
     m.__off = function () { doc.removeEventListener('mousedown', outside); };
     return m;
   };
-  MH.closeContext = function () { $$('[data-mh="context"]').forEach(function (m) { if (m.__off) m.__off(); remove(m); }); };
+  EUI.closeContext = function () { $$('[data-eui="context"]').forEach(function (m) { if (m.__off) m.__off(); remove(m); }); };
 
   /* ======================================================================
      Dünya katmanı: havuzlu düğümler, yalnızca transform yazılır
@@ -1156,47 +1156,47 @@
       clear: function () { for (var k in nodes) world.removeChild(nodes[k]); nodes = {}; }
     };
   }
-  MH.Pool = Pool;
+  EUI.Pool = Pool;
 
   /* İsim etiketleri — list öğesi:
      { id, x, y, scale, alpha, name, sid, tone:'friend'|'enemy'|'team1', badge:{text,tone}, health, armor,
        sub, talking, dead, typing, icon, bubble, compact,
        variant:'plate|flag|pill|line|bar|pointer|banner|bracket|boss|npc|far|viewer|hp|glow|vip', role, avatar,
        level, clan, down, afk, leader } */
-  MH.Nametags = function (world, opts) {
+  EUI.Nametags = function (world, opts) {
     opts = opts || {};
-    return Pool(world, function () { return el('div', 'mh-tag'); }, function (n, t) {
-      n.className = 'mh-tag' + (t.tone ? (/^team/.test(t.tone) ? ' mh-t-' + t.tone : ' is-' + t.tone) : '') +
-        (t.talking ? ' is-talking' : '') + (t.down ? ' is-down' : '') + (t.afk ? ' is-afk' : '') + (t.leader ? ' is-leader' : '') + (t.dead ? ' is-dead' : '') + (t.typing ? ' is-typing' : '') + (t.compact || opts.compact ? ' mh-tag--compact' : '') + (t.variant || opts.variant ? ' mh-tag--' + (t.variant || opts.variant) : '');
+    return Pool(world, function () { return el('div', 'eui-tag'); }, function (n, t) {
+      n.className = 'eui-tag' + (t.tone ? (/^team/.test(t.tone) ? ' eui-t-' + t.tone : ' is-' + t.tone) : '') +
+        (t.talking ? ' is-talking' : '') + (t.down ? ' is-down' : '') + (t.afk ? ' is-afk' : '') + (t.leader ? ' is-leader' : '') + (t.dead ? ' is-dead' : '') + (t.typing ? ' is-typing' : '') + (t.compact || opts.compact ? ' eui-tag--compact' : '') + (t.variant || opts.variant ? ' eui-tag--' + (t.variant || opts.variant) : '');
       var bars = '';
       if (opts.bars !== false && t.health != null && !t.dead) {
-        bars = '<div class="mh-tag__bars"><div class="mh-bar mh-t-' + (t.tone === 'enemy' || t.health <= 25 ? 'danger' : 'health') + '"><i class="mh-bar__fill" style="transform:scaleX(' + clamp(t.health / 100, 0, 1) + ')"></i></div>' +
-          (t.armor ? '<div class="mh-bar mh-t-armor"><i class="mh-bar__fill" style="transform:scaleX(' + clamp(t.armor / 100, 0, 1) + ')"></i></div>' : '') + '</div>';
+        bars = '<div class="eui-tag__bars"><div class="eui-bar eui-t-' + (t.tone === 'enemy' || t.health <= 25 ? 'danger' : 'health') + '"><i class="eui-bar__fill" style="transform:scaleX(' + clamp(t.health / 100, 0, 1) + ')"></i></div>' +
+          (t.armor ? '<div class="eui-bar eui-t-armor"><i class="eui-bar__fill" style="transform:scaleX(' + clamp(t.armor / 100, 0, 1) + ')"></i></div>' : '') + '</div>';
       }
-      n.innerHTML = (t.bubble ? '<div class="mh-tag__bubble">' + esc(t.bubble) + '</div>' : '') +
-        (t.role ? '<div class="mh-tag__role">' + esc(t.role) + '</div>' : '') + '<div class="mh-tag__line">' + (t.avatar ? '<span class="mh-avatar mh-avatar--round">' + esc(t.avatar) + '</span>' : '') + (t.dead ? icon('skull') : t.icon ? icon(t.icon) : '') + '<span class="mh-tag__voice">' + icon('mic') + '</span>' +
-        (t.level != null ? '<span class="mh-tag__lvl">' + esc(t.level) + '</span>' : '') + (t.clan ? '<span class="mh-tag__clan">[' + esc(t.clan) + ']</span>' : '') + '<span class="mh-tag__name">' + esc(t.name) + '</span>' + (t.sid != null ? '<span class="mh-tag__id">' + esc(t.sid) + '</span>' : '') +
-        (t.badge && opts.badges !== false ? '<span class="mh-badge mh-t-' + (t.badge.tone || 'neutral') + '">' + esc(t.badge.text) + '</span>' : '') + '</div>' +
-        bars + (t.sub && opts.sub !== false ? '<div class="mh-tag__sub">' + esc(t.sub) + '</div>' : '');
+      n.innerHTML = (t.bubble ? '<div class="eui-tag__bubble">' + esc(t.bubble) + '</div>' : '') +
+        (t.role ? '<div class="eui-tag__role">' + esc(t.role) + '</div>' : '') + '<div class="eui-tag__line">' + (t.avatar ? '<span class="eui-avatar eui-avatar--round">' + esc(t.avatar) + '</span>' : '') + (t.dead ? icon('skull') : t.icon ? icon(t.icon) : '') + '<span class="eui-tag__voice">' + icon('mic') + '</span>' +
+        (t.level != null ? '<span class="eui-tag__lvl">' + esc(t.level) + '</span>' : '') + (t.clan ? '<span class="eui-tag__clan">[' + esc(t.clan) + ']</span>' : '') + '<span class="eui-tag__name">' + esc(t.name) + '</span>' + (t.sid != null ? '<span class="eui-tag__id">' + esc(t.sid) + '</span>' : '') +
+        (t.badge && opts.badges !== false ? '<span class="eui-badge eui-t-' + (t.badge.tone || 'neutral') + '">' + esc(t.badge.text) + '</span>' : '') + '</div>' +
+        bars + (t.sub && opts.sub !== false ? '<div class="eui-tag__sub">' + esc(t.sub) + '</div>' : '');
     });
   };
 
   /* İşaretçiler — { id, x, y, icon, label, dist, tone, pulse } */
-  MH.Markers = function (world) {
-    return Pool(world, function () { return el('div', 'mh-marker'); }, function (n, m) {
-      n.className = 'mh-marker' + (m.tone ? ' mh-t-' + m.tone : '') + (m.pulse ? ' is-pulse' : '');
-      n.innerHTML = (m.label ? '<span class="mh-marker__label">' + esc(m.label) + '</span>' : '') +
-        '<span class="mh-marker__pin">' + icon(m.icon || 'flag') + '</span>' +
-        (m.dist != null ? '<span class="mh-marker__dist">' + (m.dist >= 1000 ? (m.dist / 1000).toFixed(1) + ' km' : Math.round(m.dist) + ' m') + '</span>' : '');
+  EUI.Markers = function (world) {
+    return Pool(world, function () { return el('div', 'eui-marker'); }, function (n, m) {
+      n.className = 'eui-marker' + (m.tone ? ' eui-t-' + m.tone : '') + (m.pulse ? ' is-pulse' : '');
+      n.innerHTML = (m.label ? '<span class="eui-marker__label">' + esc(m.label) + '</span>' : '') +
+        '<span class="eui-marker__pin">' + icon(m.icon || 'flag') + '</span>' +
+        (m.dist != null ? '<span class="eui-marker__dist">' + (m.dist >= 1000 ? (m.dist / 1000).toFixed(1) + ' km' : Math.round(m.dist) + ' m') + '</span>' : '');
     });
   };
 
-  MH.damageNumber = function (world, o) {
+  EUI.damageNumber = function (world, o) {
     var w = $(world); if (!w) return;
-    var f = el('div', 'mh-float');
+    var f = el('div', 'eui-float');
     var x = o.x <= 1.5 ? o.x * w.clientWidth : o.x, y = o.y <= 1.5 ? o.y * w.clientHeight : o.y;
     f.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
-    var s = el('span', 'mh-dmgnum' + (o.kind ? ' is-' + o.kind : ''), (o.kind === 'heal' ? '+' : '') + nf(o.value));
+    var s = el('span', 'eui-dmgnum' + (o.kind ? ' is-' + o.kind : ''), (o.kind === 'heal' ? '+' : '') + nf(o.value));
     s.style.setProperty('--dx', (Math.random() * 40 - 20).toFixed(0) + 'px');
     f.appendChild(s); w.appendChild(f);
     setTimeout(function () { f.remove(); }, 1050);
@@ -1205,28 +1205,28 @@
   /* ======================================================================
      Savaş geri bildirimi
      ====================================================================== */
-  MH.hit = function (target, kind) {
-    var c = $(target) || $('.mh-screen'); if (!c) return;
-    var h = el('div', 'mh-hitmarker' + (kind ? ' is-' + kind : ''), '<i></i><i></i><i></i><i></i>');
+  EUI.hit = function (target, kind) {
+    var c = $(target) || $('.eui-screen'); if (!c) return;
+    var h = el('div', 'eui-hitmarker' + (kind ? ' is-' + kind : ''), '<i></i><i></i><i></i><i></i>');
     c.appendChild(h);
     setTimeout(function () { h.remove(); }, 340);
   };
   /* angle: 0 = önden, 90 = sağdan, 180 = arkadan */
-  MH.damageFrom = function (target, angle) {
-    var c = $(target) || $('.mh-screen'); if (!c) return;
-    var wrap = c.querySelector(':scope > .mh-dmgdir');
-    if (!wrap) { wrap = el('div', 'mh-dmgdir'); c.appendChild(wrap); }
-    var a = el('i', 'mh-dmgdir__arc');
+  EUI.damageFrom = function (target, angle) {
+    var c = $(target) || $('.eui-screen'); if (!c) return;
+    var wrap = c.querySelector(':scope > .eui-dmgdir');
+    if (!wrap) { wrap = el('div', 'eui-dmgdir'); c.appendChild(wrap); }
+    var a = el('i', 'eui-dmgdir__arc');
     a.style.transform = 'rotate(' + (angle || 0) + 'deg)';
     wrap.appendChild(a);
     setTimeout(function () { a.remove(); }, 1450);
   };
-  MH.flash = function (target, red) {
-    var c = $(target) || $('.mh-screen'); if (!c) return;
-    var f = el('div', 'mh-flash' + (red ? ' is-red' : ''));
+  EUI.flash = function (target, red) {
+    var c = $(target) || $('.eui-screen'); if (!c) return;
+    var f = el('div', 'eui-flash' + (red ? ' is-red' : ''));
     c.appendChild(f); setTimeout(function () { f.remove(); }, 520);
   };
-  MH.vignette = function (target, health) {
+  EUI.vignette = function (target, health) {
     var v = $(target); if (!v) return;
     var k = health >= 40 ? 0 : clamp((40 - health) / 40, 0, 1);
     v.style.setProperty('--v', k.toFixed(2));
@@ -1237,38 +1237,38 @@
      Pusula, hız göstergesi, sayaç
      ====================================================================== */
   var CARD = { 0: 'K', 45: 'KD', 90: 'D', 135: 'GD', 180: 'G', 225: 'GB', 270: 'B', 315: 'KB' };
-  MH.cardinals = function (map) { CARD = map; };
-  MH.compass = function (target, heading, marks) {
+  EUI.cardinals = function (map) { CARD = map; };
+  EUI.compass = function (target, heading, marks) {
     var c = $(target); if (!c) return;
     var px = c.__px || 4; // derece başına piksel
-    var tape = c.querySelector('.mh-compass__tape');
+    var tape = c.querySelector('.eui-compass__tape');
     if (!tape) {
-      tape = el('div', 'mh-compass__tape');
+      tape = el('div', 'eui-compass__tape');
       var h = '';
       for (var d = -360; d <= 720; d += 5) {
         var x = d * px, dd = ((d % 360) + 360) % 360;
-        h += '<i class="mh-compass__tick' + (dd % 15 === 0 ? ' is-major' : '') + '" style="left:' + x + 'px"></i>';
-        if (CARD[dd] != null) h += '<span class="mh-compass__lbl is-cardinal' + (dd === 0 ? ' is-north' : '') + '" style="left:' + x + 'px">' + CARD[dd] + '</span>';
-        else if (dd % 15 === 0) h += '<span class="mh-compass__lbl" style="left:' + x + 'px">' + dd + '</span>';
+        h += '<i class="eui-compass__tick' + (dd % 15 === 0 ? ' is-major' : '') + '" style="left:' + x + 'px"></i>';
+        if (CARD[dd] != null) h += '<span class="eui-compass__lbl is-cardinal' + (dd === 0 ? ' is-north' : '') + '" style="left:' + x + 'px">' + CARD[dd] + '</span>';
+        else if (dd % 15 === 0) h += '<span class="eui-compass__lbl" style="left:' + x + 'px">' + dd + '</span>';
       }
-      tape.innerHTML = h + '<div class="mh-compass__marks"></div>';
+      tape.innerHTML = h + '<div class="eui-compass__marks"></div>';
       c.appendChild(tape);
-      c.insertAdjacentHTML('beforeend', '<i class="mh-compass__needle"></i>');
+      c.insertAdjacentHTML('beforeend', '<i class="eui-compass__needle"></i>');
     }
     heading = ((heading % 360) + 360) % 360;
     tape.style.transform = 'translateX(' + (-heading * px) + 'px)';
     if (marks) {
-      var mk = tape.querySelector('.mh-compass__marks');
+      var mk = tape.querySelector('.eui-compass__marks');
       mk.innerHTML = marks.map(function (m) {
         var b = ((m.bearing % 360) + 360) % 360;
         var rel = b - heading; if (rel > 180) b -= 360; if (rel < -180) b += 360;
-        return '<span class="mh-compass__mark' + (m.tone ? ' mh-t-' + m.tone : '') + '" style="left:' + (b * px) + 'px">' + icon(m.icon || 'pin-f') + '</span>';
+        return '<span class="eui-compass__mark' + (m.tone ? ' eui-t-' + m.tone : '') + '" style="left:' + (b * px) + 'px">' + icon(m.icon || 'pin-f') + '</span>';
       }).join('');
     }
   };
 
   /* Hız göstergesi: ilk çağrıda kadranı çizer */
-  MH.speedo = function (target, o) {
+  EUI.speedo = function (target, o) {
     var s = $(target); if (!s) return;
     o = o || {};
     var max = o.max || s.__max || 240;
@@ -1284,29 +1284,29 @@
         if (major) ticks += '<text x="' + (cx + (r - 34) * Math.cos(a)).toFixed(1) + '" y="' + (cy + (r - 34) * Math.sin(a)).toFixed(1) + '">' + v + '</text>';
       }
       var len = 2 * Math.PI * r * sweep / 360, rr = r - 9, rlen = 2 * Math.PI * rr * sweep / 360;
-      s.querySelector('.mh-speedo__dial').innerHTML =
-        '<circle class="mh-speedo__track" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-dasharray="' + len + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
-        '<circle class="mh-speedo__redline" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-dasharray="0 ' + (len * .85) + ' ' + (len * .15) + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
-        '<circle class="mh-speedo__arc" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-dasharray="' + len + ' 999" stroke-dashoffset="' + len + '" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
-        '<g class="mh-speedo__ticks">' + ticks + '</g>' +
-        '<circle class="mh-speedo__rpm-track" cx="' + cx + '" cy="' + cy + '" r="' + (rr - 30) + '" stroke-dasharray="' + (2 * Math.PI * (rr - 30) * sweep / 360) + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
-        '<circle class="mh-speedo__rpm" cx="' + cx + '" cy="' + cy + '" r="' + (rr - 30) + '" stroke-dasharray="' + (2 * Math.PI * (rr - 30) * sweep / 360) + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>';
+      s.querySelector('.eui-speedo__dial').innerHTML =
+        '<circle class="eui-speedo__track" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-dasharray="' + len + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
+        '<circle class="eui-speedo__redline" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-dasharray="0 ' + (len * .85) + ' ' + (len * .15) + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
+        '<circle class="eui-speedo__arc" cx="' + cx + '" cy="' + cy + '" r="' + r + '" stroke-dasharray="' + len + ' 999" stroke-dashoffset="' + len + '" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
+        '<g class="eui-speedo__ticks">' + ticks + '</g>' +
+        '<circle class="eui-speedo__rpm-track" cx="' + cx + '" cy="' + cy + '" r="' + (rr - 30) + '" stroke-dasharray="' + (2 * Math.PI * (rr - 30) * sweep / 360) + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>' +
+        '<circle class="eui-speedo__rpm" cx="' + cx + '" cy="' + cy + '" r="' + (rr - 30) + '" stroke-dasharray="' + (2 * Math.PI * (rr - 30) * sweep / 360) + ' 999" transform="rotate(' + a0 + ' ' + cx + ' ' + cy + ')"/>';
       s.__len = len; s.__rlen = 2 * Math.PI * (rr - 30) * sweep / 360;
     }
     if (o.speed != null) {
-      s.querySelector('.mh-speedo__arc').setAttribute('stroke-dashoffset', (s.__len * (1 - clamp(o.speed / s.__max, 0, 1))).toFixed(1));
-      var vEl = s.querySelector('.mh-speedo__value'); if (vEl) vEl.textContent = Math.round(o.speed);
+      s.querySelector('.eui-speedo__arc').setAttribute('stroke-dashoffset', (s.__len * (1 - clamp(o.speed / s.__max, 0, 1))).toFixed(1));
+      var vEl = s.querySelector('.eui-speedo__value'); if (vEl) vEl.textContent = Math.round(o.speed);
     }
-    if (o.rpm != null) s.querySelector('.mh-speedo__rpm').setAttribute('stroke-dashoffset', (s.__rlen * (1 - clamp(o.rpm, 0, 1))).toFixed(1));
-    if (o.gear != null) { var g = s.querySelector('.mh-speedo__gear'); if (g) g.textContent = o.gear; }
+    if (o.rpm != null) s.querySelector('.eui-speedo__rpm').setAttribute('stroke-dashoffset', (s.__rlen * (1 - clamp(o.rpm, 0, 1))).toFixed(1));
+    if (o.gear != null) { var g = s.querySelector('.eui-speedo__gear'); if (g) g.textContent = o.gear; }
   };
 
-  /* Geri sayan sayaç: el = .mh-timer ya da içindeki değer düğümü */
-  MH.timer = function (target, seconds, o) {
+  /* Geri sayan sayaç: el = .eui-timer ya da içindeki değer düğümü */
+  EUI.timer = function (target, seconds, o) {
     var t = $(target); if (!t) return;
     o = o || {};
-    var val = t.querySelector('.mh-timer__value') || t;
-    var box = t.classList.contains('mh-timer') ? t : t.closest('.mh-timer');
+    var val = t.querySelector('.eui-timer__value') || t;
+    var box = t.classList.contains('eui-timer') ? t : t.closest('.eui-timer');
     clearInterval(t.__iv);
     var end = Date.now() + seconds * 1000;
     function tick() {
@@ -1327,27 +1327,27 @@
   var PLATFORM = {  /* dikey yayında platform arayüzünün kapattığı alan (kırpma genişliğine/ekran yüksekliğine oran) */
     tiktok: { r: .16, b: .24, t: .1 }, reels: { r: .16, b: .22, t: .08 }, shorts: { r: .14, b: .2, t: .08 }, none: { r: 0, b: 0, t: 0 }
   };
-  MH.crop = function (mode, o) {
+  EUI.crop = function (mode, o) {
     o = o || {};
-    var scr = $(o.target) || $('.mh-screen'); if (!scr) return;
+    var scr = $(o.target) || $('.eui-screen'); if (!scr) return;
     function apply() {
       var W = scr.clientWidth, H = scr.clientHeight;
       var ratio = typeof mode === 'number' ? mode : CROPS[mode];
       if (!ratio || W / H <= ratio) {
-        scr.removeAttribute('data-mh-crop');
-        ['--mh-crop-l', '--mh-crop-r', '--mh-crop-w', '--mh-crop-pr', '--mh-crop-pb', '--mh-crop-pt'].forEach(function (k) { scr.style.removeProperty(k); });
+        scr.removeAttribute('data-eui-crop');
+        ['--eui-crop-l', '--eui-crop-r', '--eui-crop-w', '--eui-crop-pr', '--eui-crop-pb', '--eui-crop-pt'].forEach(function (k) { scr.style.removeProperty(k); });
         return { mode: 'wide', inset: 0, width: W };
       }
       var cw = Math.round(H * ratio), inset = Math.round((W - cw) / 2);
       var pf = PLATFORM[o.platform || 'none'] || PLATFORM.none;
       var vertical = ratio < .9;
-      scr.setAttribute('data-mh-crop', typeof mode === 'number' ? 'custom' : mode);
-      scr.style.setProperty('--mh-crop-l', inset + 'px');
-      scr.style.setProperty('--mh-crop-r', inset + 'px');
-      scr.style.setProperty('--mh-crop-w', cw + 'px');
-      scr.style.setProperty('--mh-crop-pr', (vertical ? Math.round(cw * pf.r) : 0) + 'px');
-      scr.style.setProperty('--mh-crop-pb', (vertical ? Math.round(H * pf.b) : 0) + 'px');
-      scr.style.setProperty('--mh-crop-pt', (vertical ? Math.round(H * pf.t) : 0) + 'px');
+      scr.setAttribute('data-eui-crop', typeof mode === 'number' ? 'custom' : mode);
+      scr.style.setProperty('--eui-crop-l', inset + 'px');
+      scr.style.setProperty('--eui-crop-r', inset + 'px');
+      scr.style.setProperty('--eui-crop-w', cw + 'px');
+      scr.style.setProperty('--eui-crop-pr', (vertical ? Math.round(cw * pf.r) : 0) + 'px');
+      scr.style.setProperty('--eui-crop-pb', (vertical ? Math.round(H * pf.b) : 0) + 'px');
+      scr.style.setProperty('--eui-crop-pt', (vertical ? Math.round(H * pf.t) : 0) + 'px');
       return { mode: mode, inset: inset, width: cw };
     }
     if (scr.__cropOff) scr.__cropOff();
@@ -1357,62 +1357,62 @@
     var ro = root.ResizeObserver ? new ResizeObserver(onR) : null;
     if (ro) ro.observe(scr);
     scr.__cropOff = function () { root.removeEventListener('resize', onR); if (ro) ro.disconnect(); };
-    MH.cropGuide(scr, !!o.guide && res.mode !== 'wide', (typeof mode === 'number' ? mode : CROPS[mode]) < .9 ? o.platform : null);
+    EUI.cropGuide(scr, !!o.guide && res.mode !== 'wide', (typeof mode === 'number' ? mode : CROPS[mode]) < .9 ? o.platform : null);
     emit('crop', res);
     return res;
   };
   /* Kırpma kılavuzu: yayına girmeyen alanı karartır, platform arayüzünü taslak olarak gösterir */
-  MH.cropGuide = function (target, on, platform) {
-    var scr = $(target) || $('.mh-screen'); if (!scr) return;
-    var g = scr.querySelector(':scope > .mh-crop-guide');
+  EUI.cropGuide = function (target, on, platform) {
+    var scr = $(target) || $('.eui-screen'); if (!scr) return;
+    var g = scr.querySelector(':scope > .eui-crop-guide');
     if (!on) { if (g) g.remove(); return; }
-    if (!g) { g = el('div', 'mh-crop-guide'); scr.appendChild(g); }
-    g.innerHTML = '<i class="mh-crop-guide__frame"><span>' + esc(scr.getAttribute('data-mh-crop') === 'square' ? '1:1 yayın alanı' : 'Dikey yayın alanı') + '</span></i>' +
-      (platform && platform !== 'none' ? '<i class="mh-crop-guide__ui"><b></b><b></b><b></b><b></b><em></em></i>' : '');
+    if (!g) { g = el('div', 'eui-crop-guide'); scr.appendChild(g); }
+    g.innerHTML = '<i class="eui-crop-guide__frame"><span>' + esc(scr.getAttribute('data-eui-crop') === 'square' ? '1:1 yayın alanı' : 'Dikey yayın alanı') + '</span></i>' +
+      (platform && platform !== 'none' ? '<i class="eui-crop-guide__ui"><b></b><b></b><b></b><b></b><em></em></i>' : '');
   };
 
   /* ======================================================================
      YAYINCI İSTATİSTİKLERİ
      ====================================================================== */
   /* Ekrandaki / kuyruktaki düşman sayacı: { onScreen, queued, max } */
-  MH.enemies = function (target, o) {
+  EUI.enemies = function (target, o) {
     var n = $(target); if (!n) return;
     o = o || {};
     var on = n.querySelector('[data-k="on"]'), q = n.querySelector('[data-k="queued"]');
-    if (on && o.onScreen != null) { if (+on.textContent !== o.onScreen) bump(on); MH.count(on, o.onScreen, { duration: 250 }); }
-    if (q && o.queued != null) { if (+q.textContent !== o.queued) bump(q); MH.count(q, o.queued, { duration: 250 }); }
-    var bar = n.querySelector('.mh-bar');
-    if (bar && o.max) MH.bar(bar, o.onScreen, { max: o.max });
+    if (on && o.onScreen != null) { if (+on.textContent !== o.onScreen) bump(on); EUI.count(on, o.onScreen, { duration: 250 }); }
+    if (q && o.queued != null) { if (+q.textContent !== o.queued) bump(q); EUI.count(q, o.queued, { duration: 250 }); }
+    var bar = n.querySelector('.eui-bar');
+    if (bar && o.max) EUI.bar(bar, o.onScreen, { max: o.max });
     n.classList.toggle('is-swarm', o.max ? o.onScreen >= o.max * .8 : false);
   };
   function bump(node) { var b = node.closest('[data-bump]') || node; b.classList.remove('is-bump'); void b.offsetWidth; b.classList.add('is-bump'); }
-  MH.bump = bump;
+  EUI.bump = bump;
   /* Bir istatistik değerini günceller: <b data-stat="deaths"> */
-  MH.stat = function (rootEl, key, value, o) {
+  EUI.stat = function (rootEl, key, value, o) {
     var r = $(rootEl) || doc;
     $$('[data-stat="' + key + '"]', r).forEach(function (n) {
       var prev = n.__val;
-      if (typeof value === 'number') MH.count(n, value, o || { duration: 300 }); else n.textContent = value;
+      if (typeof value === 'number') EUI.count(n, value, o || { duration: 300 }); else n.textContent = value;
       n.__val = value;
       if (prev != null && prev !== value) bump(n);
     });
   };
   /* Maç geçmişi: ['W','L','W','D'] → kareler */
-  MH.history = function (target, list, max) {
+  EUI.history = function (target, list, max) {
     var n = $(target); if (!n) return;
     list = (typeof list === 'string' ? list.split('') : list).slice(-(max || 10));
     var map = { W: ['G', 'win'], L: ['M', 'loss'], D: ['B', 'draw'] };
     n.innerHTML = list.map(function (r) { var m = map[String(r).toUpperCase()] || [r, 'draw']; return '<i class="is-' + m[1] + '">' + m[0] + '</i>'; }).join('');
   };
   /* Öldürme serisi: sayı + sönen bar */
-  MH.streak = function (target, count, o) {
+  EUI.streak = function (target, count, o) {
     var n = $(target); if (!n) return;
     o = o || {};
-    var v = n.querySelector('.mh-streak__count'); if (v) v.textContent = count;
-    n.classList.toggle('mh-hidden', !count);
+    var v = n.querySelector('.eui-streak__count'); if (v) v.textContent = count;
+    n.classList.toggle('eui-hidden', !count);
     n.classList.toggle('is-hot', count >= (o.hot || 5));
     bump(n);
-    var bar = n.querySelector('.mh-streak__decay'); if (!bar) return;
+    var bar = n.querySelector('.eui-streak__decay'); if (!bar) return;
     bar.style.transition = 'none'; bar.style.transform = 'scaleX(1)'; void bar.offsetWidth;
     bar.style.transition = 'transform ' + (o.decay || 6000) + 'ms linear'; bar.style.transform = 'scaleX(0)';
   };
@@ -1420,7 +1420,7 @@
   /* ======================================================================
      GRAFİKLER (menü istatistikleri)
      ====================================================================== */
-  MH.sparkline = function (target, values, o) {
+  EUI.sparkline = function (target, values, o) {
     var n = $(target); if (!n || !values || !values.length) return;
     o = o || {};
     var w = o.width || 200, h = o.height || 48, pad = 3;
@@ -1430,27 +1430,27 @@
     var line = pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ');
     var area = line + ' L' + pts[pts.length - 1][0].toFixed(1) + ' ' + (h - pad) + ' L' + pad + ' ' + (h - pad) + ' Z';
     var last = pts[pts.length - 1];
-    n.innerHTML = '<svg class="mh-spark" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none">' +
-      (o.area !== false ? '<path class="mh-spark__area" d="' + area + '"/>' : '') + '<path class="mh-spark__line" d="' + line + '"/>' +
-      '<circle class="mh-spark__dot" cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="3"/></svg>';
+    n.innerHTML = '<svg class="eui-spark" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none">' +
+      (o.area !== false ? '<path class="eui-spark__area" d="' + area + '"/>' : '') + '<path class="eui-spark__line" d="' + line + '"/>' +
+      '<circle class="eui-spark__dot" cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="3"/></svg>';
   };
   /* Yatay çubuk grafik: [{ label, value, icon, tone }] */
-  MH.bars = function (target, rows, o) {
+  EUI.bars = function (target, rows, o) {
     var n = $(target); if (!n) return;
     o = o || {};
     var max = o.max || Math.max.apply(null, rows.map(function (r) { return r.value; })) || 1;
     n.innerHTML = rows.map(function (r) {
-      return '<div class="mh-hbar' + (r.tone ? ' mh-t-' + r.tone : '') + '">' + (r.icon ? icon(r.icon) : '') + '<span class="mh-hbar__label">' + esc(r.label) + '</span>' +
-        '<span class="mh-hbar__track"><i style="transform:scaleX(' + (r.value / max).toFixed(3) + ')"></i></span><b>' + esc(o.format ? o.format(r.value) : nf(r.value)) + '</b></div>';
+      return '<div class="eui-hbar' + (r.tone ? ' eui-t-' + r.tone : '') + '">' + (r.icon ? icon(r.icon) : '') + '<span class="eui-hbar__label">' + esc(r.label) + '</span>' +
+        '<span class="eui-hbar__track"><i style="transform:scaleX(' + (r.value / max).toFixed(3) + ')"></i></span><b>' + esc(o.format ? o.format(r.value) : nf(r.value)) + '</b></div>';
     }).join('');
   };
   /* Dikey sütun grafik: [{ label, value }] */
-  MH.columns = function (target, rows, o) {
+  EUI.columns = function (target, rows, o) {
     var n = $(target); if (!n) return;
     o = o || {};
     var max = o.max || Math.max.apply(null, rows.map(function (r) { return r.value; })) || 1;
     n.innerHTML = rows.map(function (r) {
-      return '<div class="mh-col-bar' + (r.tone ? ' mh-t-' + r.tone : '') + '" title="' + esc(r.value) + '"><i style="transform:scaleY(' + (r.value / max).toFixed(3) + ')"></i><span>' + esc(r.label) + '</span></div>';
+      return '<div class="eui-col-bar' + (r.tone ? ' eui-t-' + r.tone : '') + '" title="' + esc(r.value) + '"><i style="transform:scaleY(' + (r.value / max).toFixed(3) + ')"></i><span>' + esc(r.label) + '</span></div>';
     }).join('');
   };
 
@@ -1458,17 +1458,17 @@
      BECERİ KONTROLÜ & QTE
      ====================================================================== */
   /* Dönen ibre başarı dilimine denk gelince SPACE. Promise: 'great' | 'good' | 'miss' */
-  MH.skillCheck = function (target, o) {
+  EUI.skillCheck = function (target, o) {
     var n = $(target); if (!n) return Promise.resolve('miss');
     o = o || {};
     var zone = o.zone == null ? .62 + Math.random() * .25 : o.zone, size = o.size || .12, great = o.great || .035, speed = o.speed || 1.1;
-    n.classList.add('mh-skill'); n.classList.remove('is-great', 'is-good', 'is-miss');
+    n.classList.add('eui-skill'); n.classList.remove('is-great', 'is-good', 'is-miss');
     var r = 44, c = 2 * Math.PI * r;
-    n.innerHTML = '<svg viewBox="0 0 100 100"><circle class="mh-skill__track" cx="50" cy="50" r="' + r + '"/>' +
-      '<circle class="mh-skill__zone" cx="50" cy="50" r="' + r + '" stroke-dasharray="' + (c * size).toFixed(1) + ' ' + c.toFixed(1) + '" stroke-dashoffset="' + (-c * zone).toFixed(1) + '"/>' +
-      '<circle class="mh-skill__great" cx="50" cy="50" r="' + r + '" stroke-dasharray="' + (c * great).toFixed(1) + ' ' + c.toFixed(1) + '" stroke-dashoffset="' + (-c * zone).toFixed(1) + '"/></svg>' +
-      '<i class="mh-skill__needle"></i><span class="mh-skill__key"><span class="mh-key mh-key--lg">' + esc(o.key || 'SPACE') + '</span></span>';
-    var needle = n.querySelector('.mh-skill__needle'), t0 = performance.now(), id, done = false;
+    n.innerHTML = '<svg viewBox="0 0 100 100"><circle class="eui-skill__track" cx="50" cy="50" r="' + r + '"/>' +
+      '<circle class="eui-skill__zone" cx="50" cy="50" r="' + r + '" stroke-dasharray="' + (c * size).toFixed(1) + ' ' + c.toFixed(1) + '" stroke-dashoffset="' + (-c * zone).toFixed(1) + '"/>' +
+      '<circle class="eui-skill__great" cx="50" cy="50" r="' + r + '" stroke-dasharray="' + (c * great).toFixed(1) + ' ' + c.toFixed(1) + '" stroke-dashoffset="' + (-c * zone).toFixed(1) + '"/></svg>' +
+      '<i class="eui-skill__needle"></i><span class="eui-skill__key"><span class="eui-key eui-key--lg">' + esc(o.key || 'SPACE') + '</span></span>';
+    var needle = n.querySelector('.eui-skill__needle'), t0 = performance.now(), id, done = false;
     return new Promise(function (resolve) {
       function finish(res) {
         if (done) return; done = true; cancelAnimationFrame(id); doc.removeEventListener('keydown', key);
@@ -1488,12 +1488,12 @@
     });
   };
   /* Sıralı tuş dizisi. Promise: true (tamam) / false (hata ya da süre) */
-  MH.qte = function (target, keys, o) {
+  EUI.qte = function (target, keys, o) {
     var n = $(target); if (!n) return Promise.resolve(false);
     o = o || {};
-    n.classList.add('mh-qte');
-    n.innerHTML = keys.map(function (k) { return '<span class="mh-key mh-key--lg">' + esc(k) + '</span>'; }).join('') + '<i class="mh-qte__timer"></i>';
-    var items = n.querySelectorAll('.mh-key'), i = 0, timer = n.querySelector('.mh-qte__timer');
+    n.classList.add('eui-qte');
+    n.innerHTML = keys.map(function (k) { return '<span class="eui-key eui-key--lg">' + esc(k) + '</span>'; }).join('') + '<i class="eui-qte__timer"></i>';
+    var items = n.querySelectorAll('.eui-key'), i = 0, timer = n.querySelector('.eui-qte__timer');
     items[0].classList.add('is-current');
     var dur = o.duration || 4000;
     timer.style.transition = 'transform ' + dur + 'ms linear'; void timer.offsetWidth; timer.style.transform = 'scaleX(0)';
@@ -1513,16 +1513,16 @@
     });
   };
   /* Daralan bölge sayacı */
-  MH.zone = function (target, seconds, o) {
+  EUI.zone = function (target, seconds, o) {
     var n = $(target); if (!n) return;
     o = o || {};
-    var t = n.querySelector('.mh-zone__time'), ring = n.querySelector('.mh-ring') ? n : null, total = o.total || seconds;
+    var t = n.querySelector('.eui-zone__time'), ring = n.querySelector('.eui-ring') ? n : null, total = o.total || seconds;
     clearInterval(n.__iv);
     var end = Date.now() + seconds * 1000;
     function tick() {
       var left = Math.max(0, (end - Date.now()) / 1000);
       if (t) t.textContent = time(left);
-      if (ring) MH.ring(n.querySelector('.mh-zone__ring') || n, left / total);
+      if (ring) EUI.ring(n.querySelector('.eui-zone__ring') || n, left / total);
       n.classList.toggle('is-closing', left <= (o.warn || 15));
       if (left <= 0) { clearInterval(n.__iv); if (o.onEnd) o.onEnd(); }
     }
@@ -1533,12 +1533,12 @@
   /* ======================================================================
      GANİMET, SOSYAL, HAYATTA KALMA
      ====================================================================== */
-  MH.loot = function (o) {
+  EUI.loot = function (o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="loot"]', 'mh-anchor mh-bc');
+    var box = $(o.target) || center('[data-eui="loot"]', 'eui-anchor eui-bc');
     if (!o.target && !box.style.bottom) box.style.bottom = '220px';
-    var c = el('div', 'mh-loot is-' + (o.tier || 'rare') + ' mh-enter-up');
-    c.innerHTML = '<div class="mh-loot__art">' + art(o.art || ('i:' + (o.icon || 'chest'))) + '</div><div class="mh-loot__body"><span class="mh-loot__tier">' + esc(o.tierLabel || ({ common: 'Sıradan', rare: 'Nadir', epic: 'Destansı', legendary: 'Efsanevi' }[o.tier || 'rare'])) + '</span>' +
+    var c = el('div', 'eui-loot is-' + (o.tier || 'rare') + ' eui-enter-up');
+    c.innerHTML = '<div class="eui-loot__art">' + art(o.art || ('i:' + (o.icon || 'chest'))) + '</div><div class="eui-loot__body"><span class="eui-loot__tier">' + esc(o.tierLabel || ({ common: 'Sıradan', rare: 'Nadir', epic: 'Destansı', legendary: 'Efsanevi' }[o.tier || 'rare'])) + '</span>' +
       '<b>' + esc(o.name || '') + '</b>' + (o.desc ? '<span>' + esc(o.desc) + '</span>' : '') + '</div>' + (o.amount ? '<em>×' + esc(o.amount) + '</em>' : '');
     box.appendChild(c);
     while (box.children.length > 3) box.removeChild(box.firstChild);
@@ -1546,37 +1546,37 @@
     return c;
   };
   /* Kısa sosyal olay: katıldı / takip etti / paylaştı */
-  MH.social = function (o) {
+  EUI.social = function (o) {
     o = o || {};
-    var list = $(o.target) || host('[data-mh="social"]', 'mh-social');
+    var list = $(o.target) || host('[data-eui="social"]', 'eui-social');
     var kinds = { join: ['user-plus', 'katıldı', 'info'], follow: ['follow', 'takip etti', 'danger'], share: ['share', 'paylaştı', 'success'], like: ['heart', 'beğendi', 'danger'], sub: ['star', 'abone oldu', 'gold'] };
     var k = kinds[o.kind || 'join'] || kinds.join;
-    var n = el('div', 'mh-social__item mh-t-' + (o.tone || k[2]) + ' mh-enter-left');
+    var n = el('div', 'eui-social__item eui-t-' + (o.tone || k[2]) + ' eui-enter-left');
     n.innerHTML = icon(o.icon || k[0]) + '<b>' + esc(o.name || '') + '</b><span>' + esc(o.text || k[1]) + '</span>';
     list.insertBefore(n, list.firstChild);
     while (list.children.length > (o.max || 5)) list.removeChild(list.lastChild);
-    setTimeout(function () { remove(n, 'mh-leave-left'); }, o.duration || 4000);
+    setTimeout(function () { remove(n, 'eui-leave-left'); }, o.duration || 4000);
     return n;
   };
   /* L4D tarzı özel düşman uyarısı */
-  MH.infected = function (o) {
+  EUI.infected = function (o) {
     o = o || {};
-    var box = $(o.target) || center('[data-mh="infected"]', 'mh-anchor mh-tc');
+    var box = $(o.target) || center('[data-eui="infected"]', 'eui-anchor eui-tc');
     if (!o.target && !box.style.top) box.style.top = '18%';
-    var a = el('div', 'mh-infected' + (o.boss ? ' is-boss' : '') + ' mh-enter-pop');
-    a.innerHTML = '<span class="mh-infected__icon">' + icon(o.icon || 'biohazard') + '</span><div><span class="mh-kicker">' + esc(o.kicker || (o.boss ? 'Tehlike' : 'Özel düşman')) + '</span><b>' + esc(o.name || '') + '</b></div>' +
+    var a = el('div', 'eui-infected' + (o.boss ? ' is-boss' : '') + ' eui-enter-pop');
+    a.innerHTML = '<span class="eui-infected__icon">' + icon(o.icon || 'biohazard') + '</span><div><span class="eui-kicker">' + esc(o.kicker || (o.boss ? 'Tehlike' : 'Özel düşman')) + '</span><b>' + esc(o.name || '') + '</b></div>' +
       (o.hint ? '<small>' + esc(o.hint) + '</small>' : '');
     box.appendChild(a);
     while (box.children.length > 3) box.removeChild(box.firstChild);
     setTimeout(function () { remove(a); }, o.duration || 3600);
     return a;
   };
-  MH.horde = function (o) {
+  EUI.horde = function (o) {
     o = o || {};
-    var scr = $(o.target) || $('.mh-screen') || doc.body;
-    var old = scr.querySelector(':scope > .mh-horde'); if (old) old.remove();
-    var h = el('div', 'mh-horde');
-    h.innerHTML = '<div class="mh-horde__drums"><i></i><i></i><i></i><i></i><i></i></div><b>' + esc(o.title || 'Sürü geliyor!') + '</b><span>' + esc(o.sub || '') + '</span>';
+    var scr = $(o.target) || $('.eui-screen') || doc.body;
+    var old = scr.querySelector(':scope > .eui-horde'); if (old) old.remove();
+    var h = el('div', 'eui-horde');
+    h.innerHTML = '<div class="eui-horde__drums"><i></i><i></i><i></i><i></i><i></i></div><b>' + esc(o.title || 'Sürü geliyor!') + '</b><span>' + esc(o.sub || '') + '</span>';
     scr.appendChild(h);
     setTimeout(function () { remove(h); }, o.duration || 4200);
     return h;
@@ -1584,14 +1584,14 @@
 
   /* ======================================================================
      WEBSOCKET KÖPRÜSÜ — OBS tarayıcı kaynağı, harici overlay, HTML5 oyunlar
-     Mesaj biçimi overlay köprüsüyle aynıdır: { action, data } ya da { action:'mhud', fn, args }
+     Mesaj biçimi overlay köprüsüyle aynıdır: { action, data } ya da { action:'ember-ui', fn, args }
      ====================================================================== */
-  MH.connect = function (url, o) {
+  EUI.connect = function (url, o) {
     o = o || {};
     var ws, wait = o.retry || 1500, closed = false;
     function open() {
       try { ws = new WebSocket(url); } catch (e) { return retry(); }
-      ws.onopen = function () { emit('socket:open', url); if (o.hello !== false) send({ action: 'hello', data: { client: 'mhud', version: MH.version } }); };
+      ws.onopen = function () { emit('socket:open', url); if (o.hello !== false) send({ action: 'hello', data: { client: 'ember-ui', version: EUI.version } }); };
       ws.onmessage = function (e) { var d; try { d = JSON.parse(e.data); } catch (x) { return; } route(d); };
       ws.onclose = function () { emit('socket:close', url); retry(); };
       ws.onerror = function () { try { ws.close(); } catch (x) {} };
@@ -1599,14 +1599,14 @@
     function retry() { if (!closed) setTimeout(open, wait); }
     function send(d) { if (ws && ws.readyState === 1) ws.send(JSON.stringify(d)); }
     open();
-    MH.post = function (name, data) { send({ action: name, data: data || {} }); return Promise.resolve({ ok: true }); };
+    EUI.post = function (name, data) { send({ action: name, data: data || {} }); return Promise.resolve({ ok: true }); };
     return { send: send, close: function () { closed = true; if (ws) ws.close(); } };
   };
 
   /* ======================================================================
-     Bildirimsel parçalar: MH.mount(kök)
+     Bildirimsel parçalar: EUI.mount(kök)
      ====================================================================== */
-  MH.mount = function (rootEl) {
+  EUI.mount = function (rootEl) {
     var r = $(rootEl) || doc;
     // ikonlar: <i data-i="heart"></i>  •  silah: <i data-weapon="carbine"></i>
     $$('i[data-i]', r).forEach(function (n) {
@@ -1617,59 +1617,59 @@
       var tmp = el('span', null, weapon(n.getAttribute('data-weapon'), n.className));
       n.parentNode.replaceChild(tmp.firstChild, n);
     });
-    // halkalar: data-mh-ring (isteğe bağlı data-r)
-    $$('[data-mh-ring]', r).forEach(function (n) {
-      if (n.querySelector(':scope > .mh-ring')) return;
+    // halkalar: data-eui-ring (isteğe bağlı data-r)
+    $$('[data-eui-ring]', r).forEach(function (n) {
+      if (n.querySelector(':scope > .eui-ring')) return;
       n.insertAdjacentHTML('afterbegin', ringSvg(n.getAttribute('data-r') ? +n.getAttribute('data-r') : null));
     });
     // bar başlangıç değerleri: data-v="64"
-    $$('.mh-bar[data-v]', r).forEach(function (b) { MH.bar(b, +b.getAttribute('data-v'), { max: +(b.getAttribute('data-max') || 100) }); });
+    $$('.eui-bar[data-v]', r).forEach(function (b) { EUI.bar(b, +b.getAttribute('data-v'), { max: +(b.getAttribute('data-max') || 100) }); });
     // segmentler: data-pips="4/10"
-    $$('[data-pips]', r).forEach(function (p) { var a = p.getAttribute('data-pips').split('/'); MH.pips(p, +a[0], +a[1]); });
+    $$('[data-pips]', r).forEach(function (p) { var a = p.getAttribute('data-pips').split('/'); EUI.pips(p, +a[0], +a[1]); });
     // pusula: data-heading="75" (isteğe bağlı data-marks='[{"bearing":120,"icon":"pin-f","tone":"accent"}]')
-    $$('.mh-compass[data-heading]', r).forEach(function (c) { var m = c.getAttribute('data-marks'); MH.compass(c, +c.getAttribute('data-heading'), m ? JSON.parse(m) : null); });
+    $$('.eui-compass[data-heading]', r).forEach(function (c) { var m = c.getAttribute('data-marks'); EUI.compass(c, +c.getAttribute('data-heading'), m ? JSON.parse(m) : null); });
     // hız göstergesi: data-speed, data-max, data-rpm (0-1), data-gear
-    $$('.mh-speedo[data-speed]', r).forEach(function (n) { MH.speedo(n, { speed: +n.getAttribute('data-speed'), max: +(n.getAttribute('data-max') || 240), rpm: +(n.getAttribute('data-rpm') || 0), gear: n.getAttribute('data-gear') }); });
-    // sekmeler: <div class="mh-tabs" data-mh-tabs="grup"> + [data-tab-panel="grup:ad"]
-    $$('[data-mh-tabs]', r).forEach(function (tabs) {
+    $$('.eui-speedo[data-speed]', r).forEach(function (n) { EUI.speedo(n, { speed: +n.getAttribute('data-speed'), max: +(n.getAttribute('data-max') || 240), rpm: +(n.getAttribute('data-rpm') || 0), gear: n.getAttribute('data-gear') }); });
+    // sekmeler: <div class="eui-tabs" data-eui-tabs="grup"> + [data-tab-panel="grup:ad"]
+    $$('[data-eui-tabs]', r).forEach(function (tabs) {
       if (tabs.__mh) return; tabs.__mh = 1;
-      var group = tabs.getAttribute('data-mh-tabs');
+      var group = tabs.getAttribute('data-eui-tabs');
       tabs.addEventListener('click', function (e) {
         var b = e.target.closest('button'); if (!b) return;
         $$('button', tabs).forEach(function (x) { x.classList.toggle('is-active', x === b); });
         var name = b.getAttribute('data-tab');
-        if (group) $$('[data-tab-panel^="' + group + ':"]').forEach(function (p) { p.classList.toggle('mh-hidden', p.getAttribute('data-tab-panel') !== group + ':' + name); });
+        if (group) $$('[data-tab-panel^="' + group + ':"]').forEach(function (p) { p.classList.toggle('eui-hidden', p.getAttribute('data-tab-panel') !== group + ':' + name); });
         emit('tab', { group: group, tab: name });
       });
     });
-    // segment & çip grupları: data-mh-seg
-    $$('[data-mh-seg]', r).forEach(function (g) {
+    // segment & çip grupları: data-eui-seg
+    $$('[data-eui-seg]', r).forEach(function (g) {
       if (g.__mh) return; g.__mh = 1;
       g.addEventListener('click', function (e) {
         var b = e.target.closest('button'); if (!b || !g.contains(b)) return;
         $$('button', g).forEach(function (x) { x.classList.toggle('is-active', x === b); });
-        emit('seg', { group: g.getAttribute('data-mh-seg'), value: b.getAttribute('data-value') || b.textContent.trim() });
+        emit('seg', { group: g.getAttribute('data-eui-seg'), value: b.getAttribute('data-value') || b.textContent.trim() });
       });
     });
-    // değer seçici: <div class="mh-stepper" data-mh-stepper="Kolay|Normal|Zor" data-index="1">
-    $$('[data-mh-stepper]', r).forEach(function (s) {
+    // değer seçici: <div class="eui-stepper" data-eui-stepper="Kolay|Normal|Zor" data-index="1">
+    $$('[data-eui-stepper]', r).forEach(function (s) {
       if (s.__mh) return; s.__mh = 1;
-      var opts = s.getAttribute('data-mh-stepper').split('|'), i = +(s.getAttribute('data-index') || 0);
-      s.innerHTML = '<button class="mh-catch" data-d="-1" aria-label="Önceki">' + icon('chev-l') + '</button><span class="mh-stepper__value"></span><button class="mh-catch" data-d="1" aria-label="Sonraki">' + icon('chev-r') + '</button>';
-      var out = s.querySelector('.mh-stepper__value');
+      var opts = s.getAttribute('data-eui-stepper').split('|'), i = +(s.getAttribute('data-index') || 0);
+      s.innerHTML = '<button class="eui-catch" data-d="-1" aria-label="Önceki">' + icon('chev-l') + '</button><span class="eui-stepper__value"></span><button class="eui-catch" data-d="1" aria-label="Sonraki">' + icon('chev-r') + '</button>';
+      var out = s.querySelector('.eui-stepper__value');
       function paint() { out.textContent = opts[i]; s.setAttribute('data-index', i); }
       s.__step = function (d) { i = (i + d + opts.length) % opts.length; paint(); emit('stepper', { el: s, index: i, value: opts[i] }); };
       s.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { e.stopPropagation(); s.__step(+b.getAttribute('data-d')); } });
       paint();
     });
-    // seçenek kartları: .mh-optcard > input (radio/checkbox) → is-active
-    $$('.mh-optcard > input', r).forEach(function (inp) {
+    // seçenek kartları: .eui-optcard > input (radio/checkbox) → is-active
+    $$('.eui-optcard > input', r).forEach(function (inp) {
       if (inp.__mh) return; inp.__mh = 1;
-      function sync() { var scope = inp.name ? $$('.mh-optcard > input[name="' + inp.name + '"]', inp.closest('form, .mh-modal, .mh-menu') || doc) : [inp]; scope.forEach(function (x) { x.parentNode.classList.toggle('is-active', x.checked); }); }
+      function sync() { var scope = inp.name ? $$('.eui-optcard > input[name="' + inp.name + '"]', inp.closest('form, .eui-modal, .eui-menu') || doc) : [inp]; scope.forEach(function (x) { x.parentNode.classList.toggle('is-active', x.checked); }); }
       inp.addEventListener('change', sync); if (inp.checked) sync();
     });
     // kaydırıcılar: dolgu rengi + bağlı çıktı (data-out="#id")
-    $$('.mh-slider', r).forEach(function (s) {
+    $$('.eui-slider', r).forEach(function (s) {
       if (s.__mh) return; s.__mh = 1;
       function paint() {
         var p = (s.value - (s.min || 0)) / ((s.max || 100) - (s.min || 0)) * 100;
@@ -1679,8 +1679,8 @@
       s.addEventListener('input', paint); paint();
     });
     // grafik & geçmiş: data-spark="3,5,2,8"  data-history="WWLWD"
-    $$('[data-spark]', r).forEach(function (n) { MH.sparkline(n, n.getAttribute('data-spark').split(',').map(Number), { width: +(n.getAttribute('data-w') || 200), height: +(n.getAttribute('data-h') || 48) }); });
-    $$('[data-history]', r).forEach(function (n) { MH.history(n, n.getAttribute('data-history')); });
+    $$('[data-spark]', r).forEach(function (n) { EUI.sparkline(n, n.getAttribute('data-spark').split(',').map(Number), { width: +(n.getAttribute('data-w') || 200), height: +(n.getAttribute('data-h') || 48) }); });
+    $$('[data-history]', r).forEach(function (n) { EUI.history(n, n.getAttribute('data-history')); });
     if (root.MH_ICON_SPRITE) root.MH_ICON_SPRITE();
     return r;
   };
@@ -1689,57 +1689,57 @@
      Olaylar & oyun köprüsü
      ====================================================================== */
   var handlers = {};
-  function emit(name, data) { (handlers[name] || []).forEach(function (fn) { try { fn(data); } catch (e) { console.error('[MHud]', name, e); } }); }
-  MH.on = function (name, fn) { (handlers[name] = handlers[name] || []).push(fn); return MH; };
-  MH.off = function (name, fn) { handlers[name] = (handlers[name] || []).filter(function (f) { return f !== fn; }); };
-  MH.emit = emit;
+  function emit(name, data) { (handlers[name] || []).forEach(function (fn) { try { fn(data); } catch (e) { console.error('[Ember UI]', name, e); } }); }
+  EUI.on = function (name, fn) { (handlers[name] = handlers[name] || []).push(fn); return EUI; };
+  EUI.off = function (name, fn) { handlers[name] = (handlers[name] || []).filter(function (f) { return f !== fn; }); };
+  EUI.emit = emit;
 
   /* StreamEmber overlay köprüsü (window.streamember, ui-runtime enjekte eder).
-     oyun → sayfa: { action, data } → MH.on(action, fn)      sayfa → oyun: MH.post(cb, data) → { cb, data }
-     Köprü yoksa (normal tarayıcı) MH.post yalnız MH.debug açıkken konsola yazar; sayfa yine çalışır. */
-  MH.debug = MH.debug || /[?&]mhdebug=1\b/.test(root.location && root.location.search || '');
-  MH.post = function (name, data) {
-    if (MH.debug) console.log('[MHud] → oyun', name, data || {});
-    if (MH.bridge) MH.bridge.post({ cb: name, data: data || {} });
+     oyun → sayfa: { action, data } → EUI.on(action, fn)      sayfa → oyun: EUI.post(cb, data) → { cb, data }
+     Köprü yoksa (normal tarayıcı) EUI.post yalnız EUI.debug açıkken konsola yazar; sayfa yine çalışır. */
+  EUI.debug = EUI.debug || /[?&]mhdebug=1\b/.test(root.location && root.location.search || '');
+  EUI.post = function (name, data) {
+    if (EUI.debug) console.log('[Ember UI] → oyun', name, data || {});
+    if (EUI.bridge) EUI.bridge.post({ cb: name, data: data || {} });
     emit('post', { cb: name, data: data || {} });
-    return Promise.resolve({ ok: true, bridge: !!MH.bridge });
+    return Promise.resolve({ ok: true, bridge: !!EUI.bridge });
   };
 
-  /* Oyundan genel çağrı: { action: 'mhud', fn: 'toast', args: [{ … }] }. Yalnız bu listedeki fonksiyonlar çağrılabilir. */
-  MH.rpcAllow = ['accent', 'bar', 'ring', 'core', 'pips', 'count', 'money', 'toast', 'kill', 'gift', 'announce', 'banner',
+  /* Oyundan genel çağrı: { action: 'ember-ui', fn: 'toast', args: [{ … }] }. Yalnız bu listedeki fonksiyonlar çağrılabilir. */
+  EUI.rpcAllow = ['accent', 'bar', 'ring', 'core', 'pips', 'count', 'money', 'toast', 'kill', 'gift', 'announce', 'banner',
     'levelUp', 'achievement', 'pickup', 'countdown', 'subtitle', 'progress', 'hit', 'damageFrom', 'flash', 'vignette', 'compass', 'speedo', 'timer',
     'crop', 'enemies', 'stat', 'history', 'streak', 'loot', 'social', 'infected', 'horde', 'zone'];
   function route(d) {
     if (!d || typeof d !== 'object') return;
     var action = d.action || d.type;
-    if (MH.debug) console.log('[MHud] ← oyun', action, d.data !== undefined ? d.data : d);
-    if (action === 'mhud' && d.fn) {
-      if (MH.rpcAllow.indexOf(d.fn) < 0) { console.warn('[MHud] rpc izinli değil:', d.fn); return; }
-      try { MH[d.fn].apply(MH, d.args || []); } catch (err) { console.error('[MHud] rpc', d.fn, err); }
+    if (EUI.debug) console.log('[Ember UI] ← oyun', action, d.data !== undefined ? d.data : d);
+    if (action === 'ember-ui' && d.fn) {
+      if (EUI.rpcAllow.indexOf(d.fn) < 0) { console.warn('[Ember UI] rpc izinli değil:', d.fn); return; }
+      try { EUI[d.fn].apply(EUI, d.args || []); } catch (err) { console.error('[Ember UI] rpc', d.fn, err); }
       return;
     }
     if (action) emit(action, d.data !== undefined ? d.data : d);
-    else console.warn('[MHud] action alanı olmayan mesaj', d);
+    else console.warn('[Ember UI] action alanı olmayan mesaj', d);
   }
-  MH.route = route;
-  if (MH.bridge) MH.bridge.on(route);
+  EUI.route = route;
+  if (EUI.bridge) EUI.bridge.on(route);
   root.addEventListener('message', function (e) { route(e.data); });   // tarayıcıda deneme: postMessage({ action, data })
 
-  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function () { MH.mount(); });
-  else MH.mount();
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function () { EUI.mount(); });
+  else EUI.mount();
 
-  root.MH = MH;
+  root.EUI = EUI;
 })(window);
 
-/* kit/js/mhud-menu.js */
+/* kit/js/ember-ui-menu.js */
 /* ==========================================================================
-   MHud Menu — veriyle kurulan tam ekran menü (MH.Menu)
+   Ember UI Menu — veriyle kurulan tam ekran menü (EUI.Menu)
    --------------------------------------------------------------------------
    Mod menüsü HTML'i ELLE YAZILMAZ: bölümleri ve veriyi ver, menü kendini çizer.
    Katman + perde, ekrana sığma, aç/kapa, ESC, klavye gezinme, bölüm değiştirme,
    detay paneline göre 2/3 sütun, alt ipuçları ve olay çıkışı menünün işidir.
 
-     var menu = MH.Menu('#screen', {
+     var menu = EUI.Menu('#screen', {
        kicker: 'Rumble', title: 'Mod menüsü',
        stats: [{ label: 'Nakit', value: '$12.480', tone: 'success' }],
        sections: [
@@ -1756,29 +1756,29 @@
 
    Görünümler (view): list · grid · settings · table · custom (render ile).
    Detay (detail): 'item' (varsayılan, öğede desc/stats/specs/actions varsa) · 'buy' · 'none' · function(item, menu).
-   Her eylem önce onAction'a gider; onAction false döndürmezse MH.post(spec.post || 'menu', a) ile oyuna da gider.
+   Her eylem önce onAction'a gider; onAction false döndürmezse EUI.post(spec.post || 'menu', a) ile oyuna da gider.
    Tam şema: ai/menu.md.
    ========================================================================== */
 (function (root) {
   'use strict';
-  var MH = root.MH; if (!MH) return;
-  var I = MH.icon, E = MH.esc;
+  var EUI = root.EUI; if (!EUI) return;
+  var I = EUI.icon, E = EUI.esc;
 
   function val(v, st, m) { return typeof v === 'function' ? v(st, m) : v; }
   function art(it) {
     if (it.img) return '<img src="' + E(it.img) + '" alt="">';
-    if (it.weapon) return MH.weapon(it.weapon);
-    if (it.art) return MH.art(it.art);
+    if (it.weapon) return EUI.weapon(it.weapon);
+    if (it.art) return EUI.art(it.art);
     return I(it.icon || 'box');
   }
   function badge(b) {
     if (!b) return '';
     if (typeof b === 'string') b = { text: b };
-    return '<span class="mh-badge' + (b.tone ? ' mh-t-' + E(b.tone) : '') + '">' + (b.icon ? I(b.icon) : '') + E(b.text) + '</span>';
+    return '<span class="eui-badge' + (b.tone ? ' eui-t-' + E(b.tone) : '') + '">' + (b.icon ? I(b.icon) : '') + E(b.text) + '</span>';
   }
   function price(it, cls) {
     if (it.price == null || it.price === '') return '';
-    return '<span class="mh-price ' + (cls || '') + (it.locked ? ' is-locked' : '') + '">' + E(typeof it.price === 'number' ? '$' + MH.fmt(it.price) : it.price) + '</span>';
+    return '<span class="eui-price ' + (cls || '') + (it.locked ? ' is-locked' : '') + '">' + E(typeof it.price === 'number' ? '$' + EUI.fmt(it.price) : it.price) + '</span>';
   }
   function itemCls(it, active) {
     return (it.tone ? ' is-' + it.tone : '') + (it.owned ? ' is-owned' : '') + (it.locked ? ' is-locked' : '') +
@@ -1791,125 +1791,125 @@
     list: function (sec, sel) {
       var items = sec.items || [];
       if (!items.length) return empty(sec);
-      return '<div class="mh-list mh-scroll mh-menu__scroll">' + items.map(function (it) {
-        return '<div class="mh-row' + itemCls(it, it.id === sel) + '" data-mh-item="' + E(it.id) + '">' +
-          '<span class="mh-row__icon">' + art(it) + '</span>' +
-          '<div class="mh-row__main"><span class="mh-row__title">' + E(it.title || it.name || '') + '</span>' + (it.sub ? '<span class="mh-row__sub">' + E(it.sub) + '</span>' : '') + '</div>' +
-          '<div class="mh-row__meta">' + badge(it.badge) + (it.meta != null ? '<span class="mh-num">' + E(it.meta) + '</span>' : '') + price(it, 'mh-price--sm') + (it.locked ? I('lock') : '') + '</div></div>';
+      return '<div class="eui-list eui-scroll eui-menu__scroll">' + items.map(function (it) {
+        return '<div class="eui-row' + itemCls(it, it.id === sel) + '" data-eui-item="' + E(it.id) + '">' +
+          '<span class="eui-row__icon">' + art(it) + '</span>' +
+          '<div class="eui-row__main"><span class="eui-row__title">' + E(it.title || it.name || '') + '</span>' + (it.sub ? '<span class="eui-row__sub">' + E(it.sub) + '</span>' : '') + '</div>' +
+          '<div class="eui-row__meta">' + badge(it.badge) + (it.meta != null ? '<span class="eui-num">' + E(it.meta) + '</span>' : '') + price(it, 'eui-price--sm') + (it.locked ? I('lock') : '') + '</div></div>';
       }).join('') + '</div>';
     },
     grid: function (sec, sel) {
       var items = sec.items || [], last = null;
       if (!items.length) return empty(sec);
       var counts = {}; items.forEach(function (it) { if (it.group) counts[it.group] = (counts[it.group] || 0) + 1; });
-      return '<div class="mh-shopgrid mh-scroll mh-menu__scroll" style="--cols:' + (+sec.cols || 4) + '">' + items.map(function (it) {
+      return '<div class="eui-shopgrid eui-scroll eui-menu__scroll" style="--cols:' + (+sec.cols || 4) + '">' + items.map(function (it) {
         var g = '';
-        if (it.group && it.group !== last) { last = it.group; g = '<div class="mh-shopgroup"><span class="mh-kicker">' + E(it.group) + '</span><small>' + counts[it.group] + '</small></div>'; }
-        return g + '<div class="mh-item' + itemCls(it, it.id === sel) + '" data-mh-item="' + E(it.id) + '">' +
-          '<div class="mh-item__art">' + badge(it.badge) + art(it) + '</div>' +
-          '<div class="mh-item__body"><span class="mh-item__name">' + E(it.title || it.name || '') + '</span>' +
-          '<div class="mh-item__meta"><span>' + E(it.sub || '') + '</span>' + (it.owned && it.price == null ? '<span class="mh-badge mh-t-success">Sende</span>' : price(it, 'mh-price--sm')) + '</div></div></div>';
+        if (it.group && it.group !== last) { last = it.group; g = '<div class="eui-shopgroup"><span class="eui-kicker">' + E(it.group) + '</span><small>' + counts[it.group] + '</small></div>'; }
+        return g + '<div class="eui-item' + itemCls(it, it.id === sel) + '" data-eui-item="' + E(it.id) + '">' +
+          '<div class="eui-item__art">' + badge(it.badge) + art(it) + '</div>' +
+          '<div class="eui-item__body"><span class="eui-item__name">' + E(it.title || it.name || '') + '</span>' +
+          '<div class="eui-item__meta"><span>' + E(it.sub || '') + '</span>' + (it.owned && it.price == null ? '<span class="eui-badge eui-t-success">Sende</span>' : price(it, 'eui-price--sm')) + '</div></div></div>';
       }).join('') + '</div>';
     },
     settings: function (sec, sel) {
       var fields = sec.fields || [];
       if (!fields.length) return empty(sec);
-      return '<div class="mh-scroll mh-menu__scroll">' + fields.map(function (f) {
-        if (f.heading) return '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">' + E(f.heading) + '</span></div>';
-        return '<div class="mh-setting' + (f.id === sel ? ' is-active' : '') + (f.disabled ? ' is-disabled' : '') + '" data-mh-item="' + E(f.id) + '">' +
-          '<div class="mh-setting__text"><b>' + E(f.label) + '</b>' + (f.desc ? '<span>' + E(f.desc) + '</span>' : '') + '</div>' +
-          '<div class="mh-setting__control">' + control(f) + '</div></div>';
+      return '<div class="eui-scroll eui-menu__scroll">' + fields.map(function (f) {
+        if (f.heading) return '<div class="eui-menu__toolbar"><span class="eui-title eui-title--sm">' + E(f.heading) + '</span></div>';
+        return '<div class="eui-setting' + (f.id === sel ? ' is-active' : '') + (f.disabled ? ' is-disabled' : '') + '" data-eui-item="' + E(f.id) + '">' +
+          '<div class="eui-setting__text"><b>' + E(f.label) + '</b>' + (f.desc ? '<span>' + E(f.desc) + '</span>' : '') + '</div>' +
+          '<div class="eui-setting__control">' + control(f) + '</div></div>';
       }).join('') + '</div>';
     },
     table: function (sec, sel) {
       var cols = sec.columns || [], rows = sec.rows || [];
       if (!rows.length) return empty(sec);
-      return '<div class="mh-scroll mh-menu__scroll mh-menu__pad"><table class="mh-table"><thead><tr>' + cols.map(function (c) {
+      return '<div class="eui-scroll eui-menu__scroll eui-menu__pad"><table class="eui-table"><thead><tr>' + cols.map(function (c) {
         return '<th' + (c.align ? ' class="' + E(c.align) + '"' : '') + '>' + E(c.label || '') + '</th>';
       }).join('') + '</tr></thead><tbody>' + rows.map(function (r) {
-        return '<tr class="' + (r.self ? 'is-self ' : '') + (r.dead ? 'is-dead ' : '') + (r.id != null && r.id === sel ? 'is-active' : '') + '"' + (r.id != null ? ' data-mh-item="' + E(r.id) + '"' : '') + '>' + cols.map(function (c) {
-          var v = r[c.key]; return '<td class="' + (c.align || '') + (c.num ? ' mh-num' : '') + '">' + (c.html ? (v == null ? '' : v) : E(v == null ? '' : v)) + '</td>';
+        return '<tr class="' + (r.self ? 'is-self ' : '') + (r.dead ? 'is-dead ' : '') + (r.id != null && r.id === sel ? 'is-active' : '') + '"' + (r.id != null ? ' data-eui-item="' + E(r.id) + '"' : '') + '>' + cols.map(function (c) {
+          var v = r[c.key]; return '<td class="' + (c.align || '') + (c.num ? ' eui-num' : '') + '">' + (c.html ? (v == null ? '' : v) : E(v == null ? '' : v)) + '</td>';
         }).join('') + '</tr>';
       }).join('') + '</tbody></table></div>';
     }
   };
   function empty(sec) {
     var e = sec.empty || {};
-    return '<div class="mh-empty">' + I(e.icon || 'box') + '<b>' + E(e.title || 'Burada henüz bir şey yok') + '</b>' + (e.text ? '<span>' + E(e.text) + '</span>' : '') + '</div>';
+    return '<div class="eui-empty">' + I(e.icon || 'box') + '<b>' + E(e.title || 'Burada henüz bir şey yok') + '</b>' + (e.text ? '<span>' + E(e.text) + '</span>' : '') + '</div>';
   }
   function control(f) {
-    var id = ' data-mh-field="' + E(f.id) + '"';
+    var id = ' data-eui-field="' + E(f.id) + '"';
     var opts = (f.options || []).map(function (o) { return typeof o === 'object' ? o : { value: o, label: String(o) }; });
     switch (f.type) {
       case 'toggle':
-        return '<label class="mh-toggle"><input type="checkbox"' + id + (f.value ? ' checked' : '') + (f.disabled ? ' disabled' : '') + '><span class="mh-toggle__track"></span></label>';
+        return '<label class="eui-toggle"><input type="checkbox"' + id + (f.value ? ' checked' : '') + (f.disabled ? ' disabled' : '') + '><span class="eui-toggle__track"></span></label>';
       case 'slider':
-        return '<input type="range" class="mh-slider"' + id + ' min="' + (f.min != null ? f.min : 0) + '" max="' + (f.max != null ? f.max : 100) + '" step="' + (f.step || 1) + '" value="' + E(f.value != null ? f.value : 0) + '"' + (f.disabled ? ' disabled' : '') + '>' +
-          '<b data-mh-out>' + E((f.value != null ? f.value : 0) + (f.unit || '')) + '</b>';
+        return '<input type="range" class="eui-slider"' + id + ' min="' + (f.min != null ? f.min : 0) + '" max="' + (f.max != null ? f.max : 100) + '" step="' + (f.step || 1) + '" value="' + E(f.value != null ? f.value : 0) + '"' + (f.disabled ? ' disabled' : '') + '>' +
+          '<b data-eui-out>' + E((f.value != null ? f.value : 0) + (f.unit || '')) + '</b>';
       case 'seg':
-        return '<div class="mh-seg">' + opts.map(function (o) { return '<button' + id + ' data-value="' + E(o.value) + '"' + (String(o.value) === String(f.value) ? ' class="is-active"' : '') + '>' + E(o.label) + '</button>'; }).join('') + '</div>';
+        return '<div class="eui-seg">' + opts.map(function (o) { return '<button' + id + ' data-value="' + E(o.value) + '"' + (String(o.value) === String(f.value) ? ' class="is-active"' : '') + '>' + E(o.label) + '</button>'; }).join('') + '</div>';
       case 'stepper':
         var i = Math.max(0, opts.map(function (o) { return String(o.value); }).indexOf(String(f.value)));
-        return '<div class="mh-stepper"><button' + id + ' data-step="-1">' + I('chev-l') + '</button><span class="mh-stepper__value">' + E(opts[i] ? opts[i].label : '') + '</span><button' + id + ' data-step="1">' + I('chev-r') + '</button></div>';
+        return '<div class="eui-stepper"><button' + id + ' data-step="-1">' + I('chev-l') + '</button><span class="eui-stepper__value">' + E(opts[i] ? opts[i].label : '') + '</span><button' + id + ' data-step="1">' + I('chev-r') + '</button></div>';
       case 'select':
-        return '<select class="mh-input mh-select"' + id + '>' + opts.map(function (o) { return '<option value="' + E(o.value) + '"' + (String(o.value) === String(f.value) ? ' selected' : '') + '>' + E(o.label) + '</option>'; }).join('') + '</select>';
+        return '<select class="eui-input eui-select"' + id + '>' + opts.map(function (o) { return '<option value="' + E(o.value) + '"' + (String(o.value) === String(f.value) ? ' selected' : '') + '>' + E(o.label) + '</option>'; }).join('') + '</select>';
       case 'button':
-        return '<button class="mh-btn mh-btn--sm' + (f.danger ? ' mh-btn--tone mh-t-danger' : '') + '"' + id + ' data-mh-press>' + (f.icon ? I(f.icon) : '') + E(f.text || f.label) + '</button>';
+        return '<button class="eui-btn eui-btn--sm' + (f.danger ? ' eui-btn--tone eui-t-danger' : '') + '"' + id + ' data-eui-press>' + (f.icon ? I(f.icon) : '') + E(f.text || f.label) + '</button>';
       default:
-        return '<span class="mh-sub">' + E(f.value == null ? '' : f.value) + '</span>';
+        return '<span class="eui-sub">' + E(f.value == null ? '' : f.value) + '</span>';
     }
   }
 
   /* ---------------- Detay paneli ---------------- */
   function actionsHtml(it) {
     return (it.actions || []).map(function (a, i) {
-      return '<button class="mh-btn mh-btn--block ' + (a.primary || (i === 0 && a.primary !== false) ? 'mh-btn--primary' : a.danger ? 'mh-btn--tone mh-t-danger' : '') + '" data-mh-act="' + E(a.id) + '"' + (a.disabled || it.locked ? ' disabled' : '') + '>' +
-        (a.key ? '<span class="mh-key mh-key--sm">' + E(a.key) + '</span>' : a.icon ? I(a.icon) : '') + E(a.label) + '</button>';
+      return '<button class="eui-btn eui-btn--block ' + (a.primary || (i === 0 && a.primary !== false) ? 'eui-btn--primary' : a.danger ? 'eui-btn--tone eui-t-danger' : '') + '" data-eui-act="' + E(a.id) + '"' + (a.disabled || it.locked ? ' disabled' : '') + '>' +
+        (a.key ? '<span class="eui-key eui-key--sm">' + E(a.key) + '</span>' : a.icon ? I(a.icon) : '') + E(a.label) + '</button>';
     }).join('');
   }
   var DETAILS = {
     item: function (it) {
-      return '<div class="mh-preview">' + art(it) + '</div>' +
-        '<div><div class="mh-title mh-title--lg">' + E(it.title || it.name || '') + '</div>' + (it.sub ? '<div class="mh-sub">' + E(it.sub) + '</div>' : '') + '</div>' +
-        (it.desc ? '<p class="mh-buy__desc">' + E(it.desc) + '</p>' : '') +
-        (it.stats ? '<div class="mh-statlines">' + it.stats.map(function (s) {
-          return '<div class="mh-statline"><span class="mh-kicker">' + E(s.label) + '</span><div class="mh-bar' + (s.tone ? ' mh-t-' + E(s.tone) : '') + '" data-v="' + (+s.value || 0) + '"><i class="mh-bar__fill"></i></div><b>' + E(s.text != null ? s.text : s.value) + '</b></div>';
+      return '<div class="eui-preview">' + art(it) + '</div>' +
+        '<div><div class="eui-title eui-title--lg">' + E(it.title || it.name || '') + '</div>' + (it.sub ? '<div class="eui-sub">' + E(it.sub) + '</div>' : '') + '</div>' +
+        (it.desc ? '<p class="eui-buy__desc">' + E(it.desc) + '</p>' : '') +
+        (it.stats ? '<div class="eui-statlines">' + it.stats.map(function (s) {
+          return '<div class="eui-statline"><span class="eui-kicker">' + E(s.label) + '</span><div class="eui-bar' + (s.tone ? ' eui-t-' + E(s.tone) : '') + '" data-v="' + (+s.value || 0) + '"><i class="eui-bar__fill"></i></div><b>' + E(s.text != null ? s.text : s.value) + '</b></div>';
         }).join('') + '</div>' : '') +
-        (it.specs ? '<dl class="mh-buy__specs">' + it.specs.map(function (p) { return '<dt>' + E(p[0]) + '</dt><dd>' + E(p[1]) + '</dd>'; }).join('') + '</dl>' : '') +
-        '<div class="mh-menu__actions">' + actionsHtml(it) + (it.note ? '<span class="mh-buy__note">' + I('info') + E(it.note) + '</span>' : '') + '</div>';
+        (it.specs ? '<dl class="eui-buy__specs">' + it.specs.map(function (p) { return '<dt>' + E(p[0]) + '</dt><dd>' + E(p[1]) + '</dd>'; }).join('') + '</dl>' : '') +
+        '<div class="eui-menu__actions">' + actionsHtml(it) + (it.note ? '<span class="eui-buy__note">' + I('info') + E(it.note) + '</span>' : '') + '</div>';
     },
     buy: function (it) {
-      return '<div class="mh-buy">' +
-        '<div class="mh-buy__art">' + badge(it.badge) + art(it) + '</div>' +
-        '<div class="mh-buy__title">' + (it.kicker ? '<span class="mh-kicker mh-kicker--accent">' + E(it.kicker) + '</span>' : '') + '<span class="mh-title mh-title--lg">' + E(it.title || it.name || '') + '</span></div>' +
-        (it.desc ? '<p class="mh-buy__desc">' + E(it.desc) + '</p>' : '') +
-        (it.specs ? '<dl class="mh-buy__specs">' + it.specs.map(function (p) { return '<dt>' + E(p[0]) + '</dt><dd>' + E(p[1]) + '</dd>'; }).join('') + '</dl>' : '') +
-        (it.price != null ? '<div class="mh-buy__total">' + (it.qty ? '<div class="mh-qty"><button data-mh-qty="-1">−</button><b>' + (+it.qty || 1) + '</b><button data-mh-qty="1">+</button></div>' : '<span></span>') + price(it) + '</div>' : '') +
-        (it.actions ? actionsHtml(it) : '<button class="mh-btn mh-btn--primary mh-btn--block" data-mh-act="buy"' + (it.locked || it.owned ? ' disabled' : '') + '>' + I('cart') + E(it.owned ? 'Sende var' : 'Satın al') + '</button>') +
-        (it.note ? '<span class="mh-buy__note">' + I('wallet') + E(it.note) + '</span>' : '') + '</div>';
+      return '<div class="eui-buy">' +
+        '<div class="eui-buy__art">' + badge(it.badge) + art(it) + '</div>' +
+        '<div class="eui-buy__title">' + (it.kicker ? '<span class="eui-kicker eui-kicker--accent">' + E(it.kicker) + '</span>' : '') + '<span class="eui-title eui-title--lg">' + E(it.title || it.name || '') + '</span></div>' +
+        (it.desc ? '<p class="eui-buy__desc">' + E(it.desc) + '</p>' : '') +
+        (it.specs ? '<dl class="eui-buy__specs">' + it.specs.map(function (p) { return '<dt>' + E(p[0]) + '</dt><dd>' + E(p[1]) + '</dd>'; }).join('') + '</dl>' : '') +
+        (it.price != null ? '<div class="eui-buy__total">' + (it.qty ? '<div class="eui-qty"><button data-eui-qty="-1">−</button><b>' + (+it.qty || 1) + '</b><button data-eui-qty="1">+</button></div>' : '<span></span>') + price(it) + '</div>' : '') +
+        (it.actions ? actionsHtml(it) : '<button class="eui-btn eui-btn--primary eui-btn--block" data-eui-act="buy"' + (it.locked || it.owned ? ' disabled' : '') + '>' + I('cart') + E(it.owned ? 'Sende var' : 'Satın al') + '</button>') +
+        (it.note ? '<span class="eui-buy__note">' + I('wallet') + E(it.note) + '</span>' : '') + '</div>';
     }
   };
 
-  MH.Menu = function (target, spec) {
+  EUI.Menu = function (target, spec) {
     if (target && typeof target === 'object' && !target.nodeType && !spec) { spec = target; target = null; }
     spec = spec || {};
-    var host = MH.$(target) || document.querySelector('.mh-screen') || document.body;
+    var host = EUI.$(target) || document.querySelector('.eui-screen') || document.body;
     var useLayer = spec.layer !== false;
     var S = spec.state || {}, ui = { section: null, sel: {} }, isOpen = !useLayer || !!spec.open;
     var sections = [];
-    var layer = null, el = MH.el('section', 'mh-panel mh-menu' + (spec.cls ? ' ' + spec.cls : ''));
-    el.setAttribute('data-mh', 'menu');
+    var layer = null, el = EUI.el('section', 'eui-panel eui-menu' + (spec.cls ? ' ' + spec.cls : ''));
+    el.setAttribute('data-eui', 'menu');
     el.style.setProperty('--w', (spec.w || 1180) + 'px'); el.style.setProperty('--h', (spec.h || 720) + 'px');
     if (useLayer) {
-      layer = MH.el('div', 'mh-layer mh-catch' + (isOpen ? '' : ' mh-hidden'));
-      if (spec.scrim !== false) layer.appendChild(MH.el('div', 'mh-scrim mh-scrim--soft'));
+      layer = EUI.el('div', 'eui-layer eui-catch' + (isOpen ? '' : ' eui-hidden'));
+      if (spec.scrim !== false) layer.appendChild(EUI.el('div', 'eui-scrim eui-scrim--soft'));
       layer.appendChild(el); host.appendChild(layer);
-    } else { el.classList.add('mh-catch'); host.appendChild(el); }
+    } else { el.classList.add('eui-catch'); host.appendChild(el); }
 
-    function log() { if (MH.debug) console.log.apply(console, ['[MHud menu]'].concat([].slice.call(arguments))); }
+    function log() { if (EUI.debug) console.log.apply(console, ['[Ember UI menu]'].concat([].slice.call(arguments))); }
     function setSections(list) {
       sections = (list || []).slice();
-      sections.forEach(function (s) { if (s.id != null) s.id = String(s.id); if (s.view === 'list' || s.view === 'grid' || s.view === 'settings' || s.view === 'table' || s.render || s.confirm || s.action) return; if (s.id) console.warn('[MHud menu] bölüm "' + s.id + '" için view/render/confirm/action yok'); });
+      sections.forEach(function (s) { if (s.id != null) s.id = String(s.id); if (s.view === 'list' || s.view === 'grid' || s.view === 'settings' || s.view === 'table' || s.render || s.confirm || s.action) return; if (s.id) console.warn('[Ember UI menu] bölüm "' + s.id + '" için view/render/confirm/action yok'); });
     }
     setSections(spec.sections);
     function real() { return sections.filter(function (s) { return s.id && !s.confirm && !s.action && !val(s.disabled, S, api); }); }
@@ -1926,27 +1926,27 @@
     function emit(a) {
       a.section = a.section || ui.section;
       log(a.action, a);
-      MH.emit('menu:action', a);
+      EUI.emit('menu:action', a);
       if (spec.onAction && spec.onAction(a, api) === false) return;
-      if (spec.post !== false) MH.post(spec.post || 'menu', { action: a.action, section: a.section, id: a.id, value: a.value });
+      if (spec.post !== false) EUI.post(spec.post || 'menu', { action: a.action, section: a.section, id: a.id, value: a.value });
     }
 
     /* ---------------- Çizim ---------------- */
     function head() {
       var st = val(spec.stats, S, api) || [];
-      return '<header class="mh-menu__head">' + (spec.head ? val(spec.head, S, api) : '') +
-        '<div class="mh-menu__title"><span class="mh-kicker mh-kicker--accent">' + E(val(spec.kicker, S, api) || '') + '</span><span class="mh-title">' + E(val(spec.title, S, api) || '') + '</span></div>' +
+      return '<header class="eui-menu__head">' + (spec.head ? val(spec.head, S, api) : '') +
+        '<div class="eui-menu__title"><span class="eui-kicker eui-kicker--accent">' + E(val(spec.kicker, S, api) || '') + '</span><span class="eui-title">' + E(val(spec.title, S, api) || '') + '</span></div>' +
         (spec.headRight ? val(spec.headRight, S, api) : '') +
-        (st.length ? '<div class="mh-menu__stats">' + st.slice(0, 3).map(function (x) {
-          return '<div class="mh-stat"><span class="mh-kicker">' + E(x.label) + '</span><b' + (x.tone ? ' class="mh-tone mh-t-' + E(x.tone) + '"' : '') + '>' + E(x.value) + '</b></div>';
+        (st.length ? '<div class="eui-menu__stats">' + st.slice(0, 3).map(function (x) {
+          return '<div class="eui-stat"><span class="eui-kicker">' + E(x.label) + '</span><b' + (x.tone ? ' class="eui-tone eui-t-' + E(x.tone) + '"' : '') + '>' + E(x.value) + '</b></div>';
         }).join('') + '</div>' : '') + '</header>';
     }
     function nav() {
-      return '<nav class="mh-menu__nav mh-scroll">' + sections.map(function (x) {
-        if (x.group) return '<div class="mh-nav__group"><span class="mh-kicker">' + E(x.group) + '</span></div>';
+      return '<nav class="eui-menu__nav eui-scroll">' + sections.map(function (x) {
+        if (x.group) return '<div class="eui-nav__group"><span class="eui-kicker">' + E(x.group) + '</span></div>';
         var dis = val(x.disabled, S, api), n = val(x.count, S, api), sm = val(x.small, S, api);
-        return '<button class="mh-nav__item' + (ui.section === x.id ? ' is-active' : '') + (dis ? ' is-disabled' : '') + (x.danger ? ' is-danger' : '') + '" data-mh-sec="' + E(x.id) + '"' + (dis ? ' disabled' : '') + '>' +
-          I(x.icon || 'chev-r') + E(x.label) + (n ? '<span class="mh-count">' + E(n) + '</span>' : sm != null && sm !== '' ? '<small>' + E(sm) + '</small>' : '') + '</button>';
+        return '<button class="eui-nav__item' + (ui.section === x.id ? ' is-active' : '') + (dis ? ' is-disabled' : '') + (x.danger ? ' is-danger' : '') + '" data-eui-sec="' + E(x.id) + '"' + (dis ? ' disabled' : '') + '>' +
+          I(x.icon || 'chev-r') + E(x.label) + (n ? '<span class="eui-count">' + E(n) + '</span>' : sm != null && sm !== '' ? '<small>' + E(sm) + '</small>' : '') + '</button>';
       }).join('') + '</nav>';
     }
     function hints(s, layout) {
@@ -1958,15 +1958,15 @@
       if (real().length > 1) h.push(['Q', 'E', 'Bölüm']);
       if (spec.closable !== false && useLayer) h.push(['ESC', 'Kapat']);
       (s && s.hints || []).forEach(function (x) { h.push(x); });
-      return '<div class="mh-hints">' + h.map(function (x) {
-        return '<span class="mh-hint">' + x.slice(0, -1).map(function (k) { return '<span class="mh-key">' + E(k) + '</span>'; }).join('') + E(x[x.length - 1]) + '</span>';
+      return '<div class="eui-hints">' + h.map(function (x) {
+        return '<span class="eui-hint">' + x.slice(0, -1).map(function (k) { return '<span class="eui-key">' + E(k) + '</span>'; }).join('') + E(x[x.length - 1]) + '</span>';
       }).join('') + '</div>';
     }
     function detailHtml(s) {
       if (!s || s.view === 'settings' || s.view === 'table') return '';
       var d = s.detail, it = find(s, selId(s));
       if (d === 'none') return '';
-      if (!it) return d ? '<div class="mh-empty">' + I('pointer') + '<b>Bir öğe seç</b></div>' : '';
+      if (!it) return d ? '<div class="eui-empty">' + I('pointer') + '<b>Bir öğe seç</b></div>' : '';
       if (typeof d === 'function') return d(it, api) || '';
       if (d === 'buy') return DETAILS.buy(it);
       return (d === 'item' || (!d && (s.items || []).some(hasDetail))) ? DETAILS.item(it) : '';
@@ -1977,28 +1977,28 @@
       if (s && s.render) { var r = s.render(S, api) || {}; main = r.main || ''; aside = r.aside || ''; }
       else if (s && VIEWS[s.view]) {
         var sel = selId(s);
-        main = (s.toolbar !== false ? '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">' + E(s.title || s.label) + '</span>' +
-          (s.search ? '<div class="mh-input-wrap" style="margin-left:auto;width:260px">' + I('search') + '<input class="mh-input" data-mh-search placeholder="Ara…"></div>' : '') +
+        main = (s.toolbar !== false ? '<div class="eui-menu__toolbar"><span class="eui-title eui-title--sm">' + E(s.title || s.label) + '</span>' +
+          (s.search ? '<div class="eui-input-wrap" style="margin-left:auto;width:260px">' + I('search') + '<input class="eui-input" data-eui-search placeholder="Ara…"></div>' : '') +
           (s.tools ? val(s.tools, S, api) : '') + '</div>' : '') + VIEWS[s.view](s, sel);
         aside = detailHtml(s);
       }
-      var scroll = el.querySelector('.mh-menu__main .mh-scroll'), st = scroll ? scroll.scrollTop : 0, keep = el.__lastSec === ui.section;
-      el.innerHTML = head() + '<div class="mh-menu__body' + (aside ? '' : ' mh-menu__body--2') + '">' + nav() +
-        '<div class="mh-menu__main" data-panel="' + E(ui.section || '') + '">' + main + '</div>' + (aside ? '<aside class="mh-menu__aside">' + aside + '</aside>' : '') + '</div>' +
-        '<footer class="mh-menu__foot">' + hints(s) + '<span class="mh-mute">' + E(val(spec.foot, S, api) || '') + '</span></footer>';
-      MH.mount(el);
-      if (keep) { var ns = el.querySelector('.mh-menu__main .mh-scroll'); if (ns) ns.scrollTop = st; }
+      var scroll = el.querySelector('.eui-menu__main .eui-scroll'), st = scroll ? scroll.scrollTop : 0, keep = el.__lastSec === ui.section;
+      el.innerHTML = head() + '<div class="eui-menu__body' + (aside ? '' : ' eui-menu__body--2') + '">' + nav() +
+        '<div class="eui-menu__main" data-panel="' + E(ui.section || '') + '">' + main + '</div>' + (aside ? '<aside class="eui-menu__aside">' + aside + '</aside>' : '') + '</div>' +
+        '<footer class="eui-menu__foot">' + hints(s) + '<span class="eui-mute">' + E(val(spec.foot, S, api) || '') + '</span></footer>';
+      EUI.mount(el);
+      if (keep) { var ns = el.querySelector('.eui-menu__main .eui-scroll'); if (ns) ns.scrollTop = st; }
       el.__lastSec = ui.section;
       if (spec.onRender) spec.onRender(api);
     }
     function paintSel(scroll) {
       var s = sec(); if (!s || s.render) return render();
       var id = selId(s);
-      el.querySelectorAll('[data-mh-item]').forEach(function (n) { n.classList.toggle('is-active', n.getAttribute('data-mh-item') === String(id)); });
-      var a = el.querySelector('.mh-menu__aside'), html = detailHtml(s);
+      el.querySelectorAll('[data-eui-item]').forEach(function (n) { n.classList.toggle('is-active', n.getAttribute('data-eui-item') === String(id)); });
+      var a = el.querySelector('.eui-menu__aside'), html = detailHtml(s);
       if (!!a !== !!html) return render();
-      if (a) { a.innerHTML = html; MH.mount(a); }
-      var cur = el.querySelector('[data-mh-item].is-active'); if (cur && scroll) cur.scrollIntoView({ block: 'nearest' });
+      if (a) { a.innerHTML = html; EUI.mount(a); }
+      var cur = el.querySelector('[data-eui-item].is-active'); if (cur && scroll) cur.scrollIntoView({ block: 'nearest' });
     }
 
     /* ---------------- Eylemler ---------------- */
@@ -2007,7 +2007,7 @@
       if (!s || val(s.disabled, S, api)) return;
       if (s.confirm) {
         var c = s.confirm;
-        MH.confirm({ title: c.title || s.label, text: c.text, danger: c.danger, ok: c.ok || s.label, icon: c.icon || s.icon })
+        EUI.confirm({ title: c.title || s.label, text: c.text, danger: c.danger, ok: c.ok || s.label, icon: c.icon || s.icon })
           .then(function (ok) { if (ok) emit({ action: s.id, section: s.id }); });
         return;
       }
@@ -2029,7 +2029,7 @@
       var go = function () { emit({ action: id, id: it ? it.id : null, item: it, value: it && it.qty }); };
       if (a && a.confirm) {
         var c = a.confirm === true ? {} : a.confirm;
-        MH.confirm({ title: c.title || a.label + '?', text: c.text, danger: c.danger != null ? c.danger : a.danger, ok: c.ok || a.label, icon: c.icon })
+        EUI.confirm({ title: c.title || a.label + '?', text: c.text, danger: c.danger != null ? c.danger : a.danger, ok: c.ok || a.label, icon: c.icon })
           .then(function (ok) { if (ok) go(); });
       } else go();
     }
@@ -2064,44 +2064,44 @@
 
     el.addEventListener('click', function (e) {
       var t = e.target;
-      var n = t.closest('[data-mh-sec]'); if (n && el.contains(n)) { if (!n.disabled) go(n.getAttribute('data-mh-sec')); return; }
+      var n = t.closest('[data-eui-sec]'); if (n && el.contains(n)) { if (!n.disabled) go(n.getAttribute('data-eui-sec')); return; }
       var s = sec();
-      var b = t.closest('[data-mh-act]');
-      if (b && !b.disabled) { var it = s && find(s, selId(s)); runAct(b.getAttribute('data-mh-act'), it); return; }
-      var q = t.closest('[data-mh-qty]');
-      if (q && s) { var iq = find(s, selId(s)); if (iq) { iq.qty = Math.max(1, Math.min(iq.max || 99, (+iq.qty || 1) + (+q.getAttribute('data-mh-qty')))); paintSel(); } return; }
-      var st = t.closest('[data-step][data-mh-field]');
-      if (st && s) { ui.sel[s.id] = st.getAttribute('data-mh-field'); paintSel(); nudge(+st.getAttribute('data-step')); return; }
-      var sg = t.closest('.mh-seg > [data-mh-field]');
-      if (sg && s) { var fs = find(s, sg.getAttribute('data-mh-field')); if (fs) { ui.sel[s.id] = fs.id; setField(fs, sg.getAttribute('data-value')); } return; }
-      var pr = t.closest('[data-mh-press]');
-      if (pr && s) { emit({ action: 'press', id: pr.getAttribute('data-mh-field') }); return; }
-      var row = t.closest('[data-mh-item]');
+      var b = t.closest('[data-eui-act]');
+      if (b && !b.disabled) { var it = s && find(s, selId(s)); runAct(b.getAttribute('data-eui-act'), it); return; }
+      var q = t.closest('[data-eui-qty]');
+      if (q && s) { var iq = find(s, selId(s)); if (iq) { iq.qty = Math.max(1, Math.min(iq.max || 99, (+iq.qty || 1) + (+q.getAttribute('data-eui-qty')))); paintSel(); } return; }
+      var st = t.closest('[data-step][data-eui-field]');
+      if (st && s) { ui.sel[s.id] = st.getAttribute('data-eui-field'); paintSel(); nudge(+st.getAttribute('data-step')); return; }
+      var sg = t.closest('.eui-seg > [data-eui-field]');
+      if (sg && s) { var fs = find(s, sg.getAttribute('data-eui-field')); if (fs) { ui.sel[s.id] = fs.id; setField(fs, sg.getAttribute('data-value')); } return; }
+      var pr = t.closest('[data-eui-press]');
+      if (pr && s) { emit({ action: 'press', id: pr.getAttribute('data-eui-field') }); return; }
+      var row = t.closest('[data-eui-item]');
       if (row && el.contains(row)) {
-        if (s && s.view === 'settings') { ui.sel[s.id] = row.getAttribute('data-mh-item'); paintSel(); return; }
-        select(row.getAttribute('data-mh-item'));
+        if (s && s.view === 'settings') { ui.sel[s.id] = row.getAttribute('data-eui-item'); paintSel(); return; }
+        select(row.getAttribute('data-eui-item'));
       }
     });
-    el.addEventListener('dblclick', function (e) { if (e.target.closest('[data-mh-item]') && !e.target.closest('button, input, select')) activate(); });
+    el.addEventListener('dblclick', function (e) { if (e.target.closest('[data-eui-item]') && !e.target.closest('button, input, select')) activate(); });
     el.addEventListener('change', function (e) {
-      var t = e.target, id = t.getAttribute('data-mh-field'), s = sec(); if (!id || !s) return;
+      var t = e.target, id = t.getAttribute('data-eui-field'), s = sec(); if (!id || !s) return;
       var f = find(s, id); if (!f) return;
       setField(f, t.type === 'checkbox' ? t.checked : f.type === 'slider' ? +t.value : t.value);
     });
     el.addEventListener('input', function (e) {
       var t = e.target;
-      if (t.hasAttribute('data-mh-search')) {
+      if (t.hasAttribute('data-eui-search')) {
         var q = t.value.toLocaleLowerCase('tr').trim();
-        el.querySelectorAll('.mh-menu__main [data-mh-item]').forEach(function (r) { r.classList.toggle('mh-hidden', !!q && r.textContent.toLocaleLowerCase('tr').indexOf(q) < 0); });
+        el.querySelectorAll('.eui-menu__main [data-eui-item]').forEach(function (r) { r.classList.toggle('eui-hidden', !!q && r.textContent.toLocaleLowerCase('tr').indexOf(q) < 0); });
         return;
       }
-      if (t.type === 'range' && t.hasAttribute('data-mh-field')) {
-        var f = find(sec(), t.getAttribute('data-mh-field')), out = t.parentNode.querySelector('[data-mh-out]');
+      if (t.type === 'range' && t.hasAttribute('data-eui-field')) {
+        var f = find(sec(), t.getAttribute('data-eui-field')), out = t.parentNode.querySelector('[data-eui-out]');
         if (out && f) out.textContent = t.value + (f.unit || '');
       }
     });
     function key(e) {
-      if (!isOpen || !el.isConnected || e.defaultPrevented || MH.modalOpen()) return;
+      if (!isOpen || !el.isConnected || e.defaultPrevented || EUI.modalOpen()) return;
       var typing = e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && e.target.type !== 'range' && e.target.type !== 'checkbox';
       if (e.key === 'Escape') { if (spec.closable !== false && useLayer) { e.preventDefault(); api.close(); } return; }
       if (typing) return;
@@ -2124,15 +2124,15 @@
       open: function (id) {
         if (id) ui.section = String(id);
         var was = isOpen; isOpen = true; render();
-        if (layer) layer.classList.remove('mh-hidden');
-        if (!was) { emit({ action: 'open' }); MH.emit('menu:open', api); if (spec.onOpen) spec.onOpen(api); }
+        if (layer) layer.classList.remove('eui-hidden');
+        if (!was) { emit({ action: 'open' }); EUI.emit('menu:open', api); if (spec.onOpen) spec.onOpen(api); }
         return api;
       },
       close: function () {
         if (!isOpen || !useLayer) return api;
-        isOpen = false; MH.closeModals(); MH.closeContext && MH.closeContext();
-        layer.classList.add('mh-hidden');
-        emit({ action: 'close' }); MH.emit('menu:close', api); if (spec.onClose) spec.onClose(api);
+        isOpen = false; EUI.closeModals(); EUI.closeContext && EUI.closeContext();
+        layer.classList.add('eui-hidden');
+        emit({ action: 'close' }); EUI.emit('menu:close', api); if (spec.onClose) spec.onClose(api);
         return api;
       },
       toggle: function (id) { return isOpen ? api.close() : api.open(id); },
@@ -2144,7 +2144,7 @@
       patch: function (p) { Object.keys(p || {}).forEach(function (k) { S[k] = p[k]; }); render(); return api; },
       update: function (id, patch) {
         var s = sections.filter(function (x) { return x.id === String(id); })[0];
-        if (!s) { console.warn('[MHud menu] update: bölüm yok', id); return api; }
+        if (!s) { console.warn('[Ember UI menu] update: bölüm yok', id); return api; }
         Object.keys(patch || {}).forEach(function (k) { s[k] = patch[k]; }); render(); return api;
       },
       setSections: function (list) { setSections(list); render(); return api; },
@@ -2157,34 +2157,34 @@
   };
 })(window);
 
-/* kit/js/mhud-social.js */
+/* kit/js/ember-ui-social.js */
 /* ==========================================================================
-   MHud Social — ekip, davet, kasa, cephanelik, rütbe, kanal, arkadaş,
-   gelen kutusu ve takas menüsü (isteğe bağlı modül; mhud.js'ten sonra yüklenir)
+   Ember UI Social — ekip, davet, kasa, cephanelik, rütbe, kanal, arkadaş,
+   gelen kutusu ve takas menüsü (isteğe bağlı modül; ember-ui.js'ten sonra yüklenir)
    --------------------------------------------------------------------------
    Veri güdümlüdür: oyun tarafı durumu gönderir, menü çizer; oyuncunun her
    eylemi { action, data } olarak geri gider. Menü kendi başına hiçbir şeyi
    değiştirmez — sunucu yeni durumu gönderince yeniden çizilir.
 
-   MH.Menu üstünde çalışır (kabuk, gezinme, Q/E, ESC, ipuçları ondan gelir);
+   EUI.Menu üstünde çalışır (kabuk, gezinme, Q/E, ESC, ipuçları ondan gelir);
    bölümlerin içeriği bu dosyadaki render işlevleridir.
 
-     var menu = MH.Social('#host', { section: 'crew', onAction: fn });
+     var menu = EUI.Social('#host', { section: 'crew', onAction: fn });
      menu.set(state)          tüm durum
      menu.patch({ crew: … })  kısmi güncelleme (üst düzey anahtarlar)
      menu.open('channels')    bölüm aç
 
    Oyundan gelen mesajlar: social:state (tam) · social:patch · social:open { section, state } · social:close
-   Oyuna giden:            MH.post('social', { action: 'crew:invite', data: { ids: [..] } }) · kapanınca MH.post('socialClose')
+   Oyuna giden:            EUI.post('social', { action: 'crew:invite', data: { ids: [..] } }) · kapanınca EUI.post('socialClose')
 
    "Kanal" = aynı oyun oturumunda ayrı dünya. Aynı kanaldaki oyuncular birbirini görür;
    başka kanaldakiler görünmez ve etkileşemez.
    ========================================================================== */
 (function (root) {
   'use strict';
-  var MH = root.MH; if (!MH) return;
-  var I = MH.icon, E = MH.esc;
-  function F(n) { return MH.fmt(n || 0); }
+  var EUI = root.EUI; if (!EUI) return;
+  var I = EUI.icon, E = EUI.esc;
+  function F(n) { return EUI.fmt(n || 0); }
   function money(n) { return '$' + F(n); }
   function $$(sel, r) { return Array.prototype.slice.call(r.querySelectorAll(sel)); }
 
@@ -2221,44 +2221,44 @@
 
   function cname(c) { return c ? (c.name || (c.system || c.id === 'main' ? 'Ana dünya' : String(c.id))) : 'Ana dünya'; }
   function chan(s) { var ch = s.channels || {}; return (ch.list || []).filter(function (c) { return c.id === ch.current; })[0]; }
-  function crewTone(c) { return c && c.tone ? ' mh-t-' + c.tone : ' mh-t-accent'; }
+  function crewTone(c) { return c && c.tone ? ' eui-t-' + c.tone : ' eui-t-accent'; }
   function rankOf(s, id) { var r = ((s.crew && s.crew.ranks) || []).filter(function (x) { return x.id === id; })[0]; return r || { id: id, label: id || 'Üye', perms: {} }; }
   function meMember(s) { return ((s.crew && s.crew.members) || []).filter(function (m) { return m.self || (s.me && m.id === s.me.id); })[0]; }
   function can(s, perm) { var m = meMember(s); if (!m) return false; var r = rankOf(s, m.rank); return !!(r.perms && (r.perms[perm] || r.perms.all)); }
   function rankIdx(s, id) { var rs = (s.crew && s.crew.ranks) || []; for (var i = 0; i < rs.length; i++) if (rs[i].id === id) return i; return 99; }
-  function badge(text, tone, ic, extra) { return '<span class="mh-badge' + (tone ? ' mh-t-' + tone : '') + (extra ? ' ' + extra : '') + '">' + (ic ? I(ic) : '') + E(text) + '</span>'; }
-  function statusBadge(st) { var x = STATUS[st] || STATUS.offline; return badge(x[0], x[1], null, 'mh-badge--dot'); }
+  function badge(text, tone, ic, extra) { return '<span class="eui-badge' + (tone ? ' eui-t-' + tone : '') + (extra ? ' ' + extra : '') + '">' + (ic ? I(ic) : '') + E(text) + '</span>'; }
+  function statusBadge(st) { var x = STATUS[st] || STATUS.offline; return badge(x[0], x[1], null, 'eui-badge--dot'); }
   function btn(sa, label, o) {
     o = o || {};
-    return '<button class="mh-btn mh-btn--sm ' + (o.cls || 'mh-btn--outline') + (o.icon && !label ? ' mh-btn--icon' : '') + '" data-sa="' + sa + '"' + (o.id != null ? ' data-id="' + E(o.id) + '"' : '') +
+    return '<button class="eui-btn eui-btn--sm ' + (o.cls || 'eui-btn--outline') + (o.icon && !label ? ' eui-btn--icon' : '') + '" data-sa="' + sa + '"' + (o.id != null ? ' data-id="' + E(o.id) + '"' : '') +
       (o.title ? ' title="' + E(o.title) + '"' : '') + (o.disabled ? ' disabled' : '') + '>' + (o.icon ? I(o.icon) : '') + (label ? E(label) : '') + '</button>';
   }
-  function empty(ic, title, text, action) { return '<div class="mh-empty mh-social__empty">' + I(ic) + '<b>' + E(title) + '</b>' + (text ? '<span>' + E(text) + '</span>' : '') + (action || '') + '</div>'; }
-  function section(title, kicker, right) { return '<div class="mh-social__head"><div><span class="mh-kicker mh-kicker--accent">' + E(kicker || '') + '</span><div class="mh-title" style="margin-top:4px">' + E(title) + '</div></div><div class="mh-flex mh-gap-2">' + (right || '') + '</div></div>'; }
+  function empty(ic, title, text, action) { return '<div class="eui-empty eui-social__empty">' + I(ic) + '<b>' + E(title) + '</b>' + (text ? '<span>' + E(text) + '</span>' : '') + (action || '') + '</div>'; }
+  function section(title, kicker, right) { return '<div class="eui-social__head"><div><span class="eui-kicker eui-kicker--accent">' + E(kicker || '') + '</span><div class="eui-title" style="margin-top:4px">' + E(title) + '</div></div><div class="eui-flex eui-gap-2">' + (right || '') + '</div></div>'; }
   function timeLeft(sec) { sec = Math.max(0, Math.round(sec)); return sec >= 60 ? Math.floor(sec / 60) + ' dk' : sec + ' sn'; }
 
-  MH.Social = function (target, opts) {
+  EUI.Social = function (target, opts) {
     opts = opts || {};
-    var host = MH.$(target); if (!host) return null;
+    var host = EUI.$(target); if (!host) return null;
     var S = {}, ui = { section: opts.section || 'crew', member: null, invTab: 'in', chFilter: 'all', logFilter: 'all', armSel: null };
     var menu = null, el = null;
 
     function act(action, data) {
       data = data || {};
-      MH.emit && MH.emit('social:action', { action: action, data: data });
+      EUI.emit && EUI.emit('social:action', { action: action, data: data });
       if (opts.onAction && opts.onAction(action, data, api) === false) return;
-      MH.post('social', { action: action, data: data });
+      EUI.post('social', { action: action, data: data });
     }
 
     /* ---------------- Başlık ---------------- */
     function mark() {
       var c = S.crew;
-      return c ? '<div class="mh-crewmark' + crewTone(c) + '"><b>' + E(c.tag || '?') + '</b><small>Svy ' + E(c.level || 1) + '</small></div>' : '<div class="mh-crewmark is-none">' + I('users') + '</div>';
+      return c ? '<div class="eui-crewmark' + crewTone(c) + '"><b>' + E(c.tag || '?') + '</b><small>Svy ' + E(c.level || 1) + '</small></div>' : '<div class="eui-crewmark is-none">' + I('users') + '</div>';
     }
     function chanChip() {
       var ch = chan(S), mode = ch ? (MODES[ch.mode] || MODES.free) : MODES.free;
-      return '<button class="mh-chanchip" data-mh-sec="channels"><span class="mh-chanchip__icon">' + I(mode[1]) + '</span><div><span class="mh-kicker">Kanal</span><b>' + E(ch ? ch.name : 'Ana dünya') + '</b></div>' +
-        (ch ? '<small class="mh-num">' + ch.players + ' / ' + ch.max + '</small>' : '') + '</button>';
+      return '<button class="eui-chanchip" data-eui-sec="channels"><span class="eui-chanchip__icon">' + I(mode[1]) + '</span><div><span class="eui-kicker">Kanal</span><b>' + E(ch ? ch.name : 'Ana dünya') + '</b></div>' +
+        (ch ? '<small class="eui-num">' + ch.players + ' / ' + ch.max + '</small>' : '') + '</button>';
     }
     function stats() {
       var c = S.crew, me = S.me || {}, out = [{ label: 'Nakit', value: money(me.cash), tone: 'success' }];
@@ -2269,54 +2269,54 @@
     /* ---------------- Ekip: genel bakış ---------------- */
     function crewNone() {
       var inv = ((S.invites && S.invites.incoming) || []).filter(function (x) { return x.kind === 'crew'; });
-      return { main: '<div class="mh-social__pad mh-scroll">' + section('Bir ekibe katıl ya da kur', 'Ekip') +
-        '<div class="mh-social__hero"><div class="mh-social__heroart">' + I('users') + '</div><div><b>Ekibin yok</b><span>Ekip; ortak kasa, cephanelik, rütbeler ve birlikte kanala geçme demek. Kendi ekibini kur ya da bir davet bekle.</span></div>' +
-        btn('crew-create', 'Ekip kur', { cls: 'mh-btn--primary', icon: 'plus' }) + '</div>' +
-        (inv.length ? '<span class="mh-kicker" style="margin-top:8px">Bekleyen ekip davetleri</span><div class="mh-invites">' + inv.map(inviteCard).join('') + '</div>' : '') + '</div>' };
+      return { main: '<div class="eui-social__pad eui-scroll">' + section('Bir ekibe katıl ya da kur', 'Ekip') +
+        '<div class="eui-social__hero"><div class="eui-social__heroart">' + I('users') + '</div><div><b>Ekibin yok</b><span>Ekip; ortak kasa, cephanelik, rütbeler ve birlikte kanala geçme demek. Kendi ekibini kur ya da bir davet bekle.</span></div>' +
+        btn('crew-create', 'Ekip kur', { cls: 'eui-btn--primary', icon: 'plus' }) + '</div>' +
+        (inv.length ? '<span class="eui-kicker" style="margin-top:8px">Bekleyen ekip davetleri</span><div class="eui-invites">' + inv.map(inviteCard).join('') + '</div>' : '') + '</div>' };
     }
     function memberRow(m) {
       var r = rankOf(S, m.rank), other = m.channel && S.channels && m.channel !== S.channels.current;
-      var hp = m.status === 'offline' ? '' : '<div class="mh-bar mh-bar--sm ' + (m.hp <= 25 ? 'mh-t-danger' : 'mh-t-health') + '" style="width:90px;--v:' + ((m.hp || 0) / 100) + '"><i class="mh-bar__fill" style="transform:scaleX(' + ((m.hp || 0) / 100) + ')"></i></div>';
-      return '<div class="mh-member-row' + (ui.member === m.id ? ' is-active' : '') + (m.self ? ' is-self' : '') + ' is-' + (m.status || 'offline') + '" data-sa="member" data-id="' + E(m.id) + '">' +
-        MH.avatar(m.name, { src: m.avatar, tone: m.status === 'offline' ? null : 'team1', cls: 'mh-avatar--round' }) +
-        '<div class="mh-member-row__main"><div class="mh-flex mh-gap-2"><b>' + E(m.name) + '</b>' + badge(r.label, r.tone, r.icon) + (m.self ? badge('Sen', 'accent') : '') + '</div>' +
-        '<span class="mh-sub">' + E(m.status === 'offline' ? (m.seen || 'Çevrimdışı') : (m.zone || '') + (m.dist != null && !m.self ? ' · ' + m.dist + ' m' : '')) + (other ? ' · ' + I('layers') + ' başka kanalda' : '') + '</span></div>' +
+      var hp = m.status === 'offline' ? '' : '<div class="eui-bar eui-bar--sm ' + (m.hp <= 25 ? 'eui-t-danger' : 'eui-t-health') + '" style="width:90px;--v:' + ((m.hp || 0) / 100) + '"><i class="eui-bar__fill" style="transform:scaleX(' + ((m.hp || 0) / 100) + ')"></i></div>';
+      return '<div class="eui-member-row' + (ui.member === m.id ? ' is-active' : '') + (m.self ? ' is-self' : '') + ' is-' + (m.status || 'offline') + '" data-sa="member" data-id="' + E(m.id) + '">' +
+        EUI.avatar(m.name, { src: m.avatar, tone: m.status === 'offline' ? null : 'team1', cls: 'eui-avatar--round' }) +
+        '<div class="eui-member-row__main"><div class="eui-flex eui-gap-2"><b>' + E(m.name) + '</b>' + badge(r.label, r.tone, r.icon) + (m.self ? badge('Sen', 'accent') : '') + '</div>' +
+        '<span class="eui-sub">' + E(m.status === 'offline' ? (m.seen || 'Çevrimdışı') : (m.zone || '') + (m.dist != null && !m.self ? ' · ' + m.dist + ' m' : '')) + (other ? ' · ' + I('layers') + ' başka kanalda' : '') + '</span></div>' +
         hp + statusBadge(m.status) +
-        '<div class="mh-member-row__acts">' + (!m.self && m.status !== 'offline' ? btn('help', '', { id: m.id, icon: 'heart-plus', title: 'Yardım et', cls: 'mh-btn--ghost' }) + btn('give', '', { id: m.id, icon: 'cash', title: 'Para gönder', cls: 'mh-btn--ghost' }) : '') +
-        (!m.self ? btn('member-more', '', { id: m.id, icon: 'menu', title: 'Diğer', cls: 'mh-btn--ghost' }) : '') + '</div></div>';
+        '<div class="eui-member-row__acts">' + (!m.self && m.status !== 'offline' ? btn('help', '', { id: m.id, icon: 'heart-plus', title: 'Yardım et', cls: 'eui-btn--ghost' }) + btn('give', '', { id: m.id, icon: 'cash', title: 'Para gönder', cls: 'eui-btn--ghost' }) : '') +
+        (!m.self ? btn('member-more', '', { id: m.id, icon: 'menu', title: 'Diğer', cls: 'eui-btn--ghost' }) : '') + '</div></div>';
     }
     function crewMain() {
       var c = S.crew; if (!c) return crewNone();
       var ms = (c.members || []).slice().sort(function (a, b) { return (a.status === 'offline') - (b.status === 'offline') || rankIdx(S, a.rank) - rankIdx(S, b.rank); });
       var online = ms.filter(function (m) { return m.status !== 'offline'; }).length;
       if (!ui.member || !ms.some(function (m) { return m.id === ui.member; })) ui.member = (ms.filter(function (m) { return !m.self; })[0] || ms[0] || {}).id;
-      var tiles = '<div class="mh-social__tiles">' +
+      var tiles = '<div class="eui-social__tiles">' +
         tile('users', 'Üyeler', online + ' / ' + (c.members || []).length, 'çevrimiçi · en fazla ' + (c.max || '—')) +
         tile('bank', 'Kasa', money(c.bank), c.bankDelta ? (c.bankDelta > 0 ? '▲ ' : '▼ ') + money(Math.abs(c.bankDelta)) + ' bugün' : '') +
         tile('trophy', 'Ekip sırası', '#' + (c.rank || '—'), (c.kills != null ? F(c.kills) + ' leş' : '')) +
-        '<div class="mh-tile mh-social__xp"><span class="mh-kicker">Ekip seviyesi ' + E(c.level || 1) + '</span><b>' + Math.round((c.xp || 0) * 100) + '%</b><div class="mh-bar mh-bar--sm"><i class="mh-bar__fill" style="transform:scaleX(' + (c.xp || 0) + ')"></i></div><small>' + E(c.nextReward || '') + '</small></div></div>';
-      var main = '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">' + E(c.name) + '</span>' + badge(c.tag, (c.tone || 'accent')) +
-        (c.motto ? '<span class="mh-sub mh-social__motto">“' + E(c.motto) + '”</span>' : '<span style="margin-left:auto"></span>') + (can(S, 'invite') ? btn('crew-invite', 'Davet et', { icon: 'user-plus', cls: 'mh-btn--primary' }) : '') +
-        btn('crew-channel', 'Ekiple kanala geç', { icon: 'layers' }) + btn('crew-leave', 'Ayrıl', { icon: 'logout', cls: 'mh-btn--tone mh-t-danger' }) + '</div>' +
-        '<div class="mh-social__pad mh-scroll">' + tiles + (c.announcement ? '<div class="mh-social__notice">' + I('bell') + '<div><b>Ekip duyurusu</b><span>' + E(c.announcement) + '</span></div></div>' : '') +
-        '<div class="mh-members">' + ms.map(memberRow).join('') + '</div></div>';
+        '<div class="eui-tile eui-social__xp"><span class="eui-kicker">Ekip seviyesi ' + E(c.level || 1) + '</span><b>' + Math.round((c.xp || 0) * 100) + '%</b><div class="eui-bar eui-bar--sm"><i class="eui-bar__fill" style="transform:scaleX(' + (c.xp || 0) + ')"></i></div><small>' + E(c.nextReward || '') + '</small></div></div>';
+      var main = '<div class="eui-menu__toolbar"><span class="eui-title eui-title--sm">' + E(c.name) + '</span>' + badge(c.tag, (c.tone || 'accent')) +
+        (c.motto ? '<span class="eui-sub eui-social__motto">“' + E(c.motto) + '”</span>' : '<span style="margin-left:auto"></span>') + (can(S, 'invite') ? btn('crew-invite', 'Davet et', { icon: 'user-plus', cls: 'eui-btn--primary' }) : '') +
+        btn('crew-channel', 'Ekiple kanala geç', { icon: 'layers' }) + btn('crew-leave', 'Ayrıl', { icon: 'logout', cls: 'eui-btn--tone eui-t-danger' }) + '</div>' +
+        '<div class="eui-social__pad eui-scroll">' + tiles + (c.announcement ? '<div class="eui-social__notice">' + I('bell') + '<div><b>Ekip duyurusu</b><span>' + E(c.announcement) + '</span></div></div>' : '') +
+        '<div class="eui-members">' + ms.map(memberRow).join('') + '</div></div>';
       return { main: main, aside: memberAside(ms.filter(function (m) { return m.id === ui.member; })[0]) };
     }
-    function tile(ic, label, value, sub) { return '<div class="mh-tile">' + I(ic) + '<span class="mh-kicker">' + E(label) + '</span><b>' + E(value) + '</b>' + (sub ? '<small>' + E(sub) + '</small>' : '') + '</div>'; }
+    function tile(ic, label, value, sub) { return '<div class="eui-tile">' + I(ic) + '<span class="eui-kicker">' + E(label) + '</span><b>' + E(value) + '</b>' + (sub ? '<small>' + E(sub) + '</small>' : '') + '</div>'; }
     function memberAside(m) {
       if (!m) return '';
       var r = rankOf(S, m.rank), off = m.status === 'offline';
-      return '<div class="mh-membercard">' + MH.avatar(m.name, { src: m.avatar, tone: off ? null : 'team1', cls: 'mh-avatar--lg mh-avatar--round' }) +
-        '<div><div class="mh-title mh-title--lg" lang="en">' + E(m.name) + '</div><div class="mh-flex mh-gap-2" style="margin-top:6px">' + badge(r.label, r.tone, r.icon) + statusBadge(m.status) + '</div></div></div>' +
-        (!off ? '<div class="mh-statlines"><div class="mh-statline mh-t-health"><span class="mh-kicker">Can</span><div class="mh-bar"><i class="mh-bar__fill" style="transform:scaleX(' + ((m.hp || 0) / 100) + ')"></i></div><b>' + (m.hp || 0) + '</b></div>' +
-          '<div class="mh-statline mh-t-armor"><span class="mh-kicker">Zırh</span><div class="mh-bar"><i class="mh-bar__fill" style="transform:scaleX(' + ((m.armor || 0) / 100) + ')"></i></div><b>' + (m.armor || 0) + '</b></div></div>' : '') +
-        '<div class="mh-kv">' + kv('Konum', m.zone || '—') + kv('Kanal', chName(m.channel)) + kv('Katkı', money(m.contrib)) + kv('Leş', F(m.kills)) + kv('Katıldı', m.joined || '—') + '</div>' +
-        (m.self ? '<div class="mh-col mh-gap-2" style="margin-top:auto">' + btn('crew-leave', 'Ekipten ayrıl', { icon: 'logout', cls: 'mh-btn--tone mh-t-danger mh-btn--block' }) + '</div>' :
-        '<div class="mh-col mh-gap-2" style="margin-top:auto">' +
-          (!off ? btn('help', 'Yardım et', { id: m.id, icon: 'heart-plus', cls: 'mh-btn--primary mh-btn--block' }) : '') +
-          '<div class="mh-flex mh-gap-2">' + (!off ? btn('give', 'Para', { id: m.id, icon: 'cash', cls: 'mh-btn--outline mh-grow' }) : '') + btn('msg', 'Mesaj', { id: m.id, icon: 'chat', cls: 'mh-btn--outline mh-grow' }) + '</div>' +
-          '<div class="mh-flex mh-gap-2">' + (can(S, 'promote') ? btn('promote', 'Rütbe', { id: m.id, icon: 'crown', cls: 'mh-btn--outline mh-grow' }) : '') +
-          (can(S, 'kick') ? btn('kick', 'At', { id: m.id, icon: 'user-minus', cls: 'mh-btn--tone mh-t-danger mh-grow' }) : '') + '</div></div>');
+      return '<div class="eui-membercard">' + EUI.avatar(m.name, { src: m.avatar, tone: off ? null : 'team1', cls: 'eui-avatar--lg eui-avatar--round' }) +
+        '<div><div class="eui-title eui-title--lg" lang="en">' + E(m.name) + '</div><div class="eui-flex eui-gap-2" style="margin-top:6px">' + badge(r.label, r.tone, r.icon) + statusBadge(m.status) + '</div></div></div>' +
+        (!off ? '<div class="eui-statlines"><div class="eui-statline eui-t-health"><span class="eui-kicker">Can</span><div class="eui-bar"><i class="eui-bar__fill" style="transform:scaleX(' + ((m.hp || 0) / 100) + ')"></i></div><b>' + (m.hp || 0) + '</b></div>' +
+          '<div class="eui-statline eui-t-armor"><span class="eui-kicker">Zırh</span><div class="eui-bar"><i class="eui-bar__fill" style="transform:scaleX(' + ((m.armor || 0) / 100) + ')"></i></div><b>' + (m.armor || 0) + '</b></div></div>' : '') +
+        '<div class="eui-kv">' + kv('Konum', m.zone || '—') + kv('Kanal', chName(m.channel)) + kv('Katkı', money(m.contrib)) + kv('Leş', F(m.kills)) + kv('Katıldı', m.joined || '—') + '</div>' +
+        (m.self ? '<div class="eui-col eui-gap-2" style="margin-top:auto">' + btn('crew-leave', 'Ekipten ayrıl', { icon: 'logout', cls: 'eui-btn--tone eui-t-danger eui-btn--block' }) + '</div>' :
+        '<div class="eui-col eui-gap-2" style="margin-top:auto">' +
+          (!off ? btn('help', 'Yardım et', { id: m.id, icon: 'heart-plus', cls: 'eui-btn--primary eui-btn--block' }) : '') +
+          '<div class="eui-flex eui-gap-2">' + (!off ? btn('give', 'Para', { id: m.id, icon: 'cash', cls: 'eui-btn--outline eui-grow' }) : '') + btn('msg', 'Mesaj', { id: m.id, icon: 'chat', cls: 'eui-btn--outline eui-grow' }) + '</div>' +
+          '<div class="eui-flex eui-gap-2">' + (can(S, 'promote') ? btn('promote', 'Rütbe', { id: m.id, icon: 'crown', cls: 'eui-btn--outline eui-grow' }) : '') +
+          (can(S, 'kick') ? btn('kick', 'At', { id: m.id, icon: 'user-minus', cls: 'eui-btn--tone eui-t-danger eui-grow' }) : '') + '</div></div>');
     }
     function kv(k, v) { return '<div><span>' + E(k) + '</span><b>' + E(v) + '</b></div>'; }
     function chName(id) { var c = ((S.channels && S.channels.list) || []).filter(function (x) { return x.id === id; })[0]; return c ? cname(c) : (id === 'main' ? 'Ana dünya' : id || '—'); }
@@ -2324,28 +2324,28 @@
     /* ---------------- Davetler ---------------- */
     function inviteCard(x) {
       var k = KINDS[x.kind] || KINDS.crew, pct = x.total ? Math.max(0, Math.min(1, (x.expires || 0) / x.total)) : 1;
-      return '<div class="mh-invite mh-t-' + k[2] + '"><span class="mh-invite__icon">' + I(x.icon || k[0]) + '</span>' +
-        '<div class="mh-invite__main"><span class="mh-kicker">' + E(x.label || k[1]) + (x.expires != null ? ' · ' + timeLeft(x.expires) + ' kaldı' : '') + '</span>' +
-        '<div class="mh-invite__text">' + MH.avatar(x.from, { cls: 'mh-avatar--sm mh-avatar--round', src: x.avatar }) + '<span><b>' + E(x.from) + '</b> ' + E(x.text || ('seni ' + (x.target || '') + ' için davet ediyor')) + '</span></div>' +
-        (x.note || x.mode ? '<span class="mh-sub">' + E(x.note || ((MODES[x.mode] || MODES.free)[0] + (x.max ? ' · ' + (x.players || 0) + ' / ' + x.max + ' oyuncu' : ''))) + '</span>' : '') +
-        (x.expires != null ? '<div class="mh-invite__timer"><i style="transform:scaleX(' + pct + ')"></i></div>' : '') + '</div>' +
-        '<div class="mh-invite__acts">' + btn('inv-decline', 'Reddet', { id: x.id, icon: 'x', cls: 'mh-btn--ghost' }) + btn('inv-accept', 'Kabul et', { id: x.id, icon: 'check', cls: 'mh-btn--primary' }) + '</div></div>';
+      return '<div class="eui-invite eui-t-' + k[2] + '"><span class="eui-invite__icon">' + I(x.icon || k[0]) + '</span>' +
+        '<div class="eui-invite__main"><span class="eui-kicker">' + E(x.label || k[1]) + (x.expires != null ? ' · ' + timeLeft(x.expires) + ' kaldı' : '') + '</span>' +
+        '<div class="eui-invite__text">' + EUI.avatar(x.from, { cls: 'eui-avatar--sm eui-avatar--round', src: x.avatar }) + '<span><b>' + E(x.from) + '</b> ' + E(x.text || ('seni ' + (x.target || '') + ' için davet ediyor')) + '</span></div>' +
+        (x.note || x.mode ? '<span class="eui-sub">' + E(x.note || ((MODES[x.mode] || MODES.free)[0] + (x.max ? ' · ' + (x.players || 0) + ' / ' + x.max + ' oyuncu' : ''))) + '</span>' : '') +
+        (x.expires != null ? '<div class="eui-invite__timer"><i style="transform:scaleX(' + pct + ')"></i></div>' : '') + '</div>' +
+        '<div class="eui-invite__acts">' + btn('inv-decline', 'Reddet', { id: x.id, icon: 'x', cls: 'eui-btn--ghost' }) + btn('inv-accept', 'Kabul et', { id: x.id, icon: 'check', cls: 'eui-btn--primary' }) + '</div></div>';
     }
     function invitesMain() {
       var inv = S.invites || {}, inc = inv.incoming || [], out = inv.outgoing || [];
-      var tabs = '<div class="mh-seg" data-seg="invTab"><button class="' + (ui.invTab === 'in' ? 'is-active' : '') + '" data-sa="inv-tab" data-id="in">Gelen <span class="mh-count">' + inc.length + '</span></button>' +
+      var tabs = '<div class="eui-seg" data-seg="invTab"><button class="' + (ui.invTab === 'in' ? 'is-active' : '') + '" data-sa="inv-tab" data-id="in">Gelen <span class="eui-count">' + inc.length + '</span></button>' +
         '<button class="' + (ui.invTab === 'out' ? 'is-active' : '') + '" data-sa="inv-tab" data-id="out">Gönderilen <small>' + out.length + '</small></button></div>';
       var body = ui.invTab === 'in'
-        ? (inc.length ? '<div class="mh-invites">' + inc.map(inviteCard).join('') + '</div>' + (inc.length > 1 ? '<div class="mh-flex" style="justify-content:flex-end">' + btn('inv-decline-all', 'Hepsini reddet', { icon: 'x', cls: 'mh-btn--ghost' }) + '</div>' : '') : empty('email', 'Gelen davet yok', 'Ekip, kanal, takas ve düello davetleri burada görünür.'))
-        : (out.length ? '<div class="mh-list">' + out.map(function (x) {
+        ? (inc.length ? '<div class="eui-invites">' + inc.map(inviteCard).join('') + '</div>' + (inc.length > 1 ? '<div class="eui-flex" style="justify-content:flex-end">' + btn('inv-decline-all', 'Hepsini reddet', { icon: 'x', cls: 'eui-btn--ghost' }) + '</div>' : '') : empty('email', 'Gelen davet yok', 'Ekip, kanal, takas ve düello davetleri burada görünür.'))
+        : (out.length ? '<div class="eui-list">' + out.map(function (x) {
           var k = KINDS[x.kind] || KINDS.crew;
-          return '<div class="mh-row"><span class="mh-row__icon">' + I(k[0]) + '</span><div class="mh-row__main"><span class="mh-row__title">' + E(x.to) + '</span><span class="mh-row__sub">' + E(k[1] + (x.target ? ' · ' + x.target : '') + (x.time ? ' · ' + x.time : '')) + '</span></div>' +
-            '<div class="mh-row__meta">' + badge(x.status === 'seen' ? 'Görüldü' : 'Bekliyor', x.status === 'seen' ? 'info' : 'warn') + btn('inv-cancel', 'Geri al', { id: x.id, icon: 'x', cls: 'mh-btn--ghost' }) + '</div></div>';
+          return '<div class="eui-row"><span class="eui-row__icon">' + I(k[0]) + '</span><div class="eui-row__main"><span class="eui-row__title">' + E(x.to) + '</span><span class="eui-row__sub">' + E(k[1] + (x.target ? ' · ' + x.target : '') + (x.time ? ' · ' + x.time : '')) + '</span></div>' +
+            '<div class="eui-row__meta">' + badge(x.status === 'seen' ? 'Görüldü' : 'Bekliyor', x.status === 'seen' ? 'info' : 'warn') + btn('inv-cancel', 'Geri al', { id: x.id, icon: 'x', cls: 'eui-btn--ghost' }) + '</div></div>';
         }).join('') + '</div>' : empty('email', 'Gönderilen davet yok', 'Ekibe ya da kanala davet ettiklerin burada bekler.'));
       var pref = S.prefs || {};
-      return { main: '<div class="mh-social__pad mh-scroll">' + section('Davetler', 'Ekip · kanal · takas', tabs) + body +
-        '<div class="mh-setting" style="margin-top:auto"><div class="mh-setting__text"><b>Yalnız arkadaşlarımdan davet al</b><span>Diğer oyuncuların davetleri otomatik reddedilir</span></div><div class="mh-setting__control"><label class="mh-toggle"><input type="checkbox" data-pref="friendsOnly"' + (pref.friendsOnly ? ' checked' : '') + '><span class="mh-toggle__track"></span></label></div></div>' +
-        '<div class="mh-setting"><div class="mh-setting__text"><b>Davetleri ekranda göster</b><span>Oyun sırasında köşede kısa bildirim</span></div><div class="mh-setting__control"><label class="mh-toggle"><input type="checkbox" data-pref="toastInvites"' + (pref.toastInvites !== false ? ' checked' : '') + '><span class="mh-toggle__track"></span></label></div></div></div>' };
+      return { main: '<div class="eui-social__pad eui-scroll">' + section('Davetler', 'Ekip · kanal · takas', tabs) + body +
+        '<div class="eui-setting" style="margin-top:auto"><div class="eui-setting__text"><b>Yalnız arkadaşlarımdan davet al</b><span>Diğer oyuncuların davetleri otomatik reddedilir</span></div><div class="eui-setting__control"><label class="eui-toggle"><input type="checkbox" data-pref="friendsOnly"' + (pref.friendsOnly ? ' checked' : '') + '><span class="eui-toggle__track"></span></label></div></div>' +
+        '<div class="eui-setting"><div class="eui-setting__text"><b>Davetleri ekranda göster</b><span>Oyun sırasında köşede kısa bildirim</span></div><div class="eui-setting__control"><label class="eui-toggle"><input type="checkbox" data-pref="toastInvites"' + (pref.toastInvites !== false ? ' checked' : '') + '><span class="eui-toggle__track"></span></label></div></div></div>' };
     }
 
     /* ---------------- Kasa ---------------- */
@@ -2353,20 +2353,20 @@
     function vaultMain() {
       var c = S.crew, me = S.me || {}, lim = c.withdrawLimit || 0, used = c.withdrawnToday || 0;
       var log = (c.log || []).filter(function (l) { return ui.logFilter === 'all' || (ui.logFilter === 'money' ? l.amount != null : l.amount == null); });
-      var main = '<div class="mh-social__pad mh-scroll">' + section('Ekip kasası', 'Ortak para', '') +
-        '<div class="mh-vault"><div class="mh-vault__balance">' + I('bank') + '<div><span class="mh-kicker">Bakiye</span><b>' + money(c.bank) + '</b>' +
-        (c.bankDelta ? '<span class="mh-delta ' + (c.bankDelta > 0 ? 'is-up' : 'is-down') + '">' + (c.bankDelta > 0 ? '▲ ' : '▼ ') + money(Math.abs(c.bankDelta)) + ' bugün</span>' : '') + '</div></div>' +
-        '<div class="mh-vault__acts">' + btn('deposit', 'Yatır', { icon: 'arrow-down', cls: 'mh-btn--primary' }) +
+      var main = '<div class="eui-social__pad eui-scroll">' + section('Ekip kasası', 'Ortak para', '') +
+        '<div class="eui-vault"><div class="eui-vault__balance">' + I('bank') + '<div><span class="eui-kicker">Bakiye</span><b>' + money(c.bank) + '</b>' +
+        (c.bankDelta ? '<span class="eui-delta ' + (c.bankDelta > 0 ? 'is-up' : 'is-down') + '">' + (c.bankDelta > 0 ? '▲ ' : '▼ ') + money(Math.abs(c.bankDelta)) + ' bugün</span>' : '') + '</div></div>' +
+        '<div class="eui-vault__acts">' + btn('deposit', 'Yatır', { icon: 'arrow-down', cls: 'eui-btn--primary' }) +
         btn('withdraw', 'Çek', { icon: 'arrow-up', disabled: !can(S, 'withdraw') }) + btn('split', 'Üyelere dağıt', { icon: 'users', disabled: !can(S, 'withdraw') }) + '</div>' +
-        (lim ? '<div class="mh-vault__limit"><div class="mh-flex mh-between"><span class="mh-kicker">Günlük çekme sınırı</span><span class="mh-num">' + money(used) + ' / ' + money(lim) + '</span></div><div class="mh-bar mh-bar--sm mh-t-warn"><i class="mh-bar__fill" style="transform:scaleX(' + Math.min(1, used / lim) + ')"></i></div></div>' : '') +
-        '<div class="mh-sub">Cebindeki: <b style="color:var(--mh-text)">' + money(me.cash) + '</b>' + (!can(S, 'withdraw') ? ' · Çekmek için rütben yetmiyor' : '') + '</div></div>' +
-        '<div class="mh-flex mh-between" style="margin-top:6px"><span class="mh-kicker">Hareketler</span><div class="mh-seg">' +
+        (lim ? '<div class="eui-vault__limit"><div class="eui-flex eui-between"><span class="eui-kicker">Günlük çekme sınırı</span><span class="eui-num">' + money(used) + ' / ' + money(lim) + '</span></div><div class="eui-bar eui-bar--sm eui-t-warn"><i class="eui-bar__fill" style="transform:scaleX(' + Math.min(1, used / lim) + ')"></i></div></div>' : '') +
+        '<div class="eui-sub">Cebindeki: <b style="color:var(--eui-text)">' + money(me.cash) + '</b>' + (!can(S, 'withdraw') ? ' · Çekmek için rütben yetmiyor' : '') + '</div></div>' +
+        '<div class="eui-flex eui-between" style="margin-top:6px"><span class="eui-kicker">Hareketler</span><div class="eui-seg">' +
         [['all', 'Hepsi'], ['money', 'Para'], ['items', 'Eşya & üye']].map(function (f) { return '<button class="' + (ui.logFilter === f[0] ? 'is-active' : '') + '" data-sa="log-filter" data-id="' + f[0] + '">' + f[1] + '</button>'; }).join('') + '</div></div>' +
-        (log.length ? '<table class="mh-table mh-social__log"><tbody>' + log.map(function (l) {
+        (log.length ? '<table class="eui-table eui-social__log"><tbody>' + log.map(function (l) {
           var t = LOGT[l.type] || LOGT.deposit;
-          return '<tr><td class="mh-dim mh-num" style="width:56px">' + E(l.time || '') + '</td><td><div class="mh-flex mh-gap-2">' + MH.avatar(l.who, { cls: 'mh-avatar--sm mh-avatar--round' }) + '<b>' + E(l.who) + '</b></div></td>' +
-            '<td>' + badge(t[0], t[2], t[1]) + (l.item ? ' <span class="mh-sub">' + E(l.item) + '</span>' : '') + (l.note ? ' <span class="mh-sub">· ' + E(l.note) + '</span>' : '') + '</td>' +
-            '<td class="r mh-num" style="color:' + (l.amount == null ? 'var(--mh-text-3)' : l.type === 'withdraw' || l.type === 'split' ? 'var(--mh-danger)' : 'var(--mh-success)') + '">' + (l.amount == null ? '—' : (l.type === 'withdraw' || l.type === 'split' ? '−' : '+') + money(l.amount)) + '</td></tr>';
+          return '<tr><td class="eui-dim eui-num" style="width:56px">' + E(l.time || '') + '</td><td><div class="eui-flex eui-gap-2">' + EUI.avatar(l.who, { cls: 'eui-avatar--sm eui-avatar--round' }) + '<b>' + E(l.who) + '</b></div></td>' +
+            '<td>' + badge(t[0], t[2], t[1]) + (l.item ? ' <span class="eui-sub">' + E(l.item) + '</span>' : '') + (l.note ? ' <span class="eui-sub">· ' + E(l.note) + '</span>' : '') + '</td>' +
+            '<td class="r eui-num" style="color:' + (l.amount == null ? 'var(--eui-text-3)' : l.type === 'withdraw' || l.type === 'split' ? 'var(--eui-danger)' : 'var(--eui-success)') + '">' + (l.amount == null ? '—' : (l.type === 'withdraw' || l.type === 'split' ? '−' : '+') + money(l.amount)) + '</td></tr>';
         }).join('') + '</tbody></table>' : empty('history', 'Hareket yok')) + '</div>';
       return { main: main };
     }
@@ -2374,14 +2374,14 @@
     /* ---------------- Cephanelik ---------------- */
     function armoryMain() {
       var c = S.crew, items = c.armory || [], myRank = rankIdx(S, (meMember(S) || {}).rank), mayUse = can(S, 'armory');
-      var main = '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">Cephanelik</span><span class="mh-badge">' + items.reduce(function (a, b) { return a + (b.count || 0); }, 0) + ' parça</span>' +
-        '<span style="margin-left:auto"></span>' + btn('arm-put', 'Silah bırak', { icon: 'arrow-down', cls: 'mh-btn--primary' }) + '</div>' +
-        '<div class="mh-shopgrid mh-scroll mh-menu__scroll mh-armory">' + (items.length ? items.map(function (it) {
+      var main = '<div class="eui-menu__toolbar"><span class="eui-title eui-title--sm">Cephanelik</span><span class="eui-badge">' + items.reduce(function (a, b) { return a + (b.count || 0); }, 0) + ' parça</span>' +
+        '<span style="margin-left:auto"></span>' + btn('arm-put', 'Silah bırak', { icon: 'arrow-down', cls: 'eui-btn--primary' }) + '</div>' +
+        '<div class="eui-shopgrid eui-scroll eui-menu__scroll eui-armory">' + (items.length ? items.map(function (it) {
           var need = it.minRank ? rankIdx(S, it.minRank) : 99, locked = !mayUse || myRank > need, a = String(it.art || 'i:pistol');
-          return '<div class="mh-item is-' + (it.tier || 'common') + (locked ? ' is-locked' : '') + (ui.armSel === it.id ? ' is-active' : '') + '" data-sa="arm-select" data-id="' + E(it.id) + '">' +
-            '<div class="mh-item__art">' + (it.minRank ? badge(rankOf(S, it.minRank).label + '+', locked ? '' : 'accent', locked ? 'lock' : null) : '') + MH.art(a, a.indexOf('w:') === 0 ? '' : 'mh-armory__icon') + '<span class="mh-item__corner mh-num">×' + E(it.count || 0) + '</span></div>' +
-            '<div class="mh-item__body"><span class="mh-item__name">' + E(it.name) + '</span><div class="mh-item__meta"><span>' + (locked ? I('lock') + ' Rütben yetmiyor' : E(it.sub || '')) + '</span>' +
-            (locked ? '' : btn('arm-take', 'Al', { id: it.id, icon: 'arrow-up', cls: 'mh-btn--outline', disabled: !it.count })) + '</div></div></div>';
+          return '<div class="eui-item is-' + (it.tier || 'common') + (locked ? ' is-locked' : '') + (ui.armSel === it.id ? ' is-active' : '') + '" data-sa="arm-select" data-id="' + E(it.id) + '">' +
+            '<div class="eui-item__art">' + (it.minRank ? badge(rankOf(S, it.minRank).label + '+', locked ? '' : 'accent', locked ? 'lock' : null) : '') + EUI.art(a, a.indexOf('w:') === 0 ? '' : 'eui-armory__icon') + '<span class="eui-item__corner eui-num">×' + E(it.count || 0) + '</span></div>' +
+            '<div class="eui-item__body"><span class="eui-item__name">' + E(it.name) + '</span><div class="eui-item__meta"><span>' + (locked ? I('lock') + ' Rütben yetmiyor' : E(it.sub || '')) + '</span>' +
+            (locked ? '' : btn('arm-take', 'Al', { id: it.id, icon: 'arrow-up', cls: 'eui-btn--outline', disabled: !it.count })) + '</div></div></div>';
         }).join('') : empty('safe', 'Cephanelik boş', 'Silahını ekibe bırakmak için “Silah bırak”.')) + '</div>';
       return { main: main };
     }
@@ -2390,48 +2390,48 @@
     function ranksMain() {
       var c = S.crew, rs = c.ranks || [], edit = can(S, 'promote');
       var count = function (id) { return (c.members || []).filter(function (m) { return m.rank === id; }).length; };
-      var main = '<div class="mh-social__pad mh-scroll">' + section('Rütbeler & izinler', 'Kim ne yapabilir', edit ? btn('rank-add', 'Rütbe ekle', { icon: 'plus' }) : '') +
-        '<div class="mh-permtable"><table class="mh-table"><thead><tr><th>Rütbe</th>' + PERMS.map(function (p) { return '<th class="c" title="' + E(p[1]) + '">' + I(p[2]) + '<span>' + E(p[1]) + '</span></th>'; }).join('') + '</tr></thead><tbody>' +
+      var main = '<div class="eui-social__pad eui-scroll">' + section('Rütbeler & izinler', 'Kim ne yapabilir', edit ? btn('rank-add', 'Rütbe ekle', { icon: 'plus' }) : '') +
+        '<div class="eui-permtable"><table class="eui-table"><thead><tr><th>Rütbe</th>' + PERMS.map(function (p) { return '<th class="c" title="' + E(p[1]) + '">' + I(p[2]) + '<span>' + E(p[1]) + '</span></th>'; }).join('') + '</tr></thead><tbody>' +
         rs.map(function (r, i) {
-          return '<tr><td><div class="mh-flex mh-gap-2">' + badge(r.label, r.tone, r.icon) + '<span class="mh-sub">' + count(r.id) + ' üye</span></div></td>' + PERMS.map(function (p) {
+          return '<tr><td><div class="eui-flex eui-gap-2">' + badge(r.label, r.tone, r.icon) + '<span class="eui-sub">' + count(r.id) + ' üye</span></div></td>' + PERMS.map(function (p) {
             var on = r.perms && (r.perms[p[0]] || r.perms.all), lock = !edit || i === 0;
-            return '<td class="c"><label class="mh-check' + (lock ? ' is-disabled' : '') + '"><input type="checkbox" data-perm="' + p[0] + '" data-rank="' + E(r.id) + '"' + (on ? ' checked' : '') + (lock ? ' disabled' : '') + '><span class="mh-check__box"></span></label></td>';
+            return '<td class="c"><label class="eui-check' + (lock ? ' is-disabled' : '') + '"><input type="checkbox" data-perm="' + p[0] + '" data-rank="' + E(r.id) + '"' + (on ? ' checked' : '') + (lock ? ' disabled' : '') + '><span class="eui-check__box"></span></label></td>';
           }).join('') + '</tr>';
         }).join('') + '</tbody></table></div>' +
-        '<div class="mh-sub">' + I('info') + ' Lider her zaman tüm izinlere sahiptir. ' + (edit ? 'Değişiklik anında kaydedilir.' : 'İzinleri yalnız “Rütbe ver” yetkisi olanlar değiştirebilir.') + '</div></div>';
+        '<div class="eui-sub">' + I('info') + ' Lider her zaman tüm izinlere sahiptir. ' + (edit ? 'Değişiklik anında kaydedilir.' : 'İzinleri yalnız “Rütbe ver” yetkisi olanlar değiştirebilir.') + '</div></div>';
       return { main: main };
     }
 
     /* ---------------- Kanallar ---------------- */
     function channelCard(c) {
       var cur = S.channels.current === c.id, mode = MODES[c.mode] || MODES.free, full = c.players >= c.max;
-      return '<div class="mh-channel' + (cur ? ' is-current' : '') + (full ? ' is-full' : '') + '">' +
-        '<div class="mh-channel__icon">' + I(c.icon || mode[1]) + '</div>' +
-        '<div class="mh-channel__main"><div class="mh-flex mh-gap-2"><b>' + E(cname(c)) + '</b>' + (c.locked ? I('lock', 'mh-channel__lock') : '') +
-        (cur ? badge('Buradasın', 'accent', null, 'mh-badge--dot') : '') + (c.crew ? badge('Ekip', 'team1') : '') + (c.system ? badge('Herkese açık', 'success') : '') + '</div>' +
-        '<span class="mh-sub">' + E(mode[0]) + (c.owner ? ' · kuran ' + c.owner : '') + (c.desc ? ' · ' + c.desc : c.system ? ' · Herkese açık sunucu dünyası' : '') + '</span>' +
-        (c.friends && c.friends.length ? '<span class="mh-channel__friends">' + c.friends.slice(0, 4).map(function (n) { return MH.avatar(n, { cls: 'mh-avatar--sm mh-avatar--round' }); }).join('') + '<small>' + E(c.friends.length + ' arkadaşın burada') + '</small></span>' : '') + '</div>' +
-        '<div class="mh-channel__cap"><span class="mh-num"><b>' + c.players + '</b> / ' + c.max + '</span><div class="mh-bar mh-bar--sm ' + (full ? 'mh-t-danger' : c.players / c.max > .75 ? 'mh-t-warn' : 'mh-t-success') + '"><i class="mh-bar__fill" style="transform:scaleX(' + Math.min(1, c.players / c.max) + ')"></i></div></div>' +
-        (cur ? (c.system ? '' : btn('ch-leave', 'Ayrıl', { icon: 'logout', cls: 'mh-btn--tone mh-t-danger' })) : btn('ch-join', full ? 'Dolu' : 'Katıl', { id: c.id, icon: c.locked ? 'lock' : 'arrow-right', cls: 'mh-btn--primary', disabled: full })) + '</div>';
+      return '<div class="eui-channel' + (cur ? ' is-current' : '') + (full ? ' is-full' : '') + '">' +
+        '<div class="eui-channel__icon">' + I(c.icon || mode[1]) + '</div>' +
+        '<div class="eui-channel__main"><div class="eui-flex eui-gap-2"><b>' + E(cname(c)) + '</b>' + (c.locked ? I('lock', 'eui-channel__lock') : '') +
+        (cur ? badge('Buradasın', 'accent', null, 'eui-badge--dot') : '') + (c.crew ? badge('Ekip', 'team1') : '') + (c.system ? badge('Herkese açık', 'success') : '') + '</div>' +
+        '<span class="eui-sub">' + E(mode[0]) + (c.owner ? ' · kuran ' + c.owner : '') + (c.desc ? ' · ' + c.desc : c.system ? ' · Herkese açık sunucu dünyası' : '') + '</span>' +
+        (c.friends && c.friends.length ? '<span class="eui-channel__friends">' + c.friends.slice(0, 4).map(function (n) { return EUI.avatar(n, { cls: 'eui-avatar--sm eui-avatar--round' }); }).join('') + '<small>' + E(c.friends.length + ' arkadaşın burada') + '</small></span>' : '') + '</div>' +
+        '<div class="eui-channel__cap"><span class="eui-num"><b>' + c.players + '</b> / ' + c.max + '</span><div class="eui-bar eui-bar--sm ' + (full ? 'eui-t-danger' : c.players / c.max > .75 ? 'eui-t-warn' : 'eui-t-success') + '"><i class="eui-bar__fill" style="transform:scaleX(' + Math.min(1, c.players / c.max) + ')"></i></div></div>' +
+        (cur ? (c.system ? '' : btn('ch-leave', 'Ayrıl', { icon: 'logout', cls: 'eui-btn--tone eui-t-danger' })) : btn('ch-join', full ? 'Dolu' : 'Katıl', { id: c.id, icon: c.locked ? 'lock' : 'arrow-right', cls: 'eui-btn--primary', disabled: full })) + '</div>';
     }
     function channelsMain() {
       var ch = S.channels || {}, list = ch.list || [], cur = chan(S);
       var flt = list.filter(function (c) { return ui.chFilter === 'all' || (ui.chFilter === 'open' ? !c.locked : ui.chFilter === 'crew' ? c.crew : ui.chFilter === 'friends' ? c.friends && c.friends.length : true); });
-      var main = '<div class="mh-menu__toolbar"><div class="mh-seg">' + [['all', 'Hepsi'], ['open', 'Açık'], ['friends', 'Arkadaşlar'], ['crew', 'Ekip']].map(function (f) {
+      var main = '<div class="eui-menu__toolbar"><div class="eui-seg">' + [['all', 'Hepsi'], ['open', 'Açık'], ['friends', 'Arkadaşlar'], ['crew', 'Ekip']].map(function (f) {
         return '<button class="' + (ui.chFilter === f[0] ? 'is-active' : '') + '" data-sa="ch-filter" data-id="' + f[0] + '">' + f[1] + '</button>'; }).join('') + '</div>' +
-        '<span style="margin-left:auto"></span>' + btn('ch-create', 'Kanal kur', { icon: 'plus', cls: 'mh-btn--primary', disabled: S.crew && !can(S, 'channel') && !ch.anyoneCanCreate }) + '</div>' +
-        '<div class="mh-social__pad mh-scroll">' +
-        '<div class="mh-social__notice is-info">' + I('layers') + '<div><b>Kanal nedir?</b><span>Aynı sunucuda ayrı bir dünya. Aynı kanaldakiler birbirini görür; diğer kanallardaki oyuncular, araçlar ve olaylar görünmez. Ekibinle ya da arkadaşlarınla kendi kanalını kurabilirsin.</span></div></div>' +
-        '<div class="mh-channels">' + flt.map(channelCard).join('') + '</div></div>';
-      var aside = cur ? '<div class="mh-chanhead"><div class="mh-channel__icon is-lg">' + I((MODES[cur.mode] || MODES.free)[1]) + '</div><div><span class="mh-kicker mh-kicker--accent">Şu anki kanal</span><div class="mh-title mh-title--lg">' + E(cname(cur)) + '</div><span class="mh-sub">' + E((MODES[cur.mode] || MODES.free)[0]) + ' · ' + cur.players + ' / ' + cur.max + ' oyuncu</span></div></div>' +
-        (cur.rules && cur.rules.length ? '<div class="mh-chanrules">' + cur.rules.map(function (r) { return '<span>' + I(r.icon || 'check') + E(r.text || r) + '</span>'; }).join('') + '</div>' : '') +
-        '<span class="mh-kicker">Bu kanaldakiler</span><div class="mh-chanmembers mh-scroll">' + (cur.members || []).map(function (m) {
+        '<span style="margin-left:auto"></span>' + btn('ch-create', 'Kanal kur', { icon: 'plus', cls: 'eui-btn--primary', disabled: S.crew && !can(S, 'channel') && !ch.anyoneCanCreate }) + '</div>' +
+        '<div class="eui-social__pad eui-scroll">' +
+        '<div class="eui-social__notice is-info">' + I('layers') + '<div><b>Kanal nedir?</b><span>Aynı sunucuda ayrı bir dünya. Aynı kanaldakiler birbirini görür; diğer kanallardaki oyuncular, araçlar ve olaylar görünmez. Ekibinle ya da arkadaşlarınla kendi kanalını kurabilirsin.</span></div></div>' +
+        '<div class="eui-channels">' + flt.map(channelCard).join('') + '</div></div>';
+      var aside = cur ? '<div class="eui-chanhead"><div class="eui-channel__icon is-lg">' + I((MODES[cur.mode] || MODES.free)[1]) + '</div><div><span class="eui-kicker eui-kicker--accent">Şu anki kanal</span><div class="eui-title eui-title--lg">' + E(cname(cur)) + '</div><span class="eui-sub">' + E((MODES[cur.mode] || MODES.free)[0]) + ' · ' + cur.players + ' / ' + cur.max + ' oyuncu</span></div></div>' +
+        (cur.rules && cur.rules.length ? '<div class="eui-chanrules">' + cur.rules.map(function (r) { return '<span>' + I(r.icon || 'check') + E(r.text || r) + '</span>'; }).join('') + '</div>' : '') +
+        '<span class="eui-kicker">Bu kanaldakiler</span><div class="eui-chanmembers eui-scroll">' + (cur.members || []).map(function (m) {
           var n = typeof m === 'string' ? { name: m } : m;
-          return '<div class="mh-chanmember">' + MH.avatar(n.name, { cls: 'mh-avatar--sm mh-avatar--round', tone: n.crew ? 'team1' : null }) + '<span>' + E(n.name) + '</span>' + (n.host ? badge('Kurucu', 'gold', 'crown') : n.crew ? badge('Ekip', 'team1') : '') + '</div>';
-        }).join('') + (cur.system ? '<span class="mh-sub">Herkese açık dünyada ' + cur.players + ' oyuncu var.</span>' : '') + '</div>' +
-        '<div class="mh-col mh-gap-2" style="margin-top:auto">' + (cur.system ? '' : btn('ch-invite', 'Kanala davet et', { icon: 'user-plus', cls: 'mh-btn--primary mh-btn--block' })) +
-        (cur.system ? '' : btn('ch-leave', 'Ana dünyaya dön', { icon: 'world', cls: 'mh-btn--outline mh-btn--block' })) +
-        (cur.owner && S.me && cur.owner === S.me.name ? btn('ch-settings', 'Kanal ayarları', { icon: 'settings', cls: 'mh-btn--ghost mh-btn--block' }) : '') + '</div>' : '';
+          return '<div class="eui-chanmember">' + EUI.avatar(n.name, { cls: 'eui-avatar--sm eui-avatar--round', tone: n.crew ? 'team1' : null }) + '<span>' + E(n.name) + '</span>' + (n.host ? badge('Kurucu', 'gold', 'crown') : n.crew ? badge('Ekip', 'team1') : '') + '</div>';
+        }).join('') + (cur.system ? '<span class="eui-sub">Herkese açık dünyada ' + cur.players + ' oyuncu var.</span>' : '') + '</div>' +
+        '<div class="eui-col eui-gap-2" style="margin-top:auto">' + (cur.system ? '' : btn('ch-invite', 'Kanala davet et', { icon: 'user-plus', cls: 'eui-btn--primary eui-btn--block' })) +
+        (cur.system ? '' : btn('ch-leave', 'Ana dünyaya dön', { icon: 'world', cls: 'eui-btn--outline eui-btn--block' })) +
+        (cur.owner && S.me && cur.owner === S.me.name ? btn('ch-settings', 'Kanal ayarları', { icon: 'settings', cls: 'eui-btn--ghost eui-btn--block' }) : '') + '</div>' : '';
       return { main: main, aside: aside };
     }
 
@@ -2439,19 +2439,19 @@
     function friendsMain() {
       var fr = (S.friends || []).slice().sort(function (a, b) { return (b.online ? 1 : 0) - (a.online ? 1 : 0); });
       var req = ((S.invites && S.invites.incoming) || []).filter(function (x) { return x.kind === 'friend'; });
-      var main = '<div class="mh-menu__toolbar"><div class="mh-input-wrap" style="width:280px">' + I('search') + '<input class="mh-input" placeholder="Arkadaş ara…" data-filter="friends" style="padding-left:36px"></div>' +
-        '<span class="mh-sub" style="margin-left:8px">' + fr.filter(function (f) { return f.online; }).length + ' çevrimiçi · ' + fr.length + ' arkadaş</span>' +
-        '<span style="margin-left:auto"></span>' + btn('fr-add', 'Arkadaş ekle', { icon: 'user-plus', cls: 'mh-btn--primary' }) + '</div>' +
-        '<div class="mh-social__pad mh-scroll">' + (req.length ? '<span class="mh-kicker">İstekler</span><div class="mh-invites">' + req.map(inviteCard).join('') + '</div><span class="mh-kicker" style="margin-top:6px">Arkadaşlar</span>' : '') +
-        '<div class="mh-members" data-list="friends">' + fr.map(function (f) {
+      var main = '<div class="eui-menu__toolbar"><div class="eui-input-wrap" style="width:280px">' + I('search') + '<input class="eui-input" placeholder="Arkadaş ara…" data-filter="friends" style="padding-left:36px"></div>' +
+        '<span class="eui-sub" style="margin-left:8px">' + fr.filter(function (f) { return f.online; }).length + ' çevrimiçi · ' + fr.length + ' arkadaş</span>' +
+        '<span style="margin-left:auto"></span>' + btn('fr-add', 'Arkadaş ekle', { icon: 'user-plus', cls: 'eui-btn--primary' }) + '</div>' +
+        '<div class="eui-social__pad eui-scroll">' + (req.length ? '<span class="eui-kicker">İstekler</span><div class="eui-invites">' + req.map(inviteCard).join('') + '</div><span class="eui-kicker" style="margin-top:6px">Arkadaşlar</span>' : '') +
+        '<div class="eui-members" data-list="friends">' + fr.map(function (f) {
           var here = S.channels && f.channel === S.channels.current, st = f.online ? (f.status || 'online') : 'offline';
-          return '<div class="mh-member-row is-' + st + '" data-name="' + E(String(f.name).toLowerCase()) + '">' + MH.avatar(f.name, { src: f.avatar, cls: 'mh-avatar--round', tone: f.online ? 'success' : null }) +
-            '<div class="mh-member-row__main"><div class="mh-flex mh-gap-2"><b>' + E(f.name) + '</b>' + (f.crew ? badge(f.crew, '') : '') + '</div><span class="mh-sub">' +
+          return '<div class="eui-member-row is-' + st + '" data-name="' + E(String(f.name).toLowerCase()) + '">' + EUI.avatar(f.name, { src: f.avatar, cls: 'eui-avatar--round', tone: f.online ? 'success' : null }) +
+            '<div class="eui-member-row__main"><div class="eui-flex eui-gap-2"><b>' + E(f.name) + '</b>' + (f.crew ? badge(f.crew, '') : '') + '</div><span class="eui-sub">' +
             (f.online ? (f.activity ? E(f.activity) + ' · ' : '') + I('layers') + ' ' + E(chName(f.channel)) + (here ? ' (seninle)' : '') : E(f.seen || 'Çevrimdışı')) + '</span></div>' + statusBadge(st) +
-            '<div class="mh-member-row__acts">' + (f.online && !here ? btn('fr-join', 'Kanalına git', { id: f.id, icon: 'arrow-right', cls: 'mh-btn--outline' }) : '') +
-            (f.online ? btn('fr-channel', '', { id: f.id, icon: 'layers', title: 'Kanalıma davet et', cls: 'mh-btn--ghost' }) + btn('fr-crew', '', { id: f.id, icon: 'user-plus', title: 'Ekibe davet et', cls: 'mh-btn--ghost', disabled: !S.crew || !can(S, 'invite') }) +
-              btn('fr-trade', '', { id: f.id, icon: 'swap', title: 'Takas iste', cls: 'mh-btn--ghost' }) : '') +
-            btn('fr-more', '', { id: f.id, icon: 'menu', title: 'Diğer', cls: 'mh-btn--ghost' }) + '</div></div>';
+            '<div class="eui-member-row__acts">' + (f.online && !here ? btn('fr-join', 'Kanalına git', { id: f.id, icon: 'arrow-right', cls: 'eui-btn--outline' }) : '') +
+            (f.online ? btn('fr-channel', '', { id: f.id, icon: 'layers', title: 'Kanalıma davet et', cls: 'eui-btn--ghost' }) + btn('fr-crew', '', { id: f.id, icon: 'user-plus', title: 'Ekibe davet et', cls: 'eui-btn--ghost', disabled: !S.crew || !can(S, 'invite') }) +
+              btn('fr-trade', '', { id: f.id, icon: 'swap', title: 'Takas iste', cls: 'eui-btn--ghost' }) : '') +
+            btn('fr-more', '', { id: f.id, icon: 'menu', title: 'Diğer', cls: 'eui-btn--ghost' }) + '</div></div>';
         }).join('') + '</div></div>';
       return { main: main };
     }
@@ -2460,13 +2460,13 @@
     var INK = { crew: ['users', 'accent'], system: ['info', 'info'], event: ['flag', 'legendary'], invite: ['email', 'success'], warn: ['alert', 'danger'], money: ['cash', 'success'] };
     function inboxMain() {
       var box = S.inbox || [];
-      var main = '<div class="mh-social__pad mh-scroll">' + section('Gelen kutusu', 'Duyurular & bildirimler',
-        (S.crew && can(S, 'announce') ? btn('announce', 'Ekibe duyuru', { icon: 'bell', cls: 'mh-btn--primary' }) : '') + (box.some(function (m) { return m.unread; }) ? btn('in-readall', 'Tümünü okundu say', { icon: 'check', cls: 'mh-btn--ghost' }) : '')) +
-        (box.length ? '<div class="mh-inbox">' + box.map(function (m) {
+      var main = '<div class="eui-social__pad eui-scroll">' + section('Gelen kutusu', 'Duyurular & bildirimler',
+        (S.crew && can(S, 'announce') ? btn('announce', 'Ekibe duyuru', { icon: 'bell', cls: 'eui-btn--primary' }) : '') + (box.some(function (m) { return m.unread; }) ? btn('in-readall', 'Tümünü okundu say', { icon: 'check', cls: 'eui-btn--ghost' }) : '')) +
+        (box.length ? '<div class="eui-inbox">' + box.map(function (m) {
           var k = INK[m.kind] || INK.system;
-          return '<div class="mh-mail' + (m.unread ? ' is-unread' : '') + ' mh-t-' + k[1] + '" data-sa="in-read" data-id="' + E(m.id) + '"><span class="mh-mail__icon">' + I(m.icon || k[0]) + '</span>' +
-            '<div class="mh-mail__main"><div class="mh-flex mh-between"><b>' + E(m.title) + '</b><span class="mh-sub">' + E(m.time || '') + '</span></div><span class="mh-mail__from">' + E(m.from || '') + '</span><p>' + E(m.text || '') + '</p>' +
-            (m.actions ? '<div class="mh-flex mh-gap-2">' + m.actions.map(function (a) { return btn('in-action', a.label, { id: m.id + '|' + a.id, icon: a.icon, cls: a.primary ? 'mh-btn--primary' : 'mh-btn--outline' }); }).join('') + '</div>' : '') + '</div></div>';
+          return '<div class="eui-mail' + (m.unread ? ' is-unread' : '') + ' eui-t-' + k[1] + '" data-sa="in-read" data-id="' + E(m.id) + '"><span class="eui-mail__icon">' + I(m.icon || k[0]) + '</span>' +
+            '<div class="eui-mail__main"><div class="eui-flex eui-between"><b>' + E(m.title) + '</b><span class="eui-sub">' + E(m.time || '') + '</span></div><span class="eui-mail__from">' + E(m.from || '') + '</span><p>' + E(m.text || '') + '</p>' +
+            (m.actions ? '<div class="eui-flex eui-gap-2">' + m.actions.map(function (a) { return btn('in-action', a.label, { id: m.id + '|' + a.id, icon: a.icon, cls: a.primary ? 'eui-btn--primary' : 'eui-btn--outline' }); }).join('') + '</div>' : '') + '</div></div>';
         }).join('') + '</div>' : empty('bell', 'Gelen kutun boş')) + '</div>';
       return { main: main };
     }
@@ -2486,61 +2486,61 @@
     }
     function crewForm() {
       var tones = [['accent', 'Vurgu'], ['team1', 'Mavi'], ['team2', 'Kırmızı'], ['success', 'Yeşil'], ['gold', 'Altın'], ['legendary', 'Mor']];
-      return '<div class="mh-form" style="--cols:3"><label class="mh-field is-wide" style="grid-column:span 2"><span class="mh-kicker">Ekip adı</span><input class="mh-input" name="name" maxlength="24" placeholder="Gece Kuşları"></label>' +
-        '<label class="mh-field"><span class="mh-kicker">Kısaltma</span><input class="mh-input" name="tag" maxlength="4" placeholder="GK" style="text-transform:uppercase"></label>' +
-        '<label class="mh-field is-wide"><span class="mh-kicker">Slogan</span><input class="mh-input" name="motto" maxlength="48" placeholder="Gece bizimdir"></label>' +
-        '<div class="mh-field is-wide"><span class="mh-kicker">Renk</span><div class="mh-swatchpick">' + tones.map(function (t, i) {
-          return '<label class="mh-optcard mh-t-' + t[0] + '"><input type="radio" name="tone" value="' + t[0] + '"' + (i === 0 ? ' checked' : '') + '><i class="mh-swatch"></i><span>' + t[1] + '</span></label>'; }).join('') + '</div></div>' +
-        '<label class="mh-field is-wide"><span class="mh-kicker">Katılım</span><select class="mh-input mh-select" name="join"><option value="invite">Yalnız davetle</option><option value="request">İstek gönderilebilir</option><option value="open">Herkese açık</option></select></label></div>';
+      return '<div class="eui-form" style="--cols:3"><label class="eui-field is-wide" style="grid-column:span 2"><span class="eui-kicker">Ekip adı</span><input class="eui-input" name="name" maxlength="24" placeholder="Gece Kuşları"></label>' +
+        '<label class="eui-field"><span class="eui-kicker">Kısaltma</span><input class="eui-input" name="tag" maxlength="4" placeholder="GK" style="text-transform:uppercase"></label>' +
+        '<label class="eui-field is-wide"><span class="eui-kicker">Slogan</span><input class="eui-input" name="motto" maxlength="48" placeholder="Gece bizimdir"></label>' +
+        '<div class="eui-field is-wide"><span class="eui-kicker">Renk</span><div class="eui-swatchpick">' + tones.map(function (t, i) {
+          return '<label class="eui-optcard eui-t-' + t[0] + '"><input type="radio" name="tone" value="' + t[0] + '"' + (i === 0 ? ' checked' : '') + '><i class="eui-swatch"></i><span>' + t[1] + '</span></label>'; }).join('') + '</div></div>' +
+        '<label class="eui-field is-wide"><span class="eui-kicker">Katılım</span><select class="eui-input eui-select" name="join"><option value="invite">Yalnız davetle</option><option value="request">İstek gönderilebilir</option><option value="open">Herkese açık</option></select></label></div>';
     }
     function channelForm(c) {
       c = c || {};
       var modes = ['free', 'deathmatch', 'race', 'survival', 'heist', 'private'];
-      return '<div class="mh-form" style="--cols:2"><label class="mh-field is-wide"><span class="mh-kicker">Kanal adı</span><input class="mh-input" name="name" maxlength="28" value="' + E(c.name || '') + '" placeholder="Gece baskını"></label>' +
-        '<div class="mh-field is-wide"><span class="mh-kicker">Mod</span><div class="mh-optcards" style="--cols:3">' + modes.map(function (m, i) {
-          return '<label class="mh-optcard"><input type="radio" name="mode" value="' + m + '"' + ((c.mode || 'free') === m ? ' checked' : '') + '>' + I(MODES[m][1]) + '<b>' + MODES[m][0] + '</b></label>'; }).join('') + '</div></div>' +
-        '<label class="mh-field is-wide"><span class="mh-kicker">En fazla oyuncu · <b data-maxout>' + (c.max || 8) + '</b></span><input type="range" class="mh-slider" name="max" min="2" max="32" value="' + (c.max || 8) + '" data-out="[data-maxout]"></label>' +
-        '<label class="mh-field"><span class="mh-kicker">Şifre (isteğe bağlı)</span><input class="mh-input" name="password" type="password" maxlength="16" placeholder="Boş = açık kanal"></label>' +
-        '<div class="mh-field"><span class="mh-kicker">Seçenekler</span><label class="mh-check"><input type="checkbox" name="crew"' + (S.crew ? ' checked' : ' disabled') + '><span class="mh-check__box"></span>Ekibimi de taşı</label>' +
-        '<label class="mh-check"><input type="checkbox" name="hidden"><span class="mh-check__box"></span>Listede gizle</label></div></div>';
+      return '<div class="eui-form" style="--cols:2"><label class="eui-field is-wide"><span class="eui-kicker">Kanal adı</span><input class="eui-input" name="name" maxlength="28" value="' + E(c.name || '') + '" placeholder="Gece baskını"></label>' +
+        '<div class="eui-field is-wide"><span class="eui-kicker">Mod</span><div class="eui-optcards" style="--cols:3">' + modes.map(function (m, i) {
+          return '<label class="eui-optcard"><input type="radio" name="mode" value="' + m + '"' + ((c.mode || 'free') === m ? ' checked' : '') + '>' + I(MODES[m][1]) + '<b>' + MODES[m][0] + '</b></label>'; }).join('') + '</div></div>' +
+        '<label class="eui-field is-wide"><span class="eui-kicker">En fazla oyuncu · <b data-maxout>' + (c.max || 8) + '</b></span><input type="range" class="eui-slider" name="max" min="2" max="32" value="' + (c.max || 8) + '" data-out="[data-maxout]"></label>' +
+        '<label class="eui-field"><span class="eui-kicker">Şifre (isteğe bağlı)</span><input class="eui-input" name="password" type="password" maxlength="16" placeholder="Boş = açık kanal"></label>' +
+        '<div class="eui-field"><span class="eui-kicker">Seçenekler</span><label class="eui-check"><input type="checkbox" name="crew"' + (S.crew ? ' checked' : ' disabled') + '><span class="eui-check__box"></span>Ekibimi de taşı</label>' +
+        '<label class="eui-check"><input type="checkbox" name="hidden"><span class="eui-check__box"></span>Listede gizle</label></div></div>';
     }
     var H = {
       member: function (id) { ui.member = id; render(); },
       'crew-create': function () {
-        MH.modal({ kicker: 'Yeni ekip', title: 'Ekip kur', icon: 'users', size: 'lg', body: crewForm(), validate: function (v) { return !String(v.name || '').trim() ? 'Ekip adı gerekli' : String(v.tag || '').trim().length < 2 ? 'Kısaltma en az 2 harf' : null; },
+        EUI.modal({ kicker: 'Yeni ekip', title: 'Ekip kur', icon: 'users', size: 'lg', body: crewForm(), validate: function (v) { return !String(v.name || '').trim() ? 'Ekip adı gerekli' : String(v.tag || '').trim().length < 2 ? 'Kısaltma en az 2 harf' : null; },
           actions: [{ label: 'Vazgeç', value: null }, { label: 'Kur', primary: true, submit: true, icon: 'check' }] })
           .then(function (v) { if (v) { v.tag = String(v.tag).toUpperCase(); act('crew:create', v); } });
       },
       'crew-invite': function () {
-        MH.choose({ kicker: S.crew.name, title: 'Ekibe davet et', text: 'Yakındaki ve çevrimiçi oyuncular', icon: 'user-plus', multi: true, ok: 'Davet gönder', okIcon: 'send',
+        EUI.choose({ kicker: S.crew.name, title: 'Ekibe davet et', text: 'Yakındaki ve çevrimiçi oyuncular', icon: 'user-plus', multi: true, ok: 'Davet gönder', okIcon: 'send',
           items: players(function (p) { return !p.crew || p.crew !== S.crew.name; }), empty: 'Davet edilecek oyuncu yok', max: (S.crew.max || 99) - (S.crew.members || []).length })
           .then(function (ids) { if (ids) act('crew:invite', { ids: ids }); });
       },
       'crew-leave': function () {
         var me = meMember(S) || {}, leader = me.rank === ((S.crew.ranks || [])[0] || {}).id;
-        MH.confirm({ title: 'Ekipten ayrıl?', text: leader ? 'Liderlik en kıdemli üyeye geçecek. Kasadaki payın ekipte kalır.' : 'Kasadaki payın ekipte kalır; tekrar katılmak için davet gerekir.', danger: true, ok: 'Ayrıl', icon: 'logout' })
+        EUI.confirm({ title: 'Ekipten ayrıl?', text: leader ? 'Liderlik en kıdemli üyeye geçecek. Kasadaki payın ekipte kalır.' : 'Kasadaki payın ekipte kalır; tekrar katılmak için davet gerekir.', danger: true, ok: 'Ayrıl', icon: 'logout' })
           .then(function (ok) { if (ok) act('crew:leave'); });
       },
       'crew-channel': function () {
         var list = ((S.channels && S.channels.list) || []).filter(function (c) { return !c.system; });
-        MH.choose({ title: 'Ekiple kanala geç', text: 'Çevrimiçi tüm üyeler seçtiğin kanala taşınır', icon: 'layers',
+        EUI.choose({ title: 'Ekiple kanala geç', text: 'Çevrimiçi tüm üyeler seçtiğin kanala taşınır', icon: 'layers',
           items: [{ id: '__new', label: 'Yeni ekip kanalı kur', sub: 'Yalnız ekip üyeleri', icon: 'plus' }].concat(list.map(function (c) { return { id: c.id, label: c.name, sub: (MODES[c.mode] || MODES.free)[0] + ' · ' + c.players + '/' + c.max, icon: (MODES[c.mode] || MODES.free)[1], disabled: c.players >= c.max }; })) })
           .then(function (id) { if (!id) return; if (id === '__new') act('channel:create', { name: S.crew.name + ' kanalı', mode: 'private', max: S.crew.max || 8, crew: true }); else act('channel:join', { id: id, crew: true }); });
       },
       help: function (id) {
         var m = findMember(id); if (!m) return;
-        MH.choose({ who: m.name, title: 'Yardım et', icon: 'heart-plus', search: false, items: HELP.filter(function (h) { return !h.when || h.when(m); }).map(function (h) {
+        EUI.choose({ who: m.name, title: 'Yardım et', icon: 'heart-plus', search: false, items: HELP.filter(function (h) { return !h.when || h.when(m); }).map(function (h) {
           return { id: h.id, label: h.label, sub: h.sub, icon: h.icon, disabled: (h.id === 'teleport' && m.channel && S.channels && m.channel !== S.channels.current) }; }) })
           .then(function (kind) { if (kind) act('crew:help', { id: m.id, kind: kind }); });
       },
       give: function (id) {
         var m = findMember(id) || findFriend(id); if (!m) return;
-        MH.amount({ who: m.name, title: 'Para gönder', icon: 'cash', max: Math.max(1, (S.me || {}).cash || 0), maxLabel: 'Cebindeki', quick: [100, 500, 1000, 'max'], ok: 'Gönder', okIcon: 'send' })
+        EUI.amount({ who: m.name, title: 'Para gönder', icon: 'cash', max: Math.max(1, (S.me || {}).cash || 0), maxLabel: 'Cebindeki', quick: [100, 500, 1000, 'max'], ok: 'Gönder', okIcon: 'send' })
           .then(function (n) { if (n) act('player:give', { id: m.id, amount: n }); });
       },
       msg: function (id) {
         var m = findMember(id) || findFriend(id); if (!m) return;
-        MH.modal({ who: m.name, title: 'Mesaj gönder', icon: 'chat', body: '<textarea class="mh-input mh-textarea" name="text" maxlength="200" placeholder="Mesajın…"></textarea><span class="mh-help">Enter gönderir · Shift+Enter yeni satır</span>',
+        EUI.modal({ who: m.name, title: 'Mesaj gönder', icon: 'chat', body: '<textarea class="eui-input eui-textarea" name="text" maxlength="200" placeholder="Mesajın…"></textarea><span class="eui-help">Enter gönderir · Shift+Enter yeni satır</span>',
           validate: function (v) { return String(v.text || '').trim() ? null : 'Boş mesaj gönderilemez'; }, actions: [{ label: 'Vazgeç', value: null }, { label: 'Gönder', primary: true, submit: true, icon: 'send' }],
           onOpen: function (mm) { var t = mm.querySelector('textarea'); t.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); mm.querySelector('[data-primary]').click(); } }); } })
           .then(function (v) { if (v) act('player:message', { id: m.id, text: v.text }); });
@@ -2550,111 +2550,111 @@
         var items = [{ id: 'msg', label: 'Mesaj gönder', icon: 'chat' }, { id: 'trade', label: 'Takas iste', icon: 'swap', disabled: m.status === 'offline' }, { id: 'profile', label: 'Profili gör', icon: 'user' }];
         if (can(S, 'promote')) items.push({ id: 'promote', label: 'Rütbesini değiştir', icon: 'crown' });
         if (can(S, 'kick')) items.push({ id: 'kick', label: 'Ekipten at', icon: 'user-minus' });
-        MH.choose({ who: m.name, title: 'Üye işlemleri', search: false, items: items, size: 'sm' }).then(function (k) {
+        EUI.choose({ who: m.name, title: 'Üye işlemleri', search: false, items: items, size: 'sm' }).then(function (k) {
           if (!k) return; if (H[k]) H[k](id); else if (k === 'trade') act('trade:request', { id: id }); else act('player:' + k, { id: id });
         });
       },
       promote: function (id) {
         var m = findMember(id); if (!m) return;
-        MH.choose({ who: m.name, title: 'Rütbe ver', icon: 'crown', search: false, items: (S.crew.ranks || []).map(function (r, i) {
+        EUI.choose({ who: m.name, title: 'Rütbe ver', icon: 'crown', search: false, items: (S.crew.ranks || []).map(function (r, i) {
           return { id: r.id, label: r.label, sub: PERMS.filter(function (p) { return r.perms && (r.perms[p[0]] || r.perms.all); }).map(function (p) { return p[1]; }).join(', ') || 'Özel yetki yok', icon: r.icon || 'user', badge: r.id === m.rank ? 'Şu an' : null, badgeTone: 'accent', disabled: r.id === m.rank }; }) })
           .then(function (rank) {
             if (!rank) return;
-            if (rankIdx(S, rank) === 0) MH.confirm({ who: m.name, title: 'Liderliği devret?', text: 'Ekibin yeni lideri olacak; sen bir alt rütbeye geçeceksin.', danger: true, ok: 'Devret', icon: 'crown' }).then(function (ok) { if (ok) act('crew:promote', { id: id, rank: rank }); });
+            if (rankIdx(S, rank) === 0) EUI.confirm({ who: m.name, title: 'Liderliği devret?', text: 'Ekibin yeni lideri olacak; sen bir alt rütbeye geçeceksin.', danger: true, ok: 'Devret', icon: 'crown' }).then(function (ok) { if (ok) act('crew:promote', { id: id, rank: rank }); });
             else act('crew:promote', { id: id, rank: rank });
           });
       },
       kick: function (id) {
         var m = findMember(id); if (!m) return;
-        MH.modal({ kicker: S.crew.name, who: m.name, title: 'Ekipten atılsın mı?', icon: 'user-minus', danger: true, body: '<label class="mh-field"><span class="mh-kicker">Sebep (üyeye gösterilir)</span><input class="mh-input" name="reason" maxlength="80" placeholder="İsteğe bağlı"></label><label class="mh-check"><input type="checkbox" name="ban"><span class="mh-check__box"></span>Tekrar davet edilemesin</label>',
+        EUI.modal({ kicker: S.crew.name, who: m.name, title: 'Ekipten atılsın mı?', icon: 'user-minus', danger: true, body: '<label class="eui-field"><span class="eui-kicker">Sebep (üyeye gösterilir)</span><input class="eui-input" name="reason" maxlength="80" placeholder="İsteğe bağlı"></label><label class="eui-check"><input type="checkbox" name="ban"><span class="eui-check__box"></span>Tekrar davet edilemesin</label>',
           actions: [{ label: 'Vazgeç', value: null }, { label: 'Ekipten at', primary: true, danger: true, submit: true }] })
           .then(function (v) { if (v) act('crew:kick', { id: id, reason: v.reason, ban: v.ban }); });
       },
       'inv-tab': function (id) { ui.invTab = id; render(); },
       'inv-accept': function (id) {
         var x = ((S.invites && S.invites.incoming) || []).filter(function (i) { return String(i.id) === String(id); })[0];
-        if (x && x.kind === 'crew' && S.crew) return MH.confirm({ title: 'Ekip değiştirilsin mi?', text: 'Şu an ' + S.crew.name + ' ekibindesin. Kabul edersen mevcut ekipten ayrılırsın.', ok: 'Ayrıl ve katıl', icon: 'users' }).then(function (ok) { if (ok) act('invite:accept', { id: id }); });
-        if (x && x.kind === 'channel' && x.password) return MH.input({ title: 'Kanal şifresi', label: x.target, type: 'password', ok: 'Katıl', required: true }).then(function (p) { if (p != null) act('invite:accept', { id: id, password: p }); });
+        if (x && x.kind === 'crew' && S.crew) return EUI.confirm({ title: 'Ekip değiştirilsin mi?', text: 'Şu an ' + S.crew.name + ' ekibindesin. Kabul edersen mevcut ekipten ayrılırsın.', ok: 'Ayrıl ve katıl', icon: 'users' }).then(function (ok) { if (ok) act('invite:accept', { id: id }); });
+        if (x && x.kind === 'channel' && x.password) return EUI.input({ title: 'Kanal şifresi', label: x.target, type: 'password', ok: 'Katıl', required: true }).then(function (p) { if (p != null) act('invite:accept', { id: id, password: p }); });
         act('invite:accept', { id: id });
       },
       'inv-decline': function (id) { act('invite:decline', { id: id }); },
-      'inv-decline-all': function () { MH.confirm({ title: 'Tüm davetler reddedilsin mi?', ok: 'Hepsini reddet', danger: true }).then(function (ok) { if (ok) act('invite:declineAll'); }); },
+      'inv-decline-all': function () { EUI.confirm({ title: 'Tüm davetler reddedilsin mi?', ok: 'Hepsini reddet', danger: true }).then(function (ok) { if (ok) act('invite:declineAll'); }); },
       'inv-cancel': function (id) { act('invite:cancel', { id: id }); },
       deposit: function () {
-        MH.amount({ kicker: S.crew.name, title: 'Kasaya yatır', icon: 'arrow-down', max: Math.max(1, (S.me || {}).cash || 0), maxLabel: 'Cebindeki', quick: [1000, 5000, 'half', 'max'], ok: 'Yatır' })
+        EUI.amount({ kicker: S.crew.name, title: 'Kasaya yatır', icon: 'arrow-down', max: Math.max(1, (S.me || {}).cash || 0), maxLabel: 'Cebindeki', quick: [1000, 5000, 'half', 'max'], ok: 'Yatır' })
           .then(function (n) { if (n) act('vault:deposit', { amount: n }); });
       },
       withdraw: function () {
         var c = S.crew, room = c.withdrawLimit ? Math.max(0, c.withdrawLimit - (c.withdrawnToday || 0)) : c.bank, max = Math.min(c.bank, room);
-        if (max <= 0) return MH.toast({ tone: 'warn', icon: 'alert', title: 'Günlük çekme sınırına ulaşıldı' });
-        MH.amount({ kicker: c.name, title: 'Kasadan çek', icon: 'arrow-up', max: max, maxLabel: 'Bugün çekilebilir', quick: [1000, 5000, 'max'], ok: 'Çek', text: 'Her çekim ekip kaydına geçer.' })
+        if (max <= 0) return EUI.toast({ tone: 'warn', icon: 'alert', title: 'Günlük çekme sınırına ulaşıldı' });
+        EUI.amount({ kicker: c.name, title: 'Kasadan çek', icon: 'arrow-up', max: max, maxLabel: 'Bugün çekilebilir', quick: [1000, 5000, 'max'], ok: 'Çek', text: 'Her çekim ekip kaydına geçer.' })
           .then(function (n) { if (n) act('vault:withdraw', { amount: n }); });
       },
       split: function () {
         var c = S.crew, on = (c.members || []).filter(function (m) { return m.status !== 'offline'; });
-        MH.amount({ kicker: c.name, title: 'Üyelere dağıt', icon: 'users', text: on.length + ' çevrimiçi üyeye eşit bölünür', max: c.bank, step: on.length || 1, quick: [on.length * 1000, on.length * 5000], ok: 'Dağıt' })
+        EUI.amount({ kicker: c.name, title: 'Üyelere dağıt', icon: 'users', text: on.length + ' çevrimiçi üyeye eşit bölünür', max: c.bank, step: on.length || 1, quick: [on.length * 1000, on.length * 5000], ok: 'Dağıt' })
           .then(function (n) { if (n) act('vault:split', { amount: n, ids: on.map(function (m) { return m.id; }) }); });
       },
       'log-filter': function (id) { ui.logFilter = id; render(); },
       'arm-select': function (id) { ui.armSel = id; render(); },
       'arm-take': function (id) {
         var it = (S.crew.armory || []).filter(function (x) { return String(x.id) === String(id); })[0]; if (!it) return;
-        if ((it.count || 0) > 1 && it.stack) MH.amount({ title: it.name + ' al', prefix: '', suffix: 'adet', max: it.count, value: 1, ok: 'Al' }).then(function (n) { if (n) act('armory:take', { id: id, count: n }); });
+        if ((it.count || 0) > 1 && it.stack) EUI.amount({ title: it.name + ' al', prefix: '', suffix: 'adet', max: it.count, value: 1, ok: 'Al' }).then(function (n) { if (n) act('armory:take', { id: id, count: n }); });
         else act('armory:take', { id: id, count: 1 });
       },
       'arm-put': function () {
-        MH.choose({ title: 'Cephaneliğe bırak', text: 'Envanterindeki silah ve teçhizat', icon: 'arrow-down', items: (S.inventory || []).map(function (i) { return { id: i.id, label: i.name, sub: i.sub, icon: i.icon || 'pistol', right: i.count > 1 ? '×' + i.count : '' }; }), empty: 'Bırakılacak eşya yok' })
+        EUI.choose({ title: 'Cephaneliğe bırak', text: 'Envanterindeki silah ve teçhizat', icon: 'arrow-down', items: (S.inventory || []).map(function (i) { return { id: i.id, label: i.name, sub: i.sub, icon: i.icon || 'pistol', right: i.count > 1 ? '×' + i.count : '' }; }), empty: 'Bırakılacak eşya yok' })
           .then(function (iid) {
             if (!iid) return; var it = (S.inventory || []).filter(function (x) { return String(x.id) === String(iid); })[0];
-            if (it && it.count > 1) MH.amount({ title: it.name, prefix: '', suffix: 'adet', max: it.count, ok: 'Bırak' }).then(function (n) { if (n) act('armory:put', { id: iid, count: n }); });
+            if (it && it.count > 1) EUI.amount({ title: it.name, prefix: '', suffix: 'adet', max: it.count, ok: 'Bırak' }).then(function (n) { if (n) act('armory:put', { id: iid, count: n }); });
             else act('armory:put', { id: iid, count: 1 });
           });
       },
       'rank-add': function () {
-        MH.input({ title: 'Yeni rütbe', label: 'Rütbe adı', placeholder: 'Ör. Keskin nişancı', max: 20, required: true, ok: 'Ekle' }).then(function (v) { if (v) act('crew:rankAdd', { label: v }); });
+        EUI.input({ title: 'Yeni rütbe', label: 'Rütbe adı', placeholder: 'Ör. Keskin nişancı', max: 20, required: true, ok: 'Ekle' }).then(function (v) { if (v) act('crew:rankAdd', { label: v }); });
       },
       'ch-filter': function (id) { ui.chFilter = id; render(); },
       'ch-join': function (id) {
         var c = ((S.channels && S.channels.list) || []).filter(function (x) { return String(x.id) === String(id); })[0]; if (!c) return;
         var go = function (pw) {
           var crewHere = S.crew && (S.crew.members || []).some(function (m) { return !m.self && m.status !== 'offline' && m.channel === S.channels.current; });
-          if (crewHere) MH.modal({ title: c.name + ' kanalına geç', icon: 'layers', text: 'Bulunduğun kanaldan ayrılacaksın.', body: '<label class="mh-check"><input type="checkbox" name="crew"><span class="mh-check__box"></span>Ekibimi de götür (çevrimiçi üyelere davet gider)</label>',
+          if (crewHere) EUI.modal({ title: c.name + ' kanalına geç', icon: 'layers', text: 'Bulunduğun kanaldan ayrılacaksın.', body: '<label class="eui-check"><input type="checkbox" name="crew"><span class="eui-check__box"></span>Ekibimi de götür (çevrimiçi üyelere davet gider)</label>',
             actions: [{ label: 'Vazgeç', value: null }, { label: 'Geç', primary: true, submit: true, icon: 'arrow-right' }] }).then(function (v) { if (v) act('channel:join', { id: id, password: pw, crew: !!v.crew }); });
           else act('channel:join', { id: id, password: pw });
         };
-        if (c.locked) MH.input({ kicker: c.name, title: 'Şifreli kanal', label: 'Şifre', type: 'password', icon: 'lock', ok: 'Katıl', required: true }).then(function (p) { if (p != null) go(p); });
+        if (c.locked) EUI.input({ kicker: c.name, title: 'Şifreli kanal', label: 'Şifre', type: 'password', icon: 'lock', ok: 'Katıl', required: true }).then(function (p) { if (p != null) go(p); });
         else go();
       },
       'ch-leave': function () {
-        MH.confirm({ title: 'Ana dünyaya dön?', text: 'Bu kanaldan ayrılıp herkese açık dünyaya geçeceksin.', ok: 'Ayrıl', icon: 'world' }).then(function (ok) { if (ok) act('channel:leave'); });
+        EUI.confirm({ title: 'Ana dünyaya dön?', text: 'Bu kanaldan ayrılıp herkese açık dünyaya geçeceksin.', ok: 'Ayrıl', icon: 'world' }).then(function (ok) { if (ok) act('channel:leave'); });
       },
       'ch-create': function () {
-        MH.modal({ kicker: 'Yeni kanal', title: 'Kanal kur', icon: 'layers', size: 'lg', body: channelForm(), text: 'Kanalda yalnız davet ettiklerin ve katılanlar olur.',
+        EUI.modal({ kicker: 'Yeni kanal', title: 'Kanal kur', icon: 'layers', size: 'lg', body: channelForm(), text: 'Kanalda yalnız davet ettiklerin ve katılanlar olur.',
           validate: function (v) { return String(v.name || '').trim().length < 3 ? 'Kanal adı en az 3 harf' : null; },
           actions: [{ label: 'Vazgeç', value: null }, { label: 'Kur ve geç', primary: true, submit: true, icon: 'check' }] })
           .then(function (v) { if (v) { v.locked = !!v.password; act('channel:create', v); } });
       },
       'ch-settings': function () {
         var c = chan(S);
-        MH.modal({ kicker: c.name, title: 'Kanal ayarları', icon: 'settings', size: 'lg', body: channelForm(c), actions: [{ label: 'Kanalı kapat', danger: true, value: '__close', left: true }, { label: 'Vazgeç', value: null }, { label: 'Kaydet', primary: true, submit: true }] })
-          .then(function (v) { if (v === '__close') MH.confirm({ title: 'Kanal kapatılsın mı?', text: 'İçerideki herkes ana dünyaya dönecek.', danger: true, ok: 'Kapat' }).then(function (ok) { if (ok) act('channel:close', { id: c.id }); }); else if (v) act('channel:update', Object.assign({ id: c.id }, v)); });
+        EUI.modal({ kicker: c.name, title: 'Kanal ayarları', icon: 'settings', size: 'lg', body: channelForm(c), actions: [{ label: 'Kanalı kapat', danger: true, value: '__close', left: true }, { label: 'Vazgeç', value: null }, { label: 'Kaydet', primary: true, submit: true }] })
+          .then(function (v) { if (v === '__close') EUI.confirm({ title: 'Kanal kapatılsın mı?', text: 'İçerideki herkes ana dünyaya dönecek.', danger: true, ok: 'Kapat' }).then(function (ok) { if (ok) act('channel:close', { id: c.id }); }); else if (v) act('channel:update', Object.assign({ id: c.id }, v)); });
       },
       'ch-invite': function () {
         var c = chan(S);
-        MH.choose({ kicker: c.name, title: 'Kanala davet et', icon: 'user-plus', multi: true, ok: 'Davet gönder', okIcon: 'send', items: players(function (p) { return p.channel !== c.id; }), empty: 'Davet edilecek oyuncu yok', max: c.max - c.players })
+        EUI.choose({ kicker: c.name, title: 'Kanala davet et', icon: 'user-plus', multi: true, ok: 'Davet gönder', okIcon: 'send', items: players(function (p) { return p.channel !== c.id; }), empty: 'Davet edilecek oyuncu yok', max: c.max - c.players })
           .then(function (ids) { if (ids) act('channel:invite', { id: c.id, ids: ids }); });
       },
-      'fr-add': function () { MH.input({ title: 'Arkadaş ekle', label: 'Oyuncu adı ya da ID', placeholder: 'Ör. NabeMedia veya 1042', ok: 'İstek gönder', required: true, icon: 'user-plus' }).then(function (v) { if (v) act('friend:add', { query: v }); }); },
+      'fr-add': function () { EUI.input({ title: 'Arkadaş ekle', label: 'Oyuncu adı ya da ID', placeholder: 'Ör. NabeMedia veya 1042', ok: 'İstek gönder', required: true, icon: 'user-plus' }).then(function (v) { if (v) act('friend:add', { query: v }); }); },
       'fr-join': function (id) { var f = findFriend(id); if (f) H['ch-join'](f.channel); },
       'fr-channel': function (id) { act('channel:invite', { id: S.channels && S.channels.current, ids: [id] }); },
       'fr-crew': function (id) { act('crew:invite', { ids: [id] }); },
       'fr-trade': function (id) { act('trade:request', { id: id }); },
       'fr-more': function (id) {
         var f = findFriend(id); if (!f) return;
-        MH.choose({ who: f.name, title: 'Arkadaş işlemleri', search: false, size: 'sm', items: [{ id: 'msg', label: 'Mesaj gönder', icon: 'chat' }, { id: 'give', label: 'Para gönder', icon: 'cash', disabled: !f.online }, { id: 'remove', label: 'Arkadaşlıktan çıkar', icon: 'user-minus' }, { id: 'block', label: 'Engelle', icon: 'ban' }] })
+        EUI.choose({ who: f.name, title: 'Arkadaş işlemleri', search: false, size: 'sm', items: [{ id: 'msg', label: 'Mesaj gönder', icon: 'chat' }, { id: 'give', label: 'Para gönder', icon: 'cash', disabled: !f.online }, { id: 'remove', label: 'Arkadaşlıktan çıkar', icon: 'user-minus' }, { id: 'block', label: 'Engelle', icon: 'ban' }] })
           .then(function (k) {
             if (!k) return; if (k === 'msg' || k === 'give') return H[k](id);
-            MH.confirm({ who: f.name, title: k === 'block' ? 'Engellensin mi?' : 'Arkadaşlıktan çıkarılsın mı?', text: k === 'block' ? 'Senden davet ve mesaj alamaz, kanalında seni göremez.' : null, danger: true, ok: k === 'block' ? 'Engelle' : 'Çıkar' })
+            EUI.confirm({ who: f.name, title: k === 'block' ? 'Engellensin mi?' : 'Arkadaşlıktan çıkarılsın mı?', text: k === 'block' ? 'Senden davet ve mesaj alamaz, kanalında seni göremez.' : null, danger: true, ok: k === 'block' ? 'Engelle' : 'Çıkar' })
               .then(function (ok) { if (ok) act('friend:' + k, { id: id }); });
           });
       },
@@ -2662,16 +2662,16 @@
       'in-readall': function () { act('inbox:readAll'); },
       'in-action': function (id) { var p = String(id).split('|'); act('inbox:action', { id: p[0], action: p[1] }); },
       announce: function () {
-        MH.modal({ kicker: S.crew.name, title: 'Ekibe duyuru', icon: 'bell', body: '<textarea class="mh-input mh-textarea" name="text" maxlength="240" placeholder="Bu akşam 21:30 konvoy baskını, herkes Paleto\'da!"></textarea><label class="mh-check"><input type="checkbox" name="pin" checked><span class="mh-check__box"></span>Genel bakışa sabitle</label><label class="mh-check"><input type="checkbox" name="toast" checked><span class="mh-check__box"></span>Çevrimiçi üyelere ekranda göster</label>',
+        EUI.modal({ kicker: S.crew.name, title: 'Ekibe duyuru', icon: 'bell', body: '<textarea class="eui-input eui-textarea" name="text" maxlength="240" placeholder="Bu akşam 21:30 konvoy baskını, herkes Paleto\'da!"></textarea><label class="eui-check"><input type="checkbox" name="pin" checked><span class="eui-check__box"></span>Genel bakışa sabitle</label><label class="eui-check"><input type="checkbox" name="toast" checked><span class="eui-check__box"></span>Çevrimiçi üyelere ekranda göster</label>',
           validate: function (v) { return String(v.text || '').trim() ? null : 'Duyuru boş olamaz'; }, actions: [{ label: 'Vazgeç', value: null }, { label: 'Yayınla', primary: true, submit: true, icon: 'send' }] })
           .then(function (v) { if (v) act('crew:announce', v); });
       }
     };
     H.profile = function (id) { act('player:profile', { id: id }); };
 
-    /* ---------------- Kabuk: MH.Menu ---------------- */
-    menu = MH.Menu(host, {
-      layer: !!opts.layer, cls: 'mh-socialmenu', w: opts.w || 1280, h: opts.h || 780, post: false,
+    /* ---------------- Kabuk: EUI.Menu ---------------- */
+    menu = EUI.Menu(host, {
+      layer: !!opts.layer, cls: 'eui-socialmenu', w: opts.w || 1280, h: opts.h || 780, post: false,
       closable: !!opts.layer,
       head: mark, headRight: chanChip, stats: stats,
       kicker: opts.kicker || 'Ekip & kanallar', title: function () { return S.crew ? S.crew.name : 'Ekipsiz'; },
@@ -2706,7 +2706,7 @@
     el.addEventListener('input', function (e) {
       var t = e.target; if (!t.hasAttribute('data-filter')) return;
       var q = t.value.toLowerCase().trim();
-      $$('[data-list="' + t.getAttribute('data-filter') + '"] > [data-name]', el).forEach(function (r) { r.classList.toggle('mh-hidden', q && r.getAttribute('data-name').indexOf(q) < 0); });
+      $$('[data-list="' + t.getAttribute('data-filter') + '"] > [data-name]', el).forEach(function (r) { r.classList.toggle('eui-hidden', q && r.getAttribute('data-name').indexOf(q) < 0); });
     });
     var api = {
       ui: ui,
@@ -2725,84 +2725,84 @@
   };
 
   /* ==========================================================================
-     MH.trade — iki taraflı takas penceresi
+     EUI.trade — iki taraflı takas penceresi
      o: { partner: { name }, mine: { items: [{ id, name, art, count }], money, ready },
           theirs: { … }, inventory: [{ id, name, art, count }], cash, onAction(action, data) }
      Eylemler: trade:add { id, count } · trade:remove { id } · trade:money { amount } · trade:ready { ready } · trade:cancel
      Döndürür: { update(state), close() } — her iki taraf hazır olunca sunucu takası tamamlar.
      ========================================================================== */
-  MH.trade = function (o) {
+  EUI.trade = function (o) {
     o = o || {};
-    var st = o, body = MH.el('div', 'mh-trade');
-    function send(a, d) { if (o.onAction && o.onAction(a, d || {}) === false) return; MH.post('social', { action: a, data: d || {} }); }
+    var st = o, body = EUI.el('div', 'eui-trade');
+    function send(a, d) { if (o.onAction && o.onAction(a, d || {}) === false) return; EUI.post('social', { action: a, data: d || {} }); }
     function side(s, mine, name) {
       s = s || {}; var items = s.items || [];
       var slots = items.map(function (it) {
         var a = String(it.art || 'i:box');
-        return '<div class="mh-trade__item">' + MH.art(a, a.indexOf('w:') === 0 ? '' : '') + '<span>' + E(it.name) + '</span>' + (it.count > 1 ? '<b>×' + it.count + '</b>' : '') +
-          (mine && !s.ready ? '<button class="mh-btn mh-btn--ghost mh-btn--sm mh-btn--icon" data-t="remove" data-id="' + E(it.id) + '">' + I('x') + '</button>' : '') + '</div>';
+        return '<div class="eui-trade__item">' + EUI.art(a, a.indexOf('w:') === 0 ? '' : '') + '<span>' + E(it.name) + '</span>' + (it.count > 1 ? '<b>×' + it.count + '</b>' : '') +
+          (mine && !s.ready ? '<button class="eui-btn eui-btn--ghost eui-btn--sm eui-btn--icon" data-t="remove" data-id="' + E(it.id) + '">' + I('x') + '</button>' : '') + '</div>';
       });
-      for (var i = items.length; i < 6; i++) slots.push(mine && !s.ready && i === items.length ? '<button class="mh-trade__item is-add" data-t="add">' + I('plus') + '<span>Eşya ekle</span></button>' : '<div class="mh-trade__item is-empty"></div>');
-      return '<div class="mh-trade__side' + (s.ready ? ' is-ready' : '') + '"><div class="mh-trade__who">' + MH.avatar(name, { cls: 'mh-avatar--round' }) + '<b>' + E(name) + '</b>' +
-        (s.ready ? '<span class="mh-badge mh-t-success">' + I('check') + 'Hazır</span>' : '<span class="mh-badge">Düzenliyor…</span>') + '</div>' +
-        '<div class="mh-trade__grid">' + slots.join('') + '</div>' +
-        '<div class="mh-trade__money">' + I('cash') + '<span class="mh-kicker">Para</span><b>$' + F(s.money || 0) + '</b>' + (mine && !s.ready ? '<button class="mh-btn mh-btn--outline mh-btn--sm" data-t="money">Değiştir</button>' : '') + '</div></div>';
+      for (var i = items.length; i < 6; i++) slots.push(mine && !s.ready && i === items.length ? '<button class="eui-trade__item is-add" data-t="add">' + I('plus') + '<span>Eşya ekle</span></button>' : '<div class="eui-trade__item is-empty"></div>');
+      return '<div class="eui-trade__side' + (s.ready ? ' is-ready' : '') + '"><div class="eui-trade__who">' + EUI.avatar(name, { cls: 'eui-avatar--round' }) + '<b>' + E(name) + '</b>' +
+        (s.ready ? '<span class="eui-badge eui-t-success">' + I('check') + 'Hazır</span>' : '<span class="eui-badge">Düzenliyor…</span>') + '</div>' +
+        '<div class="eui-trade__grid">' + slots.join('') + '</div>' +
+        '<div class="eui-trade__money">' + I('cash') + '<span class="eui-kicker">Para</span><b>$' + F(s.money || 0) + '</b>' + (mine && !s.ready ? '<button class="eui-btn eui-btn--outline eui-btn--sm" data-t="money">Değiştir</button>' : '') + '</div></div>';
     }
     function draw() {
       var both = st.mine && st.theirs && st.mine.ready && st.theirs.ready;
-      body.innerHTML = '<div class="mh-trade__cols">' + side(st.mine, true, 'Sen') + '<div class="mh-trade__mid">' + I('swap') + '</div>' + side(st.theirs, false, (st.partner || {}).name || 'Oyuncu') + '</div>' +
-        '<div class="mh-trade__status' + (both ? ' is-done' : '') + '">' + (both ? I('hourglass') + 'İki taraf da hazır · takas tamamlanıyor…' : st.mine && st.mine.ready ? I('hourglass') + 'Karşı tarafın onayı bekleniyor' : I('info') + 'Teklifini hazırla ve “Hazırım” de. Değişiklik olursa iki tarafın onayı sıfırlanır.') + '</div>';
+      body.innerHTML = '<div class="eui-trade__cols">' + side(st.mine, true, 'Sen') + '<div class="eui-trade__mid">' + I('swap') + '</div>' + side(st.theirs, false, (st.partner || {}).name || 'Oyuncu') + '</div>' +
+        '<div class="eui-trade__status' + (both ? ' is-done' : '') + '">' + (both ? I('hourglass') + 'İki taraf da hazır · takas tamamlanıyor…' : st.mine && st.mine.ready ? I('hourglass') + 'Karşı tarafın onayı bekleniyor' : I('info') + 'Teklifini hazırla ve “Hazırım” de. Değişiklik olursa iki tarafın onayı sıfırlanır.') + '</div>';
       var rb = p && p.el && p.el.querySelector('[data-primary]');
-      if (rb) { rb.lastChild.textContent = st.mine && st.mine.ready ? 'Hazır değilim' : 'Hazırım'; rb.classList.toggle('mh-btn--primary', !(st.mine && st.mine.ready)); rb.classList.toggle('mh-btn--outline', !!(st.mine && st.mine.ready)); }
+      if (rb) { rb.lastChild.textContent = st.mine && st.mine.ready ? 'Hazır değilim' : 'Hazırım'; rb.classList.toggle('eui-btn--primary', !(st.mine && st.mine.ready)); rb.classList.toggle('eui-btn--outline', !!(st.mine && st.mine.ready)); }
     }
     body.addEventListener('click', function (e) {
       var b = e.target.closest('[data-t]'); if (!b) return;
       var t = b.getAttribute('data-t');
       if (t === 'remove') send('trade:remove', { id: b.getAttribute('data-id') });
-      if (t === 'money') MH.amount({ title: 'Teklif edilen para', max: Math.max(1, st.cash || 0), min: 0, value: (st.mine || {}).money || 0, quick: [100, 1000, 'max'], ok: 'Ayarla' }).then(function (n) { if (n != null) send('trade:money', { amount: n }); });
-      if (t === 'add') MH.choose({ title: 'Takasa eşya ekle', items: (st.inventory || []).map(function (i) { return { id: i.id, label: i.name, sub: i.sub, icon: i.icon || (String(i.art || '').indexOf('i:') === 0 ? String(i.art).slice(2) : 'box'), right: i.count > 1 ? '×' + i.count : '' }; }), empty: 'Envanter boş' })
+      if (t === 'money') EUI.amount({ title: 'Teklif edilen para', max: Math.max(1, st.cash || 0), min: 0, value: (st.mine || {}).money || 0, quick: [100, 1000, 'max'], ok: 'Ayarla' }).then(function (n) { if (n != null) send('trade:money', { amount: n }); });
+      if (t === 'add') EUI.choose({ title: 'Takasa eşya ekle', items: (st.inventory || []).map(function (i) { return { id: i.id, label: i.name, sub: i.sub, icon: i.icon || (String(i.art || '').indexOf('i:') === 0 ? String(i.art).slice(2) : 'box'), right: i.count > 1 ? '×' + i.count : '' }; }), empty: 'Envanter boş' })
         .then(function (id) {
           if (!id) return; var it = (st.inventory || []).filter(function (x) { return String(x.id) === String(id); })[0];
-          if (it && it.count > 1) MH.amount({ title: it.name, prefix: '', suffix: 'adet', max: it.count, ok: 'Ekle' }).then(function (n) { if (n) send('trade:add', { id: id, count: n }); });
+          if (it && it.count > 1) EUI.amount({ title: it.name, prefix: '', suffix: 'adet', max: it.count, ok: 'Ekle' }).then(function (n) { if (n) send('trade:add', { id: id, count: n }); });
           else send('trade:add', { id: id, count: 1 });
         });
     });
-    var p = MH.modal({ title: 'Takas', who: (o.partner || {}).name || 'Oyuncu', icon: 'swap', size: 'xl', body: body, dismiss: false, cls: 'mh-modal--trade',
+    var p = EUI.modal({ title: 'Takas', who: (o.partner || {}).name || 'Oyuncu', icon: 'swap', size: 'xl', body: body, dismiss: false, cls: 'eui-modal--trade',
       actions: [{ label: 'İptal et', value: 'cancel', icon: 'x' }, { label: 'Hazırım', primary: true, icon: 'check', onClick: function () { send('trade:ready', { ready: !(st.mine && st.mine.ready) }); return false; } }] });
     p.then(function (v) { if (v === 'cancel' || v === null) send('trade:cancel'); });
     draw();
     return { update: function (s) { st = Object.assign({}, st, s); draw(); }, close: function () { p.close('done'); }, el: p.el };
   };
 
-  /* ---------------- Oyun köprüsü (MH.on) ---------------- */
+  /* ---------------- Oyun köprüsü (EUI.on) ---------------- */
   var inst = null, trade = null;
   function ensure(d) {
     if (inst) return inst;
     var o = (d && d.options) || {};
     o.layer = true;
-    o.onClose = function () { MH.post('socialClose', {}); };
-    inst = MH.Social(document.querySelector('.mh-screen') || document.body, o);
+    o.onClose = function () { EUI.post('socialClose', {}); };
+    inst = EUI.Social(document.querySelector('.eui-screen') || document.body, o);
     return inst;
   }
-  MH.on('social:open', function (d) { d = d || {}; var m = ensure(d); if (d.state) m.set(d.state); m.open(d.section); });
-  MH.on('social:state', function (s) { ensure().set(s); });
-  MH.on('social:patch', function (s) { ensure().patch(s); });
-  MH.on('social:close', function () { if (inst) inst.close(); });
+  EUI.on('social:open', function (d) { d = d || {}; var m = ensure(d); if (d.state) m.set(d.state); m.open(d.section); });
+  EUI.on('social:state', function (s) { ensure().set(s); });
+  EUI.on('social:patch', function (s) { ensure().patch(s); });
+  EUI.on('social:close', function () { if (inst) inst.close(); });
   /* Yeni davet: listeye ekle + (tercih açıksa) ekranda bildir */
-  MH.on('social:invite', function (x) {
+  EUI.on('social:invite', function (x) {
     if (!x) return; var m = ensure(), s = m.state;
     s.invites = s.invites || {}; s.invites.incoming = (s.invites.incoming || []).filter(function (i) { return String(i.id) !== String(x.id); });
     s.invites.incoming.unshift(x); m.set(s);
-    if (!s.prefs || s.prefs.toastInvites !== false) { var k = KINDS[x.kind] || KINDS.crew; MH.toast({ tone: k[2], icon: k[0], title: x.from + ' · ' + k[1], text: x.text || x.target, duration: 4500 }); }
+    if (!s.prefs || s.prefs.toastInvites !== false) { var k = KINDS[x.kind] || KINDS.crew; EUI.toast({ tone: k[2], icon: k[0], title: x.from + ' · ' + k[1], text: x.text || x.target, duration: 4500 }); }
   });
   /* Sunucu hata anahtarları → Türkçe bildirim */
   var ERR = { kanal_yok: ['Kanal bulunamadı', 'Kapanmış ya da davetin süresi dolmuş olabilir'], kanal_dolu: ['Kanal dolu', 'Bir yer açılınca tekrar dene'],
     sifre_yanlis: ['Şifre yanlış', 'Kanal sahibinden şifreyi iste ya da davet bekle'], kanal_limiti: ['Kanal kurulamadı', 'Sunucudaki kanal sınırına ulaşıldı'],
     yetki_yok: ['Yetkin yok', 'Bu işlem için izin gerekiyor'] };
-  MH.on('social:error', function (d) { var e = ERR[(d && d.key) || ''] || ['İşlem yapılamadı', d && d.key]; MH.toast({ tone: 'danger', icon: 'alert', title: e[0], text: e[1], duration: 3500 }); });
-  MH.on('social:channelChanged', function (d) {
+  EUI.on('social:error', function (d) { var e = ERR[(d && d.key) || ''] || ['İşlem yapılamadı', d && d.key]; EUI.toast({ tone: 'danger', icon: 'alert', title: e[0], text: e[1], duration: 3500 }); });
+  EUI.on('social:channelChanged', function (d) {
     var s = inst ? inst.state : {}, c = ((s.channels && s.channels.list) || []).filter(function (x) { return x.id === d.id; })[0];
-    MH.toast({ tone: 'info', icon: d.id === 'main' ? 'world' : 'layers', title: d.id === 'main' ? 'Ana dünyaya döndün' : cname(c || { id: d.id }) + ' kanalına geçtin', text: d.id === 'main' ? 'Herkese açık dünyadasın' : 'Diğer kanallardaki oyuncular artık görünmüyor', duration: 3200 });
+    EUI.toast({ tone: 'info', icon: d.id === 'main' ? 'world' : 'layers', title: d.id === 'main' ? 'Ana dünyaya döndün' : cname(c || { id: d.id }) + ' kanalına geçtin', text: d.id === 'main' ? 'Herkese açık dünyadasın' : 'Diğer kanallardaki oyuncular artık görünmüyor', duration: 3200 });
   });
   /* Süreli davetler sayfada geri sayar (sunucu ayrıca süresi dolanı siler) */
   setInterval(function () {
@@ -2810,23 +2810,23 @@
     var ch = false;
     inv.incoming.forEach(function (x) { if (x.expires != null && x.autoTick !== false) { x.expires--; ch = true; } });
     inv.incoming = inv.incoming.filter(function (x) { return x.expires == null || x.expires > 0; });
-    if (ch && inst.ui.section === 'invites' && !MH.modalOpen() && inst.menu.isOpen()) inst.render();
+    if (ch && inst.ui.section === 'invites' && !EUI.modalOpen() && inst.menu.isOpen()) inst.render();
   }, 1000);
-  MH.on('social:trade', function (d) { if (!d || d.close) { if (trade) trade.close(); trade = null; return; } if (trade) trade.update(d); else trade = MH.trade(d); });
+  EUI.on('social:trade', function (d) { if (!d || d.close) { if (trade) trade.close(); trade = null; return; } if (trade) trade.update(d); else trade = EUI.trade(d); });
 })(window);
 
-/* kit/js/mhud-atlas.js */
-/* MHud atlas adapter: shared by game mods, with native-frame positioning through the overlay. */
+/* kit/js/ember-ui-atlas.js */
+/* Ember UI atlas adapter: shared by game mods, with native-frame positioning through the overlay. */
 (function (root) {
   'use strict';
-  var MH = root.MH;
-  MH.Atlas = function (action) {
+  var EUI = root.EUI;
+  EUI.Atlas = function (action) {
     var host, layout, slots = [], pending = [], scheduled = false;
     function geometry() {
       if (!layout || !host) return;
       var z = parseFloat(document.documentElement.style.zoom) || 1;
-      var screen = MH.bridge && MH.bridge.screenHeight || layout.screenHeight;
-      var offset = MH.bridge && MH.bridge.atlasOffset || 0;
+      var screen = EUI.bridge && EUI.bridge.screenHeight || layout.screenHeight;
+      var offset = EUI.bridge && EUI.bridge.atlasOffset || 0;
       host.style.cssText = 'position:absolute;left:0;pointer-events:none;top:' + ((screen + offset) / z) + 'px;width:' + (layout.columns * layout.slotWidth / z) + 'px;height:' + (layout.rows * layout.slotHeight / z) + 'px';
       slots.forEach(function (s, i) {
         s.el.style.cssText = 'position:absolute;overflow:hidden;left:' + (i % layout.columns * layout.slotWidth / z) + 'px;top:' + (Math.floor(i / layout.columns) * layout.slotHeight / z) + 'px;width:' + (layout.slotWidth / z) + 'px;height:' + (layout.slotHeight / z) + 'px';
@@ -2837,25 +2837,25 @@
       var z = parseFloat(document.documentElement.style.zoom) || 1;
       var t = Object.assign({}, s.item, { id: 0, x: layout.slotWidth / z / 2, y: layout.slotHeight / z - 2, scale: 1, alpha: 1 });
       t.sig = JSON.stringify(s.item); s.pool.update([t]);
-      var tag = s.el.querySelector('.mh-tag');
+      var tag = s.el.querySelector('.eui-tag');
       if (tag) { tag.style.position = 'absolute'; tag.style.left = '0'; tag.style.top = '0'; }
     }
     function ack() {
       if (scheduled) return; scheduled = true;
       requestAnimationFrame(function () { requestAnimationFrame(function () {
         scheduled = false;
-        var screen = MH.bridge && MH.bridge.screenHeight || layout.screenHeight;
-        var offset = MH.bridge && MH.bridge.atlasOffset || 0;
+        var screen = EUI.bridge && EUI.bridge.screenHeight || layout.screenHeight;
+        var offset = EUI.bridge && EUI.bridge.atlasOffset || 0;
         if (root.innerHeight < screen + offset + layout.rows * layout.slotHeight) { if (pending.length) ack(); return; }
-        if (pending.length) { MH.post('atlasReady', { s: pending.splice(0) }); }
+        if (pending.length) { EUI.post('atlasReady', { s: pending.splice(0) }); }
       }); });
     }
-    MH.on(action, function (d) {
+    EUI.on(action, function (d) {
       if (d.reset) {
         if (host) host.remove(); host = null; slots = []; pending = []; layout = d.layout;
         if (!layout || !layout.rows) return;
         host = document.createElement('div'); document.body.appendChild(host);
-        for (var i = 0; i < layout.columns * layout.rows; i++) { var el = document.createElement('div'); host.appendChild(el); slots.push({ el: el, pool: MH.Nametags(el) }); }
+        for (var i = 0; i < layout.columns * layout.rows; i++) { var el = document.createElement('div'); host.appendChild(el); slots.push({ el: el, pool: EUI.Nametags(el) }); }
         geometry();
       }
       if (!layout) return;
