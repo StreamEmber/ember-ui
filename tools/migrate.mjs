@@ -8,7 +8,7 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '4.1.1';
+const VERSION = '4.2.0';
 // Sıra önemli: önce uzun / özel kalıplar.
 export const RULES = [
   [/cdn\.jsdelivr\.net\/gh\/StreamEmber\/mhud@v?[\w.]+\//g, `cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v${VERSION}/`],

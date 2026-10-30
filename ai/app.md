@@ -3,7 +3,7 @@ Oyunun kendi ekranları (HUD değil): lobi, başlık, yükleme, durum ekranları
 
 ## Ekran kuralları (önce bunu oku)
 
-1. **Oyunun ekranları hazır çağrıdır.** Lobi → `EUI.Lobby`, başlık → `EUI.title`, yükleme → `EUI.loading`, bağlantı / hata / bakım / güncelleme → `EUI.state(tür)`. Bu ekranların HTML'ini elle yazma, kendi `*-lobby`, `*-topbar`, `*-navbar` sınıfını uydurma.
+1. **Oyunun ekranları hazır çağrıdır.** Lobi → `EUI.Lobby`, başlık → `EUI.title`, yükleme → `EUI.loading`, bağlantı / hata / bakım / güncelleme → `EUI.state(tür)`, giriş / kayıt / hesap bağlama / şifre / yayıncı girişi → `EUI.auth(o)`, koşullar → `EUI.consent`, dil → `EUI.language`, oyuncu adı → `EUI.nickname`, PIN / yetkili kilidi → `EUI.pin`. Bu ekranların HTML'ini elle yazma, kendi `*-lobby`, `*-login`, `*-navbar` sınıfını uydurma; giriş formu, QR kutusu, tuş takımı kitte hazırdır.
 2. **Lobiden açılan her tam ekran sayfa `EUI.Menu`'dür:** mağaza, envanter, karakterler, görevler, ayarlar, gelen kutusu, sıralama. Menü dikey ekranda kendiliğinden tam ekrana ve üstte yatay sekmelere geçer.
 3. **Küçük sorular pencere:** onay `EUI.confirm`, sayı `EUI.amount`, seçim `EUI.choose`, metin `EUI.input`. Ödül / bildirim `EUI.toast`.
 4. **Yön ve ölçek:** tek HTML yatay ve dikeyde çalışır (`.eui-app` kapsayıcı sorgusu). PC / TV / overlay `EUI.autoScale()` (kısa kenar 1080); telefon ve tablet `EUI.autoScale({ base: 540 })` (dokunma hedefleri parmak boyu). Kendi medya sorgunu yazma.
@@ -22,7 +22,18 @@ Oyunun kendi ekranları (HUD değil): lobi, başlık, yükleme, durum ekranları
 | Beklenmeyen hata | `EUI.state('error', { code })` |
 | Bağlanıyor / rakip aranıyor | `EUI.state('checking', { title, text, actions })` → `.close(v)` |
 | Oyun içinde bağlantı koptu | `EUI.state('reconnecting')` → `.close()` ya da `'quit'` |
-| Mağaza, envanter, ayarlar, posta… | `EUI.Menu` → `ai/menu.md` |
+| Giriş (e-posta / misafir / Google / Apple) | `EUI.auth({ mode: 'login', methods })` → `{ method, email, password, remember }` |
+| Kayıt | `EUI.auth({ mode: 'signup', legal: true })` → `{ method: 'signup', email, password, name }` |
+| Misafir ilerlemesini hesaba taşı | `EUI.auth({ mode: 'link', cancel: true })` |
+| Şifremi unuttum | `EUI.auth({ mode: 'reset' })` → `{ method: 'reset', email }` |
+| Yayıncı / StreamEmber hesabıyla bağlan (QR) | `EUI.auth({ mode: 'streamer', qr: { code } })`; oyun doğrular, `p.done()` |
+| Sunucu "şifre yanlış" dedi | `p.error('Şifre yanlış')` (ekran açık kalır, kart sallanır) |
+| Kullanım koşulları, gizlilik, yaş | `EUI.consent({ age: 13 })` → `{ terms, privacy, … }` \| `false` |
+| Dil seçimi | `EUI.language({ value })` → kod |
+| İlk girişte ad seç | `EUI.nickname({ check })` → ad |
+| Ebeveyn kilidi, yetkili (admin) menüsü, satın alma PIN'i | `EUI.pin({ verify, attempts })` → kod \| `null` |
+| Ayarlar ekranı | `EUI.Menu({ sections: [{ view: 'settings', fields }] })` → `ai/menu.md` (tam ekran, dikeyde de) |
+| Mağaza, envanter, posta… | `EUI.Menu` → `ai/menu.md` |
 
 ### EUI.Lobby şeması
 
@@ -47,6 +58,27 @@ lobby.update({ currencies: [...] });  lobby.hide();  lobby.show();  lobby.destro
 `badge`: sayı (99'dan büyükse 99+), `true` boş nokta, `0` / boş yok. Kilitli gezinme öğesine basınca kit `lockedText`'i bildirim olarak gösterir; eylem gelmez.
 Eylemler (`a.action`): `profile` · `currency` (id) · `button` (id) · `promo` (id) · `shortcut` (id) · `nav` (id) · `mode` · `play`.
 
+### EUI.auth şeması
+
+```js
+var p = EUI.auth(host?, {
+  mode: 'login',                        // login | signup | link | reset | streamer
+  methods: ['email', 'guest', 'google', 'apple', 'qr'],   // sıra görünüm sırası; email ve qr sekme, diğerleri düğme
+  name: 'Snowball' | logo: 'logo.png',  // kartın üstü
+  qr: { img, code, hint },              // qr yöntemi
+  legal: true,                          // signup / link: koşul onayı zorunlu
+  cancel: true,                         // sol üstte geri (→ null)
+  footer: '© …',
+  resolveOn: false,                     // sonuç onAction({ action: 'submit', values }) olur; oyun p.done(v) / p.error(msg) der
+  validate: function (v) { return hata | null; },
+  onAction: function (a, p) {}          // forgot · switch (id: mode; false dönerse geçmez) · open (id: terms | privacy) · method (id) · submit
+});
+p.then(function (r) { /* r null = iptal */ });
+p.error('Şifre yanlış');  p.done({ method: 'qr' });  p.busy(true);  p.el
+```
+
+Kit doğrular: e-posta biçimi, şifre (giriş: boş olmasın; kayıt / bağlama: en az 8), ad (en az 3), koşul onayı. Sunucu doğrulaması oyunda: `resolveOn: false` + `p.done` / `p.error`.
+
 ### Açılış akışı
 
 ```js
@@ -56,7 +88,14 @@ var ld = EUI.loading({ title: 'Snowball', tips: [...] });
 ld.progress(.3, 'Sunucuya bağlanılıyor');
 while (!(await connect())) await EUI.state('network-error', { code: 'NET-503' });   // kullanıcı 'retry' der
 ld.progress(1, 'Hazır'); ld.close();
+if (firstRun) {                                                   // ilk açılış
+  if (!(await EUI.consent({ age: 13 }))) return quit();
+  lang = await EUI.language({ value: lang });
+}
+var user = await EUI.auth({ mode: 'login', name: 'Snowball', methods: ['email', 'guest', 'google'] });
+if (user.method === 'guest' && !user.name) user.name = await EUI.nickname({ suggest: names });
 var lobby = EUI.Lobby({ … });
+// yetkili menüsü: if (await EUI.pin({ verify: isAdminPin })) adminMenu.open();
 ```
 
 ## app.lobby — Lobi (EUI.Lobby)
@@ -104,8 +143,70 @@ EUI.state(tür, o) → Promise(düğme id). Türler: network-error (retry), offl
 EUI.state('network-error', { code: 'NET-503' }).then(function (r) { EUI.toast({ title: 'Seçilen: ' + r }); });
 ```
 
+## app.auth — Giriş (EUI.auth)
+Oyun giriş ekranı veriyle: mode login | signup | link | reset | streamer; methods sırası görünümü verir (email ve qr sekme, guest / google / apple düğme). Doğrulama kitte (e-posta, şifre uzunluğu, ad, koşul onayı); sonuç { method, email, password, name, remember }. Sunucu hatası: p.error('…') ekranı açık tutar; resolveOn: false ile sonuç onAction({ action: 'submit', values }) olur, oyun p.done() / p.error() çağırır. Kayıt ↔ giriş geçişi kitte (switch); forgot ve open (koşul id) onAction'a gelir.
+
+```js
+EUI.auth({ mode: 'login', name: 'Snowball', methods: ['email', 'guest', 'google'], footer: '© 2026 StreamEmber',
+  onAction: function (a) { if (a.action === 'forgot') EUI.toast({ title: 'Şifre sıfırlama' }); } })
+  .then(function (r) { EUI.toast({ tone: 'success', title: r ? r.method + ' · ' + (r.email || '') : 'İptal' }); });
+```
+
+## app.auth-signup — Kayıt ve hesap bağlama
+mode: 'signup' oyuncu adı + e-posta + şifre (en az 8) + koşul onayı (legal: true). mode: 'link' misafir ilerlemesini hesaba taşır (cancel: true geri oku). mode: 'reset' yalnız e-posta ister.
+
+```js
+var p = EUI.auth({ mode: 'signup', name: 'Snowball', legal: true, methods: ['email'], resolveOn: false,
+  onAction: function (a) {
+    if (a.action === 'open') EUI.toast({ title: a.id === 'terms' ? 'Kullanım koşulları' : 'Gizlilik politikası' });
+    if (a.action === 'submit') setTimeout(function () { a.values.name === 'Amiral' ? p.error('Bu ad alınmış') : p.done(a.values); }, 600);   // sunucu yanıtı
+  } });
+p.then(function (r) { if (r) EUI.toast({ tone: 'success', title: 'Hoş geldin ' + r.name }); });
+```
+
+## app.auth-streamer — Yayıncı girişi (QR)
+mode: 'streamer' StreamEmber hesabıyla bağlanma: qr sekmesi (qr.img resim ya da qr.code kod, qr.hint) + e-posta sekmesi. QR'ı oyun doğrular; bağlanınca p.done({ method: 'qr' }) ekranı kapatır.
+
+```js
+var p = EUI.auth({ mode: 'streamer', name: 'Ember', methods: ['qr', 'email'], cancel: true, qr: { code: 'K7X2P9', hint: 'StreamEmber Launcher ile kodu tara' } });
+setTimeout(function () { p.done({ method: 'qr', user: 'amiral' }); }, 6000);   // oyun: QR onaylandı
+p.then(function (r) { EUI.toast({ tone: 'success', title: r ? 'Bağlandı: ' + (r.user || r.method) : 'İptal' }); });
+```
+
+## app.consent — Koşullar ve yaş onayı (EUI.consent)
+İlk açılışta kullanım koşulları, gizlilik, isteğe bağlı pazarlama onayı; age: 13 yaş satırı ekler. Zorunlular işaretlenmeden Kabul et kapalı. Sonuç { terms, privacy, marketing, age } ya da false (Reddet). open eylemi metni oyunda açmak için.
+
+```js
+EUI.consent({ age: 13, onAction: function (a) { EUI.toast({ title: a.id + ' metni' }); } })
+  .then(function (v) { EUI.toast({ tone: v ? 'success' : 'danger', title: v ? 'Kabul edildi' : 'Reddedildi' }); });
+```
+
+## app.language — Dil seçimi (EUI.language)
+EUI.languages hazır liste (tr, en, vi, zh-TW, de, es, pt-BR, ru, ar, id; bayrak + yerel ad); languages ile daralt, value seçili kod. Sonuç kod ya da null (cancel: true).
+
+```js
+EUI.language({ value: 'tr', languages: EUI.languages.slice(0, 6), cancel: true })
+  .then(function (c) { EUI.toast({ title: 'Dil: ' + c }); });
+```
+
+## app.nickname — Oyuncu adı (EUI.nickname)
+İlk girişte ad seçimi: min / max uzunluk, sayaç, zar düğmesiyle öneri (suggest: dizi ya da fn), check(ad) → Promise(hata | null) ile sunucuda müsaitlik. Harf, rakam, boşluk ve _ . - dışını reddeder.
+
+```js
+EUI.nickname({ suggest: ['KarTopu', 'BuzKıran', 'KutupTilkisi'], check: function (n) { return new Promise(function (r) { setTimeout(function () { r(n.toLowerCase() === 'amiral' ? 'Bu ad alınmış' : null); }, 500); }); } })
+  .then(function (n) { EUI.toast({ tone: 'success', title: n ? 'Merhaba ' + n : 'İptal' }); });
+```
+
+## app.pin — PIN / yetkili kilidi (EUI.pin)
+Ebeveyn kilidi, yetkili (admin) menüsü, satın alma onayı: length haneli tuş takımı, klavye de çalışır. verify(kod) → bool | Promise(bool) oyun doğrular; attempts yanlış hakkı (bitince null). Sonuç kod ya da null.
+
+```js
+EUI.pin({ title: 'Yetkili menüsü', sub: 'Yönetici PIN kodunu gir', attempts: 3, verify: function (c) { return c === '1234'; } })
+  .then(function (c) { EUI.toast({ tone: c ? 'success' : 'danger', title: c ? 'Açıldı' : 'Kilitli kaldı' }); });
+```
+
 ## app.currency — Para birimi çipi
-İkon + miktar (+ üst sınır) + isteğe bağlı ekle düğmesi. Ton mh-t-* para rengini verir (gold altın, legendary elmas, success enerji). Lobide EUI.Lobby kendi çizer; bunu yalnız kendi ekranında kullan.
+İkon + miktar (+ üst sınır) + isteğe bağlı ekle düğmesi. Ton eui-t-* para rengini verir (gold altın, legendary elmas, success enerji). Lobide EUI.Lobby kendi çizer; bunu yalnız kendi ekranında kullan.
 JS: `el.querySelector('b').textContent = EUI.fmt(12480)`
 
 ```html

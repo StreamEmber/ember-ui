@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Açılış ve durum ekranları — Ember UI</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.1/dist/ember-ui.min.css">
+<title>Açılış, giriş ve durum ekranları — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.2.0/dist/ember-ui.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
 <body class="eui">
 <main class="demo-main">
   <header class="demo-head">
     <span class="demo-head__kicker">Oyun ekranları</span>
-    <h1>Açılış ve durum ekranları</h1>
-    <p>Oyun açılırken ve bağlantı bozulduğunda görünen ekranlar. Her biri tek çağrı: <code>EUI.title</code> (dokununca devam), <code>EUI.loading</code> (ilerleme + ipuçları), <code>EUI.state(tür)</code> (ağ hatası, çevrimdışı, bakım, güncelleme, oturum, genel hata, bağlanıyor). Durum ekranları bir <code>Promise</code> döner: hangi düğmeye basıldığını söyler. Aşağıdaki düğmeler iki ekranda birden çalışır.</p>
+    <h1>Açılış, giriş ve durum ekranları</h1>
+    <p>Oyun açılırken ve bağlantı bozulduğunda görünen ekranlar. Her biri tek çağrı: <code>EUI.title</code> (dokununca devam), <code>EUI.loading</code> (ilerleme + ipuçları), <code>EUI.state(tür)</code> (ağ hatası, çevrimdışı, bakım, güncelleme, oturum, genel hata, bağlanıyor). Hesap ekranları da hazır: <code>EUI.auth</code> (giriş, kayıt, hesap bağlama, şifre sıfırlama, yayıncı girişi — e-posta, misafir, Google, Apple, QR), <code>EUI.consent</code> (koşullar ve yaş), <code>EUI.language</code>, <code>EUI.nickname</code>, <code>EUI.pin</code> (yetkili / ebeveyn kilidi). Ayarlar ise tam ekran <code>EUI.Menu</code>. Hepsi <code>Promise</code> döner: ne seçildiğini söyler. Aşağıdaki düğmeler iki ekranda birden çalışır.</p>
   </header>
 
   <div class="demo-devices">
@@ -31,6 +31,20 @@
     <button class="demo-btn" data-st="error">Genel hata</button>
     <button class="demo-btn" data-st="checking">Bağlanıyor</button>
     <button class="demo-btn" data-st="reconnecting">Yeniden bağlanıyor</button>
+  </div>
+  <div class="demo-actions">
+    <span class="demo-actions__label">Hesap:</span>
+    <button class="demo-btn" data-au="login">Giriş</button>
+    <button class="demo-btn" data-au="signup">Kayıt</button>
+    <button class="demo-btn" data-au="streamer">Yayıncı girişi (QR)</button>
+    <button class="demo-btn" data-au="link">Hesabı bağla</button>
+    <button class="demo-btn" data-au="reset">Şifre sıfırla</button>
+    <span class="demo-sep"></span>
+    <button class="demo-btn" data-sc="consent">Koşullar</button>
+    <button class="demo-btn" data-sc="language">Dil</button>
+    <button class="demo-btn" data-sc="nickname">Ad seç</button>
+    <button class="demo-btn" data-sc="pin">PIN</button>
+    <button class="demo-btn" data-sc="settings">Ayarlar</button>
     <span class="demo-sep"></span>
     <span class="demo-actions__label">Sonuç:</span><code id="result">—</code>
   </div>
@@ -45,10 +59,19 @@ while (!(await connect())) {                                   // oyunun kendi b
 ld.progress(1, 'Hazır'); ld.close();
 EUI.Lobby('#screen', { … });
 
-var s = EUI.state('reconnecting'); …  s.close();               // düğmesiz ekranı koddan kapat</code></pre>
+var s = EUI.state('reconnecting'); …  s.close();               // düğmesiz ekranı koddan kapat
+
+// ilk açılış: koşullar → dil → giriş → ad
+if (!(await EUI.consent({ age: 13 }))) return;
+var lang = await EUI.language({ value: 'tr' });
+var p = EUI.auth({ mode: 'login', name: 'Snowball', methods: ['email', 'guest', 'google'], resolveOn: false,
+  onAction: function (a) { if (a.action === 'submit') api.login(a.values).then(p.done, function (e) { p.error(e.message); }); } });
+var user = await p;                                             // null = geri
+if (user.method === 'guest') user.name = await EUI.nickname({ suggest: ['KarTopu', 'BuzKıran'] });
+if (await EUI.pin({ title: 'Yetkili menüsü', verify: isAdminPin })) adminMenu.open();</code></pre>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.1/dist/ember-ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.2.0/dist/ember-ui.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var SCREENS = ['#s-land', '#s-port'];
@@ -86,6 +109,63 @@ var s = EUI.state('reconnecting'); …  s.close();               // düğmesiz e
       var ps = SCREENS.map(function (s) { return EUI.state(kind, { target: s, code: kind === 'error' ? 'E-1042' : null }); });
       if (kind === 'checking') setTimeout(function () { ps.forEach(function (p) { p.close('bağlandı'); }); }, 2500);
       Promise.race(ps).then(function (v) { ps.forEach(function (p) { p.close(v); }); res(kind + ' → ' + v); });
+    });
+  });
+  // Hesap ekranları: iki ekranda aynı anda; biri sonuçlanınca öteki kapanır
+  function both(make, label) {
+    var ps = SCREENS.map(make);
+    Promise.race(ps).then(function (v) { ps.forEach(function (p) { if (p.el && p.el.isConnected) p.el.remove(); else if (p.close) p.close(v); }); res(label + ' → ' + (v && typeof v === 'object' ? JSON.stringify(v) : v)); });
+    return ps;
+  }
+  document.querySelectorAll('[data-au]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var mode = b.getAttribute('data-au');
+      var ps = both(function (s) {
+        var p = EUI.auth({ target: s, mode: mode, name: 'Snowball', legal: true, cancel: mode !== 'login', footer: mode === 'login' ? '© 2026 StreamEmber · v1.4.2' : null, resolveOn: mode === 'login' || mode === 'signup' ? false : undefined,
+          methods: mode === 'login' ? ['email', 'guest', 'google', 'apple'] : mode === 'streamer' ? ['qr', 'email'] : ['email'],
+          qr: { code: 'K7X2P9', hint: 'StreamEmber Launcher ile kodu tara' },
+          onAction: function (a) {
+            if (a.action === 'forgot') { ps.forEach(function (x) { x.el.remove(); }); document.querySelector('[data-au="reset"]').click(); }
+            if (a.action === 'open') EUI.toast({ title: a.id === 'terms' ? 'Kullanım koşulları' : 'Gizlilik politikası', text: 'Oyun metni kendi penceresinde açar.' });
+            if (a.action === 'submit') setTimeout(function () {                      // sahte sunucu
+              if (a.values.password === 'yanlis') p.error('E-posta ya da şifre yanlış'); else p.done(a.values);
+            }, 700);
+          } });
+        return p;
+      }, 'auth:' + mode);
+      if (mode === 'streamer') setTimeout(function () { ps.forEach(function (p) { if (p.el.isConnected) p.done({ method: 'qr', user: 'amiral' }); }); }, 8000);   // oyun: QR onaylandı
+    });
+  });
+  var settingsMenus = {};
+  document.querySelectorAll('[data-sc]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-sc');
+      if (k === 'settings') {
+        SCREENS.forEach(function (s) {
+          if (!settingsMenus[s]) settingsMenus[s] = EUI.Menu(document.querySelector(s), { kicker: 'Sistem', title: 'Ayarlar', post: false, onAction: function (a) { res('settings → ' + a.action + ' ' + (a.id || '') + (a.value !== undefined ? ' = ' + a.value : '')); }, sections: [
+            { id: 'audio', label: 'Ses', icon: 'volume', view: 'settings', fields: [
+              { id: 'music', label: 'Müzik', type: 'slider', value: 60, unit: '%' }, { id: 'sfx', label: 'Efektler', type: 'slider', value: 80, unit: '%' }, { id: 'vibe', label: 'Titreşim', type: 'toggle', value: true }] },
+            { id: 'game', label: 'Oyun', icon: 'gamepad', view: 'settings', fields: [
+              { id: 'quality', label: 'Grafik', type: 'seg', value: 'mid', options: [{ value: 'low', label: 'Düşük' }, { value: 'mid', label: 'Orta' }, { value: 'high', label: 'Yüksek' }] },
+              { id: 'fps', label: 'Kare hızı', type: 'seg', value: '60', options: ['30', '60', '120'] },
+              { id: 'lang', label: 'Dil', type: 'select', value: 'tr', options: [{ value: 'tr', label: 'Türkçe' }, { value: 'en', label: 'English' }] },
+              { id: 'push', label: 'Bildirimler', type: 'toggle', value: false }] },
+            { id: 'account', label: 'Hesap', icon: 'user', view: 'settings', fields: [
+              { id: 'id', label: 'Oyuncu ID', desc: '1042-7781', type: 'button', text: 'Kopyala', icon: 'share' },
+              { id: 'link', label: 'Hesabı bağla', desc: 'StreamEmber hesabıyla ilerlemeni koru', type: 'button', text: 'Bağla', icon: 'user-plus' },
+              { id: 'logout', label: 'Çıkış yap', type: 'button', text: 'Çıkış', icon: 'power', confirm: 'Oturumu kapatmak istiyor musun?' },
+              { id: 'delete', label: 'Hesabı sil', desc: 'Tüm ilerleme kalıcı olarak silinir', type: 'button', text: 'Sil', danger: true, confirm: 'Hesap ve tüm ilerleme silinsin mi?' }] }
+          ] });
+          settingsMenus[s].open();
+        });
+        return;
+      }
+      both(function (s) {
+        if (k === 'consent') return EUI.consent({ target: s, age: 13, onAction: function (a) { EUI.toast({ title: a.id + ' metni' }); } });
+        if (k === 'language') return EUI.language({ target: s, value: 'tr', cancel: true });
+        if (k === 'nickname') return EUI.nickname({ target: s, cancel: true, suggest: ['KarTopu', 'BuzKıran', 'KutupTilkisi'], check: function (n) { return wait(500).then(function () { return n.toLowerCase() === 'amiral' ? 'Bu ad alınmış' : null; }); } });
+        if (k === 'pin') return EUI.pin({ target: s, title: 'Yetkili menüsü', sub: 'Yönetici PIN kodunu gir (1234)', attempts: 3, verify: function (c) { return c === '1234'; } });
+      }, k);
     });
   });
   SCREENS.forEach(lobby);

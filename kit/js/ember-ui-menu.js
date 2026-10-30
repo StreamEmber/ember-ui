@@ -341,7 +341,12 @@
       var sg = t.closest('.eui-seg > [data-eui-field]');
       if (sg && s) { var fs = find(s, sg.getAttribute('data-eui-field')); if (fs) { ui.sel[s.id] = fs.id; setField(fs, sg.getAttribute('data-value')); } return; }
       var pr = t.closest('[data-eui-press]');
-      if (pr && s) { emit({ action: 'press', id: pr.getAttribute('data-eui-field') }); return; }
+      if (pr && s) {
+        var pf = find(s, pr.getAttribute('data-eui-field')), pc = pf && pf.confirm;   // ayar düğmesinde confirm: önce onay (Hesabı sil…)
+        if (pc) { pc = pc === true ? {} : pc; EUI.confirm({ title: pc.title || pf.label + '?', text: pc.text, danger: pc.danger != null ? pc.danger : pf.danger, ok: pc.ok || pf.text || pf.label, icon: pc.icon || pf.icon }).then(function (ok) { if (ok) emit({ action: 'press', id: pf.id }); }); }
+        else emit({ action: 'press', id: pr.getAttribute('data-eui-field') });
+        return;
+      }
       var row = t.closest('[data-eui-item]');
       if (row && el.contains(row)) {
         if (s && s.view === 'settings') { ui.sel[s.id] = row.getAttribute('data-eui-item'); paintSel(); return; }

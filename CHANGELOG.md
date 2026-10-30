@@ -2,7 +2,13 @@
 
 Ember UI (4.0'dan önce: MHud).
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.1.1`).
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.2.0`).
+
+## 4.2.0 — 2026-10-30
+- Hesap ekranları: `EUI.auth` (giriş, kayıt, hesap bağlama, şifre sıfırlama, yayıncı girişi — e-posta, misafir, Google, Apple ve QR sekmesi; doğrulama kitte, sunucu hatası `p.error`, `resolveOn: false` ile oyun doğrular), `EUI.consent` (koşullar, gizlilik, yaş), `EUI.language` (+ `EUI.languages`), `EUI.nickname` (sayaç, öneri, müsaitlik), `EUI.pin` (yetkili / ebeveyn kilidi, tuş takımı + klavye). Üç ekran boyutunda.
+- Oyna düğmesi (`eui-cta`) oyun düğmesi oldu: kalın 3B kenar, parlama, basınca çöker; metin ortada ve büyük. `eui-cta--alt` koyu gövde.
+- Menü: ayar düğmelerinde `confirm` (Hesabı sil, Çıkış yap önce onay sorar).
+- Sunum: `pages/boot.html` hesap ekranları, ilk açılış akışı ve tam ekran Ayarlar menüsü.
 
 ## 4.1.1 — 2026-10-30
 - Lobi yeniden düzenlendi: boyutlar tek yerden (`--app-*` değişkenleri), üç ekran sınıfı (PC 1080p, telefon yatay, telefon dikey) için ayrı yerleşim. Dikeyde sol kısayollar · orta sahne · sağ kampanya kartları, altta Oyna + gezinme; üst çubuk iki satır (profil + düğmeler, para birimleri). Kampanya kartına ikon kutusu, sahneye zemin ışığı ve seviye/kupa rozeti.

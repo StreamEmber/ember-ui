@@ -61,7 +61,7 @@ var menu = EUI.Menu(host?, {           // host: varsayılan ilk .eui-screen
 `detail: 'buy'` panelinde öğede `actions` yoksa kit **Satın al** düğmesini kendisi çizer: eylemi `buy`, `value` = adet (öğede `qty` verilmişse − / + seçici çıkar, üst sınır `max`, varsayılan 99). `owned` ya da `locked` öğede düğme kapalıdır.
 Eylem düğmesine onay gerekiyorsa: `actions: [{ id: 'clear', label: 'Temizle', danger: true, confirm: { title, text } }]` — kit önce `EUI.confirm` sorar, onaylanırsa eylem gelir (`confirm: true` başlığı etiketten üretir). Kendi onay kodunu yazma.
 
-**Ayar alanı** (`settings`): `{ id, label, desc, type, value, … }` — `type`: `toggle` · `slider` (`min`, `max`, `step`, `unit`) · `seg` / `stepper` / `select` (`options: ['A', 'B']` ya da `[{ value, label }]`) · `button` (`text`, `icon`, `danger`). Ara başlık: `{ heading: 'Ses' }`.
+**Ayar alanı** (`settings`): `{ id, label, desc, type, value, … }` — `type`: `toggle` · `slider` (`min`, `max`, `step`, `unit`) · `seg` / `stepper` / `select` (`options: ['A', 'B']` ya da `[{ value, label }]`) · `button` (`text`, `icon`, `danger`, `confirm: true | { title, text, danger, ok }` → önce onay sorar; Hesabı sil, Çıkış yap). Ara başlık: `{ heading: 'Ses' }`.
 
 **Eylemler** (`a.action`): `open` · `close` · `section` (id = bölüm) · `select` (id = öğe) · `activate` (Enter / çift tık; öğede `actions` varsa ilk eylemin id'si gelir) · öğe eylem düğmesinin `id`'si (ör. `equip`, `buy`; `value` = adet) · `change` (ayar; id, value) · `press` (ayar düğmesi) · `confirm` bölümünün id'si.
 

@@ -33,7 +33,48 @@ var p = 0, t = setInterval(function () { p += .1; ld.progress(p, p < 1 ? 'Varlı
 EUI.state('network-error', { code: 'NET-503' }).then(function (r) { EUI.toast({ title: 'Seçilen: ' + r }); });
 </section>
 
-<section data-id="currency" data-title="Para birimi çipi" data-use="İkon + miktar (+ üst sınır) + isteğe bağlı ekle düğmesi. Ton mh-t-* para rengini verir (gold altın, legendary elmas, success enerji). Lobide EUI.Lobby kendi çizer; bunu yalnız kendi ekranında kullan." data-js="el.querySelector('b').textContent = EUI.fmt(12480)">
+<section data-id="auth" data-title="Giriş (EUI.auth)" data-use="Oyun giriş ekranı veriyle: mode login | signup | link | reset | streamer; methods sırası görünümü verir (email ve qr sekme, guest / google / apple düğme). Doğrulama kitte (e-posta, şifre uzunluğu, ad, koşul onayı); sonuç { method, email, password, name, remember }. Sunucu hatası: p.error('…') ekranı açık tutar; resolveOn: false ile sonuç onAction({ action: 'submit', values }) olur, oyun p.done() / p.error() çağırır. Kayıt ↔ giriş geçişi kitte (switch); forgot ve open (koşul id) onAction'a gelir." data-run="1">
+EUI.auth({ mode: 'login', name: 'Snowball', methods: ['email', 'guest', 'google'], footer: '© 2026 StreamEmber',
+  onAction: function (a) { if (a.action === 'forgot') EUI.toast({ title: 'Şifre sıfırlama' }); } })
+  .then(function (r) { EUI.toast({ tone: 'success', title: r ? r.method + ' · ' + (r.email || '') : 'İptal' }); });
+</section>
+
+<section data-id="auth-signup" data-title="Kayıt ve hesap bağlama" data-use="mode: 'signup' oyuncu adı + e-posta + şifre (en az 8) + koşul onayı (legal: true). mode: 'link' misafir ilerlemesini hesaba taşır (cancel: true geri oku). mode: 'reset' yalnız e-posta ister." data-run="1">
+var p = EUI.auth({ mode: 'signup', name: 'Snowball', legal: true, methods: ['email'], resolveOn: false,
+  onAction: function (a) {
+    if (a.action === 'open') EUI.toast({ title: a.id === 'terms' ? 'Kullanım koşulları' : 'Gizlilik politikası' });
+    if (a.action === 'submit') setTimeout(function () { a.values.name === 'Amiral' ? p.error('Bu ad alınmış') : p.done(a.values); }, 600);   // sunucu yanıtı
+  } });
+p.then(function (r) { if (r) EUI.toast({ tone: 'success', title: 'Hoş geldin ' + r.name }); });
+</section>
+
+<section data-id="auth-streamer" data-title="Yayıncı girişi (QR)" data-use="mode: 'streamer' StreamEmber hesabıyla bağlanma: qr sekmesi (qr.img resim ya da qr.code kod, qr.hint) + e-posta sekmesi. QR'ı oyun doğrular; bağlanınca p.done({ method: 'qr' }) ekranı kapatır." data-run="1">
+var p = EUI.auth({ mode: 'streamer', name: 'Ember', methods: ['qr', 'email'], cancel: true, qr: { code: 'K7X2P9', hint: 'StreamEmber Launcher ile kodu tara' } });
+setTimeout(function () { p.done({ method: 'qr', user: 'amiral' }); }, 6000);   // oyun: QR onaylandı
+p.then(function (r) { EUI.toast({ tone: 'success', title: r ? 'Bağlandı: ' + (r.user || r.method) : 'İptal' }); });
+</section>
+
+<section data-id="consent" data-title="Koşullar ve yaş onayı (EUI.consent)" data-use="İlk açılışta kullanım koşulları, gizlilik, isteğe bağlı pazarlama onayı; age: 13 yaş satırı ekler. Zorunlular işaretlenmeden Kabul et kapalı. Sonuç { terms, privacy, marketing, age } ya da false (Reddet). open eylemi metni oyunda açmak için." data-run="1">
+EUI.consent({ age: 13, onAction: function (a) { EUI.toast({ title: a.id + ' metni' }); } })
+  .then(function (v) { EUI.toast({ tone: v ? 'success' : 'danger', title: v ? 'Kabul edildi' : 'Reddedildi' }); });
+</section>
+
+<section data-id="language" data-title="Dil seçimi (EUI.language)" data-use="EUI.languages hazır liste (tr, en, vi, zh-TW, de, es, pt-BR, ru, ar, id; bayrak + yerel ad); languages ile daralt, value seçili kod. Sonuç kod ya da null (cancel: true)." data-run="1">
+EUI.language({ value: 'tr', languages: EUI.languages.slice(0, 6), cancel: true })
+  .then(function (c) { EUI.toast({ title: 'Dil: ' + c }); });
+</section>
+
+<section data-id="nickname" data-title="Oyuncu adı (EUI.nickname)" data-use="İlk girişte ad seçimi: min / max uzunluk, sayaç, zar düğmesiyle öneri (suggest: dizi ya da fn), check(ad) → Promise(hata | null) ile sunucuda müsaitlik. Harf, rakam, boşluk ve _ . - dışını reddeder." data-run="1">
+EUI.nickname({ suggest: ['KarTopu', 'BuzKıran', 'KutupTilkisi'], check: function (n) { return new Promise(function (r) { setTimeout(function () { r(n.toLowerCase() === 'amiral' ? 'Bu ad alınmış' : null); }, 500); }); } })
+  .then(function (n) { EUI.toast({ tone: 'success', title: n ? 'Merhaba ' + n : 'İptal' }); });
+</section>
+
+<section data-id="pin" data-title="PIN / yetkili kilidi (EUI.pin)" data-use="Ebeveyn kilidi, yetkili (admin) menüsü, satın alma onayı: length haneli tuş takımı, klavye de çalışır. verify(kod) → bool | Promise(bool) oyun doğrular; attempts yanlış hakkı (bitince null). Sonuç kod ya da null." data-run="1">
+EUI.pin({ title: 'Yetkili menüsü', sub: 'Yönetici PIN kodunu gir', attempts: 3, verify: function (c) { return c === '1234'; } })
+  .then(function (c) { EUI.toast({ tone: c ? 'success' : 'danger', title: c ? 'Açıldı' : 'Kilitli kaldı' }); });
+</section>
+
+<section data-id="currency" data-title="Para birimi çipi" data-use="İkon + miktar (+ üst sınır) + isteğe bağlı ekle düğmesi. Ton eui-t-* para rengini verir (gold altın, legendary elmas, success enerji). Lobide EUI.Lobby kendi çizer; bunu yalnız kendi ekranında kullan." data-js="el.querySelector('b').textContent = EUI.fmt(12480)">
 <div class="eui-flex eui-gap-2 eui-wrap">
   <div class="eui-currency eui-t-success"><i data-i="bolt"></i><b>54</b><small>/ 60</small><button class="eui-currency__add"><i data-i="plus"></i></button></div>
   <div class="eui-currency eui-t-gold"><i data-i="coin"></i><b>12.480</b><button class="eui-currency__add"><i data-i="plus"></i></button></div>

@@ -7,7 +7,7 @@ Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları, HTML5 oyunlar
 ## Altın kurallar
 
 1. **Kitte olanı yeniden yazma.** Menü, satır, kart, katman, perde, modal, bildirim, sayaç, hasar sayısı, kırmızı ekran, kırpma kılavuzu… hepsi kitte var. Önce "İhtiyaç → bileşen" tablosuna ve API dizinine bak.
-2. **Ekranlar hazır çağrıdır.** Lobi `EUI.Lobby`, başlık `EUI.title`, yükleme `EUI.loading`, hata / bakım / bağlantı `EUI.state`, tam ekran menü (mağaza, envanter, ayarlar…) `EUI.Menu`. HTML'leri elle yazılmaz; veri verilir. Ayrıntı: `ai/app.md` (Ekran kuralları), `ai/menu.md` (Menü kuralları).
+2. **Ekranlar hazır çağrıdır.** Lobi `EUI.Lobby`, başlık `EUI.title`, yükleme `EUI.loading`, hata / bakım / bağlantı `EUI.state`, giriş / kayıt / yayıncı girişi `EUI.auth`, koşullar `EUI.consent`, dil `EUI.language`, oyuncu adı `EUI.nickname`, PIN / yetkili kilidi `EUI.pin`, tam ekran menü (mağaza, envanter, ayarlar…) `EUI.Menu`. HTML'leri elle yazılmaz; veri verilir. Ayrıntı: `ai/app.md` (Ekran kuralları), `ai/menu.md` (Menü kuralları).
 3. **Tek görünüm.** Tema yok (`data-eui-theme`, `EUI.theme` 3.0'da kaldırıldı). Oyuna göre değişen tek şey vurgu rengi: `data-eui-accent` / `EUI.accent()`.
 4. **`eui-*` sınıflarını ezme.** Kitin bir sınıfına CSS yazma, `!important` kullanma, kendi `eui-` sınıfını uydurma.
 5. **Renk sabit yazma.** Ton sınıfı (`eui-t-*`) ya da `rgb(var(--eui-…-rgb) / a)`. Yalnız siyah/beyaz gölge ve perde serbest.
@@ -65,6 +65,8 @@ EUI.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: stre
 |---|---|
 | Oyunun ana ekranı (lobi) | `EUI.Lobby` → `ai/app.md` |
 | Başlık, yükleme, ağ hatası, çevrimdışı, bakım, güncelleme, oturum bitti, bağlanıyor | `EUI.title`, `EUI.loading`, `EUI.state` → `ai/app.md` |
+| Giriş, kayıt, hesap bağlama, şifre sıfırlama, yayıncı girişi (QR), misafir / Google / Apple | `EUI.auth` → `ai/app.md` |
+| Kullanım koşulları / yaş onayı, dil seçimi, oyuncu adı, PIN / ebeveyn / yetkili kilidi | `EUI.consent`, `EUI.language`, `EUI.nickname`, `EUI.pin` → `ai/app.md` |
 | Tam ekran menü: envanter, mağaza, silahçı, garaj, ayarlar, ekip listesi, görevler | `EUI.Menu` → `ai/menu.md` |
 | Ekip / davet / kasa / kanal / arkadaş / takas menüsü | `EUI.Social` (hazır, `EUI.Menu` üstünde) |
 | Evet-hayır, metin, listeden seçim, sayı, nesne üstü eylemler, silah çarkı | `EUI.confirm`, `EUI.input`, `EUI.choose`, `EUI.amount`, `EUI.context`, `EUI.radial` |
@@ -97,7 +99,7 @@ Bileşen fabrikalarının ayrıntısı ilgili ailede; burada her public ad bir s
 
 **Kurulum ve köprü** — `EUI.mount(kök?)` bildirimsel parçaları kurar · `EUI.autoScale({ base: 1080, scale })` ölçek (kısa kenar = base; telefon / tablet için `base: 540`) + oyun yüksekliği; `{ set(ölçek) }` döner (HUD ölçeği ayarı için bunu çağır, yeniden kurma) · `EUI.accent(ad, kapsam?)` vurgu · `EUI.on(ad, fn)` / `EUI.off(ad, fn)` / `EUI.emit(ad, veri)` olaylar · `EUI.post(cb, veri)` sayfa → oyun · `EUI.route(mesaj)` bir mesajı elle yönlendir · `EUI.rpcAllow` oyundan doğrudan çağrılabilen adlar · `EUI.bridge` (`window.streamember` ya da null) · `EUI.debug` (`?mhdebug=1`) · `EUI.connect(wsUrl)` WebSocket köprüsü (OBS / HTML5; `EUI.post`'u sokete çevirir) · `EUI.Atlas(action)` isim etiketlerini oyunun yerel çerçevesinde çizdiren atlas köprüsü (oyun `{ reset, layout, set, clear }` yollar).
 
-**Oyun ekranları** — `EUI.Lobby(host?, spec)` → `{ update, set, show, hide, destroy }` · `EUI.title(host?, o)` → Promise · `EUI.loading(host?, o)` → `{ progress, tip, close }` · `EUI.state(tür, o)` → Promise(düğme id) + `.close(v)` · `EUI.states` hazır durum metinleri (değiştirilebilir) → `ai/app.md`.
+**Oyun ekranları** — `EUI.Lobby(host?, spec)` → `{ update, set, show, hide, destroy }` · `EUI.title(host?, o)` → Promise · `EUI.loading(host?, o)` → `{ progress, tip, close }` · `EUI.state(tür, o)` → Promise(düğme id) + `.close(v)` · `EUI.states` hazır durum metinleri (değiştirilebilir) · `EUI.auth(host?, o)` → Promise(sonuç | null) + `.error(msg)` `.done(v)` `.busy(on)` `.el` · `EUI.consent(host?, o)` → Promise(onaylar | false) · `EUI.language(host?, o)` → Promise(kod | null), `EUI.languages` hazır liste · `EUI.nickname(host?, o)` → Promise(ad | null) · `EUI.pin(host?, o)` → Promise(kod | null) → `ai/app.md`.
 
 **Menü ve pencereler** — `EUI.Menu(host?, spec)` → `ai/menu.md` · `EUI.Social(host, opts)` · `EUI.trade(o)` takas penceresi · `EUI.modal(o)` genel pencere (Promise) · `EUI.confirm(o)` → bool · `EUI.input(o)` → metin · `EUI.choose(o)` → id / [id] · `EUI.amount(o)` → sayı · `EUI.modalOpen()` · `EUI.closeModals()` · `EUI.context(x, y, items, o)` · `EUI.closeContext()` · `EUI.radial(el, items, o)`.
 

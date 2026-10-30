@@ -1,6 +1,6 @@
 {
   "name": "ember-ui",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "private": true,
   "description": "Single-look, dependency-free HUD & UI kit for StreamEmber game mods and live-stream overlays: data-driven menus (EUI.Menu), vitals, location, economy, gear, vehicle, feeds, gifts, broadcast crop. AI-first docs (AI.md).",
   "keywords": [

@@ -1,4 +1,4 @@
-/*! Ember UI v4.1.1 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
+/*! Ember UI v4.2.0 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
 /* kit/js/ember-ui-icons.js */
 /*!
  * Ember UI — ikon seti (344 ikon)
@@ -393,7 +393,7 @@
 (function (root) {
   'use strict';
 
-  var EUI = { version: '4.1.1' };
+  var EUI = { version: '4.2.0' };
   var doc = root.document;
   EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
@@ -2075,7 +2075,12 @@
       var sg = t.closest('.eui-seg > [data-eui-field]');
       if (sg && s) { var fs = find(s, sg.getAttribute('data-eui-field')); if (fs) { ui.sel[s.id] = fs.id; setField(fs, sg.getAttribute('data-value')); } return; }
       var pr = t.closest('[data-eui-press]');
-      if (pr && s) { emit({ action: 'press', id: pr.getAttribute('data-eui-field') }); return; }
+      if (pr && s) {
+        var pf = find(s, pr.getAttribute('data-eui-field')), pc = pf && pf.confirm;   // ayar düğmesinde confirm: önce onay (Hesabı sil…)
+        if (pc) { pc = pc === true ? {} : pc; EUI.confirm({ title: pc.title || pf.label + '?', text: pc.text, danger: pc.danger != null ? pc.danger : pf.danger, ok: pc.ok || pf.text || pf.label, icon: pc.icon || pf.icon }).then(function (ok) { if (ok) emit({ action: 'press', id: pf.id }); }); }
+        else emit({ action: 'press', id: pr.getAttribute('data-eui-field') });
+        return;
+      }
       var row = t.closest('[data-eui-item]');
       if (row && el.contains(row)) {
         if (s && s.view === 'settings') { ui.sel[s.id] = row.getAttribute('data-eui-item'); paintSel(); return; }
@@ -3041,6 +3046,274 @@
     p.close = function (v) { done(v == null ? null : v); };
     p.el = el;
     return p;
+  };
+
+  /* ======================================================================
+     Hesap ekranları: giriş / kayıt / hesap bağlama / şifre sıfırlama
+     EUI.auth(host?, o) → Promise(sonuç | null)
+     o: {
+       mode: 'login' | 'signup' | 'link' | 'reset' | 'streamer',
+       methods: ['email', 'qr', 'guest', 'google', 'apple'],   // sıra = görünüm sırası; email ve qr sekme olur
+       title, sub, logo (resim), name (oyun adı; logo yoksa yazılır),
+       qr: { img, code, hint },                                  // qr yöntemi: resim ya da yalnız kod
+       legal: { terms, privacy },                                // kayıt / misafir için onay satırı; url değil, id
+       cancel: true,                                             // Geri düğmesi (link / reset ekranlarında)
+       validate(values) → hata metni | null,                     // ek doğrulama (kullanıcı adı alınmış mı…)
+       onAction(a)                                               // forgot · switch (mode) · open (legal id) · method
+     }
+     Sonuç: { method: 'email', email, password, remember } · { method: 'signup', email, password, name } ·
+            { method: 'qr' } (kodu oyun doğrular; p.done() ile ekranı kapat) · { method: 'guest' | 'google' | 'apple' } · { method: 'reset', email }
+     Promise üzerinde: .error(metin) (sunucu hatası göster, ekran açık kalır) · .done(sonuç?) (kapat) · .el
+     ====================================================================== */
+  var AUTH = {
+    login: { title: 'Giriş yap', sub: 'İlerlemen hesabında saklanır', ok: 'Giriş yap', alt: { text: 'Hesabın yok mu?', link: 'Kayıt ol', mode: 'signup' } },
+    signup: { title: 'Hesap oluştur', sub: 'Ücretsiz, bir dakika sürer', ok: 'Kayıt ol', alt: { text: 'Zaten hesabın var mı?', link: 'Giriş yap', mode: 'login' } },
+    link: { title: 'Hesabı bağla', sub: 'Misafir ilerlemen bu hesaba taşınır', ok: 'Bağla', alt: null },
+    reset: { title: 'Şifreni sıfırla', sub: 'E-postana bir bağlantı göndereceğiz', ok: 'Bağlantı gönder', alt: { text: 'Şifreni hatırladın mı?', link: 'Giriş yap', mode: 'login' } },
+    streamer: { title: 'Yayıncı girişi', sub: 'StreamEmber hesabınla bağlan', ok: 'Giriş yap', alt: null }
+  };
+  var SOCIAL = { google: ['Google ile devam et', 'world'], apple: ['Apple ile devam et', 'apple'], guest: ['Misafir olarak oyna', 'user'] };
+  EUI.auth = function (target, o) {
+    if (target && typeof target === 'object' && !target.nodeType && !o) { o = target; target = null; }
+    o = o || {};
+    var mode = o.mode || 'login', d = AUTH[mode] || AUTH.login;
+    var methods = o.methods || (mode === 'streamer' ? ['qr', 'email'] : mode === 'reset' || mode === 'link' ? ['email'] : ['email', 'guest']);
+    var tabs = methods.filter(function (m) { return m === 'email' || m === 'qr'; });
+    var extra = methods.filter(function (m) { return SOCIAL[m]; });
+    var el = app(o.target || target, 'eui-app--auth');
+    el.style.zIndex = 'var(--eui-z-top)';
+    var tab = tabs[0] || 'email';
+
+    function field(name, label, type, ph, icon, extraAttr) {
+      return '<label class="eui-field"><span class="eui-kicker">' + E(label) + '</span><div class="eui-input-wrap">' + I(icon) + '<input class="eui-input" name="' + name + '" type="' + type + '" placeholder="' + E(ph) + '" autocomplete="off" ' + (extraAttr || '') + '></div></label>';
+    }
+    function form() {
+      if (tab === 'qr') {
+        var q = o.qr || {};
+        return '<div class="eui-auth__qr">' + (q.img ? '<img src="' + E(q.img) + '" alt="QR">' : '<div class="eui-auth__qrbox">' + I('focus') + '</div>') +
+          '<div class="eui-auth__qrtext"><b>' + E(q.hint || 'Launcher ya da telefonunla kodu tara') + '</b>' + (q.code ? '<span class="eui-sub">ya da kodu gir</span><div class="eui-auth__code">' + q.code.split('').map(function (c) { return '<i>' + E(c) + '</i>'; }).join('') + '</div>' : '') + '</div></div>';
+      }
+      var f = '';
+      if (mode === 'signup') f += field('name', 'Oyuncu adı', 'text', 'Görünecek adın', 'user', 'maxlength="20"');
+      f += field('email', 'E-posta', 'email', 'ornek@eposta.com', 'email');
+      if (mode !== 'reset') f += field('password', mode === 'signup' || mode === 'link' ? 'Şifre (en az 8)' : 'Şifre', 'password', '••••••••', 'lock');
+      if (mode === 'login' || mode === 'streamer') f += '<div class="eui-auth__row"><label class="eui-check"><input type="checkbox" name="remember" checked><span class="eui-check__box"></span>Beni hatırla</label><button type="button" class="eui-auth__link" data-auth="forgot">Şifremi unuttum</button></div>';
+      if ((mode === 'signup' || mode === 'link') && o.legal) f += '<label class="eui-check eui-auth__legal"><input type="checkbox" name="legal"><span class="eui-check__box"></span><span><button type="button" class="eui-auth__link" data-auth="open" data-id="terms">Kullanım koşullarını</button> ve <button type="button" class="eui-auth__link" data-auth="open" data-id="privacy">gizlilik politikasını</button> kabul ediyorum</span></label>';
+      return f;
+    }
+    function render() {
+      el.innerHTML = bg(o.bg) + '<div class="eui-auth">' +
+        (o.cancel ? '<button class="eui-iconbtn eui-auth__back" data-auth="cancel" aria-label="Geri">' + I('arrow-left') + '</button>' : '') +
+        '<div class="eui-auth__brand">' + (o.logo ? '<img src="' + E(o.logo) + '" alt="">' : o.name ? '<div class="eui-auth__game">' + E(o.name) + '</div>' : '') + '</div>' +
+        '<form class="eui-panel eui-auth__card" novalidate>' +
+          '<div class="eui-auth__head"><div class="eui-title">' + E(o.title || d.title) + '</div><div class="eui-sub">' + E(o.sub || d.sub) + '</div></div>' +
+          (tabs.length > 1 ? '<div class="eui-seg eui-auth__tabs">' + tabs.map(function (t) { return '<button type="button" data-auth="tab" data-id="' + t + '"' + (t === tab ? ' class="is-active"' : '') + '>' + I(t === 'qr' ? 'focus' : 'email') + (t === 'qr' ? 'QR ile' : 'E-posta ile') + '</button>'; }).join('') + '</div>' : '') +
+          '<div class="eui-auth__form">' + form() + '</div>' +
+          '<div class="eui-auth__error eui-hidden"></div>' +
+          (tab === 'email' ? '<button type="submit" class="eui-btn eui-btn--primary eui-btn--block eui-auth__ok">' + E(o.ok || d.ok) + '</button>' : '') +
+          (extra.length ? (tab === 'email' ? '<div class="eui-auth__or"><span>ya da</span></div>' : '') + '<div class="eui-auth__alts">' + extra.map(function (m) { return '<button type="button" class="eui-btn eui-btn--outline eui-btn--block" data-auth="method" data-id="' + m + '">' + I(SOCIAL[m][1]) + E(SOCIAL[m][0]) + '</button>'; }).join('') + '</div>' : '') +
+          (d.alt && o.alt !== false ? '<div class="eui-auth__foot">' + E(d.alt.text) + ' <button type="button" class="eui-auth__link" data-auth="switch" data-id="' + d.alt.mode + '">' + E(d.alt.link) + '</button></div>' : '') +
+        '</form>' +
+        (o.footer ? '<div class="eui-auth__legalline">' + E(o.footer) + '</div>' : '') + '</div>';
+      EUI.mount(el);
+      var first = el.querySelector('input'); if (first) setTimeout(function () { first.focus(); }, 50);
+    }
+    function values() {
+      var v = {}; el.querySelectorAll('[name]').forEach(function (f) { v[f.name] = f.type === 'checkbox' ? f.checked : f.value.trim(); }); return v;
+    }
+    function error(msg) {
+      var e = el.querySelector('.eui-auth__error'), c = el.querySelector('.eui-auth__card');
+      e.textContent = msg || ''; e.classList.toggle('eui-hidden', !msg);
+      if (msg) { c.classList.remove('is-shake'); void c.offsetWidth; c.classList.add('is-shake'); log('auth hata:', msg); }
+    }
+    function busy(on) { var b = el.querySelector('.eui-auth__ok'); if (b) { b.disabled = on; b.classList.toggle('is-busy', on); } }
+    function act(a) { log('auth', a); EUI.emit('auth:action', a); if (o.onAction) o.onAction(a, api); }
+
+    var done, api;
+    var p = new Promise(function (resolve) { done = function (v) { if (!el.isConnected) return; el.remove(); log('auth →', v); resolve(v); }; });
+    api = p;
+    p.el = el;
+    p.error = function (msg) { busy(false); error(msg); return p; };
+    p.done = function (v) { done(v === undefined ? { method: tab } : v); };
+    p.busy = busy;
+
+    el.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-auth]'); if (!t) return;
+      var k = t.getAttribute('data-auth'), id = t.getAttribute('data-id');
+      if (k === 'tab') { tab = id; render(); act({ action: 'method', id: id }); }
+      else if (k === 'cancel') done(null);
+      else if (k === 'method') { var r = { method: id }; act({ action: 'method', id: id }); if (o.resolveOn === false) return; done(r); }
+      else if (k === 'switch') { if (o.onAction && o.onAction({ action: 'switch', id: id }, api) === false) return; mode = id; d = AUTH[mode]; tab = 'email'; render(); }
+      else act({ action: k, id: id, email: values().email });
+    });
+    el.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = values(), err = null;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email || '')) err = 'Geçerli bir e-posta adresi gir';
+      else if (mode !== 'reset' && (v.password || '').length < (mode === 'login' || mode === 'streamer' ? 1 : 8)) err = mode === 'login' || mode === 'streamer' ? 'Şifreni gir' : 'Şifre en az 8 karakter olmalı';
+      else if (mode === 'signup' && (v.name || '').length < 3) err = 'Oyuncu adı en az 3 karakter';
+      else if ((mode === 'signup' || mode === 'link') && o.legal && !v.legal) err = 'Devam etmek için koşulları kabul et';
+      else if (o.validate) err = o.validate(v);
+      if (err) return error(err);
+      error(null); busy(true);
+      var r = { method: mode === 'reset' ? 'reset' : mode === 'signup' ? 'signup' : 'email', email: v.email, password: v.password, name: v.name, remember: !!v.remember, mode: mode };
+      if (o.resolveOn === false) { act({ action: 'submit', values: r }); return; }   // oyun doğrular, p.done / p.error çağırır
+      done(r);
+    });
+    render();
+    return p;
+  };
+
+  /* ======================================================================
+     Koşullar / gizlilik onayı
+     EUI.consent(host?, { title, text, items: [{ id, label, required }], age: 13, accept, decline, onAction('open', id) }) → Promise(true | false)
+     ====================================================================== */
+  EUI.consent = function (target, o) {
+    if (target && typeof target === 'object' && !target.nodeType && !o) { o = target; target = null; }
+    o = o || {};
+    var items = o.items || [{ id: 'terms', label: 'Kullanım koşullarını okudum, kabul ediyorum', required: true }, { id: 'privacy', label: 'Gizlilik politikasını okudum, kabul ediyorum', required: true }, { id: 'marketing', label: 'Haber ve kampanyalardan haberdar olmak istiyorum', required: false }];
+    if (o.age) items = [{ id: 'age', label: o.age + ' yaşından büyüğüm', required: true }].concat(items);
+    var el = app(o.target || target, 'eui-app--consent'); el.style.zIndex = 'var(--eui-z-top)';
+    el.innerHTML = bg(o.bg) + '<div class="eui-auth"><div class="eui-panel eui-auth__card eui-auth__card--wide">' +
+      '<div class="eui-auth__head"><div class="eui-title">' + E(o.title || 'Başlamadan önce') + '</div><div class="eui-sub">' + E(o.text || 'Oynamaya devam etmek için aşağıdakileri onayla.') + '</div></div>' +
+      '<div class="eui-consent">' + items.map(function (it) {
+        return '<label class="eui-check eui-consent__item"><input type="checkbox" name="' + E(it.id) + '"' + (it.required ? ' data-required' : '') + '><span class="eui-check__box"></span><span>' + E(it.label) + (it.required ? ' <i class="eui-consent__req">*</i>' : '') + '</span>' +
+          (it.id !== 'age' && it.id !== 'marketing' ? '<button type="button" class="eui-btn eui-btn--sm eui-btn--ghost eui-btn--icon" data-consent="open" data-id="' + E(it.id) + '" aria-label="Oku">' + I('eye') + '</button>' : '') + '</label>';
+      }).join('') + '</div>' +
+      '<div class="eui-auth__actions"><button class="eui-btn eui-btn--outline" data-consent="decline">' + E(o.decline || 'Reddet') + '</button><button class="eui-btn eui-btn--primary eui-auth__ok" data-consent="accept" disabled>' + E(o.accept || 'Kabul et ve devam') + '</button></div>' +
+      '</div></div>';
+    EUI.mount(el);
+    function ok() { return [].every.call(el.querySelectorAll('[data-required]'), function (c) { return c.checked; }); }
+    el.addEventListener('change', function () { el.querySelector('[data-consent="accept"]').disabled = !ok(); });
+    return new Promise(function (resolve) {
+      el.addEventListener('click', function (e) {
+        var t = e.target.closest('[data-consent]'); if (!t) return;
+        var k = t.getAttribute('data-consent');
+        if (k === 'open') { e.preventDefault(); log('consent open', t.getAttribute('data-id')); if (o.onAction) o.onAction({ action: 'open', id: t.getAttribute('data-id') }); return; }
+        var v = {}; el.querySelectorAll('input[name]').forEach(function (c) { v[c.name] = c.checked; });
+        el.remove(); log('consent →', k, v); resolve(k === 'accept' ? v : false);
+      });
+    });
+  };
+
+  /* ======================================================================
+     Dil seçimi
+     EUI.language(host?, { languages: [{ code, label, native, flag }], value, title }) → Promise(code | null)
+     ====================================================================== */
+  var LANGS = [{ code: 'tr', native: 'Türkçe', flag: '🇹🇷' }, { code: 'en', native: 'English', flag: '🇬🇧' }, { code: 'vi', native: 'Tiếng Việt', flag: '🇻🇳' }, { code: 'zh-TW', native: '繁體中文', flag: '🇹🇼' }, { code: 'de', native: 'Deutsch', flag: '🇩🇪' }, { code: 'es', native: 'Español', flag: '🇪🇸' }, { code: 'pt-BR', native: 'Português', flag: '🇧🇷' }, { code: 'ru', native: 'Русский', flag: '🇷🇺' }, { code: 'ar', native: 'العربية', flag: '🇸🇦' }, { code: 'id', native: 'Bahasa Indonesia', flag: '🇮🇩' }];
+  EUI.languages = LANGS;
+  EUI.language = function (target, o) {
+    if (target && typeof target === 'object' && !target.nodeType && !o) { o = target; target = null; }
+    o = o || {};
+    var langs = o.languages || LANGS, cur = o.value || (langs[0] && langs[0].code);
+    var el = app(o.target || target, 'eui-app--language'); el.style.zIndex = 'var(--eui-z-top)';
+    function render() {
+      el.innerHTML = bg(o.bg) + '<div class="eui-auth"><div class="eui-panel eui-auth__card eui-auth__card--wide">' +
+        '<div class="eui-auth__head"><div class="eui-title">' + E(o.title || 'Dil / Language') + '</div>' + (o.sub ? '<div class="eui-sub">' + E(o.sub) + '</div>' : '') + '</div>' +
+        '<div class="eui-langs">' + langs.map(function (l) {
+          return '<button type="button" class="eui-lang' + (l.code === cur ? ' is-active' : '') + '" data-lang="' + E(l.code) + '"><span class="eui-lang__flag">' + E(l.flag || '') + '</span><span class="eui-lang__name">' + E(l.native || l.label || l.code) + '</span>' + (l.label && l.label !== l.native ? '<small>' + E(l.label) + '</small>' : '') + '</button>';
+        }).join('') + '</div>' +
+        '<div class="eui-auth__actions">' + (o.cancel ? '<button class="eui-btn eui-btn--outline" data-lang-cancel>' + E(o.cancelText || 'Vazgeç') + '</button>' : '') + '<button class="eui-btn eui-btn--primary eui-auth__ok" data-lang-ok>' + E(o.ok || 'Devam') + '</button></div></div></div>';
+      EUI.mount(el);
+    }
+    render();
+    return new Promise(function (resolve) {
+      el.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-lang]'); if (b) { cur = b.getAttribute('data-lang'); el.querySelectorAll('.eui-lang').forEach(function (x) { x.classList.toggle('is-active', x.getAttribute('data-lang') === cur); }); return; }
+        if (e.target.closest('[data-lang-ok]')) { el.remove(); log('language →', cur); resolve(cur); }
+        if (e.target.closest('[data-lang-cancel]')) { el.remove(); resolve(null); }
+      });
+    });
+  };
+
+  /* ======================================================================
+     Oyuncu adı
+     EUI.nickname(host?, { value, min: 3, max: 16, title, suggest: [..] | fn → ad, check(ad) → Promise(hata | null) }) → Promise(ad | null)
+     ====================================================================== */
+  EUI.nickname = function (target, o) {
+    if (target && typeof target === 'object' && !target.nodeType && !o) { o = target; target = null; }
+    o = o || {};
+    var min = o.min || 3, max = o.max || 16;
+    var el = app(o.target || target, 'eui-app--nickname'); el.style.zIndex = 'var(--eui-z-top)';
+    el.innerHTML = bg(o.bg) + '<div class="eui-auth"><form class="eui-panel eui-auth__card" novalidate>' +
+      '<div class="eui-auth__head"><div class="eui-title">' + E(o.title || 'Adını seç') + '</div><div class="eui-sub">' + E(o.sub || 'Diğer oyuncular seni bu adla görecek. Sonradan değiştirebilirsin.') + '</div></div>' +
+      '<div class="eui-field"><div class="eui-input-wrap eui-nick">' + I('user') + '<input class="eui-input" name="name" maxlength="' + max + '" placeholder="Oyuncu adı" autocomplete="off" value="' + E(o.value || '') + '">' +
+        (o.suggest ? '<button type="button" class="eui-btn eui-btn--sm eui-btn--ghost eui-btn--icon eui-nick__dice" data-nick="suggest" aria-label="Rastgele">' + I('dice') + '</button>' : '') + '</div>' +
+        '<div class="eui-nick__meta"><span class="eui-nick__hint">' + min + '–' + max + ' karakter, harf ve rakam</span><span class="eui-nick__count">0 / ' + max + '</span></div></div>' +
+      '<div class="eui-auth__error eui-hidden"></div>' +
+      '<div class="eui-auth__actions">' + (o.cancel ? '<button type="button" class="eui-btn eui-btn--outline" data-nick="cancel">Vazgeç</button>' : '') + '<button type="submit" class="eui-btn eui-btn--primary eui-auth__ok">' + E(o.ok || 'Devam') + '</button></div></form></div>';
+    EUI.mount(el);
+    var inp = el.querySelector('input'), cnt = el.querySelector('.eui-nick__count'), err = el.querySelector('.eui-auth__error');
+    function count() { cnt.textContent = inp.value.length + ' / ' + max; }
+    function error(m) { err.textContent = m || ''; err.classList.toggle('eui-hidden', !m); if (m) { var c = el.querySelector('.eui-auth__card'); c.classList.remove('is-shake'); void c.offsetWidth; c.classList.add('is-shake'); } }
+    count(); inp.addEventListener('input', function () { count(); error(null); }); setTimeout(function () { inp.focus(); }, 50);
+    return new Promise(function (resolve) {
+      el.addEventListener('click', function (e) {
+        var t = e.target.closest('[data-nick]'); if (!t) return;
+        if (t.getAttribute('data-nick') === 'cancel') { el.remove(); resolve(null); }
+        else { var sg = o.suggest; inp.value = typeof sg === 'function' ? sg() : sg[Math.floor(Math.random() * sg.length)]; count(); error(null); }
+      });
+      el.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var v = inp.value.trim();
+        if (v.length < min) return error('En az ' + min + ' karakter');
+        if (!/^[\p{L}\p{N} _.-]+$/u.test(v)) return error('Yalnız harf, rakam, boşluk ve _ . - kullan');
+        var b = el.querySelector('.eui-auth__ok'); b.disabled = true;
+        Promise.resolve(o.check ? o.check(v) : null).then(function (m) {
+          b.disabled = false;
+          if (m) return error(m);
+          el.remove(); log('nickname →', v); resolve(v);
+        });
+      });
+    });
+  };
+
+  /* ======================================================================
+     PIN / yetkili kilidi
+     EUI.pin(host?, { length: 4, title, sub, verify(kod) → Promise(bool) | bool, cancel, attempts }) → Promise(kod | null)
+     ====================================================================== */
+  EUI.pin = function (target, o) {
+    if (target && typeof target === 'object' && !target.nodeType && !o) { o = target; target = null; }
+    o = o || {};
+    var len = o.length || 4, code = '', left = o.attempts || 0;
+    var el = app(o.target || target, 'eui-app--pin'); el.style.zIndex = 'var(--eui-z-top)';
+    el.innerHTML = bg(o.bg) + '<div class="eui-auth"><div class="eui-panel eui-auth__card eui-pin">' +
+      '<div class="eui-auth__head"><div class="eui-state__icon eui-t-accent eui-pin__icon">' + I(o.icon || 'lock') + '</div><div class="eui-title">' + E(o.title || 'Yetkili girişi') + '</div><div class="eui-sub">' + E(o.sub || 'Devam etmek için PIN gir') + '</div></div>' +
+      '<div class="eui-pin__dots">' + Array.apply(null, Array(len)).map(function () { return '<i></i>'; }).join('') + '</div>' +
+      '<div class="eui-auth__error eui-hidden"></div>' +
+      '<div class="eui-pin__pad">' + '1 2 3 4 5 6 7 8 9'.split(' ').map(function (n) { return '<button type="button" data-pin="' + n + '">' + n + '</button>'; }).join('') +
+        '<button type="button" data-pin="cancel" class="eui-pin__soft">' + (o.cancel !== false ? E(o.cancelText || 'Vazgeç') : '') + '</button><button type="button" data-pin="0">0</button><button type="button" data-pin="del" class="eui-pin__soft" aria-label="Sil">' + I('arrow-left') + '</button></div>' +
+      '</div></div>';
+    EUI.mount(el);
+    var dots = el.querySelectorAll('.eui-pin__dots i'), err = el.querySelector('.eui-auth__error'), card = el.querySelector('.eui-pin');
+    function paint() { dots.forEach(function (d, i) { d.classList.toggle('is-on', i < code.length); }); }
+    function fail(m) { err.textContent = m; err.classList.remove('eui-hidden'); card.classList.remove('is-shake'); void card.offsetWidth; card.classList.add('is-shake'); code = ''; paint(); }
+    return new Promise(function (resolve) {
+      function finish(v) { document.removeEventListener('keydown', key); el.remove(); log('pin →', v ? 'ok' : 'iptal'); resolve(v); }
+      function push(n) {
+        if (code.length >= len) return;
+        code += n; paint(); err.classList.add('eui-hidden');
+        if (code.length < len) return;
+        Promise.resolve(o.verify ? o.verify(code) : true).then(function (ok) {
+          if (ok) return finish(code);
+          if (left && --left <= 0) return finish(null);
+          fail(o.wrong || ('PIN yanlış' + (left ? ' · ' + left + ' deneme kaldı' : '')));
+        });
+      }
+      function key(e) {
+        if (/^[0-9]$/.test(e.key)) push(e.key);
+        else if (e.key === 'Backspace') { code = code.slice(0, -1); paint(); }
+        else if (e.key === 'Escape' && o.cancel !== false) finish(null);
+      }
+      document.addEventListener('keydown', key);
+      el.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-pin]'); if (!b) return;
+        var k = b.getAttribute('data-pin');
+        if (k === 'del') { code = code.slice(0, -1); paint(); }
+        else if (k === 'cancel') { if (o.cancel !== false) finish(null); }
+        else push(k);
+      });
+    });
   };
 })(window);
 
