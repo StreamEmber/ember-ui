@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ekip & kanallar — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
 <body class="mh">
@@ -12,7 +12,7 @@
   <header class="demo-head">
     <span class="demo-head__kicker">Arayüz</span>
     <h1>Ekip & kanallar</h1>
-    <p>Veri güdümlü sosyal menü: ekip (üyeler, yardım, para gönderme, rütbe, atma), davetler (gelen/gönderilen, süre sayacı), ekip kasası, cephanelik, rütbe izinleri, <b>kanallar</b>, arkadaşlar, gelen kutusu ve takas. Her eylem bir modal açar ve sonunda oyuna <code>MH.post('social', { action, data })</code> gider; bu sayfada sahte bir sunucu cevap veriyor. <b>Kanal</b>: aynı sunucuda ayrı bir dünya — FiveM/RedM'de <i>routing bucket</i>. Aynı kanaldakiler birbirini görür, diğerleri görünmez.</p>
+    <p>Veri güdümlü sosyal menü (<code>MH.Social</code>, <code>MH.Menu</code> üstünde): ekip (üyeler, yardım, para gönderme, rütbe, atma), davetler (gelen/gönderilen, süre sayacı), ekip kasası, cephanelik, rütbe izinleri, <b>kanallar</b>, arkadaşlar, gelen kutusu ve takas. Her eylem bir modal açar ve sonunda oyuna <code>MH.post('social', { action, data })</code> gider; bu sayfada sahte bir sunucu cevap veriyor. <b>Kanal</b>: aynı oyun oturumunda ayrı bir dünya. Aynı kanaldakiler birbirini görür, diğerleri görünmez.</p>
   </header>
 
   <div class="demo-stage-wrap">
@@ -99,7 +99,7 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   /* ================= Sahte sunucu durumu ================= */
@@ -166,7 +166,7 @@ channels: { current: 'main', list: [{ id, name, mode, players, max,
           members: [{ name: 'NabeMedia', host: true, crew: true }, { name: 'RAPAFI', crew: true }, { name: 'deniz_33' }, { name: 'tolga.exe' }], rules: [{ icon: 'safe', text: 'Soygun modu · polis yapay zekâsı açık' }, { icon: 'users', text: 'En fazla 8 kişi' }] },
         { id: 'c15', name: 'Zombi gecesi', mode: 'survival', players: 6, max: 8, owner: 'mira.live', friends: ['mira.live', 'bora'], members: [{ name: 'mira.live', host: true }, 'bora', 'kaan', 'zeynep', 'okan', 'efe'] },
         { id: 'c18', name: 'Drift buluşması', mode: 'race', players: 11, max: 16, owner: 'speedking', members: ['speedking'] },
-        { id: 'c21', name: 'Western düello', mode: 'western', players: 2, max: 2, owner: 'ricky' },
+        { id: 'c21', name: 'Düello arenası', mode: 'duel', players: 2, max: 2, owner: 'ricky' },
         { id: 'c22', name: 'Ölüm maçı · Vinewood', mode: 'deathmatch', players: 9, max: 12, locked: true, owner: 'kill_er' }
       ]
     },

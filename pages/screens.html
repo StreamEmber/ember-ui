@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tam ekranlar — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 </head>
 <body class="mh">
@@ -12,7 +12,7 @@
   <header class="demo-head">
     <span class="demo-head__kicker">Arayüz</span>
     <h1>Tam ekranlar</h1>
-    <p>Ölüm / yeniden doğma, tur sonu sonuçları ve sunucu yükleme ekranı. Yükleme ekranı FiveM/RedM <code>loadscreen</code> olarak ayrı kullanılabilir; ilerleme <code>loadProgress</code> olayından beslenir.</p>
+    <p>Ölüm / yeniden doğma, tur sonu sonuçları ve sunucu yükleme ekranı. Yükleme ekranı oyunun ayrı bir overlay sayfası olarak da kullanılabilir; ilerlemeyi oyundan gelen bir mesajla (<code>MH.on</code>) beslersin.</p>
   </header>
 
   <div class="demo-h2" style="margin-top:0"><h2>Ölüm ekranı</h2><p>Katil kartı ve yeniden doğma sayacı</p></div>
@@ -97,7 +97,7 @@
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   // Ölüm sayacı
@@ -114,7 +114,7 @@
   }, 120);
   setInterval(function () { document.getElementById('ld-tip').textContent = Demo.pick(TIPS); }, 4000);
   function art() { document.getElementById('ld-art').style.backgroundImage = getComputedStyle(document.documentElement).getPropertyValue('--demo-scene'); }
-  window.addEventListener('demo:theme', art); setTimeout(art, 50);
+  window.addEventListener('demo:change', art); setTimeout(art, 50);
 </script>
 </body>
 </html>

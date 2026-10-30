@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Temel bileşenler — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 <style>
   .demo-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; width: 100%; }
@@ -138,7 +138,7 @@
     <div class="demo-spec"><div class="demo-spec__view" style="--h:280px">
       <div class="mh-panel mh-list" style="width:330px">
         <div class="mh-row is-active"><span class="mh-row__icon"><i data-i="first-aid"></i></span><div class="mh-row__main"><span class="mh-row__title">İlk yardım</span><span class="mh-row__sub">Canı doldurur</span></div><div class="mh-row__meta mh-num">×3</div></div>
-        <div class="mh-row"><span class="mh-row__icon"><i data-i="shield"></i></span><div class="mh-row__main"><span class="mh-row__title">Ağır yelek</span><span class="mh-row__sub">Zırh +100</span></div><span class="mh-row__price">$1.500</span></div>
+        <div class="mh-row"><span class="mh-row__icon"><i data-i="shield"></i></span><div class="mh-row__main"><span class="mh-row__title">Ağır yelek</span><span class="mh-row__sub">Zırh +100</span></div><div class="mh-row__meta"><span class="mh-price mh-price--sm">$1.500</span></div></div>
         <div class="mh-row is-disabled" style="border-bottom:0"><span class="mh-row__icon"><i data-i="lock"></i></span><div class="mh-row__main"><span class="mh-row__title">Kilitli</span><span class="mh-row__sub">Seviye 50</span></div></div>
       </div>
     </div><div class="demo-spec__meta"><b>Liste satırı</b><span><code>.mh-row</code> (<code>is-active</code>, <code>is-disabled</code>) + <code>__icon</code>, <code>__main</code>, <code>__meta</code>, <code>__price</code></span></div></div>
@@ -158,9 +158,26 @@
 
   <div class="demo-h2"><h2>Silah silüetleri</h2><p><code>&lt;i data-weapon="ad"&gt;&lt;/i&gt;</code> veya <code>MH.weapon('ad')</code> — 160×48, <code>currentColor</code></p></div>
   <div class="demo-specs" style="--cols:1"><div class="demo-spec"><div class="demo-spec__view demo-spec__view--plain" style="--h:auto;padding:20px"><div class="demo-weapons" id="weapons"></div></div></div></div>
+  <div class="demo-h2"><h2>Yardımcı sınıflar</h2><p>Satır içi stil yerine yerleşim ve yazı yardımcıları (<code>base.utils</code>).</p></div>
+  <div class="demo-specs">
+    <div class="demo-spec demo-spec--2">
+      <div class="demo-spec__view" style="--h:420px">
+<div class="mh-panel mh-panel--solid mh-pad mh-col mh-gap-3" style="--w:520px">
+  <div class="mh-flex mh-between"><span class="mh-title mh-title--xl">Başlık</span><i data-i="star-f" class="mh-i--lg mh-accent-text"></i></div>
+  <div class="mh-rule mh-rule--accent"></div>
+  <div class="mh-flex mh-wrap mh-gap-1"><span class="mh-badge mh-badge--solid mh-t-accent">Dolu rozet</span><span class="mh-badge">Rozet</span></div>
+  <span class="mh-ellipsis mh-mono mh-dim">Çok uzun bir satır taşarsa üç noktayla kısalır ve mono yazı tipiyle yazılır</span>
+  <div class="mh-rule mh-rule--fade"></div>
+  <div class="mh-flex mh-gap-5"><span class="mh-hud-text">HUD metni</span><i data-i="heart" class="mh-i--sm"></i><i data-i="heart" class="mh-i--md"></i><i data-i="heart" class="mh-i--xl"></i></div>
+  <div class="mh-panel mh-panel--flat mh-pad-s">Düz panel</div><div class="mh-panel mh-panel--ghost mh-pad-l">Hayalet panel</div>
+</div>
+      </div>
+      <div class="demo-spec__meta"><b>Yardımcılar <code>base.utils</code></b><span><code>mh-flex</code>, <code>mh-col</code>, <code>mh-gap-*</code>, <code>mh-pad*</code>, <code>mh-ellipsis</code>, <code>mh-rule</code>, ikon boyları, panel biçimleri.</span></div>
+    </div>
+  </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var TOK = ['accent', 'accent-2', 'success', 'info', 'warn', 'danger', 'legendary', 'gold', 'silver', 'bronze', 'health', 'armor', 'stamina', 'special', 'oxygen', 'hunger', 'thirst', 'stress', 'team-1', 'team-2', 'team-3', 'team-4', 'team-5', 'friend', 'enemy', 'text', 'surface'];

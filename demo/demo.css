@@ -118,12 +118,6 @@ body.demo-noaside .demo-aside { transform: translateX(100%); }
 .demo-field__label { display: flex; align-items: center; justify-content: space-between; font-size: 10.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--d-text-3); }
 .demo-field__label em { font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--d-text-2); }
 
-.demo-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-body.demo .demo-theme { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 8px; border: 1px solid var(--d-line); border-radius: 10px; background: var(--d-panel); color: var(--d-text-2); font: 600 12.5px var(--d-font); cursor: pointer; text-align: left; }
-body.demo .demo-theme:hover { color: var(--d-text); border-color: var(--d-line-2); }
-body.demo .demo-theme.is-active { border-color: var(--d-text); color: var(--d-text); box-shadow: 0 0 0 1px var(--d-text); }
-body.demo .demo-theme__sw { width: 100%; height: 30px; border-radius: 6px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .12); }
-body.demo .demo-theme small { display: block; margin-top: -4px; font-size: 11px; font-weight: 500; color: var(--d-text-3); }
 .demo-accents { display: flex; flex-wrap: wrap; gap: 8px; }
 body.demo .demo-accent { width: 24px; height: 24px; border-radius: 50%; border: 0; cursor: pointer; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .3); position: relative; }
 body.demo .demo-accent.is-active::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--d-text); }
@@ -257,14 +251,6 @@ body[data-demo-cols="2"] .demo-spec--3 { grid-column: span 2; }
 .demo-card b { font-size: 15px; font-weight: 600; }
 .demo-card > span { font-size: 13px; color: var(--d-text-2); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .demo-card > small { margin-top: auto; padding-top: 6px; font-size: 11.5px; color: var(--d-text-3); }
-.demo-themecards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-body.demo .demo-themecard { display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; background: var(--d-panel); box-shadow: 0 0 0 1px var(--d-line); cursor: pointer; text-align: left; border: 0; padding: 0; color: inherit; font: inherit; }
-body.demo .demo-themecard:hover { box-shadow: 0 0 0 1px rgb(255 255 255 / .25); }
-body.demo .demo-themecard.is-active { box-shadow: 0 0 0 2px var(--d-text); }
-body.demo .demo-themecard__view { height: 170px; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center 65%; position: relative; padding: 16px; }
-body.demo .demo-themecard__body { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px 14px; }
-body.demo .demo-themecard__body b { font-size: 14px; }
-body.demo .demo-themecard__body span { font-size: 12px; color: var(--d-text-3); line-height: 1.45; }
 
 .demo-home__hero { position: relative; display: grid; gap: 18px; padding: 44px 44px 40px; border-radius: 18px; overflow: hidden; background: radial-gradient(120% 140% at 100% 0%, rgb(245 184 61 / .16), transparent 55%), radial-gradient(90% 120% at 0% 100%, rgb(80 170 255 / .10), transparent 60%), var(--d-panel); box-shadow: 0 0 0 1px var(--d-line); }
 .demo-home__hero h1 { margin: 0; font-size: 46px; line-height: 1.02; letter-spacing: -.03em; }
@@ -325,5 +311,9 @@ body.demo .demo-themecard__body span { font-size: 12px; color: var(--d-text-3); 
 
 /* ---------- Katalog sayfaları (components/) ---------- */
 .demo-cat .mh-flex { flex-wrap: wrap; }
+/* galeri kutusu: tam ekran parçalar kutunun içinde akar, giriş animasyonu oynamaz */
+.demo-cat .mh-dead, .demo-cat .mh-results { position: relative; inset: auto; width: auto; min-height: 360px; }
+.demo-cat .mh-modal { animation: none; }
+.demo-cat .mh-wprompt, .demo-cat .mh-context { position: relative; }
 .demo-cat .mh-minimap__map { background: linear-gradient(135deg, #3b4a3a, #27332a); }
 .demo-src__box .demo-btn span { color: inherit; font-size: inherit; }

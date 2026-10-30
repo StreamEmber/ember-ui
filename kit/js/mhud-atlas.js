@@ -7,8 +7,8 @@
     function geometry() {
       if (!layout || !host) return;
       var z = parseFloat(document.documentElement.style.zoom) || 1;
-      var screen = root.streamember && root.streamember.screenHeight || layout.screenHeight;
-      var offset = root.streamember && root.streamember.atlasOffset || 0;
+      var screen = MH.bridge && MH.bridge.screenHeight || layout.screenHeight;
+      var offset = MH.bridge && MH.bridge.atlasOffset || 0;
       host.style.cssText = 'position:absolute;left:0;pointer-events:none;top:' + ((screen + offset) / z) + 'px;width:' + (layout.columns * layout.slotWidth / z) + 'px;height:' + (layout.rows * layout.slotHeight / z) + 'px';
       slots.forEach(function (s, i) {
         s.el.style.cssText = 'position:absolute;overflow:hidden;left:' + (i % layout.columns * layout.slotWidth / z) + 'px;top:' + (Math.floor(i / layout.columns) * layout.slotHeight / z) + 'px;width:' + (layout.slotWidth / z) + 'px;height:' + (layout.slotHeight / z) + 'px';
@@ -26,8 +26,8 @@
       if (scheduled) return; scheduled = true;
       requestAnimationFrame(function () { requestAnimationFrame(function () {
         scheduled = false;
-        var screen = root.streamember && root.streamember.screenHeight || layout.screenHeight;
-        var offset = root.streamember && root.streamember.atlasOffset || 0;
+        var screen = MH.bridge && MH.bridge.screenHeight || layout.screenHeight;
+        var offset = MH.bridge && MH.bridge.atlasOffset || 0;
         if (root.innerHeight < screen + offset + layout.rows * layout.slotHeight) { if (pending.length) ack(); return; }
         if (pending.length) { MH.post('atlasReady', { s: pending.splice(0) }); }
       }); });

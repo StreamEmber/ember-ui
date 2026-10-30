@@ -2,19 +2,19 @@
 Her yerde kullanılan yapı taşları: panel, düğme, rozet, çip, tuş ipucu, form alanları, sekme, tablo, avatar. Önce bunları kullan; yeni stil yazma.
 
 ## base.panel — Panel
-Temel kutu. Başlık için .mh-panel__head (kicker + sağda mh-count). Dar kutu için style=&quot;--w:300px&quot;.
+Temel kutu. Başlık için .mh-panel__head (kicker + sağda mh-count). Dar kutu için style=&quot;--w:300px&quot;. Alt şerit mh-panel__foot.
 JS: `—`
 
 ```html
-<div class="mh-panel" style="--w:280px"><div class="mh-panel__head" style="padding:10px 14px"><span class="mh-kicker">Başlık</span><span class="mh-count" style="margin-left:auto">3</span></div><div style="padding:0 14px 14px" class="mh-sub">İçerik buraya.</div></div>
+<div class="mh-panel" style="--w:280px"><div class="mh-panel__head"><span class="mh-kicker">Başlık</span><span class="mh-count mh-push">3</span></div><div style="padding:0 14px 14px" class="mh-sub">İçerik buraya.</div></div>
 ```
 
 ## base.button — Düğme
-Varyantlar: --primary (ana), varsayılan, --ghost (hafif), --tone + mh-t-* (renkli). Boyut --sm. Tuş ipucu için içine mh-key koy.
+Varyantlar: --primary (ana), varsayılan, --ghost (hafif), --outline (çerçeveli), --tone + mh-t-* (renkli). Boyut --sm / --lg, --block tam genişlik, --icon yalnız ikon. --hold basılı tutunca dolar (--v 0..1). Tuş ipucu için içine mh-key koy.
 JS: `el.disabled = true`
 
 ```html
-<div class="mh-flex mh-gap-2"><button class="mh-btn mh-btn--primary">Onayla</button><button class="mh-btn">Normal</button><button class="mh-btn mh-btn--ghost">Vazgeç</button><button class="mh-btn mh-btn--tone mh-t-danger">Sil</button><button class="mh-btn mh-btn--primary mh-btn--sm"><span class="mh-key mh-key--sm">E</span>Küçük</button></div>
+<div class="mh-flex mh-gap-2"><button class="mh-btn mh-btn--primary">Onayla</button><button class="mh-btn">Normal</button><button class="mh-btn mh-btn--ghost">Vazgeç</button><button class="mh-btn mh-btn--tone mh-t-danger">Sil</button><button class="mh-btn mh-btn--primary mh-btn--sm"><span class="mh-key mh-key--sm">E</span>Küçük</button><button class="mh-btn mh-btn--lg">Büyük</button><button class="mh-btn mh-btn--outline">Çerçeveli</button><button class="mh-btn mh-btn--icon" title="Ayarlar"><i data-i="settings"></i></button><button class="mh-btn mh-btn--hold mh-btn--primary" style="--v:.4">Basılı tut</button></div>
 ```
 
 ## base.badge — Rozet
@@ -34,11 +34,11 @@ JS: `el.classList.toggle('is-active')`
 ```
 
 ## base.keys — Tuş ve ipucu
-mh-key tek tuş (--sm/--lg); mh-hints içinde mh-hint = tuş(lar) + açıklama. Tuşlar yan yana kombinasyon olur.
+mh-key tek tuş: boyut --sm/--lg, biçim --solid/--accent. mh-hints içinde mh-hint = tuş(lar) + açıklama; tuşlar yan yana kombinasyon olur.
 JS: `—`
 
 ```html
-<div class="mh-hints"><span class="mh-hint"><span class="mh-key">E</span>Kapıyı aç</span><span class="mh-hint"><span class="mh-key">SHIFT</span><span class="mh-key">E</span>Zorla</span></div>
+<div class="mh-col mh-gap-3"><div class="mh-flex mh-gap-2"><span class="mh-key mh-key--sm">E</span><span class="mh-key">F</span><span class="mh-key mh-key--lg">SPACE</span><span class="mh-key mh-key--accent">Y</span><span class="mh-key mh-key--solid">N</span><span class="mh-key mh-key--round">A</span></div><div class="mh-hints"><span class="mh-hint"><span class="mh-key">E</span>Kapıyı aç</span><span class="mh-hint"><span class="mh-key">SHIFT</span><span class="mh-key">E</span>Zorla</span></div></div>
 ```
 
 ## base.field — Metin alanı
@@ -46,15 +46,15 @@ Etiketli giriş: label.mh-field içinde kicker + input.mh-input. Çok satır iç
 JS: `input.value`
 
 ```html
-<div class="mh-col" style="gap:10px;--w:280px"><label class="mh-field"><span class="mh-kicker">Oyuncu adı</span><input class="mh-input" value="Amiral Router"></label><label class="mh-field"><span class="mh-kicker">Not</span><textarea class="mh-input mh-textarea" rows="2">Merhaba</textarea></label><label class="mh-field"><span class="mh-kicker">Sunucu</span><select class="mh-input mh-select"><option>İstanbul</option><option>Frankfurt</option></select></label></div>
+<div class="mh-col mh-gap-2" style="--w:280px"><label class="mh-field"><span class="mh-kicker">Oyuncu adı</span><input class="mh-input" value="Amiral Router"></label><label class="mh-field"><span class="mh-kicker">Not</span><textarea class="mh-input mh-textarea" rows="2">Merhaba</textarea></label><label class="mh-field"><span class="mh-kicker">Sunucu</span><select class="mh-input mh-select"><option>İstanbul</option><option>Frankfurt</option></select></label></div>
 ```
 
 ## base.toggle — Anahtar ve onay kutusu
-mh-toggle (aç/kapa anahtarı) ve mh-check (kutu). İkisi de label içinde input[type=checkbox] + gösterge span.
+mh-toggle (aç/kapa anahtarı), mh-check (kutu) ve mh-check--radio (tek seçim). İkisi de label içinde input[type=checkbox] + gösterge span.
 JS: `input.checked`
 
 ```html
-<div class="mh-col" style="gap:10px"><label class="mh-toggle"><input type="checkbox" checked><span class="mh-toggle__track"></span>Kırpma kılavuzu</label><label class="mh-check"><input type="checkbox" checked><span class="mh-check__box"></span>Sesli sohbet</label></div>
+<div class="mh-col mh-gap-2"><label class="mh-toggle"><input type="checkbox" checked><span class="mh-toggle__track"></span>Kırpma kılavuzu</label><label class="mh-check"><input type="checkbox" checked><span class="mh-check__box"></span>Sesli sohbet</label><label class="mh-check mh-check--radio"><input type="radio" name="r1" checked><span class="mh-check__box"></span>Seçenek (radyo)</label></div>
 ```
 
 ## base.slider — Kaydırıcı
@@ -101,22 +101,46 @@ JS: `—`
 ```
 
 ## base.spinner — Yükleniyor
-Dönen gösterge.
+Dönen gösterge; --lg büyük.
 JS: `—`
 
 ```html
-<span class="mh-spinner"></span>
+<div class="mh-flex mh-gap-4"><span class="mh-spinner"></span><span class="mh-spinner mh-spinner--lg"></span></div>
 ```
 
 ## base.scroll — Kaydırma çubuğu
-.mh altındaki tüm kaydırma çubukları tema renginde ince çizilir; ek sınıf gerekmez. Biçim: mh-scroll--rail (görünür ray), --accent (vurgu rengi), --hidden (gizli), --x (yatay). Yükseklik ver, taşan içerik kaydırılır.
+.mh altındaki tüm kaydırma çubukları tema renginde ince çizilir; ek sınıf gerekmez. Biçim: mh-scroll--rail (görünür ray), --accent (vurgu rengi), --hidden (gizli), --x (yatay). Yükseklik ver, taşan içerik kaydırılır. Gizli çubuk: mh-scroll--hidden.
 JS: `el.classList.add('mh-scroll')`
 
 ```html
-<div class="mh-flex" style="gap:14px;align-items:flex-start">
+<div class="mh-flex mh-gap-3 mh-items-start">
 <div class="mh-panel mh-scroll" style="width:150px;height:120px;padding:8px"><p class="mh-sub">Satır 1<br>Satır 2<br>Satır 3<br>Satır 4<br>Satır 5<br>Satır 6<br>Satır 7<br>Satır 8</p></div>
 <div class="mh-panel mh-scroll mh-scroll--rail" style="width:150px;height:120px;padding:8px"><p class="mh-sub">Ray görünür<br>Satır 2<br>Satır 3<br>Satır 4<br>Satır 5<br>Satır 6<br>Satır 7<br>Satır 8</p></div>
 <div class="mh-panel mh-scroll mh-scroll--accent" style="width:150px;height:120px;padding:8px"><p class="mh-sub">Vurgu rengi<br>Satır 2<br>Satır 3<br>Satır 4<br>Satır 5<br>Satır 6<br>Satır 7<br>Satır 8</p></div>
 <div class="mh-panel mh-scroll mh-scroll--x" style="width:150px;padding:8px"><div class="mh-sub" style="white-space:nowrap;width:420px">Yatay kaydırma: uzun bir satır soldan sağa uzanır.</div></div>
+</div>
+```
+
+## base.player — Oyuncu çipi
+Avatar + ad + alt satır; menü başlığında ya da panel köşesinde kim olduğunu gösterir.
+JS: `—`
+
+```html
+<div class="mh-player"><span class="mh-avatar mh-t-accent">AR</span><div><div class="mh-player__name">Amiral Router</div><div class="mh-player__sub">Mavi takım · Seviye 42</div></div></div>
+```
+
+## base.utils — Yerleşim ve yazı yardımcıları
+Satır içi stil yerine bunları kullan: mh-flex (satır), mh-col (sütun), mh-between, mh-wrap, mh-grow, mh-gap-1..5, mh-pad / mh-pad-s / mh-pad-l, mh-ellipsis, mh-mono, mh-num (tabular sayı), mh-dim / mh-mute (soluk), mh-accent-text, mh-hud-text (sahne üstü gölge), mh-rule (--accent, --fade) ayraç, ikon boyu mh-i--sm|md|lg|xl, başlık mh-title--sm|lg|xl. Panel biçimleri: mh-panel--solid, --flat, --ghost, mh-panel__head / __foot.
+JS: `—`
+
+```html
+<div class="mh-panel mh-panel--solid mh-pad mh-col mh-gap-3" style="--w:520px">
+  <div class="mh-flex mh-between"><span class="mh-title mh-title--xl">Başlık</span><i data-i="star-f" class="mh-i--lg mh-accent-text"></i></div>
+  <div class="mh-rule mh-rule--accent"></div>
+  <div class="mh-flex mh-wrap mh-gap-1"><span class="mh-badge mh-badge--solid mh-t-accent">Dolu rozet</span><span class="mh-badge">Rozet</span></div>
+  <span class="mh-ellipsis mh-mono mh-dim">Çok uzun bir satır taşarsa üç noktayla kısalır ve mono yazı tipiyle yazılır</span>
+  <div class="mh-rule mh-rule--fade"></div>
+  <div class="mh-flex mh-gap-5"><span class="mh-hud-text">HUD metni</span><i data-i="heart" class="mh-i--sm"></i><i data-i="heart" class="mh-i--md"></i><i data-i="heart" class="mh-i--xl"></i></div>
+  <div class="mh-panel mh-panel--flat mh-pad-s">Düz panel</div><div class="mh-panel mh-panel--ghost mh-pad-l">Hayalet panel</div>
 </div>
 ```

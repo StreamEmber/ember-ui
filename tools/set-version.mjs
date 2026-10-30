@@ -12,6 +12,7 @@ const rules = [
   ['kit/js/mhud.js', new RegExp(String.raw`(var MH = \{ version: ')${SEMVER}(')`), `$1${version}$2`],
   ['README.md', new RegExp(String.raw`(StreamEmber/mhud@v)${SEMVER}`, 'g'), `$1${version}`],
   ['AI.md', new RegExp(String.raw`(# MHud |StreamEmber/mhud@v)${SEMVER}`, 'g'), `$1${version}`],
+  ['tools/lint.mjs', new RegExp(String.raw`(StreamEmber/mhud@v)${SEMVER}`, 'g'), `$1${version}`],
   ['CHANGELOG.md', new RegExp(String.raw`(tam sürüm kullanın \(\`@)${SEMVER}`), `$1${version}`]
 ];
 // sunum sayfaları kiti jsDelivr'den sürümle yükler

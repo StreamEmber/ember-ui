@@ -1,22 +1,23 @@
 /*!
- * MHud — davranış katmanı ve NUI köprüsü
- * Bağımlılıksız. FiveM ve RedM NUI'de (CEF) ve normal tarayıcıda çalışır.
- * Önce mhud-icons.js yüklenmelidir.
+ * MHud — davranış katmanı ve StreamEmber overlay köprüsü
+ * Bağımlılıksız. StreamEmber overlay'inde (CEF), OBS'de ve normal tarayıcıda çalışır.
+ * Önce mhud-icons.js yüklenmelidir. Tam API dizini: AI.md.
  *
  * Kısa özet:
- *   MH.theme('frontier'); MH.accent('gold')
+ *   MH.accent('mint')  MH.autoScale()
  *   MH.bar('#hp', 64)  MH.ring(el, .8)  MH.core(el, { value: 80, core: 60 })
  *   MH.money('#cash', 15200)  MH.count(el, 1500)
  *   MH.toast({...})  MH.kill({...})  MH.gift({...})  MH.announce({...})  MH.banner({...})
- *   MH.progress({...})  MH.confirm({...})  MH.radial(el, items)  MH.context(x, y, items)
+ *   MH.Menu(host, spec)  MH.confirm({...})  MH.radial(el, items)  MH.context(x, y, items)
  *   MH.Nametags('#world')  MH.Markers('#world')  MH.damageNumber(...)
  *   MH.on('action', fn)  MH.post('callback', data)
  */
 (function (root) {
   'use strict';
 
-  var MH = { version: '2.1.0' };
+  var MH = { version: '3.0.0' };
   var doc = root.document;
+  MH.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
   /* ======================================================================
      Yardımcılar
@@ -93,23 +94,23 @@
   MH.icon = icon; MH.weapon = weapon; MH.art = art; MH.avatar = avatar; MH.initials = initials;
 
   /* ======================================================================
-     Tema & ölçek
+     Vurgu & ölçek
      ====================================================================== */
-  MH.theme = function (name, scope) {
-    scope = $(scope) || doc.body;
-    if (name) scope.setAttribute('data-mh-theme', name); else scope.removeAttribute('data-mh-theme');
-    emit('theme', name);
-  };
   MH.accent = function (name, scope) {
     scope = $(scope) || doc.body;
     if (name) scope.setAttribute('data-mh-accent', name); else scope.removeAttribute('data-mh-accent');
     emit('accent', name);
   };
-  /* NUI'de 1080p referansına göre ölçekler. userScale: oyuncu ayarı (ör. 0.9) */
+  /* 1080p referansına göre ölçekler; opts.scale oyuncu ayarı (ör. 0.9).
+     Overlay görünümü oyundan uzun olabilir (altında isim etiketi atlası): .mh-screen oyun yüksekliğinde kalır. */
   MH.autoScale = function (opts) {
     opts = opts || {};
     var base = opts.base || 1080, user = opts.scale || 1, target = $(opts.target) || doc.documentElement;
-    function apply() { target.style.zoom = ((root.streamember && root.streamember.screenHeight || root.innerHeight) / base) * user; }
+    function apply() {
+      var game = Math.min(MH.bridge && MH.bridge.screenHeight || root.innerHeight, root.innerHeight), z = game / base * user;
+      target.style.zoom = z;
+      doc.documentElement.style.setProperty('--mh-atlas-gap', (root.innerHeight - game) / z + 'px');
+    }
     apply();
     root.addEventListener('resize', apply);
     return { set: function (s) { user = s; apply(); } };
@@ -472,11 +473,11 @@
      Dönüş: Promise(value) — submit:true eylemi formdaki [name] alanlarını nesne olarak döndürür.
      ESC / dış alan → null. Promise üzerinde .close(v) ve .el vardır.
      ---------------------------------------------------------------------- */
-  var modalStack = [], modalEscAt = 0;
+  var modalStack = [];
   MH.modalOpen = function () { return modalStack.length > 0; };
   doc.addEventListener('keydown', function (e) {
     var top = modalStack[modalStack.length - 1]; if (!top) return;
-    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); modalEscAt = Date.now(); if (top.dismiss) top.close(null); }
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); if (top.dismiss) top.close(null); }
     else if (e.key === 'Enter' && !(e.target && e.target.tagName === 'TEXTAREA') && !e.shiftKey) {
       var p = top.el.querySelector('[data-primary]:not([disabled])');
       if (p) { e.preventDefault(); p.click(); }
@@ -782,7 +783,7 @@
   /* İsim etiketleri — list öğesi:
      { id, x, y, scale, alpha, name, sid, tone:'friend'|'enemy'|'team1', badge:{text,tone}, health, armor,
        sub, talking, dead, typing, icon, bubble, compact,
-       variant:'plate|flag|pill|line|bar|pointer|banner|bracket|boss|npc|far|bounty|viewer|hp|glow|frontier|vip', role, avatar,
+       variant:'plate|flag|pill|line|bar|pointer|banner|bracket|boss|npc|far|viewer|hp|glow|vip', role, avatar,
        level, clan, down, afk, leader } */
   MH.Nametags = function (world, opts) {
     opts = opts || {};
@@ -1152,77 +1153,6 @@
   };
 
   /* ======================================================================
-     BASKI NESNELERİ (Eski Batı)
-     ====================================================================== */
-  MH.posterHTML = function (o) {
-    o = o || {};
-    return '<div class="mh-paper mh-poster"' + (o.tilt != null ? ' style="--tilt:' + o.tilt + 'deg"' : '') + '>' +
-      '<div class="mh-poster__title">' + esc(o.title || 'Aranıyor') + '</div>' +
-      '<div class="mh-poster__rule">' + esc(o.sub || 'Ölü ya da diri') + '</div>' +
-      '<div class="mh-poster__photo">' + (o.photo ? '<img src="' + esc(o.photo) + '" alt="">' : icon(o.icon || 'cowboy')) + '</div>' +
-      '<div class="mh-poster__name">' + esc(o.name || '') + '</div>' +
-      (o.crime ? '<div class="mh-poster__crime">' + esc(o.crime) + '</div>' : '') +
-      '<div class="mh-poster__reward"><b>' + esc(o.reward || '$100') + '</b><span>' + esc(o.rewardLabel || 'Ödül') + '</span></div>' +
-      (o.fine ? '<div class="mh-poster__fine">' + esc(o.fine) + '</div>' : '') +
-      (o.stamp ? '<span class="mh-stamp is-in">' + esc(o.stamp) + '</span>' : '') + '</div>';
-  };
-  MH.poster = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="poster"]', 'mh-anchor mh-mc');
-    box.innerHTML = MH.posterHTML(o);
-    var p = box.firstChild; p.classList.add('mh-enter-pop');
-    if (o.duration !== 0) setTimeout(function () { remove(p); }, o.duration || 5000);
-    return p;
-  };
-  MH.stamp = function (target, text, o) {
-    var n = $(target); if (!n) return;
-    o = o || {};
-    var s = el('span', 'mh-stamp is-in' + (o.tone ? ' mh-t-' + o.tone : '') + (o.round ? ' mh-stamp--round' : ''), esc(text));
-    if (o.tilt != null) s.style.setProperty('--tilt', o.tilt + 'deg');
-    if (o.position === false) { n.appendChild(s); return s; }
-    var pin = el('span', 'mh-stamp-pin'); pin.style.left = o.x || '50%'; pin.style.top = o.y || '45%';
-    pin.appendChild(s); n.appendChild(pin);
-    return s;
-  };
-  MH.telegram = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="telegram"]', 'mh-anchor mh-tc');
-    if (!o.target && !box.style.top) box.style.top = '19%';
-    box.innerHTML = '';
-    var body = esc(o.text || '').replace(/\s*\bSTOP\b\s*/gi, '<span class="stop">STOP</span>');
-    var t = el('div', 'mh-paper mh-telegram is-in' + (o.stamp ? ' has-stamp' : ''));
-    t.innerHTML = '<div class="mh-telegram__head"><span class="mh-telegram__brand">' + esc(o.brand || 'Telgraf') + '</span><span class="mh-telegram__no">No. ' + esc(o.no || Math.floor(1000 + Math.random() * 8999)) + '</span></div>' +
-      '<div class="mh-telegram__meta"><span>Kimden</span><b>' + esc(o.from || '—') + '</b><span>Kime</span><b>' + esc(o.to || '—') + '</b></div>' +
-      '<div class="mh-telegram__body">' + body + '</div>' + (o.stamp ? '<span class="mh-stamp">' + esc(o.stamp) + '</span>' : '');
-    box.appendChild(t);
-    if (o.duration !== 0) setTimeout(function () { remove(t); }, o.duration || 7000);
-    return t;
-  };
-  MH.headline = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="headline"]', 'mh-anchor mh-mc');
-    box.innerHTML = '';
-    var h = el('div', 'mh-paper mh-headline is-in');
-    h.innerHTML = '<div class="mh-headline__mast">' + esc(o.mast || 'Sınır Boyu Gazetesi') + '</div>' +
-      '<div class="mh-headline__dateline"><span>' + esc(o.date || '') + '</span><span>' + esc(o.price || '5 Sent') + '</span></div>' +
-      '<div class="mh-headline__title">' + esc(o.title || '') + '</div>' + (o.deck ? '<div class="mh-headline__deck">' + esc(o.deck) + '</div>' : '') +
-      (o.body ? '<div class="mh-headline__cols"><div>' + (o.icon ? '<div class="mh-headline__cut">' + icon(o.icon) + '</div>' : '') + '<p>' + esc(o.body[0] || '') + '</p></div><div><p>' + esc(o.body[1] || '') + '</p></div></div>' : '');
-    box.appendChild(h);
-    if (o.duration !== 0) setTimeout(function () { remove(h); }, o.duration || 6500);
-    return h;
-  };
-  MH.sign = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="sign"]', 'mh-anchor mh-tc');
-    if (!o.target && !box.style.top) box.style.top = '9%';
-    box.innerHTML = '';
-    var s = el('div', 'mh-sign is-in', (o.kicker ? '<span>' + esc(o.kicker) + '</span>' : '') + '<b>' + esc(o.title || '') + '</b>' + (o.sub ? '<small>' + esc(o.sub) + '</small>' : ''));
-    box.appendChild(s);
-    if (o.duration !== 0) setTimeout(function () { remove(s); }, o.duration || 4200);
-    return s;
-  };
-
-  /* ======================================================================
      GANİMET, SOSYAL, HAYATTA KALMA
      ====================================================================== */
   MH.loot = function (o) {
@@ -1276,7 +1206,7 @@
 
   /* ======================================================================
      WEBSOCKET KÖPRÜSÜ — OBS tarayıcı kaynağı, harici overlay, HTML5 oyunlar
-     Mesaj biçimi NUI ile aynıdır: { action, data } ya da { action:'mhud', fn, args }
+     Mesaj biçimi overlay köprüsüyle aynıdır: { action, data } ya da { action:'mhud', fn, args }
      ====================================================================== */
   MH.connect = function (url, o) {
     o = o || {};
@@ -1293,45 +1223,6 @@
     open();
     MH.post = function (name, data) { send({ action: name, data: data || {} }); return Promise.resolve({ ok: true }); };
     return { send: send, close: function () { closed = true; if (ws) ws.close(); } };
-  };
-
-  /* ======================================================================
-     Klasik menü / liste klavye kontrolü
-     ====================================================================== */
-  MH.listNav = function (target, o) {
-    var list = $(target); if (!list) return;
-    o = o || {};
-    var sel = o.item || '.mh-classic__item, .mh-row';
-    function items() { return $$(sel, list).filter(function (x) { return !x.classList.contains('is-disabled'); }); }
-    function idx() { return items().indexOf(list.querySelector(sel.split(',').map(function (s) { return s.trim() + '.is-active'; }).join(','))); }
-    function go(i) {
-      var arr = items(); if (!arr.length) return;
-      i = (i + arr.length) % arr.length;
-      arr.forEach(function (x, k) { x.classList.toggle('is-active', k === i); });
-      arr[i].scrollIntoView({ block: 'nearest' });
-      if (o.onChange) o.onChange(arr[i], i);
-    }
-    function step(dir) {
-      var a = items()[idx()]; if (!a) return;
-      var st = a.querySelector('[data-mh-stepper]');
-      if (st) st.__step(dir);
-    }
-    function key(e) {
-      if (o.active && !o.active()) return;
-      if (e.key === 'ArrowDown') { e.preventDefault(); go(idx() + 1); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); go(idx() - 1); }
-      else if (e.key === 'ArrowLeft') step(-1);
-      else if (e.key === 'ArrowRight') step(1);
-      else if (e.key === 'Enter') { var a = items()[idx()]; if (a && o.onSelect) o.onSelect(a); if (a) a.click(); }
-      else if (e.key === 'Backspace' || e.key === 'Escape') { if (o.onBack) o.onBack(); }
-    }
-    doc.addEventListener('keydown', key);
-    list.addEventListener('mousemove', function (e) {
-      var it = e.target.closest(sel); if (!it || it.classList.contains('is-active') || it.classList.contains('is-disabled')) return;
-      go(items().indexOf(it));
-    });
-    if (idx() < 0) go(0);
-    return { go: go, destroy: function () { doc.removeEventListener('keydown', key); } };
   };
 
   /* ======================================================================
@@ -1417,7 +1308,7 @@
   };
 
   /* ======================================================================
-     Olaylar & NUI köprüsü
+     Olaylar & oyun köprüsü
      ====================================================================== */
   var handlers = {};
   function emit(name, data) { (handlers[name] || []).forEach(function (fn) { try { fn(data); } catch (e) { console.error('[MHud]', name, e); } }); }
@@ -1425,36 +1316,36 @@
   MH.off = function (name, fn) { handlers[name] = (handlers[name] || []).filter(function (f) { return f !== fn; }); };
   MH.emit = emit;
 
-  MH.isNui = typeof root.GetParentResourceName === 'function';
-  MH.resource = MH.isNui ? root.GetParentResourceName() : 'mhud';
+  /* StreamEmber overlay köprüsü (window.streamember, ui-runtime enjekte eder).
+     oyun → sayfa: { action, data } → MH.on(action, fn)      sayfa → oyun: MH.post(cb, data) → { cb, data }
+     Köprü yoksa (normal tarayıcı) MH.post yalnız MH.debug açıkken konsola yazar; sayfa yine çalışır. */
+  MH.debug = MH.debug || /[?&]mhdebug=1\b/.test(root.location && root.location.search || '');
   MH.post = function (name, data) {
-    if (!MH.isNui) { if (MH.debug) console.log('[MHud] post', name, data); return Promise.resolve({ ok: true, dev: true }); }
-    return fetch('https://' + MH.resource + '/' + name, {
-      method: 'POST', headers: { 'Content-Type': 'application/json; charset=UTF-8' }, body: JSON.stringify(data || {})
-    }).then(function (r) { return r.json().catch(function () { return {}; }); });
+    if (MH.debug) console.log('[MHud] → oyun', name, data || {});
+    if (MH.bridge) MH.bridge.post({ cb: name, data: data || {} });
+    emit('post', { cb: name, data: data || {} });
+    return Promise.resolve({ ok: true, bridge: !!MH.bridge });
   };
 
-  /* Lua'dan genel çağrı: SendNUIMessage({ action = 'mhud', fn = 'toast', args = { {...} } })
-     Yalnızca bu listedeki fonksiyonlar çağrılabilir. */
-  MH.rpcAllow = ['theme', 'accent', 'bar', 'ring', 'core', 'pips', 'count', 'money', 'toast', 'kill', 'gift', 'announce', 'banner',
+  /* Oyundan genel çağrı: { action: 'mhud', fn: 'toast', args: [{ … }] }. Yalnız bu listedeki fonksiyonlar çağrılabilir. */
+  MH.rpcAllow = ['accent', 'bar', 'ring', 'core', 'pips', 'count', 'money', 'toast', 'kill', 'gift', 'announce', 'banner',
     'levelUp', 'achievement', 'pickup', 'countdown', 'subtitle', 'progress', 'hit', 'damageFrom', 'flash', 'vignette', 'compass', 'speedo', 'timer',
-    'crop', 'enemies', 'stat', 'history', 'streak', 'poster', 'stamp', 'telegram', 'headline', 'sign', 'loot', 'social', 'infected', 'horde', 'zone'];
+    'crop', 'enemies', 'stat', 'history', 'streak', 'loot', 'social', 'infected', 'horde', 'zone'];
   function route(d) {
     if (!d || typeof d !== 'object') return;
     var action = d.action || d.type;
-    if (action === 'mhud' && d.fn && MH.rpcAllow.indexOf(d.fn) >= 0) {
+    if (MH.debug) console.log('[MHud] ← oyun', action, d.data !== undefined ? d.data : d);
+    if (action === 'mhud' && d.fn) {
+      if (MH.rpcAllow.indexOf(d.fn) < 0) { console.warn('[MHud] rpc izinli değil:', d.fn); return; }
       try { MH[d.fn].apply(MH, d.args || []); } catch (err) { console.error('[MHud] rpc', d.fn, err); }
       return;
     }
     if (action) emit(action, d.data !== undefined ? d.data : d);
+    else console.warn('[MHud] action alanı olmayan mesaj', d);
   }
-  MH.route = route;   // harici kaynaklardan gelen mesajı elle yönlendirmek için
-  root.addEventListener('message', function (e) { route(e.data); });
-
-  /* ESC ile odak bırakma — NUI menüleri için (MH.escClose = 'closeMenu') */
-  doc.addEventListener('keyup', function (e) {
-    if (e.key === 'Escape' && MH.escClose && !modalStack.length && Date.now() - modalEscAt > 400) { emit('escape'); MH.post(MH.escClose, {}); }
-  });
+  MH.route = route;
+  if (MH.bridge) MH.bridge.on(route);
+  root.addEventListener('message', function (e) { route(e.data); });   // tarayıcıda deneme: postMessage({ action, data })
 
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function () { MH.mount(); });
   else MH.mount();

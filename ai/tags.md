@@ -6,7 +6,7 @@ Ad, oyuncu numarası, rozet, can ve zırh barı, alt satır. Her biçimin temeli
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag is-friend"><div class="mh-tag__line"><span class="mh-tag__name">AmiralRouter</span><span class="mh-tag__id">12</span><span class="mh-badge mh-t-success">Dost</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 38 · 24 M</div></div>
 <div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span><span class="mh-tag__id">8</span><span class="mh-badge mh-t-danger">Düşman</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="45"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="0"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 31 · 40 M</div></div>
 </div>
@@ -17,7 +17,7 @@ Aynı etiket, renk ilişkiyi söyler: is-friend, is-enemy, nötr (sınıfsız), 
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--compact is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--compact is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--compact"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
@@ -33,7 +33,7 @@ mh-tag--compact: rozet ve alt satır gizli, ad 13px, bar 56px. Kalabalık sahnel
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--compact is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--compact is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="30"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--compact mh-t-team2"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="95"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
@@ -45,7 +45,7 @@ variant: hp. Bar yerine ad yanında büyük can sayısı; hızlı okunur, az yer
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--hp is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span><span class="mh-tag__hp">100</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--hp is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span><span class="mh-tag__hp">37</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 </div>
@@ -56,7 +56,7 @@ Can barının altına mh-pips (data-pips=&quot;dolu/toplam&quot;): zırh plakas�
 JS: `MH.pips(el.querySelector('.mh-pips'), 2, 3)`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag is-friend"><div class="mh-tag__line"><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="90"><i class="mh-bar__fill"></i></div></div><div class="mh-pips mh-t-armor" data-pips="2/3"></div></div>
 <div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="60"><i class="mh-bar__fill"></i></div></div><div class="mh-pips mh-t-armor" data-pips="1/4"></div></div>
 </div>
@@ -67,7 +67,7 @@ level: adın önünde tonlu seviye kutusu; clan: [KLAN] öneki. RPG ve sunucu kl
 JS: `MH.Nametags(world).update([{ id, x, y, name, level: 42, clan: 'SE' }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag is-friend"><div class="mh-tag__line"><span class="mh-tag__lvl">42</span><span class="mh-tag__clan">[SE]</span><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Stream Ember</div></div>
 <div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__lvl">17</span><span class="mh-tag__clan">[NV]</span><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="55"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Night Viper</div></div>
 </div>
@@ -78,7 +78,7 @@ variant: plate. Panel zemin, üstte ilişki rengi çizgisi; açık ve karışık
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--plate is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 38 · 24 M</div></div>
 <div class="mh-tag mh-tag--plate is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="40"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="10"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 31 · 40 M</div></div>
 </div>
@@ -89,7 +89,7 @@ variant: flag. Solda tonlu şerit, sola yaslı degrade zemin. Takım HUD hissi.
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--flag is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span><span class="mh-tag__id">1</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">24 M</div></div>
 <div class="mh-tag mh-tag--flag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span><span class="mh-tag__id">7</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="50"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">40 M</div></div>
 <div class="mh-tag mh-tag--flag mh-t-team3"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">55 M</div></div>
@@ -101,7 +101,7 @@ variant: pill. Tek satır kapsül: avatar, ad, kısa can çizgisi. Avatar için 
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--pill is-friend"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">AR</span><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--pill is-enemy"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">T</span><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="40"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--pill mh-t-team2"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">NM</span><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
@@ -113,7 +113,7 @@ variant: card. Solda büyük avatar, sağda seviye + ad + bar. Yakın plan, lobi
 JS: `MH.bar(el.querySelector('.mh-bar'), hp)`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--card is-friend"><span class="mh-avatar mh-avatar--round">AR</span><div class="mh-tag__body"><div class="mh-tag__line"><span class="mh-tag__lvl">42</span><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="85"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="60"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Stream Ember · 12 M</div></div></div>
 <div class="mh-tag mh-tag--card is-enemy"><span class="mh-avatar mh-avatar--round">NV</span><div class="mh-tag__body"><div class="mh-tag__line"><span class="mh-tag__lvl">17</span><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="35"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="0"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Night Viper · 30 M</div></div></div>
 </div>
@@ -124,7 +124,7 @@ variant: line. Yalnız ad ve altında 2px can çizgisi, kutu yok. Minimal, sinem
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--line is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--line is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="30"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--line mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
@@ -136,7 +136,7 @@ variant: glow. İnce tonlu çerçeve ve ışıma; arena ve e-spor modları.
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--glow mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div></div>
 <div class="mh-tag mh-tag--glow is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div></div>
 <div class="mh-tag mh-tag--glow mh-t-team3"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div></div>
@@ -148,7 +148,7 @@ variant: banner. Eğik, ilişki renginde dolu şerit, koyu ad. Dalga ve takım m
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--banner is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span></div></div>
 <div class="mh-tag mh-tag--banner is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div></div>
 <div class="mh-tag mh-tag--banner mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div></div>
@@ -161,7 +161,7 @@ variant: bracket. Dört köşe işaretli yarı saydam kutu; hedef çerçevesi gi
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--bracket is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="60"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">40 M</div></div>
 <div class="mh-tag mh-tag--bracket is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">24 M</div></div>
 </div>
@@ -172,7 +172,7 @@ variant: bar. Ad gizli, sadece can/zırh barı. Düşman kalabalıkları, NPC s�
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--bar is-enemy"><div class="mh-tag__line"></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="90"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--bar is-enemy"><div class="mh-tag__line"></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="45"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="0"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--bar is-friend"><div class="mh-tag__line"></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="70"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
@@ -184,7 +184,7 @@ variant: pointer. Altında renkli elmas; etiketin hangi kişiyi gösterdiği bel
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--pill mh-tag--pointer is-friend"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">AR</span><span class="mh-tag__name">AmiralRouter</span></div></div>
 <div class="mh-tag mh-tag--line mh-tag--pointer is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div></div>
 <div class="mh-tag mh-tag--banner mh-tag--pointer mh-t-team2"><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div></div>
@@ -196,7 +196,7 @@ Bölük/ekip sırası: adın önünde numara kutusu (mh-tag__num). Battle royale
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--compact mh-t-team1"><div class="mh-tag__line"><span class="mh-tag__num">1</span><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--compact mh-t-team2"><div class="mh-tag__line"><span class="mh-tag__num">2</span><span class="mh-tag__name">Router</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
 <div class="mh-tag mh-tag--compact mh-t-team3"><div class="mh-tag__line"><span class="mh-tag__num">3</span><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div></div></div>
@@ -209,7 +209,7 @@ role: üstte küçük rol yazısı (POLİS, SAĞLIK, ŞERİF…). Meslekli RP su
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--plate mh-t-info"><div class="mh-tag__role">Polis</div><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__sub">Memur · 24 M</div></div>
 <div class="mh-tag mh-tag--plate mh-t-success"><div class="mh-tag__role">Sağlık</div><div class="mh-tag__line"><span class="mh-tag__name">Thi</span></div><div class="mh-tag__sub">Doktor · 18 M</div></div>
 <div class="mh-tag mh-tag--plate is-enemy"><div class="mh-tag__role">Haydut</div><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__sub">Aranıyor · 40 M</div></div>
@@ -221,7 +221,7 @@ Ad altında aranma yıldızları (mh-wanted, i.on dolu). Polis kovalamaca ve RP 
 JS: `star.classList.toggle('on', i < level)`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div><div class="mh-wanted"><i class="mh-i on" data-i="star-f"></i><i class="mh-i on" data-i="star-f"></i><i class="mh-i on" data-i="star-f"></i><i class="mh-i" data-i="star-f"></i><i class="mh-i" data-i="star-f"></i></div></div>
 </div>
 ```
@@ -231,7 +231,7 @@ variant: race. Solda sıra kutusu (mh-tag__pos), yanında ad. Yarış, sürüş 
 JS: `el.querySelector('.mh-tag__pos').textContent = 'P' + pos`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--race mh-t-gold"><span class="mh-tag__pos">P1</span><div class="mh-tag__line"><span class="mh-tag__name">AmiralRouter</span></div></div>
 <div class="mh-tag mh-tag--race mh-t-silver"><span class="mh-tag__pos">P2</span><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div></div>
 <div class="mh-tag mh-tag--race is-enemy"><span class="mh-tag__pos">P7</span><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div></div>
@@ -243,7 +243,7 @@ variant: vip. Üstte KORU şeridi, altın ad. Eskort, kral koruma ve konvoy gör
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--vip"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="70"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Konvoy · 60 M</div></div>
 </div>
 ```
@@ -253,7 +253,7 @@ variant: boss. Büyük başlık fontu, 200px kalın bar. Öne çıkan tek hedef.
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--boss is-enemy"><div class="mh-tag__role">Boss</div><div class="mh-tag__line"><span class="mh-tag__name">Vinh Komutan</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-health" data-v="72"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="30"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">SVY 60 · 3 faz</div></div>
 </div>
 ```
@@ -263,7 +263,7 @@ variant: npc. Sade, yumuşak; konuşulabilir karakter. İkon etkileşimi söyler
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--npc mh-tag--line"><div class="mh-tag__line"><i class="mh-i" data-i="chat"></i><span class="mh-tag__name">Satıcı Thi</span></div><div class="mh-tag__sub">Konuşmak için E</div></div>
 <div class="mh-tag mh-tag--npc mh-tag--line"><div class="mh-tag__line"><i class="mh-i" data-i="cash"></i><span class="mh-tag__name">Bankacı Router</span></div><div class="mh-tag__sub">Konuşmak için E</div></div>
 </div>
@@ -274,31 +274,9 @@ variant: viewer. Avatar halkalı kapsül, seviye, hediye/takipçi bilgisi. TikTo
 JS: `MH.Nametags(world).update([{ id, x, y, name, avatar, level, variant: 'viewer', sub }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--viewer mh-t-accent"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">NM</span><span class="mh-tag__lvl">24</span><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__sub">🌹 ×12</div></div>
 <div class="mh-tag mh-tag--viewer mh-t-legendary"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">T</span><span class="mh-tag__lvl">8</span><span class="mh-tag__name">Thi</span></div><div class="mh-tag__sub">Takipçi</div></div>
-</div>
-```
-
-## tags.frontier-sign — Western levha
-variant: frontier. Koyu tahta zemin, pirinç çerçeve. RDR2/RedM modları; frontier temasıyla en uyumlusu.
-JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
-
-```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--frontier is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__sub">Valentine · 24 M</div></div>
-<div class="mh-tag mh-tag--frontier is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__sub">Kanun kaçağı</div></div>
-</div>
-```
-
-## tags.bounty — Ödül etiketi
-variant: bounty. Kâğıt yaftası: ad ve ödül tutarı. Western ödül avı.
-JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
-
-```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
-<div class="mh-tag mh-tag--bounty"><div class="mh-tag__line"><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__sub">$500 · ARANIYOR</div></div>
-<div class="mh-tag mh-tag--bounty"><div class="mh-tag__line"><span class="mh-tag__name">Vinh</span></div><div class="mh-tag__sub">$1.200 · ÖLÜ YA DA DİRİ</div></div>
 </div>
 ```
 
@@ -307,7 +285,7 @@ variant: far. Uzak mesafede sönük, yalnız ad + mesafe. alpha/scale zaten mesa
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--far is-friend"><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div><div class="mh-tag__sub">180 M</div></div>
 <div class="mh-tag mh-tag--far is-enemy"><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div><div class="mh-tag__sub">210 M</div></div>
 </div>
@@ -318,7 +296,7 @@ JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }
 JS: `MH.Nametags(world).update([{ id, x, y, name, tone, health, armor, variant }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--pill is-friend"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">NM</span><span class="mh-tag__name">NabeMedia</span><span class="mh-tag__more">+3</span></div></div>
 <div class="mh-tag mh-tag--pill is-enemy"><div class="mh-tag__line"><span class="mh-avatar mh-avatar--round">V</span><span class="mh-tag__name">Vinh</span><span class="mh-tag__more">+5</span></div></div>
 </div>
@@ -329,7 +307,7 @@ Herhangi bir biçime eklenir: is-talking (yeşil + mikrofon), is-typing (…), i
 JS: `MH.Nametags(world).update([{ id, x, y, name, talking, typing, leader, afk, dead }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag mh-tag--flag is-talking is-friend"><div class="mh-tag__line"><span class="mh-tag__voice"><i class="mh-i" data-i="mic"></i></span><span class="mh-tag__name">Amiral</span></div><div class="mh-tag__sub">Konuşuyor</div></div>
 <div class="mh-tag mh-tag--flag is-typing is-friend"><div class="mh-tag__line"><span class="mh-tag__name">Router</span></div><div class="mh-tag__sub">Yazıyor</div></div>
 <div class="mh-tag mh-tag--flag is-leader is-friend"><div class="mh-tag__line"><span class="mh-tag__name">StreamEmber</span></div><div class="mh-tag__sub">Ekip lideri</div></div>
@@ -344,7 +322,7 @@ is-down: kırmızı, yanıp sönen ad; bar kalan kanama süresi, alt satır kald
 JS: `MH.Nametags(world).update([{ id, x, y, name, down: true, health: bleed }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag is-down is-friend"><div class="mh-tag__line"><i class="mh-i" data-i="revive"></i><span class="mh-tag__name">AmiralRouter</span></div><div class="mh-tag__bars"><div class="mh-bar mh-t-danger" data-v="40"><i class="mh-bar__fill"></i></div></div><div class="mh-tag__sub">Kaldır: E basılı tut</div></div>
 </div>
 ```
@@ -354,7 +332,7 @@ bubble: etiketin üstünde kısa sohbet metni (yayıncı/izleyici mesajı); 220p
 JS: `MH.Nametags(world).update([{ id, x, y, name, bubble: 'Merhaba' }])`
 
 ```html
-<div class="mh-flex" style="gap:26px;align-items:flex-end">
+<div class="mh-flex mh-gap-5 mh-items-end">
 <div class="mh-tag is-friend"><div class="mh-tag__bubble">Merhaba! Yardıma geliyorum.</div><div class="mh-tag__line"><span class="mh-tag__name">NabeMedia</span></div></div>
 <div class="mh-tag is-enemy"><div class="mh-tag__bubble">Köprüde buluşalım</div><div class="mh-tag__line"><span class="mh-tag__name">Nguyen</span></div></div>
 </div>

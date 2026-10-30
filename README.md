@@ -3,78 +3,74 @@
 [![jsDelivr](https://img.shields.io/badge/CDN-jsDelivr%20gh-f5b83d)](https://www.jsdelivr.com/package/gh/StreamEmber/mhud)
 [![license](https://img.shields.io/badge/license-MIT-f5b83d)](LICENSE)
 
-Oyun modları ve canlı yayın overlay'leri için temalı, bağımlılıksız HUD ve arayüz kiti (NUI, OBS tarayıcı kaynağı, HTML5).
-Aynı HTML dört temaya bürünür: `modern`, `tactical` (GTA V dili), `frontier` (RDR2 western HUD), `oldwest` (kâğıt-mürekkep).
+StreamEmber oyun modları (overlay: GTA V, RDR2), OBS tarayıcı kaynakları ve HTML5 oyunlar için **tek görünümlü**, bağımlılıksız HUD ve arayüz kiti.
+Tam ekran menüler HTML yazılarak değil **veriyle** kurulur (`MH.Menu`). Oyuna göre değişen tek şey vurgu rengidir.
 
 **Galeri:** https://streamember.github.io/mhud/  ·  **Yapay zeka için kılavuz:** [`AI.md`](AI.md)
 
 ## Kurulum
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.css">
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.js"></script>
-<body class="mh" data-mh-theme="modern"> … <script>MH.mount(document.body);</script>
-```
-
-Her zaman tam sürüm yazın (`@latest` güncellemede görünümü habersizce değiştirir). Oyun içi NUI'de CDN yerine `dist/` klasörünü (fontlarla) resource'a kopyalayın.
-
-Dosyalar doğrudan GitHub deposundan, jsDelivr'in `gh` yolu ile gelir (npm kullanılmaz): `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v<sürüm>/<yol>`. `dist/` her sürüm etiketinde depoya girer; `dist/mhud.css` (açık), `dist/mhud.min.css`, `dist/mhud.js`, `dist/mhud.min.js` (`window.MH`), `dist/fonts/`. Etiketsiz `@main` önbelleğe alınır ve sürüm dışı değişir, üretimde kullanmayın.
-
-## Kullanım
-
-Bir bileşen = sınıflar + isteğe bağlı `MH.*` çağrısı. Tema tek öznitelik (`data-mh-theme`), bileşen kodu değişmez.
-Bileşenler ailelere ayrılır; her varyantın HTML'i ve güncelleme çağrısı galeride görünür ve `ai/<aile>.md` dosyalarındadır:
-
-| Aile | Varyant | İçerik |
-|---|---|---|
-| [Barlar](ai/bars.md) | 18 | Can dışındaki bütün ilerleme/doluluk çubukları: boss ve elit, dalga, hedef, meydan okuma, XP, kanal/yeniden doldurma, ele geçirme, ipi çeken iki taraf, tehdit ölçeri, yükleme |
-| [Temel parçalar](ai/base.md) | 14 | Her yerde kullanılan yapı taşları: panel, düğme, rozet, çip, tuş ipucu, form alanları, sekme, tablo, avatar |
-| [Savaş ve dünya](ai/combat.md) | 13 | Nişangâh, vuruş geri bildirimi, hedef kilidi, tur skoru, nokta ele geçirme, etkileşim istemleri, diyalog |
-| [Ekonomi ve durum](ai/economy.md) | 12 | Para, aranma/ödül, saat ve hava, seviye ve XP, etki simgeleri, seri, sıralama |
-| [Grafik ve ilerleme](ai/extras.md) | 10 | Küçük grafikler, ilerleme çizgisi, seri, meydan okuma, etkinlik/maç satırı, başarı, hediye haritası |
-| [Bildirim ve akış](ai/feed.md) | 12 | Ekrana kısa süre düşen JS bileşenleri: toast, ölüm akışı, hediye, duyuru, görev şeridi, seviye atlama, başarım, eşya alma, geri sayım, altyazı, ilerleme |
-| [Ekip](ai/crew.md) | 15 | Yapay zekâ ekibi / oyuncu takımı: kare portre, üye kartı, kompakt satır, kutucuklar, durum rozetleri, emir çubuğu, binek durumu, üye ayrıntısı, ekip tablosu, işaretli hedefler, ses ve bağlantı |
-| [Ekipman](ai/gear.md) | 9 | Silah ve cephane, yuva şeridi, envanter ızgarası, teçhizat ve kıyafet yuvaları, silah bakımı, mermi türleri, karşılaştırma |
-| [Konum ve yön](ai/location.md) | 10 | Pusula, minimap çerçevesi, sokak/bölge, yön çipi, koordinat, hedef işaretleri |
-| [Menü ve ekranlar](ai/menu.md) | 14 | Menü kabuğu (3 ve 2 sütun), kart, klasik menü, bağlam menüsü, modal, ayar satırı, envanter ızgarası, skor tablosu, podyum, ölüm/yeniden doğma ekranı, yükleme |
-| [Mağaza ve satın alma](ai/shop.md) | 13 | Sabit oranlı görselli ürün kutucuğu (ikon, silah çizimi ya da img), gruplu ızgara, liste, yatay şerit, mini ızgara, kategoriler, fiyat durumları, adet, satın alma paneli, sepet, tuş listesi |
-| [Basılı nesneler](ai/print.md) | 7 | Kağıt/tabela hissi veren dünya nesneleri (frontier ve oldwest temalarında en iyi görünür): arananlar afişi, telgraf, gazete, defter, bilet, tabela, damga |
-| [Yayın ve izleyici](ai/stream.md) | 11 | Yayıncı ekranı parçaları: durum şeridi, istatistik kartı, seviye halkası, galibiyet/mağlubiyet, izleyici oylaması, olay kuyruğu, liderlik, canlı sayaçlar, komut listesi, yayıncı kartı |
-| [Hayatta kalma ve mod](ai/survival.md) | 11 | Dalga/sürü uyarısı, özel düşman, silah yuvaları, kurtarma sayacı, canlandırma, takım yaşam kartları, alan daralması, gün sayacı, izleyici modu |
-| [İsim etiketleri](ai/tags.md) | 31 | Oyuncu/NPC başında görünen etiketler |
-| [Araç ve binek](ai/vehicle.md) | 6 | Hız kadranı, kompakt hız, yakıt/motor ölçerleri, gösterge lambaları, halka ölçer ve at (binek) paneli |
-| [Yaşam göstergeleri](ai/vitals.md) | 30 | Can, zırh, stamina, dayanıklılık gibi 0-100 arası değerler |
-
-Bunlara ek olarak `MH.*` ile kullanılan API'ler (bildirim akışı, `MH.Nametags`, `MH.Markers`, `MH.Social`, radyal menü, onay/seçim pencereleri) `AI.md`'de ve ilgili ailede anlatılır. Site (`npm run site` ile üretilen statik HTML) sol menüde önce **Sunumlar**ı (`pages/`: bileşenler bir arada, gerçek sahne üstünde) sonra **Bileşenler**i (`components/<aile>.html`: her varyant ayrı kartta, HTML'i ve AI kimliğiyle) listeler; sağ panel tema, vurgu rengi, sahne ve görünüm seçeneklerini tutar. Sayfalar kiti jsDelivr'den yükler.
-
-### Yapay zeka ile kullanım
-
-Yapay zekaya yalnız `AI.md` adresini verin (`https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/AI.md`): kurulum, tema kuralları ve varyant dizinini içerir; yapay zeka dizinden varyantı seçer, yalnız o ailenin dosyasını açar, kaynak kodu okumaz.
-
-### Hızlı örnek
-
-```html
-<body class="mh" data-mh-theme="frontier">
-  <div class="mh-screen"><div class="mh-anchor mh-bl">
-    <div class="mh-strip mh-t-health"><i data-i="heart"></i><div class="mh-bar mh-bar--md mh-bar--tip" data-v="82"><i class="mh-bar__fill"></i></div><b>82</b></div>
-  </div></div>
-  <script>MH.mount(document.body); MH.toast({ title: 'Hoş geldin' });</script>
+<html class="mh-overlay">  <!-- yalnız oyun overlay'inde -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
+<body class="mh" data-mh-accent="mint">
+  <div class="mh-screen"> … </div>
+  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
 </body>
 ```
 
-Temayı değiştirmek için yalnız `data-mh-theme` değişir (`MH.theme('tactical')`); vurgu rengi `data-mh-accent`.
+Her zaman tam sürüm yazın (`@latest` / `@main` görünümü habersizce değiştirir). Tam sayfa iskeleti ve oyun köprüsü: [`AI.md`](AI.md#sayfa-iskeleti-overlay-modu).
+
+## Kullanım
+
+Bir bileşen = katalogdaki HTML + isteğe bağlı `MH.*` çağrısı. Menü:
+
+```js
+var menu = MH.Menu({
+  title: 'Mod menüsü', post: 'menu',
+  sections: [
+    { id: 'inv', label: 'Envanter', icon: 'backpack', view: 'list', items: [{ id: 'medkit', title: 'İlk yardım', icon: 'first-aid' }] },
+    { id: 'set', label: 'Ayarlar', icon: 'settings', view: 'settings', fields: [{ id: 'scale', label: 'HUD ölçeği', type: 'slider', value: 100, unit: '%' }] }
+  ]
+});
+MH.on('menu', function (d) { d.open ? menu.open() : menu.close(); });   // oyun → sayfa
+// her eylem MH.post('menu', { action, section, id, value }) ile oyuna gider
+```
+
+| Aile | İçerik |
+|---|---|
+| [Menü ve ekranlar](ai/menu.md) | `MH.Menu` (veriyle tam ekran menü), onay / seçim / tutar / metin pencereleri, bağlam ve radyal menü, skor tablosu, podyum, ölüm / sonuç / yükleme ekranı |
+| [Yaşam göstergeleri](ai/vitals.md) | Can, zırh, stamina, ihtiyaç halkaları |
+| [Barlar](ai/bars.md) | Boss, dalga, hedef, XP, kanal, ele geçirme, tehdit, yükleme |
+| [İsim etiketleri](ai/tags.md) | Oyuncu / NPC başı etiketleri (`MH.Nametags`) |
+| [Ekonomi ve durum](ai/economy.md) | Para, aranma, saat-hava, seviye, etkiler, seri |
+| [Ekipman](ai/gear.md) | Silah, cephane, yuva şeridi, envanter ızgarası, teçhizat |
+| [Ekip](ai/crew.md) | Portre, üye kartı, kompakt satır, emir çubuğu, binek |
+| [Mağaza](ai/shop.md) | Ürün kutucuğu, gruplu ızgara, satın alma paneli, sepet |
+| [Konum ve yön](ai/location.md) | Pusula, minimap çerçevesi, işaretçi, hedef oku |
+| [Araç](ai/vehicle.md) | Hız göstergesi, yakıt, lambalar |
+| [Bildirim ve akış](ai/feed.md) | Toast, ölüm akışı, duyuru, altyazı, sohbet, kayan şerit |
+| [Savaş ve dünya](ai/combat.md) | Nişangâh, vuruş, hasar yönü, kırmızı kenar, yüzen hasar, görev takibi, diyalog |
+| [Yayın ve izleyici](ai/stream.md) | Oylama, canlı sayaç, hediye, kare / dikey kırpma |
+| [Hayatta kalma](ai/survival.md) | Sürü, canlandırma, ganimet, beceri kontrolü |
+| [Grafik ve ilerleme](ai/extras.md) | Grafikler, istatistik panosu, etkinlik, maç geçmişi |
+| [Temel parçalar](ai/base.md) | Panel, düğme, rozet, alan, tablo, sekme, yardımcı sınıflar |
+
+### Yapay zeka ile kullanım
+
+Yapay zekaya yalnız `AI.md` adresini verin: `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/AI.md`. Altın kuralları, sayfa iskeletini, ihtiyaç → bileşen tablosunu ve tam API dizinini içerir; yapay zeka ilgili ailenin dosyasını açar, kaynak kodu okumaz.
+Yapılan sayfayı denetlemek için: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/tools/lint.mjs && node lint.mjs web/`.
 
 ## Geliştirme
 
 ```bash
 npm install      # yalnız geliştirme araçları (esbuild)
 npm run ai       # catalog/ -> AI.md + ai/*.md
-npm run site     # build + ai + statik site (_site/: genel bakış, pages/, components/); kit jsDelivr'den
-npm run dev      # aynısı, ama sayfalar yerel dist/'i kullanır (yayınlanmamış değişiklikleri görmek için)
+npm run audit    # görünmeyen sınıf, belgesiz API, sunumda olmayan varyant
+npm run site     # build + ai + statik site (_site/); kit jsDelivr'den
+npm run dev      # aynısı, ama sayfalar yerel dist/'i kullanır
 npm run serve    # site: http://localhost:5173
 npm run icons    # kit/js/mhud-icons.js'i yeniden üret
 ```
 
-**Sürüm yayınlamak:** `CHANGELOG.md`'yi güncelle, `npm version <x.y.z> -m "v%s"` (sürümü her yere yazar, `dist/`'i derleyip commit'e ekler), `git push --follow-tags`.
-`v*` etiketi jsDelivr adresini (`@v<x.y.z>`) hemen kullanılabilir yapar; GitHub Actions bir GitHub Release açar. `main`'e her itme galeriyi GitHub Pages'e yayınlar (https://streamember.github.io/mhud/).
-Geliştirme kuralları: [`AGENTS.md`](AGENTS.md).
+**Sürüm yayınlamak:** `CHANGELOG.md`'yi güncelle, `npm version <x.y.z> -m "release: v%s"`, `git push --follow-tags`. Geliştirme kuralları: [`AGENTS.md`](AGENTS.md).

@@ -10,7 +10,7 @@ export const { version } = JSON.parse(await readFile(path.join(root, 'package.js
 export const CDN = `https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v${version}/`;
 
 const cssFiles = [];
-for (const d of ['kit/css', 'kit/css/themes']) for (const f of await readdir(path.join(root, d))) if (f.endsWith('.css')) cssFiles.push(path.join(root, d, f));
+for (const d of ['kit/css']) for (const f of await readdir(path.join(root, d))) if (f.endsWith('.css')) cssFiles.push(path.join(root, d, f));
 const css = (await Promise.all(cssFiles.map(f => readFile(f, 'utf8')))).join('\n');
 export const known = new Set(css.match(/\.mh-[a-z0-9_-]+/g).map(c => c.slice(1)));
 

@@ -154,6 +154,10 @@
 .mh-match:last-child { border-bottom: 0; }
 .mh-match small { color: var(--mh-text-3); }
 .mh-match b { font-family: var(--mh-font-num); font-variant-numeric: tabular-nums; }
+.mh-match > div > b { font-family: var(--mh-font-ui); }
+.mh-match__res { width: 24px; height: 24px; display: grid; place-items: center; border-radius: var(--mh-r-1, 4px); font-size: 12px; font-weight: 700; background: var(--mh-raise-3); color: var(--mh-text); }
+.mh-match__res.is-win { background: var(--mh-success); color: var(--mh-surface-solid); }
+.mh-match__res.is-loss { background: var(--mh-danger); color: #fff; }
 .mh-achieve { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 10px; }
 .mh-achieve > .mh-i { grid-row: span 2; width: 30px; height: 30px; padding: 6px; border-radius: 50%; color: rgb(var(--mh-gold-rgb)); background: rgb(var(--mh-gold-rgb) / .14); }
 .mh-achieve.is-locked > .mh-i { color: var(--mh-text-3); background: var(--mh-raise-2); }

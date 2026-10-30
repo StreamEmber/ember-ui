@@ -1,4 +1,4 @@
-# Her push ve PR'da: bağımlılıkları kur, derle, AI kılavuzu, sürüm ve sunum kapsamını doğrula.
+# Her push ve PR'da: bağımlılıkları kur, derle, AI kılavuzu, sürüm, sunum kapsamı ve görünürlük denetimini doğrula.
 name: CI
 
 on:
@@ -29,3 +29,5 @@ jobs:
           grep -q "version: '$V'" kit/js/mhud.js || { echo "::error::kit/js/mhud.js sürümü $V değil (npm run version)"; exit 1; }
       - name: Her varyant bir sunum sayfasında mı
         run: node tools/coverage.mjs
+      - name: Yapay zekâya görünmeyen sınıf / belgesiz API var mı
+        run: node tools/audit.mjs

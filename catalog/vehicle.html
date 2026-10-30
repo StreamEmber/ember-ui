@@ -28,7 +28,7 @@
 </section>
 
 <section data-id="fuel-ring" data-title="Halka ölçer" data-use="Ortasında ikon olan halka: yakıt, pil, nitro. Dar yer için gauges yerine." data-js="MH.ring(el, 0.64)">
-<div class="mh-flex" style="gap:12px">
+<div class="mh-flex mh-gap-3">
   <div class="mh-ringval mh-t-warn" data-mh-ring style="--v:.64"><i data-i="gas"></i></div>
   <div class="mh-ringval mh-t-success" data-mh-ring style="--v:.92"><i data-i="battery"></i></div>
   <div class="mh-ringval mh-t-info" data-mh-ring style="--v:.4"><i data-i="flame"></i></div>
@@ -36,7 +36,7 @@
 </section>
 
 <section data-id="lamps" data-title="Gösterge lambaları" data-use="Emniyet kemeri, far, kilit, arıza: on yanık, is-warn kırmızı yanıp söner; ton --tone-rgb ile." data-js="el.classList.toggle('on')">
-<div class="mh-flex" style="gap:8px">
+<div class="mh-flex mh-gap-2">
   <span class="mh-lamp on"><i data-i="user-shield"></i></span>
   <span class="mh-lamp on" style="--tone-rgb:var(--mh-info-rgb)"><i data-i="sun"></i></span>
   <span class="mh-lamp"><i data-i="lock"></i></span>
@@ -44,16 +44,3 @@
 </div>
 </section>
 
-<section data-id="mount" data-title="Binek paneli" data-use="At için: ad, bağ seviyesi elmasları, can ve dayanıklılık çekirdekleri. Ana tema frontier/oldwest." data-js="MH.core(el.querySelector('.mh-core'), { value: 90, core: 80 })">
-<div class="mh-mount">
-  <div class="mh-mount__info" style="align-items:flex-end">
-    <span class="mh-kicker">Binek</span>
-    <span class="mh-mount__name">Boadicea</span>
-    <div class="mh-mount__bond"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-  </div>
-  <div class="mh-cores">
-    <div class="mh-core mh-t-health" data-mh-ring style="--v:.9;--core:.8"><span class="mh-core__fill"></span><i data-i="horse"></i></div>
-    <div class="mh-core mh-t-stamina" data-mh-ring style="--v:.7;--core:.6"><span class="mh-core__fill"></span><i data-i="horseshoe"></i></div>
-  </div>
-</div>
-</section>

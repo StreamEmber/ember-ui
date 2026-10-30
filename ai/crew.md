@@ -2,11 +2,11 @@
 Yapay zekâ ekibi ya da oyuncu takımı: üye kartı, kompakt satır, alt şerit kutucukları, durum rozetleri, emir çubuğu, binek durumu, üye ayrıntısı, ekip tablosu, işaretli hedefler, ekip halkaları, ses ve bağlantı. Portreler karedir (.mh-portrait); halka içinde avatar yuvarlaklaşır.
 
 ## crew.portrait — Portre
-Kare portre alanı: harf, ikon (rol) ya da img. --s boyut; ton mh-t-team1..5 ya da mh-t-*. Köşe rozeti .mh-portrait__badge (binek, lider…). Halka içine konmaz; can için yanına bar koy.
+Kare portre alanı: harf, ikon (rol) ya da img. --s boyut; ton mh-t-team1..5 ya da mh-t-*. Köşe rozeti .mh-portrait__badge (binek, lider…). Halka içine konmaz; can için yanına bar koy. Boy: mh-portrait--lg, mh-portrait--xl.
 JS: `—`
 
 ```html
-<div class="mh-flex" style="gap:10px">
+<div class="mh-flex mh-gap-2">
   <span class="mh-portrait mh-t-team1">AR</span>
   <span class="mh-portrait mh-t-team2"><i data-i="medic"></i><span class="mh-portrait__badge"><i data-i="horse"></i></span></span>
   <span class="mh-portrait mh-t-team3" style="--s:56px"><i data-i="cowboy"></i><span class="mh-portrait__badge"><i data-i="crown-f"></i></span></span>
@@ -70,7 +70,7 @@ JS: `MH.bar(el.querySelector('.mh-bar'), 40)`
 JS: `—`
 
 ```html
-<div class="mh-flex" style="gap:6px;flex-wrap:wrap;max-width:420px">
+<div class="mh-flex mh-gap-1" style="flex-wrap:wrap;max-width:420px">
   <span class="mh-badge mh-t-info"><i data-i="route"></i>Takip ediyor</span>
   <span class="mh-badge mh-t-danger"><i data-i="crosshair"></i>Saldırıyor</span>
   <span class="mh-badge mh-t-warn"><i data-i="hourglass"></i>Bekliyor</span>
@@ -160,7 +160,7 @@ JS: `MH.bar(el.querySelector('.mh-bar'), 54)`
 <div class="mh-party">
   <div class="mh-member is-talking">
     <span class="mh-avatar mh-avatar--sm mh-t-team1">N</span>
-    <div class="mh-member__name"><i data-i="crown-f" style="color:var(--mh-warn)"></i><span>NabeMedia</span></div>
+    <div class="mh-member__name"><i data-i="crown-f" class="mh-tone mh-t-warn"></i><span>NabeMedia</span></div>
     <span class="mh-member__dist">24 m</span>
     <div class="mh-member__bars"><div class="mh-bar mh-t-health" data-v="86"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-armor" data-v="40"><i class="mh-bar__fill"></i></div></div>
   </div>
@@ -178,7 +178,7 @@ Yan yana avatarlar, çevresinde can halkası. Çok oyunculu ekipte en az yer tut
 JS: `MH.ring(el, 0.8)`
 
 ```html
-<div class="mh-flex" style="gap:8px">
+<div class="mh-flex mh-gap-2">
   <div class="mh-ringval mh-t-health" data-mh-ring style="--v:.86;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team1">N</span></div>
   <div class="mh-ringval mh-t-health" data-mh-ring style="--v:.54;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team2">M</span></div>
   <div class="mh-ringval mh-t-danger" data-mh-ring style="--v:.12;width:40px;height:40px"><span class="mh-avatar mh-avatar--sm mh-t-team3">S</span></div>
@@ -190,7 +190,7 @@ Ses menzili çubukları (is-talking konuşurken yeşil) ve konuşanlar listesi; 
 JS: `el.classList.toggle('is-talking')`
 
 ```html
-<div class="mh-col mh-gap-2" style="align-items:flex-start">
+<div class="mh-col mh-gap-2 mh-items-start">
   <div class="mh-voice-range is-talking"><span class="mh-voice-range__bars"><i class="on"></i><i class="on"></i><i></i></span><span>Normal</span><span class="mh-eq"><i></i><i></i><i></i><i></i></span></div>
   <div class="mh-voice">
     <div class="mh-speaker"><i data-i="mic-f"></i>NabeMedia<span class="mh-eq"><i></i><i></i><i></i><i></i></span></div>
@@ -204,7 +204,7 @@ JS: `el.classList.toggle('is-talking')`
 JS: `el.classList.add('is-bad')`
 
 ```html
-<div class="mh-flex" style="gap:18px"><span class="mh-ping"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-mid"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-bad"><i></i><i></i><i></i><i></i></span></div>
+<div class="mh-flex mh-gap-4"><span class="mh-ping"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-mid"><i></i><i></i><i></i><i></i></span><span class="mh-ping is-bad"><i></i><i></i><i></i><i></i></span></div>
 ```
 
 ## crew.teamhead — Takım başlığı

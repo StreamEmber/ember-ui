@@ -1,6 +1,6 @@
 <!-- family: Yayın ve izleyici | Yayıncı ekranı parçaları: durum şeridi, istatistik kartı, galibiyet/mağlubiyet, izleyici oylaması, olay kuyruğu, liderlik, canlı sayaçlar, komut listesi, yayıncı kartı. -->
 
-<section data-id="statbar" data-title="Durum şeridi" data-use="Yatay istatistik çipleri: ikon + büyük sayı + etiket. Ton mh-t-*; sayının yanına <small> ile /100 gibi ek." data-js="chip.querySelector('b').textContent = v">
+<section data-id="statbar" data-title="Durum şeridi" data-use="Yatay istatistik çipleri: ikon + büyük sayı + etiket (seviye, can, öldürme…). Ton mh-t-*; sayının yanına <small> ile /100 gibi ek; mh-statbar--lg büyütür. Sayıya (b) data-stat=&quot;kills&quot; verirsen MH.stat günceller." data-js="MH.stat(root, 'kills', 12)">
 <div class="mh-statbar"> <div class="mh-chip-stat mh-t-accent"><i data-i="xp"></i><b>24</b><span>Seviye</span></div> <div class="mh-chip-stat mh-t-health"><i data-i="heart"></i><b>82<small>/100</small></b><span>Can</span></div> <div class="mh-chip-stat mh-t-danger"><i data-i="enemy"></i><b>14</b><span>Ekranda</span></div> <div class="mh-chip-stat mh-t-warn"><i data-i="queue"></i><b>37</b><span>Kuyrukta</span></div> <div class="mh-chip-stat"><i data-i="skull"></i><b>3</b><span>Ölüm</span></div> </div>
 </section>
 
@@ -13,7 +13,7 @@
 <div class="mh-panel mh-wl"><div class="mh-wl__score"><b class="w">5</b><i>–</i><b class="l">2</b></div><div class="mh-wl__meta"><span class="mh-kicker">Son maçlar</span><div class="mh-history" data-history="WWLWWLW"></div></div></div>
 </section>
 
-<section data-id="vote" data-wide="1" data-title="İzleyici oylaması" data-use="Soru + süre rozeti + seçenekler. Seçenek: mh-opt, __fill'e --v (0..1) yüzde, __cmd sohbet komutu, __label, __pct. is-leading öndeki, is-winner kazanan." data-js="opt.style.setProperty('--v', .4)">
+<section data-id="vote" data-wide="1" data-title="İzleyici oylaması" data-use="Soru + süre rozeti + seçenekler. Seçenek: mh-opt, __fill'e --v (0..1) yüzde, __cmd sohbet komutu, __label, __pct. is-leading öndeki, is-winner kazanan. Üstte azalan süre çizgisi mh-vote__timer (transform: scaleX)." data-js="opt.style.setProperty('--v', .4)">
 <div class="mh-panel mh-vote" style="--w:420px"> <div class="mh-vote__head"><div><span class="mh-kicker mh-kicker--accent">İzleyici oylaması</span><div class="mh-vote__q">Sonraki olay ne olsun?</div></div><span class="mh-badge mh-t-danger mh-badge--dot mh-badge--live mh-num">0:18</span></div>
 <div class="mh-vote__opts">
 <div class="mh-opt is-leading mh-t-danger"><i class="mh-opt__fill" style="--v:.52"></i><span class="mh-opt__cmd">!1</span><span class="mh-opt__label">Boss geliyor</span><span class="mh-opt__pct">52%</span></div>
@@ -23,14 +23,14 @@
 </section>
 
 <section data-id="queue" data-title="Olay kuyruğu" data-use="Sıradaki olaylar listesi; çalışan satır is-running, ton mh-t-*; sağda süre veya 'sırada'." data-js="—">
-<div class="mh-panel mh-queue" style="--w:340px"> <div class="mh-panel__head" style="padding:10px 14px"><span class="mh-kicker">Olay kuyruğu</span><span class="mh-count" style="margin-left:auto">3</span></div>
+<div class="mh-panel mh-queue" style="--w:340px"> <div class="mh-panel__head"><span class="mh-kicker">Olay kuyruğu</span><span class="mh-count mh-push">3</span></div>
 <div class="mh-queue__item is-running mh-t-danger"><i data-i="skull"></i><span>Boss geliyor · NabeMedia</span><small>0:08</small></div>
 <div class="mh-queue__item mh-t-info"><i data-i="users"></i><span>5 düşman · RAPAFI</span><small>sırada</small></div>
 <div class="mh-queue__item mh-t-success"><i data-i="heart-plus"></i><span>İyileştirme · anonim</span><small>sırada</small></div> </div>
 </section>
 
 <section data-id="leader" data-title="Destekçi sıralaması" data-use="En çok destekleyenler: başlık, satırlar (mh-rank is-1/2/3, avatar, ad, değer)." data-js="—">
-<div class="mh-panel mh-leader" style="--w:300px"> <div class="mh-panel__head" style="padding:10px 14px"><i data-i="crown-f" style="color:rgb(var(--mh-gold-rgb))"></i><span class="mh-kicker">En çok destekleyenler</span></div>
+<div class="mh-panel mh-leader" style="--w:300px"> <div class="mh-panel__head"><i data-i="crown-f" class="mh-tone mh-t-gold"></i><span class="mh-kicker">En çok destekleyenler</span></div>
 <div class="mh-leader__row"><span class="mh-rank is-1">1</span><span class="mh-avatar mh-avatar--sm mh-avatar--round">NM</span><span class="mh-leader__name">NabeMedia</span><span class="mh-leader__val"><i data-i="coin-f"></i>12.400</span></div>
 <div class="mh-leader__row"><span class="mh-rank is-2">2</span><span class="mh-avatar mh-avatar--sm mh-avatar--round">MS</span><span class="mh-leader__name">MSK</span><span class="mh-leader__val"><i data-i="coin-f"></i>8.150</span></div> </div>
 </section>
@@ -44,7 +44,7 @@
 </section>
 
 <section data-id="streamer" data-title="Yayıncı kartı" data-use="Avatar (is-live çerçeve), ad + doğrulama, meta satırı (izleyici, takipçi)." data-js="—">
-<div class="mh-panel mh-streamer"><span class="mh-avatar mh-avatar--lg mh-avatar--round is-live">S</span><div class="mh-col" style="gap:3px"><span class="mh-streamer__name">Serkan_TV <i data-i="circle-check"></i></span><div class="mh-streamer__meta"><span><i data-i="eye"></i>4,2 B</span><span><i data-i="users"></i>128 B takipçi</span></div></div></div>
+<div class="mh-panel mh-streamer"><span class="mh-avatar mh-avatar--lg mh-avatar--round is-live">S</span><div class="mh-col mh-gap-1"><span class="mh-streamer__name">Serkan_TV <i data-i="circle-check"></i></span><div class="mh-streamer__meta"><span><i data-i="eye"></i>4,2 B</span><span><i data-i="users"></i>128 B takipçi</span></div></div></div>
 </section>
 
 <section data-id="likes" data-title="Beğeni yağmuru" data-use="Kalpleri yukarı süzdüren efekt alanı. Kod: bir .mh-likes kutusuna .mh-like (içinde ikon) ekle; kendiliğinden yükselip söner." data-run="1">
@@ -59,4 +59,14 @@ for (var i = 0; i < 8; i++) setTimeout(function () {
   setTimeout(function () { l.remove(); }, 3500);
 }, i * 180);
 setTimeout(function () { box.remove(); }, 4500);
+</section>
+
+<section data-id="gift-hero" data-title="Büyük hediye" data-use="Pahalı hediye için ekran ortası kahraman gösterim: büyük sanat, gönderen, hediye adı, jeton rozeti. Kısa süre sonra kaldır." data-js="—">
+<div class="mh-gift-hero"><div class="mh-gift-hero__art"><span>🪐</span></div><div class="mh-gift-hero__from"><b>NabeMedia</b> gönderdi</div><div class="mh-gift-hero__name">Evren</div><span class="mh-badge mh-t-gold mh-badge--pill">44.999 jeton</span></div>
+</section>
+
+<section data-id="crop" data-title="Kare / dikey yayın kırpması" data-use="Yayın 9:16 ya da 1:1 kırpılınca HUD orta sütuna toplanır. MH.crop('vertical' | 'square' | 'wide', { platform: 'tiktok' }); MH.cropGuide(null, true, 'tiktok') kırpılan alanı ve platform arayüzünü gösterir. Kırpmada gizlenecek öğeye mh-hide-crop / mh-hide-vertical, yalnız kırpmada görünecek öğeye mh-only-crop / mh-only-vertical; dikeyde aşağı itilecek köşeye mh-v-offset (--mh-v-offset)." data-run="1">
+MH.crop('vertical', { platform: 'tiktok' });
+MH.cropGuide(null, true, 'tiktok');
+setTimeout(function () { MH.cropGuide(null, false); MH.crop('wide'); }, 4000);
 </section>

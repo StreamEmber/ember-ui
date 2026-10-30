@@ -4,11 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Araç & Binek — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 <style>
-  :is([data-mh-theme="frontier"], [data-mh-theme="oldwest"]) .demo-not-frontier { display: none !important; }
-  body:not([data-mh-theme="frontier"]):not([data-mh-theme="oldwest"]) .demo-only-frontier { display: none !important; }
 </style>
 </head>
 <body class="mh">
@@ -16,7 +14,7 @@
   <header class="demo-head">
     <span class="demo-head__kicker">Oyun içi HUD</span>
     <h1>Araç & binek</h1>
-    <p>Hız göstergesi kadranı ilk <code>MH.speedo()</code> çağrısında SVG olarak çizilir; sonraki çağrılar yalnızca yay uzunluğunu değiştirir. RedM için at paneli çekirdekler ve bağ seviyesiyle gelir.</p>
+    <p>Hız göstergesi kadranı ilk <code>MH.speedo()</code> çağrısında SVG olarak çizilir; sonraki çağrılar yalnızca yay uzunluğunu değiştirir. At ya da araç için binek durumu <code>crew.mount</code> ile gösterilir.</p>
   </header>
 
   <div class="demo-stage-wrap">
@@ -37,7 +35,7 @@
         </div>
 
         <!-- Araç -->
-        <div class="mh-anchor mh-br demo-not-frontier" style="gap:14px">
+        <div class="mh-anchor mh-br" style="gap:14px">
           <div class="mh-flex mh-gap-5" style="align-items:flex-end">
             <div class="mh-col mh-gap-3" style="padding-bottom:14px;align-items:flex-end">
               <div class="mh-col" style="align-items:flex-end;gap:2px">
@@ -66,22 +64,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- At (RedM) -->
-        <div class="mh-anchor mh-br demo-only-frontier" style="gap:16px">
-          <div class="mh-mount">
-            <div class="mh-mount__info" style="align-items:flex-end">
-              <span class="mh-kicker">Binek</span>
-              <span class="mh-mount__name">Boadicea</span>
-              <div class="mh-mount__bond" title="Bağ seviyesi 3/4"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-            </div>
-            <div class="mh-cores">
-              <div class="mh-core mh-t-health" data-mh-ring id="horse-hp" style="--v:.9;--core:.8"><span class="mh-core__fill"></span><i data-i="horse"></i></div>
-              <div class="mh-core mh-t-stamina" data-mh-ring id="horse-st" style="--v:.7;--core:.6"><span class="mh-core__fill"></span><i data-i="horseshoe"></i></div>
-            </div>
-          </div>
-          <div class="mh-hints"><span class="mh-hint"><span class="mh-key">X</span>Sür</span><span class="mh-hint"><span class="mh-key">H</span>Okşa</span><span class="mh-hint"><span class="mh-key">B</span>Heybe</span></div>
         </div>
 
         <div class="mh-anchor mh-tr">
@@ -148,23 +130,17 @@
     </div>
   </div>
 
-  <div class="demo-h2"><h2>Binek (RedM)</h2><p>At canı, dayanıklılığı ve bağ seviyesi</p></div>
+  <div class="demo-h2"><h2>Binek</h2><p>At ya da araç durumu</p></div>
   <div class="demo-specs">
     <div class="demo-spec demo-spec--2">
-      <div class="demo-spec__view" style="--h:220px;gap:60px">
-        <div class="mh-mount">
-          <div class="mh-cores">
-            <div class="mh-core mh-t-health" data-mh-ring style="--v:.95;--core:.9"><span class="mh-core__fill"></span><i data-i="horse"></i></div>
-            <div class="mh-core mh-t-stamina" data-mh-ring style="--v:.4;--core:.7"><span class="mh-core__fill"></span><i data-i="horseshoe"></i></div>
-          </div>
-          <div class="mh-mount__info"><span class="mh-kicker">Arap safkanı</span><span class="mh-mount__name">Rachel</span><div class="mh-mount__bond"><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
-        </div>
-        <div class="mh-mount">
-          <div class="mh-cores"><div class="mh-core mh-core--sm mh-t-health is-low" data-mh-ring style="--v:.14;--core:.2"><span class="mh-core__fill"></span><i data-i="horse"></i></div></div>
-          <div class="mh-mount__info"><span class="mh-mount__name" style="font-size:15px">Yaralı</span><span class="mh-sub">Tonik gerekli</span></div>
-        </div>
+      <div class="demo-spec__view" style="--h:220px">
+<div class="mh-col mh-gap-2">
+  <div class="mh-mount"><i data-i="horse"></i><b>Boaz · Mustang</b><small>Binmiş</small><div class="mh-bar mh-t-health" data-v="82"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-stamina" data-v="46"><i class="mh-bar__fill"></i></div></div>
+  <div class="mh-mount"><i data-i="car-sport"></i><b>Elegy RH8</b><small>Hasarlı</small><div class="mh-bar mh-t-warn" data-v="38"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-t-info" data-v="70"><i class="mh-bar__fill"></i></div></div>
+  <div class="mh-mount is-off"><i data-i="horse"></i><b>Binek yok</b><small>Yaya</small></div>
+</div>
       </div>
-      <div class="demo-spec__meta"><b>At paneli</b><span><code>.mh-mount</code> = çekirdekler + isim + <code>.mh-mount__bond</code> (baklava şeklinde 4 kademe).</span></div>
+      <div class="demo-spec__meta"><b>Binek durumu <code>crew.mount</code></b><span>At ya da araç: ikon, ad, durum, can ve dayanıklılık barları; binek yoksa <code>is-off</code>.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view" style="--h:220px">
@@ -179,7 +155,7 @@
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   var V = { speed: 0, target: 64, rpm: .2, gear: 1, belt: true, cruise: false, fuel: 64, engine: 88 };

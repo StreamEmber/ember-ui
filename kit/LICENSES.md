@@ -22,4 +22,4 @@ Apache 2.0 gereği: ikonlar değiştirilmeden (yalnızca yeniden adlandırılara
 
 ## Yazı tipleri — SIL Open Font License 1.1
 
-Inter, Barlow Condensed, Barlow Semi Condensed, Chakra Petch, Rajdhani, Cinzel, Crimson Pro, Source Serif 4, JetBrains Mono, Rye, Old Standard TT, Special Elite. Tam lisans metni: `kit/fonts/OFL.txt`. Dosyalar Fontsource paketlerinden alınmış, latin ve latin-ext (Türkçe karakterler) alt kümeleriyle sınırlanmıştır.
+Inter, Barlow Condensed, Barlow Semi Condensed, JetBrains Mono. Tam lisans metni: `kit/fonts/OFL.txt`. Dosyalar Fontsource paketlerinden alınmış, latin ve latin-ext (Türkçe karakterler) alt kümeleriyle sınırlanmıştır.

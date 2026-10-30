@@ -2,7 +2,7 @@
 Can, zırh, stamina, dayanıklılık gibi 0-100 arası değerler. data-v / data-pips / data-mh-ring ile MH.mount() kurar; sonra MH.bar / MH.ring / MH.core / MH.pips ile güncellenir.
 
 ## vitals.bar — Bar
-Tek değer: can, zırh, ilerleme. Boy mh-bar--xs|sm|md|lg|xl, renk mh-t-* tonu. data-critical eşiğin altında yanıp söner.
+Tek değer: can, zırh, ilerleme. Boy mh-bar--xs|sm|md|lg|xl, renk mh-t-* tonu. data-critical eşiğin altında yanıp söner. Dolgu geçişi için mh-bar--grad.
 JS: `MH.bar(el, 82, { max: 100, critical: 25 })`
 
 ```html
@@ -30,7 +30,7 @@ Ekran kenarına yaslı ince sütun. Yükseklik --len, kalınlık boy sınıfınd
 JS: `MH.bar(el, 70)`
 
 ```html
-<div class="mh-flex" style="gap:10px;align-items:flex-end">
+<div class="mh-flex mh-gap-2 mh-items-end">
   <div class="mh-bar mh-bar--v mh-bar--md mh-t-health" data-v="82" style="--len:90px"><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--v mh-bar--md mh-t-armor" data-v="55" style="--len:90px"><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--v mh-bar--md mh-t-stamina" data-v="70" style="--len:90px"><i class="mh-bar__fill"></i></div>
@@ -42,7 +42,7 @@ JS: `MH.bar(el, 70)`
 JS: `MH.bar(el, 72)`
 
 ```html
-<div class="mh-col" style="gap:14px;--w:300px;width:300px">
+<div class="mh-col mh-gap-3" style="--w:300px;width:300px">
   <div class="mh-bar mh-bar--line mh-bar--tip mh-t-health" data-v="72"><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--line mh-bar--tip mh-t-armor" data-v="45"><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--line mh-bar--tip mh-t-stamina" data-v="90"><i class="mh-bar__fill"></i></div>
@@ -54,7 +54,7 @@ mh-meter içinde çizgi bar: üstte küçük etiket solda, değer sağda. Espor 
 JS: `MH.bar(el, 64); valueEl.textContent = 64`
 
 ```html
-<div class="mh-col" style="gap:12px;width:280px">
+<div class="mh-col mh-gap-3" style="width:280px">
   <div class="mh-meter mh-t-health"><span class="mh-meter__label">CAN</span><span></span><span class="mh-meter__value">82</span><div class="mh-bar mh-bar--line mh-bar--tip" data-v="82"><i class="mh-bar__fill"></i></div></div>
   <div class="mh-meter mh-t-armor"><span class="mh-meter__label">ZIRH</span><span></span><span class="mh-meter__value">40</span><div class="mh-bar mh-bar--line mh-bar--tip" data-v="40"><i class="mh-bar__fill"></i></div></div>
 </div>
@@ -73,7 +73,7 @@ Paralelkenar bar (mh-bar--skew); __text ile değer barın içinde. Aksiyon/yarı
 JS: `MH.bar(el, 76); textEl.textContent = 76`
 
 ```html
-<div class="mh-col" style="gap:8px;width:300px">
+<div class="mh-col mh-gap-2" style="width:300px">
   <div class="mh-bar mh-bar--xl mh-bar--skew mh-t-health" data-v="76"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i><span class="mh-bar__text"><span>CAN</span><span>76 / 100</span></span></div>
   <div class="mh-bar mh-bar--md mh-bar--skew mh-t-armor" data-v="50"><i class="mh-bar__fill"></i></div>
 </div>
@@ -84,7 +84,7 @@ mh-bar--chevron eğik kesik uçlar, mh-bar--arrow sivri ok. Sci-fi / taktik gör
 JS: `MH.bar(el, 60)`
 
 ```html
-<div class="mh-col" style="gap:10px;width:300px">
+<div class="mh-col mh-gap-2" style="width:300px">
   <div class="mh-bar mh-bar--lg mh-bar--chevron mh-t-health" data-v="80"><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--lg mh-bar--arrow mh-t-legendary" data-v="58"><i class="mh-bar__fill"></i></div>
 </div>
@@ -95,7 +95,7 @@ Yuvarlak (mh-bar--pill) + cam parlaması (mh-bar--glass). Yumuşak, konsol oyunu
 JS: `MH.bar(el, 70)`
 
 ```html
-<div class="mh-col" style="gap:10px;width:300px">
+<div class="mh-col mh-gap-2" style="width:300px">
   <div class="mh-bar mh-bar--lg mh-bar--pill mh-bar--glass mh-t-health" data-v="74"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--md mh-bar--pill mh-bar--glass mh-t-oxygen" data-v="46"><i class="mh-bar__fill"></i></div>
 </div>
@@ -106,7 +106,7 @@ Hareketli çapraz çizgiler (mh-bar--stripe): yenilenen can, şarj, yükleme. mh
 JS: `MH.bar(el, 40)`
 
 ```html
-<div class="mh-col" style="gap:10px;width:300px">
+<div class="mh-col mh-gap-2" style="width:300px">
   <div class="mh-bar mh-bar--lg mh-bar--stripe mh-t-health" data-v="42"><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--lg mh-bar--shine mh-t-gold" data-v="88"><i class="mh-bar__fill"></i></div>
 </div>
@@ -125,7 +125,7 @@ JS: `MH.bar(el, 30)`
 JS: `MH.bar(el, 70)`
 
 ```html
-<div class="mh-col" style="gap:10px;width:300px">
+<div class="mh-col mh-gap-2" style="width:300px">
   <div class="mh-bar mh-bar--lg mh-bar--ticks mh-t-health" data-v="70" style="--ticks:20"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--md mh-bar--ticks mh-t-armor" data-v="75" style="--ticks:4"><i class="mh-bar__fill"></i></div>
 </div>
@@ -136,7 +136,7 @@ mh-bar--frame: ton renkli ince kenarlık, içte boşluklu dolgu. mh-bar--bracket
 JS: `MH.bar(el, 66)`
 
 ```html
-<div class="mh-col" style="gap:14px;width:300px">
+<div class="mh-col mh-gap-3" style="width:300px">
   <div class="mh-bar mh-bar--frame mh-t-health" data-v="66"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--md mh-bar--bracket mh-t-accent" data-v="52"><i class="mh-bar__fill"></i></div>
 </div>
@@ -147,9 +147,9 @@ mh-bar--center ortadan iki yana açılır (denge, gürültü, ısı). mh-bar--rt
 JS: `MH.bar(el, 50)`
 
 ```html
-<div class="mh-col" style="gap:10px;width:300px">
+<div class="mh-col mh-gap-2" style="width:300px">
   <div class="mh-bar mh-bar--md mh-bar--center mh-t-warn" data-v="46"><i class="mh-bar__fill"></i></div>
-  <div class="mh-flex" style="gap:8px"><div class="mh-bar mh-bar--lg mh-bar--tip mh-t-team1" data-v="70"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-bar--lg mh-bar--rtl mh-bar--tip mh-t-team2" data-v="55"><i class="mh-bar__fill"></i></div></div>
+  <div class="mh-flex mh-gap-2"><div class="mh-bar mh-bar--lg mh-bar--tip mh-t-team1" data-v="70"><i class="mh-bar__fill"></i></div><div class="mh-bar mh-bar--lg mh-bar--rtl mh-bar--tip mh-t-team2" data-v="55"><i class="mh-bar__fill"></i></div></div>
 </div>
 ```
 
@@ -158,7 +158,7 @@ __over aşırı kalkanı çizgili katman olarak gösterir (--o 0..1); __gain iyi
 JS: `MH.bar(el, 60); over.style.setProperty('--o', .3); gain.style.transform = 'scaleX(.85)'`
 
 ```html
-<div class="mh-col" style="gap:10px;width:300px">
+<div class="mh-col mh-gap-2" style="width:300px">
   <div class="mh-bar mh-bar--lg mh-t-health" data-v="90"><i class="mh-bar__fill"></i><i class="mh-bar__over" style="--o:.3"></i></div>
   <div class="mh-bar mh-bar--lg mh-t-health" data-v="55"><i class="mh-bar__gain" style="transform:scaleX(.85)"></i><i class="mh-bar__fill"></i></div>
 </div>
@@ -169,7 +169,7 @@ Kalın can barı, hemen üstünde 3px zırh çizgisi. İki değeri tek blokta g�
 JS: `MH.bar(hp, 80); MH.bar(armor, 35)`
 
 ```html
-<div class="mh-col" style="gap:2px;width:300px">
+<div class="mh-col mh-gap-1" style="width:300px">
   <div class="mh-bar mh-bar--xs mh-t-armor" data-v="35"><i class="mh-bar__fill"></i></div>
   <div class="mh-bar mh-bar--lg mh-bar--tip mh-t-health" data-v="80"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div>
 </div>
@@ -180,7 +180,7 @@ Tek satır: ton kenarlı koyu şerit, ikon + bar + sayı. Alt alta dizilir. is-l
 JS: `MH.bar(bar, 82); el.querySelector('b').textContent = 82`
 
 ```html
-<div class="mh-col" style="gap:4px">
+<div class="mh-col mh-gap-1">
   <div class="mh-strip mh-t-health"><i data-i="heart"></i><div class="mh-bar mh-bar--md mh-bar--tip" data-v="82"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><b>82</b></div>
   <div class="mh-strip mh-t-armor"><i data-i="shield"></i><div class="mh-bar mh-bar--md mh-bar--ticks" data-v="50" style="--ticks:4"><i class="mh-bar__fill"></i></div><b>50</b></div>
   <div class="mh-strip mh-t-stamina is-low"><i data-i="run"></i><div class="mh-bar mh-bar--md" data-v="18"><i class="mh-bar__fill"></i></div><b>18</b></div>
@@ -192,7 +192,7 @@ mh-strip--skew: şerit eğik, içerik düz kalır. Etiket için small. Yarış v
 JS: `MH.bar(bar, v)`
 
 ```html
-<div class="mh-col" style="gap:6px;padding-left:8px">
+<div class="mh-col mh-gap-1" style="padding-left:8px">
   <div class="mh-strip mh-strip--skew mh-t-health" style="--w:300px"><small>HP</small><div class="mh-bar mh-bar--lg mh-bar--glass" data-v="76"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><b>76</b></div>
   <div class="mh-strip mh-strip--skew mh-t-special" style="--w:300px"><small>NOS</small><div class="mh-bar mh-bar--lg mh-bar--stripe" data-v="40"><i class="mh-bar__fill"></i></div><b>40</b></div>
 </div>
@@ -203,7 +203,7 @@ Büyük sayı + küçük etiket üstte, altta çizgi bar. Profesyonel/espor gör
 JS: `MH.bar(bar, 87); valEl.firstChild.textContent = 87`
 
 ```html
-<div class="mh-flex" style="gap:28px">
+<div class="mh-flex mh-gap-5">
   <div class="mh-plate mh-t-health" style="--w:200px"><i data-i="heart"></i><span class="mh-plate__label">Can</span><b class="mh-plate__val">87<small>/100</small></b><div class="mh-bar mh-bar--line mh-bar--tip" data-v="87"><i class="mh-bar__fill"></i></div></div>
   <div class="mh-plate mh-t-armor" style="--w:200px"><i data-i="shield"></i><span class="mh-plate__label">Zırh</span><b class="mh-plate__val">45</b><div class="mh-bar mh-bar--sm mh-bar--ticks" data-v="45" style="--ticks:4"><i class="mh-bar__fill"></i></div></div>
 </div>
@@ -231,7 +231,7 @@ JS: `MH.bar(el, 82, { critical: 25 })`
 ```
 
 ## vitals.vital-stack — Can / zırh / stamina yığını
-Üç ikonlu satır alt alta. mh-vitals__pair iki sütunlu satır verir.
+Üç ikonlu satır alt alta. mh-vitals__pair iki sütunlu satır verir. İki değeri yan yana koymak için iki mh-vital mh-vitals__pair içinde.
 JS: `MH.bar(el, value)`
 
 ```html
@@ -274,7 +274,7 @@ Halkanın ortasında sayı. Dar yerde tek değer (stamina, oksijen). Boyut CSS w
 JS: `MH.ring(el, 0.82)`
 
 ```html
-<div class="mh-flex" style="gap:12px">
+<div class="mh-flex mh-gap-3">
   <div class="mh-ringval mh-t-health" data-mh-ring style="--v:.82"><b>82</b></div>
   <div class="mh-ringval mh-t-stamina" data-mh-ring style="--v:.55"><b>55</b></div>
   <div class="mh-ringval mh-t-oxygen" data-mh-ring style="--v:.3"><b>30</b></div>
@@ -282,7 +282,7 @@ JS: `MH.ring(el, 0.82)`
 ```
 
 ## vitals.core — Çekirdek
-RDR2 tarzı: dış halka anlık değer, iç dolgu çekirdek. Ana tema frontier/oldwest ama her temada çalışır. is-low kalp atışı, is-boosted altın.
+RDR2 tarzı: dış halka anlık değer, iç dolgu çekirdek. is-low kalp atışı, is-boosted altın. Büyük boy mh-core--lg.
 JS: `MH.core(el, { value: 82, core: 70, low: 25, boosted: false })`
 
 ```html
@@ -308,4 +308,22 @@ JS: `MH.pips(el, 3, 5)`
 
 ```html
 <div class="mh-pips mh-pips--hearts" data-pips="3/5"></div>
+```
+
+## vitals.needs — İhtiyaç halkaları
+Açlık, susuzluk, stres gibi yavaş değişen ihtiyaçlar: ikonlu küçük halkalar (--v 0..1). Tonlar mh-t-hunger, mh-t-thirst, mh-t-stress, mh-t-oxygen; düşükse is-low. mh-needs--vertical alt alta dizer.
+JS: `MH.ring(el.querySelector('.mh-need'), .62)`
+
+```html
+<div class="mh-flex mh-gap-4">
+  <div class="mh-needs">
+    <div class="mh-need mh-t-hunger" data-mh-ring style="--v:.62"><i data-i="meat"></i></div>
+    <div class="mh-need mh-t-thirst" data-mh-ring style="--v:.35"><i data-i="droplet"></i></div>
+    <div class="mh-need mh-t-stress is-low" data-mh-ring style="--v:.18"><i data-i="brain"></i></div>
+  </div>
+  <div class="mh-needs mh-needs--vertical">
+    <div class="mh-need mh-t-hunger" data-mh-ring style="--v:.8"><i data-i="meat"></i></div>
+    <div class="mh-need mh-t-thirst" data-mh-ring style="--v:.5"><i data-i="droplet"></i></div>
+  </div>
+</div>
 ```

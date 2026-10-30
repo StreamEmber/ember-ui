@@ -1,7 +1,7 @@
 <!-- family: Savaş ve dünya | Nişangâh, vuruş geri bildirimi, hedef kilidi, tur skoru, nokta ele geçirme, etkileşim istemleri, diyalog. Dünya içi parçalar MH.Markers havuzuyla konumlanır; oyuncu etiketleri için "İsim etiketleri" ailesine bak. -->
 
 <section data-id="crosshair" data-title="Nişangâh" data-use="Dört biçim: artı (varsayılan), --dot, --circle, --t. Durum: is-target düşman üstünde, is-friend dost üstünde. --gap açıklığı, --c rengi ayarlar." data-js="el.classList.toggle('is-target')">
-<div class="mh-flex" style="gap:18px">
+<div class="mh-flex mh-gap-4">
   <div class="mh-crosshair"><i></i><i></i><i></i><i></i><b></b></div>
   <div class="mh-crosshair mh-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div>
   <div class="mh-crosshair mh-crosshair--circle is-target"><i></i><i></i><i></i><i></i><b></b></div>
@@ -26,7 +26,7 @@ MH.flash(null, true);
 </section>
 
 <section data-id="world-prompt" data-title="Dünya istemi" data-use="Nesne üstü etkileşim: nokta + tuş + eylem; uzaktayken is-far sadece nokta. Pozisyon world içinde absolute." data-js="el.classList.toggle('is-far')">
-<div class="mh-wprompt" style="position:relative"><span class="mh-wprompt__dot"></span><div class="mh-wprompt__card"><span class="mh-key">E</span>Sandığı aç</div></div>
+<div class="mh-wprompt"><span class="mh-wprompt__dot"></span><div class="mh-wprompt__card"><span class="mh-key">E</span>Sandığı aç</div></div>
 </section>
 
 <section data-id="prompt" data-title="Tuş istemleri" data-use="Sağ alt köşe eylem listesi: tuş + açıklama; is-disabled soluk. small durumu yazar." data-js="el.querySelector('small').textContent = 'Takılı'">
@@ -36,9 +36,6 @@ MH.flash(null, true);
 </div>
 </section>
 
-<section data-id="key" data-title="Tuş kapağı" data-use="Klavye tuşu simgesi: boyut mh-key--sm|--lg, biçim --solid|--accent." data-js="">
-<div class="mh-flex" style="gap:10px"><span class="mh-key mh-key--sm">E</span><span class="mh-key">F</span><span class="mh-key mh-key--lg">SPACE</span><span class="mh-key mh-key--accent">Y</span><span class="mh-key mh-key--solid">N</span></div>
-</section>
 
 <section data-id="hold" data-title="Basılı tut halkası" data-use="Tuşa basılı tutunca dolan halka (kilit açma, kurtarma). MH.hold start()/stop() döner, onDone tamamlanınca çağrılır." data-js="var h = MH.hold(el, { duration: 1500, onDone() {} }); h.start()">
 <div class="mh-hold" data-mh-ring><span class="mh-key mh-key--lg">E</span></div>
@@ -70,7 +67,7 @@ MH.flash(null, true);
 
 <section data-id="dialog" data-wide="1" data-title="Diyalog" data-use="Konuşan avatarı, söz satırı ve numaralı seçenekler. Seçenek is-active seçili, is-used kullanılmış; small ipucu etiketi." data-js="">
 <div class="mh-dialog" style="max-width:460px">
-  <div class="mh-dialog__speaker"><span class="mh-avatar mh-avatar--lg mh-avatar--round mh-t-warn">L</span><div class="mh-col" style="gap:2px"><span class="mh-kicker mh-kicker--accent">Lester Crest</span><span class="mh-sub">Organizatör</span></div></div>
+  <div class="mh-dialog__speaker"><span class="mh-avatar mh-avatar--lg mh-avatar--round mh-t-warn">L</span><div class="mh-col mh-gap-1"><span class="mh-kicker mh-kicker--accent">Lester Crest</span><span class="mh-sub">Organizatör</span></div></div>
   <div class="mh-dialog__line">“Bankanın arka kapısı gece yarısı açılıyor. Sessiz mi gireriz, yoksa kapıyı mı uçururuz?”</div>
   <div class="mh-dialog__choices">
     <button class="mh-choice is-active"><span class="mh-key">1</span>Sessizce gireriz.<small>Gizlilik</small></button>
@@ -78,4 +75,25 @@ MH.flash(null, true);
     <button class="mh-choice is-used"><span class="mh-key">3</span>Planı tekrar anlat.</button>
   </div>
 </div>
+</section>
+
+<section data-id="objective" data-title="Görev takibi" data-use="Aktif görev paneli: başlık + süre rozeti, adım listesi (mh-step: is-done tamam, is-active şimdiki, is-optional isteğe bağlı), altta ilerleme barı." data-js="MH.bar(el.querySelector('.mh-bar'), 38)">
+<div class="mh-panel mh-objective">
+  <div class="mh-objective__head"><div><span class="mh-kicker mh-kicker--accent">Aktif görev</span><div class="mh-title">Konvoy baskını</div></div><span class="mh-badge mh-t-accent mh-num">04:12</span></div>
+  <div class="mh-objective__steps">
+    <div class="mh-step is-done"><span class="mh-step__box"><i data-i="check"></i></span>Paleto Körfezi'ne ulaş</div>
+    <div class="mh-step is-active"><span class="mh-step__box"><i data-i="check"></i></span><span>Muhafızları etkisiz hale getir <b>3/8</b></span></div>
+    <div class="mh-step is-optional"><span class="mh-step__box"><i data-i="check"></i></span>Alarmı tetikleme</div>
+  </div>
+  <div class="mh-objective__foot"><div class="mh-flex mh-between"><span class="mh-kicker">İlerleme</span><span class="mh-num mh-dim">38%</span></div><div class="mh-bar mh-bar--sm" data-v="38"><i class="mh-bar__fill"></i></div></div>
+</div>
+</section>
+
+<section data-id="damage-number" data-title="Yüzen hasar sayısı" data-use="Vuruşta dünyada yükselip sönen sayı. world: tam ekran .mh-world katmanı; x, y piksel ya da 0..1 oran; kind: '' (verilen hasar), 'crit', 'heal' (+), 'self' (alınan). Kendin yazma." data-run="1">
+var world = document.querySelector('.mh-world') || document.querySelector('.mh-screen').appendChild(Object.assign(document.createElement('div'), { className: 'mh-world' }));
+MH.damageNumber(world, { x: .5, y: .45, value: 128, kind: 'crit' });
+</section>
+
+<section data-id="vignette" data-title="Düşük can kenar kızarması" data-use="Can 40'ın altına inince ekran kenarı kızarır, 20'nin altında nabız atar. Ekrana bir kez &lt;div class=&quot;mh-vignette&quot;&gt;&lt;/div&gt; koy (.mh-screen'in doğrudan çocuğu; kendisi tam ekranı kaplar, aşağıdaki boyut yalnız örnek kutusu içindir), her can değişiminde MH.vignette(el, can) çağır." data-js="MH.vignette(el, 15)">
+<div class="mh-vignette" style="position:relative;width:320px;height:160px;--v:.7"></div>
 </section>

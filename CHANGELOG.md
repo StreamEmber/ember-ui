@@ -1,6 +1,33 @@
 # Değişiklik günlüğü
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@2.1.0`).
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@3.0.0`).
+
+## 3.0.0 — 2026-10-30
+
+**Kırıcı sürüm; 2.x ile uyumluluk hedeflenmedi.** Amaç: yapay zekânın kiti kurallar içinde, kendi yapısını uydurmadan kullanması.
+
+**Tek görünüm**
+- Tema sistemi kaldırıldı: `tactical`, `frontier`, `oldwest` ve `themes/` klasörü, `data-mh-theme`, `MH.theme()`. Eski `modern` görünüm tek görünümdür; oyuna göre değişen yalnız vurgu rengi (`data-mh-accent`, `MH.accent`).
+- Eski Batı / kâğıt parçaları kaldırıldı: `print` ailesi (afiş, telgraf, gazete, defter, bilet, tabela, damga), `MH.poster/posterHTML/telegram/headline/sign/stamp`, `tags.frontier-sign`, `tags.bounty`, `economy.bounty`, `pages/western.html`.
+- Yalnız temaların kullandığı yazı tipleri kaldırıldı (Cinzel, Crimson Pro, Source Serif 4, Rajdhani, Chakra Petch, Rye, Old Standard TT, Special Elite).
+
+**Menü: `MH.Menu`**
+- Yeni `MH.Menu(host, spec)` (`kit/js/mhud-menu.js`): menü veriyle kurulur. Bölüm görünümleri `list`, `grid`, `settings`, `table`, `custom`; detay paneli `item` / `buy`. Katman + perde, ekrana sığma, aç/kapa, ESC, ↑↓ ←→ Enter Q E, 2/3 sütun, alt ipuçları ve `onAction` → `MH.post('menu', …)` kitte.
+- `MH.Social` artık `MH.Menu` üstünde çalışır; cephanelik `mh-item` kullanır.
+- Kaldırıldı: `menu.classic` (`mh-classic`, `MH.listNav`), `menu.card` (`mh-card`, `mh-cards`; yerine `mh-item`), `menu.shell3` / `menu.shell2` (yerine `MH.Menu`).
+- Yeni katalog varyantları: `menu.menu`, `menu.menu-settings`, `menu.choose`, `menu.amount`, `menu.input`; `ai/menu.md` başında "Menü kuralları", karar tablosu ve tam şema.
+
+**Oyun köprüsü**
+- FiveM NUI katmanı kaldırıldı (`GetParentResourceName`, `MH.isNui`, `MH.resource`, `MH.escClose`). `MH.post(cb, data)` artık StreamEmber overlay köprüsüne (`window.streamember.post({ cb, data })`) gider; oyun mesajları köprüden `MH.on`'a gelir. `MH.bridge`, `MH.debug` (`?mhdebug=1`).
+- `MH.autoScale()` `.mh-screen`'i oyun yüksekliğinde tutar (görünümün altındaki isim etiketi atlası için `--mh-atlas-gap`); `MH.Atlas` köprüyü `MH.bridge` üzerinden okur.
+- `html.mh-nui` → `html.mh-overlay`; overlay'de pahalı cam bulanıklığı kapalı.
+
+**Katalog ve belgeler**
+- Yinelenenler birleştirildi: `extras.streak` → `economy.streak`, `economy.chip-stat` → `stream.statbar`, `economy.standings` → `menu.standings`, `location.zone` → `survival.zone`, `combat.key` → `base.keys`, `vehicle.mount` → `crew.mount` (aynı `mh-mount` sınıfı iki farklı yapıdaydı).
+- Görünmeyen parçalar kataloğa girdi: `vitals.needs`, `combat.objective`, `combat.damage-number`, `combat.vignette`, `feed.chat`, `feed.ticker`, `stream.gift-hero`, `stream.crop`, `base.player`, `base.utils`; kullanılmayan sınıflar silindi. Yeni yardımcılar `mh-push`, `mh-items-start`, `mh-items-end`; maç sonucu rozeti `mh-match__res`.
+- `AI.md`: altın kurallar, overlay sayfa iskeleti, ihtiyaç → bileşen tablosu, genişletme kuralı ve **tam API dizini** (her public `MH.*`).
+- Katalog örneklerinden demo yamaları ve satır içi renkler temizlendi.
+- Yeni araçlar: `tools/audit.mjs` (her sınıf ve API yapay zekâya görünür mü; CI'da), `tools/lint.mjs` (mod sayfası denetleyicisi: sabit olmayan sürüm, tema, kitte olmayan / ezilen `mh-*`, `x-` dışı özel sınıf, kitin menü/satır/katman/modal kopyası, sabit renk).
 
 ## 2.1.0 — 2026-10-12
 - Sunum sitesi yeniden tasarlandı (tek kabuk, `demo/`): solda önce **Sunumlar**, sonra **Bileşenler** (aile başına bir sayfa, varyant sayılarıyla, aranabilir, katlanabilir); sağda **Görünüm** paneli (tema, vurgu, sahne, ızgara sütunu, kodları açık göster, değerleri karıştır, bağlantı kopyala, sıfırla) ve **Bu sayfada** içindekiler; üst çubukta konum + önceki/sonraki.

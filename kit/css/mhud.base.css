@@ -1,6 +1,6 @@
 /* ==========================================================================
    MHud — temel katman
-   NUI sıfırlama, ekran yerleşimi, yardımcı sınıflar ve tüm temel yapı taşları:
+   Sayfa sıfırlama, ekran yerleşimi, yardımcı sınıflar ve tüm temel yapı taşları:
    panel, başlık, ayırıcı, tuş, buton, rozet, bar, halka, form kontrolleri,
    sekme, liste satırı, tablo, avatar, ipucu, yükleniyor.
    ========================================================================== */
@@ -23,11 +23,14 @@
 :where(.mh) :where(:focus) { outline: none; }
 :where(.mh) :where(:focus-visible) { outline: 2px solid var(--mh-accent-line); outline-offset: 2px; }
 
-/* NUI gövdesi: oyunun üstünde saydam ve tıklamaları geçirir */
-html.mh-nui, html.mh-nui body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: transparent !important; }
+/* Overlay gövdesi: oyunun üstünde saydam ve tıklamaları geçirir */
+html.mh-overlay, html.mh-overlay body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: transparent !important; }
+/* Oyun overlay'i (CEF) bulanıklığı CPU'da çizer ve pahalıdır: overlay sayfalarında cam bulanıklığı kapalı. */
+html.mh-overlay * { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 
 /* ---------- Ekran ve çapalar ---------- */
-.mh-screen { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: var(--mh-z-hud); }
+/* --mh-atlas-gap: overlay görünümünün oyun altında kalan kısmı (MH.autoScale yazar) */
+.mh-screen { position: absolute; inset: 0 0 var(--mh-atlas-gap, 0px) 0; pointer-events: none; overflow: hidden; z-index: var(--mh-z-hud); }
 .mh-catch, .mh-catch * { pointer-events: auto; }
 .mh-anchor { position: absolute; display: flex; flex-direction: column; gap: var(--mh-gap); }
 .mh-tl { top: var(--mh-safe-y); left: var(--mh-safe-x); align-items: flex-start; }
@@ -47,10 +50,11 @@ html.mh-nui, html.mh-nui body { margin: 0; width: 100%; height: 100%; overflow: 
 .mh-wrap { flex-wrap: wrap; }
 .mh-between { justify-content: space-between; }
 .mh-grow { flex: 1 1 auto; min-width: 0; }
+.mh-push { margin-left: auto; }
+.mh-items-start { align-items: flex-start; } .mh-items-end { align-items: flex-end; }
 .mh-gap-1 { gap: 4px; } .mh-gap-2 { gap: 8px; } .mh-gap-3 { gap: 12px; } .mh-gap-4 { gap: 16px; } .mh-gap-5 { gap: 24px; }
 .mh-num { font-family: var(--mh-font-num); font-variant-numeric: tabular-nums; letter-spacing: 0; }
 .mh-mono { font-family: var(--mh-font-mono); font-variant-numeric: tabular-nums; }
-.mh-display { font-family: var(--mh-font-display); font-weight: var(--mh-display-weight); text-transform: var(--mh-display-case); letter-spacing: var(--mh-display-track); }
 .mh-dim  { color: var(--mh-text-2); }
 .mh-mute { color: var(--mh-text-3); }
 .mh-accent-text { color: var(--mh-accent); }
@@ -69,8 +73,7 @@ html.mh-nui, html.mh-nui body { margin: 0; width: 100%; height: 100%; overflow: 
 
 /* ==========================================================================
    PANEL
-   Panel üzerindeki ::before / ::after temalara ayrılmıştır (köşe braketleri,
-   baklava süsleri). Bileşenler bunları kullanmaz.
+   .mh-panel::before üst kenar ışığıdır; bileşenler panelin ::before/::after'ını kullanmaz.
    ========================================================================== */
 .mh-panel {
   position: relative;
@@ -80,6 +83,10 @@ html.mh-nui, html.mh-nui body { margin: 0; width: 100%; height: 100%; overflow: 
   box-shadow: var(--mh-panel-shadow);
   -webkit-backdrop-filter: blur(var(--mh-blur));
   backdrop-filter: blur(var(--mh-blur));
+}
+.mh-panel::before {
+  content: ""; position: absolute; left: 12px; right: 12px; top: -1px; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .16), transparent);
 }
 .mh-panel--solid { background: var(--mh-surface-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
 .mh-panel--flat  { box-shadow: none; }
@@ -447,7 +454,6 @@ textarea.mh-input { height: auto; min-height: 76px; padding: 10px 12px; resize: 
 .mh-row__title { font-size: 14px; font-weight: 600; color: var(--mh-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .mh-row__sub { font-size: 12px; color: var(--mh-text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .mh-row__meta { flex: none; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--mh-text-2); }
-.mh-row__price { font-family: var(--mh-font-num); font-weight: 600; font-size: 15px; color: var(--mh-success); font-variant-numeric: tabular-nums; }
 
 /* ==========================================================================
    TABLO
@@ -497,12 +503,6 @@ textarea.mh-input { height: auto; min-height: 76px; padding: 10px 12px; resize: 
 /* ==========================================================================
    İPUCU, YÜKLENİYOR, BOŞ DURUM
    ========================================================================== */
-.mh-tip {
-  position: absolute; z-index: var(--mh-z-top); max-width: 260px; padding: 8px 10px;
-  font-size: 12px; color: var(--mh-text); background: var(--mh-surface-solid);
-  border: 1px solid var(--mh-line-strong); border-radius: var(--mh-r-2); box-shadow: var(--mh-shadow-pop);
-  pointer-events: none;
-}
 .mh-spinner {
   display: inline-block; width: 22px; height: 22px; border-radius: 50%; flex: none;
   border: 2px solid var(--mh-track); border-top-color: var(--mh-accent);
@@ -531,7 +531,6 @@ textarea.mh-input { height: auto; min-height: 76px; padding: 10px 12px; resize: 
 
 /* ---------- Giriş / çıkış animasyonları (JS sınıf ekler) ---------- */
 .mh-enter-up    { animation: mh-in-up var(--mh-dur-4) var(--mh-ease-out) both; }
-.mh-enter-down  { animation: mh-in-down var(--mh-dur-4) var(--mh-ease-out) both; }
 .mh-enter-left  { animation: mh-in-left var(--mh-dur-4) var(--mh-ease-out) both; }
 .mh-enter-right { animation: mh-in-right var(--mh-dur-4) var(--mh-ease-out) both; }
 .mh-enter-pop   { animation: mh-in-pop var(--mh-dur-4) var(--mh-spring) both; }

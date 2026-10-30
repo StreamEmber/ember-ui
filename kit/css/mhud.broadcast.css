@@ -33,10 +33,7 @@
 .mh-screen[data-mh-crop="vertical"] .mh-gifts > :nth-child(n+3) { display: none; }
 .mh-screen[data-mh-crop="vertical"] .mh-social > :nth-child(n+3) { display: none; }
 .mh-screen[data-mh-crop="vertical"] .mh-vitals { --w: 220px; }
-.mh-screen[data-mh-crop="vertical"] .mh-telegram { --w: 360px; }
 .mh-screen[data-mh-crop="vertical"] .mh-boss { --w: 520px; }
-.mh-screen[data-mh-crop="vertical"] .mh-headline { --w: 440px; }
-.mh-screen[data-mh-crop="vertical"] :is(.mh-poster, .mh-sign) { zoom: .85; }
 .mh-screen[data-mh-crop="vertical"] .mh-announce__title { font-size: 54px; }
 .mh-screen[data-mh-crop="vertical"] .mh-banner__title { font-size: 54px; }
 .mh-screen[data-mh-crop="vertical"] .mh-banner { left: var(--mh-crop-l); right: var(--mh-crop-r); }
@@ -75,7 +72,6 @@
    <div class="mh-statbar"><div class="mh-chip-stat mh-t-danger"><i data-i="skull"></i><b data-stat="deaths">3</b><span>Ölüm</span></div>…</div>
    ========================================================================== */
 .mh-statbar { display: flex; gap: 6px; flex-wrap: wrap; }
-.mh-statbar--stack { flex-direction: column; align-items: stretch; }
 .mh-chip-stat {
   --tone-rgb: var(--mh-text-rgb);
   display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; align-items: center; column-gap: 9px;

@@ -1,7 +1,7 @@
 /* ==========================================================================
    MHud — Tema destekli oyun HUD ve yayın arayüz kiti
    Tek giriş dosyası. Sadece ihtiyacın olan parçaları da tek tek bağlayabilirsin;
-   sıra önemlidir: yazı tipleri → tokenlar → bileşenler → temalar → vurgular.
+   sıra önemlidir: yazı tipleri → tokenlar → bileşenler → tonlar → vurgular.
    ========================================================================== */
 
 @import url("../fonts/fonts.css");
@@ -12,7 +12,6 @@
 @import url("mhud.world.css");
 @import url("mhud.menu.css");
 @import url("mhud.stream.css");
-@import url("mhud.print.css");
 @import url("mhud.broadcast.css");
 @import url("mhud.extras.css");
 @import url("mhud.survival.css");
@@ -21,9 +20,5 @@
 @import url("mhud.shop.css");
 @import url("mhud.tones.css");
 
-@import url("themes/modern.css");
-@import url("themes/tactical.css");
-@import url("themes/frontier.css");
-@import url("themes/oldwest.css");
 
 @import url("mhud.accents.css");

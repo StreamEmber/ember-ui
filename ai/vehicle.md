@@ -45,7 +45,7 @@ Ortasında ikon olan halka: yakıt, pil, nitro. Dar yer için gauges yerine.
 JS: `MH.ring(el, 0.64)`
 
 ```html
-<div class="mh-flex" style="gap:12px">
+<div class="mh-flex mh-gap-3">
   <div class="mh-ringval mh-t-warn" data-mh-ring style="--v:.64"><i data-i="gas"></i></div>
   <div class="mh-ringval mh-t-success" data-mh-ring style="--v:.92"><i data-i="battery"></i></div>
   <div class="mh-ringval mh-t-info" data-mh-ring style="--v:.4"><i data-i="flame"></i></div>
@@ -57,28 +57,10 @@ Emniyet kemeri, far, kilit, arıza: on yanık, is-warn kırmızı yanıp söner;
 JS: `el.classList.toggle('on')`
 
 ```html
-<div class="mh-flex" style="gap:8px">
+<div class="mh-flex mh-gap-2">
   <span class="mh-lamp on"><i data-i="user-shield"></i></span>
   <span class="mh-lamp on" style="--tone-rgb:var(--mh-info-rgb)"><i data-i="sun"></i></span>
   <span class="mh-lamp"><i data-i="lock"></i></span>
   <span class="mh-lamp is-warn"><i data-i="engine"></i></span>
-</div>
-```
-
-## vehicle.mount — Binek paneli
-At için: ad, bağ seviyesi elmasları, can ve dayanıklılık çekirdekleri. Ana tema frontier/oldwest.
-JS: `MH.core(el.querySelector('.mh-core'), { value: 90, core: 80 })`
-
-```html
-<div class="mh-mount">
-  <div class="mh-mount__info" style="align-items:flex-end">
-    <span class="mh-kicker">Binek</span>
-    <span class="mh-mount__name">Boadicea</span>
-    <div class="mh-mount__bond"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-  </div>
-  <div class="mh-cores">
-    <div class="mh-core mh-t-health" data-mh-ring style="--v:.9;--core:.8"><span class="mh-core__fill"></span><i data-i="horse"></i></div>
-    <div class="mh-core mh-t-stamina" data-mh-ring style="--v:.7;--core:.6"><span class="mh-core__fill"></span><i data-i="horseshoe"></i></div>
-  </div>
 </div>
 ```

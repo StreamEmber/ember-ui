@@ -22,14 +22,14 @@ Silah çizimi olmadan yalnız şarjör / yedek. is-low şarjörü kırmızıya �
 JS: `el.querySelector('b').textContent = 24`
 
 ```html
-<div class="mh-flex" style="gap:26px">
+<div class="mh-flex mh-gap-5">
   <div class="mh-ammo"><b>24</b><span>/ 180</span></div>
   <div class="mh-ammo is-low"><b>3</b><span>/ 12</span></div>
 </div>
 ```
 
 ## gear.hotbar — Yuva şeridi
-Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı.
+Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı. Dayanıklılık: yuvanın içine mh-slot__durability > i (--v yüzde).
 JS: `el.children[0].classList.add('is-active')`
 
 ```html

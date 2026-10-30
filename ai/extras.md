@@ -10,7 +10,7 @@ JS: `MH.ring(el, v)`
 ```
 
 ## extras.spark — Mini çizgi grafik
-Boş div'e data-spark=&quot;1,3,2,5&quot; ver (data-w, data-h boyut); MH.mount çizer. Kod: MH.sparkline(el, [..]).
+Boş div'e data-spark=&quot;1,3,2,5&quot; ver (data-w, data-h boyut); MH.mount çizer. Kod: MH.sparkline(el, [..]). Kutucuk içinde: mh-tile + mh-tile__spark; istatistik panosu mh-stats > mh-stats__tiles (kutucuklar) + mh-stats__grid içinde mh-box (+ mh-box__head başlık).
 JS: `MH.sparkline(el, values)`
 
 ```html
@@ -50,14 +50,6 @@ JS: `el.classList.toggle('is-down')`
 <div class="mh-flex mh-gap-2"><span class="mh-delta is-up">▲ %12</span><span class="mh-delta is-down">▼ %4</span></div>
 ```
 
-## extras.streak — Seri sayacı
-Seri paneli: ikon, sayı, etiket, azalan süre çizgisi (__decay). Kod: MH.streak(el, sayı).
-JS: `MH.streak(el, 5)`
-
-```html
-<div class="mh-panel mh-streak"><i data-i="streak"></i><span class="mh-streak__count">5</span><span class="mh-streak__label"><b>Öldürme serisi</b><span class="mh-sub">+%25 para</span></span><i class="mh-streak__decay"></i></div>
-```
-
 ## extras.achieve — Başarı satırı
 Küçük başarı kartı: ikon, ad, ilerleme yazısı, ton'lu bar.
 JS: `—`
@@ -67,7 +59,7 @@ JS: `—`
 ```
 
 ## extras.event — Etkinlik satırı
-Takvim etkinliği: tarih kutusu, ad + canlı rozet, meta (saat, kişi, ödül), katıl düğmesi. Canlıysa is-live.
+Takvim etkinliği: tarih kutusu, ad + canlı rozet, meta (saat, kişi, ödül), katıl düğmesi. Canlıysa is-live. Birden çok satır mh-events içinde alt alta durur.
 JS: `—`
 
 ```html
@@ -75,11 +67,11 @@ JS: `—`
 ```
 
 ## extras.match — Maç geçmişi satırı
-Maç özeti: sonuç rozeti (G yeşil / M kırmızı mh-rank), mod + harita + saat, Ö/A, MVP rozeti.
+Maç özeti: sonuç rozeti (mh-match__res: is-win yeşil, is-loss kırmızı, sınıfsız berabere), mod + harita + saat, Ö/A, MVP rozeti. Birden çok satır mh-matches içinde alt alta durur.
 JS: `—`
 
 ```html
-<div class="mh-match"><span class="mh-rank" style="background:rgb(var(--mh-success-rgb));color:#06140a">G</span><div><b style="font-family:var(--mh-font-ui)">Takım ölüm maçı</b> <small>· Vinewood · 14:32</small></div><b>24 / 6</b><span class="mh-badge mh-t-gold">MVP</span></div>
+<div class="mh-match"><span class="mh-match__res is-win">G</span><div><b>Takım ölüm maçı</b> <small>· Vinewood · 14:32</small></div><b>24 / 6</b><span class="mh-badge mh-t-gold">MVP</span></div>
 ```
 
 ## extras.giftmap — Hediye haritası

@@ -4,11 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oyuncu HUD — MHud</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.css">
 <link rel="stylesheet" href="../demo/demo.css">
 <style>
-  :is([data-mh-theme="frontier"], [data-mh-theme="oldwest"]) .demo-not-frontier { display: none !important; }
-  body:not([data-mh-theme="frontier"]):not([data-mh-theme="oldwest"]) .demo-only-frontier { display: none !important; }
   .demo-player-arrow { position: absolute; left: 50%; top: 50%; width: 0; height: 0; border: 9px solid transparent; border-bottom: 16px solid #fff; transform: translate(-50%, -70%) rotate(20deg); filter: drop-shadow(0 1px 2px #000); }
 </style>
 </head>
@@ -64,21 +62,13 @@
             <div class="mh-cash__value"><small>$</small><b data-cash>12.480</b></div>
             <div class="mh-cash__bank"><i data-i="bank"></i><span>1.204.900</span></div>
           </div>
-          <div class="mh-wanted demo-not-frontier" id="wanted">
+          <div class="mh-wanted" id="wanted">
             <i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f"></i><i data-i="star-f"></i><i data-i="star-f"></i>
           </div>
-          <div class="mh-bounty demo-only-frontier">
-            <span class="mh-bounty__seal"><i data-i="skull"></i></span>
-            <div><span class="mh-kicker">Başında ödül</span><div class="mh-bounty__amount">$45,00</div></div>
-          </div>
-          <div class="mh-effects demo-not-frontier" style="margin-top:6px">
+          <div class="mh-effects" style="margin-top:6px">
             <div class="mh-effect" style="--v:.72"><i data-i="shield-f"></i><span class="mh-effect__time">0:43</span></div>
             <div class="mh-effect" style="--v:.4"><i data-i="run"></i><span class="mh-effect__time">0:18</span><span class="mh-effect__stack">2</span></div>
             <div class="mh-effect is-debuff" style="--v:.85"><i data-i="flame"></i><span class="mh-effect__time">0:06</span></div>
-          </div>
-          <div class="mh-col mh-gap-2 demo-only-frontier" style="align-items:flex-end;margin-top:6px">
-            <div class="mh-effect-line mh-t-success"><span class="mh-kicker">Kalkan</span><b>00:43</b></div>
-            <div class="mh-effect-line mh-t-accent"><span class="mh-kicker">Tonik etkisi</span><b>01:20</b></div>
           </div>
         </div>
 
@@ -121,26 +111,18 @@
         <div class="mh-anchor mh-bl" style="gap:10px">
           <div class="mh-flex mh-gap-4" style="align-items:flex-end">
             <div class="mh-col mh-gap-3">
-              <div class="mh-cores demo-only-frontier" style="justify-content:center;gap:14px;margin-bottom:16px">
-                <div class="mh-core mh-t-health" data-mh-ring id="core-hp" style="--v:.82;--core:.7"><span class="mh-core__fill"></span><i data-i="heart-f"></i></div>
-                <div class="mh-core mh-t-stamina" data-mh-ring style="--v:.6;--core:.9"><span class="mh-core__fill"></span><i data-i="run"></i></div>
-                <div class="mh-core mh-t-special" data-mh-ring style="--v:1;--core:.45"><span class="mh-core__fill"></span><i data-i="eye"></i></div>
-              </div>
               <div class="mh-minimap">
                 <div class="mh-minimap__map"><img class="demo-map" alt="" src="../demo/scenes/minimap.svg" style="width:100%;height:100%;object-fit:cover"><span class="demo-player-arrow"></span></div>
                 <div class="mh-minimap__frame"></div>
                 <span class="mh-minimap__north">K</span>
                 <div class="mh-minimap__zone"><span>Vinewood Tepeleri</span><span class="mh-num">21:14</span></div>
               </div>
-              <div class="mh-vitals demo-not-frontier">
+              <div class="mh-vitals">
                 <div class="mh-vitals__pair">
                   <div class="mh-vital mh-t-health"><i data-i="heart-f"></i><div class="mh-bar" id="hp" data-v="82" data-critical="25"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val" id="hp-val">82</span></div>
                   <div class="mh-vital mh-t-armor"><i data-i="shield-f"></i><div class="mh-bar" id="ar" data-v="45"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val" id="ar-val">45</span></div>
                 </div>
                 <div class="mh-vital mh-t-stamina"><i data-i="bolt-f"></i><div class="mh-bar" data-v="68"><i class="mh-bar__fill"></i></div><span class="mh-vital__val">68</span></div>
-              </div>
-              <div class="mh-vitals demo-only-frontier" style="--w:230px">
-                <div class="mh-vital mh-t-health"><div class="mh-bar" id="hp-f" data-v="82" data-critical="25"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i></div><span class="mh-vital__val" id="hpf-val">2870</span></div>
               </div>
             </div>
             <div class="mh-col mh-gap-4" style="padding-bottom:4px">
@@ -344,9 +326,8 @@
     <div class="demo-spec">
       <div class="demo-spec__view mh-col" style="--h:200px;gap:20px">
         <div class="mh-wanted is-flashing"><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f"></i></div>
-        <div class="mh-bounty"><span class="mh-bounty__seal"><i data-i="skull"></i></span><div><span class="mh-kicker">Başında ödül</span><div class="mh-bounty__amount">$120,50</div></div></div>
       </div>
-      <div class="demo-spec__meta"><b>Aranma & ödül</b><span><code>.mh-wanted.is-flashing</code> polis arıyor; western için <code>.mh-bounty</code>.</span></div>
+      <div class="demo-spec__meta"><b>Aranma</b><span><code>.mh-wanted.is-flashing</code> polis arıyor.</span></div>
     </div>
     <div class="demo-spec">
       <div class="demo-spec__view mh-col" style="--h:200px;gap:30px">
@@ -425,7 +406,7 @@
   </div>
 </main>
 
-<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v2.1.0/dist/mhud.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/mhud@v3.0.0/dist/mhud.min.js"></script>
 <script src="../demo/demo.js"></script>
 <script>
   // ---- Demo durumu ----
@@ -441,9 +422,8 @@
   }, 50);
 
   function vit() {
-    MH.bar('#hp', S.hp, { critical: 25 }); MH.bar('#ar', S.ar); MH.bar('#hp-f', S.hp, { critical: 25 });
+    MH.bar('#hp', S.hp, { critical: 25 }); MH.bar('#ar', S.ar);
     MH.count('#hp-val', S.hp, { duration: 300 }); MH.count('#ar-val', S.ar, { duration: 300 }); MH.count('#hpf-val', Math.round(S.hp * 35), { duration: 300 });
-    MH.core('#core-hp', { value: S.hp, core: Math.max(10, S.hp - 12) });
   }
   function ammo() {
     document.getElementById('clip').textContent = S.clip;

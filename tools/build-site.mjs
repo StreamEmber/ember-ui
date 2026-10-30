@@ -9,7 +9,7 @@ import { readdir, readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { root, version, CDN, families, variantCount } from './catalog.mjs';
-import { PAGES, FAMILY_ICON, THEMES, ACCENTS, SCENES, REPO } from '../demo/site.mjs';
+import { PAGES, FAMILY_ICON, ACCENTS, SCENES, REPO } from '../demo/site.mjs';
 
 const LOCAL = process.argv.includes('--local');
 const KIT = CDN + 'dist/';
@@ -73,9 +73,8 @@ function pager(cur, rel) {
 function aside(rel, toc) {
   return `<aside class="demo-aside">
 <div class="demo-aside__head"><b>Görünüm</b><button class="demo-iconbtn" data-demo-close title="Kapat">${I('x')}</button></div>
-<div class="demo-field"><div class="demo-field__label">Tema</div><div class="demo-themes">${THEMES.map(t => `<button class="demo-theme" data-theme="${t.id}" data-scene="${t.scene}"><span class="demo-theme__sw" style="background:${t.sw}"></span>${t.label}<small>${t.note}</small></button>`).join('')}</div></div>
-<div class="demo-field"><div class="demo-field__label">Vurgu rengi</div><div class="demo-accents">${ACCENTS.map(a => `<button class="demo-accent${a.c ? '' : ' demo-accent--none'}" data-accent="${a.id}" title="${a.id || 'Temanın kendi rengi'}"${a.c ? ` style="background:${a.c}"` : ''}></button>`).join('')}</div></div>
-<div class="demo-field"><div class="demo-field__label">Sahne <em id="demo-scene-now"></em></div><div class="demo-scenes">${Object.entries(SCENES).map(([id, label]) => `<button class="demo-scene-btn" data-scene="${id}" title="${label}" style="${id === 'auto' ? 'background:linear-gradient(135deg,#2a3040,#4b3a52)' : id === 'none' ? 'background:#1a1d24' : `background-image:${sceneUrl(rel, id)}`}"><span>${label}</span></button>`).join('')}</div></div>
+<div class="demo-field"><div class="demo-field__label">Vurgu rengi</div><div class="demo-accents">${ACCENTS.map(a => `<button class="demo-accent${a.c ? '' : ' demo-accent--none'}" data-accent="${a.id}" title="${a.id || 'Varsayılan (amber)'}"${a.c ? ` style="background:${a.c}"` : ''}></button>`).join('')}</div></div>
+<div class="demo-field"><div class="demo-field__label">Sahne <em id="demo-scene-now"></em></div><div class="demo-scenes">${Object.entries(SCENES).map(([id, label]) => `<button class="demo-scene-btn" data-scene="${id}" title="${label}" style="${id === 'none' ? 'background:#1a1d24' : `background-image:${sceneUrl(rel, id)}`}"><span>${label}</span></button>`).join('')}</div></div>
 <div class="demo-field"><div class="demo-field__label">Seçenekler</div>
 <div class="demo-opt">Izgara<div class="demo-seg">${['auto', '1', '2', '3'].map(c => `<button data-demo-cols-btn="${c}">${c === 'auto' ? 'Oto' : c}</button>`).join('')}</div></div>
 <div class="demo-opt">Kodları açık göster<button class="demo-switch" data-demo-opt="code" aria-label="Kodları göster"></button></div>
@@ -100,7 +99,7 @@ const doc = (cur, rel, title, main, toc) => {
 <link rel="stylesheet" href="${kit(rel)}mhud.min.css">
 <link rel="stylesheet" href="${rel}demo/demo.css">
 </head>
-<body class="mh demo" data-mh-theme="modern">
+<body class="mh demo">
 ${c.before}
 ${main}
 ${c.after}
@@ -135,7 +134,7 @@ for (const f of sources) {
   }
   const c = chrome(href, '../', toc);
   if (!src.includes('<body class="mh">') || !src.includes('</main>')) throw new Error(`${href}: <body class="mh"> ve </main> bekleniyor`);
-  src = src.replace('<body class="mh">', `<body class="mh demo" data-mh-theme="modern">\n${c.before}`).replace('</main>', `</main>\n${c.after}`);
+  src = src.replace('<body class="mh">', `<body class="mh demo">\n${c.before}`).replace('</main>', `</main>\n${c.after}`);
   if (LOCAL) src = src.replaceAll(KIT, '../dist/');
   await writeFile(path.join(site, href), src);
 }
@@ -174,23 +173,19 @@ ${families.map(f => `<div class="demo-h2" id="${f.id}"><h2>${f.title}</h2><p>${f
 
 // ---- genel bakış (site kökü)
 const first = PAGES[0].items[0];
-// Tema önizlemeleri gölge DOM'da: sayfanın temasına (ör. oldwest kâğıt kapsamı) sızmadan her biri kendi temasını gösterir
-const mini = t => `<div class="demo-mini-host"><template shadowrootmode="open"><link rel="stylesheet" href="${kit('')}mhud.min.css"><div class="mh" data-mh-theme="${t.id}"><div class="mh-panel" style="width:230px;display:flex;flex-direction:column;gap:10px;padding:14px"><span class="mh-kicker mh-kicker--accent">${t.note}</span><span class="mh-title mh-title--sm">Konvoy baskını</span><div class="mh-bar mh-t-accent" style="--v:.68"><i class="mh-bar__fill"></i></div><div class="mh-flex mh-gap-2"><span class="mh-badge mh-t-accent">Canlı</span><span class="mh-badge">24 / 32</span></div></div></div></template></div>`;
 const home = `<main class="demo-main">
 <section class="demo-home__hero">
 <span class="demo-head__kicker">Stream Ember · HUD &amp; UI kiti · v${version}</span>
-<h1>Oyun modları ve canlı yayın katmanları için<br>temalı arayüz kiti</h1>
-<p>Bağımlılıksız HTML/CSS + küçük bir JS. NUI (FiveM/RedM), OBS kaynağı ve HTML5 oyunlarında aynı bileşenler; dört tema, on vurgu rengi. Bu site iki katmandan oluşur: bileşenlerin gerçek sahnede bir arada kullanıldığı <b>sunum sayfaları</b> ve her varyantın kodu ve AI kimliğiyle tek tek gösterildiği <b>bileşen aileleri</b>.</p>
+<h1>Oyun modları ve canlı yayın katmanları için<br>tek görünümlü arayüz kiti</h1>
+<p>Bağımlılıksız HTML/CSS + küçük bir JS. StreamEmber overlay'i (GTA V, RDR2), OBS kaynağı ve HTML5 oyunlarında aynı bileşenler; tek tema, on vurgu rengi, veriyle kurulan menü (<code>MH.Menu</code>). Bu site iki katmandan oluşur: bileşenlerin gerçek sahnede bir arada kullanıldığı <b>sunum sayfaları</b> ve her varyantın kodu ve AI kimliğiyle tek tek gösterildiği <b>bileşen aileleri</b>.</p>
 <div class="demo-home__cta"><a class="demo-btn demo-btn--accent" href="${first.href}">${I('play')}Sunumlara başla</a><a class="demo-btn" href="components/index.html">${I('layers')}Bileşenlere göz at</a><a class="demo-btn" href="${CDN}AI.md" target="_blank" rel="noopener">${I('robot')}AI.md</a><a class="demo-btn" href="${REPO}" target="_blank" rel="noopener">${I('share')}GitHub</a></div>
-<div class="demo-stats"><div><b>${listed.size}</b><span>sunum sayfası</span></div><div><b>${families.length}</b><span>bileşen ailesi</span></div><div><b>${variantCount}</b><span>varyant</span></div><div><b>${THEMES.length}</b><span>tema · ${ACCENTS.length - 1} vurgu</span></div></div>
+<div class="demo-stats"><div><b>${listed.size}</b><span>sunum sayfası</span></div><div><b>${families.length}</b><span>bileşen ailesi</span></div><div><b>${variantCount}</b><span>varyant</span></div><div><b>${ACCENTS.length - 1}</b><span>vurgu rengi</span></div></div>
 </section>
-<div class="demo-h2" id="temalar"><h2>Temalar</h2><p>Bileşen HTML'i temadan bağımsızdır; tema yalnız <code>data-mh-theme</code> ile seçilir. Karta tıkla: bütün site o temaya geçer.</p></div>
-<div class="demo-themecards">${THEMES.map(t => `<button class="demo-themecard" data-theme="${t.id}"><div class="demo-themecard__view" style="background-image:${sceneUrl('', t.scene)}">${mini(t)}</div><div class="demo-themecard__body"><b>${t.label}</b><span>${t.desc}</span></div></button>`).join('')}</div>
 <div class="demo-h2" id="sunumlar"><span class="demo-sys"><h2>Sunum sayfaları</h2><span class="demo-sys__tag">Sahne</span></span><p>Bileşenler 1920×1080 tuvalde, gerçek HUD düzeninde ve etkileşimli olarak.</p></div>
 ${PAGES.map(g => `<div class="demo-home__grouplabel">${g.group}</div><div class="demo-cards">${g.items.map(it => `<a class="demo-card" href="${it.href}"><div class="demo-card__top"><span class="demo-card__icon">${I(it.icon)}</span><b>${esc(it.label)}</b></div>${descs[it.href] ? `<span>${esc(descs[it.href])}</span>` : ''}<small>${it.href}</small></a>`).join('')}</div>`).join('\n')}
 <div class="demo-h2" id="bilesenler"><span class="demo-sys"><h2>Bileşen aileleri</h2><span class="demo-sys__tag demo-sys__tag--alt">Katalog</span></span><p>Her varyant ayrı kartta: canlı önizleme, HTML parçası, AI kimliği (<code>aile.varyant</code>).</p></div>
 ${familyCards('')}
 </main>`;
-await writeFile(path.join(site, 'index.html'), doc('index.html', '', 'Genel bakış', home, [{ id: 'temalar', label: 'Temalar' }, { id: 'sunumlar', label: 'Sunum sayfaları' }, { id: 'bilesenler', label: 'Bileşen aileleri' }]));
+await writeFile(path.join(site, 'index.html'), doc('index.html', '', 'Genel bakış', home, [{ id: 'sunumlar', label: 'Sunum sayfaları' }, { id: 'bilesenler', label: 'Bileşen aileleri' }]));
 
 console.log(`Site: _site/ — ${sources.length} sunum, ${families.length} aile sayfası, genel bakış${LOCAL ? ' (yerel dist/)' : ''}`);

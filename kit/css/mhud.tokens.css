@@ -9,16 +9,12 @@
 
 /* Temel değerler hem kökte hem de her tema kapsayıcısında yeniden tanımlanır;
    böylece iç içe temalar (ör. galeri kartları) birbirinden etkilenmez. */
-:root, [data-mh-theme] {
+:root {
   /* ---------- Yazı tipleri ---------- */
   --mh-font-ui:      'MH Inter', 'Segoe UI', system-ui, sans-serif;
   --mh-font-display: 'MH Barlow Condensed', 'Arial Narrow', 'Segoe UI', sans-serif;
   --mh-font-num:     'MH Barlow Semi', 'MH Inter', 'Segoe UI', sans-serif;
   --mh-font-mono:    'MH Mono', Consolas, monospace;
-  /* Baskı (diegetik) yazı tipleri — afiş, gazete, telgraf; temadan bağımsız */
-  --mh-font-woodtype:   'MH Rye', 'Rockwell Extra Bold', Georgia, serif;
-  --mh-font-oldprint:   'MH Old Standard', Georgia, 'Times New Roman', serif;
-  --mh-font-typewriter: 'MH Typewriter', 'Courier New', monospace;
   --mh-display-weight: 700;
   --mh-display-case: uppercase;
   --mh-display-track: .02em;
@@ -148,7 +144,7 @@
    bu kural aynı elemanda yeniden hesaplanır (CSS değişkenleri tanımlandığı
    elemanda çözülür; bu yüzden tek bir :root tanımı yetmez).
    -------------------------------------------------------------------------- */
-:root, [data-mh-theme], [data-mh-accent] {
+:root, [data-mh-accent] {
   --mh-accent:      rgb(var(--mh-accent-rgb));
   --mh-accent-2:    rgb(var(--mh-accent-2-rgb));
   --mh-accent-soft: rgb(var(--mh-accent-rgb) / .14);

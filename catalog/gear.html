@@ -13,13 +13,13 @@
 </section>
 
 <section data-id="ammo" data-title="Mermi sayacı" data-use="Silah çizimi olmadan yalnız şarjör / yedek. is-low şarjörü kırmızıya çevirir." data-js="el.querySelector('b').textContent = 24">
-<div class="mh-flex" style="gap:26px">
+<div class="mh-flex mh-gap-5">
   <div class="mh-ammo"><b>24</b><span>/ 180</span></div>
   <div class="mh-ammo is-low"><b>3</b><span>/ 12</span></div>
 </div>
 </section>
 
-<section data-id="hotbar" data-title="Yuva şeridi" data-use="Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı." data-js="el.children[0].classList.add('is-active')">
+<section data-id="hotbar" data-title="Yuva şeridi" data-use="Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı. Dayanıklılık: yuvanın içine mh-slot__durability > i (--v yüzde)." data-js="el.children[0].classList.add('is-active')">
 <div class="mh-hotbar">
   <div class="mh-slot is-active"><span class="mh-slot__key">1</span><i data-i="rifle"></i><span class="mh-slot__count">24</span></div>
   <div class="mh-slot"><span class="mh-slot__key">2</span><i data-i="pistol"></i><span class="mh-slot__count">12</span></div>

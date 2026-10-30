@@ -1,12 +1,11 @@
 {
   "name": "mhud",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "private": true,
-  "description": "Themed, dependency-free HUD & UI kit for game mods and live-stream overlays (NUI, OBS, HTML5): vitals, location, economy, equipment, vehicle, kill feed, gifts, broadcast crop, 4 themes.",
+  "description": "Single-look, dependency-free HUD & UI kit for StreamEmber game mods and live-stream overlays: data-driven menus (MH.Menu), vitals, location, economy, gear, vehicle, feeds, gifts, broadcast crop. AI-first docs (AI.md).",
   "keywords": [
     "hud",
     "game-ui",
-    "nui",
     "gta5",
     "rdr2",
     "overlay",
@@ -35,7 +34,9 @@
     "site": "npm run build && npm run ai && node tools/build-site.mjs",
     "dev": "npm run build && npm run ai && node tools/build-site.mjs --local",
     "serve": "npx --yes serve -l 5173 _site",
-    "version": "node tools/set-version.mjs && npm run build && git add -A"
+    "version": "node tools/set-version.mjs && npm run build && git add -A",
+    "audit": "node tools/audit.mjs && node tools/coverage.mjs",
+    "lint": "node tools/lint.mjs"
   },
   "devDependencies": {
     "@mdi/svg": "7.4.47",

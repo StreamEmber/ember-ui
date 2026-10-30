@@ -41,7 +41,6 @@
 /* ---------- v2 etiket biçimleri: aynı yapı (line / bars / sub), yalnız .mh-tag--<biçim> değişir ---------- */
 .mh-tag__line > .mh-avatar { width: 22px; height: 22px; font-size: 10px; flex: none; }
 .mh-tag__role { font-size: 9px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--tone-rgb)); }
-.mh-tag__dist { font-family: var(--mh-font-num); font-size: 11px; font-weight: 600; color: var(--mh-text-2); }
 /* Plaka: panel zemin, tonlu üst çizgi */
 .mh-tag--plate { align-items: stretch; gap: 5px; padding: 6px 10px 7px; background: var(--mh-surface-solid); border: 1px solid var(--mh-line); border-top: 2px solid rgb(var(--tone-rgb)); border-radius: var(--mh-r-2); text-shadow: none; }
 .mh-tag--plate .mh-tag__bars { width: 100%; }
@@ -84,10 +83,6 @@
 .mh-tag--far { opacity: .75; }
 .mh-tag--far .mh-tag__bars, .mh-tag--far .mh-badge { display: none; }
 /* Aranan (ödül etiketi, kâğıt temalarında mürekkep) */
-.mh-tag--bounty { padding: 5px 12px; background: var(--mh-paper, #e9d9b3); color: #2b1d10; border: 1px solid rgb(0 0 0 / .45); border-radius: 2px; text-shadow: none; box-shadow: 0 2px 6px rgb(0 0 0 / .5); }
-.mh-tag--bounty .mh-tag__name, .mh-tag--bounty .mh-tag__sub { color: #2b1d10; }
-.mh-tag--bounty .mh-tag__sub { font-weight: 800; letter-spacing: .1em; }
-.mh-tag--bounty .mh-tag__bars { display: none; }
 
 /* ---------- Etiket ekleri: klan, seviye, sıra/numara, can sayısı, kalkan segmentleri ---------- */
 .mh-tag__clan { font-family: var(--mh-font-num); font-size: 12px; font-weight: 700; color: rgb(var(--tone-rgb) / .75); }
@@ -126,10 +121,6 @@
 .mh-tag--vip { gap: 4px; }
 .mh-tag--vip .mh-tag__name { font-size: 17px; color: rgb(var(--mh-gold-rgb)); }
 .mh-tag--vip::before { content: "KORU"; padding: 1px 8px; font-size: 9px; font-weight: 800; letter-spacing: .2em; color: #0b0d10; background: rgb(var(--mh-gold-rgb)); border-radius: 2px; text-shadow: none; }
-/* Western levha: oyma tahta hissi (frontier) */
-.mh-tag--frontier { padding: 3px 12px; background: linear-gradient(180deg, rgb(70 48 26 / .92), rgb(40 26 14 / .92)); border: 1px solid rgb(205 170 105 / .55); box-shadow: inset 0 0 0 2px rgb(0 0 0 / .35); text-shadow: 0 1px 0 #000; }
-.mh-tag--frontier .mh-tag__name { font-family: var(--mh-font-display); letter-spacing: .06em; color: rgb(241 230 207); }
-.mh-tag--frontier .mh-tag__sub { color: rgb(205 170 105); }
 /* Neon çerçeve (arena / e-spor) */
 .mh-tag--glow { padding: 3px 12px; border: 1px solid rgb(var(--tone-rgb)); border-radius: 3px; background: rgb(var(--tone-rgb) / .1); box-shadow: 0 0 calc(12px * var(--mh-glow-a) + 4px) rgb(var(--tone-rgb) / .55), inset 0 0 8px rgb(var(--tone-rgb) / .3); }
 .mh-tag--glow .mh-tag__name { color: #fff; text-shadow: 0 0 8px rgb(var(--tone-rgb)); }

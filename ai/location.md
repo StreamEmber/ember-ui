@@ -1,5 +1,5 @@
 # Konum ve yön
-Pusula, minimap çerçevesi, sokak/bölge, yön çipi, koordinat, hedef işaretleri. Oyunun kendi haritası NUI'nin altında çizilir; çerçeveler içi saydam bırakır.
+Pusula, minimap çerçevesi, sokak/bölge, yön çipi, koordinat, hedef işaretleri. Oyunun kendi haritası overlay'in altında çizilir; çerçeveler içi saydam bırakır.
 
 ## location.compass — Pusula şeridi
 Üst orta kayan yön şeridi; hedefler şerit üstünde simge olarak durur. Yön harfleri Türkçe (K D G B), MH.cardinals() ile değişir.
@@ -63,7 +63,7 @@ Hedef üstü pin + etiket + mesafe. Ton mh-t-*; is-pulse dikkat çeker. Sürekli
 JS: `MH.Markers(world).update([{ x, y, icon: 'package', label: 'Teslimat', dist: 320, tone: 'danger', pulse: true }])`
 
 ```html
-<div class="mh-flex" style="gap:28px;align-items:flex-start">
+<div class="mh-flex mh-gap-5 mh-items-start">
   <div class="mh-marker is-pulse"><span class="mh-marker__label">Teslimat</span><span class="mh-marker__pin"><i data-i="package"></i></span><span class="mh-marker__dist">320 m</span></div>
   <div class="mh-marker mh-t-danger"><span class="mh-marker__label">Hedef</span><span class="mh-marker__pin"><i data-i="crosshair"></i></span><span class="mh-marker__dist">1,4 km</span></div>
   <div class="mh-marker mh-t-team1"><span class="mh-marker__pin"><i data-i="user"></i></span><span class="mh-marker__dist">48 m</span></div>
@@ -83,16 +83,8 @@ Büyük yönlendirme oku + mesafe (görev, teslimat). Ok --a derece döner (0 = 
 JS: `el.style.setProperty('--a', '40deg'); el.querySelector('b').textContent = '320 m'`
 
 ```html
-<div class="mh-flex" style="gap:28px;align-items:flex-start">
+<div class="mh-flex mh-gap-5 mh-items-start">
   <div class="mh-wayarrow" style="--a:40deg"><i></i><b>320 m</b></div>
   <div class="mh-wayarrow mh-t-danger" style="--a:-130deg"><i></i><b>1,4 km</b></div>
 </div>
-```
-
-## location.zone — Daralan bölge
-Alan kapanma sayacı (battle royale, arena). is-closing kırmızıya çevirir; halka --v ile.
-JS: `MH.ring(el.querySelector('.mh-zone__ring'), 0.6)`
-
-```html
-<div class="mh-panel mh-zone"><span class="mh-zone__ring" data-mh-ring style="--v:.6"><i data-i="storm"></i></span><div><span class="mh-kicker">Alan daralıyor</span><div class="mh-zone__time">01:00</div></div></div>
 ```

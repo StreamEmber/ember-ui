@@ -17,7 +17,7 @@ Tek satır ikon + tutar: puan, jeton, altın. Tonu mh-t-* ile değiştir; satır
 JS: `MH.money(el.querySelector('b'), 12400)`
 
 ```html
-<div class="mh-flex" style="gap:20px">
+<div class="mh-flex mh-gap-4">
   <div class="mh-coin"><i data-i="coin-f"></i><b>12.400</b></div>
   <div class="mh-coin mh-t-info"><i data-i="bolt"></i><b>240</b></div>
 </div>
@@ -29,14 +29,6 @@ JS: `el.querySelectorAll('.mh-i').forEach((s, i) => s.classList.toggle('on', i <
 
 ```html
 <div class="mh-wanted is-flashing"><i data-i="star-f" class="on"></i><i data-i="star-f" class="on"></i><i data-i="star-f"></i><i data-i="star-f"></i><i data-i="star-f"></i></div>
-```
-
-## economy.bounty — Ödül mührü
-RDR2 tarzı: kafatası mührü + başındaki ödül tutarı.
-JS: `MH.count(el.querySelector('.mh-bounty__amount'), 4500)`
-
-```html
-<div class="mh-bounty"><span class="mh-bounty__seal"><i data-i="skull"></i></span><div><span class="mh-kicker">Başında ödül</span><div class="mh-bounty__amount">$45,00</div></div></div>
 ```
 
 ## economy.clock — Saat ve hava
@@ -66,7 +58,7 @@ Halka içinde seviye numarası; small etiketi altta. --size boyut, ton mh-t-*.
 JS: `MH.ring(el, 0.64)`
 
 ```html
-<div class="mh-flex" style="gap:18px">
+<div class="mh-flex mh-gap-4">
   <div class="mh-levelring" data-mh-ring style="--v:.64"><b>24</b><small>SVY</small></div>
   <div class="mh-levelring mh-t-legendary" data-mh-ring style="--v:.85;--size:64px"><b>48</b></div>
 </div>
@@ -85,11 +77,11 @@ JS: `el.style.setProperty('--v', 0.4)`
 ```
 
 ## economy.effect-line — Etki satırı
-Simgesiz metin satırı: ad + süre. Ton çubuğu soldadır; western/oldwest'te simge yerine tercih edilir.
+Simgesiz metin satırı: ad + süre. Ton çubuğu soldadır; simgeye yer olmayan dar alanlar için.
 JS: `el.querySelector('b').textContent = '00:43'`
 
 ```html
-<div class="mh-col mh-gap-2" style="align-items:flex-start">
+<div class="mh-col mh-gap-2 mh-items-start">
   <div class="mh-effect-line mh-t-success"><span class="mh-kicker">Kalkan</span><b>00:43</b></div>
   <div class="mh-effect-line mh-t-accent"><span class="mh-kicker">Tonik etkisi</span><b>01:20</b></div>
 </div>
@@ -101,27 +93,4 @@ JS: `MH.streak(el, 5, { hot: 5, decay: 6000 })`
 
 ```html
 <div class="mh-panel mh-streak"><i data-i="streak"></i><span class="mh-streak__count">5</span><span class="mh-streak__label"><b>Öldürme serisi</b><span class="mh-sub">+%25 para</span></span><i class="mh-streak__decay"></i></div>
-```
-
-## economy.chip-stat — İstatistik çipleri
-Yayın overlay'inde yan yana duran büyük sayı kartları (seviye, can, öldürme). mh-statbar--lg büyütür.
-JS: `MH.stat(root, 'kills', 12)`
-
-```html
-<div class="mh-statbar">
-  <div class="mh-chip-stat mh-t-accent"><i data-i="xp"></i><b>24</b><span>Seviye</span></div>
-  <div class="mh-chip-stat mh-t-health"><i data-i="heart"></i><b>82<small>/100</small></b><span>Can</span></div>
-</div>
-```
-
-## economy.standings — Sıralama
-Skor tablosu satırları: sıra rozeti (is-1/2/3 madalya), ad, skor. is-self kendi satırın.
-
-```html
-<div class="mh-panel mh-standings">
-  <div class="mh-standing"><span class="mh-rank is-1">1</span><span>NabeMedia</span><b>14 / 3</b></div>
-  <div class="mh-standing is-self"><span class="mh-rank is-2">2</span><span>Amiral Router</span><b>11 / 4</b></div>
-  <div class="mh-standing"><span class="mh-rank is-3">3</span><span>Bandit #8</span><b>9 / 6</b></div>
-  <div class="mh-standing"><span class="mh-rank">4</span><span>MSK</span><b>7 / 7</b></div>
-</div>
 ```

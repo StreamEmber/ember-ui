@@ -1,4 +1,4 @@
-/*! MHud v2.1.0 | MIT | https://streamember.github.io/mhud/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
+/*! MHud v3.0.0 | MIT | https://streamember.github.io/mhud/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
 /* kit/js/mhud-icons.js */
 /*!
  * MHud — ikon seti (344 ikon)
@@ -377,24 +377,25 @@
 
 /* kit/js/mhud.js */
 /*!
- * MHud — davranış katmanı ve NUI köprüsü
- * Bağımlılıksız. FiveM ve RedM NUI'de (CEF) ve normal tarayıcıda çalışır.
- * Önce mhud-icons.js yüklenmelidir.
+ * MHud — davranış katmanı ve StreamEmber overlay köprüsü
+ * Bağımlılıksız. StreamEmber overlay'inde (CEF), OBS'de ve normal tarayıcıda çalışır.
+ * Önce mhud-icons.js yüklenmelidir. Tam API dizini: AI.md.
  *
  * Kısa özet:
- *   MH.theme('frontier'); MH.accent('gold')
+ *   MH.accent('mint')  MH.autoScale()
  *   MH.bar('#hp', 64)  MH.ring(el, .8)  MH.core(el, { value: 80, core: 60 })
  *   MH.money('#cash', 15200)  MH.count(el, 1500)
  *   MH.toast({...})  MH.kill({...})  MH.gift({...})  MH.announce({...})  MH.banner({...})
- *   MH.progress({...})  MH.confirm({...})  MH.radial(el, items)  MH.context(x, y, items)
+ *   MH.Menu(host, spec)  MH.confirm({...})  MH.radial(el, items)  MH.context(x, y, items)
  *   MH.Nametags('#world')  MH.Markers('#world')  MH.damageNumber(...)
  *   MH.on('action', fn)  MH.post('callback', data)
  */
 (function (root) {
   'use strict';
 
-  var MH = { version: '2.1.0' };
+  var MH = { version: '3.0.0' };
   var doc = root.document;
+  MH.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
   /* ======================================================================
      Yardımcılar
@@ -471,23 +472,23 @@
   MH.icon = icon; MH.weapon = weapon; MH.art = art; MH.avatar = avatar; MH.initials = initials;
 
   /* ======================================================================
-     Tema & ölçek
+     Vurgu & ölçek
      ====================================================================== */
-  MH.theme = function (name, scope) {
-    scope = $(scope) || doc.body;
-    if (name) scope.setAttribute('data-mh-theme', name); else scope.removeAttribute('data-mh-theme');
-    emit('theme', name);
-  };
   MH.accent = function (name, scope) {
     scope = $(scope) || doc.body;
     if (name) scope.setAttribute('data-mh-accent', name); else scope.removeAttribute('data-mh-accent');
     emit('accent', name);
   };
-  /* NUI'de 1080p referansına göre ölçekler. userScale: oyuncu ayarı (ör. 0.9) */
+  /* 1080p referansına göre ölçekler; opts.scale oyuncu ayarı (ör. 0.9).
+     Overlay görünümü oyundan uzun olabilir (altında isim etiketi atlası): .mh-screen oyun yüksekliğinde kalır. */
   MH.autoScale = function (opts) {
     opts = opts || {};
     var base = opts.base || 1080, user = opts.scale || 1, target = $(opts.target) || doc.documentElement;
-    function apply() { target.style.zoom = ((root.streamember && root.streamember.screenHeight || root.innerHeight) / base) * user; }
+    function apply() {
+      var game = Math.min(MH.bridge && MH.bridge.screenHeight || root.innerHeight, root.innerHeight), z = game / base * user;
+      target.style.zoom = z;
+      doc.documentElement.style.setProperty('--mh-atlas-gap', (root.innerHeight - game) / z + 'px');
+    }
     apply();
     root.addEventListener('resize', apply);
     return { set: function (s) { user = s; apply(); } };
@@ -850,11 +851,11 @@
      Dönüş: Promise(value) — submit:true eylemi formdaki [name] alanlarını nesne olarak döndürür.
      ESC / dış alan → null. Promise üzerinde .close(v) ve .el vardır.
      ---------------------------------------------------------------------- */
-  var modalStack = [], modalEscAt = 0;
+  var modalStack = [];
   MH.modalOpen = function () { return modalStack.length > 0; };
   doc.addEventListener('keydown', function (e) {
     var top = modalStack[modalStack.length - 1]; if (!top) return;
-    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); modalEscAt = Date.now(); if (top.dismiss) top.close(null); }
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); if (top.dismiss) top.close(null); }
     else if (e.key === 'Enter' && !(e.target && e.target.tagName === 'TEXTAREA') && !e.shiftKey) {
       var p = top.el.querySelector('[data-primary]:not([disabled])');
       if (p) { e.preventDefault(); p.click(); }
@@ -1160,7 +1161,7 @@
   /* İsim etiketleri — list öğesi:
      { id, x, y, scale, alpha, name, sid, tone:'friend'|'enemy'|'team1', badge:{text,tone}, health, armor,
        sub, talking, dead, typing, icon, bubble, compact,
-       variant:'plate|flag|pill|line|bar|pointer|banner|bracket|boss|npc|far|bounty|viewer|hp|glow|frontier|vip', role, avatar,
+       variant:'plate|flag|pill|line|bar|pointer|banner|bracket|boss|npc|far|viewer|hp|glow|vip', role, avatar,
        level, clan, down, afk, leader } */
   MH.Nametags = function (world, opts) {
     opts = opts || {};
@@ -1530,77 +1531,6 @@
   };
 
   /* ======================================================================
-     BASKI NESNELERİ (Eski Batı)
-     ====================================================================== */
-  MH.posterHTML = function (o) {
-    o = o || {};
-    return '<div class="mh-paper mh-poster"' + (o.tilt != null ? ' style="--tilt:' + o.tilt + 'deg"' : '') + '>' +
-      '<div class="mh-poster__title">' + esc(o.title || 'Aranıyor') + '</div>' +
-      '<div class="mh-poster__rule">' + esc(o.sub || 'Ölü ya da diri') + '</div>' +
-      '<div class="mh-poster__photo">' + (o.photo ? '<img src="' + esc(o.photo) + '" alt="">' : icon(o.icon || 'cowboy')) + '</div>' +
-      '<div class="mh-poster__name">' + esc(o.name || '') + '</div>' +
-      (o.crime ? '<div class="mh-poster__crime">' + esc(o.crime) + '</div>' : '') +
-      '<div class="mh-poster__reward"><b>' + esc(o.reward || '$100') + '</b><span>' + esc(o.rewardLabel || 'Ödül') + '</span></div>' +
-      (o.fine ? '<div class="mh-poster__fine">' + esc(o.fine) + '</div>' : '') +
-      (o.stamp ? '<span class="mh-stamp is-in">' + esc(o.stamp) + '</span>' : '') + '</div>';
-  };
-  MH.poster = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="poster"]', 'mh-anchor mh-mc');
-    box.innerHTML = MH.posterHTML(o);
-    var p = box.firstChild; p.classList.add('mh-enter-pop');
-    if (o.duration !== 0) setTimeout(function () { remove(p); }, o.duration || 5000);
-    return p;
-  };
-  MH.stamp = function (target, text, o) {
-    var n = $(target); if (!n) return;
-    o = o || {};
-    var s = el('span', 'mh-stamp is-in' + (o.tone ? ' mh-t-' + o.tone : '') + (o.round ? ' mh-stamp--round' : ''), esc(text));
-    if (o.tilt != null) s.style.setProperty('--tilt', o.tilt + 'deg');
-    if (o.position === false) { n.appendChild(s); return s; }
-    var pin = el('span', 'mh-stamp-pin'); pin.style.left = o.x || '50%'; pin.style.top = o.y || '45%';
-    pin.appendChild(s); n.appendChild(pin);
-    return s;
-  };
-  MH.telegram = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="telegram"]', 'mh-anchor mh-tc');
-    if (!o.target && !box.style.top) box.style.top = '19%';
-    box.innerHTML = '';
-    var body = esc(o.text || '').replace(/\s*\bSTOP\b\s*/gi, '<span class="stop">STOP</span>');
-    var t = el('div', 'mh-paper mh-telegram is-in' + (o.stamp ? ' has-stamp' : ''));
-    t.innerHTML = '<div class="mh-telegram__head"><span class="mh-telegram__brand">' + esc(o.brand || 'Telgraf') + '</span><span class="mh-telegram__no">No. ' + esc(o.no || Math.floor(1000 + Math.random() * 8999)) + '</span></div>' +
-      '<div class="mh-telegram__meta"><span>Kimden</span><b>' + esc(o.from || '—') + '</b><span>Kime</span><b>' + esc(o.to || '—') + '</b></div>' +
-      '<div class="mh-telegram__body">' + body + '</div>' + (o.stamp ? '<span class="mh-stamp">' + esc(o.stamp) + '</span>' : '');
-    box.appendChild(t);
-    if (o.duration !== 0) setTimeout(function () { remove(t); }, o.duration || 7000);
-    return t;
-  };
-  MH.headline = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="headline"]', 'mh-anchor mh-mc');
-    box.innerHTML = '';
-    var h = el('div', 'mh-paper mh-headline is-in');
-    h.innerHTML = '<div class="mh-headline__mast">' + esc(o.mast || 'Sınır Boyu Gazetesi') + '</div>' +
-      '<div class="mh-headline__dateline"><span>' + esc(o.date || '') + '</span><span>' + esc(o.price || '5 Sent') + '</span></div>' +
-      '<div class="mh-headline__title">' + esc(o.title || '') + '</div>' + (o.deck ? '<div class="mh-headline__deck">' + esc(o.deck) + '</div>' : '') +
-      (o.body ? '<div class="mh-headline__cols"><div>' + (o.icon ? '<div class="mh-headline__cut">' + icon(o.icon) + '</div>' : '') + '<p>' + esc(o.body[0] || '') + '</p></div><div><p>' + esc(o.body[1] || '') + '</p></div></div>' : '');
-    box.appendChild(h);
-    if (o.duration !== 0) setTimeout(function () { remove(h); }, o.duration || 6500);
-    return h;
-  };
-  MH.sign = function (o) {
-    o = o || {};
-    var box = $(o.target) || center('[data-mh="sign"]', 'mh-anchor mh-tc');
-    if (!o.target && !box.style.top) box.style.top = '9%';
-    box.innerHTML = '';
-    var s = el('div', 'mh-sign is-in', (o.kicker ? '<span>' + esc(o.kicker) + '</span>' : '') + '<b>' + esc(o.title || '') + '</b>' + (o.sub ? '<small>' + esc(o.sub) + '</small>' : ''));
-    box.appendChild(s);
-    if (o.duration !== 0) setTimeout(function () { remove(s); }, o.duration || 4200);
-    return s;
-  };
-
-  /* ======================================================================
      GANİMET, SOSYAL, HAYATTA KALMA
      ====================================================================== */
   MH.loot = function (o) {
@@ -1654,7 +1584,7 @@
 
   /* ======================================================================
      WEBSOCKET KÖPRÜSÜ — OBS tarayıcı kaynağı, harici overlay, HTML5 oyunlar
-     Mesaj biçimi NUI ile aynıdır: { action, data } ya da { action:'mhud', fn, args }
+     Mesaj biçimi overlay köprüsüyle aynıdır: { action, data } ya da { action:'mhud', fn, args }
      ====================================================================== */
   MH.connect = function (url, o) {
     o = o || {};
@@ -1671,45 +1601,6 @@
     open();
     MH.post = function (name, data) { send({ action: name, data: data || {} }); return Promise.resolve({ ok: true }); };
     return { send: send, close: function () { closed = true; if (ws) ws.close(); } };
-  };
-
-  /* ======================================================================
-     Klasik menü / liste klavye kontrolü
-     ====================================================================== */
-  MH.listNav = function (target, o) {
-    var list = $(target); if (!list) return;
-    o = o || {};
-    var sel = o.item || '.mh-classic__item, .mh-row';
-    function items() { return $$(sel, list).filter(function (x) { return !x.classList.contains('is-disabled'); }); }
-    function idx() { return items().indexOf(list.querySelector(sel.split(',').map(function (s) { return s.trim() + '.is-active'; }).join(','))); }
-    function go(i) {
-      var arr = items(); if (!arr.length) return;
-      i = (i + arr.length) % arr.length;
-      arr.forEach(function (x, k) { x.classList.toggle('is-active', k === i); });
-      arr[i].scrollIntoView({ block: 'nearest' });
-      if (o.onChange) o.onChange(arr[i], i);
-    }
-    function step(dir) {
-      var a = items()[idx()]; if (!a) return;
-      var st = a.querySelector('[data-mh-stepper]');
-      if (st) st.__step(dir);
-    }
-    function key(e) {
-      if (o.active && !o.active()) return;
-      if (e.key === 'ArrowDown') { e.preventDefault(); go(idx() + 1); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); go(idx() - 1); }
-      else if (e.key === 'ArrowLeft') step(-1);
-      else if (e.key === 'ArrowRight') step(1);
-      else if (e.key === 'Enter') { var a = items()[idx()]; if (a && o.onSelect) o.onSelect(a); if (a) a.click(); }
-      else if (e.key === 'Backspace' || e.key === 'Escape') { if (o.onBack) o.onBack(); }
-    }
-    doc.addEventListener('keydown', key);
-    list.addEventListener('mousemove', function (e) {
-      var it = e.target.closest(sel); if (!it || it.classList.contains('is-active') || it.classList.contains('is-disabled')) return;
-      go(items().indexOf(it));
-    });
-    if (idx() < 0) go(0);
-    return { go: go, destroy: function () { doc.removeEventListener('keydown', key); } };
   };
 
   /* ======================================================================
@@ -1795,7 +1686,7 @@
   };
 
   /* ======================================================================
-     Olaylar & NUI köprüsü
+     Olaylar & oyun köprüsü
      ====================================================================== */
   var handlers = {};
   function emit(name, data) { (handlers[name] || []).forEach(function (fn) { try { fn(data); } catch (e) { console.error('[MHud]', name, e); } }); }
@@ -1803,41 +1694,467 @@
   MH.off = function (name, fn) { handlers[name] = (handlers[name] || []).filter(function (f) { return f !== fn; }); };
   MH.emit = emit;
 
-  MH.isNui = typeof root.GetParentResourceName === 'function';
-  MH.resource = MH.isNui ? root.GetParentResourceName() : 'mhud';
+  /* StreamEmber overlay köprüsü (window.streamember, ui-runtime enjekte eder).
+     oyun → sayfa: { action, data } → MH.on(action, fn)      sayfa → oyun: MH.post(cb, data) → { cb, data }
+     Köprü yoksa (normal tarayıcı) MH.post yalnız MH.debug açıkken konsola yazar; sayfa yine çalışır. */
+  MH.debug = MH.debug || /[?&]mhdebug=1\b/.test(root.location && root.location.search || '');
   MH.post = function (name, data) {
-    if (!MH.isNui) { if (MH.debug) console.log('[MHud] post', name, data); return Promise.resolve({ ok: true, dev: true }); }
-    return fetch('https://' + MH.resource + '/' + name, {
-      method: 'POST', headers: { 'Content-Type': 'application/json; charset=UTF-8' }, body: JSON.stringify(data || {})
-    }).then(function (r) { return r.json().catch(function () { return {}; }); });
+    if (MH.debug) console.log('[MHud] → oyun', name, data || {});
+    if (MH.bridge) MH.bridge.post({ cb: name, data: data || {} });
+    emit('post', { cb: name, data: data || {} });
+    return Promise.resolve({ ok: true, bridge: !!MH.bridge });
   };
 
-  /* Lua'dan genel çağrı: SendNUIMessage({ action = 'mhud', fn = 'toast', args = { {...} } })
-     Yalnızca bu listedeki fonksiyonlar çağrılabilir. */
-  MH.rpcAllow = ['theme', 'accent', 'bar', 'ring', 'core', 'pips', 'count', 'money', 'toast', 'kill', 'gift', 'announce', 'banner',
+  /* Oyundan genel çağrı: { action: 'mhud', fn: 'toast', args: [{ … }] }. Yalnız bu listedeki fonksiyonlar çağrılabilir. */
+  MH.rpcAllow = ['accent', 'bar', 'ring', 'core', 'pips', 'count', 'money', 'toast', 'kill', 'gift', 'announce', 'banner',
     'levelUp', 'achievement', 'pickup', 'countdown', 'subtitle', 'progress', 'hit', 'damageFrom', 'flash', 'vignette', 'compass', 'speedo', 'timer',
-    'crop', 'enemies', 'stat', 'history', 'streak', 'poster', 'stamp', 'telegram', 'headline', 'sign', 'loot', 'social', 'infected', 'horde', 'zone'];
+    'crop', 'enemies', 'stat', 'history', 'streak', 'loot', 'social', 'infected', 'horde', 'zone'];
   function route(d) {
     if (!d || typeof d !== 'object') return;
     var action = d.action || d.type;
-    if (action === 'mhud' && d.fn && MH.rpcAllow.indexOf(d.fn) >= 0) {
+    if (MH.debug) console.log('[MHud] ← oyun', action, d.data !== undefined ? d.data : d);
+    if (action === 'mhud' && d.fn) {
+      if (MH.rpcAllow.indexOf(d.fn) < 0) { console.warn('[MHud] rpc izinli değil:', d.fn); return; }
       try { MH[d.fn].apply(MH, d.args || []); } catch (err) { console.error('[MHud] rpc', d.fn, err); }
       return;
     }
     if (action) emit(action, d.data !== undefined ? d.data : d);
+    else console.warn('[MHud] action alanı olmayan mesaj', d);
   }
-  MH.route = route;   // harici kaynaklardan gelen mesajı elle yönlendirmek için
-  root.addEventListener('message', function (e) { route(e.data); });
-
-  /* ESC ile odak bırakma — NUI menüleri için (MH.escClose = 'closeMenu') */
-  doc.addEventListener('keyup', function (e) {
-    if (e.key === 'Escape' && MH.escClose && !modalStack.length && Date.now() - modalEscAt > 400) { emit('escape'); MH.post(MH.escClose, {}); }
-  });
+  MH.route = route;
+  if (MH.bridge) MH.bridge.on(route);
+  root.addEventListener('message', function (e) { route(e.data); });   // tarayıcıda deneme: postMessage({ action, data })
 
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function () { MH.mount(); });
   else MH.mount();
 
   root.MH = MH;
+})(window);
+
+/* kit/js/mhud-menu.js */
+/* ==========================================================================
+   MHud Menu — veriyle kurulan tam ekran menü (MH.Menu)
+   --------------------------------------------------------------------------
+   Mod menüsü HTML'i ELLE YAZILMAZ: bölümleri ve veriyi ver, menü kendini çizer.
+   Katman + perde, ekrana sığma, aç/kapa, ESC, klavye gezinme, bölüm değiştirme,
+   detay paneline göre 2/3 sütun, alt ipuçları ve olay çıkışı menünün işidir.
+
+     var menu = MH.Menu('#screen', {
+       kicker: 'Rumble', title: 'Mod menüsü',
+       stats: [{ label: 'Nakit', value: '$12.480', tone: 'success' }],
+       sections: [
+         { group: 'Oyuncu' },
+         { id: 'inv',  label: 'Envanter', icon: 'backpack', view: 'list',     items: [...] },
+         { id: 'shop', label: 'Mağaza',   icon: 'store',    view: 'grid',     items: [...], detail: 'buy' },
+         { group: 'Sistem' },
+         { id: 'set',  label: 'Ayarlar',  icon: 'settings', view: 'settings', fields: [...] },
+         { id: 'quit', label: 'Çıkış',    icon: 'door',     confirm: { title: 'Çıkılsın mı?', danger: true } }
+       ],
+       onAction: function (a) { … }        // a = { action, section, id, value, item }
+     });
+     menu.open('inv'); menu.update('inv', { items: [...] }); menu.close();
+
+   Görünümler (view): list · grid · settings · table · custom (render ile).
+   Detay (detail): 'item' (varsayılan, öğede desc/stats/specs/actions varsa) · 'buy' · 'none' · function(item, menu).
+   Her eylem önce onAction'a gider; onAction false döndürmezse MH.post(spec.post || 'menu', a) ile oyuna da gider.
+   Tam şema: ai/menu.md.
+   ========================================================================== */
+(function (root) {
+  'use strict';
+  var MH = root.MH; if (!MH) return;
+  var I = MH.icon, E = MH.esc;
+
+  function val(v, st, m) { return typeof v === 'function' ? v(st, m) : v; }
+  function art(it) {
+    if (it.img) return '<img src="' + E(it.img) + '" alt="">';
+    if (it.weapon) return MH.weapon(it.weapon);
+    if (it.art) return MH.art(it.art);
+    return I(it.icon || 'box');
+  }
+  function badge(b) {
+    if (!b) return '';
+    if (typeof b === 'string') b = { text: b };
+    return '<span class="mh-badge' + (b.tone ? ' mh-t-' + E(b.tone) : '') + '">' + (b.icon ? I(b.icon) : '') + E(b.text) + '</span>';
+  }
+  function price(it, cls) {
+    if (it.price == null || it.price === '') return '';
+    return '<span class="mh-price ' + (cls || '') + (it.locked ? ' is-locked' : '') + '">' + E(typeof it.price === 'number' ? '$' + MH.fmt(it.price) : it.price) + '</span>';
+  }
+  function itemCls(it, active) {
+    return (it.tone ? ' is-' + it.tone : '') + (it.owned ? ' is-owned' : '') + (it.locked ? ' is-locked' : '') +
+      (it.disabled ? ' is-disabled' : '') + (active ? ' is-active' : '');
+  }
+  function hasDetail(it) { return !!(it && (it.desc || it.stats || it.specs || it.actions || it.note)); }
+
+  /* ---------------- Görünümler ---------------- */
+  var VIEWS = {
+    list: function (sec, sel) {
+      var items = sec.items || [];
+      if (!items.length) return empty(sec);
+      return '<div class="mh-list mh-scroll mh-menu__scroll">' + items.map(function (it) {
+        return '<div class="mh-row' + itemCls(it, it.id === sel) + '" data-mh-item="' + E(it.id) + '">' +
+          '<span class="mh-row__icon">' + art(it) + '</span>' +
+          '<div class="mh-row__main"><span class="mh-row__title">' + E(it.title || it.name || '') + '</span>' + (it.sub ? '<span class="mh-row__sub">' + E(it.sub) + '</span>' : '') + '</div>' +
+          '<div class="mh-row__meta">' + badge(it.badge) + (it.meta != null ? '<span class="mh-num">' + E(it.meta) + '</span>' : '') + price(it, 'mh-price--sm') + (it.locked ? I('lock') : '') + '</div></div>';
+      }).join('') + '</div>';
+    },
+    grid: function (sec, sel) {
+      var items = sec.items || [], last = null;
+      if (!items.length) return empty(sec);
+      var counts = {}; items.forEach(function (it) { if (it.group) counts[it.group] = (counts[it.group] || 0) + 1; });
+      return '<div class="mh-shopgrid mh-scroll mh-menu__scroll" style="--cols:' + (+sec.cols || 4) + '">' + items.map(function (it) {
+        var g = '';
+        if (it.group && it.group !== last) { last = it.group; g = '<div class="mh-shopgroup"><span class="mh-kicker">' + E(it.group) + '</span><small>' + counts[it.group] + '</small></div>'; }
+        return g + '<div class="mh-item' + itemCls(it, it.id === sel) + '" data-mh-item="' + E(it.id) + '">' +
+          '<div class="mh-item__art">' + badge(it.badge) + art(it) + '</div>' +
+          '<div class="mh-item__body"><span class="mh-item__name">' + E(it.title || it.name || '') + '</span>' +
+          '<div class="mh-item__meta"><span>' + E(it.sub || '') + '</span>' + (it.owned && it.price == null ? '<span class="mh-badge mh-t-success">Sende</span>' : price(it, 'mh-price--sm')) + '</div></div></div>';
+      }).join('') + '</div>';
+    },
+    settings: function (sec, sel) {
+      var fields = sec.fields || [];
+      if (!fields.length) return empty(sec);
+      return '<div class="mh-scroll mh-menu__scroll">' + fields.map(function (f) {
+        if (f.heading) return '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">' + E(f.heading) + '</span></div>';
+        return '<div class="mh-setting' + (f.id === sel ? ' is-active' : '') + (f.disabled ? ' is-disabled' : '') + '" data-mh-item="' + E(f.id) + '">' +
+          '<div class="mh-setting__text"><b>' + E(f.label) + '</b>' + (f.desc ? '<span>' + E(f.desc) + '</span>' : '') + '</div>' +
+          '<div class="mh-setting__control">' + control(f) + '</div></div>';
+      }).join('') + '</div>';
+    },
+    table: function (sec, sel) {
+      var cols = sec.columns || [], rows = sec.rows || [];
+      if (!rows.length) return empty(sec);
+      return '<div class="mh-scroll mh-menu__scroll mh-menu__pad"><table class="mh-table"><thead><tr>' + cols.map(function (c) {
+        return '<th' + (c.align ? ' class="' + E(c.align) + '"' : '') + '>' + E(c.label || '') + '</th>';
+      }).join('') + '</tr></thead><tbody>' + rows.map(function (r) {
+        return '<tr class="' + (r.self ? 'is-self ' : '') + (r.dead ? 'is-dead ' : '') + (r.id != null && r.id === sel ? 'is-active' : '') + '"' + (r.id != null ? ' data-mh-item="' + E(r.id) + '"' : '') + '>' + cols.map(function (c) {
+          var v = r[c.key]; return '<td class="' + (c.align || '') + (c.num ? ' mh-num' : '') + '">' + (c.html ? (v == null ? '' : v) : E(v == null ? '' : v)) + '</td>';
+        }).join('') + '</tr>';
+      }).join('') + '</tbody></table></div>';
+    }
+  };
+  function empty(sec) {
+    var e = sec.empty || {};
+    return '<div class="mh-empty">' + I(e.icon || 'box') + '<b>' + E(e.title || 'Burada henüz bir şey yok') + '</b>' + (e.text ? '<span>' + E(e.text) + '</span>' : '') + '</div>';
+  }
+  function control(f) {
+    var id = ' data-mh-field="' + E(f.id) + '"';
+    var opts = (f.options || []).map(function (o) { return typeof o === 'object' ? o : { value: o, label: String(o) }; });
+    switch (f.type) {
+      case 'toggle':
+        return '<label class="mh-toggle"><input type="checkbox"' + id + (f.value ? ' checked' : '') + (f.disabled ? ' disabled' : '') + '><span class="mh-toggle__track"></span></label>';
+      case 'slider':
+        return '<input type="range" class="mh-slider"' + id + ' min="' + (f.min != null ? f.min : 0) + '" max="' + (f.max != null ? f.max : 100) + '" step="' + (f.step || 1) + '" value="' + E(f.value != null ? f.value : 0) + '"' + (f.disabled ? ' disabled' : '') + '>' +
+          '<b data-mh-out>' + E((f.value != null ? f.value : 0) + (f.unit || '')) + '</b>';
+      case 'seg':
+        return '<div class="mh-seg">' + opts.map(function (o) { return '<button' + id + ' data-value="' + E(o.value) + '"' + (String(o.value) === String(f.value) ? ' class="is-active"' : '') + '>' + E(o.label) + '</button>'; }).join('') + '</div>';
+      case 'stepper':
+        var i = Math.max(0, opts.map(function (o) { return String(o.value); }).indexOf(String(f.value)));
+        return '<div class="mh-stepper"><button' + id + ' data-step="-1">' + I('chev-l') + '</button><span class="mh-stepper__value">' + E(opts[i] ? opts[i].label : '') + '</span><button' + id + ' data-step="1">' + I('chev-r') + '</button></div>';
+      case 'select':
+        return '<select class="mh-input mh-select"' + id + '>' + opts.map(function (o) { return '<option value="' + E(o.value) + '"' + (String(o.value) === String(f.value) ? ' selected' : '') + '>' + E(o.label) + '</option>'; }).join('') + '</select>';
+      case 'button':
+        return '<button class="mh-btn mh-btn--sm' + (f.danger ? ' mh-btn--tone mh-t-danger' : '') + '"' + id + ' data-mh-press>' + (f.icon ? I(f.icon) : '') + E(f.text || f.label) + '</button>';
+      default:
+        return '<span class="mh-sub">' + E(f.value == null ? '' : f.value) + '</span>';
+    }
+  }
+
+  /* ---------------- Detay paneli ---------------- */
+  function actionsHtml(it) {
+    return (it.actions || []).map(function (a, i) {
+      return '<button class="mh-btn mh-btn--block ' + (a.primary || (i === 0 && a.primary !== false) ? 'mh-btn--primary' : a.danger ? 'mh-btn--tone mh-t-danger' : '') + '" data-mh-act="' + E(a.id) + '"' + (a.disabled || it.locked ? ' disabled' : '') + '>' +
+        (a.key ? '<span class="mh-key mh-key--sm">' + E(a.key) + '</span>' : a.icon ? I(a.icon) : '') + E(a.label) + '</button>';
+    }).join('');
+  }
+  var DETAILS = {
+    item: function (it) {
+      return '<div class="mh-preview">' + art(it) + '</div>' +
+        '<div><div class="mh-title mh-title--lg">' + E(it.title || it.name || '') + '</div>' + (it.sub ? '<div class="mh-sub">' + E(it.sub) + '</div>' : '') + '</div>' +
+        (it.desc ? '<p class="mh-buy__desc">' + E(it.desc) + '</p>' : '') +
+        (it.stats ? '<div class="mh-statlines">' + it.stats.map(function (s) {
+          return '<div class="mh-statline"><span class="mh-kicker">' + E(s.label) + '</span><div class="mh-bar' + (s.tone ? ' mh-t-' + E(s.tone) : '') + '" data-v="' + (+s.value || 0) + '"><i class="mh-bar__fill"></i></div><b>' + E(s.text != null ? s.text : s.value) + '</b></div>';
+        }).join('') + '</div>' : '') +
+        (it.specs ? '<dl class="mh-buy__specs">' + it.specs.map(function (p) { return '<dt>' + E(p[0]) + '</dt><dd>' + E(p[1]) + '</dd>'; }).join('') + '</dl>' : '') +
+        '<div class="mh-menu__actions">' + actionsHtml(it) + (it.note ? '<span class="mh-buy__note">' + I('info') + E(it.note) + '</span>' : '') + '</div>';
+    },
+    buy: function (it) {
+      return '<div class="mh-buy">' +
+        '<div class="mh-buy__art">' + badge(it.badge) + art(it) + '</div>' +
+        '<div class="mh-buy__title">' + (it.kicker ? '<span class="mh-kicker mh-kicker--accent">' + E(it.kicker) + '</span>' : '') + '<span class="mh-title mh-title--lg">' + E(it.title || it.name || '') + '</span></div>' +
+        (it.desc ? '<p class="mh-buy__desc">' + E(it.desc) + '</p>' : '') +
+        (it.specs ? '<dl class="mh-buy__specs">' + it.specs.map(function (p) { return '<dt>' + E(p[0]) + '</dt><dd>' + E(p[1]) + '</dd>'; }).join('') + '</dl>' : '') +
+        (it.price != null ? '<div class="mh-buy__total">' + (it.qty ? '<div class="mh-qty"><button data-mh-qty="-1">−</button><b>' + (+it.qty || 1) + '</b><button data-mh-qty="1">+</button></div>' : '<span></span>') + price(it) + '</div>' : '') +
+        (it.actions ? actionsHtml(it) : '<button class="mh-btn mh-btn--primary mh-btn--block" data-mh-act="buy"' + (it.locked || it.owned ? ' disabled' : '') + '>' + I('cart') + E(it.owned ? 'Sende var' : 'Satın al') + '</button>') +
+        (it.note ? '<span class="mh-buy__note">' + I('wallet') + E(it.note) + '</span>' : '') + '</div>';
+    }
+  };
+
+  MH.Menu = function (target, spec) {
+    if (target && typeof target === 'object' && !target.nodeType && !spec) { spec = target; target = null; }
+    spec = spec || {};
+    var host = MH.$(target) || document.querySelector('.mh-screen') || document.body;
+    var useLayer = spec.layer !== false;
+    var S = spec.state || {}, ui = { section: null, sel: {} }, isOpen = !useLayer || !!spec.open;
+    var sections = [];
+    var layer = null, el = MH.el('section', 'mh-panel mh-menu' + (spec.cls ? ' ' + spec.cls : ''));
+    el.setAttribute('data-mh', 'menu');
+    el.style.setProperty('--w', (spec.w || 1180) + 'px'); el.style.setProperty('--h', (spec.h || 720) + 'px');
+    if (useLayer) {
+      layer = MH.el('div', 'mh-layer mh-catch' + (isOpen ? '' : ' mh-hidden'));
+      if (spec.scrim !== false) layer.appendChild(MH.el('div', 'mh-scrim mh-scrim--soft'));
+      layer.appendChild(el); host.appendChild(layer);
+    } else { el.classList.add('mh-catch'); host.appendChild(el); }
+
+    function log() { if (MH.debug) console.log.apply(console, ['[MHud menu]'].concat([].slice.call(arguments))); }
+    function setSections(list) {
+      sections = (list || []).slice();
+      sections.forEach(function (s) { if (s.id != null) s.id = String(s.id); if (s.view === 'list' || s.view === 'grid' || s.view === 'settings' || s.view === 'table' || s.render || s.confirm || s.action) return; if (s.id) console.warn('[MHud menu] bölüm "' + s.id + '" için view/render/confirm/action yok'); });
+    }
+    setSections(spec.sections);
+    function real() { return sections.filter(function (s) { return s.id && !s.confirm && !s.action && !val(s.disabled, S, api); }); }
+    function sec() { return sections.filter(function (s) { return s.id === ui.section; })[0]; }
+    function items(s) { s = s || sec(); if (!s) return []; return (s.view === 'settings' ? (s.fields || []).filter(function (f) { return !f.heading; }) : s.view === 'table' ? (s.rows || []).filter(function (r) { return r.id != null; }) : s.items || []).filter(function (x) { return !x.disabled; }); }
+    function find(s, id) { var all = s.view === 'settings' ? s.fields || [] : s.view === 'table' ? s.rows || [] : s.items || []; return all.filter(function (x) { return String(x.id) === String(id); })[0]; }
+    function selId(s) {
+      s = s || sec(); if (!s) return null;
+      var cur = ui.sel[s.id], list = items(s);
+      if (cur != null && list.some(function (x) { return String(x.id) === String(cur); })) return cur;
+      var first = list.filter(function (x) { return x.active; })[0] || list[0];
+      return ui.sel[s.id] = first ? first.id : null;
+    }
+    function emit(a) {
+      a.section = a.section || ui.section;
+      log(a.action, a);
+      MH.emit('menu:action', a);
+      if (spec.onAction && spec.onAction(a, api) === false) return;
+      if (spec.post !== false) MH.post(spec.post || 'menu', { action: a.action, section: a.section, id: a.id, value: a.value });
+    }
+
+    /* ---------------- Çizim ---------------- */
+    function head() {
+      var st = val(spec.stats, S, api) || [];
+      return '<header class="mh-menu__head">' + (spec.head ? val(spec.head, S, api) : '') +
+        '<div class="mh-menu__title"><span class="mh-kicker mh-kicker--accent">' + E(val(spec.kicker, S, api) || '') + '</span><span class="mh-title">' + E(val(spec.title, S, api) || '') + '</span></div>' +
+        (spec.headRight ? val(spec.headRight, S, api) : '') +
+        (st.length ? '<div class="mh-menu__stats">' + st.slice(0, 3).map(function (x) {
+          return '<div class="mh-stat"><span class="mh-kicker">' + E(x.label) + '</span><b' + (x.tone ? ' class="mh-tone mh-t-' + E(x.tone) + '"' : '') + '>' + E(x.value) + '</b></div>';
+        }).join('') + '</div>' : '') + '</header>';
+    }
+    function nav() {
+      return '<nav class="mh-menu__nav mh-scroll">' + sections.map(function (x) {
+        if (x.group) return '<div class="mh-nav__group"><span class="mh-kicker">' + E(x.group) + '</span></div>';
+        var dis = val(x.disabled, S, api), n = val(x.count, S, api), sm = val(x.small, S, api);
+        return '<button class="mh-nav__item' + (ui.section === x.id ? ' is-active' : '') + (dis ? ' is-disabled' : '') + (x.danger ? ' is-danger' : '') + '" data-mh-sec="' + E(x.id) + '"' + (dis ? ' disabled' : '') + '>' +
+          I(x.icon || 'chev-r') + E(x.label) + (n ? '<span class="mh-count">' + E(n) + '</span>' : sm != null && sm !== '' ? '<small>' + E(sm) + '</small>' : '') + '</button>';
+      }).join('') + '</nav>';
+    }
+    function hints(s, layout) {
+      var h = [];
+      if (s && (s.view === 'list' || s.view === 'grid' || s.view === 'settings' || s.view === 'table')) h.push(['↑', '↓', 'Seç']);
+      if (s && s.view === 'grid') h.splice(0, 1, ['↑', '↓', '←', '→', 'Seç']);
+      if (s && s.view === 'settings') h.push(['←', '→', 'Değiştir']);
+      else if (s && (s.view === 'list' || s.view === 'grid') && (s.activate !== false)) h.push(['ENTER', 'Onayla']);
+      if (real().length > 1) h.push(['Q', 'E', 'Bölüm']);
+      if (spec.closable !== false && useLayer) h.push(['ESC', 'Kapat']);
+      (s && s.hints || []).forEach(function (x) { h.push(x); });
+      return '<div class="mh-hints">' + h.map(function (x) {
+        return '<span class="mh-hint">' + x.slice(0, -1).map(function (k) { return '<span class="mh-key">' + E(k) + '</span>'; }).join('') + E(x[x.length - 1]) + '</span>';
+      }).join('') + '</div>';
+    }
+    function detailHtml(s) {
+      if (!s || s.view === 'settings' || s.view === 'table') return '';
+      var d = s.detail, it = find(s, selId(s));
+      if (d === 'none') return '';
+      if (!it) return d ? '<div class="mh-empty">' + I('pointer') + '<b>Bir öğe seç</b></div>' : '';
+      if (typeof d === 'function') return d(it, api) || '';
+      if (d === 'buy') return DETAILS.buy(it);
+      return (d === 'item' || (!d && (s.items || []).some(hasDetail))) ? DETAILS.item(it) : '';
+    }
+    function render() {
+      if (!ui.section || !sec() || val(sec().disabled, S, api)) ui.section = (real()[0] || {}).id || null;
+      var s = sec(), main = '', aside = '';
+      if (s && s.render) { var r = s.render(S, api) || {}; main = r.main || ''; aside = r.aside || ''; }
+      else if (s && VIEWS[s.view]) {
+        var sel = selId(s);
+        main = (s.toolbar !== false ? '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">' + E(s.title || s.label) + '</span>' +
+          (s.search ? '<div class="mh-input-wrap" style="margin-left:auto;width:260px">' + I('search') + '<input class="mh-input" data-mh-search placeholder="Ara…"></div>' : '') +
+          (s.tools ? val(s.tools, S, api) : '') + '</div>' : '') + VIEWS[s.view](s, sel);
+        aside = detailHtml(s);
+      }
+      var scroll = el.querySelector('.mh-menu__main .mh-scroll'), st = scroll ? scroll.scrollTop : 0, keep = el.__lastSec === ui.section;
+      el.innerHTML = head() + '<div class="mh-menu__body' + (aside ? '' : ' mh-menu__body--2') + '">' + nav() +
+        '<div class="mh-menu__main" data-panel="' + E(ui.section || '') + '">' + main + '</div>' + (aside ? '<aside class="mh-menu__aside">' + aside + '</aside>' : '') + '</div>' +
+        '<footer class="mh-menu__foot">' + hints(s) + '<span class="mh-mute">' + E(val(spec.foot, S, api) || '') + '</span></footer>';
+      MH.mount(el);
+      if (keep) { var ns = el.querySelector('.mh-menu__main .mh-scroll'); if (ns) ns.scrollTop = st; }
+      el.__lastSec = ui.section;
+      if (spec.onRender) spec.onRender(api);
+    }
+    function paintSel(scroll) {
+      var s = sec(); if (!s || s.render) return render();
+      var id = selId(s);
+      el.querySelectorAll('[data-mh-item]').forEach(function (n) { n.classList.toggle('is-active', n.getAttribute('data-mh-item') === String(id)); });
+      var a = el.querySelector('.mh-menu__aside'), html = detailHtml(s);
+      if (!!a !== !!html) return render();
+      if (a) { a.innerHTML = html; MH.mount(a); }
+      var cur = el.querySelector('[data-mh-item].is-active'); if (cur && scroll) cur.scrollIntoView({ block: 'nearest' });
+    }
+
+    /* ---------------- Eylemler ---------------- */
+    function go(id) {
+      var s = sections.filter(function (x) { return x.id === String(id); })[0];
+      if (!s || val(s.disabled, S, api)) return;
+      if (s.confirm) {
+        var c = s.confirm;
+        MH.confirm({ title: c.title || s.label, text: c.text, danger: c.danger, ok: c.ok || s.label, icon: c.icon || s.icon })
+          .then(function (ok) { if (ok) emit({ action: s.id, section: s.id }); });
+        return;
+      }
+      if (s.action === 'close') { api.close(); return; }
+      if (s.action) { emit({ action: s.action, section: s.id }); return; }
+      if (ui.section === s.id) return;
+      ui.section = s.id; render(); emit({ action: 'section', id: s.id });
+    }
+    function select(id, quiet) {
+      var s = sec(); if (!s) return;
+      var it = find(s, id); if (!it || it.disabled) return;
+      if (String(ui.sel[s.id]) === String(id)) return;
+      ui.sel[s.id] = it.id; paintSel(true);
+      if (!quiet) emit({ action: 'select', id: it.id, item: it });
+    }
+    // öğe eylemi; eylemde confirm varsa önce onay sorulur
+    function runAct(id, it) {
+      var a = it && (it.actions || []).filter(function (x) { return x.id === id; })[0];
+      var go = function () { emit({ action: id, id: it ? it.id : null, item: it, value: it && it.qty }); };
+      if (a && a.confirm) {
+        var c = a.confirm === true ? {} : a.confirm;
+        MH.confirm({ title: c.title || a.label + '?', text: c.text, danger: c.danger != null ? c.danger : a.danger, ok: c.ok || a.label, icon: c.icon })
+          .then(function (ok) { if (ok) go(); });
+      } else go();
+    }
+    function activate() {
+      var s = sec(); if (!s || s.activate === false) return;
+      var it = find(s, selId(s)); if (!it || it.locked) return;
+      if (s.view === 'settings') return;
+      var first = (it.actions || [])[0] || (s.detail === 'buy' && !it.owned ? { id: 'buy' } : null);
+      if (first) runAct(first.id, it); else emit({ action: 'activate', id: it.id, item: it });
+    }
+    function move(dx, dy) {
+      var s = sec(), list = items(s); if (!list.length) return;
+      var i = list.map(function (x) { return String(x.id); }).indexOf(String(selId(s)));
+      var step = s.view === 'grid' ? dy * (+s.cols || 4) + dx : dy;
+      if (!step) return;
+      select(list[(i + step + list.length) % list.length].id);
+    }
+    function setField(f, v) {
+      f.value = v;
+      emit({ action: 'change', id: f.id, value: v, item: f });
+      render();
+    }
+    function nudge(dir) {
+      var s = sec(); if (!s || s.view !== 'settings') return false;
+      var f = find(s, selId(s)); if (!f || f.disabled) return false;
+      var opts = (f.options || []).map(function (o) { return typeof o === 'object' ? o.value : o; });
+      if (f.type === 'toggle') setField(f, !f.value);
+      else if (f.type === 'slider') { var st = +f.step || 1, mn = f.min != null ? +f.min : 0, mx = f.max != null ? +f.max : 100; setField(f, Math.min(mx, Math.max(mn, (+f.value || 0) + dir * st))); }
+      else if (opts.length) { var i = opts.map(String).indexOf(String(f.value)); setField(f, opts[(i + dir + opts.length) % opts.length]); }
+      return true;
+    }
+
+    el.addEventListener('click', function (e) {
+      var t = e.target;
+      var n = t.closest('[data-mh-sec]'); if (n && el.contains(n)) { if (!n.disabled) go(n.getAttribute('data-mh-sec')); return; }
+      var s = sec();
+      var b = t.closest('[data-mh-act]');
+      if (b && !b.disabled) { var it = s && find(s, selId(s)); runAct(b.getAttribute('data-mh-act'), it); return; }
+      var q = t.closest('[data-mh-qty]');
+      if (q && s) { var iq = find(s, selId(s)); if (iq) { iq.qty = Math.max(1, Math.min(iq.max || 99, (+iq.qty || 1) + (+q.getAttribute('data-mh-qty')))); paintSel(); } return; }
+      var st = t.closest('[data-step][data-mh-field]');
+      if (st && s) { ui.sel[s.id] = st.getAttribute('data-mh-field'); paintSel(); nudge(+st.getAttribute('data-step')); return; }
+      var sg = t.closest('.mh-seg > [data-mh-field]');
+      if (sg && s) { var fs = find(s, sg.getAttribute('data-mh-field')); if (fs) { ui.sel[s.id] = fs.id; setField(fs, sg.getAttribute('data-value')); } return; }
+      var pr = t.closest('[data-mh-press]');
+      if (pr && s) { emit({ action: 'press', id: pr.getAttribute('data-mh-field') }); return; }
+      var row = t.closest('[data-mh-item]');
+      if (row && el.contains(row)) {
+        if (s && s.view === 'settings') { ui.sel[s.id] = row.getAttribute('data-mh-item'); paintSel(); return; }
+        select(row.getAttribute('data-mh-item'));
+      }
+    });
+    el.addEventListener('dblclick', function (e) { if (e.target.closest('[data-mh-item]') && !e.target.closest('button, input, select')) activate(); });
+    el.addEventListener('change', function (e) {
+      var t = e.target, id = t.getAttribute('data-mh-field'), s = sec(); if (!id || !s) return;
+      var f = find(s, id); if (!f) return;
+      setField(f, t.type === 'checkbox' ? t.checked : f.type === 'slider' ? +t.value : t.value);
+    });
+    el.addEventListener('input', function (e) {
+      var t = e.target;
+      if (t.hasAttribute('data-mh-search')) {
+        var q = t.value.toLocaleLowerCase('tr').trim();
+        el.querySelectorAll('.mh-menu__main [data-mh-item]').forEach(function (r) { r.classList.toggle('mh-hidden', !!q && r.textContent.toLocaleLowerCase('tr').indexOf(q) < 0); });
+        return;
+      }
+      if (t.type === 'range' && t.hasAttribute('data-mh-field')) {
+        var f = find(sec(), t.getAttribute('data-mh-field')), out = t.parentNode.querySelector('[data-mh-out]');
+        if (out && f) out.textContent = t.value + (f.unit || '');
+      }
+    });
+    function key(e) {
+      if (!isOpen || !el.isConnected || e.defaultPrevented || MH.modalOpen()) return;
+      var typing = e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName) && e.target.type !== 'range' && e.target.type !== 'checkbox';
+      if (e.key === 'Escape') { if (spec.closable !== false && useLayer) { e.preventDefault(); api.close(); } return; }
+      if (typing) return;
+      var k = e.key, s = sec(), grid = s && s.view === 'grid';
+      if (k === 'ArrowDown' || k === 'ArrowUp') { e.preventDefault(); move(0, k === 'ArrowDown' ? 1 : -1); }
+      else if (k === 'ArrowLeft' || k === 'ArrowRight') { var d = k === 'ArrowRight' ? 1 : -1; if (grid) { e.preventDefault(); move(d, 0); } else if (nudge(d)) e.preventDefault(); }
+      else if (k === 'Enter') { e.preventDefault(); if (s && s.view === 'settings') nudge(1); else activate(); }
+      else if (k === 'q' || k === 'Q' || k === 'e' || k === 'E') {
+        var list = real(), i = list.map(function (x) { return x.id; }).indexOf(ui.section), dir = k.toLowerCase() === 'e' ? 1 : -1;
+        if (list.length > 1) { e.preventDefault(); go(list[(i + dir + list.length) % list.length].id); }
+      }
+    }
+    document.addEventListener('keydown', key);
+
+    var api = {
+      el: el, layer: layer, ui: ui,
+      get state() { return S; },
+      get section() { return ui.section; },
+      get sections() { return sections; },
+      open: function (id) {
+        if (id) ui.section = String(id);
+        var was = isOpen; isOpen = true; render();
+        if (layer) layer.classList.remove('mh-hidden');
+        if (!was) { emit({ action: 'open' }); MH.emit('menu:open', api); if (spec.onOpen) spec.onOpen(api); }
+        return api;
+      },
+      close: function () {
+        if (!isOpen || !useLayer) return api;
+        isOpen = false; MH.closeModals(); MH.closeContext && MH.closeContext();
+        layer.classList.add('mh-hidden');
+        emit({ action: 'close' }); MH.emit('menu:close', api); if (spec.onClose) spec.onClose(api);
+        return api;
+      },
+      toggle: function (id) { return isOpen ? api.close() : api.open(id); },
+      isOpen: function () { return isOpen; },
+      go: function (id) { go(id); return api; },
+      select: function (id) { select(id, true); return api; },
+      selected: function () { var s = sec(); return s ? find(s, selId(s)) : null; },
+      set: function (st) { S = st || {}; render(); return api; },
+      patch: function (p) { Object.keys(p || {}).forEach(function (k) { S[k] = p[k]; }); render(); return api; },
+      update: function (id, patch) {
+        var s = sections.filter(function (x) { return x.id === String(id); })[0];
+        if (!s) { console.warn('[MHud menu] update: bölüm yok', id); return api; }
+        Object.keys(patch || {}).forEach(function (k) { s[k] = patch[k]; }); render(); return api;
+      },
+      setSections: function (list) { setSections(list); render(); return api; },
+      render: render,
+      destroy: function () { document.removeEventListener('keydown', key); (layer || el).remove(); }
+    };
+    if (spec.section) ui.section = String(spec.section);
+    render();
+    return api;
+  };
 })(window);
 
 /* kit/js/mhud-social.js */
@@ -1849,17 +2166,19 @@
    eylemi { action, data } olarak geri gider. Menü kendi başına hiçbir şeyi
    değiştirmez — sunucu yeni durumu gönderince yeniden çizilir.
 
+   MH.Menu üstünde çalışır (kabuk, gezinme, Q/E, ESC, ipuçları ondan gelir);
+   bölümlerin içeriği bu dosyadaki render işlevleridir.
+
      var menu = MH.Social('#host', { section: 'crew', onAction: fn });
      menu.set(state)          tüm durum
      menu.patch({ crew: … })  kısmi güncelleme (üst düzey anahtarlar)
      menu.open('channels')    bölüm aç
 
-   NUI mesajları:  social:state (tam) · social:patch · social:open { section } · social:close
-   Geri dönüş:     MH.post('social', { action: 'crew:invite', data: { ids: [..] } })
-   Eylem listesi: bu dosyadaki MH.Social API açıklamaları
+   Oyundan gelen mesajlar: social:state (tam) · social:patch · social:open { section, state } · social:close
+   Oyuna giden:            MH.post('social', { action: 'crew:invite', data: { ids: [..] } }) · kapanınca MH.post('socialClose')
 
-   "Kanal" = aynı sunucuda ayrı dünya (FiveM/RedM routing bucket). Aynı kanaldaki
-   oyuncular birbirini görür; başka kanaldakiler görünmez ve etkileşemez.
+   "Kanal" = aynı oyun oturumunda ayrı dünya. Aynı kanaldaki oyuncular birbirini görür;
+   başka kanaldakiler görünmez ve etkileşemez.
    ========================================================================== */
 (function (root) {
   'use strict';
@@ -1871,7 +2190,7 @@
 
   var MODES = {
     free: ['Serbest', 'world'], deathmatch: ['Ölüm maçı', 'crosshair'], race: ['Yarış', 'flag-3'], survival: ['Hayatta kal', 'zombie'],
-    heist: ['Soygun', 'safe'], event: ['Etkinlik', 'star'], private: ['Özel', 'lock'], western: ['Düello', 'revolver']
+    heist: ['Soygun', 'safe'], event: ['Etkinlik', 'star'], private: ['Özel', 'lock'], duel: ['Düello', 'revolver']
   };
   var STATUS = { online: ['Çevrimiçi', 'success'], afk: ['AFK', 'warn'], busy: ['Görevde', 'info'], down: ['Yerde', 'danger'], dead: ['Öldü', 'danger'], offline: ['Çevrimdışı', ''] };
   var PERMS = [['invite', 'Davet', 'user-plus'], ['kick', 'Ekipten at', 'user-minus'], ['withdraw', 'Kasadan çek', 'bank'], ['armory', 'Cephanelik', 'pistol'],
@@ -1922,9 +2241,7 @@
     opts = opts || {};
     var host = MH.$(target); if (!host) return null;
     var S = {}, ui = { section: opts.section || 'crew', member: null, invTab: 'in', chFilter: 'all', logFilter: 'all', armSel: null };
-    var el = MH.el('section', 'mh-panel mh-menu mh-socialmenu mh-catch');
-    el.style.setProperty('--w', (opts.w || 1280) + 'px'); el.style.setProperty('--h', (opts.h || 780) + 'px');
-    host.appendChild(el);
+    var menu = null, el = null;
 
     function act(action, data) {
       data = data || {};
@@ -1934,24 +2251,19 @@
     }
 
     /* ---------------- Başlık ---------------- */
-    function head() {
-      var c = S.crew, ch = chan(S), me = S.me || {};
-      var mark = c ? '<div class="mh-crewmark' + crewTone(c) + '"><b>' + E(c.tag || '?') + '</b><small>Svy ' + E(c.level || 1) + '</small></div>' : '<div class="mh-crewmark is-none">' + I('users') + '</div>';
-      var mode = ch ? (MODES[ch.mode] || MODES.free) : MODES.free;
-      return '<header class="mh-menu__head">' + mark +
-        '<div class="mh-menu__title"><span class="mh-kicker mh-kicker--accent">' + E(opts.kicker || 'Ekip & kanallar') + '</span><span class="mh-title">' + E(c ? c.name : 'Ekipsiz') + '</span></div>' +
-        '<button class="mh-chanchip" data-sec="channels"><span class="mh-chanchip__icon">' + I(mode[1]) + '</span><div><span class="mh-kicker">Kanal</span><b>' + E(ch ? ch.name : 'Ana dünya') + '</b></div>' +
-        (ch ? '<small class="mh-num">' + ch.players + ' / ' + ch.max + '</small>' : '') + '</button>' +
-        '<div class="mh-menu__stats"><div class="mh-stat"><span class="mh-kicker">Nakit</span><b style="color:var(--mh-success)">' + money(me.cash) + '</b></div>' +
-        (c ? '<div class="mh-stat"><span class="mh-kicker">Ekip kasası</span><b>' + money(c.bank) + '</b></div>' : '') + '</div></header>';
+    function mark() {
+      var c = S.crew;
+      return c ? '<div class="mh-crewmark' + crewTone(c) + '"><b>' + E(c.tag || '?') + '</b><small>Svy ' + E(c.level || 1) + '</small></div>' : '<div class="mh-crewmark is-none">' + I('users') + '</div>';
     }
-    function nav() {
-      return '<nav class="mh-menu__nav">' + SECTIONS.map(function (x) {
-        if (x.group) return '<div class="mh-nav__group"><span class="mh-kicker">' + E(x.group) + '</span></div>';
-        var dis = x.crew && !S.crew, n = x.count ? x.count(S) : 0, sm = x.small ? x.small(S) : '';
-        return '<button class="mh-nav__item' + (ui.section === x.id ? ' is-active' : '') + (dis ? ' is-disabled' : '') + '" data-sec="' + x.id + '"' + (dis ? ' disabled' : '') + '>' + I(x.icon) + E(x.label) +
-          (n ? '<span class="mh-count">' + n + '</span>' : sm !== '' ? '<small>' + E(sm) + '</small>' : '') + '</button>';
-      }).join('') + '</nav>';
+    function chanChip() {
+      var ch = chan(S), mode = ch ? (MODES[ch.mode] || MODES.free) : MODES.free;
+      return '<button class="mh-chanchip" data-mh-sec="channels"><span class="mh-chanchip__icon">' + I(mode[1]) + '</span><div><span class="mh-kicker">Kanal</span><b>' + E(ch ? ch.name : 'Ana dünya') + '</b></div>' +
+        (ch ? '<small class="mh-num">' + ch.players + ' / ' + ch.max + '</small>' : '') + '</button>';
+    }
+    function stats() {
+      var c = S.crew, me = S.me || {}, out = [{ label: 'Nakit', value: money(me.cash), tone: 'success' }];
+      if (c) out.push({ label: 'Ekip kasası', value: money(c.bank) });
+      return out;
     }
 
     /* ---------------- Ekip: genel bakış ---------------- */
@@ -2064,12 +2376,12 @@
       var c = S.crew, items = c.armory || [], myRank = rankIdx(S, (meMember(S) || {}).rank), mayUse = can(S, 'armory');
       var main = '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">Cephanelik</span><span class="mh-badge">' + items.reduce(function (a, b) { return a + (b.count || 0); }, 0) + ' parça</span>' +
         '<span style="margin-left:auto"></span>' + btn('arm-put', 'Silah bırak', { icon: 'arrow-down', cls: 'mh-btn--primary' }) + '</div>' +
-        '<div class="mh-cards mh-scroll mh-armory" style="flex:1">' + (items.length ? items.map(function (it) {
+        '<div class="mh-shopgrid mh-scroll mh-menu__scroll mh-armory">' + (items.length ? items.map(function (it) {
           var need = it.minRank ? rankIdx(S, it.minRank) : 99, locked = !mayUse || myRank > need, a = String(it.art || 'i:pistol');
-          return '<div class="mh-card is-' + (it.tier || 'common') + (locked ? ' is-locked' : '') + (ui.armSel === it.id ? ' is-active' : '') + '" data-sa="arm-select" data-id="' + E(it.id) + '">' +
-            '<div class="mh-card__art">' + (it.minRank ? badge(rankOf(S, it.minRank).label + '+', locked ? '' : 'accent', locked ? 'lock' : null) : '') + MH.art(a, a.indexOf('w:') === 0 ? '' : 'mh-armory__icon') + '<span class="mh-armory__count">×' + E(it.count || 0) + '</span></div>' +
-            '<div class="mh-card__body"><span class="mh-card__name">' + E(it.name) + '</span><span class="mh-card__sub">' + E(it.sub || '') + '</span></div>' +
-            '<div class="mh-card__foot">' + (locked ? '<span class="mh-sub">' + I('lock') + ' Rütben yetmiyor</span>' : btn('arm-take', 'Al', { id: it.id, icon: 'arrow-up', cls: 'mh-btn--outline', disabled: !it.count })) + '</div></div>';
+          return '<div class="mh-item is-' + (it.tier || 'common') + (locked ? ' is-locked' : '') + (ui.armSel === it.id ? ' is-active' : '') + '" data-sa="arm-select" data-id="' + E(it.id) + '">' +
+            '<div class="mh-item__art">' + (it.minRank ? badge(rankOf(S, it.minRank).label + '+', locked ? '' : 'accent', locked ? 'lock' : null) : '') + MH.art(a, a.indexOf('w:') === 0 ? '' : 'mh-armory__icon') + '<span class="mh-item__corner mh-num">×' + E(it.count || 0) + '</span></div>' +
+            '<div class="mh-item__body"><span class="mh-item__name">' + E(it.name) + '</span><div class="mh-item__meta"><span>' + (locked ? I('lock') + ' Rütben yetmiyor' : E(it.sub || '')) + '</span>' +
+            (locked ? '' : btn('arm-take', 'Al', { id: it.id, icon: 'arrow-up', cls: 'mh-btn--outline', disabled: !it.count })) + '</div></div></div>';
         }).join('') : empty('safe', 'Cephanelik boş', 'Silahını ekibe bırakmak için “Silah bırak”.')) + '</div>';
       return { main: main };
     }
@@ -2161,19 +2473,7 @@
 
     var RENDER = { crew: crewMain, invites: invitesMain, vault: vaultMain, armory: armoryMain, ranks: ranksMain, channels: channelsMain, friends: friendsMain, inbox: inboxMain };
 
-    function render() {
-      var sec = ui.section;
-      if (!S.crew && (sec === 'vault' || sec === 'armory' || sec === 'ranks')) sec = ui.section = 'crew';
-      var r = (RENDER[sec] || crewMain)();
-      var scroll = el.querySelector('.mh-menu__main .mh-scroll'), st = scroll ? scroll.scrollTop : 0, keep = el.__lastSec === sec;
-      el.innerHTML = head() + '<div class="mh-menu__body' + (r.aside ? '' : ' mh-menu__body--2') + '">' + nav() + '<div class="mh-menu__main" data-panel="' + sec + '">' + r.main + '</div>' +
-        (r.aside ? '<aside class="mh-menu__aside">' + r.aside + '</aside>' : '') + '</div>' +
-        '<footer class="mh-menu__foot"><div class="mh-hints"><span class="mh-hint"><span class="mh-key">Q</span><span class="mh-key">E</span>Bölüm</span><span class="mh-hint"><span class="mh-key">ESC</span>Kapat</span></div>' +
-        '<span class="mh-mute" style="font-size:12px">' + E(opts.foot || (S.server ? S.server : '')) + '</span></footer>';
-      MH.mount(el);
-      if (keep) { var ns = el.querySelector('.mh-menu__main .mh-scroll'); if (ns) ns.scrollTop = st; }
-      el.__lastSec = sec;
-    }
+    function render() { if (menu) menu.render(); }
 
     /* ---------------- Etkileşim ---------------- */
     function findMember(id) { return ((S.crew && S.crew.members) || []).filter(function (m) { return String(m.id) === String(id); })[0]; }
@@ -2369,9 +2669,30 @@
     };
     H.profile = function (id) { act('player:profile', { id: id }); };
 
+    /* ---------------- Kabuk: MH.Menu ---------------- */
+    menu = MH.Menu(host, {
+      layer: !!opts.layer, cls: 'mh-socialmenu', w: opts.w || 1280, h: opts.h || 780, post: false,
+      closable: !!opts.layer,
+      head: mark, headRight: chanChip, stats: stats,
+      kicker: opts.kicker || 'Ekip & kanallar', title: function () { return S.crew ? S.crew.name : 'Ekipsiz'; },
+      foot: function () { return opts.foot || S.server || ''; },
+      section: ui.section,
+      sections: SECTIONS.map(function (x) {
+        if (x.group) return x;
+        return { id: x.id, label: x.label, icon: x.icon, count: x.count, small: x.small,
+          disabled: x.crew ? function () { return !S.crew; } : null,
+          render: function () { return (RENDER[x.id] || crewMain)(); } };
+      }),
+      onAction: function (a) {
+        if (a.action === 'section') { ui.section = a.id; act('ui:section', { section: a.id }); }
+        if (a.action === 'close' && opts.onClose) opts.onClose(api);
+        return false;
+      },
+      onRender: function (m) { ui.section = m.section; }
+    });
+    el = menu.el;
+
     el.addEventListener('click', function (e) {
-      var s = e.target.closest('[data-sec]');
-      if (s && el.contains(s) && !s.disabled) { ui.section = s.getAttribute('data-sec'); render(); act('ui:section', { section: ui.section }); return; }
       var b = e.target.closest('[data-sa]'); if (!b || b.disabled) return;
       var inner = e.target.closest('button[data-sa]');
       if (inner && inner !== b) b = inner;
@@ -2387,25 +2708,17 @@
       var q = t.value.toLowerCase().trim();
       $$('[data-list="' + t.getAttribute('data-filter') + '"] > [data-name]', el).forEach(function (r) { r.classList.toggle('mh-hidden', q && r.getAttribute('data-name').indexOf(q) < 0); });
     });
-    var ORDER = SECTIONS.filter(function (x) { return x.id; }).map(function (x) { return x.id; });
-    function key(e) {
-      if (!el.isConnected || el.offsetParent === null || MH.modalOpen()) return;
-      if (e.key === 'Escape' && opts.onClose) { e.preventDefault(); opts.onClose(api); return; }
-      if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
-      var k = e.key.toLowerCase(); if (k !== 'q' && k !== 'e') return;
-      var avail = ORDER.filter(function (id) { var x = SECTIONS.filter(function (s) { return s.id === id; })[0]; return !(x.crew && !S.crew); });
-      var i = avail.indexOf(ui.section); ui.section = avail[(i + (k === 'e' ? 1 : -1) + avail.length) % avail.length]; render();
-    }
-    document.addEventListener('keydown', key);
-
     var api = {
-      el: el, ui: ui,
+      ui: ui,
+      get el() { return el; },
+      get menu() { return menu; },
       get state() { return S; },
-      set: function (s) { S = s || {}; render(); return api; },
+      set: function (st) { S = st || {}; render(); return api; },
       patch: function (p) { Object.keys(p || {}).forEach(function (k) { S[k] = p[k]; }); render(); return api; },
-      open: function (sec) { if (sec) ui.section = sec; render(); return api; },
+      open: function (sec) { if (sec) ui.section = sec; menu.open(sec); return api; },
+      close: function () { menu.close(); return api; },
       render: render,
-      destroy: function () { document.removeEventListener('keydown', key); el.remove(); }
+      destroy: function () { menu.destroy(); }
     };
     render();
     return api;
@@ -2461,21 +2774,20 @@
     return { update: function (s) { st = Object.assign({}, st, s); draw(); }, close: function () { p.close('done'); }, el: p.el };
   };
 
-  /* ---------------- NUI köprüsü ---------------- */
+  /* ---------------- Oyun köprüsü (MH.on) ---------------- */
   var inst = null, trade = null;
   function ensure(d) {
     if (inst) return inst;
-    var hostEl = document.querySelector('[data-mh="socialmenu"]');
-    if (!hostEl) { hostEl = MH.el('div', 'mh-layer mh-catch mh-socialmenu-layer'); hostEl.setAttribute('data-mh', 'socialmenu'); hostEl.innerHTML = '<div class="mh-scrim mh-scrim--soft"></div>'; (document.querySelector('.mh-screen') || document.body).appendChild(hostEl); }
     var o = (d && d.options) || {};
-    o.onClose = function () { MH.closeModals(); hostEl.classList.add('mh-hidden'); MH.post('socialClose', {}); };
-    inst = MH.Social(hostEl, o);
+    o.layer = true;
+    o.onClose = function () { MH.post('socialClose', {}); };
+    inst = MH.Social(document.querySelector('.mh-screen') || document.body, o);
     return inst;
   }
-  MH.on('social:open', function (d) { d = d || {}; var m = ensure(d); if (d.state) m.set(d.state); m.open(d.section); m.el.parentNode.classList.remove('mh-hidden'); });
+  MH.on('social:open', function (d) { d = d || {}; var m = ensure(d); if (d.state) m.set(d.state); m.open(d.section); });
   MH.on('social:state', function (s) { ensure().set(s); });
   MH.on('social:patch', function (s) { ensure().patch(s); });
-  MH.on('social:close', function () { MH.closeModals(); if (inst) inst.el.parentNode.classList.add('mh-hidden'); });
+  MH.on('social:close', function () { if (inst) inst.close(); });
   /* Yeni davet: listeye ekle + (tercih açıksa) ekranda bildir */
   MH.on('social:invite', function (x) {
     if (!x) return; var m = ensure(), s = m.state;
@@ -2492,13 +2804,13 @@
     var s = inst ? inst.state : {}, c = ((s.channels && s.channels.list) || []).filter(function (x) { return x.id === d.id; })[0];
     MH.toast({ tone: 'info', icon: d.id === 'main' ? 'world' : 'layers', title: d.id === 'main' ? 'Ana dünyaya döndün' : cname(c || { id: d.id }) + ' kanalına geçtin', text: d.id === 'main' ? 'Herkese açık dünyadasın' : 'Diğer kanallardaki oyuncular artık görünmüyor', duration: 3200 });
   });
-  /* Süreli davetler NUI tarafında geri sayar (sunucu ayrıca süresi dolanı siler) */
+  /* Süreli davetler sayfada geri sayar (sunucu ayrıca süresi dolanı siler) */
   setInterval(function () {
     if (!inst) return; var inv = inst.state.invites; if (!inv || !inv.incoming || !inv.incoming.length) return;
     var ch = false;
     inv.incoming.forEach(function (x) { if (x.expires != null && x.autoTick !== false) { x.expires--; ch = true; } });
     inv.incoming = inv.incoming.filter(function (x) { return x.expires == null || x.expires > 0; });
-    if (ch && inst.ui.section === 'invites' && !MH.modalOpen() && inst.el.offsetParent !== null) inst.render();
+    if (ch && inst.ui.section === 'invites' && !MH.modalOpen() && inst.menu.isOpen()) inst.render();
   }, 1000);
   MH.on('social:trade', function (d) { if (!d || d.close) { if (trade) trade.close(); trade = null; return; } if (trade) trade.update(d); else trade = MH.trade(d); });
 })(window);
@@ -2513,8 +2825,8 @@
     function geometry() {
       if (!layout || !host) return;
       var z = parseFloat(document.documentElement.style.zoom) || 1;
-      var screen = root.streamember && root.streamember.screenHeight || layout.screenHeight;
-      var offset = root.streamember && root.streamember.atlasOffset || 0;
+      var screen = MH.bridge && MH.bridge.screenHeight || layout.screenHeight;
+      var offset = MH.bridge && MH.bridge.atlasOffset || 0;
       host.style.cssText = 'position:absolute;left:0;pointer-events:none;top:' + ((screen + offset) / z) + 'px;width:' + (layout.columns * layout.slotWidth / z) + 'px;height:' + (layout.rows * layout.slotHeight / z) + 'px';
       slots.forEach(function (s, i) {
         s.el.style.cssText = 'position:absolute;overflow:hidden;left:' + (i % layout.columns * layout.slotWidth / z) + 'px;top:' + (Math.floor(i / layout.columns) * layout.slotHeight / z) + 'px;width:' + (layout.slotWidth / z) + 'px;height:' + (layout.slotHeight / z) + 'px';
@@ -2532,8 +2844,8 @@
       if (scheduled) return; scheduled = true;
       requestAnimationFrame(function () { requestAnimationFrame(function () {
         scheduled = false;
-        var screen = root.streamember && root.streamember.screenHeight || layout.screenHeight;
-        var offset = root.streamember && root.streamember.atlasOffset || 0;
+        var screen = MH.bridge && MH.bridge.screenHeight || layout.screenHeight;
+        var offset = MH.bridge && MH.bridge.atlasOffset || 0;
         if (root.innerHeight < screen + offset + layout.rows * layout.slotHeight) { if (pending.length) ack(); return; }
         if (pending.length) { MH.post('atlasReady', { s: pending.splice(0) }); }
       }); });

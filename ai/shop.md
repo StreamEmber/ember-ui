@@ -6,7 +6,7 @@ Görsel alanı (.mh-item__art, oran --ratio, varsayılan 16/10) + ad + alt satı
 JS: `el.classList.toggle('is-active')`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-shopgrid" style="--cols:3;width:450px">
   <div class="mh-item is-owned"><div class="mh-item__art"><i data-i="horse"></i></div><div class="mh-item__body"><span class="mh-item__name">Kentucky Saddler</span><div class="mh-item__meta"><span>Siyah</span><span class="mh-badge mh-t-success">Seçili</span></div></div></div>
   <div class="mh-item is-active"><div class="mh-item__art"><i data-i="horse"></i></div><div class="mh-item__body"><span class="mh-item__name">Morgan</span><div class="mh-item__meta"><span>Doru</span><span class="mh-price mh-price--sm">$55.00</span></div></div></div>
@@ -20,7 +20,7 @@ Görsel alanı 1:1: .mh-item--square. Rol, portre, eşya ikonları için. Altın
 JS: `el.classList.toggle('is-active')`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-shopgrid" style="--cols:3;width:420px">
   <div class="mh-item mh-item--square"><div class="mh-item__art"><i data-i="fist"></i></div><div class="mh-item__body"><span class="mh-item__name">Yumrukçu</span><div class="mh-item__meta"><span><i data-i="heart-o"></i>500</span><span class="mh-price mh-price--sm">$50.00</span></div></div></div>
   <div class="mh-item mh-item--square"><div class="mh-item__art"><i data-i="rider"></i></div><div class="mh-item__body"><span class="mh-item__name">Atlı tüfekçi</span><div class="mh-item__meta"><span><i data-i="heart-o"></i>500</span><span class="mh-price mh-price--sm">$150.00</span></div></div></div>
@@ -34,7 +34,7 @@ Izgarayı başlıklarla böl: .mh-shopgroup (kicker + sayı) satırın tamamın�
 JS: `—`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-shopgrid" style="--cols:4;width:720px">
   <div class="mh-shopgroup"><span class="mh-kicker">Tabanca</span><small>3</small></div>
   <div class="mh-item"><div class="mh-item__art"><i data-weapon="revolver"></i></div><div class="mh-item__body"><span class="mh-item__name">Cattleman tabanca</span><div class="mh-item__meta"><span>30 mermi</span><span class="mh-price mh-price--sm">$50.00</span></div></div></div>
@@ -52,7 +52,7 @@ Alt alta liste: .mh-item--row (solda kare küçük görsel, ortada ad + ayrınt�
 JS: `el.querySelector('.mh-item').classList.add('is-active')`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-shoplist" style="width:420px">
   <div class="mh-item mh-item--row is-active"><div class="mh-item__art"><i data-weapon="shotgun"></i></div><div class="mh-item__body"><span class="mh-item__name">Çift namlulu av tüfeği</span><div class="mh-item__meta"><span>Yakın mesafe · 12 fişek</span></div></div><div class="mh-item__side"><span class="mh-price mh-price--sm">$185.00</span><small>Stokta 2</small></div></div>
   <div class="mh-item mh-item--row"><div class="mh-item__art"><i data-i="bullets"></i></div><div class="mh-item__body"><span class="mh-item__name">Tüfek mermisi ×50</span><div class="mh-item__meta"><span>Normal</span></div></div><div class="mh-item__side"><span class="mh-price mh-price--sm">$6.00</span><small>Stokta ∞</small></div></div>
@@ -66,7 +66,7 @@ Yan yana kaydırılan kutucuklar: .mh-shopstrip (--w kutucuk genişliği, kaydı
 JS: `—`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-shopstrip" style="--w:180px;width:680px">
   <div class="mh-item"><div class="mh-item__art"><span class="mh-badge mh-t-accent">Yeni</span><i data-i="hat"></i></div><div class="mh-item__body"><span class="mh-item__name">Gambler şapka</span><div class="mh-item__meta"><span>Siyah keçe</span><span class="mh-price mh-price--sm">$18.00</span></div></div></div>
   <div class="mh-item"><div class="mh-item__art"><i data-i="whiskey"></i></div><div class="mh-item__body"><span class="mh-item__name">Viski</span><div class="mh-item__meta"><span>Dayanıklılık +</span><span class="mh-price mh-price--sm">$3.50</span></div></div></div>
@@ -82,7 +82,7 @@ JS: `—`
 JS: `—`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-shopgrid" style="--cols:5;--gap:6px;width:460px">
   <div class="mh-item mh-item--mini"><div class="mh-item__art"><i data-i="bread"></i></div><span class="mh-item__name">Ekmek</span><span class="mh-price">$1</span></div>
   <div class="mh-item mh-item--mini"><div class="mh-item__art"><i data-i="meat"></i></div><span class="mh-item__name">Et</span><span class="mh-price">$3</span></div>
@@ -98,8 +98,8 @@ Oran sabit, içerik değişir: ikon, silah çizimi (data-weapon) ya da img (obje
 JS: `—`
 
 ```html
-<div class="mh-panel" style="padding:14px">
-<div class="mh-flex" style="gap:10px;align-items:flex-start">
+<div class="mh-panel mh-pad">
+<div class="mh-flex mh-gap-2 mh-items-start">
   <div class="mh-item" style="width:110px"><div class="mh-item__art" style="--ratio:1"><i data-i="horse"></i></div><span class="mh-sub">1 : 1 · ikon</span></div>
   <div class="mh-item" style="width:160px"><div class="mh-item__art"><i data-weapon="sniper"></i></div><span class="mh-sub">16 : 10 · silah</span></div>
   <div class="mh-item" style="width:200px"><div class="mh-item__art" style="--ratio:21/9"><i data-i="car-sport"></i></div><span class="mh-sub">21 : 9 · araç</span></div>
@@ -112,7 +112,7 @@ Mağaza üstü kategori seçici: ikon + ad + adet; seçili is-active (vurgu dolg
 JS: `el.children[1].classList.add('is-active')`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-shopcats">
   <button class="mh-shopcat is-active"><i data-i="grid"></i>Tümü<small>42</small></button>
   <button class="mh-shopcat"><i data-i="revolver"></i>Tabanca<small>6</small></button>
@@ -128,8 +128,8 @@ mh-price (+ --sm küçük, --tag etiketli). Durumlar: indirim (s içinde eski fi
 JS: `el.querySelector('.mh-price').classList.add('is-short')`
 
 ```html
-<div class="mh-panel" style="padding:14px">
-<div class="mh-flex" style="gap:14px;flex-wrap:wrap">
+<div class="mh-panel mh-pad">
+<div class="mh-flex mh-gap-3" style="flex-wrap:wrap">
   <span class="mh-price">$250.00</span>
   <span class="mh-price"><s>$160</s>$128.00</span>
   <span class="mh-price is-short">$1.250</span>
@@ -146,7 +146,7 @@ Eksi / sayı / artı. Mermi ve sarf alımında; toplamı ayrıca yaz.
 JS: `el.querySelector('b').textContent = 3`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-qty"><button>−</button><b>2</b><button>+</button></div>
 </div>
 ```
@@ -156,7 +156,7 @@ Menünün sağ sütunu (mh-menu__aside) için: görsel (.mh-buy__art, --ratio), 
 JS: `MH.mount(root)`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-buy">
   <div class="mh-buy__art"><span class="mh-badge mh-t-info">Rol</span><i data-i="medic"></i></div>
   <div class="mh-buy__title"><span class="mh-kicker mh-kicker--accent">Üye al</span><span class="mh-title mh-title--lg">Sağlıkçı</span></div>
@@ -174,7 +174,7 @@ Birden çok ürünü tek seferde almak için: satır (küçük kare görsel, ad,
 JS: `MH.mount(root)`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-cart">
   <div class="mh-cart__line"><div class="mh-item__art"><i data-weapon="repeater"></i></div><div><b>Lancaster tüfek</b><small>1 × $128.00</small></div><span class="mh-price mh-price--sm">$128.00</span></div>
   <div class="mh-cart__line"><div class="mh-item__art"><i data-i="bullets"></i></div><div><b>Tüfek mermisi ×50</b><small>3 × $6.00</small></div><span class="mh-price mh-price--sm">$18.00</span></div>
@@ -189,7 +189,7 @@ Tuş + açıklama satırları (.mh-keylist__row); birden çok tuş yan yana, iki
 JS: `—`
 
 ```html
-<div class="mh-panel" style="padding:14px">
+<div class="mh-panel mh-pad">
 <div class="mh-keylist" style="width:440px">
   <div class="mh-keylist__row"><span><span class="mh-key">F9</span></span>Menüyü aç / kapat</div>
   <div class="mh-keylist__row"><span><span class="mh-key">G</span></span><div>Kişiyi işaretle / işareti kaldır<small>Nişan aldığın ya da ekran ortasındaki kişi</small></div></div>

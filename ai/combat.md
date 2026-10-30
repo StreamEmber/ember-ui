@@ -6,7 +6,7 @@ Dört biçim: artı (varsayılan), --dot, --circle, --t. Durum: is-target düşm
 JS: `el.classList.toggle('is-target')`
 
 ```html
-<div class="mh-flex" style="gap:18px">
+<div class="mh-flex mh-gap-4">
   <div class="mh-crosshair"><i></i><i></i><i></i><i></i><b></b></div>
   <div class="mh-crosshair mh-crosshair--dot"><i></i><i></i><i></i><i></i><b></b></div>
   <div class="mh-crosshair mh-crosshair--circle is-target"><i></i><i></i><i></i><i></i><b></b></div>
@@ -48,7 +48,7 @@ Nesne üstü etkileşim: nokta + tuş + eylem; uzaktayken is-far sadece nokta. P
 JS: `el.classList.toggle('is-far')`
 
 ```html
-<div class="mh-wprompt" style="position:relative"><span class="mh-wprompt__dot"></span><div class="mh-wprompt__card"><span class="mh-key">E</span>Sandığı aç</div></div>
+<div class="mh-wprompt"><span class="mh-wprompt__dot"></span><div class="mh-wprompt__card"><span class="mh-key">E</span>Sandığı aç</div></div>
 ```
 
 ## combat.prompt — Tuş istemleri
@@ -60,13 +60,6 @@ JS: `el.querySelector('small').textContent = 'Takılı'`
   <div class="mh-prompt__row"><span class="mh-key">F</span>Araçtan in</div>
   <div class="mh-prompt__row"><span class="mh-key">B</span>Emniyet kemeri<small>Takılı</small></div>
 </div>
-```
-
-## combat.key — Tuş kapağı
-Klavye tuşu simgesi: boyut mh-key--sm|--lg, biçim --solid|--accent.
-
-```html
-<div class="mh-flex" style="gap:10px"><span class="mh-key mh-key--sm">E</span><span class="mh-key">F</span><span class="mh-key mh-key--lg">SPACE</span><span class="mh-key mh-key--accent">Y</span><span class="mh-key mh-key--solid">N</span></div>
 ```
 
 ## combat.hold — Basılı tut halkası
@@ -118,7 +111,7 @@ Konuşan avatarı, söz satırı ve numaralı seçenekler. Seçenek is-active se
 
 ```html
 <div class="mh-dialog" style="max-width:460px">
-  <div class="mh-dialog__speaker"><span class="mh-avatar mh-avatar--lg mh-avatar--round mh-t-warn">L</span><div class="mh-col" style="gap:2px"><span class="mh-kicker mh-kicker--accent">Lester Crest</span><span class="mh-sub">Organizatör</span></div></div>
+  <div class="mh-dialog__speaker"><span class="mh-avatar mh-avatar--lg mh-avatar--round mh-t-warn">L</span><div class="mh-col mh-gap-1"><span class="mh-kicker mh-kicker--accent">Lester Crest</span><span class="mh-sub">Organizatör</span></div></div>
   <div class="mh-dialog__line">“Bankanın arka kapısı gece yarısı açılıyor. Sessiz mi gireriz, yoksa kapıyı mı uçururuz?”</div>
   <div class="mh-dialog__choices">
     <button class="mh-choice is-active"><span class="mh-key">1</span>Sessizce gireriz.<small>Gizlilik</small></button>
@@ -126,4 +119,36 @@ Konuşan avatarı, söz satırı ve numaralı seçenekler. Seçenek is-active se
     <button class="mh-choice is-used"><span class="mh-key">3</span>Planı tekrar anlat.</button>
   </div>
 </div>
+```
+
+## combat.objective — Görev takibi
+Aktif görev paneli: başlık + süre rozeti, adım listesi (mh-step: is-done tamam, is-active şimdiki, is-optional isteğe bağlı), altta ilerleme barı.
+JS: `MH.bar(el.querySelector('.mh-bar'), 38)`
+
+```html
+<div class="mh-panel mh-objective">
+  <div class="mh-objective__head"><div><span class="mh-kicker mh-kicker--accent">Aktif görev</span><div class="mh-title">Konvoy baskını</div></div><span class="mh-badge mh-t-accent mh-num">04:12</span></div>
+  <div class="mh-objective__steps">
+    <div class="mh-step is-done"><span class="mh-step__box"><i data-i="check"></i></span>Paleto Körfezi'ne ulaş</div>
+    <div class="mh-step is-active"><span class="mh-step__box"><i data-i="check"></i></span><span>Muhafızları etkisiz hale getir <b>3/8</b></span></div>
+    <div class="mh-step is-optional"><span class="mh-step__box"><i data-i="check"></i></span>Alarmı tetikleme</div>
+  </div>
+  <div class="mh-objective__foot"><div class="mh-flex mh-between"><span class="mh-kicker">İlerleme</span><span class="mh-num mh-dim">38%</span></div><div class="mh-bar mh-bar--sm" data-v="38"><i class="mh-bar__fill"></i></div></div>
+</div>
+```
+
+## combat.damage-number — Yüzen hasar sayısı
+Vuruşta dünyada yükselip sönen sayı. world: tam ekran .mh-world katmanı; x, y piksel ya da 0..1 oran; kind: '' (verilen hasar), 'crit', 'heal' (+), 'self' (alınan). Kendin yazma.
+
+```js
+var world = document.querySelector('.mh-world') || document.querySelector('.mh-screen').appendChild(Object.assign(document.createElement('div'), { className: 'mh-world' }));
+MH.damageNumber(world, { x: .5, y: .45, value: 128, kind: 'crit' });
+```
+
+## combat.vignette — Düşük can kenar kızarması
+Can 40'ın altına inince ekran kenarı kızarır, 20'nin altında nabız atar. Ekrana bir kez &lt;div class=&quot;mh-vignette&quot;&gt;&lt;/div&gt; koy (.mh-screen'in doğrudan çocuğu; kendisi tam ekranı kaplar, aşağıdaki boyut yalnız örnek kutusu içindir), her can değişiminde MH.vignette(el, can) çağır.
+JS: `MH.vignette(el, 15)`
+
+```html
+<div class="mh-vignette" style="position:relative;width:320px;height:160px;--v:.7"></div>
 ```

@@ -1,6 +1,6 @@
 /* MHud sunum kabuğu — yalnızca tarayıcı önizlemesi. Oyuna taşınmaz.
    Menü, üst çubuk, görünüm paneli ve içindekiler tools/build-site.mjs ile statik yazılır;
-   bu dosya yalnız davranış ekler: tema/vurgu/sahne durumu, arama, çekmeceler, içindekiler takibi, sahne ölçekleme. */
+   bu dosya yalnız davranış ekler: vurgu/sahne durumu, arama, çekmeceler, içindekiler takibi, sahne ölçekleme. */
 (function () {
   'use strict';
 
@@ -14,41 +14,33 @@
   function wide() { return !matchMedia('(max-width: 1440px)').matches; }
 
   var params = new URLSearchParams(location.search);
-  var DEFAULTS = { theme: 'modern', accent: '', scene: 'auto', cols: 'auto', code: '0', aside: '1' };
+  var DEFAULTS = { accent: '', scene: 'city', cols: 'auto', code: '0', aside: '1' };
   var state = {};
   Object.keys(DEFAULTS).forEach(function (k) {
     var v = params.get(k); if (v == null) v = store(k); if (v == null) v = DEFAULTS[k];
     state[k] = v;
   });
 
-  function themeBtn(id) { return document.querySelector('.demo-theme[data-theme="' + id + '"]'); }
+  function SCENE_OK(id) { return !!document.querySelector('.demo-scene-btn[data-scene="' + id + '"]') || !document.querySelector('.demo-scene-btn'); }
   function sceneUrl(id) { return id === 'none' ? 'none' : "url('" + BASE + 'demo/scenes/' + id + ".svg')"; }
-  function currentScene() {
-    if (state.scene !== 'auto') return state.scene;
-    var t = themeBtn(state.theme);
-    return t ? t.getAttribute('data-scene') : 'city';
-  }
 
   function apply() {
-    if (!themeBtn(state.theme)) state.theme = 'modern';
+    if (!SCENE_OK(state.scene)) state.scene = DEFAULTS.scene;
     var b = document.body;
-    b.setAttribute('data-mh-theme', state.theme);
     if (state.accent) b.setAttribute('data-mh-accent', state.accent); else b.removeAttribute('data-mh-accent');
     if (state.cols !== 'auto') b.setAttribute('data-demo-cols', state.cols); else b.removeAttribute('data-demo-cols');
     b.classList.toggle('demo-noaside', state.aside === '0');
-    document.documentElement.style.setProperty('--demo-scene', sceneUrl(currentScene()));
-    each('.demo-theme, .demo-themecard', function (n) { n.classList.toggle('is-active', n.getAttribute('data-theme') === state.theme); });
+    document.documentElement.style.setProperty('--demo-scene', sceneUrl(state.scene));
     each('.demo-accent', function (n) { n.classList.toggle('is-active', n.getAttribute('data-accent') === state.accent); });
     each('.demo-scene-btn', function (n) { n.classList.toggle('is-active', n.getAttribute('data-scene') === state.scene); });
     each('[data-demo-cols-btn]', function (n) { n.classList.toggle('is-active', n.getAttribute('data-demo-cols-btn') === state.cols); });
     each('[data-demo-opt="code"]', function (n) { n.classList.toggle('is-on', state.code === '1'); });
     each('[data-demo-aside]', function (n) { n.classList.toggle('is-on', state.aside !== '0'); });
     each('details.demo-src', function (d) { d.open = state.code === '1'; });
-    each('.demo-map', function (img) { img.src = BASE + 'demo/scenes/' + (state.theme === 'frontier' || state.theme === 'oldwest' ? 'minimap-frontier' : 'minimap') + '.svg'; });
     var lbl = document.getElementById('demo-scene-now');
     var sb = document.querySelector('.demo-scene-btn[data-scene="' + state.scene + '"]');
     if (lbl && sb) lbl.textContent = sb.title;
-    window.dispatchEvent(new CustomEvent('demo:theme', { detail: state }));
+    window.dispatchEvent(new CustomEvent('demo:change', { detail: state }));
   }
   function set(k, v) { state[k] = v; store(k, v); apply(); }
   function closeDrawers() { document.body.classList.remove('demo-aside-open', 'demo-side-open'); }
@@ -90,7 +82,6 @@
   /* ---------- Tıklamalar: görünüm paneli, çekmeceler, katalog kartları ---------- */
   function initClicks() {
     document.addEventListener('click', function (e) {
-      var t = e.target.closest('.demo-theme, .demo-themecard'); if (t) return set('theme', t.getAttribute('data-theme'));
       var a = e.target.closest('.demo-accent'); if (a) return set('accent', a.getAttribute('data-accent'));
       var s = e.target.closest('.demo-scene-btn'); if (s) return set('scene', s.getAttribute('data-scene'));
       var c = e.target.closest('[data-demo-cols-btn]'); if (c) return set('cols', c.getAttribute('data-demo-cols-btn'));
@@ -112,7 +103,7 @@
       if (what === 'reset') { Object.keys(DEFAULTS).forEach(function (k) { if (k !== 'aside') { state[k] = DEFAULTS[k]; store(k, DEFAULTS[k]); } }); apply(); }
       if (what === 'link') {
         var u = new URL(location.href.split('#')[0]);
-        ['theme', 'accent', 'scene'].forEach(function (k) { if (state[k] !== DEFAULTS[k]) u.searchParams.set(k, state[k]); else u.searchParams.delete(k); });
+        ['accent', 'scene'].forEach(function (k) { if (state[k] !== DEFAULTS[k]) u.searchParams.set(k, state[k]); else u.searchParams.delete(k); });
         if (navigator.clipboard) navigator.clipboard.writeText(u.toString()).then(function () { flash(d.querySelector('span'), 'Kopyalandı'); }, function () { prompt('Bağlantı', u.toString()); });
         else prompt('Bağlantı', u.toString());
       }

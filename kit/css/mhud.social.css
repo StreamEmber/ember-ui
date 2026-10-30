@@ -8,7 +8,6 @@
 .mh-socialmenu .mh-menu__main { overflow: hidden; }
 .mh-social__pad { display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; flex: 1; min-height: 0; overflow-y: auto; }
 .mh-social__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-.mh-socialmenu-layer.mh-hidden { display: none; }
 
 /* Ekip arması */
 .mh-crewmark { --tone-rgb: var(--mh-accent-rgb); flex: none; width: 58px; height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
@@ -103,12 +102,7 @@
 
 /* Cephanelik */
 .mh-armory { --cols: 4; }
-.mh-armory .mh-card__art { height: 96px; }
-.mh-armory .mh-card__art .mh-badge { position: absolute; top: 8px; left: 8px; }
-.mh-armory__count { position: absolute; right: 10px; bottom: 6px; font-family: var(--mh-font-num); font-size: 16px; font-weight: 700; color: var(--mh-text); }
-.mh-armory .mh-card__foot .mh-sub { display: flex; align-items: center; gap: 5px; font-size: 12px; }
-.mh-armory .mh-card__foot .mh-sub .mh-i { width: 13px; height: 13px; }
-.mh-armory .mh-card.is-locked .mh-card__art > :not(.mh-badge) { opacity: .35; }
+.mh-armory .mh-item__meta .mh-btn { flex: none; }
 
 /* Rütbe izin tablosu */
 .mh-permtable { border: 1px solid var(--mh-line-soft); border-radius: var(--mh-r-3); overflow: auto; }

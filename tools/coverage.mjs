@@ -15,7 +15,9 @@ for (const f of readdirSync(path.join(root, 'catalog')).filter(f => f.endsWith('
   for (const m of read('catalog', f).matchAll(/<section ((?:"[^"]*"|[^>"])*)>\n?([\s\S]*?)<\/section>/g)) {
     if (/\bdata-run=/.test(m[1])) continue;
     total++;
-    const cls = [...new Set(m[2].match(/mh-[a-z0-9_-]+/g) || [])].filter(c => !inPages.has(c));
+    // yerleşim yardımcıları (base.utils) varyant kimliği taşımaz, sayılmaz
+    const UTIL = /^mh-(flex|col|between|wrap|grow|push|items-(start|end)|gap-\d|pad(-[sl])?)$/;
+    const cls = [...new Set(m[2].match(/mh-[a-z0-9_-]+/g) || [])].filter(c => !UTIL.test(c) && !inPages.has(c));
     if (cls.length) missing.push({ id: `${f.replace('.html', '')}.${m[1].match(/data-id="([^"]*)"/)[1]}`, cls });
   }
 }

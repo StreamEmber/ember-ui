@@ -6,17 +6,19 @@
    eylemi { action, data } olarak geri gider. Menü kendi başına hiçbir şeyi
    değiştirmez — sunucu yeni durumu gönderince yeniden çizilir.
 
+   MH.Menu üstünde çalışır (kabuk, gezinme, Q/E, ESC, ipuçları ondan gelir);
+   bölümlerin içeriği bu dosyadaki render işlevleridir.
+
      var menu = MH.Social('#host', { section: 'crew', onAction: fn });
      menu.set(state)          tüm durum
      menu.patch({ crew: … })  kısmi güncelleme (üst düzey anahtarlar)
      menu.open('channels')    bölüm aç
 
-   NUI mesajları:  social:state (tam) · social:patch · social:open { section } · social:close
-   Geri dönüş:     MH.post('social', { action: 'crew:invite', data: { ids: [..] } })
-   Eylem listesi: bu dosyadaki MH.Social API açıklamaları
+   Oyundan gelen mesajlar: social:state (tam) · social:patch · social:open { section, state } · social:close
+   Oyuna giden:            MH.post('social', { action: 'crew:invite', data: { ids: [..] } }) · kapanınca MH.post('socialClose')
 
-   "Kanal" = aynı sunucuda ayrı dünya (FiveM/RedM routing bucket). Aynı kanaldaki
-   oyuncular birbirini görür; başka kanaldakiler görünmez ve etkileşemez.
+   "Kanal" = aynı oyun oturumunda ayrı dünya. Aynı kanaldaki oyuncular birbirini görür;
+   başka kanaldakiler görünmez ve etkileşemez.
    ========================================================================== */
 (function (root) {
   'use strict';
@@ -28,7 +30,7 @@
 
   var MODES = {
     free: ['Serbest', 'world'], deathmatch: ['Ölüm maçı', 'crosshair'], race: ['Yarış', 'flag-3'], survival: ['Hayatta kal', 'zombie'],
-    heist: ['Soygun', 'safe'], event: ['Etkinlik', 'star'], private: ['Özel', 'lock'], western: ['Düello', 'revolver']
+    heist: ['Soygun', 'safe'], event: ['Etkinlik', 'star'], private: ['Özel', 'lock'], duel: ['Düello', 'revolver']
   };
   var STATUS = { online: ['Çevrimiçi', 'success'], afk: ['AFK', 'warn'], busy: ['Görevde', 'info'], down: ['Yerde', 'danger'], dead: ['Öldü', 'danger'], offline: ['Çevrimdışı', ''] };
   var PERMS = [['invite', 'Davet', 'user-plus'], ['kick', 'Ekipten at', 'user-minus'], ['withdraw', 'Kasadan çek', 'bank'], ['armory', 'Cephanelik', 'pistol'],
@@ -79,9 +81,7 @@
     opts = opts || {};
     var host = MH.$(target); if (!host) return null;
     var S = {}, ui = { section: opts.section || 'crew', member: null, invTab: 'in', chFilter: 'all', logFilter: 'all', armSel: null };
-    var el = MH.el('section', 'mh-panel mh-menu mh-socialmenu mh-catch');
-    el.style.setProperty('--w', (opts.w || 1280) + 'px'); el.style.setProperty('--h', (opts.h || 780) + 'px');
-    host.appendChild(el);
+    var menu = null, el = null;
 
     function act(action, data) {
       data = data || {};
@@ -91,24 +91,19 @@
     }
 
     /* ---------------- Başlık ---------------- */
-    function head() {
-      var c = S.crew, ch = chan(S), me = S.me || {};
-      var mark = c ? '<div class="mh-crewmark' + crewTone(c) + '"><b>' + E(c.tag || '?') + '</b><small>Svy ' + E(c.level || 1) + '</small></div>' : '<div class="mh-crewmark is-none">' + I('users') + '</div>';
-      var mode = ch ? (MODES[ch.mode] || MODES.free) : MODES.free;
-      return '<header class="mh-menu__head">' + mark +
-        '<div class="mh-menu__title"><span class="mh-kicker mh-kicker--accent">' + E(opts.kicker || 'Ekip & kanallar') + '</span><span class="mh-title">' + E(c ? c.name : 'Ekipsiz') + '</span></div>' +
-        '<button class="mh-chanchip" data-sec="channels"><span class="mh-chanchip__icon">' + I(mode[1]) + '</span><div><span class="mh-kicker">Kanal</span><b>' + E(ch ? ch.name : 'Ana dünya') + '</b></div>' +
-        (ch ? '<small class="mh-num">' + ch.players + ' / ' + ch.max + '</small>' : '') + '</button>' +
-        '<div class="mh-menu__stats"><div class="mh-stat"><span class="mh-kicker">Nakit</span><b style="color:var(--mh-success)">' + money(me.cash) + '</b></div>' +
-        (c ? '<div class="mh-stat"><span class="mh-kicker">Ekip kasası</span><b>' + money(c.bank) + '</b></div>' : '') + '</div></header>';
+    function mark() {
+      var c = S.crew;
+      return c ? '<div class="mh-crewmark' + crewTone(c) + '"><b>' + E(c.tag || '?') + '</b><small>Svy ' + E(c.level || 1) + '</small></div>' : '<div class="mh-crewmark is-none">' + I('users') + '</div>';
     }
-    function nav() {
-      return '<nav class="mh-menu__nav">' + SECTIONS.map(function (x) {
-        if (x.group) return '<div class="mh-nav__group"><span class="mh-kicker">' + E(x.group) + '</span></div>';
-        var dis = x.crew && !S.crew, n = x.count ? x.count(S) : 0, sm = x.small ? x.small(S) : '';
-        return '<button class="mh-nav__item' + (ui.section === x.id ? ' is-active' : '') + (dis ? ' is-disabled' : '') + '" data-sec="' + x.id + '"' + (dis ? ' disabled' : '') + '>' + I(x.icon) + E(x.label) +
-          (n ? '<span class="mh-count">' + n + '</span>' : sm !== '' ? '<small>' + E(sm) + '</small>' : '') + '</button>';
-      }).join('') + '</nav>';
+    function chanChip() {
+      var ch = chan(S), mode = ch ? (MODES[ch.mode] || MODES.free) : MODES.free;
+      return '<button class="mh-chanchip" data-mh-sec="channels"><span class="mh-chanchip__icon">' + I(mode[1]) + '</span><div><span class="mh-kicker">Kanal</span><b>' + E(ch ? ch.name : 'Ana dünya') + '</b></div>' +
+        (ch ? '<small class="mh-num">' + ch.players + ' / ' + ch.max + '</small>' : '') + '</button>';
+    }
+    function stats() {
+      var c = S.crew, me = S.me || {}, out = [{ label: 'Nakit', value: money(me.cash), tone: 'success' }];
+      if (c) out.push({ label: 'Ekip kasası', value: money(c.bank) });
+      return out;
     }
 
     /* ---------------- Ekip: genel bakış ---------------- */
@@ -221,12 +216,12 @@
       var c = S.crew, items = c.armory || [], myRank = rankIdx(S, (meMember(S) || {}).rank), mayUse = can(S, 'armory');
       var main = '<div class="mh-menu__toolbar"><span class="mh-title mh-title--sm">Cephanelik</span><span class="mh-badge">' + items.reduce(function (a, b) { return a + (b.count || 0); }, 0) + ' parça</span>' +
         '<span style="margin-left:auto"></span>' + btn('arm-put', 'Silah bırak', { icon: 'arrow-down', cls: 'mh-btn--primary' }) + '</div>' +
-        '<div class="mh-cards mh-scroll mh-armory" style="flex:1">' + (items.length ? items.map(function (it) {
+        '<div class="mh-shopgrid mh-scroll mh-menu__scroll mh-armory">' + (items.length ? items.map(function (it) {
           var need = it.minRank ? rankIdx(S, it.minRank) : 99, locked = !mayUse || myRank > need, a = String(it.art || 'i:pistol');
-          return '<div class="mh-card is-' + (it.tier || 'common') + (locked ? ' is-locked' : '') + (ui.armSel === it.id ? ' is-active' : '') + '" data-sa="arm-select" data-id="' + E(it.id) + '">' +
-            '<div class="mh-card__art">' + (it.minRank ? badge(rankOf(S, it.minRank).label + '+', locked ? '' : 'accent', locked ? 'lock' : null) : '') + MH.art(a, a.indexOf('w:') === 0 ? '' : 'mh-armory__icon') + '<span class="mh-armory__count">×' + E(it.count || 0) + '</span></div>' +
-            '<div class="mh-card__body"><span class="mh-card__name">' + E(it.name) + '</span><span class="mh-card__sub">' + E(it.sub || '') + '</span></div>' +
-            '<div class="mh-card__foot">' + (locked ? '<span class="mh-sub">' + I('lock') + ' Rütben yetmiyor</span>' : btn('arm-take', 'Al', { id: it.id, icon: 'arrow-up', cls: 'mh-btn--outline', disabled: !it.count })) + '</div></div>';
+          return '<div class="mh-item is-' + (it.tier || 'common') + (locked ? ' is-locked' : '') + (ui.armSel === it.id ? ' is-active' : '') + '" data-sa="arm-select" data-id="' + E(it.id) + '">' +
+            '<div class="mh-item__art">' + (it.minRank ? badge(rankOf(S, it.minRank).label + '+', locked ? '' : 'accent', locked ? 'lock' : null) : '') + MH.art(a, a.indexOf('w:') === 0 ? '' : 'mh-armory__icon') + '<span class="mh-item__corner mh-num">×' + E(it.count || 0) + '</span></div>' +
+            '<div class="mh-item__body"><span class="mh-item__name">' + E(it.name) + '</span><div class="mh-item__meta"><span>' + (locked ? I('lock') + ' Rütben yetmiyor' : E(it.sub || '')) + '</span>' +
+            (locked ? '' : btn('arm-take', 'Al', { id: it.id, icon: 'arrow-up', cls: 'mh-btn--outline', disabled: !it.count })) + '</div></div></div>';
         }).join('') : empty('safe', 'Cephanelik boş', 'Silahını ekibe bırakmak için “Silah bırak”.')) + '</div>';
       return { main: main };
     }
@@ -318,19 +313,7 @@
 
     var RENDER = { crew: crewMain, invites: invitesMain, vault: vaultMain, armory: armoryMain, ranks: ranksMain, channels: channelsMain, friends: friendsMain, inbox: inboxMain };
 
-    function render() {
-      var sec = ui.section;
-      if (!S.crew && (sec === 'vault' || sec === 'armory' || sec === 'ranks')) sec = ui.section = 'crew';
-      var r = (RENDER[sec] || crewMain)();
-      var scroll = el.querySelector('.mh-menu__main .mh-scroll'), st = scroll ? scroll.scrollTop : 0, keep = el.__lastSec === sec;
-      el.innerHTML = head() + '<div class="mh-menu__body' + (r.aside ? '' : ' mh-menu__body--2') + '">' + nav() + '<div class="mh-menu__main" data-panel="' + sec + '">' + r.main + '</div>' +
-        (r.aside ? '<aside class="mh-menu__aside">' + r.aside + '</aside>' : '') + '</div>' +
-        '<footer class="mh-menu__foot"><div class="mh-hints"><span class="mh-hint"><span class="mh-key">Q</span><span class="mh-key">E</span>Bölüm</span><span class="mh-hint"><span class="mh-key">ESC</span>Kapat</span></div>' +
-        '<span class="mh-mute" style="font-size:12px">' + E(opts.foot || (S.server ? S.server : '')) + '</span></footer>';
-      MH.mount(el);
-      if (keep) { var ns = el.querySelector('.mh-menu__main .mh-scroll'); if (ns) ns.scrollTop = st; }
-      el.__lastSec = sec;
-    }
+    function render() { if (menu) menu.render(); }
 
     /* ---------------- Etkileşim ---------------- */
     function findMember(id) { return ((S.crew && S.crew.members) || []).filter(function (m) { return String(m.id) === String(id); })[0]; }
@@ -526,9 +509,30 @@
     };
     H.profile = function (id) { act('player:profile', { id: id }); };
 
+    /* ---------------- Kabuk: MH.Menu ---------------- */
+    menu = MH.Menu(host, {
+      layer: !!opts.layer, cls: 'mh-socialmenu', w: opts.w || 1280, h: opts.h || 780, post: false,
+      closable: !!opts.layer,
+      head: mark, headRight: chanChip, stats: stats,
+      kicker: opts.kicker || 'Ekip & kanallar', title: function () { return S.crew ? S.crew.name : 'Ekipsiz'; },
+      foot: function () { return opts.foot || S.server || ''; },
+      section: ui.section,
+      sections: SECTIONS.map(function (x) {
+        if (x.group) return x;
+        return { id: x.id, label: x.label, icon: x.icon, count: x.count, small: x.small,
+          disabled: x.crew ? function () { return !S.crew; } : null,
+          render: function () { return (RENDER[x.id] || crewMain)(); } };
+      }),
+      onAction: function (a) {
+        if (a.action === 'section') { ui.section = a.id; act('ui:section', { section: a.id }); }
+        if (a.action === 'close' && opts.onClose) opts.onClose(api);
+        return false;
+      },
+      onRender: function (m) { ui.section = m.section; }
+    });
+    el = menu.el;
+
     el.addEventListener('click', function (e) {
-      var s = e.target.closest('[data-sec]');
-      if (s && el.contains(s) && !s.disabled) { ui.section = s.getAttribute('data-sec'); render(); act('ui:section', { section: ui.section }); return; }
       var b = e.target.closest('[data-sa]'); if (!b || b.disabled) return;
       var inner = e.target.closest('button[data-sa]');
       if (inner && inner !== b) b = inner;
@@ -544,25 +548,17 @@
       var q = t.value.toLowerCase().trim();
       $$('[data-list="' + t.getAttribute('data-filter') + '"] > [data-name]', el).forEach(function (r) { r.classList.toggle('mh-hidden', q && r.getAttribute('data-name').indexOf(q) < 0); });
     });
-    var ORDER = SECTIONS.filter(function (x) { return x.id; }).map(function (x) { return x.id; });
-    function key(e) {
-      if (!el.isConnected || el.offsetParent === null || MH.modalOpen()) return;
-      if (e.key === 'Escape' && opts.onClose) { e.preventDefault(); opts.onClose(api); return; }
-      if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
-      var k = e.key.toLowerCase(); if (k !== 'q' && k !== 'e') return;
-      var avail = ORDER.filter(function (id) { var x = SECTIONS.filter(function (s) { return s.id === id; })[0]; return !(x.crew && !S.crew); });
-      var i = avail.indexOf(ui.section); ui.section = avail[(i + (k === 'e' ? 1 : -1) + avail.length) % avail.length]; render();
-    }
-    document.addEventListener('keydown', key);
-
     var api = {
-      el: el, ui: ui,
+      ui: ui,
+      get el() { return el; },
+      get menu() { return menu; },
       get state() { return S; },
-      set: function (s) { S = s || {}; render(); return api; },
+      set: function (st) { S = st || {}; render(); return api; },
       patch: function (p) { Object.keys(p || {}).forEach(function (k) { S[k] = p[k]; }); render(); return api; },
-      open: function (sec) { if (sec) ui.section = sec; render(); return api; },
+      open: function (sec) { if (sec) ui.section = sec; menu.open(sec); return api; },
+      close: function () { menu.close(); return api; },
       render: render,
-      destroy: function () { document.removeEventListener('keydown', key); el.remove(); }
+      destroy: function () { menu.destroy(); }
     };
     render();
     return api;
@@ -618,21 +614,20 @@
     return { update: function (s) { st = Object.assign({}, st, s); draw(); }, close: function () { p.close('done'); }, el: p.el };
   };
 
-  /* ---------------- NUI köprüsü ---------------- */
+  /* ---------------- Oyun köprüsü (MH.on) ---------------- */
   var inst = null, trade = null;
   function ensure(d) {
     if (inst) return inst;
-    var hostEl = document.querySelector('[data-mh="socialmenu"]');
-    if (!hostEl) { hostEl = MH.el('div', 'mh-layer mh-catch mh-socialmenu-layer'); hostEl.setAttribute('data-mh', 'socialmenu'); hostEl.innerHTML = '<div class="mh-scrim mh-scrim--soft"></div>'; (document.querySelector('.mh-screen') || document.body).appendChild(hostEl); }
     var o = (d && d.options) || {};
-    o.onClose = function () { MH.closeModals(); hostEl.classList.add('mh-hidden'); MH.post('socialClose', {}); };
-    inst = MH.Social(hostEl, o);
+    o.layer = true;
+    o.onClose = function () { MH.post('socialClose', {}); };
+    inst = MH.Social(document.querySelector('.mh-screen') || document.body, o);
     return inst;
   }
-  MH.on('social:open', function (d) { d = d || {}; var m = ensure(d); if (d.state) m.set(d.state); m.open(d.section); m.el.parentNode.classList.remove('mh-hidden'); });
+  MH.on('social:open', function (d) { d = d || {}; var m = ensure(d); if (d.state) m.set(d.state); m.open(d.section); });
   MH.on('social:state', function (s) { ensure().set(s); });
   MH.on('social:patch', function (s) { ensure().patch(s); });
-  MH.on('social:close', function () { MH.closeModals(); if (inst) inst.el.parentNode.classList.add('mh-hidden'); });
+  MH.on('social:close', function () { if (inst) inst.close(); });
   /* Yeni davet: listeye ekle + (tercih açıksa) ekranda bildir */
   MH.on('social:invite', function (x) {
     if (!x) return; var m = ensure(), s = m.state;
@@ -649,13 +644,13 @@
     var s = inst ? inst.state : {}, c = ((s.channels && s.channels.list) || []).filter(function (x) { return x.id === d.id; })[0];
     MH.toast({ tone: 'info', icon: d.id === 'main' ? 'world' : 'layers', title: d.id === 'main' ? 'Ana dünyaya döndün' : cname(c || { id: d.id }) + ' kanalına geçtin', text: d.id === 'main' ? 'Herkese açık dünyadasın' : 'Diğer kanallardaki oyuncular artık görünmüyor', duration: 3200 });
   });
-  /* Süreli davetler NUI tarafında geri sayar (sunucu ayrıca süresi dolanı siler) */
+  /* Süreli davetler sayfada geri sayar (sunucu ayrıca süresi dolanı siler) */
   setInterval(function () {
     if (!inst) return; var inv = inst.state.invites; if (!inv || !inv.incoming || !inv.incoming.length) return;
     var ch = false;
     inv.incoming.forEach(function (x) { if (x.expires != null && x.autoTick !== false) { x.expires--; ch = true; } });
     inv.incoming = inv.incoming.filter(function (x) { return x.expires == null || x.expires > 0; });
-    if (ch && inst.ui.section === 'invites' && !MH.modalOpen() && inst.el.offsetParent !== null) inst.render();
+    if (ch && inst.ui.section === 'invites' && !MH.modalOpen() && inst.menu.isOpen()) inst.render();
   }, 1000);
   MH.on('social:trade', function (d) { if (!d || d.close) { if (trade) trade.close(); trade = null; return; } if (trade) trade.update(d); else trade = MH.trade(d); });
 })(window);

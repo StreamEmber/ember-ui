@@ -84,3 +84,27 @@ MH.subtitle({ speaker: 'Lester', text: 'Kamyonu limana getir. Polis peşindeyse 
 ```js
 MH.progress({ label: 'Kasa açılıyor', icon: 'lock', duration: 3000 }).then(function (ok) { console.log(ok ? 'bitti' : 'iptal'); });
 ```
+
+## feed.chat — Sohbet
+Oyun içi sohbet: mh-chat__log içinde mh-msg satırları (is-system sistem, __tag rozet, __name tonlu ad) + giriş. Yeni satırı log'a ekle; eskiyi sen sil (en fazla 50).
+JS: `log.insertAdjacentHTML('beforeend', '&lt;div class=&quot;mh-msg&quot;&gt;…&lt;/div&gt;')`
+
+```html
+<div class="mh-chat">
+  <div class="mh-chat__log">
+    <div class="mh-msg is-system">Sunucuya hoş geldin.</div>
+    <div class="mh-msg"><span class="mh-msg__tag mh-t-danger">YETKİLİ</span><span class="mh-msg__name mh-t-danger">Amiral:</span>Etkinlik 5 dakika içinde başlıyor.</div>
+    <div class="mh-msg"><span class="mh-msg__name mh-t-team1">NabeMedia:</span>hazırız, B noktasındayız</div>
+  </div>
+  <div class="mh-input-wrap mh-catch"><i data-i="chat"></i><input class="mh-input" placeholder="Mesaj yaz…"><span class="mh-key mh-key--sm">ENTER</span></div>
+</div>
+```
+
+## feed.ticker — Kayan şerit
+Alt kenarda sürekli kayan haber şeridi: etiket + __track içinde span'ler. Kesintisiz kayma için içeriği iki kez yaz.
+JS: `—`
+
+```html
+<div class="mh-ticker" style="--w:640px"><span class="mh-ticker__label"><i data-i="broadcast" class="mh-i--sm"></i>Canlı</span>
+<div class="mh-ticker__track"><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30</span><span><b>NabeMedia</b> 5× Aslan gönderdi</span><span>Etkinlik: <b>Konvoy baskını</b> 21:30</span></div></div>
+```

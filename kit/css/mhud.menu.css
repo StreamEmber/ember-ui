@@ -1,8 +1,7 @@
 /* ==========================================================================
    MHud — menüler & tam ekranlar
-   Menü kabuğu, klasik GTA listesi, mağaza kartları, envanter ızgarası,
-   ayar satırları, skor tablosu, tur sonu, modal, radial, bağlam menüsü,
-   ölüm ekranı, yükleme ekranı.
+   Menü katmanı ve kabuğu (MH.Menu), fiyat, envanter ızgarası, ayar satırları,
+   skor tablosu, tur sonu, modal, radial, bağlam menüsü, ölüm ve yükleme ekranı.
    ========================================================================== */
 
 .mh-layer { position: absolute; inset: 0; z-index: var(--mh-z-menu); display: grid; place-items: center; }
@@ -12,8 +11,9 @@
 /* ==========================================================================
    MENÜ KABUĞU
    ========================================================================== */
+/* Ekrandan büyük olamaz: --w/--h üst sınırdır, katman (.mh-layer) içinde ekrana sığar. */
 .mh-menu {
-  position: relative; width: var(--w, 1180px); height: var(--h, 700px);
+  position: relative; width: min(var(--w, 1180px), 100% - 2 * var(--mh-safe-x)); height: min(var(--h, 700px), 100% - 2 * var(--mh-safe-y));
   display: grid; grid-template-rows: auto 1fr auto; overflow: hidden;
   background: var(--mh-surface-solid); background: rgb(var(--mh-surface-rgb) / .94);
 }
@@ -29,6 +29,16 @@
 .mh-menu__main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .mh-menu__toolbar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--mh-line-soft); }
 .mh-menu__aside { border-left: 1px solid var(--mh-line-soft); padding: 18px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto; }
+.mh-menu__scroll { flex: 1; min-height: 0; overflow-y: auto; }
+.mh-menu__main > .mh-shopgrid { padding: 16px; }
+.mh-menu__pad { padding: 12px 16px; }
+.mh-menu__aside > .mh-buy { width: auto; }
+.mh-menu__actions { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
+.mh-menu .mh-setting.is-active { background: var(--mh-raise); box-shadow: inset 3px 0 var(--mh-accent); }
+.mh-menu .mh-table tr[data-mh-item] { cursor: pointer; }
+.mh-menu .mh-table tr.is-active td { background: var(--mh-accent-soft); }
+.mh-nav__item.is-danger { color: rgb(var(--mh-danger-rgb) / .85); }
+.mh-nav__item.is-danger .mh-i { color: var(--mh-danger); }
 .mh-menu__foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; border-top: 1px solid var(--mh-line); background: rgb(0 0 0 / .18); }
 
 /* Oyuncu çipi */
@@ -73,68 +83,11 @@
 .mh-setting__control > b { font-family: var(--mh-font-num); font-size: 14px; min-width: 38px; text-align: right; }
 
 /* ==========================================================================
-   KLASİK MENÜ (GTA etkileşim menüsü)
+   FİYAT
    ========================================================================== */
-.mh-classic { width: var(--w, 432px); display: flex; flex-direction: column; font-size: 14px; }
-.mh-classic__banner {
-  position: relative; height: 96px; display: grid; place-items: center; overflow: hidden;
-  background:
-    radial-gradient(120% 140% at 0% 0%, rgb(var(--mh-accent-rgb) / .9), transparent 60%),
-    radial-gradient(120% 140% at 100% 100%, rgb(var(--mh-accent-2-rgb) / .8), transparent 60%),
-    #111;
-  border-radius: var(--mh-r-panel) var(--mh-r-panel) 0 0;
-}
-.mh-classic__banner::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgb(0 0 0 / .08) 0 2px, transparent 2px 6px); }
-.mh-classic__banner b { position: relative; z-index: 1; font-family: var(--mh-font-display); font-weight: 700; font-size: 44px; letter-spacing: .02em; text-transform: var(--mh-display-case); color: #fff; text-shadow: 0 2px 8px rgb(0 0 0 / .5); }
-.mh-classic__sub { display: flex; justify-content: space-between; align-items: center; height: 36px; padding: 0 14px; background: #000; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mh-accent); }
-.mh-classic__sub span:last-child { color: var(--mh-text-2); font-family: var(--mh-font-num); }
-.mh-classic__list { background: rgb(0 0 0 / .62); }
-.mh-classic__item { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 14px; color: var(--mh-text); cursor: pointer; }
-.mh-classic__item .mh-i { width: 17px; height: 17px; }
-.mh-classic__item > span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mh-classic__item > em { font-style: normal; color: var(--mh-text-2); display: flex; align-items: center; gap: 6px; }
-.mh-classic__item:hover { background: rgb(255 255 255 / .08); }
-.mh-classic__item.is-active { background: var(--mh-classic-sel, #f2f2f2); color: #0b0d10; }
-.mh-classic__item.is-active > em { color: #0b0d10; }
-.mh-classic__item.is-active .mh-stepper > button { color: #0b0d10; }
-.mh-classic__item.is-disabled { color: var(--mh-text-4); }
-.mh-classic__item .mh-stepper { min-width: 120px; }
-.mh-classic__item .mh-check__box { border-color: currentColor; }
-.mh-classic__desc { display: flex; gap: 10px; padding: 12px 14px; margin-top: 4px; background: rgb(0 0 0 / .62); border-top: 2px solid #000; font-size: 13px; line-height: 1.45; color: var(--mh-text); }
-.mh-classic__desc .mh-i { color: var(--mh-accent); width: 18px; height: 18px; flex: none; margin-top: 1px; }
-.mh-classic__more { display: grid; place-items: center; height: 22px; background: rgb(0 0 0 / .8); color: var(--mh-text-2); }
-.mh-classic__more .mh-i { width: 16px; height: 16px; }
-
-/* ==========================================================================
-   MAĞAZA KARTI
-   ========================================================================== */
-.mh-cards { display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 12px; padding: 16px; align-content: start; }
-.mh-card {
-  --tone-rgb: var(--mh-silver-rgb);
-  position: relative; display: flex; flex-direction: column; overflow: hidden; cursor: pointer;
-  background: var(--mh-raise); border: 1px solid var(--mh-line-soft); border-radius: var(--mh-r-3);
-  transition: border-color var(--mh-dur-2), transform var(--mh-dur-2) var(--mh-ease), background var(--mh-dur-2);
-}
-.mh-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: rgb(var(--tone-rgb)); opacity: .85; }
-.mh-card:hover { border-color: var(--mh-line-strong); transform: translateY(-2px); background: var(--mh-raise-2); }
-.mh-card.is-active { border-color: var(--mh-accent); box-shadow: 0 0 0 1px var(--mh-accent), var(--mh-accent-glow); }
-.mh-card__art { position: relative; height: 112px; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 70%, rgb(var(--tone-rgb) / .18), transparent 70%); }
-.mh-card__art .mh-i { width: 46px; height: 46px; color: var(--mh-text); filter: drop-shadow(0 6px 10px rgb(0 0 0 / .6)); }
-.mh-card__art .mh-weapon-art { width: 78%; color: var(--mh-text); filter: drop-shadow(0 6px 10px rgb(0 0 0 / .6)); }
-.mh-card__art .mh-badge { position: absolute; top: 10px; left: 10px; }
-.mh-card__body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 3px; }
-.mh-card__name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mh-card__sub { font-size: 12px; color: var(--mh-text-3); }
-.mh-card__foot { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; border-top: 1px solid var(--mh-line-soft); }
 .mh-price { font-family: var(--mh-font-num); font-size: 17px; font-weight: 600; color: var(--mh-success); font-variant-numeric: tabular-nums; }
 .mh-price.is-locked { color: var(--mh-text-3); }
 .mh-price s { color: var(--mh-text-3); font-size: 13px; margin-right: 6px; }
-.mh-card.is-owned .mh-price { color: var(--mh-text-2); }
-.mh-card.is-locked .mh-card__art { opacity: .35; filter: grayscale(1); }
-.mh-card.is-common    { --tone-rgb: var(--mh-silver-rgb); }
-.mh-card.is-rare      { --tone-rgb: var(--mh-info-rgb); }
-.mh-card.is-epic      { --tone-rgb: var(--mh-legendary-rgb); }
-.mh-card.is-legendary { --tone-rgb: var(--mh-gold-rgb); }
 
 /* ==========================================================================
    ENVANTER IZGARASI
@@ -154,9 +107,6 @@
 .mh-cell::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 0; height: 2px; background: rgb(var(--tone-rgb)); opacity: .7; border-radius: 1px; }
 .mh-cell.is-empty::after, .mh-cell.is-empty .mh-i { display: none; }
 .mh-cell.is-rare { --tone-rgb: var(--mh-info-rgb); } .mh-cell.is-epic { --tone-rgb: var(--mh-legendary-rgb); } .mh-cell.is-legendary { --tone-rgb: var(--mh-gold-rgb); }
-.mh-weight { display: flex; flex-direction: column; gap: 6px; }
-.mh-weight__row { display: flex; justify-content: space-between; font-size: 12px; color: var(--mh-text-2); }
-.mh-weight__row b { font-family: var(--mh-font-num); color: var(--mh-text); }
 
 /* ==========================================================================
    SKOR TABLOSU
@@ -210,7 +160,6 @@
    MODAL
    ========================================================================== */
 .mh-modal { position: relative; width: var(--w, 440px); display: flex; flex-direction: column; animation: mh-in-pop var(--mh-dur-3) var(--mh-ease-out) both; }
-.mh-modal__body { padding: 24px 24px 20px; display: flex; flex-direction: column; gap: 10px; }
 .mh-modal__icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; color: rgb(var(--tone-rgb, var(--mh-accent-rgb))); background: rgb(var(--tone-rgb, var(--mh-accent-rgb)) / .14); margin-bottom: 4px; }
 .mh-modal__icon .mh-i { width: 22px; height: 22px; }
 .mh-modal__actions { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 24px; border-top: 1px solid var(--mh-line-soft); background: rgb(0 0 0 / .15); }

@@ -8,10 +8,10 @@ JS: `MH.bar(el.querySelector('.mh-bar'), 64)`
 ```html
 <div class="mh-boss" style="--w:520px">
   <div class="mh-boss__head">
-    <div class="mh-col" style="gap:4px"><span class="mh-kicker mh-kicker--accent">Bölüm sonu</span><span class="mh-boss__name">Çete lideri — Vargas</span></div>
+    <div class="mh-col mh-gap-1"><span class="mh-kicker mh-kicker--accent">Bölüm sonu</span><span class="mh-boss__name">Çete lideri — Vargas</span></div>
     <span class="mh-boss__phase"><span>Aşama 2 / 3</span><span class="mh-badge mh-t-danger mh-badge--dot mh-badge--live">Öfkeli</span></span>
   </div>
-  <div class="mh-bar" data-v="64" style="position:relative"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i><span class="mh-boss__marks"><i style="left:33.3%"></i><i style="left:66.6%"></i></span></div>
+  <div class="mh-bar" data-v="64"><i class="mh-bar__ghost"></i><i class="mh-bar__fill"></i><span class="mh-boss__marks"><i style="left:33.3%"></i><i style="left:66.6%"></i></span></div>
   <div class="mh-bar mh-boss__shield" data-v="30"><i class="mh-bar__fill"></i></div>
 </div>
 ```
@@ -29,7 +29,7 @@ JS: `MH.bar(el.querySelector('.mh-bar'), 62)`
 ```
 
 ## bars.goal — Hedef çubuğu
-Bağış/beğeni hedefi: ikon, başlık, sayaç, bar ve ödül satırı. İlerleme için bar data-v.
+Bağış/beğeni hedefi: ikon, başlık, sayaç, bar ve ödül satırı. İlerleme için bar data-v. Barın altında eşik etiketleri için mh-goal__marks.
 JS: `MH.bar(bar, 72)`
 
 ```html
@@ -75,7 +75,7 @@ JS: `MH.bar(el, 64)`
 JS: `MH.bar(a, 70); MH.bar(b, 45)`
 
 ```html
-<div class="mh-flex" style="gap:10px;width:560px;align-items:center"><div class="mh-cast" style="flex:1;--w:auto"><div class="mh-cast__head"><b>Vargas</b></div><div class="mh-bar mh-bar--lg mh-bar--tip mh-t-danger" data-v="70"><i class="mh-bar__fill"></i></div></div><b class="mh-kicker">VS</b><div class="mh-cast" style="flex:1;--w:auto"><div class="mh-cast__head" style="flex-direction:row-reverse"><b>Dev Komutan</b></div><div class="mh-bar mh-bar--lg mh-bar--rtl mh-bar--tip mh-t-warn" data-v="45"><i class="mh-bar__fill"></i></div></div></div>
+<div class="mh-flex mh-gap-2" style="width:560px;align-items:center"><div class="mh-cast" style="flex:1;--w:auto"><div class="mh-cast__head"><b>Vargas</b></div><div class="mh-bar mh-bar--lg mh-bar--tip mh-t-danger" data-v="70"><i class="mh-bar__fill"></i></div></div><b class="mh-kicker">VS</b><div class="mh-cast" style="flex:1;--w:auto"><div class="mh-cast__head" style="flex-direction:row-reverse"><b>Dev Komutan</b></div><div class="mh-bar mh-bar--lg mh-bar--rtl mh-bar--tip mh-t-warn" data-v="45"><i class="mh-bar__fill"></i></div></div></div>
 ```
 
 ## bars.elite — Elit hedef barı
@@ -83,7 +83,7 @@ Küçük elit düşman için ad + ince kalkan barı; ekran kenarında çoklu sı
 JS: `MH.bar(el, 55)`
 
 ```html
-<div class="mh-col" style="gap:10px;width:260px"><div class="mh-cast" style="--w:260px"><div class="mh-cast__head"><b>Keskin nişancı</b><small>Elit</small></div><div class="mh-bar mh-bar--md mh-bar--skew mh-t-warn" data-v="55"><i class="mh-bar__fill"></i></div></div><div class="mh-cast" style="--w:260px"><div class="mh-cast__head"><b>Ağır silahlı</b><small>Elit</small></div><div class="mh-bar mh-bar--md mh-bar--skew mh-t-warn" data-v="82"><i class="mh-bar__fill"></i></div></div></div>
+<div class="mh-col mh-gap-2" style="width:260px"><div class="mh-cast" style="--w:260px"><div class="mh-cast__head"><b>Keskin nişancı</b><small>Elit</small></div><div class="mh-bar mh-bar--md mh-bar--skew mh-t-warn" data-v="55"><i class="mh-bar__fill"></i></div></div><div class="mh-cast" style="--w:260px"><div class="mh-cast__head"><b>Ağır silahlı</b><small>Elit</small></div><div class="mh-bar mh-bar--md mh-bar--skew mh-t-warn" data-v="82"><i class="mh-bar__fill"></i></div></div></div>
 ```
 
 ## bars.stagger — Sersemletme / denge
@@ -99,7 +99,7 @@ JS: `MH.bar(el, 70)`
 JS: `MH.bar(el, 62)`
 
 ```html
-<div style="width:520px" class="mh-col"><div class="mh-flex" style="gap:10px;align-items:center"><span class="mh-badge mh-t-xp">24</span><div class="mh-bar mh-bar--md mh-bar--glass mh-bar--pill mh-t-xp" data-v="62" style="flex:1"><i class="mh-bar__fill"></i></div><span class="mh-badge">25</span></div><div class="mh-sub" style="text-align:center;font-size:11px">3.720 / 6.000 XP</div></div>
+<div style="width:520px" class="mh-col"><div class="mh-flex mh-gap-2" style="align-items:center"><span class="mh-badge mh-t-xp">24</span><div class="mh-bar mh-bar--md mh-bar--glass mh-bar--pill mh-t-xp" data-v="62" style="flex:1"><i class="mh-bar__fill"></i></div><span class="mh-badge">25</span></div><div class="mh-sub" style="text-align:center;font-size:11px">3.720 / 6.000 XP</div></div>
 ```
 
 ## bars.cast — Kanal / yeniden doldurma
@@ -107,7 +107,7 @@ Etiket + süre + bar: büyü kanalı, yeniden doldurma, eşya kullanma. İnce ç
 JS: `MH.bar(el, 40)`
 
 ```html
-<div class="mh-col" style="gap:14px"><div class="mh-cast"><div class="mh-cast__head"><b>Silah dolduruluyor</b><small>0,8 sn</small></div><div class="mh-bar mh-bar--md mh-bar--tip mh-t-accent" data-v="40"><i class="mh-bar__fill"></i></div></div><div class="mh-cast"><div class="mh-cast__head"><b>İlk yardım</b><small>2,4 sn</small></div><div class="mh-bar mh-bar--md mh-bar--stripe mh-t-health" data-v="65"><i class="mh-bar__fill"></i></div></div></div>
+<div class="mh-col mh-gap-3"><div class="mh-cast"><div class="mh-cast__head"><b>Silah dolduruluyor</b><small>0,8 sn</small></div><div class="mh-bar mh-bar--md mh-bar--tip mh-t-accent" data-v="40"><i class="mh-bar__fill"></i></div></div><div class="mh-cast"><div class="mh-cast__head"><b>İlk yardım</b><small>2,4 sn</small></div><div class="mh-bar mh-bar--md mh-bar--stripe mh-t-health" data-v="65"><i class="mh-bar__fill"></i></div></div></div>
 ```
 
 ## bars.capture — Ele geçirme ilerlemesi
@@ -123,7 +123,7 @@ JS: `MH.bar(el, 70)`
 JS: `a.style.setProperty('--a', 60); b.style.setProperty('--a', 40)`
 
 ```html
-<div class="mh-col" style="gap:4px;width:300px"><div class="mh-flex" style="justify-content:space-between"><b class="mh-t-team1 mh-tone">Mavi 60%</b><b class="mh-t-team2 mh-tone">40% Kırmızı</b></div><div class="mh-tug"><i class="mh-t-team1" style="--a:60"></i><i class="mh-t-team2" style="--a:40"></i></div></div>
+<div class="mh-col mh-gap-1" style="width:300px"><div class="mh-flex" style="justify-content:space-between"><b class="mh-t-team1 mh-tone">Mavi 60%</b><b class="mh-t-team2 mh-tone">40% Kırmızı</b></div><div class="mh-tug"><i class="mh-t-team1" style="--a:60"></i><i class="mh-t-team2" style="--a:40"></i></div></div>
 ```
 
 ## bars.threat — Tehdit / aranma ölçeri
@@ -139,7 +139,7 @@ Cihaz şarjı, jetpack, ekipman: cam hap bar + yüzde; düşünce is-critical ya
 JS: `MH.bar(el, 18, { critical: 25 })`
 
 ```html
-<div class="mh-flex" style="gap:10px;align-items:center;width:240px"><i class="mh-i" data-i="bolt"></i><div class="mh-bar mh-bar--lg mh-bar--pill mh-bar--glass mh-t-warn" data-v="18" data-critical="25" style="flex:1"><i class="mh-bar__fill"></i></div><b class="mh-num">18%</b></div>
+<div class="mh-flex mh-gap-2" style="align-items:center;width:240px"><i class="mh-i" data-i="bolt"></i><div class="mh-bar mh-bar--lg mh-bar--pill mh-bar--glass mh-t-warn" data-v="18" data-critical="25" style="flex:1"><i class="mh-bar__fill"></i></div><b class="mh-num">18%</b></div>
 ```
 
 ## bars.steps — Adım ilerlemesi
@@ -147,7 +147,7 @@ Görev adımları ya da şarjör: mh-pips tall; dolu parçalar tonlu. data-pips=
 JS: `MH.pips(el, 3, 5)`
 
 ```html
-<div class="mh-col" style="gap:6px;width:300px"><div class="mh-cast__head" style="display:flex;justify-content:space-between"><b>Soygun</b><small class="mh-sub">Adım 3 / 5</small></div><div class="mh-pips mh-pips--tall mh-t-accent" data-pips="3/5"></div></div>
+<div class="mh-col mh-gap-1" style="width:300px"><div class="mh-cast__head" style="display:flex;justify-content:space-between"><b>Soygun</b><small class="mh-sub">Adım 3 / 5</small></div><div class="mh-pips mh-pips--tall mh-t-accent" data-pips="3/5"></div></div>
 ```
 
 ## bars.download — Yükleme / indirme

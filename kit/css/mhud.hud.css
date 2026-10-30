@@ -6,10 +6,6 @@
    ========================================================================== */
 
 /* ---------- Ortak: panelsiz HUD yazısı ---------- */
-.mh-hud-num {
-  font-family: var(--mh-font-num); font-weight: 600; font-variant-numeric: tabular-nums;
-  line-height: 1; letter-spacing: 0; text-shadow: var(--mh-hud-shadow);
-}
 
 /* ==========================================================================
    YAŞAM GÖSTERGELERİ (bar)
@@ -54,10 +50,6 @@
   position: absolute; left: 50%; top: 50%; width: 38%; height: 38%; transform: translate(-50%, -50%);
   color: #fff; mix-blend-mode: normal; filter: drop-shadow(0 1px 1px rgb(0 0 0 / .9)); z-index: 1;
 }
-.mh-core__label {
-  position: absolute; left: 50%; bottom: -16px; transform: translateX(-50%);
-  font-family: var(--mh-font-num); font-size: 11px; font-weight: 600; white-space: nowrap; text-shadow: var(--mh-hud-shadow);
-}
 .mh-core--sm { --size: 40px; }
 .mh-core--lg { --size: 64px; }
 .mh-core.is-low > .mh-ring .mh-ring__fill { stroke: var(--mh-danger); animation: mh-critical .9s infinite; }
@@ -82,7 +74,7 @@
 
 /* ==========================================================================
    MİNİMAP ÇERÇEVESİ
-   Oyunun kendi minimap'i NUI'nin altında çizilir; burada yalnızca çerçeve,
+   Oyunun kendi minimap'i overlay'in altında çizilir; burada yalnızca çerçeve,
    kenar süsleri ve etiketler vardır. İçi saydamdır.
    ========================================================================== */
 .mh-minimap { position: relative; width: var(--w, 300px); height: var(--h, 190px); }
@@ -136,10 +128,6 @@
 .mh-compass__mark { position: absolute; top: 2px; transform: translateX(-50%); color: rgb(var(--tone-rgb, var(--mh-accent-rgb))); }
 .mh-compass__mark .mh-i { width: 14px; height: 14px; filter: drop-shadow(0 1px 1px #000); }
 .mh-compass__needle { position: absolute; left: 50%; top: 0; width: 2px; height: 14px; margin-left: -1px; background: var(--mh-accent); box-shadow: var(--mh-accent-glow); }
-.mh-compass__readout {
-  position: absolute; left: 50%; bottom: -1px; transform: translateX(-50%);
-  font-family: var(--mh-font-num); font-size: 11px; font-weight: 700; color: var(--mh-accent);
-}
 
 /* ---------- v2: yön çipi, hedef oku, koordinat ---------- */
 .mh-heading { display: inline-flex; align-items: baseline; gap: 6px; text-shadow: var(--mh-hud-shadow); }
@@ -202,21 +190,13 @@
 @keyframes mh-gain { 30% { color: var(--mh-success); transform: scale(1.06); } }
 
 /* ==========================================================================
-   ARANMA SEVİYESİ / ÖDÜL
+   ARANMA SEVİYESİ
    ========================================================================== */
 .mh-wanted { display: flex; gap: 3px; }
 .mh-wanted .mh-i { width: 24px; height: 24px; color: rgb(0 0 0 / .35); stroke: rgb(255 255 255 / .35); stroke-width: 1.25; filter: drop-shadow(0 1px 2px rgb(0 0 0 / .7)); }
 .mh-wanted .mh-i.on { color: #fff; stroke: #fff; }
 .mh-wanted.is-flashing .mh-i.on { animation: mh-wanted-flash .9s steps(2, jump-none) infinite; }
 @keyframes mh-wanted-flash { 50% { color: rgb(var(--mh-info-rgb)); stroke: rgb(var(--mh-info-rgb)); } }
-
-.mh-bounty { display: flex; align-items: center; gap: 10px; text-shadow: var(--mh-hud-shadow); }
-.mh-bounty__seal {
-  width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%;
-  border: 1.5px solid rgb(var(--mh-danger-rgb) / .8); color: var(--mh-danger); background: rgb(var(--mh-danger-rgb) / .12);
-}
-.mh-bounty__seal .mh-i { width: 20px; height: 20px; }
-.mh-bounty__amount { font-family: var(--mh-font-num); font-size: 22px; font-weight: 600; line-height: 1; }
 
 /* ==========================================================================
    HIZ GÖSTERGESİ
@@ -267,16 +247,6 @@
 .mh-speed-mini .mh-pips { width: 120px; }
 .mh-speed-mini .mh-pips > i { height: 8px; }
 .mh-speed-mini .mh-pips > i.on:nth-last-child(-n+3) { --t: var(--mh-danger-rgb); }
-
-/* ==========================================================================
-   BİNEK (at) — RedM
-   ========================================================================== */
-.mh-mount { display: flex; align-items: center; gap: 12px; text-shadow: var(--mh-hud-shadow); }
-.mh-mount__info { display: flex; flex-direction: column; gap: 4px; }
-.mh-mount__name { font-family: var(--mh-font-display); font-weight: var(--mh-display-weight); font-size: 17px; text-transform: var(--mh-display-case); letter-spacing: .04em; }
-.mh-mount__bond { display: flex; gap: 4px; }
-.mh-mount__bond i { width: 10px; height: 10px; transform: rotate(45deg); border: 1px solid var(--mh-accent-line); }
-.mh-mount__bond i.on { background: var(--mh-accent); border-color: var(--mh-accent); }
 
 /* ==========================================================================
    GÖREV TAKİBİ
