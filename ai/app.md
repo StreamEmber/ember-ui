@@ -261,7 +261,7 @@ JS: `—`
 ```
 
 ## app.cta — Büyük eylem düğmesi
-Oyna gibi ana eylem (vurgu degradesi) ve eui-cta--alt ikincil (mod / bölüm seç). is-busy beklerken (ikon döner, basılamaz).
+Oyna gibi ana eylem (eui-btn--primary ile aynı düz vurgu rengi) ve eui-cta--alt ikincil (mod / bölüm seç). is-busy beklerken (ikon döner, basılamaz).
 JS: `el.classList.add('is-busy')`
 
 ```html

@@ -2,7 +2,10 @@
 
 Ember UI (4.0'dan önce: MHud).
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.2.0`).
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.2.1`).
+
+## 4.2.1 — 2026-10-30
+- Oyna düğmesi (`eui-cta`) standart birincil düğmeyle aynı düz renkler: vurgu rengi zemin, `--eui-on-accent` yazı, degrade / parlama / kayan ışık yok. `eui-cta--alt` düz koyu zemin. Düşük alt kenar ve basma hissi kaldı.
 
 ## 4.2.0 — 2026-10-30
 - Hesap ekranları: `EUI.auth` (giriş, kayıt, hesap bağlama, şifre sıfırlama, yayıncı girişi — e-posta, misafir, Google, Apple ve QR sekmesi; doğrulama kitte, sunucu hatası `p.error`, `resolveOn: false` ile oyun doğrular), `EUI.consent` (koşullar, gizlilik, yaş), `EUI.language` (+ `EUI.languages`), `EUI.nickname` (sayaç, öneri, müsaitlik), `EUI.pin` (yetkili / ebeveyn kilidi, tuş takımı + klavye). Üç ekran boyutunda.

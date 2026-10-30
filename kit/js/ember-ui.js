@@ -15,7 +15,7 @@
 (function (root) {
   'use strict';
 
-  var EUI = { version: '4.2.0' };
+  var EUI = { version: '4.2.1' };
   var doc = root.document;
   EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 

@@ -1,4 +1,4 @@
-/*! Ember UI v4.2.0 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
+/*! Ember UI v4.2.1 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
 /* kit/js/ember-ui-icons.js */
 /*!
  * Ember UI — ikon seti (344 ikon)
@@ -393,7 +393,7 @@
 (function (root) {
   'use strict';
 
-  var EUI = { version: '4.2.0' };
+  var EUI = { version: '4.2.1' };
   var doc = root.document;
   EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
