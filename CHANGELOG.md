@@ -2,7 +2,12 @@
 
 Ember UI (4.0'dan önce: MHud).
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.1.0`).
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.1.1`).
+
+## 4.1.1 — 2026-10-30
+- Lobi yeniden düzenlendi: boyutlar tek yerden (`--app-*` değişkenleri), üç ekran sınıfı (PC 1080p, telefon yatay, telefon dikey) için ayrı yerleşim. Dikeyde sol kısayollar · orta sahne · sağ kampanya kartları, altta Oyna + gezinme; üst çubuk iki satır (profil + düğmeler, para birimleri). Kampanya kartına ikon kutusu, sahneye zemin ışığı ve seviye/kupa rozeti.
+- Başlık, yükleme ve durum ekranları ekranla ölçeklenir (`cqmin` / `cqw`); dikeyde düğmeler alt alta ve ana düğme üstte.
+- Düzeltme: container sorguları kapsayıcının kendisini biçimlendiremediği için ölçek değişkenleri `.eui-app > *` üzerinde tanımlanır.
 
 ## 4.1.0 — 2026-10-30
 

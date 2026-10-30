@@ -12,10 +12,10 @@ Tam ekran menüler HTML yazılarak değil **veriyle** kurulur (`EUI.Menu`). Oyun
 
 ```html
 <html class="eui-overlay">  <!-- yalnız oyun overlay'inde -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.1/dist/ember-ui.min.css">
 <body class="eui" data-eui-accent="mint">
   <div class="eui-screen"> … </div>
-  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.1/dist/ember-ui.min.js"></script>
 </body>
 ```
 
@@ -59,8 +59,8 @@ EUI.on('menu', function (d) { d.open ? menu.open() : menu.close(); });   // oyun
 
 ### Yapay zeka ile kullanım
 
-Yapay zekaya yalnız `AI.md` adresini verin: `https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/AI.md`. Altın kuralları, sayfa iskeletini, ihtiyaç → bileşen tablosunu ve tam API dizinini içerir; yapay zeka ilgili ailenin dosyasını açar, kaynak kodu okumaz.
-Yapılan sayfayı denetlemek için: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/tools/lint.mjs && node lint.mjs web/`.
+Yapay zekaya yalnız `AI.md` adresini verin: `https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.1/AI.md`. Altın kuralları, sayfa iskeletini, ihtiyaç → bileşen tablosunu ve tam API dizinini içerir; yapay zeka ilgili ailenin dosyasını açar, kaynak kodu okumaz.
+Yapılan sayfayı denetlemek için: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.1/tools/lint.mjs && node lint.mjs web/`.
 
 ## Geliştirme
 
@@ -74,6 +74,6 @@ npm run serve    # site: http://localhost:5173
 npm run icons    # kit/js/ember-ui-icons.js'i yeniden üret
 ```
 
-**MHud 3.x'ten geçiş:** `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/tools/migrate.mjs && node migrate.mjs web/` adları çevirir (`mh-` → `eui-`, `MH` → `EUI`, `mhud` → `ember-ui`); ardından `lint.mjs`.
+**MHud 3.x'ten geçiş:** `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.1/tools/migrate.mjs && node migrate.mjs web/` adları çevirir (`mh-` → `eui-`, `MH` → `EUI`, `mhud` → `ember-ui`); ardından `lint.mjs`.
 
 **Sürüm yayınlamak:** `CHANGELOG.md`'yi güncelle, `npm version <x.y.z> -m "release: v%s"`, `git push --follow-tags`. Geliştirme kuralları: [`AGENTS.md`](AGENTS.md).

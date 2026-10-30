@@ -138,8 +138,8 @@ JS: `EUI.bar(el.querySelector('.eui-bar'), 40)`
 
 ```html
 <div class="eui-col eui-gap-2" style="width:320px">
-  <div class="eui-promo eui-t-gold"><div class="eui-promo__head"><i data-i="crown"></i><div><div class="eui-promo__title">Sezon 3</div><div class="eui-promo__sub">Altın kart · 10 kademe</div></div></div><div class="eui-promo__foot"><div class="eui-bar" data-v="40"><i class="eui-bar__fill"></i></div><span>4 / 10</span><span class="eui-promo__time"><i data-i="clock"></i>6g 4s</span></div></div>
-  <div class="eui-promo eui-t-info"><span class="eui-dot"></span><div class="eui-promo__head"><i data-i="snow"></i><div><div class="eui-promo__title">Kar fırtınası</div><div class="eui-promo__sub">Etkinlik · 2× ödül</div></div></div></div>
+  <div class="eui-promo eui-t-gold"><div class="eui-promo__head"><span class="eui-promo__icon"><i data-i="crown"></i></span><div class="eui-promo__text"><div class="eui-promo__title">Sezon 3</div><div class="eui-promo__sub">Altın kart · 10 kademe</div></div></div><div class="eui-promo__foot"><div class="eui-bar" data-v="40"><i class="eui-bar__fill"></i></div><span>4 / 10</span><span class="eui-promo__time"><i data-i="clock"></i>6g 4s</span></div></div>
+  <div class="eui-promo eui-t-info"><span class="eui-dot"></span><div class="eui-promo__head"><span class="eui-promo__icon"><i data-i="snow"></i></span><div class="eui-promo__text"><div class="eui-promo__title">Kar fırtınası</div><div class="eui-promo__sub">Etkinlik · 2× ödül</div></div></div></div>
 </div>
 ```
 

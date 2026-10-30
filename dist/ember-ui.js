@@ -1,4 +1,4 @@
-/*! Ember UI v4.1.0 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
+/*! Ember UI v4.1.1 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
 /* kit/js/ember-ui-icons.js */
 /*!
  * Ember UI — ikon seti (344 ikon)
@@ -393,7 +393,7 @@
 (function (root) {
   'use strict';
 
-  var EUI = { version: '4.1.0' };
+  var EUI = { version: '4.1.1' };
   var doc = root.document;
   EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
@@ -2877,25 +2877,25 @@
             (p.level != null ? '<span class="eui-profile__lvl">' + E(p.level) + '</span>' : '') +
             '<div class="eui-profile__main"><span class="eui-profile__name">' + E(p.name || '') + '</span>' +
             (p.xp != null ? '<div class="eui-bar eui-t-xp" data-v="' + Math.round((+p.xp || 0) * 100) + '"><i class="eui-bar__fill"></i></div>' : '') + '</div></div>' +
-          '<div class="eui-topbar__end">' +
+          '<div class="eui-topbar__cur">' +
             (S.currencies || []).map(function (c) {
               return '<div class="eui-currency' + (c.tone ? ' eui-t-' + E(c.tone) : '') + '" data-lobby="currency" data-id="' + E(c.id) + '">' + I(c.icon || 'coin') +
                 '<b>' + num(c.value) + '</b>' + (c.max != null ? '<small>/ ' + num(c.max) + '</small>' : '') +
                 (c.add ? '<button class="eui-currency__add" aria-label="Ekle">' + I('plus') + '</button>' : '') + '</div>';
-            }).join('') +
-            (S.buttons || []).map(function (b) { return '<button class="eui-iconbtn" data-lobby="button" data-id="' + E(b.id) + '" aria-label="' + E(b.label || b.id) + '">' + I(b.icon) + dot(b.badge) + '</button>'; }).join('') +
-          '</div></div>' +
+            }).join('') + '</div>' +
+          '<div class="eui-topbar__btns">' + (S.buttons || []).map(function (b) { return '<button class="eui-iconbtn" data-lobby="button" data-id="' + E(b.id) + '" aria-label="' + E(b.label || b.id) + '">' + I(b.icon) + dot(b.badge) + '</button>'; }).join('') + '</div>' +
+          '</div>' +
         '<div class="eui-lobby__side">' + (S.promos || []).map(function (m) {
           return '<div class="eui-promo' + (m.tone ? ' eui-t-' + E(m.tone) : '') + '" data-lobby="promo" data-id="' + E(m.id) + '">' + dot(m.badge) +
-            '<div class="eui-promo__head">' + I(m.icon || 'star') + '<div><div class="eui-promo__title">' + E(m.title) + '</div>' + (m.sub ? '<div class="eui-promo__sub">' + E(m.sub) + '</div>' : '') + '</div></div>' +
+            '<div class="eui-promo__head"><span class="eui-promo__icon">' + I(m.icon || 'star') + '</span><div class="eui-promo__text"><div class="eui-promo__title">' + E(m.title) + '</div>' + (m.sub ? '<div class="eui-promo__sub">' + E(m.sub) + '</div>' : '') + '</div></div>' +
             (m.progress != null || m.time ? '<div class="eui-promo__foot">' + (m.progress != null ? '<div class="eui-bar" data-v="' + Math.round((+m.progress || 0) * 100) + '"><i class="eui-bar__fill"></i></div>' : '') +
               (m.progressText ? '<span>' + E(m.progressText) + '</span>' : '') + (m.time ? '<span class="eui-promo__time">' + I('clock') + E(m.time) + '</span>' : '') + '</div>' : '') + '</div>';
         }).join('') + '</div>' +
         '<div class="eui-lobby__hero">' + (h ? '<div class="eui-hero"><div class="eui-hero__art">' + art(h.art) + '</div>' +
           (h.name ? '<div class="eui-hero__name">' + E(h.name) + '</div>' : '') +
-          (h.level != null || h.progress != null || h.trophies != null ? '<div class="eui-hero__info">' + (h.level != null ? '<span class="eui-badge eui-t-accent">Svy ' + E(h.level) + '</span>' : '') +
+          (h.level != null || h.progress != null || h.trophies != null ? '<div class="eui-hero__info">' + (h.level != null ? '<span class="eui-hero__lvl">' + E(h.level) + '</span>' : '') +
             (h.progress != null ? '<div class="eui-bar" data-v="' + Math.round((+h.progress || 0) * 100) + '"><i class="eui-bar__fill"></i></div>' : '') + (h.progressText ? '<b>' + E(h.progressText) + '</b>' : '') +
-            (h.trophies != null ? '<span class="eui-flex eui-gap-1">' + I('trophy') + '<b>' + num(h.trophies) + '</b></span>' : '') + '</div>' : '') + '</div>' : '') + '</div>' +
+            (h.trophies != null ? '<span class="eui-hero__trophy">' + I('trophy') + '<b>' + num(h.trophies) + '</b></span>' : '') + '</div>' : '') + '</div>' : '') + '</div>' +
         '<div class="eui-lobby__short"><div class="eui-shortcuts">' + (S.shortcuts || []).map(function (s) {
           return '<button class="eui-shortcut' + (s.tone ? ' eui-t-' + E(s.tone) : '') + '" data-lobby="shortcut" data-id="' + E(s.id) + '">' + I(s.icon) + '<span>' + E(s.label) + '</span>' + dot(s.badge) + '</button>';
         }).join('') + '</div></div>' +
