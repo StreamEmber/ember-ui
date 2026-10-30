@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lobi — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.css">
+<link rel="stylesheet" href="../demo/demo.css">
+</head>
+<body class="eui">
+<main class="demo-main">
+  <header class="demo-head">
+    <span class="demo-head__kicker">Oyun ekranları</span>
+    <h1>Lobi</h1>
+    <p>Oyunun ana ekranı tek çağrıyla kurulur: <code>EUI.Lobby(host, spec)</code>. <b>Aynı çağrı</b> PC'de, yatay ve dikey telefonda çalışır; yerleşimi ekranın en-boy oranı belirler. Telefonda kısa kenar 540 kabul edilir (<code>EUI.autoScale({ base: 540 })</code>), böylece dokunma hedefleri parmak boyunda kalır. Profil, para birimleri, kampanya kartları, sahne, kısayollar, alt gezinme çubuğu ve büyük Oyna düğmesi kitte. Gezinme çubuğundaki Mağaza, Envanter, Ayarlar <code>EUI.Menu</code> açar; menü de dikeyde tam ekrana geçer. Oyna'ya basınca bağlanma ekranı gelir.</p>
+  </header>
+
+  <div class="demo-stage-wrap">
+    <div class="demo-stage" id="pc" data-w="1920" data-h="1080" data-no-scene><div class="eui-screen" id="screen-pc"></div></div>
+    <div class="demo-actions"><span class="demo-actions__label">PC / tablet · 1920×1080 (<code>EUI.autoScale()</code>)</span><span class="demo-sep"></span><button class="demo-btn" onclick="Demo.fullscreen('#pc')"><i data-i="focus"></i>Tam ekran</button></div>
+  </div>
+  <div class="demo-devices">
+    <div class="demo-stage-wrap">
+      <div class="demo-stage" data-w="1170" data-h="540" data-no-scene><div class="eui-screen" id="screen-land"></div></div>
+      <div class="demo-actions"><span class="demo-actions__label">Telefon, yatay · 1170×540 (<code>EUI.autoScale({ base: 540 })</code>)</span></div>
+    </div>
+    <div class="demo-stage-wrap">
+      <div class="demo-stage" data-w="540" data-h="960" data-no-scene><div class="eui-screen" id="screen-port"></div></div>
+      <div class="demo-actions"><span class="demo-actions__label">Telefon, dikey · 540×960</span></div>
+    </div>
+  </div>
+  <div class="demo-actions">
+    <span class="demo-actions__label">Son eylem:</span><code id="last-action">—</code>
+    <span class="demo-sep"></span>
+    <button class="demo-btn" id="give"><i data-i="coins"></i>Altın ekle</button>
+    <button class="demo-btn" id="badge"><i data-i="bell"></i>Rozet artır</button>
+  </div>
+
+  <div class="demo-h2"><h2>Kod</h2><p>İki ekrandaki lobi aynı nesneyle kuruluyor. Alanlar ve eylemler: <code>ai/app.md</code>.</p></div>
+  <pre class="demo-code"><code>var lobby = EUI.Lobby('#screen', {
+  player: { name: 'Amiral', level: 12, xp: .46 },
+  currencies: [{ id: 'energy', icon: 'bolt', tone: 'success', value: 54, max: 60, add: true },
+               { id: 'coin', icon: 'coin', tone: 'gold', value: 12480, add: true },
+               { id: 'gem', icon: 'diamond', tone: 'legendary', value: 320, add: true }],
+  buttons:   [{ id: 'mail', icon: 'email', badge: 3 }, { id: 'settings', icon: 'settings' }],
+  promos:    [{ id: 'pass', icon: 'crown', tone: 'gold', title: 'Sezon 3', sub: 'Altın kart', progress: .4, progressText: '4 / 10', time: '6g 4s' }],
+  hero:      { art: { icon: 'robot' }, name: 'Kartopu', level: 8, progress: .06, progressText: '3 / 50', trophies: 420 },
+  shortcuts: [{ id: 'quests', icon: 'scroll', label: 'Görevler', badge: 2 }, { id: 'rank', icon: 'trophy', label: 'Sıralama' }],
+  nav:       [{ id: 'shop', icon: 'store', label: 'Mağaza' }, { id: 'inv', icon: 'backpack', label: 'Envanter', badge: 3 },
+              { id: 'clan', icon: 'crew', label: 'Klan', locked: true }],
+  mode: { label: 'Bölüm', sub: 'Buz Vadisi 3-2', icon: 'map' },
+  play: { label: 'Oyna', sub: 'Dereceli · 2v2' },
+  onAction: function (a) { /* { action: 'nav' | 'shortcut' | 'promo' | 'button' | 'currency' | 'play' | 'mode' | 'profile', id } */ }
+});
+lobby.update({ currencies: [...] });</code></pre>
+</main>
+
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.js"></script>
+<script src="../demo/demo.js"></script>
+<script>
+  var S = {
+    player: { name: 'Amiral Router', level: 12, xp: .46 },
+    currencies: [
+      { id: 'energy', icon: 'bolt', tone: 'success', value: 54, max: 60, add: true },
+      { id: 'coin', icon: 'coin', tone: 'gold', value: 12480, add: true },
+      { id: 'gem', icon: 'diamond', tone: 'legendary', value: 320, add: true }
+    ],
+    buttons: [{ id: 'mail', icon: 'email', badge: 3, label: 'Posta' }, { id: 'settings', icon: 'settings', label: 'Ayarlar' }],
+    promos: [
+      { id: 'pass', icon: 'crown', tone: 'gold', title: 'Sezon 3', sub: 'Altın kart · 10 kademe', progress: .4, progressText: '4 / 10', time: '6g 4s' },
+      { id: 'event', icon: 'snow', tone: 'info', title: 'Kar fırtınası', sub: 'Etkinlik · 2× ödül', time: '14s 20d', badge: true }
+    ],
+    hero: { art: { icon: 'robot' }, name: 'Kartopu', level: 8, progress: .06, progressText: '3 / 50', trophies: 420 },
+    shortcuts: [
+      { id: 'quests', icon: 'scroll', label: 'Görevler', badge: 2 },
+      { id: 'rewards', icon: 'gift', label: 'Ödüller', badge: 1, tone: 'gold' },
+      { id: 'rank', icon: 'trophy', label: 'Sıralama' },
+      { id: 'friends', icon: 'friend', label: 'Arkadaşlar' }
+    ],
+    nav: [
+      { id: 'shop', icon: 'store', label: 'Mağaza' },
+      { id: 'inv', icon: 'backpack', label: 'Envanter', badge: 3 },
+      { id: 'heroes', icon: 'users', label: 'Karakter', badge: 1 },
+      { id: 'clan', icon: 'crew', label: 'Klan', locked: true, lockedText: 'Klan seviye 15\'te açılır' }
+    ],
+    mode: { label: 'Bölüm', sub: 'Buz Vadisi 3-2', icon: 'map' },
+    play: { label: 'Oyna', sub: 'Dereceli · 2v2' }
+  };
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function show(a) { document.getElementById('last-action').textContent = a.action + (a.id ? ' · ' + a.id : ''); }
+
+  // Her ekrana bir lobi + aynı ekranda açılan menüler
+  var lobbies = ['#screen-pc', '#screen-land', '#screen-port'].map(function (sel) {
+    var screen = document.querySelector(sel), menus = {};
+    var th = document.createElement('div'); th.className = 'eui-anchor eui-tc'; th.style.zIndex = 90;
+    th.innerHTML = '<div class="eui-toasts" data-eui="toasts"></div>';
+    function menu(id) {
+      if (menus[id]) return menus[id];
+      var spec = MENUS[id](); spec.post = false; spec.onAction = show;
+      return (menus[id] = EUI.Menu(screen, spec));
+    }
+    var lobby = EUI.Lobby(screen, Object.assign(clone(S), {
+      post: false,
+      onAction: function (a) {
+        show(a);
+        if (a.action === 'nav' && MENUS[a.id]) menu(a.id).open();
+        if (a.action === 'button' && a.id === 'settings') menu('settings').open();
+        if (a.action === 'button' && a.id === 'mail') menu('mail').open();
+        if (a.action === 'currency') menu('shop').open('gems');
+        if (a.action === 'play') {
+          lobby.update({ play: Object.assign({}, S.play, { busy: true, label: 'Aranıyor', sub: 'Rakip bekleniyor…' }) });
+          var st = EUI.state('checking', { target: screen, title: 'Rakip aranıyor', text: 'Ortalama bekleme 12 sn', actions: [{ id: 'cancel', label: 'İptal' }] });
+          var t = setTimeout(function () { st.close('found'); }, 2600);
+          st.then(function (r) {
+            clearTimeout(t);
+            lobby.update({ play: S.play });
+            if (r === 'found') EUI.toast({ tone: 'success', icon: 'swords', title: 'Rakip bulundu', text: 'Maç başlıyor', duration: 2200 });
+          });
+        }
+      }
+    }));
+    screen.appendChild(th);
+    return lobby;
+  });
+
+  // Menü içerikleri (EUI.Menu) — mobilde de aynı çağrı
+  var MENUS = {
+    shop: function () { return { kicker: 'Lobi', title: 'Mağaza', stats: [{ label: 'Altın', value: '12.480', tone: 'gold' }, { label: 'Elmas', value: '320', tone: 'legendary' }], sections: [
+      { id: 'offers', label: 'Teklifler', icon: 'percent', view: 'grid', cols: 3, detail: 'buy', items: [
+        { id: 'starter', title: 'Başlangıç paketi', sub: '%80 indirim', icon: 'chest', tone: 'legendary', price: '₺49,99', badge: { text: 'Bir kez', tone: 'danger' }, desc: '500 elmas, 10.000 altın ve nadir karakter.' },
+        { id: 'coins', title: 'Altın kesesi', sub: '25.000 altın', icon: 'coins', price: '120 💎', qty: 1 },
+        { id: 'energy', title: 'Enerji', sub: '+60', icon: 'bolt', price: '40 💎', qty: 1 },
+        { id: 'skin', title: 'Buz kostümü', sub: 'Kostüm', icon: 'snow', tone: 'epic', price: '480 💎' },
+        { id: 'chest', title: 'Efsane sandık', sub: '%2 efsane şansı', icon: 'treasure', tone: 'legendary', price: '900 💎', locked: true, badge: { text: 'Svy 20', icon: 'lock' } },
+        { id: 'noads', title: 'Reklamsız', sub: 'Kalıcı', icon: 'ban', price: '₺89,99', owned: true }
+      ]},
+      { id: 'gems', label: 'Elmas', icon: 'diamond', view: 'grid', cols: 3, detail: 'buy', items: [
+        { id: 'g1', title: '80 elmas', icon: 'diamond', price: '₺29,99' }, { id: 'g2', title: '500 elmas', sub: '+%10', icon: 'diamond', tone: 'rare', price: '₺149,99' },
+        { id: 'g3', title: '1.200 elmas', sub: '+%20', icon: 'diamond', tone: 'epic', price: '₺299,99', badge: { text: 'Popüler', tone: 'accent' } }
+      ]},
+      { id: 'restore', label: 'Satın alımları geri yükle', icon: 'refresh', action: 'restore' }
+    ]}; },
+    inv: function () { return { kicker: 'Lobi', title: 'Envanter', sections: [
+      { id: 'all', label: 'Hepsi', icon: 'grid', view: 'grid', cols: 4, items: [
+        { id: 'sb', title: 'Kartopu', sub: '×120', icon: 'snow', desc: 'Atış başına 1.', actions: [{ id: 'use', label: 'Kullan' }] },
+        { id: 'ice', title: 'Buz bloğu', sub: '×8', icon: 'box', tone: 'rare', actions: [{ id: 'use', label: 'Kullan' }] },
+        { id: 'boost', title: 'Hız iksiri', sub: '×2', icon: 'bottle', tone: 'epic', desc: '30 sn %40 hız.', actions: [{ id: 'use', label: 'Kullan' }, { id: 'sell', label: 'Sat · 40', primary: false, confirm: true }] },
+        { id: 'key', title: 'Sandık anahtarı', sub: '×1', icon: 'key', tone: 'legendary', actions: [{ id: 'open', label: 'Sandık aç' }] }
+      ]},
+      { id: 'mat', label: 'Malzeme', icon: 'package', view: 'list', items: [{ id: 'w', title: 'Odun', sub: '×340', icon: 'package' }] }
+    ]}; },
+    heroes: function () { return { kicker: 'Lobi', title: 'Karakterler', sections: [
+      { id: 'list', label: 'Karakterler', icon: 'users', view: 'grid', cols: 3, items: [
+        { id: 'k1', title: 'Kartopu', sub: 'Svy 8', icon: 'robot', active: true, stats: [{ label: 'Can', value: 70 }, { label: 'Hız', value: 55 }], actions: [{ id: 'select', label: 'Seç' }, { id: 'upgrade', label: 'Yükselt · 1.200', primary: false }] },
+        { id: 'k2', title: 'Buzkıran', sub: 'Svy 3', icon: 'ninja', tone: 'rare', stats: [{ label: 'Can', value: 50 }, { label: 'Hız', value: 85 }], actions: [{ id: 'select', label: 'Seç' }] },
+        { id: 'k3', title: 'Yeti', sub: 'Kilitli', icon: 'boss', tone: 'legendary', locked: true, badge: { text: '2.000 💎', icon: 'lock' } }
+      ]}
+    ]}; },
+    mail: function () { return { kicker: 'Lobi', title: 'Gelen kutusu', sections: [
+      { id: 'mail', label: 'Posta', icon: 'email', count: 3, view: 'list', items: [
+        { id: 'm1', title: 'Hoş geldin hediyesi', sub: '100 elmas · 6 gün kaldı', icon: 'gift', badge: { text: 'Yeni', tone: 'accent' }, desc: 'Ember ailesine hoş geldin!', actions: [{ id: 'claim', label: 'Topla' }] },
+        { id: 'm2', title: 'Sezon ödülü', sub: '2.000 altın', icon: 'trophy', actions: [{ id: 'claim', label: 'Topla' }] },
+        { id: 'm3', title: 'Bakım tazminatı', sub: '50 enerji', icon: 'wrench', actions: [{ id: 'claim', label: 'Topla' }] }
+      ]}
+    ]}; },
+    settings: function () { return { kicker: 'Sistem', title: 'Ayarlar', sections: [
+      { id: 'audio', label: 'Ses', icon: 'volume', view: 'settings', fields: [
+        { id: 'music', label: 'Müzik', type: 'slider', value: 60, unit: '%' },
+        { id: 'sfx', label: 'Efektler', type: 'slider', value: 80, unit: '%' },
+        { id: 'vibe', label: 'Titreşim', type: 'toggle', value: true }
+      ]},
+      { id: 'game', label: 'Oyun', icon: 'gamepad', view: 'settings', fields: [
+        { id: 'quality', label: 'Grafik', type: 'seg', value: 'mid', options: [{ value: 'low', label: 'Düşük' }, { value: 'mid', label: 'Orta' }, { value: 'high', label: 'Yüksek' }] },
+        { id: 'fps', label: 'Kare hızı', type: 'seg', value: '60', options: ['30', '60', '120'] },
+        { id: 'lang', label: 'Dil', type: 'select', value: 'tr', options: [{ value: 'tr', label: 'Türkçe' }, { value: 'en', label: 'English' }, { value: 'vi', label: 'Tiếng Việt' }] },
+        { id: 'push', label: 'Bildirimler', type: 'toggle', value: false }
+      ]},
+      { id: 'account', label: 'Hesap', icon: 'user', view: 'settings', fields: [
+        { id: 'id', label: 'Oyuncu ID', desc: '1042-7781', type: 'button', text: 'Kopyala', icon: 'share' },
+        { id: 'link', label: 'Hesabı bağla', desc: 'StreamEmber hesabıyla ilerlemeni koru', type: 'button', text: 'Bağla', icon: 'user-plus' },
+        { id: 'support', label: 'Destek', type: 'button', text: 'Yardım', icon: 'info' },
+        { id: 'delete', label: 'Hesabı sil', desc: 'Tüm ilerleme kalıcı olarak silinir', type: 'button', text: 'Sil', danger: true }
+      ]}
+    ]}; }
+  };
+
+  document.getElementById('give').addEventListener('click', function () {
+    S.currencies[1].value += 1500;
+    lobbies.forEach(function (l) { l.update({ currencies: clone(S.currencies) }); });
+  });
+  document.getElementById('badge').addEventListener('click', function () {
+    S.buttons[0].badge = (S.buttons[0].badge || 0) + 1; S.shortcuts[0].badge = (S.shortcuts[0].badge || 0) + 1;
+    lobbies.forEach(function (l) { l.update({ buttons: clone(S.buttons), shortcuts: clone(S.shortcuts) }); });
+  });
+</script>
+</body>
+</html>

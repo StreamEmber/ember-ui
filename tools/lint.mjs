@@ -2,7 +2,7 @@
 // Ember UI kullanım denetleyicisi — bir mod / oyun sayfasının Ember UI kurallarına uyup uymadığını söyler.
 // Tek dosya, bağımlılıksız (Node 18+). Kit sınıf listesini sayfanın yüklediği Ember UI sürümünden (jsDelivr) okur.
 //
-//   curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/tools/lint.mjs
+//   curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/tools/lint.mjs
 //   node lint.mjs <web klasörü> [--css yol/ember-ui.css] [--json]
 //
 // Hata (çıkış kodu 1): sabit olmayan sürüm, tema kullanımı, kitte olmayan eui-* sınıfı, eui-* sınıfını ezen CSS,

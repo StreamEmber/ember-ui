@@ -8,6 +8,10 @@ export const PAGES = [
   { group: 'Başlangıç', items: [
     { href: 'pages/components.html', label: 'Temel bileşenler', icon: 'layers' }
   ]},
+  { group: 'Oyun ekranları', items: [
+    { href: 'pages/lobby.html', label: 'Lobi (yatay + dikey)', icon: 'home' },
+    { href: 'pages/boot.html', label: 'Açılış ve durum ekranları', icon: 'wifi' }
+  ]},
   { group: 'Ölçerler', items: [
     { href: 'pages/vitals.html', label: 'Yaşam göstergeleri', icon: 'stats' },
     { href: 'pages/bars.html', label: 'Barlar', icon: 'gauge' }
@@ -42,7 +46,7 @@ export const PAGES = [
 export const FAMILY_ICON = {
   base: 'layers', bars: 'gauge', combat: 'crosshair', economy: 'cash', extras: 'chart', feed: 'bell', gear: 'backpack',
   location: 'compass', menu: 'list', stream: 'broadcast', survival: 'campfire', tags: 'tag', vehicle: 'car', vitals: 'heart',
-  crew: 'users', shop: 'store'
+  crew: 'users', shop: 'store', app: 'home'
 };
 
 export const ACCENTS = [

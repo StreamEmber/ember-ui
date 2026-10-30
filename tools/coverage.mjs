@@ -8,7 +8,9 @@ import path from 'node:path';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (...p) => readFileSync(path.join(root, ...p), 'utf8');
 const pages = readdirSync(path.join(root, 'pages')).filter(f => f.endsWith('.html')).map(f => read('pages', f)).join('\n');
-const inPages = new Set(pages.match(/eui-[a-z0-9_-]+/g));
+// kit JS'inin çizdiği sınıflar (EUI.Lobby, EUI.Menu…) sunum sayfasında çağrıldıkları için görünür sayılır
+const kitJs = readdirSync(path.join(root, 'kit/js')).filter(f => f.endsWith('.js')).map(f => read('kit/js', f)).join('\n');
+const inPages = new Set((pages + '\n' + kitJs).match(/eui-[a-z0-9_-]+/g));
 const missing = [];
 let total = 0;
 for (const f of readdirSync(path.join(root, 'catalog')).filter(f => f.endsWith('.html')).sort()) {

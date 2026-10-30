@@ -1,0 +1,69 @@
+<!-- family: Oyun ekranları | Oyunun kendi ekranları (HUD değil): lobi, başlık, yükleme, durum ekranları (ağ hatası, çevrimdışı, bakım, güncelleme, oturum, hata, bağlanıyor) ve bunların parçaları (profil, para birimi, kampanya kartı, kısayol, alt gezinme çubuğu, büyük eylem düğmesi, bildirim noktası). Aynı çağrı PC'de, yatay ve dikey telefonda çalışır. Önce aşağıdaki "Ekran kuralları" bölümünü oku. -->
+
+<section data-id="lobby" data-title="Lobi (EUI.Lobby)" data-use="Oyunun ana ekranı tek çağrı: profil, para birimleri, simge düğmeleri, kampanya kartları, ortada sahne, kısayollar, alt gezinme çubuğu, mod ve Oyna düğmesi. Yatay ve dikey yerleşimi kit seçer. lobby.update({ … }) ile değişen alanı ver; eylemler onAction'a ve EUI.post('lobby', …) ile oyuna gider." data-run="1">
+var lobby = EUI.Lobby({
+  player: { name: 'Amiral', level: 12, xp: .46 },
+  currencies: [{ id: 'energy', icon: 'bolt', tone: 'success', value: 54, max: 60, add: true },
+               { id: 'coin', icon: 'coin', tone: 'gold', value: 12480, add: true },
+               { id: 'gem', icon: 'diamond', tone: 'legendary', value: 320, add: true }],
+  buttons: [{ id: 'mail', icon: 'email', badge: 3 }, { id: 'settings', icon: 'settings' }],
+  promos: [{ id: 'pass', icon: 'crown', tone: 'gold', title: 'Sezon 3', sub: 'Altın kart', progress: .4, progressText: '4 / 10', time: '6g 4s' }],
+  hero: { art: { icon: 'robot' }, name: 'Kartopu', level: 8, progress: .06, progressText: '3 / 50', trophies: 420 },
+  shortcuts: [{ id: 'quests', icon: 'scroll', label: 'Görevler', badge: 2 }, { id: 'rank', icon: 'trophy', label: 'Sıralama' }],
+  nav: [{ id: 'shop', icon: 'store', label: 'Mağaza' }, { id: 'inv', icon: 'backpack', label: 'Envanter', badge: 3 }, { id: 'clan', icon: 'crew', label: 'Klan', locked: true }],
+  mode: { label: 'Bölüm', sub: 'Buz Vadisi 3-2', icon: 'map' },
+  play: { label: 'Oyna', sub: 'Dereceli · 2v2' },
+  post: false,
+  onAction: function (a) { EUI.toast({ title: a.action + (a.id ? ' · ' + a.id : ''), duration: 1500 }); }
+});
+setTimeout(function () { lobby.destroy(); }, 8000);   // yalnız galeri için
+</section>
+
+<section data-id="title" data-title="Başlık ekranı" data-use="Oyun adı ya da logo, 'Başlamak için dokun', sürüm ve sunucu. Dokununca ya da tuşa basınca Promise çözülür ve ekran kalkar (keep: true ile kalır)." data-run="1">
+EUI.title({ name: 'Snowball', sub: 'Ember', version: '1.4.2', server: 'tr1 · 18 ms' })
+  .then(function () { EUI.toast({ tone: 'success', title: 'Devam' }); });
+</section>
+
+<section data-id="loading" data-title="Yükleme ekranı" data-use="Başlık, rozetler, dönen ipuçları ve ilerleme. Döner: { progress(0..1, metin), tip(metin), close() }. Uzun yükleme ve sunucuya bağlanma adımları için." data-run="1">
+var ld = EUI.loading({ kicker: 'StreamEmber sunar', title: 'Snowball', badges: ['Sezon 3'], tips: ['Kartopu basılı tutunca güçlenir.', 'Günlük görevler her gece yenilenir.'] });
+var p = 0, t = setInterval(function () { p += .1; ld.progress(p, p < 1 ? 'Varlıklar yükleniyor' : 'Hazır'); if (p >= 1) { clearInterval(t); setTimeout(ld.close, 500); } }, 300);
+</section>
+
+<section data-id="state" data-title="Durum ekranları" data-use="EUI.state(tür, o) → Promise(düğme id). Türler: network-error (retry), offline (offline | retry), maintenance (retry), update-required (update), update-available (later | update), session-expired (login), error (support | retry), checking (düğmesiz; .close()), reconnecting (quit). title, text, code, icon, tone, actions ile ezilir. Enter ana düğmeye basar." data-run="1">
+EUI.state('network-error', { code: 'NET-503' }).then(function (r) { EUI.toast({ title: 'Seçilen: ' + r }); });
+</section>
+
+<section data-id="currency" data-title="Para birimi çipi" data-use="İkon + miktar (+ üst sınır) + isteğe bağlı ekle düğmesi. Ton mh-t-* para rengini verir (gold altın, legendary elmas, success enerji). Lobide EUI.Lobby kendi çizer; bunu yalnız kendi ekranında kullan." data-js="el.querySelector('b').textContent = EUI.fmt(12480)">
+<div class="eui-flex eui-gap-2 eui-wrap">
+  <div class="eui-currency eui-t-success"><i data-i="bolt"></i><b>54</b><small>/ 60</small><button class="eui-currency__add"><i data-i="plus"></i></button></div>
+  <div class="eui-currency eui-t-gold"><i data-i="coin"></i><b>12.480</b><button class="eui-currency__add"><i data-i="plus"></i></button></div>
+  <div class="eui-currency eui-t-legendary"><i data-i="diamond"></i><b>320</b></div>
+</div>
+</section>
+
+<section data-id="profile" data-title="Profil çipi" data-use="Avatar + seviye rozeti + ad + XP barı. Dokununca profil açılır." data-js="EUI.bar(el.querySelector('.eui-bar'), 46)">
+<div class="eui-profile"><span class="eui-avatar eui-t-accent">AR</span><span class="eui-profile__lvl">12</span><div class="eui-profile__main"><span class="eui-profile__name">Amiral Router</span><div class="eui-bar eui-t-xp" data-v="46"><i class="eui-bar__fill"></i></div></div></div>
+</section>
+
+<section data-id="iconbtn" data-title="Simge düğmesi ve bildirim noktası" data-use="Kare dokunma düğmesi (52 px); sağ üstte eui-dot sayı ya da boş nokta. eui-dot her dokunmatik öğeye eklenebilir (shortcut, navbar__item, promo)." data-js="el.querySelector('.eui-dot').textContent = 4">
+<div class="eui-flex eui-gap-3"><button class="eui-iconbtn"><i data-i="email"></i><span class="eui-dot">3</span></button><button class="eui-iconbtn"><i data-i="bell"></i><span class="eui-dot"></span></button><button class="eui-iconbtn"><i data-i="settings"></i></button></div>
+</section>
+
+<section data-id="promo" data-title="Kampanya / sezon kartı" data-use="Sezon kartı, etkinlik, sınırlı teklif: ikon, başlık, alt satır, ilerleme, kalan süre. Ton kartın rengi." data-js="EUI.bar(el.querySelector('.eui-bar'), 40)">
+<div class="eui-col eui-gap-2" style="width:320px">
+  <div class="eui-promo eui-t-gold"><div class="eui-promo__head"><i data-i="crown"></i><div><div class="eui-promo__title">Sezon 3</div><div class="eui-promo__sub">Altın kart · 10 kademe</div></div></div><div class="eui-promo__foot"><div class="eui-bar" data-v="40"><i class="eui-bar__fill"></i></div><span>4 / 10</span><span class="eui-promo__time"><i data-i="clock"></i>6g 4s</span></div></div>
+  <div class="eui-promo eui-t-info"><span class="eui-dot"></span><div class="eui-promo__head"><i data-i="snow"></i><div><div class="eui-promo__title">Kar fırtınası</div><div class="eui-promo__sub">Etkinlik · 2× ödül</div></div></div></div>
+</div>
+</section>
+
+<section data-id="shortcuts" data-title="Kısayollar" data-use="Görevler, ödüller, sıralama gibi yan kısayollar: ikon + kısa ad + eui-dot. --cols sütun sayısı." data-js="—">
+<div class="eui-shortcuts"><button class="eui-shortcut"><i data-i="scroll"></i><span>Görevler</span><span class="eui-dot">2</span></button><button class="eui-shortcut eui-t-gold"><i data-i="gift"></i><span>Ödüller</span><span class="eui-dot">1</span></button><button class="eui-shortcut"><i data-i="trophy"></i><span>Sıralama</span></button><button class="eui-shortcut"><i data-i="friend"></i><span>Arkadaşlar</span></button></div>
+</section>
+
+<section data-id="navbar" data-title="Alt gezinme çubuğu" data-use="Lobinin sekme çubuğu: ikon + ad + eui-dot; seçili is-active, kilitli is-locked (+ kilit ikonu eui-navbar__lock). Dikeyde ekran genişliğine yayılır." data-wide="1" data-js="—">
+<nav class="eui-navbar"><button class="eui-navbar__item is-active"><i data-i="home"></i><span>Lobi</span></button><button class="eui-navbar__item"><i data-i="store"></i><span>Mağaza</span></button><button class="eui-navbar__item"><i data-i="backpack"></i><span>Envanter</span><span class="eui-dot">3</span></button><button class="eui-navbar__item is-locked"><i data-i="crew"></i><span>Klan</span><i data-i="lock" class="eui-navbar__lock"></i></button></nav>
+</section>
+
+<section data-id="cta" data-title="Büyük eylem düğmesi" data-use="Oyna gibi ana eylem (vurgu degradesi) ve eui-cta--alt ikincil (mod / bölüm seç). is-busy beklerken (ikon döner, basılamaz)." data-wide="1" data-js="el.classList.add('is-busy')">
+<div class="eui-flex eui-gap-3"><button class="eui-cta eui-cta--alt"><i data-i="map"></i><span class="eui-cta__main"><b>Bölüm</b><small>Buz Vadisi 3-2</small></span></button><button class="eui-cta"><i data-i="play"></i><span class="eui-cta__main"><b>Oyna</b><small>Dereceli · 2v2</small></span></button></div>
+</section>

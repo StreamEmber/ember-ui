@@ -1,13 +1,13 @@
 # Ember UI {{version}} — AI kılavuzu
 
-Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları ve HTML5 oyunlar için **tek görünümlü** HUD ve arayüz kiti (saf CSS + küçük JS).
+Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları, HTML5 oyunlar ve mobil / PC oyunların ekranları (lobi, açılış, ayarlar, mağaza) için **tek görünümlü** arayüz kiti (saf CSS + küçük JS). PC'de, yatay ve dikey telefonda aynı çağrı çalışır.
 > **Ember.js ile ilgisi yoktur.** Ember UI, StreamEmber'in kendi kitidir (eski adı MHud). Sınıflar `eui-`, CSS değişkenleri `--eui-`, öznitelikler `data-eui-*`, JS global `EUI`. Eski `mh-` / `MH` adlarını görürsen ya da yazmak üzereysen dur: onlar kaldırıldı.
 **Bu dosyayı baştan sona oku. Kitin kaynak kodunu açma.** Bir bileşen lazımsa aşağıdaki dizinden varyantı seç, yalnız o ailenin `ai/<aile>.md` dosyasını aç, HTML'i olduğu gibi kopyala ya da gösterilen `EUI.*` çağrısını kullan.
 
 ## Altın kurallar
 
 1. **Kitte olanı yeniden yazma.** Menü, satır, kart, katman, perde, modal, bildirim, sayaç, hasar sayısı, kırmızı ekran, kırpma kılavuzu… hepsi kitte var. Önce "İhtiyaç → bileşen" tablosuna ve API dizinine bak.
-2. **Tam ekran menü = `EUI.Menu`.** Menü HTML'i elle yazılmaz; bölümler ve veri verilir. Ayrıntı: `ai/menu.md` (Menü kuralları).
+2. **Ekranlar hazır çağrıdır.** Lobi `EUI.Lobby`, başlık `EUI.title`, yükleme `EUI.loading`, hata / bakım / bağlantı `EUI.state`, tam ekran menü (mağaza, envanter, ayarlar…) `EUI.Menu`. HTML'leri elle yazılmaz; veri verilir. Ayrıntı: `ai/app.md` (Ekran kuralları), `ai/menu.md` (Menü kuralları).
 3. **Tek görünüm.** Tema yok (`data-eui-theme`, `EUI.theme` 3.0'da kaldırıldı). Oyuna göre değişen tek şey vurgu rengi: `data-eui-accent` / `EUI.accent()`.
 4. **`eui-*` sınıflarını ezme.** Kitin bir sınıfına CSS yazma, `!important` kullanma, kendi `eui-` sınıfını uydurma.
 5. **Renk sabit yazma.** Ton sınıfı (`eui-t-*`) ya da `rgb(var(--eui-…-rgb) / a)`. Yalnız siyah/beyaz gölge ve perde serbest.
@@ -63,6 +63,8 @@ EUI.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: stre
 
 | İhtiyaç | Kullan |
 |---|---|
+| Oyunun ana ekranı (lobi) | `EUI.Lobby` → `ai/app.md` |
+| Başlık, yükleme, ağ hatası, çevrimdışı, bakım, güncelleme, oturum bitti, bağlanıyor | `EUI.title`, `EUI.loading`, `EUI.state` → `ai/app.md` |
 | Tam ekran menü: envanter, mağaza, silahçı, garaj, ayarlar, ekip listesi, görevler | `EUI.Menu` → `ai/menu.md` |
 | Ekip / davet / kasa / kanal / arkadaş / takas menüsü | `EUI.Social` (hazır, `EUI.Menu` üstünde) |
 | Evet-hayır, metin, listeden seçim, sayı, nesne üstü eylemler, silah çarkı | `EUI.confirm`, `EUI.input`, `EUI.choose`, `EUI.amount`, `EUI.context`, `EUI.radial` |
@@ -93,7 +95,9 @@ Denetim: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v{{version}}
 
 Bileşen fabrikalarının ayrıntısı ilgili ailede; burada her public ad bir satır.
 
-**Kurulum ve köprü** — `EUI.mount(kök?)` bildirimsel parçaları kurar · `EUI.autoScale({ base: 1080, scale })` ölçek + oyun yüksekliği; `{ set(ölçek) }` döner (HUD ölçeği ayarı için bunu çağır, yeniden kurma) · `EUI.accent(ad, kapsam?)` vurgu · `EUI.on(ad, fn)` / `EUI.off(ad, fn)` / `EUI.emit(ad, veri)` olaylar · `EUI.post(cb, veri)` sayfa → oyun · `EUI.route(mesaj)` bir mesajı elle yönlendir · `EUI.rpcAllow` oyundan doğrudan çağrılabilen adlar · `EUI.bridge` (`window.streamember` ya da null) · `EUI.debug` (`?mhdebug=1`) · `EUI.connect(wsUrl)` WebSocket köprüsü (OBS / HTML5; `EUI.post`'u sokete çevirir) · `EUI.Atlas(action)` isim etiketlerini oyunun yerel çerçevesinde çizdiren atlas köprüsü (oyun `{ reset, layout, set, clear }` yollar).
+**Kurulum ve köprü** — `EUI.mount(kök?)` bildirimsel parçaları kurar · `EUI.autoScale({ base: 1080, scale })` ölçek (kısa kenar = base; telefon / tablet için `base: 540`) + oyun yüksekliği; `{ set(ölçek) }` döner (HUD ölçeği ayarı için bunu çağır, yeniden kurma) · `EUI.accent(ad, kapsam?)` vurgu · `EUI.on(ad, fn)` / `EUI.off(ad, fn)` / `EUI.emit(ad, veri)` olaylar · `EUI.post(cb, veri)` sayfa → oyun · `EUI.route(mesaj)` bir mesajı elle yönlendir · `EUI.rpcAllow` oyundan doğrudan çağrılabilen adlar · `EUI.bridge` (`window.streamember` ya da null) · `EUI.debug` (`?mhdebug=1`) · `EUI.connect(wsUrl)` WebSocket köprüsü (OBS / HTML5; `EUI.post`'u sokete çevirir) · `EUI.Atlas(action)` isim etiketlerini oyunun yerel çerçevesinde çizdiren atlas köprüsü (oyun `{ reset, layout, set, clear }` yollar).
+
+**Oyun ekranları** — `EUI.Lobby(host?, spec)` → `{ update, set, show, hide, destroy }` · `EUI.title(host?, o)` → Promise · `EUI.loading(host?, o)` → `{ progress, tip, close }` · `EUI.state(tür, o)` → Promise(düğme id) + `.close(v)` · `EUI.states` hazır durum metinleri (değiştirilebilir) → `ai/app.md`.
 
 **Menü ve pencereler** — `EUI.Menu(host?, spec)` → `ai/menu.md` · `EUI.Social(host, opts)` · `EUI.trade(o)` takas penceresi · `EUI.modal(o)` genel pencere (Promise) · `EUI.confirm(o)` → bool · `EUI.input(o)` → metin · `EUI.choose(o)` → id / [id] · `EUI.amount(o)` → sayı · `EUI.modalOpen()` · `EUI.closeModals()` · `EUI.context(x, y, items, o)` · `EUI.closeContext()` · `EUI.radial(el, items, o)`.
 

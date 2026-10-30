@@ -2,7 +2,17 @@
 
 Ember UI (4.0'dan önce: MHud).
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.0.0`).
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.1.0`).
+
+## 4.1.0 — 2026-10-30
+
+**Oyun ekranları** (yeni aile `app`, `ai/app.md`): kit artık yalnız HUD değil, oyunun kendi ekranlarını da kuruyor. Hepsi veriyle kurulur ve aynı çağrı PC'de, yatay ve dikey telefonda çalışır (`.eui-app` kapsayıcı sorgusu).
+- `EUI.Lobby(host, spec)`: profil, para birimleri, simge düğmeleri, kampanya kartları, sahne, kısayollar, alt gezinme çubuğu, mod ve Oyna düğmesi; `update / show / hide / destroy`; eylemler `onAction` ve `EUI.post('lobby', …)`.
+- `EUI.title` (dokununca devam), `EUI.loading` (ilerleme + dönen ipuçları), `EUI.state(tür)`: `network-error`, `offline`, `maintenance`, `update-required`, `update-available`, `session-expired`, `error`, `checking`, `reconnecting` (Promise ile düğme sonucu).
+- Parçalar: `eui-currency`, `eui-profile`, `eui-iconbtn`, `eui-dot`, `eui-promo`, `eui-shortcuts`, `eui-navbar`, `eui-cta`.
+- `EUI.Menu` dikey ekranda tam ekrana geçer: gezinme üstte yatay sekmeler, detay paneli altta kompakt şerit.
+- `EUI.autoScale` kısa kenarı ölçer (yatayda yükseklik, dikeyde genişlik); telefon / tablet için `EUI.autoScale({ base: 540 })`.
+- Yeni sunum sayfaları: **Lobi** (PC 1920×1080, telefon yatay 1170×540, telefon dikey 540×960 yan yana; Mağaza, Envanter, Karakter, Posta, Ayarlar menüleri) ve **Açılış ve durum ekranları** (başlık → yükleme → ağ hatası → lobi akışı).
 
 ## 4.0.0 — 2026-10-30
 

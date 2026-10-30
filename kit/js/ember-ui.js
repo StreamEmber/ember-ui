@@ -15,7 +15,7 @@
 (function (root) {
   'use strict';
 
-  var EUI = { version: '4.0.0' };
+  var EUI = { version: '4.1.0' };
   var doc = root.document;
   EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
@@ -101,13 +101,13 @@
     if (name) scope.setAttribute('data-eui-accent', name); else scope.removeAttribute('data-eui-accent');
     emit('accent', name);
   };
-  /* 1080p referansına göre ölçekler; opts.scale oyuncu ayarı (ör. 0.9).
+  /* Kısa kenar 1080 referansına göre ölçekler (yatay ve dikey); opts.scale oyuncu ayarı (ör. 0.9).
      Overlay görünümü oyundan uzun olabilir (altında isim etiketi atlası): .eui-screen oyun yüksekliğinde kalır. */
   EUI.autoScale = function (opts) {
     opts = opts || {};
     var base = opts.base || 1080, user = opts.scale || 1, target = $(opts.target) || doc.documentElement;
     function apply() {
-      var game = Math.min(EUI.bridge && EUI.bridge.screenHeight || root.innerHeight, root.innerHeight), z = game / base * user;
+      var game = Math.min(EUI.bridge && EUI.bridge.screenHeight || root.innerHeight, root.innerHeight), z = Math.min(game, root.innerWidth) / base * user;   // kısa kenar 1080: yatayda yükseklik, dikeyde genişlik
       target.style.zoom = z;
       doc.documentElement.style.setProperty('--eui-atlas-gap', (root.innerHeight - game) / z + 'px');
     }

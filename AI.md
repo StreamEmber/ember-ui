@@ -1,13 +1,13 @@
-# Ember UI 4.0.0 — AI kılavuzu
+# Ember UI 4.1.0 — AI kılavuzu
 
-Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları ve HTML5 oyunlar için **tek görünümlü** HUD ve arayüz kiti (saf CSS + küçük JS).
+Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları, HTML5 oyunlar ve mobil / PC oyunların ekranları (lobi, açılış, ayarlar, mağaza) için **tek görünümlü** arayüz kiti (saf CSS + küçük JS). PC'de, yatay ve dikey telefonda aynı çağrı çalışır.
 > **Ember.js ile ilgisi yoktur.** Ember UI, StreamEmber'in kendi kitidir (eski adı MHud). Sınıflar `eui-`, CSS değişkenleri `--eui-`, öznitelikler `data-eui-*`, JS global `EUI`. Eski `mh-` / `MH` adlarını görürsen ya da yazmak üzereysen dur: onlar kaldırıldı.
 **Bu dosyayı baştan sona oku. Kitin kaynak kodunu açma.** Bir bileşen lazımsa aşağıdaki dizinden varyantı seç, yalnız o ailenin `ai/<aile>.md` dosyasını aç, HTML'i olduğu gibi kopyala ya da gösterilen `EUI.*` çağrısını kullan.
 
 ## Altın kurallar
 
 1. **Kitte olanı yeniden yazma.** Menü, satır, kart, katman, perde, modal, bildirim, sayaç, hasar sayısı, kırmızı ekran, kırpma kılavuzu… hepsi kitte var. Önce "İhtiyaç → bileşen" tablosuna ve API dizinine bak.
-2. **Tam ekran menü = `EUI.Menu`.** Menü HTML'i elle yazılmaz; bölümler ve veri verilir. Ayrıntı: `ai/menu.md` (Menü kuralları).
+2. **Ekranlar hazır çağrıdır.** Lobi `EUI.Lobby`, başlık `EUI.title`, yükleme `EUI.loading`, hata / bakım / bağlantı `EUI.state`, tam ekran menü (mağaza, envanter, ayarlar…) `EUI.Menu`. HTML'leri elle yazılmaz; veri verilir. Ayrıntı: `ai/app.md` (Ekran kuralları), `ai/menu.md` (Menü kuralları).
 3. **Tek görünüm.** Tema yok (`data-eui-theme`, `EUI.theme` 3.0'da kaldırıldı). Oyuna göre değişen tek şey vurgu rengi: `data-eui-accent` / `EUI.accent()`.
 4. **`eui-*` sınıflarını ezme.** Kitin bir sınıfına CSS yazma, `!important` kullanma, kendi `eui-` sınıfını uydurma.
 5. **Renk sabit yazma.** Ton sınıfı (`eui-t-*`) ya da `rgb(var(--eui-…-rgb) / a)`. Yalnız siyah/beyaz gölge ve perde serbest.
@@ -22,7 +22,7 @@ Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları ve HTML5 oyunl
 <html lang="tr" class="eui-overlay">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.css">
 </head>
 <body class="eui" data-eui-accent="mint">
   <div class="eui-screen">
@@ -30,7 +30,7 @@ Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları ve HTML5 oyunl
     <div class="eui-anchor eui-bl"> … HUD parçaları … </div>
     <div class="eui-anchor eui-tr"><div class="eui-toasts" data-eui="toasts"></div></div>
   </div>
-  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/dist/ember-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
@@ -46,7 +46,7 @@ EUI.on('toast', EUI.toast);
 EUI.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: streamember.post({ cb: 'ready', data })
 ```
 
-- Sürümü her zaman sabit yaz (`@v4.0.0`; `@latest`, `@main` yok).
+- Sürümü her zaman sabit yaz (`@v4.1.0`; `@latest`, `@main` yok).
 - `html.eui-overlay` overlay sayfasını saydam yapar ve CEF'te pahalı olan cam bulanıklığını kapatır. OBS / normal sayfada bu sınıfı koyma.
 - Oyun → sayfa mesajı `{ action, data }` biçimindedir ve `EUI.on(action, fn)`'e gelir; `{ action: 'ember-ui', fn: 'toast', args: [{…}] }` doğrudan izinli bir `EUI.*` çağırır. Sayfa → oyun `EUI.post(cb, data)`. Köprü yoksa (normal tarayıcı) sayfa yine açılır; `?mhdebug=1` her mesajı konsola yazar.
 - Sonradan eklenen HTML'e `EUI.mount(kapsayıcı)` çağır (ikon, halka, bar, segment, sekme kurulumu). `EUI.Menu` ve `EUI.*` fabrikaları bunu kendisi yapar.
@@ -63,6 +63,8 @@ EUI.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: stre
 
 | İhtiyaç | Kullan |
 |---|---|
+| Oyunun ana ekranı (lobi) | `EUI.Lobby` → `ai/app.md` |
+| Başlık, yükleme, ağ hatası, çevrimdışı, bakım, güncelleme, oturum bitti, bağlanıyor | `EUI.title`, `EUI.loading`, `EUI.state` → `ai/app.md` |
 | Tam ekran menü: envanter, mağaza, silahçı, garaj, ayarlar, ekip listesi, görevler | `EUI.Menu` → `ai/menu.md` |
 | Ekip / davet / kasa / kanal / arkadaş / takas menüsü | `EUI.Social` (hazır, `EUI.Menu` üstünde) |
 | Evet-hayır, metin, listeden seçim, sayı, nesne üstü eylemler, silah çarkı | `EUI.confirm`, `EUI.input`, `EUI.choose`, `EUI.amount`, `EUI.context`, `EUI.radial` |
@@ -87,13 +89,15 @@ EUI.post('ready', { app: 'mod-adı' });                  // sayfa → oyun: stre
 ## Genişletme (son çare)
 
 Kitte gerçekten yoksa: özel stil **tek dosyada** (`x.css`), **yalnız `x-` önekli** sınıflarla, **yalnız token** renkleriyle yazılır; her bloğun üstüne `/* kitte yok: <ne, neden> */` yazılır. `eui-*` sınıfı ezilmez, kitin hazır yapısının (menü, satır, katman, modal, toast) kopyası yazılmaz.
-Denetim: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/tools/lint.mjs && node lint.mjs <web klasörü>` — hata kalmamalı.
+Denetim: `curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/tools/lint.mjs && node lint.mjs <web klasörü>` — hata kalmamalı.
 
 ## API dizini
 
 Bileşen fabrikalarının ayrıntısı ilgili ailede; burada her public ad bir satır.
 
-**Kurulum ve köprü** — `EUI.mount(kök?)` bildirimsel parçaları kurar · `EUI.autoScale({ base: 1080, scale })` ölçek + oyun yüksekliği; `{ set(ölçek) }` döner (HUD ölçeği ayarı için bunu çağır, yeniden kurma) · `EUI.accent(ad, kapsam?)` vurgu · `EUI.on(ad, fn)` / `EUI.off(ad, fn)` / `EUI.emit(ad, veri)` olaylar · `EUI.post(cb, veri)` sayfa → oyun · `EUI.route(mesaj)` bir mesajı elle yönlendir · `EUI.rpcAllow` oyundan doğrudan çağrılabilen adlar · `EUI.bridge` (`window.streamember` ya da null) · `EUI.debug` (`?mhdebug=1`) · `EUI.connect(wsUrl)` WebSocket köprüsü (OBS / HTML5; `EUI.post`'u sokete çevirir) · `EUI.Atlas(action)` isim etiketlerini oyunun yerel çerçevesinde çizdiren atlas köprüsü (oyun `{ reset, layout, set, clear }` yollar).
+**Kurulum ve köprü** — `EUI.mount(kök?)` bildirimsel parçaları kurar · `EUI.autoScale({ base: 1080, scale })` ölçek (kısa kenar = base; telefon / tablet için `base: 540`) + oyun yüksekliği; `{ set(ölçek) }` döner (HUD ölçeği ayarı için bunu çağır, yeniden kurma) · `EUI.accent(ad, kapsam?)` vurgu · `EUI.on(ad, fn)` / `EUI.off(ad, fn)` / `EUI.emit(ad, veri)` olaylar · `EUI.post(cb, veri)` sayfa → oyun · `EUI.route(mesaj)` bir mesajı elle yönlendir · `EUI.rpcAllow` oyundan doğrudan çağrılabilen adlar · `EUI.bridge` (`window.streamember` ya da null) · `EUI.debug` (`?mhdebug=1`) · `EUI.connect(wsUrl)` WebSocket köprüsü (OBS / HTML5; `EUI.post`'u sokete çevirir) · `EUI.Atlas(action)` isim etiketlerini oyunun yerel çerçevesinde çizdiren atlas köprüsü (oyun `{ reset, layout, set, clear }` yollar).
+
+**Oyun ekranları** — `EUI.Lobby(host?, spec)` → `{ update, set, show, hide, destroy }` · `EUI.title(host?, o)` → Promise · `EUI.loading(host?, o)` → `{ progress, tip, close }` · `EUI.state(tür, o)` → Promise(düğme id) + `.close(v)` · `EUI.states` hazır durum metinleri (değiştirilebilir) → `ai/app.md`.
 
 **Menü ve pencereler** — `EUI.Menu(host?, spec)` → `ai/menu.md` · `EUI.Social(host, opts)` · `EUI.trade(o)` takas penceresi · `EUI.modal(o)` genel pencere (Promise) · `EUI.confirm(o)` → bool · `EUI.input(o)` → metin · `EUI.choose(o)` → id / [id] · `EUI.amount(o)` → sayı · `EUI.modalOpen()` · `EUI.closeModals()` · `EUI.context(x, y, items, o)` · `EUI.closeContext()` · `EUI.radial(el, items, o)`.
 
@@ -113,7 +117,20 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 
 ## Bileşen aileleri
 
-### Barlar → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/bars.md
+### Oyun ekranları → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/app.md
+- `app.lobby` Lobi (EUI.Lobby): Oyunun ana ekranı tek çağrı: profil, para birimleri, simge düğmeleri, kampanya kartları, ortada sahne, kısayollar, alt gezinme çubuğu, mod ve Oyna düğmesi
+- `app.title` Başlık ekranı: Oyun adı ya da logo, 'Başlamak için dokun', sürüm ve sunucu
+- `app.loading` Yükleme ekranı: Başlık, rozetler, dönen ipuçları ve ilerleme
+- `app.state` Durum ekranları: EUI.state(tür, o) → Promise(düğme id)
+- `app.currency` Para birimi çipi: İkon + miktar (+ üst sınır) + isteğe bağlı ekle düğmesi
+- `app.profile` Profil çipi: Avatar + seviye rozeti + ad + XP barı
+- `app.iconbtn` Simge düğmesi ve bildirim noktası: Kare dokunma düğmesi (52 px); sağ üstte eui-dot sayı ya da boş nokta
+- `app.promo` Kampanya / sezon kartı: Sezon kartı, etkinlik, sınırlı teklif: ikon, başlık, alt satır, ilerleme, kalan süre
+- `app.shortcuts` Kısayollar: Görevler, ödüller, sıralama gibi yan kısayollar: ikon + kısa ad + eui-dot
+- `app.navbar` Alt gezinme çubuğu: Lobinin sekme çubuğu: ikon + ad + eui-dot; seçili is-active, kilitli is-locked (+ kilit ikonu eui-navbar__lock)
+- `app.cta` Büyük eylem düğmesi: Oyna gibi ana eylem (vurgu degradesi) ve eui-cta--alt ikincil (mod / bölüm seç)
+
+### Barlar → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/bars.md
 - `bars.boss` Boss barı: Ekran üstü büyük bar: ad, aşama rozeti, iz (ghost), aşama çentikleri, ikinci kalkan barı
 - `bars.wave` Dalga paneli: Hayatta kalma modu: dalga numarası, kalan düşman barı, sonraki dalga süresi
 - `bars.goal` Hedef çubuğu: Bağış/beğeni hedefi: ikon, başlık, sayaç, bar ve ödül satırı
@@ -133,7 +150,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `bars.steps` Adım ilerlemesi: Görev adımları ya da şarjör: eui-pips tall; dolu parçalar tonlu
 - `bars.download` Yükleme / indirme: Dosya, harita, güncelleme yüklerken: çapraz çizgili bar + durum + yüzde
 
-### Temel parçalar → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/base.md
+### Temel parçalar → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/base.md
 - `base.panel` Panel: Temel kutu
 - `base.button` Düğme: Varyantlar: --primary (ana), varsayılan, --ghost (hafif), --outline (çerçeveli), --tone + eui-t-* (renkli)
 - `base.badge` Rozet: Küçük etiket: ton eui-t-*; --pill yuvarlak, --dot nokta, --live nabız
@@ -151,7 +168,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `base.player` Oyuncu çipi: Avatar + ad + alt satır; menü başlığında ya da panel köşesinde kim olduğunu gösterir
 - `base.utils` Yerleşim ve yazı yardımcıları: Satır içi stil yerine bunları kullan: eui-flex (satır), eui-col (sütun), eui-between, eui-wrap, eui-grow, eui-gap-1..5, eui-pad / eui-pad-s / eui-pad-l, eui-ellipsis, eui-mono, eui-num (tabular sayı), eui-dim / eui-mute (soluk), eui-accent-text, eui-hud-text (sahne üstü gölge), eui-rule (--accent, --fade) ayraç, ikon boyu eui-i--sm|md|lg|xl, başlık eui-title--sm|lg|xl
 
-### Savaş ve dünya → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/combat.md
+### Savaş ve dünya → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/combat.md
 - `combat.crosshair` Nişangâh: Dört biçim: artı (varsayılan), --dot, --circle, --t
 - `combat.hit` Vuruş işareti: İsabette nişangâhta kısa X: kind boş normal, 'head' kafa, 'kill' öldürme
 - `combat.damage-from` Hasar yönü: Ekran kenarında hasarın geldiği yönü gösteren yay: 0 önden, 90 sağdan, 180 arkadan (derece)
@@ -168,7 +185,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `combat.damage-number` Yüzen hasar sayısı: Vuruşta dünyada yükselip sönen sayı
 - `combat.vignette` Düşük can kenar kızarması: Can 40'ın altına inince ekran kenarı kızarır, 20'nin altında nabız atar
 
-### Ekip → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/crew.md
+### Ekip → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/crew.md
 - `crew.portrait` Portre: Kare portre alanı: harf, ikon (rol) ya da img
 - `crew.card` Üye kartı: Ayrıntılı ekip üyesi: kare portre, ad, rol rozeti, can barı + sayı, elindeki silah ve mermi, binek (at/araç; yoksa .is-off), mesafe
 - `crew.row` Kompakt ekip satırı: HUD kenar listesi (.eui-crewlist içinde): küçük kare portre, ad, ikonlar (silah, binek is-on, mesafe), ince can barı
@@ -185,7 +202,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `crew.ping` Bağlantı kalitesi: 4 çubuklu ping göstergesi: iyi (varsayılan), is-mid orta, is-bad kötü
 - `crew.teamhead` Takım başlığı: Skor tablosu takım başlığı: ad + büyük sayı; ton eui-t-team1..5
 
-### Ekonomi ve durum → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/economy.md
+### Ekonomi ve durum → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/economy.md
 - `economy.cash` Para ve banka: Sağ üst köşe para göstergesi; artış/azalış farkı kısa süre yüzer
 - `economy.coin` Kompakt para: Tek satır ikon + tutar: puan, jeton, altın
 - `economy.wanted` Aranma yıldızları: GTA tarzı 5 yıldız; dolu olanlara on sınıfı, is-flashing yanıp söner
@@ -196,7 +213,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `economy.effect-line` Etki satırı: Simgesiz metin satırı: ad + süre
 - `economy.streak` Seri / kombo: Sayı büyür, alttaki çubuk süre dolunca söner; 5 ve üstünde is-hot kırmızı
 
-### Grafik ve ilerleme → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/extras.md
+### Grafik ve ilerleme → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/extras.md
 - `extras.donut` Halka grafik: Yüzde halkası: data-eui-ring + --v (0..1), ortada değer ve etiket
 - `extras.spark` Mini çizgi grafik: Boş div'e data-spark=&quot;1,3,2,5&quot; ver (data-w, data-h boyut); EUI.mount çizer
 - `extras.hbars` Yatay çubuklar: Karşılaştırma: etiket + çubuk (scaleX 0..1) + değer; tone
@@ -207,7 +224,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `extras.match` Maç geçmişi satırı: Maç özeti: sonuç rozeti (eui-match__res: is-win yeşil, is-loss kırmızı, sınıfsız berabere), mod + harita + saat, Ö/A, MVP rozeti
 - `extras.giftmap` Hediye haritası: Hediye → etki ızgarası: --cols sütun; öğe: sanat (emoji veya ikon), ad + jeton, etki
 
-### Bildirim ve akış → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/feed.md
+### Bildirim ve akış → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/feed.md
 - `feed.toast` Toast: Köşe bildirimi: ton info|success|warn|danger|accent|legendary, süre ms (0 = kalıcı), en fazla 5 adet
 - `feed.toast-action` Toast + eylem: Düğmeli bildirim (davet, onay)
 - `feed.kill` Ölüm akışı: Sağ üst akış satırı: öldüren, silah, ölen
@@ -223,7 +240,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `feed.chat` Sohbet: Oyun içi sohbet: eui-chat__log içinde eui-msg satırları (is-system sistem, __tag rozet, __name tonlu ad) + giriş
 - `feed.ticker` Kayan şerit: Alt kenarda sürekli kayan haber şeridi: etiket + __track içinde span'ler
 
-### Ekipman → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/gear.md
+### Ekipman → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/gear.md
 - `gear.weapon` Silah paneli: Sağ alt köşe: silah adı, çizimi, şarjör/yedek, şarjör segmentleri, yan eşyalar
 - `gear.ammo` Mermi sayacı: Silah çizimi olmadan yalnız şarjör / yedek
 - `gear.hotbar` Yuva şeridi: Numaralı hızlı yuvalar: is-active seçili, is-cooldown (--cd oran) bekleme, is-empty boş; sayı ve dayanıklılık çubuğu isteğe bağlı
@@ -234,7 +251,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `gear.ammo-types` Mermi türleri: Mermi türü seçici: satır başına ikon, ad, adet
 - `gear.compare` Silah karşılaştırma: Satın almadan önce kuşanılı silahla fark: eui-statline; artış için .eui-bar__gain (--g yeni değer oranı) yeşil gösterilir
 
-### Konum ve yön → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/location.md
+### Konum ve yön → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/location.md
 - `location.compass` Pusula şeridi: Üst orta kayan yön şeridi; hedefler şerit üstünde simge olarak durur
 - `location.street` Sokak ve bölge: Yön harfi + sokak adı + bölge
 - `location.heading` Yön çipi: Sadece yön harfi ve derece; en az yer kaplayan yön göstergesi
@@ -245,7 +262,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `location.marker-edge` Kenar işaretçisi: Ekran dışındaki hedef: pin kenarda, üstteki ok yönü gösterir (--a derece)
 - `location.wayarrow` Hedef oku: Büyük yönlendirme oku + mesafe (görev, teslimat)
 
-### Menü ve ekranlar → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/menu.md
+### Menü ve ekranlar → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/menu.md
 - `menu.menu` Tam ekran menü (EUI.Menu): Mod menüsü, envanter, mağaza, ayarlar, ekip: tek çağrı
 - `menu.menu-settings` Ayarlar menüsü (2 sütun): Hiçbir bölümde detay yoksa menü kendiliğinden 2 sütundur
 - `menu.context` Bağlam menüsü: Küçük açılır menü: başlık, satır (ikon, ad, kısayol tuşu), ayraç, is-active, is-danger
@@ -262,7 +279,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `menu.results` Maç sonucu: Maç bitişi: üstte başlık (Zafer/Yenilgi), alt satır ve eui-summary özet sayıları; podyum ayrı varyant
 - `menu.loading` Yükleme ekranı: Tam ekran: arka plan (__art), başlık/alt metin/rozetler (__main), altta ipucu ve ilerleme (__foot)
 
-### Mağaza ve satın alma → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/shop.md
+### Mağaza ve satın alma → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/shop.md
 - `shop.item` Ürün kutucuğu: Görsel alanı (.eui-item__art, oran --ratio, varsayılan 16/10) + ad + alt satır ve fiyat
 - `shop.square` Kare görselli kutucuk: Görsel alanı 1:1: .eui-item--square
 - `shop.grouped` Gruplu ızgara: Izgarayı başlıklarla böl: .eui-shopgroup (kicker + sayı) satırın tamamını kaplar, altına kutucuklar gelir
@@ -277,7 +294,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `shop.cart` Sepet: Birden çok ürünü tek seferde almak için: satır (küçük kare görsel, ad, adet × fiyat, toplam), alt toplam / kese / kalan, onay düğmesi
 - `shop.keylist` Tuş listesi: Tuş + açıklama satırları (.eui-keylist__row); birden çok tuş yan yana, ikinci satır small
 
-### Yayın ve izleyici → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/stream.md
+### Yayın ve izleyici → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/stream.md
 - `stream.statbar` Durum şeridi: Yatay istatistik çipleri: ikon + büyük sayı + etiket (seviye, can, öldürme…)
 - `stream.statcard` İstatistik kartı: Oyuncu özeti: seviye halkası + ad, altında 2×2 hücre (ikon, sayı, etiket)
 - `stream.winloss` Galibiyet / mağlubiyet: Skor (yeşil W, kırmızı L) ve son maç geçmişi: data-history=&quot;WWLWWLW&quot; harfleri noktaya çevrilir
@@ -291,7 +308,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `stream.gift-hero` Büyük hediye: Pahalı hediye için ekran ortası kahraman gösterim: büyük sanat, gönderen, hediye adı, jeton rozeti
 - `stream.crop` Kare / dikey yayın kırpması: Yayın 9:16 ya da 1:1 kırpılınca HUD orta sütuna toplanır
 
-### Hayatta kalma ve mod → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/survival.md
+### Hayatta kalma ve mod → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/survival.md
 - `survival.horde` Sürü uyarısı: Ekran ortasında büyük başlık + alt satır + davul çubukları (__drums)
 - `survival.infected` Özel düşman bildirimi: Özel düşman uyarısı: ikon, tür adı, ipucu
 - `survival.loadout` Silah yuvaları: Hızlı yuva şeridi: tuş numarası, silah çizimi (data-weapon) veya ikon, alt sayaç
@@ -304,7 +321,7 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `survival.skillcheck` Beceri kontrolü: Dönen ibre başarı dilimine gelince SPACE
 - `survival.qte` Tuş dizisi (QTE): Sıralı tuşlara bas; Promise true/false
 
-### İsim etiketleri → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/tags.md
+### İsim etiketleri → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/tags.md
 - `tags.default` Standart: Ad, oyuncu numarası, rozet, can ve zırh barı, alt satır
 - `tags.relations` İlişki renkleri: Aynı etiket, renk ilişkiyi söyler: is-friend, is-enemy, nötr (sınıfsız), takım eui-t-team1..5; ayrıca eui-t-gold (VIP), eui-t-info (polis) gibi tonlar
 - `tags.compact` Kompakt: eui-tag--compact: rozet ve alt satır gizli, ad 13px, bar 56px
@@ -335,14 +352,14 @@ Silah çizimleri (`<i data-weapon="ad">` / `weapon: 'ad'`): carbine smg pistol r
 - `tags.downed` Yere düştü: is-down: kırmızı, yanıp sönen ad; bar kalan kanama süresi, alt satır kaldırma ipucu
 - `tags.bubble` Konuşma balonu: bubble: etiketin üstünde kısa sohbet metni (yayıncı/izleyici mesajı); 220px'e kadar kayar
 
-### Araç ve binek → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/vehicle.md
+### Araç ve binek → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/vehicle.md
 - `vehicle.speedo` Hız kadranı: Dairesel kadran: hız yayı, son %15 kırmızı bölge, ince devir yayı, vites, lambalar
 - `vehicle.speed-mini` Kompakt hız: Büyük sayı + vites + devir segmentleri; son üç segment kırmızıya döner
 - `vehicle.gauges` Yakıt ve motor ölçerleri: İkon + ince bar satırları (yakıt, motor, nitro)
 - `vehicle.fuel-ring` Halka ölçer: Ortasında ikon olan halka: yakıt, pil, nitro
 - `vehicle.lamps` Gösterge lambaları: Emniyet kemeri, far, kilit, arıza: on yanık, is-warn kırmızı yanıp söner; ton --tone-rgb ile
 
-### Yaşam göstergeleri → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.0.0/ai/vitals.md
+### Yaşam göstergeleri → https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/ai/vitals.md
 - `vitals.bar` Bar: Tek değer: can, zırh, ilerleme
 - `vitals.bar-ghost` Hasar izli bar: Değer düşünce beyaz iz yavaşça kapanır
 - `vitals.bar-notch` Çentikli bar: Eşit bölmeli bar; --notch bölme sayısı

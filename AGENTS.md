@@ -28,6 +28,10 @@ Kiti **kullanan** yapay zekâ için tek belge `AI.md`'dir (katalogdan üretilir)
 - Tam ekran menünün tek yolu `EUI.Menu` (`kit/js/ember-ui-menu.js`). Yeni bir menü ihtiyacı = yeni bölüm görünümü ya da öğe alanı, ayrı bir menü bileşeni değil. `EUI.Social` bunun üstünde çalışır.
 - `pages/menus.html` menü davranışı yazmaz; yalnız `EUI.Menu` çağırır. Sayfa betiklerinde kitin işini yapan kod görürsen kite taşı.
 
+## Oyun ekranları
+- Lobi, başlık, yükleme ve durum ekranları `kit/js/ember-ui-app.js` + `kit/css/ember-ui.app.css`. Yatay / dikey farkı yalnız `@container app (...)` sorgularıyla çözülür; medya sorgusu ve ayrı HTML yok. Yeni ekran = veriyle kurulan bir `EUI.*` çağrısı + `catalog/app.html` varyantı + `catalog/app.md` tablosunda satır + `pages/lobby.html` ya da `pages/boot.html`'de kullanım.
+- Her yeni ekran üç boyutta kontrol edilir: 1920×1080, 1170×540 (telefon yatay), 540×960 (telefon dikey).
+
 ## Köprü
 - Oyun ↔ sayfa: StreamEmber overlay köprüsü `window.streamember` (`EUI.bridge`). Oyun → sayfa `{ action, data }` → `EUI.on`; sayfa → oyun `EUI.post(cb, data)` → `{ cb, data }`. WebSocket için `EUI.connect`.
 

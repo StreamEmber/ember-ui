@@ -40,7 +40,7 @@ async function js(files, out) {
 }
 
 await css('kit/css/ember-ui.css', 'ember-ui.css');
-await js(['kit/js/ember-ui-icons.js', 'kit/js/ember-ui.js', 'kit/js/ember-ui-menu.js', 'kit/js/ember-ui-social.js', 'kit/js/ember-ui-atlas.js'], 'ember-ui.js');
+await js(['kit/js/ember-ui-icons.js', 'kit/js/ember-ui.js', 'kit/js/ember-ui-menu.js', 'kit/js/ember-ui-social.js', 'kit/js/ember-ui-app.js', 'kit/js/ember-ui-atlas.js'], 'ember-ui.js');
 
 const { readdir, stat } = await import('node:fs/promises');
 for (const f of (await readdir(dist)).filter(f => /\.(css|js)$/.test(f))) {

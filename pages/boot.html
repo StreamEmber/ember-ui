@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Açılış ve durum ekranları — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.css">
+<link rel="stylesheet" href="../demo/demo.css">
+</head>
+<body class="eui">
+<main class="demo-main">
+  <header class="demo-head">
+    <span class="demo-head__kicker">Oyun ekranları</span>
+    <h1>Açılış ve durum ekranları</h1>
+    <p>Oyun açılırken ve bağlantı bozulduğunda görünen ekranlar. Her biri tek çağrı: <code>EUI.title</code> (dokununca devam), <code>EUI.loading</code> (ilerleme + ipuçları), <code>EUI.state(tür)</code> (ağ hatası, çevrimdışı, bakım, güncelleme, oturum, genel hata, bağlanıyor). Durum ekranları bir <code>Promise</code> döner: hangi düğmeye basıldığını söyler. Aşağıdaki düğmeler iki ekranda birden çalışır.</p>
+  </header>
+
+  <div class="demo-devices">
+    <div class="demo-stage-wrap"><div class="demo-stage" data-w="1920" data-h="1080" data-no-scene><div class="eui-screen" id="s-land"></div></div></div>
+    <div class="demo-stage-wrap"><div class="demo-stage" data-w="540" data-h="960" data-no-scene><div class="eui-screen" id="s-port"></div></div></div>
+  </div>
+  <div class="demo-actions">
+    <button class="demo-btn demo-btn--accent" data-flow><i data-i="play"></i>Açılış akışı</button>
+    <span class="demo-sep"></span>
+    <button class="demo-btn" data-st="network-error">Ağ hatası</button>
+    <button class="demo-btn" data-st="offline">Çevrimdışı</button>
+    <button class="demo-btn" data-st="maintenance">Bakım</button>
+    <button class="demo-btn" data-st="update-required">Güncelleme zorunlu</button>
+    <button class="demo-btn" data-st="update-available">Güncelleme var</button>
+    <button class="demo-btn" data-st="session-expired">Oturum bitti</button>
+    <button class="demo-btn" data-st="error">Genel hata</button>
+    <button class="demo-btn" data-st="checking">Bağlanıyor</button>
+    <button class="demo-btn" data-st="reconnecting">Yeniden bağlanıyor</button>
+    <span class="demo-sep"></span>
+    <span class="demo-actions__label">Sonuç:</span><code id="result">—</code>
+  </div>
+
+  <div class="demo-h2"><h2>Kod</h2><p>Gerçek bir oyunun açılışı: başlık → yükleme → bağlantı hatasında yeniden dene → lobi.</p></div>
+  <pre class="demo-code"><code>await EUI.title('#screen', { name: 'Snowball', sub: 'Ember', version: '1.4.2' });
+var ld = EUI.loading('#screen', { kicker: 'StreamEmber', title: 'Snowball', tips: ['Kartopu basılı tutunca güçlenir.'] });
+ld.progress(.3, 'Sunucuya bağlanılıyor');
+while (!(await connect())) {                                   // oyunun kendi bağlantı işlevi
+  var r = await EUI.state('network-error', { code: 'NET-503' });   // 'retry'
+}
+ld.progress(1, 'Hazır'); ld.close();
+EUI.Lobby('#screen', { … });
+
+var s = EUI.state('reconnecting'); …  s.close();               // düğmesiz ekranı koddan kapat</code></pre>
+</main>
+
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.1.0/dist/ember-ui.min.js"></script>
+<script src="../demo/demo.js"></script>
+<script>
+  var SCREENS = ['#s-land', '#s-port'];
+  function res(t) { document.getElementById('result').textContent = t; }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function clear(sel) { document.querySelectorAll(sel + ' > .eui-app').forEach(function (n) { n.remove(); }); }
+  function lobby(sel) {
+    EUI.Lobby(sel, { post: false, player: { name: 'Amiral', level: 12, xp: .46 },
+      currencies: [{ id: 'coin', icon: 'coin', tone: 'gold', value: 12480, add: true }, { id: 'gem', icon: 'diamond', tone: 'legendary', value: 320, add: true }],
+      buttons: [{ id: 'settings', icon: 'settings' }], hero: { art: { icon: 'robot' }, name: 'Kartopu', level: 8 },
+      nav: [{ id: 'shop', icon: 'store', label: 'Mağaza' }, { id: 'inv', icon: 'backpack', label: 'Envanter' }, { id: 'heroes', icon: 'users', label: 'Karakter' }],
+      play: { label: 'Oyna' } });
+  }
+  async function flow(sel, first) {
+    clear(sel);
+    var t = EUI.title(sel, { name: 'Snowball', sub: 'Ember', version: '1.4.2', server: 'tr1 · 18 ms' });
+    if (first) setTimeout(function () { document.querySelectorAll('.eui-app--title').forEach(function (n) { n.dispatchEvent(new PointerEvent('pointerup', { bubbles: true })); }); }, 1600);
+    await t;
+    var ld = EUI.loading(sel, { kicker: 'StreamEmber sunar', title: 'Snowball', badges: ['Sezon 3', 'tr1'], tips: ['Kartopu basılı tutunca güçlenir.', 'Günlük görevler her gece 00:00\'da yenilenir.'] });
+    for (var p = 0; p <= .45; p += .05) { ld.progress(p, 'Varlıklar yükleniyor'); await wait(90); }
+    var tries = 0, ok = false;
+    while (!ok) {
+      ld.progress(.5, 'Sunucuya bağlanılıyor'); await wait(500);
+      ok = tries++ > 0;                                   // demo: ilk deneme başarısız
+      if (!ok && first) { var r = await EUI.state('network-error', { target: sel, code: 'NET-503' }); res(r); }
+      else ok = true;
+    }
+    for (p = .5; p <= 1; p += .1) { ld.progress(p, p < 1 ? 'Profil alınıyor' : 'Hazır'); await wait(90); }
+    ld.close(); lobby(sel);
+  }
+  document.querySelector('[data-flow]').addEventListener('click', function () { SCREENS.forEach(function (s, i) { flow(s, i === 0); }); });
+  document.querySelectorAll('[data-st]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var kind = b.getAttribute('data-st');
+      var ps = SCREENS.map(function (s) { return EUI.state(kind, { target: s, code: kind === 'error' ? 'E-1042' : null }); });
+      if (kind === 'checking') setTimeout(function () { ps.forEach(function (p) { p.close('bağlandı'); }); }, 2500);
+      Promise.race(ps).then(function (v) { ps.forEach(function (p) { p.close(v); }); res(kind + ' → ' + v); });
+    });
+  });
+  SCREENS.forEach(lobby);
+</script>
+</body>
+</html>
