@@ -2,7 +2,16 @@
 
 Ember UI (4.0'dan önce: MHud).
 
-Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.2.1`).
+Sürümler [SemVer](https://semver.org/lang/tr/) izler. CDN'de her zaman tam sürüm kullanın (`@4.3.0`).
+
+## 4.3.0 — 2026-10-30
+- Yazı tipleri genişledi: Vietnamca, Kiril (Rusça, Ukraynaca…) ve Yunanca artık gömülü (Inter, JetBrains Mono, Barlow; Barlow'da olmayan Kiril / Yunan başlıklar Roboto Condensed ile dar kalır). Önceden bu harfler sistem yazı tipine düşüyor, aynı sözcükte iki yazı tipi görünüyordu.
+- Çince (Geleneksel / Basit), Japonca, Korece, Arapça, Tayca, Hintçe için `lang`'a göre doğru sistem yazı tipi (`--eui-font-script`): Windows, macOS, Android adları sırayla. Bu dillerde başlık / kicker harf aralığı 0.
+- `EUI.lang(kod?)`, `EUI.upper`, `EUI.lower`: dile göre büyük / küçük harf (Türkçe i → İ). `EUI.fmt` ve `EUI.compact` sayfa diline göre biçimler (önceden hep `tr-TR`); rakamlar her dilde 0-9. `EUI.initials` dile göre ve emoji / nadir karakterleri bölmez. Menü ve sosyal arama dile göre.
+- `EUI.language` seçilen dili sayfaya uygular (`apply: false` uygulamaz).
+- `<html lang>` yoksa konsolda uyarı; `lint.mjs` lang'sız sayfayı hata, kendi `font-family` ve `toUpperCase()` kullanımını uyarı sayar.
+- Galeri: "Diller ve yazı tipleri" sayfası (15 dil, yazı tipi, büyük harf, sayı biçimi).
+- Dikkat: `lang="en"` olan sayfada `EUI.fmt(12480)` artık `12,480` verir.
 
 ## 4.2.1 — 2026-10-30
 - Oyna düğmesi (`eui-cta`) standart birincil düğmeyle aynı düz renkler: vurgu rengi zemin, `--eui-on-accent` yazı, degrade / parlama / kayan ışık yok. `eui-cta--alt` düz koyu zemin. Düşük alt kenar ve basma hissi kaldı.

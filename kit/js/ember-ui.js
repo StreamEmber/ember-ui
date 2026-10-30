@@ -15,7 +15,7 @@
 (function (root) {
   'use strict';
 
-  var EUI = { version: '4.2.1' };
+  var EUI = { version: '4.3.0' };
   var doc = root.document;
   EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
@@ -36,9 +36,21 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function nf(n, d) {
-    return Number(n || 0).toLocaleString('tr-TR', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
+  /* Dil: <html lang> (EUI.lang ile değişir). Büyük / küçük harf (Türkçe i → İ), sayı biçimi ve yazı tipi seçimi buna bakar.
+     Rakamlar her dilde Latin (0-9) kalır: HUD sayıları Arapça rakama dönmez. */
+  var fmts = {};
+  function lang() { return (doc.documentElement.getAttribute('lang') || 'tr').trim() || 'tr'; }
+  function numFmt(d, compactNotation) {
+    var k = lang() + '|' + d + '|' + !!compactNotation;
+    if (!fmts[k]) {
+      var o = compactNotation ? { notation: 'compact', maximumFractionDigits: d } : { minimumFractionDigits: d, maximumFractionDigits: d };
+      try { fmts[k] = new Intl.NumberFormat(lang() + '-u-nu-latn', o); } catch (e) { fmts[k] = new Intl.NumberFormat('tr-TR', o); }
+    }
+    return fmts[k];
   }
+  function nf(n, d) { return numFmt(d || 0).format(Number(n || 0)); }
+  function upper(s) { try { return String(s).toLocaleUpperCase(lang()); } catch (e) { return String(s).toUpperCase(); } }
+  function lower(s) { try { return String(s).toLocaleLowerCase(lang()); } catch (e) { return String(s).toLowerCase(); } }
   function time(sec, withHours) {
     sec = Math.max(0, Math.ceil(sec));
     var h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60;
@@ -47,8 +59,7 @@
   }
   function compact(n) {
     n = Number(n || 0);
-    if (n >= 1e6) return nf(n / 1e6, n < 1e7 ? 1 : 0) + ' Mn';
-    if (n >= 1e4) return nf(n / 1e3, n < 1e5 ? 1 : 0) + ' B';
+    if (n >= 1e4) return numFmt(n < 1e5 || (n >= 1e6 && n < 1e7) ? 1 : 0, true).format(n);   // tr: 12,5 B · 1,3 Mn; en: 12.5K · 1.3M
     return nf(n);
   }
   function icon(name, cls) {
@@ -72,8 +83,9 @@
   function initials(name) {
     var s = String(name || '?').replace(/[_\-.]+/g, ' ').replace(/([a-zçğıöşü])([A-ZÇĞİÖŞÜ])/g, '$1 $2').trim();
     var p = s.split(/\s+/);
-    if (p.length > 1) return (p[0][0] + p[1][0]).toUpperCase();
-    return (/^[A-ZÇĞİÖŞÜ0-9]{2,}$/.test(p[0]) ? p[0].slice(0, 2) : p[0][0]).toUpperCase();   // "MSK" → MS, "NabeMedia" → NM
+    var a = Array.from(p[0]), b = p[1] ? Array.from(p[1]) : [];   // Array.from: vekil çiftleri (emoji, nadir CJK) bölünmez
+    if (b.length) return upper(a[0] + b[0]);
+    return upper(/^[A-ZÇĞİÖŞÜ0-9]{2,}$/.test(p[0]) ? a.slice(0, 2).join('') : a[0]);   // "MSK" → MS, "NabeMedia" → NM
   }
   function avatar(name, opts) {
     opts = opts || {};
@@ -90,7 +102,14 @@
   function raf(fn) { return (root.requestAnimationFrame || setTimeout)(fn); }
 
   EUI.$ = $; EUI.$$ = $$; EUI.el = el; EUI.esc = esc; EUI.clamp = clamp;
-  EUI.fmt = nf; EUI.time = time; EUI.compact = compact;
+  EUI.fmt = nf; EUI.time = time; EUI.compact = compact; EUI.upper = upper; EUI.lower = lower;
+  EUI.lang = function (code) {
+    if (code === undefined) return lang();
+    doc.documentElement.setAttribute('lang', code);
+    if (EUI.debug) console.log('[Ember UI] dil', code);
+    emit('lang', code);
+    return code;
+  };
   EUI.icon = icon; EUI.weapon = weapon; EUI.art = art; EUI.avatar = avatar; EUI.initials = initials;
 
   /* ======================================================================
@@ -584,8 +603,8 @@
     var list = body.querySelector('.eui-choose__list'), cur = 0;
     function vis() { return $$('.eui-choose__row:not(.is-disabled)', list); }
     function draw(q) {
-      q = (q || '').toLowerCase().trim();
-      var rows = items.filter(function (it) { return !q || String(it.label).toLowerCase().indexOf(q) >= 0 || String(it.sub || '').toLowerCase().indexOf(q) >= 0; });
+      q = lower(q || '').trim();
+      var rows = items.filter(function (it) { return !q || lower(it.label).indexOf(q) >= 0 || lower(it.sub || '').indexOf(q) >= 0; });
       list.innerHTML = rows.length ? rows.map(function (it) {
         var art = it.avatar !== undefined || !it.icon ? avatar(it.label, { src: it.avatar, tone: it.tone, cls: 'eui-avatar--sm eui-avatar--round' }) : '<span class="eui-row__icon">' + icon(it.icon) + '</span>';
         return '<div class="eui-choose__row' + (picked[it.id] ? ' is-picked' : '') + (it.disabled ? ' is-disabled' : '') + '" data-id="' + esc(it.id) + '">' +
@@ -1347,8 +1366,12 @@
   if (EUI.bridge) EUI.bridge.on(route);
   root.addEventListener('message', function (e) { route(e.data); });   // tarayıcıda deneme: postMessage({ action, data })
 
-  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function () { EUI.mount(); });
-  else EUI.mount();
+  function boot() {
+    if (!doc.documentElement.getAttribute('lang')) console.warn('[Ember UI] <html lang="…"> yok: büyük harf (Türkçe i → İ), sayı biçimi ve Çince / Japonca / Arapça yazı tipi seçimi için dili ver (ör. <html lang="tr">) ya da EUI.lang(\'tr\') çağır. Şimdilik tr varsayılıyor.');
+    EUI.mount();
+  }
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', boot);
+  else boot();
 
   root.EUI = EUI;
 })(window);

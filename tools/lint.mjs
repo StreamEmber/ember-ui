@@ -2,12 +2,13 @@
 // Ember UI kullanım denetleyicisi — bir mod / oyun sayfasının Ember UI kurallarına uyup uymadığını söyler.
 // Tek dosya, bağımlılıksız (Node 18+). Kit sınıf listesini sayfanın yüklediği Ember UI sürümünden (jsDelivr) okur.
 //
-//   curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.2.1/tools/lint.mjs
+//   curl -sO https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.3.0/tools/lint.mjs
 //   node lint.mjs <web klasörü> [--css yol/ember-ui.css] [--json]
 //
 // Hata (çıkış kodu 1): sabit olmayan sürüm, tema kullanımı, kitte olmayan eui-* sınıfı, eui-* sınıfını ezen CSS,
 //   x- öneki dışında özel sınıf, kitin hazır yapısını kopyalayan özel sınıf (menü, satır, katman, modal…), sabit renk.
-// Uyarı: !important, satır içi renk.
+// Dil: <html lang> zorunlu.
+// Uyarı: !important, satır içi renk, kendi font-family, toUpperCase / toLowerCase.
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 
@@ -64,6 +65,8 @@ for (const [f, t] of Object.entries(src)) {
   for (const m of t.matchAll(/mhud@v?[\w.]+\/dist|\bMH\.[A-Za-z]|(?<![\w-])mh-[a-z]|--mh-|data-mh-/g)) add('error', f, t, m.index, `eski MHud adı "${m[0]}": önce migrate.mjs çalıştır (mh- → eui-, MH → EUI, mhud → ember-ui)`);
   // Tema yok
   for (const m of t.matchAll(/data-eui-theme|EUI\.theme\s*\(/g)) add('error', f, t, m.index, 'Ember UI\'da tema yok: data-eui-theme / EUI.theme kaldır (renk için data-eui-accent / EUI.accent)');
+  // Dil: büyük harf (Türkçe i → İ), sayı biçimi ve CJK / Arapça yazı tipi seçimi <html lang> ister
+  if (ext === '.html') for (const m of t.matchAll(/<html(?![^>]*\blang=)[^>]*>/gi)) add('error', f, t, m.index, '<html> lang almalı (ör. <html lang="tr">): yoksa "Giriş" başlıkta "GIRIŞ" olur, Çince / Arapça yanlış yazı tipine düşer');
   for (const m of t.matchAll(/EUI\.(listNav|escClose|isNui|resource|poster|posterHTML|telegram|headline|sign|stamp)\b/g)) add('error', f, t, m.index, `EUI.${m[1]} kaldırıldı (MHud 3.0)`);
 
   // Kullanılan sınıflar (HTML class="", JS dizgileri, CSS seçicileri)
@@ -98,8 +101,10 @@ for (const [f, t] of Object.entries(src)) {
         add('error', f, t, at, `sabit renk ${c[0]} — ton sınıfı (eui-t-*) ya da rgb(var(--eui-…-rgb) / a) kullan`);
       }
       if (/!important/.test(body)) add('warn', f, t, at, `!important: "${sel}"`);
+      for (const c of body.matchAll(/font-family\s*:\s*([^;]+)/g)) if (!/var\(--eui-font|inherit/.test(c[1])) add('warn', f, t, at, `kendi yazı tipi "${c[1].trim().slice(0, 40)}": Türkçe / Vietnamca / Kiril / CJK kapsamı kitte — var(--eui-font-ui|display|num|mono) kullan`);
     }
   }
+  if (ext === '.js' || ext === '.html') for (const m of t.matchAll(/\.to(Upper|Lower)Case\(\)/g)) add('warn', f, t, m.index, `to${m[1]}Case(): Türkçe i / İ bozulur — EUI.${m[1] === 'Upper' ? 'upper' : 'lower'}(metin) kullan`);
   if (ext === '.html') for (const m of t.matchAll(/style="([^"]*)"/g)) {
     if (/(^|;)\s*(color|background(-color)?|border-color)\s*:\s*(#|rgb|hsl)(?![^;]*var\(--eui-)/.test(m[1])) add('warn', f, t, m.index, `satır içi renk: ${m[1].slice(0, 60)}`);
   }

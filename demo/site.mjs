@@ -6,7 +6,8 @@ export const REPO = 'https://github.com/StreamEmber/ember-ui';
 // Sunum sayfaları: bileşenlerin bir arada, gerçek sahnede kullanımı. icon = EUI ikon adı.
 export const PAGES = [
   { group: 'Başlangıç', items: [
-    { href: 'pages/components.html', label: 'Temel bileşenler', icon: 'layers' }
+    { href: 'pages/components.html', label: 'Temel bileşenler', icon: 'layers' },
+    { href: 'pages/i18n.html', label: 'Diller ve yazı tipleri', icon: 'world' }
   ]},
   { group: 'Oyun ekranları', items: [
     { href: 'pages/lobby.html', label: 'Lobi (yatay + dikey)', icon: 'home' },

@@ -32,6 +32,12 @@ Kiti **kullanan** yapay zekâ için tek belge `AI.md`'dir (katalogdan üretilir)
 - Lobi, başlık, yükleme ve durum ekranları `kit/js/ember-ui-app.js` + `kit/css/ember-ui.app.css`. Yatay / dikey farkı yalnız `@container app (...)` sorgularıyla çözülür; medya sorgusu ve ayrı HTML yok. Yeni ekran = veriyle kurulan bir `EUI.*` çağrısı + `catalog/app.html` varyantı + `catalog/app.md` tablosunda satır + `pages/lobby.html` ya da `pages/boot.html`'de kullanım.
 - Her yeni ekran üç boyutta kontrol edilir: 1920×1080, 1170×540 (telefon yatay), 540×960 (telefon dikey).
 
+## Diller ve yazı tipleri
+- Gömülü yazı tipleri (`kit/fonts/fonts.css`, Fontsource): Latin, Latin-ext, Vietnamca, Kiril, Yunan. Barlow'da Kiril / Yunan yok: aynı aile adı altında Roboto Condensed'den gelir. CJK, Arapça, Tayca, Hintçe gömülmez; `--eui-font-script` `:lang()` ile sistem yazı tipini seçer (`kit/css/ember-ui.tokens.css`).
+- Yazı tipi yığınları `:root, [lang]` üzerinde kurulur (var() tanımlandığı öğede çözülür); yeni bir yazı tipi değişkeni de oraya eklenir.
+- JS'te büyük / küçük harf ve sayı biçimi `EUI.upper/lower/fmt/compact` ile (sayfa diline bakar); `toUpperCase()` ve sabit `'tr-TR'` yazma. Yeni metin içeren bileşen `pages/i18n.html`'de denenir.
+- Sağdan sola (Arapça, İbranice) yerleşim aynalanmaz: metin doğru yazılır, bileşenler soldan sağa kalır.
+
 ## Köprü
 - Oyun ↔ sayfa: StreamEmber overlay köprüsü `window.streamember` (`EUI.bridge`). Oyun → sayfa `{ action, data }` → `EUI.on`; sayfa → oyun `EUI.post(cb, data)` → `{ cb, data }`. WebSocket için `EUI.connect`.
 

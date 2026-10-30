@@ -362,8 +362,8 @@
     el.addEventListener('input', function (e) {
       var t = e.target;
       if (t.hasAttribute('data-eui-search')) {
-        var q = t.value.toLocaleLowerCase('tr').trim();
-        el.querySelectorAll('.eui-menu__main [data-eui-item]').forEach(function (r) { r.classList.toggle('eui-hidden', !!q && r.textContent.toLocaleLowerCase('tr').indexOf(q) < 0); });
+        var q = EUI.lower(t.value).trim();
+        el.querySelectorAll('.eui-menu__main [data-eui-item]').forEach(function (r) { r.classList.toggle('eui-hidden', !!q && EUI.lower(r.textContent).indexOf(q) < 0); });
         return;
       }
       if (t.type === 'range' && t.hasAttribute('data-eui-field')) {

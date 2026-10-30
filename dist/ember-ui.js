@@ -1,4 +1,4 @@
-/*! Ember UI v4.2.1 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
+/*! Ember UI v4.3.0 | MIT | https://streamember.github.io/ember-ui/ | icons: Material Design Icons (Apache-2.0) | fonts: SIL OFL 1.1 */
 /* kit/js/ember-ui-icons.js */
 /*!
  * Ember UI — ikon seti (344 ikon)
@@ -393,7 +393,7 @@
 (function (root) {
   'use strict';
 
-  var EUI = { version: '4.2.1' };
+  var EUI = { version: '4.3.0' };
   var doc = root.document;
   EUI.bridge = root.streamember || null;   // StreamEmber overlay köprüsü; normal tarayıcıda null
 
@@ -414,9 +414,21 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function nf(n, d) {
-    return Number(n || 0).toLocaleString('tr-TR', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
+  /* Dil: <html lang> (EUI.lang ile değişir). Büyük / küçük harf (Türkçe i → İ), sayı biçimi ve yazı tipi seçimi buna bakar.
+     Rakamlar her dilde Latin (0-9) kalır: HUD sayıları Arapça rakama dönmez. */
+  var fmts = {};
+  function lang() { return (doc.documentElement.getAttribute('lang') || 'tr').trim() || 'tr'; }
+  function numFmt(d, compactNotation) {
+    var k = lang() + '|' + d + '|' + !!compactNotation;
+    if (!fmts[k]) {
+      var o = compactNotation ? { notation: 'compact', maximumFractionDigits: d } : { minimumFractionDigits: d, maximumFractionDigits: d };
+      try { fmts[k] = new Intl.NumberFormat(lang() + '-u-nu-latn', o); } catch (e) { fmts[k] = new Intl.NumberFormat('tr-TR', o); }
+    }
+    return fmts[k];
   }
+  function nf(n, d) { return numFmt(d || 0).format(Number(n || 0)); }
+  function upper(s) { try { return String(s).toLocaleUpperCase(lang()); } catch (e) { return String(s).toUpperCase(); } }
+  function lower(s) { try { return String(s).toLocaleLowerCase(lang()); } catch (e) { return String(s).toLowerCase(); } }
   function time(sec, withHours) {
     sec = Math.max(0, Math.ceil(sec));
     var h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60;
@@ -425,8 +437,7 @@
   }
   function compact(n) {
     n = Number(n || 0);
-    if (n >= 1e6) return nf(n / 1e6, n < 1e7 ? 1 : 0) + ' Mn';
-    if (n >= 1e4) return nf(n / 1e3, n < 1e5 ? 1 : 0) + ' B';
+    if (n >= 1e4) return numFmt(n < 1e5 || (n >= 1e6 && n < 1e7) ? 1 : 0, true).format(n);   // tr: 12,5 B · 1,3 Mn; en: 12.5K · 1.3M
     return nf(n);
   }
   function icon(name, cls) {
@@ -450,8 +461,9 @@
   function initials(name) {
     var s = String(name || '?').replace(/[_\-.]+/g, ' ').replace(/([a-zçğıöşü])([A-ZÇĞİÖŞÜ])/g, '$1 $2').trim();
     var p = s.split(/\s+/);
-    if (p.length > 1) return (p[0][0] + p[1][0]).toUpperCase();
-    return (/^[A-ZÇĞİÖŞÜ0-9]{2,}$/.test(p[0]) ? p[0].slice(0, 2) : p[0][0]).toUpperCase();   // "MSK" → MS, "NabeMedia" → NM
+    var a = Array.from(p[0]), b = p[1] ? Array.from(p[1]) : [];   // Array.from: vekil çiftleri (emoji, nadir CJK) bölünmez
+    if (b.length) return upper(a[0] + b[0]);
+    return upper(/^[A-ZÇĞİÖŞÜ0-9]{2,}$/.test(p[0]) ? a.slice(0, 2).join('') : a[0]);   // "MSK" → MS, "NabeMedia" → NM
   }
   function avatar(name, opts) {
     opts = opts || {};
@@ -468,7 +480,14 @@
   function raf(fn) { return (root.requestAnimationFrame || setTimeout)(fn); }
 
   EUI.$ = $; EUI.$$ = $$; EUI.el = el; EUI.esc = esc; EUI.clamp = clamp;
-  EUI.fmt = nf; EUI.time = time; EUI.compact = compact;
+  EUI.fmt = nf; EUI.time = time; EUI.compact = compact; EUI.upper = upper; EUI.lower = lower;
+  EUI.lang = function (code) {
+    if (code === undefined) return lang();
+    doc.documentElement.setAttribute('lang', code);
+    if (EUI.debug) console.log('[Ember UI] dil', code);
+    emit('lang', code);
+    return code;
+  };
   EUI.icon = icon; EUI.weapon = weapon; EUI.art = art; EUI.avatar = avatar; EUI.initials = initials;
 
   /* ======================================================================
@@ -962,8 +981,8 @@
     var list = body.querySelector('.eui-choose__list'), cur = 0;
     function vis() { return $$('.eui-choose__row:not(.is-disabled)', list); }
     function draw(q) {
-      q = (q || '').toLowerCase().trim();
-      var rows = items.filter(function (it) { return !q || String(it.label).toLowerCase().indexOf(q) >= 0 || String(it.sub || '').toLowerCase().indexOf(q) >= 0; });
+      q = lower(q || '').trim();
+      var rows = items.filter(function (it) { return !q || lower(it.label).indexOf(q) >= 0 || lower(it.sub || '').indexOf(q) >= 0; });
       list.innerHTML = rows.length ? rows.map(function (it) {
         var art = it.avatar !== undefined || !it.icon ? avatar(it.label, { src: it.avatar, tone: it.tone, cls: 'eui-avatar--sm eui-avatar--round' }) : '<span class="eui-row__icon">' + icon(it.icon) + '</span>';
         return '<div class="eui-choose__row' + (picked[it.id] ? ' is-picked' : '') + (it.disabled ? ' is-disabled' : '') + '" data-id="' + esc(it.id) + '">' +
@@ -1725,8 +1744,12 @@
   if (EUI.bridge) EUI.bridge.on(route);
   root.addEventListener('message', function (e) { route(e.data); });   // tarayıcıda deneme: postMessage({ action, data })
 
-  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', function () { EUI.mount(); });
-  else EUI.mount();
+  function boot() {
+    if (!doc.documentElement.getAttribute('lang')) console.warn('[Ember UI] <html lang="…"> yok: büyük harf (Türkçe i → İ), sayı biçimi ve Çince / Japonca / Arapça yazı tipi seçimi için dili ver (ör. <html lang="tr">) ya da EUI.lang(\'tr\') çağır. Şimdilik tr varsayılıyor.');
+    EUI.mount();
+  }
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', boot);
+  else boot();
 
   root.EUI = EUI;
 })(window);
@@ -2096,8 +2119,8 @@
     el.addEventListener('input', function (e) {
       var t = e.target;
       if (t.hasAttribute('data-eui-search')) {
-        var q = t.value.toLocaleLowerCase('tr').trim();
-        el.querySelectorAll('.eui-menu__main [data-eui-item]').forEach(function (r) { r.classList.toggle('eui-hidden', !!q && r.textContent.toLocaleLowerCase('tr').indexOf(q) < 0); });
+        var q = EUI.lower(t.value).trim();
+        el.querySelectorAll('.eui-menu__main [data-eui-item]').forEach(function (r) { r.classList.toggle('eui-hidden', !!q && EUI.lower(r.textContent).indexOf(q) < 0); });
         return;
       }
       if (t.type === 'range' && t.hasAttribute('data-eui-field')) {
@@ -2450,7 +2473,7 @@
         '<div class="eui-social__pad eui-scroll">' + (req.length ? '<span class="eui-kicker">İstekler</span><div class="eui-invites">' + req.map(inviteCard).join('') + '</div><span class="eui-kicker" style="margin-top:6px">Arkadaşlar</span>' : '') +
         '<div class="eui-members" data-list="friends">' + fr.map(function (f) {
           var here = S.channels && f.channel === S.channels.current, st = f.online ? (f.status || 'online') : 'offline';
-          return '<div class="eui-member-row is-' + st + '" data-name="' + E(String(f.name).toLowerCase()) + '">' + EUI.avatar(f.name, { src: f.avatar, cls: 'eui-avatar--round', tone: f.online ? 'success' : null }) +
+          return '<div class="eui-member-row is-' + st + '" data-name="' + E(EUI.lower(f.name)) + '">' + EUI.avatar(f.name, { src: f.avatar, cls: 'eui-avatar--round', tone: f.online ? 'success' : null }) +
             '<div class="eui-member-row__main"><div class="eui-flex eui-gap-2"><b>' + E(f.name) + '</b>' + (f.crew ? badge(f.crew, '') : '') + '</div><span class="eui-sub">' +
             (f.online ? (f.activity ? E(f.activity) + ' · ' : '') + I('layers') + ' ' + E(chName(f.channel)) + (here ? ' (seninle)' : '') : E(f.seen || 'Çevrimdışı')) + '</span></div>' + statusBadge(st) +
             '<div class="eui-member-row__acts">' + (f.online && !here ? btn('fr-join', 'Kanalına git', { id: f.id, icon: 'arrow-right', cls: 'eui-btn--outline' }) : '') +
@@ -2514,7 +2537,7 @@
       'crew-create': function () {
         EUI.modal({ kicker: 'Yeni ekip', title: 'Ekip kur', icon: 'users', size: 'lg', body: crewForm(), validate: function (v) { return !String(v.name || '').trim() ? 'Ekip adı gerekli' : String(v.tag || '').trim().length < 2 ? 'Kısaltma en az 2 harf' : null; },
           actions: [{ label: 'Vazgeç', value: null }, { label: 'Kur', primary: true, submit: true, icon: 'check' }] })
-          .then(function (v) { if (v) { v.tag = String(v.tag).toUpperCase(); act('crew:create', v); } });
+          .then(function (v) { if (v) { v.tag = EUI.upper(v.tag); act('crew:create', v); } });
       },
       'crew-invite': function () {
         EUI.choose({ kicker: S.crew.name, title: 'Ekibe davet et', text: 'Yakındaki ve çevrimiçi oyuncular', icon: 'user-plus', multi: true, ok: 'Davet gönder', okIcon: 'send',
@@ -2710,7 +2733,7 @@
     });
     el.addEventListener('input', function (e) {
       var t = e.target; if (!t.hasAttribute('data-filter')) return;
-      var q = t.value.toLowerCase().trim();
+      var q = EUI.lower(t.value).trim();
       $$('[data-list="' + t.getAttribute('data-filter') + '"] > [data-name]', el).forEach(function (r) { r.classList.toggle('eui-hidden', q && r.getAttribute('data-name').indexOf(q) < 0); });
     });
     var api = {
@@ -3198,7 +3221,7 @@
 
   /* ======================================================================
      Dil seçimi
-     EUI.language(host?, { languages: [{ code, label, native, flag }], value, title }) → Promise(code | null)
+     EUI.language(host?, { languages: [{ code, label, native, flag }], value, title, apply }) → Promise(code | null); seçilen kod EUI.lang(kod) ile sayfaya uygulanır (apply: false hariç)
      ====================================================================== */
   var LANGS = [{ code: 'tr', native: 'Türkçe', flag: '🇹🇷' }, { code: 'en', native: 'English', flag: '🇬🇧' }, { code: 'vi', native: 'Tiếng Việt', flag: '🇻🇳' }, { code: 'zh-TW', native: '繁體中文', flag: '🇹🇼' }, { code: 'de', native: 'Deutsch', flag: '🇩🇪' }, { code: 'es', native: 'Español', flag: '🇪🇸' }, { code: 'pt-BR', native: 'Português', flag: '🇧🇷' }, { code: 'ru', native: 'Русский', flag: '🇷🇺' }, { code: 'ar', native: 'العربية', flag: '🇸🇦' }, { code: 'id', native: 'Bahasa Indonesia', flag: '🇮🇩' }];
   EUI.languages = LANGS;
@@ -3220,7 +3243,7 @@
     return new Promise(function (resolve) {
       el.addEventListener('click', function (e) {
         var b = e.target.closest('[data-lang]'); if (b) { cur = b.getAttribute('data-lang'); el.querySelectorAll('.eui-lang').forEach(function (x) { x.classList.toggle('is-active', x.getAttribute('data-lang') === cur); }); return; }
-        if (e.target.closest('[data-lang-ok]')) { el.remove(); log('language →', cur); resolve(cur); }
+        if (e.target.closest('[data-lang-ok]')) { el.remove(); log('language →', cur); if (o.apply !== false) EUI.lang(cur); resolve(cur); }
         if (e.target.closest('[data-lang-cancel]')) { el.remove(); resolve(null); }
       });
     });

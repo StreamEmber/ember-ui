@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diller ve yazı tipleri — Ember UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.3.0/dist/ember-ui.min.css">
+<link rel="stylesheet" href="../demo/demo.css">
+</head>
+<body class="eui">
+<main class="demo-main">
+  <header class="demo-head">
+    <span class="demo-head__kicker">Başlangıç</span>
+    <h1>Diller ve yazı tipleri</h1>
+    <p>Kitin yazı tipleri Latin (Türkçe dahil), Vietnamca, Kiril ve Yunan harflerini gömülü taşır; başlık yazısı bu dillerde de dar kalır. Çince, Japonca, Korece, Arapça, Tayca ve Hintçe cihazın sistem yazı tipinden gelir (Windows, macOS, Android). Hangisinin seçileceğini <code>lang</code> belirler: sayfada <code>&lt;html lang="…"&gt;</code> ya da <code>EUI.lang('vi')</code>. Aynı değer büyük harfi (Türkçe <b>i → İ</b>) ve sayı biçimini (<code>EUI.fmt</code>, <code>EUI.compact</code>) de ayarlar. Son satır lang vermeyen sayfanın hatasını gösterir.</p>
+  </header>
+
+  <div class="eui-panel eui-pad" id="rows"></div>
+
+  <div class="demo-h2"><h2>Kod</h2><p>Dil seçimi sayfaya uygulanır; metinler oyunun çeviri tablosundan gelir.</p></div>
+  <pre class="demo-code"><code>&lt;html lang="tr"&gt;                                  &lt;!-- zorunlu: lint.mjs lang yoksa hata verir --&gt;
+var code = await EUI.language({ value: EUI.lang() });  // seçilen kod EUI.lang(code) ile uygulanır
+EUI.fmt(12480);      // tr 12.480 · en 12,480 · ru 12 480 (rakamlar her dilde 0-9)
+EUI.compact(12480);  // tr 12,5 B · en 12.5K · zh-TW 1.2萬
+EUI.upper('giriş');  // tr GİRİŞ · en GIRIŞ</code></pre>
+</main>
+
+<script src="https://cdn.jsdelivr.net/gh/StreamEmber/ember-ui@v4.3.0/dist/ember-ui.min.js"></script>
+<script src="../demo/demo.js"></script>
+<script>
+  // Örnek metinler: oyun arayüzünde sık geçen sözcükler
+  var SAMPLES = [
+    ['tr', 'Türkçe', 'Giriş yap', 'İlerlemen hesabında saklanır · ığüşöç ĞÜŞİÖÇ'],
+    ['en', 'English', 'Sign in', 'Your progress is saved to your account'],
+    ['de', 'Deutsch', 'Größe ändern', 'Fortschritt wird gespeichert · ÄÖÜß'],
+    ['id', 'Indonesia', 'Masuk', 'Kemajuanmu disimpan di akunmu'],
+    ['vi', 'Tiếng Việt', 'Đăng nhập', 'Tiến trình được lưu vào tài khoản · ệ ố ữ ặ ỹ'],
+    ['ru', 'Русский', 'Войти', 'Прогресс сохраняется в аккаунте · ёЁ'],
+    ['uk', 'Українська', 'Увійти', 'Прогрес зберігається · їєґ'],
+    ['el', 'Ελληνικά', 'Σύνδεση', 'Η πρόοδός σου αποθηκεύεται'],
+    ['zh-TW', '繁體中文', '登入遊戲', '你的進度會保存在帳號中'],
+    ['zh-CN', '简体中文', '登录游戏', '你的进度会保存在账号中'],
+    ['ja', '日本語', 'ログイン', '進行状況はアカウントに保存されます'],
+    ['ko', '한국어', '로그인', '진행 상황이 계정에 저장됩니다'],
+    ['ar', 'العربية', 'تسجيل الدخول', 'يتم حفظ تقدمك في حسابك'],
+    ['th', 'ไทย', 'เข้าสู่ระบบ', 'ความคืบหน้าของคุณจะถูกบันทึก'],
+    ['hi', 'हिन्दी', 'लॉग इन करें', 'आपकी प्रगति खाते में सहेजी जाती है'],
+    ['', 'lang yok', 'Giriş yap', 'Hatalı: başlıkta GIRIŞ, sayı biçimi tahmin']
+  ];
+  var rows = document.getElementById('rows');
+  rows.innerHTML = SAMPLES.map(function (s) {
+    return '<div class="eui-flex eui-gap-4 eui-pad-s" data-code="' + s[0] + '"' + (s[0] ? ' lang="' + s[0] + '"' : ' lang=""') + '>' +
+      '<span class="eui-badge" style="min-width:56px">' + (s[0] || '—') + '</span>' +
+      '<div class="eui-col eui-gap-1 eui-grow"><span class="eui-kicker">' + s[1] + '</span><span class="eui-title">' + s[2] + '</span><span class="eui-sub">' + s[3] + '</span></div>' +
+      '<span class="eui-num eui-mono" data-n></span>' +
+      '<button class="eui-btn eui-btn--primary eui-btn--sm">' + s[2] + '</button></div>';
+  }).join('');
+  // sayı biçimi her satırın diliyle (EUI.fmt sayfa diline bakar: geçici olarak değiştirilir)
+  var page = EUI.lang();
+  rows.querySelectorAll('[data-code]').forEach(function (r) {
+    var c = r.getAttribute('data-code');
+    document.documentElement.setAttribute('lang', c);   // boş: EUI.lang() tr varsayar
+    r.querySelector('[data-n]').textContent = EUI.fmt(12480) + ' · ' + EUI.compact(12480) + ' · ' + EUI.initials('ilker ışık');
+  });
+  document.documentElement.setAttribute('lang', page);
+</script>
+</body>
+</html>

@@ -59,7 +59,7 @@ EUI.consent({ age: 13, onAction: function (a) { EUI.toast({ title: a.id + ' metn
   .then(function (v) { EUI.toast({ tone: v ? 'success' : 'danger', title: v ? 'Kabul edildi' : 'Reddedildi' }); });
 </section>
 
-<section data-id="language" data-title="Dil seçimi (EUI.language)" data-use="EUI.languages hazır liste (tr, en, vi, zh-TW, de, es, pt-BR, ru, ar, id; bayrak + yerel ad); languages ile daralt, value seçili kod. Sonuç kod ya da null (cancel: true)." data-run="1">
+<section data-id="language" data-title="Dil seçimi (EUI.language)" data-use="Seçilen kod EUI.lang(kod) ile sayfaya uygulanır (yazı tipi, büyük harf, sayı biçimi; apply: false uygulamaz). EUI.languages hazır liste (tr, en, vi, zh-TW, de, es, pt-BR, ru, ar, id; bayrak + yerel ad); languages ile daralt, value seçili kod. Sonuç kod ya da null (cancel: true)." data-run="1">
 EUI.language({ value: 'tr', languages: EUI.languages.slice(0, 6), cancel: true })
   .then(function (c) { EUI.toast({ title: 'Dil: ' + c }); });
 </section>

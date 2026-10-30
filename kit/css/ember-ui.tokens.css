@@ -7,14 +7,34 @@
    kullanılabilir:   color: rgb(var(--eui-accent-rgb) / .5)
    ========================================================================== */
 
+/* ---------- Yazı tipleri ----------
+   Gömülü yazı tipleri Latin, Vietnamca, Kiril ve Yunan'ı kapsar (kit/fonts/fonts.css).
+   Çince, Japonca, Korece, Arapça, Tayca, Hintçe sistem yazı tipinden gelir: hangisinin
+   seçileceğini sayfanın / öğenin lang değeri belirler (--eui-font-script). Yığınlar her
+   [lang] öğesinde yeniden kurulur, çünkü var() tanımlandığı öğede çözülür. */
+:root, [lang] {
+  --eui-font-ui:      'EUI Inter', var(--eui-font-script), system-ui, sans-serif;
+  --eui-font-display: 'EUI Barlow Condensed', var(--eui-font-script), 'Arial Narrow', sans-serif;
+  --eui-font-num:     'EUI Barlow Semi', 'EUI Inter', var(--eui-font-script), sans-serif;
+  --eui-font-mono:    'EUI Mono', Consolas, var(--eui-font-script), monospace;
+  --eui-kicker-font:  var(--eui-font-ui);
+}
+:root { --eui-font-script: 'Segoe UI', 'Roboto', 'Helvetica Neue'; }
+/* İç içe lang (ör. Türkçe sayfada Japonca bir ad): font-family hesaplanmış değer olarak miras kalır, yeniden kurulmalı.
+   :where özgüllüğü 0: bileşenin kendi yazı tipi (başlık, sayı) her zaman kazanır. */
+:where(.eui [lang]) { font-family: var(--eui-font-ui); }
+:lang(zh) { --eui-font-script: 'Microsoft YaHei UI', 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', 'Noto Sans CJK SC'; }
+:lang(zh-TW), :lang(zh-HK), :lang(zh-MO), :lang(zh-Hant) { --eui-font-script: 'Microsoft JhengHei UI', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', 'Noto Sans CJK TC'; }
+:lang(ja) { --eui-font-script: 'Yu Gothic UI', 'Meiryo UI', 'Meiryo', 'Hiragino Sans', 'Noto Sans JP', 'Noto Sans CJK JP'; }
+:lang(ko) { --eui-font-script: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR'; }
+:lang(ar), :lang(fa), :lang(ur) { --eui-font-script: 'Segoe UI', 'Tahoma', 'Geeza Pro', 'Noto Sans Arabic'; }
+:lang(he) { --eui-font-script: 'Segoe UI', 'Arial', 'Noto Sans Hebrew'; }
+:lang(th) { --eui-font-script: 'Leelawadee UI', 'Thonburi', 'Noto Sans Thai'; }
+:lang(hi), :lang(mr), :lang(ne) { --eui-font-script: 'Nirmala UI', 'Kohinoor Devanagari', 'Noto Sans Devanagari'; }
 /* Temel değerler hem kökte hem de her tema kapsayıcısında yeniden tanımlanır;
    böylece iç içe temalar (ör. galeri kartları) birbirinden etkilenmez. */
 :root {
   /* ---------- Yazı tipleri ---------- */
-  --eui-font-ui:      'EUI Inter', 'Segoe UI', system-ui, sans-serif;
-  --eui-font-display: 'EUI Barlow Condensed', 'Arial Narrow', 'Segoe UI', sans-serif;
-  --eui-font-num:     'EUI Barlow Semi', 'EUI Inter', 'Segoe UI', sans-serif;
-  --eui-font-mono:    'EUI Mono', Consolas, monospace;
   --eui-display-weight: 700;
   --eui-display-case: uppercase;
   --eui-display-track: .02em;
@@ -32,7 +52,6 @@
   --eui-fs-5xl: 96px;
 
   /* Küçük başlık (kicker) */
-  --eui-kicker-font:   var(--eui-font-ui);
   --eui-kicker-size:   10.5px;
   --eui-kicker-weight: 600;
   --eui-kicker-track:  .14em;
@@ -165,3 +184,6 @@
     transition-duration: .001ms !important;
   }
 }
+
+/* Bitişik / hece yazılarında harf aralığı ve büyük harf anlamsız (Arapça harfleri koparır) */
+:lang(ar), :lang(fa), :lang(ur), :lang(he), :lang(th), :lang(hi), :lang(mr), :lang(ne), :lang(zh), :lang(ja), :lang(ko) { --eui-display-track: 0; --eui-kicker-track: 0; }

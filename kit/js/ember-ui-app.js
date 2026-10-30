@@ -375,7 +375,7 @@
 
   /* ======================================================================
      Dil seçimi
-     EUI.language(host?, { languages: [{ code, label, native, flag }], value, title }) → Promise(code | null)
+     EUI.language(host?, { languages: [{ code, label, native, flag }], value, title, apply }) → Promise(code | null); seçilen kod EUI.lang(kod) ile sayfaya uygulanır (apply: false hariç)
      ====================================================================== */
   var LANGS = [{ code: 'tr', native: 'Türkçe', flag: '🇹🇷' }, { code: 'en', native: 'English', flag: '🇬🇧' }, { code: 'vi', native: 'Tiếng Việt', flag: '🇻🇳' }, { code: 'zh-TW', native: '繁體中文', flag: '🇹🇼' }, { code: 'de', native: 'Deutsch', flag: '🇩🇪' }, { code: 'es', native: 'Español', flag: '🇪🇸' }, { code: 'pt-BR', native: 'Português', flag: '🇧🇷' }, { code: 'ru', native: 'Русский', flag: '🇷🇺' }, { code: 'ar', native: 'العربية', flag: '🇸🇦' }, { code: 'id', native: 'Bahasa Indonesia', flag: '🇮🇩' }];
   EUI.languages = LANGS;
@@ -397,7 +397,7 @@
     return new Promise(function (resolve) {
       el.addEventListener('click', function (e) {
         var b = e.target.closest('[data-lang]'); if (b) { cur = b.getAttribute('data-lang'); el.querySelectorAll('.eui-lang').forEach(function (x) { x.classList.toggle('is-active', x.getAttribute('data-lang') === cur); }); return; }
-        if (e.target.closest('[data-lang-ok]')) { el.remove(); log('language →', cur); resolve(cur); }
+        if (e.target.closest('[data-lang-ok]')) { el.remove(); log('language →', cur); if (o.apply !== false) EUI.lang(cur); resolve(cur); }
         if (e.target.closest('[data-lang-cancel]')) { el.remove(); resolve(null); }
       });
     });

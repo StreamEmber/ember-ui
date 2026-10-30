@@ -285,7 +285,7 @@
         '<div class="eui-social__pad eui-scroll">' + (req.length ? '<span class="eui-kicker">İstekler</span><div class="eui-invites">' + req.map(inviteCard).join('') + '</div><span class="eui-kicker" style="margin-top:6px">Arkadaşlar</span>' : '') +
         '<div class="eui-members" data-list="friends">' + fr.map(function (f) {
           var here = S.channels && f.channel === S.channels.current, st = f.online ? (f.status || 'online') : 'offline';
-          return '<div class="eui-member-row is-' + st + '" data-name="' + E(String(f.name).toLowerCase()) + '">' + EUI.avatar(f.name, { src: f.avatar, cls: 'eui-avatar--round', tone: f.online ? 'success' : null }) +
+          return '<div class="eui-member-row is-' + st + '" data-name="' + E(EUI.lower(f.name)) + '">' + EUI.avatar(f.name, { src: f.avatar, cls: 'eui-avatar--round', tone: f.online ? 'success' : null }) +
             '<div class="eui-member-row__main"><div class="eui-flex eui-gap-2"><b>' + E(f.name) + '</b>' + (f.crew ? badge(f.crew, '') : '') + '</div><span class="eui-sub">' +
             (f.online ? (f.activity ? E(f.activity) + ' · ' : '') + I('layers') + ' ' + E(chName(f.channel)) + (here ? ' (seninle)' : '') : E(f.seen || 'Çevrimdışı')) + '</span></div>' + statusBadge(st) +
             '<div class="eui-member-row__acts">' + (f.online && !here ? btn('fr-join', 'Kanalına git', { id: f.id, icon: 'arrow-right', cls: 'eui-btn--outline' }) : '') +
@@ -349,7 +349,7 @@
       'crew-create': function () {
         EUI.modal({ kicker: 'Yeni ekip', title: 'Ekip kur', icon: 'users', size: 'lg', body: crewForm(), validate: function (v) { return !String(v.name || '').trim() ? 'Ekip adı gerekli' : String(v.tag || '').trim().length < 2 ? 'Kısaltma en az 2 harf' : null; },
           actions: [{ label: 'Vazgeç', value: null }, { label: 'Kur', primary: true, submit: true, icon: 'check' }] })
-          .then(function (v) { if (v) { v.tag = String(v.tag).toUpperCase(); act('crew:create', v); } });
+          .then(function (v) { if (v) { v.tag = EUI.upper(v.tag); act('crew:create', v); } });
       },
       'crew-invite': function () {
         EUI.choose({ kicker: S.crew.name, title: 'Ekibe davet et', text: 'Yakındaki ve çevrimiçi oyuncular', icon: 'user-plus', multi: true, ok: 'Davet gönder', okIcon: 'send',
@@ -545,7 +545,7 @@
     });
     el.addEventListener('input', function (e) {
       var t = e.target; if (!t.hasAttribute('data-filter')) return;
-      var q = t.value.toLowerCase().trim();
+      var q = EUI.lower(t.value).trim();
       $$('[data-list="' + t.getAttribute('data-filter') + '"] > [data-name]', el).forEach(function (r) { r.classList.toggle('eui-hidden', q && r.getAttribute('data-name').indexOf(q) < 0); });
     });
     var api = {

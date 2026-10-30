@@ -14,6 +14,7 @@ Oyun modları (StreamEmber overlay: GTA V, RDR2), OBS kaynakları, HTML5 oyunlar
 6. **Satır içi stil yalnız belgelenmiş değişkenler için:** `--w`, `--h`, `--v`, `--cols`, `--ratio`, `--core`, `--a`… Yerleşim için `eui-flex`, `eui-col`, `eui-gap-*`, `eui-pad*` (bkz. `base.utils`).
 7. **Varyant yoksa uydurma.** Önce yakın varyantı ton/boy sınıflarıyla uyarla. Olmuyorsa (ve yalnız o zaman) genişletme kuralına uy ve kullanıcıya kitte neyin eksik olduğunu söyle.
 8. **Davranışı kit yapar.** Değer güncellemede `EUI.bar/ring/pips/count/money` çağır; `left/top/width` yazma (titreşim yapar). Oyunla konuşmada `EUI.on` / `EUI.post` kullan; kendi köprünü, yönlendiricini, ölçekleyicini yazma.
+9. **Dil `lang` ile verilir, yazı tipi verilmez.** Sayfada `<html lang="tr">` (oyunun dili; çalışırken `EUI.lang('vi')`). Bu tek değer büyük harfi (Türkçe i → İ), sayı biçimini (`EUI.fmt`, `EUI.compact`) ve Çince / Japonca / Korece / Arapça / Tayca / Hintçe yazı tipini seçer. Kendi `font-family`'ni, web fontunu, `text-transform` ya da `toUpperCase()` kodunu yazma; JS'te büyük / küçük harf için `EUI.upper` / `EUI.lower`. Metinler oyunun çeviri tablosundan gelir; kit yalnız görünümü taşır. Ayrıntı ve örnek: galeride "Diller ve yazı tipleri".
 
 ## Sayfa iskeleti (overlay modu)
 
@@ -109,4 +110,4 @@ Bileşen fabrikalarının ayrıntısı ilgili ailede; burada her public ad bir s
 
 **Dünya katmanı** — `EUI.Nametags(world, opts).update([{ id, x, y, name, … }])` · `EUI.Markers(world).update([{ id, x, y, icon, label, dist }])` · `EUI.Pool(world, yap, boya)` ikisinin ortak havuzu (doğrudan gerekmez). `world` = `.eui-world`.
 
-**Yardımcılar** — `EUI.icon(ad)` · `EUI.weapon(ad)` · `EUI.art(değer)` (emoji | `i:ikon` | `w:silah` | resim adresi) · `EUI.avatar(ad, o)` · `EUI.initials(ad)` · `EUI.fmt(sayı)` · `EUI.compact(sayı)` (12,4 B · 1,2 Mn) · `EUI.time(saniye)` · `EUI.esc(metin)` · `EUI.el(etiket, sınıf, html)` · `EUI.$(seçici)` / `EUI.$$(seçici)` · `EUI.clamp(v, a, b)` · `EUI.bump(el)` küçük zıplama · `EUI.ringSvg(r)` halka svg'si.
+**Yardımcılar** — `EUI.icon(ad)` · `EUI.weapon(ad)` · `EUI.art(değer)` (emoji | `i:ikon` | `w:silah` | resim adresi) · `EUI.avatar(ad, o)` · `EUI.initials(ad)` · `EUI.lang(kod?)` sayfa dili (okur / `<html lang>` yazar; `lang` olayı) · `EUI.upper(metin)` / `EUI.lower(metin)` dile göre büyük / küçük harf · `EUI.fmt(sayı, ondalık)` dile göre (rakamlar her dilde 0-9) · `EUI.compact(sayı)` (tr 12,5 B · en 12.5K · zh 1.2萬) · `EUI.time(saniye)` · `EUI.esc(metin)` · `EUI.el(etiket, sınıf, html)` · `EUI.$(seçici)` / `EUI.$$(seçici)` · `EUI.clamp(v, a, b)` · `EUI.bump(el)` küçük zıplama · `EUI.ringSvg(r)` halka svg'si.

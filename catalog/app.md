@@ -26,7 +26,7 @@
 | Yayıncı / StreamEmber hesabıyla bağlan (QR) | `EUI.auth({ mode: 'streamer', qr: { code } })`; oyun doğrular, `p.done()` |
 | Sunucu "şifre yanlış" dedi | `p.error('Şifre yanlış')` (ekran açık kalır, kart sallanır) |
 | Kullanım koşulları, gizlilik, yaş | `EUI.consent({ age: 13 })` → `{ terms, privacy, … }` \| `false` |
-| Dil seçimi | `EUI.language({ value })` → kod |
+| Dil seçimi | `EUI.language({ value: EUI.lang() })` → kod; kit seçilen dili `EUI.lang(kod)` ile sayfaya uygular (`apply: false` uygulamaz) |
 | İlk girişte ad seç | `EUI.nickname({ check })` → ad |
 | Ebeveyn kilidi, yetkili (admin) menüsü, satın alma PIN'i | `EUI.pin({ verify, attempts })` → kod \| `null` |
 | Ayarlar ekranı | `EUI.Menu({ sections: [{ view: 'settings', fields }] })` → `ai/menu.md` (tam ekran, dikeyde de) |
@@ -87,7 +87,7 @@ while (!(await connect())) await EUI.state('network-error', { code: 'NET-503' })
 ld.progress(1, 'Hazır'); ld.close();
 if (firstRun) {                                                   // ilk açılış
   if (!(await EUI.consent({ age: 13 }))) return quit();
-  lang = await EUI.language({ value: lang });
+  await EUI.language({ value: EUI.lang() });                      // seçilen dil <html lang>'a yazılır; metinleri oyun çevirir
 }
 var user = await EUI.auth({ mode: 'login', name: 'Snowball', methods: ['email', 'guest', 'google'] });
 if (user.method === 'guest' && !user.name) user.name = await EUI.nickname({ suggest: names });
